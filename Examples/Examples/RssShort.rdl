@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Name="">
+  <Description>RSS Reporting</Description>
+  <Author>
+  </Author>
+  <PageHeight>5in</PageHeight>
+  <PageWidth>5.2in</PageWidth>
+  <Width>5.2in</Width>
+  <TopMargin>.1in</TopMargin>
+  <LeftMargin>.1in</LeftMargin>
+  <RightMargin>.1in</RightMargin>
+  <BottomMargin>.1in</BottomMargin>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>Url=http://rss.news.yahoo.com/rss/us;RowsXPath=rss/channel/item;ColumnsXPath=title,link,pubDate,description,../title,../copyright,../image/url,../image/width,../image/height,../link</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Url">
+            <Value>=Parameters!RSSFeed.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </Query>
+      <Fields>
+        <Field Name="title">
+          <DataField>title</DataField>
+        </Field>
+        <Field Name="link">
+          <DataField>link</DataField>
+        </Field>
+        <Field Name="pubDate">
+          <DataField>pubDate</DataField>
+        </Field>
+        <Field Name="description">
+          <DataField>description</DataField>
+        </Field>
+        <Field Name="title_1">
+          <DataField>title_1</DataField>
+        </Field>
+        <Field Name="copyright">
+          <DataField>copyright</DataField>
+        </Field>
+        <Field Name="url">
+          <DataField>url</DataField>
+        </Field>
+        <Field Name="width">
+          <DataField>width</DataField>
+        </Field>
+        <Field Name="height">
+          <DataField>height</DataField>
+        </Field>
+        <Field Name="link_main">
+          <DataField>link_1</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="RSSFeeds">
+      <Query>
+        <DataSourceName>NullDS</DataSourceName>
+        <CommandText>
+        </CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Url">
+          <DataField>Url</DataField>
+        </Field>
+      </Fields>
+      <Rows>
+        <Row>
+          <Name>US News</Name>
+          <Url>http://rss.news.yahoo.com/rss/us</Url>
+        </Row>
+        <Row>
+          <Name>Nasa</Name>
+          <Url>http://rss.news.yahoo.com/rss/nasashuttle</Url>
+        </Row>
+        <Row>
+          <Name>Business</Name>
+          <Url>http://rss.news.yahoo.com/rss/business</Url>
+        </Row>
+      </Rows>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Table Name="Table1">
+        <DataSetName>Data</DataSetName>
+        <NoRows>Query returned no rows!</NoRows>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>179.6pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>173.8pt</Width>
+          </TableColumn>
+        </TableColumns>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox1">
+                      <Value>=First(Fields!title_1.Value, "Data")</Value>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <BorderStyle>
+                          <Default>None</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                          <Top>None</Top>
+                          <Bottom>None</Bottom>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                        <BorderColor>
+                          <Default>Lightgrey</Default>
+                          <Left>Lightgrey</Left>
+                          <Right>Lightgrey</Right>
+                          <Top>Lightgrey</Top>
+                          <Bottom>Lightgrey</Bottom>
+                        </BorderColor>
+                        <BorderWidth />
+                        <BackgroundColor>Lightblue</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox4">
+                      <Value>=Globals!ExecutionTime.Value</Value>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <BorderStyle>
+                          <Default>None</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                          <Top>None</Top>
+                          <Bottom>None</Bottom>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                        <BorderColor>
+                          <Default>Lightgrey</Default>
+                          <Left>Lightgrey</Left>
+                          <Right>Lightgrey</Right>
+                          <Top>Lightgrey</Top>
+                          <Bottom>Lightgrey</Bottom>
+                        </BorderColor>
+                        <BorderWidth />
+                        <BackgroundColor>Lightblue</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <Height>14.1pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="title">
+                      <Value>=Fields!title.Value</Value>
+                      <CanGrow>true</CanGrow>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderColor>
+                          <Default>Lightgrey</Default>
+                          <Left>Lightgrey</Left>
+                          <Right>Lightgrey</Right>
+                          <Top>Lightgrey</Top>
+                          <Bottom>Lightgrey</Bottom>
+                        </BorderColor>
+                        <BorderWidth />
+                        <TextDecoration>Underline</TextDecoration>
+                        <Color>Blue</Color>
+                      </Style>
+                      <Action>
+                        <Hyperlink>=Fields!link.Value</Hyperlink>
+                      </Action>
+                      <ToolTip>="Time " + Fields!pubDate.Value</ToolTip>
+                    </Textbox>
+                  </ReportItems>
+                  <ColSpan>2</ColSpan>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Left>3.6pt</Left>
+        <Top>35.5pt</Top>
+      </Table>
+      <Textbox Name="Textbox6">
+        <Height>14.30pt</Height>
+        <Width>258.97pt</Width>
+        <Value>=First(Fields!copyright.Value, "Data")</Value>
+        <Left>2.9pt</Left>
+        <Top>64.5pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+          <FontSize>8pt</FontSize>
+        </Style>
+      </Textbox>
+      <Image Name="Image1">
+        <Height>31.07pt</Height>
+        <Width>194.54pt</Width>
+        <Left>2.13pt</Left>
+        <Top>0.00pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <Source>External</Source>
+        <Value>=First(Fields!url.Value, "Data")</Value>
+        <Action>
+          <Hyperlink>=First(Fields!link_main.Value, "Data")</Hyperlink>
+        </Action>
+      </Image>
+    </ReportItems>
+    <Height>80.1pt</Height>
+    <Columns>1</Columns>
+  </Body>
+  <PageFooter>
+    <Height>0.0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageFooter>
+  <PageHeader>
+    <Height>0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageHeader>
+  <DataElementName>Report</DataElementName>
+  <DataElementStyle>AttributeNormal</DataElementStyle>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>XML</DataProvider>
+        <ConnectString>
+        </ConnectString>
+        <IntegratedSecurity>false</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+    <DataSource Name="NullDS">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>false</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <ReportParameters>
+    <ReportParameter Name="RSSFeed">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>http://rss.news.yahoo.com/rss/business</Value>
+        </Values>
+      </DefaultValue>
+      <Nullable>False</Nullable>
+      <AllowBlank>False</AllowBlank>
+      <Prompt>Pick your RSS Feed</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RSSFeeds</DataSetName>
+          <ValueField>Url</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+</Report>

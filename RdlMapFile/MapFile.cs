@@ -1,0 +1,660 @@
+/* ====================================================================
+   Copyright (C) 2004-2008  fyiReporting Software, LLC
+
+   This file is part of the fyiReporting RDL project.
+	
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at 
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+   For additional information, email info@fyireporting.com or visit
+   the website www.fyiReporting.com.
+*/
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Xml;
+using System.IO;
+
+namespace fyiReporting.RdlMapFile
+{
+    public partial class MapFile : Form, IMessageFilter
+    {
+        private DesignXmlDraw map;
+
+        public MapFile(string file)
+        {
+
+            InitializeComponent();
+            //map = new DesignXmlDraw();          // designer keeps deleting this code??!!
+            Application.AddMessageFilter(this);
+            // 
+            // manually add controls to the splitter.  visual studio keeps deleting them
+            // 
+            map = new DesignXmlDraw();         
+            this.splitContainer1.Panel1.Controls.Add(this.map);
+            // 
+            // map
+            // 
+            this.map.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.map.Location = new System.Drawing.Point(0, 0);
+            this.map.Name = "map";
+            this.map.Size = new System.Drawing.Size(620, 474);
+            this.map.TabIndex = 0;
+            this.map.Zoom = 1F;
+            map.ZoomChange += new DesignXmlDraw.DrawEventHandler(map_ZoomChange);
+            map.XmlChange += new DesignXmlDraw.DrawEventHandler(map_XmlChange);
+            map.SelectionChange += new DesignXmlDraw.DrawEventHandler(map_SelectionChange);
+            map.ToolChange += new DesignXmlDraw.DrawEventHandler(map_ToolChange);
+            this.Closing += new CancelEventHandler(MapFile_Closing);
+
+            if (file != null)
+            {
+                map.SetMapFile(file);
+                if (map.MapDoc == null)      // failed to open?
+                    map.SetNew();           //  yes, just start a new one
+            }
+            else
+                map.SetNew();
+            SetTitle(false);
+        }
+
+        void map_ToolChange(DesignXmlDraw dxd)
+        {
+            bToolStrip.Image = selectionToolStripMenuItem.Image;
+        }
+
+        void MapFile_Closing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = !OkToClose();
+        }
+
+        void map_SelectionChange(DesignXmlDraw dxd)
+        {
+            XmlNode sNode = dxd.SelectedItem;
+            if (sNode == null)
+            {
+                pgXmlNode.SelectedObject = null;
+                return;
+            }
+
+            switch (sNode.Name)
+            {
+                case "Text":
+                    pgXmlNode.SelectedObject = new PropertyText(this.map);
+                    break;
+                case "Polygon":
+                    pgXmlNode.SelectedObject = new PropertyPolygon(this.map);
+                    // expand the Keys property.  Makes it easier for user to identify the polygon
+                    GridItem keys = findPropertyItem("Keys", findPropertyRoot());
+                    if (keys != null)
+                        keys.Expanded = true;
+                    break;
+                case "Lines":
+                    pgXmlNode.SelectedObject = new PropertyLine(this.map);
+                    break;
+                default:
+                    pgXmlNode.SelectedObject = null;
+                    break;
+            }
+
+        }
+        
+        private GridItem findPropertyRoot()
+        {
+            // get the root item
+            GridItem root = pgXmlNode.SelectedGridItem;
+            if (root == null)
+                return null;
+            while (root.Parent != null)
+            {
+                root = root.Parent;
+            }
+            return root;
+        }
+        
+        private GridItem findPropertyItem(string label, GridItem root) 
+        {
+            if (root == null)
+                return null;
+            if (root.Label == label)
+                return root;
+            // search the property grid's item tree for the indicated item
+            foreach (GridItem gi in root.GridItems)
+            {
+                GridItem result = findPropertyItem(label, gi);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+ 
+        void map_XmlChange(DesignXmlDraw dxd)
+        {
+            pgXmlNode.Refresh();
+            if (map.Modified)           // only need to process on the first change
+                return;
+            SetTitle(true);
+        }
+
+        void map_ZoomChange(DesignXmlDraw dxd)
+        {
+            string z = string.Format("{0}%", Math.Round(dxd.Zoom * 100, 0));
+            cbZoom.Text = z;
+        }
+        /// <summary>
+        /// Handles mousewheel processing when window under mousewheel doesn't have focus
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public bool PreFilterMessage(ref Message m)
+        {
+#if MONO
+            return false;
+#else
+            if (m.Msg == 0x20a)
+            {
+                // WM_MOUSEWHEEL, find the control at screen position m.LParam
+                Point pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
+                IntPtr hWnd = WindowFromPoint(pos);
+                if (hWnd != IntPtr.Zero && hWnd != m.HWnd && Control.FromHandle(hWnd) != null)
+                {
+                    SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
+                    return true;
+                }
+            }
+            return false;
+#endif
+        }
+#if MONO
+#else
+        // P/Invoke declarations
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(Point pt);
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+#endif
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!OkToClose())
+                return;
+            Application.Exit();
+
+        }
+
+        private bool OkToClose()
+        {
+            if (!map.Modified)
+                return true;
+
+            DialogResult mb = MessageBox.Show(string.Format("Do you want to save changes you made to '{0}'?", map.File == null ? "untitled" : Path.GetFileName(map.File)),
+                "RdlMapFile designer", MessageBoxButtons.YesNoCancel) ;
+            if (mb == DialogResult.Cancel)
+                return false;
+
+            if (mb == DialogResult.No)
+                return true;
+
+            
+            return Save();
+        }
+
+        private bool Save()
+        {
+            // need to save file first then exit
+            if (map.File == null)
+            {
+                if (!SaveAs())
+                    return false;
+            }
+            string file = map.File;
+
+            StreamWriter writer = null;
+            bool bOK = true;
+            try
+            {
+                writer = new StreamWriter(file);
+                writer.Write(map.MapSource);
+                map.Modified = false;
+                map.ClearUndo();
+                SetTitle(false);
+            }
+            catch (Exception ae)
+            {
+                bOK = false;
+                MessageBox.Show(ae.Message + "\r\n" + ae.StackTrace);
+            }
+            finally
+            {
+                writer.Close();
+            }
+            if (bOK)
+                this.map.Modified = false;
+            return bOK;
+                   
+        }
+/// <summary>
+/// Asks user for file name and sets the map file name to user specified one
+/// </summary>
+/// <returns></returns>
+        private bool SaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.DefaultExt = "xml";
+            sfd.Filter = "RDL Map files (*.xml)|*.xml|" +
+                "All files (*.*)|*.*";
+            sfd.FilterIndex = 1;
+            sfd.CheckFileExists = false;
+            bool rc = false;
+            try
+            {
+                if (sfd.ShowDialog(this) == DialogResult.OK)
+                {
+                    map.File = sfd.FileName;
+                    rc = true;
+                }
+            }
+            finally
+            {
+                sfd.Dispose();
+            }
+            return rc;
+        }
+
+        private void SetTitle(bool bModified)
+        {
+            string title = "fyiReporting MapFile Designer - " +
+                (map.File == null? "untitled" : map.File) +
+                (bModified ? "*" : "");
+
+            if (this.Text == title)
+                return;
+            this.Text = title;
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!OkToClose())
+                return;
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.DefaultExt = "xml";
+            ofd.Filter = "Map files (*.xml)|*.xml|" +
+                "All files (*.*)|*.*";
+            ofd.FilterIndex = 1;
+            ofd.CheckFileExists = true;
+            ofd.Multiselect = false;
+            if (map.File != null)
+            {
+                try
+                {
+                    ofd.InitialDirectory = Path.GetDirectoryName(map.File);
+                }
+                catch
+                {
+                }
+            }
+
+            try
+            {
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    map.SetMapFile(ofd.FileName);
+                    SetTitle(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+            }
+            finally
+            {
+                ofd.Dispose();
+            }
+
+        }
+
+        private void setBackgroundImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Bitmap Files (*.bmp)|*.bmp" +
+                "|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif" +
+                "|GIF (*.gif)|*.gif" +
+                "|TIFF (*.tif;*.tiff)|*.tif;*.tiff" +
+                "|PNG (*.png)|*.png" +
+                "|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png" +
+                "|All files (*.*)|*.*";
+            ofd.FilterIndex = 6;
+            ofd.CheckFileExists = true;
+            try
+            {
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    map.SetBackgroundImage(ofd.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+            }
+            finally
+            {
+                ofd.Dispose();
+            }
+
+        }
+
+        private void cbZoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                float z = int.Parse(cbZoom.Text.Replace("%", ""), System.Globalization.NumberStyles.Integer) / 100f;
+                if (z < .1f)
+                    z = .1f;
+                else if (z > 10)
+                    z = 8;
+                this.map.Zoom = z;
+            }
+            catch { }       // happens when user types in a bad zoom value
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.map.DeleteSelected();
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.map.Undo();
+        }
+
+        private void editToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            undoToolStripMenuItem.Enabled = map.CanUndo;
+            undoToolStripMenuItem.Text = map.CanUndo ? "Undo " + map.UndoText : "Undo";
+
+            deleteToolStripMenuItem.Enabled = reducePolygonPointsToolStripMenuItem.Enabled = (map.SelectedItem != null);
+            
+            selectAllToolStripMenuItem.Enabled = map.MapDoc != null;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Save();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SaveAs())
+                Save();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DialogAbout dlg = new DialogAbout())
+            { 
+                dlg.ShowDialog();
+            }
+        }
+
+        private void insertPolygonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Tool = DesignXmlDraw.ToolMode.InsertPolygon;
+            bToolStrip.Image = ((ToolStripMenuItem)sender).Image;
+        }
+
+        private void insertTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Tool = DesignXmlDraw.ToolMode.InsertText;
+            bToolStrip.Image = ((ToolStripMenuItem)sender).Image;
+        }
+
+        private void insertLineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Tool = DesignXmlDraw.ToolMode.InsertLine;
+            bToolStrip.Image = ((ToolStripMenuItem)sender).Image;
+        }
+
+        private void selectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Tool = DesignXmlDraw.ToolMode.Selection;
+            bToolStrip.Image = ((ToolStripMenuItem)sender).Image;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!OkToClose())
+                return;
+            
+            map.SetNew();
+            pgXmlNode.SelectedObject = null;
+            SetTitle(false);
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.SelectAll();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Paste(new Point(0, 0));
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            map.Copy();
+            this.map.DeleteSelected();
+        }
+
+        private void helpHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.fyireporting.com/helpv4/mapdesigner.php");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Help URL Invalid");
+            }
+
+        }
+
+        private void supportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://www.fyireporting.com/forum/");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Support URL Invalid");
+            }
+
+        }
+
+        private void importMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Shape Files (*.shp)|*.shp" +
+                "|All files (*.*)|*.*";
+            ofd.FilterIndex = 0;
+            ofd.CheckFileExists = true;
+            try
+            {
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    map.ClearUndo();
+                    ShapeFile sf = new ShapeFile();
+                    sf.Read(ofd.FileName);
+                    StringBuilder sb = new StringBuilder("<MapItems>", sf.Records.Count * 100);
+                    float xOffset = (float)-sf.FileHeader.XMin;
+                    float yOffset = (float)-sf.FileHeader.YMin;
+                    //PointF offset = this.MercatorConversion(new PointF((float)sf.FileHeader.XMin, (float)sf.FileHeader.YMin));
+                    //float xOffset = (float)-offset.X;
+                    //float yOffset = (float)-offset.Y;
+                    foreach (ShapeFileRecord sfr in sf.Records)
+                    {
+                        if (sfr.ShapeType == (int)ShapeType.Polygon)
+                        {
+                            HandlePolygon(sb, xOffset, yOffset, sfr);
+                        }
+                    }
+                    
+                    sb.Append("</MapItems>");
+                    map.Paste(new Point(0, 0), sb.ToString());
+                    map.ClearUndo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+            }
+            finally
+            {
+                ofd.Dispose();
+            }
+
+        }
+
+        private void HandlePolygon(StringBuilder sb, float xOffset, float yOffset, ShapeFileRecord sfr)
+        {
+            // we'll use this key for all the polygons
+            StringBuilder keys = new StringBuilder();
+            keys.Append("<Keys>");
+            int len = sfr.Attributes.ItemArray.GetLength(0);
+            for (int j = 0; j < len; j++)
+            {
+                string key = sfr.Attributes.ItemArray[j].ToString();
+                if (key.Length == 0)
+                    continue;
+                try { float.Parse(key); continue; }
+                catch { } // not a number 
+                keys.Append(key);
+                if (j + 1 < len)
+                    keys.Append(", ");
+            }
+            if (keys.ToString().EndsWith(", "))
+                keys.Remove(keys.Length - 2, 2);
+            keys.Append("</Keys>");
+            string skeys = keys.ToString();
+
+            for (int i = 0; i < sfr.NumberOfParts; i++)
+            {
+                sb.Append("<Polygon>");
+                sb.Append("<Points>");
+                int oldx = int.MaxValue;
+                int oldy = int.MaxValue;
+                int cp = 0;
+                // Determine the starting index and the end index
+                // into the points array that defines the figure.
+                int start = sfr.Parts[i];
+                int end;
+                if (sfr.NumberOfParts > 1 && i != (sfr.NumberOfParts - 1))
+                    end = sfr.Parts[i + 1];
+                else
+                    end = sfr.NumberOfPoints;
+
+                // Add line segments to the figure.
+                for (int j = start; j < end; j++)
+                {
+                    PointF ll = sfr.Points[j];
+                    //PointF ll = MercatorConversion(sfr.Points[j]);        
+                    int x = (int)((ll.X + xOffset) * 4);
+                    int y = (int)(((-ll.Y) + yOffset) * 4);
+                    if (x == oldx && y == oldy)         // we're truncating the data so some points are redundant
+                        continue;
+                    cp++;
+                    oldx = x;
+                    oldy = y;
+
+                    sb.AppendFormat("{0},{1}", x, y);
+                    if (j + 1 < sfr.Points.Count)
+                        sb.Append(",");
+                }
+                if (cp == 1)
+                    sb.AppendFormat(",{0},{1}", oldx, oldy);
+
+                sb.Append("</Points>");
+                sb.Append(skeys);
+                sb.Append("</Polygon>");
+
+            }
+        }
+
+        private PointF MercatorConversion(PointF ll)
+        {
+			double dLat = Degrees2Radians(ll.Y);
+           
+			if (Math.Abs(Math.Abs(dLat) - HALF_PI)  <= .0001f)
+			{   // Not perfect but should be close;  latitude fails near poles (90 and -90 degree)
+                dLat = Degrees2Radians(ll.Y < 0 ? -87f: 87f);
+			}
+            // see http://en.wikipedia.org/wiki/Mercator_projection for formula
+			double y = Math.Log(Math.Tan(dLat)+ (1f / Math.Cos(dLat)));
+			return new PointF(ll.X, (float)Radians2Degrees(y)); 
+        }
+
+        static double HALF_PI = Math.PI / 2;
+
+        private double Degrees2Radians(double d)
+        {
+            return d * Math.PI / 180;
+        }
+
+        private double Radians2Degrees(double r)
+        {
+            return r * 180 / Math.PI;
+        }
+
+        private void reducePolygonPointsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int count = map.ReducePointCount();
+
+            MessageBox.Show(string.Format("Polygon point count reduced by {0}.", count), "Reduce Polygon Count");
+        }
+
+        private void sizePolygonPoints_Click(object sender, EventArgs e)
+        {
+            ToolStripItem tsi = (ToolStripItem)sender;
+            float zoom = (100f + Convert.ToSingle((string)(tsi.Tag))) / 100f;
+            map.SizeSelected(zoom);
+        }
+
+        private void menuFindByKey_Click(object sender, EventArgs e)
+        {
+            DialogFindByKey fbk = new DialogFindByKey(map);
+            try
+            {
+                fbk.ShowDialog(this);           // it does all the work
+            }
+            finally
+            {
+                fbk.Dispose();
+            }
+        }
+
+
+
+    }
+}

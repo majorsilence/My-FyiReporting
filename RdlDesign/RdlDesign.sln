@@ -1,0 +1,31 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDesigner", "ReportDesigner.csproj", "{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlEngine", "..\RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer", "..\RdlViewer\RdlViewer.csproj", "{D99145B1-CB6C-41F5-BA86-723325145FB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

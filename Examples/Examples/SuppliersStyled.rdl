@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Name="Suppliers">
+  <PageHeight>8.5 in</PageHeight>
+  <PageWidth>11 in</PageWidth>
+  <Description>Suppliers List for My Company</Description>
+  <Author>Alfred P. Sloan</Author>
+  <DataElementName>MySuppliers</DataElementName>
+  <DataElementStyle>ElementNormal</DataElementStyle>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Server=(local)\VSDotNet;DataBase=Northwind;Integrated Security=SSPI;Connect Timeout=5</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage FROM Suppliers</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="SupplierID">
+          <DataField>SupplierID</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="ContactName">
+          <DataField>ContactName</DataField>
+        </Field>
+        <Field Name="ContactTitle">
+          <DataField>ContactTitle</DataField>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+        </Field>
+        <Field Name="City">
+          <DataField>City</DataField>
+        </Field>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+        </Field>
+        <Field Name="PostalCode">
+          <DataField>PostalCode</DataField>
+        </Field>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+        </Field>
+        <Field Name="Fax">
+          <DataField>Fax</DataField>
+        </Field>
+        <Field Name="HomePage">
+          <DataField>HomePage</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageHeader>
+    <Height>0.0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <Height>33.7pt</Height>
+    <ReportItems>
+      <Table Name="Table1">
+        <Custom>
+          <HTML>
+            <SortAble>True</SortAble>
+          </HTML>
+        </Custom>
+        <DetailDataCollectionName>suppliers</DetailDataCollectionName>
+        <DetailDataElementName>supplier</DetailDataElementName>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <BorderColor>
+            <Default>blue</Default>
+          </BorderColor>
+          <BackgroundColor>yellow</BackgroundColor>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox1">
+                      <Value>SupplierID</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox2">
+                      <Value>CompanyName</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox3">
+                      <Value>ContactName</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox4">
+                      <Value>ContactTitle</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox5">
+                      <Value>Address</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox6">
+                      <Value>City</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox7">
+                      <Value>Region</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox8">
+                      <Value>PostalCode</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox9">
+                      <Value>Country</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox10">
+                      <Value>Phone</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox11">
+                      <Value>Fax</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox12">
+                      <Value>HomePage</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <FontWeight>bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="SupplierID">
+                      <Value>=Fields!SupplierID.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="CompanyName">
+                      <Value>=Fields!CompanyName.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ContactName">
+                      <Value>=Fields!ContactName.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ContactTitle">
+                      <Value>=Fields!ContactTitle.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Address">
+                      <Value>=Fields!Address.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="City">
+                      <Value>=Fields!City.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Region">
+                      <Value>=Fields!Region.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PostalCode">
+                      <Value>=Fields!PostalCode.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Country">
+                      <Value>=Fields!Country.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Phone">
+                      <Value>=Fields!Phone.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Fax">
+                      <Value>=Fields!Fax.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="HomePage">
+                      <Value>=Fields!HomePage.Value</Value>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderWidth>
+                          <Left>0pt</Left>
+                          <Right>1pt</Right>
+                          <Top>0pt</Top>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <Color>=iif(Fields!SupplierID.Value % 2 = 0, "red","blue")</Color>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Details>
+      </Table>
+    </ReportItems>
+    <Columns>1</Columns>
+  </Body>
+  <PageFooter>
+    <Height>0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageFooter>
+  <Width>11in</Width>
+</Report>

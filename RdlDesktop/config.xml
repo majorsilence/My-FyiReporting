@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<config>
+	<localhostonly>true</localhostonly>	<!-- change to 'false' if you want other machine to access -->
+	<port>8080</port>
+	<serverroot>C:\WebServices\RDL Files</serverroot>
+	<cachedirectory>tempreports</cachedirectory>
+	<tracelevel>0</tracelevel>
+	<maxreadcache>100</maxreadcache>
+	<maxreadcacheentrysize>100000</maxreadcacheentrysize>
+	<mimetypes>   <!-- If a mimetype doesn't show in this list; the server won't show it
+						in directory lists and gets on the file will get a 404 not found.
+						This can be used as an additional layer of security by eliminating
+						files types that shouldn't be served.   Note: html, gif, png, rdl, xml, pdf
+						should always be in this list. -->
+		<mimetype>
+			<extension>html</extension>
+			<type>text/html</type>
+		</mimetype>
+		<mimetype>
+			<extension>htm</extension>
+			<type>text/html</type>
+		</mimetype>
+		<mimetype>
+			<extension>mht</extension>
+			<type>message/rfc822</type>
+		</mimetype>
+		<mimetype>
+			<extension>mhtml</extension>
+			<type>message/rfc822</type>
+		</mimetype>
+		<mimetype>
+			<extension>xml</extension>
+			<type>application/xml</type>
+		</mimetype>
+		<mimetype>
+			<extension>pdf</extension>
+			<type>application/pdf</type>
+		</mimetype>
+		<mimetype>
+			<extension>xhtml</extension>
+			<type>application/xhtml+xml</type>
+		</mimetype>
+		<mimetype>
+			<extension>gif</extension>
+			<type>image/gif</type>
+		</mimetype>
+		<mimetype>
+			<extension>jpeg</extension>
+			<type>image/jpeg</type>
+		</mimetype>
+		<mimetype>
+			<extension>jpg</extension>
+			<type>image/jpeg</type>
+		</mimetype>
+		<mimetype>
+			<extension>jpe</extension>
+			<type>image/jpeg</type>
+		</mimetype>
+		<mimetype>
+			<extension>png</extension>
+			<type>image/png</type>
+		</mimetype>
+		<mimetype>
+			<extension>txt</extension>
+			<type>text/plain</type>
+		</mimetype>
+		<mimetype>
+			<extension>rtf</extension>
+			<type>text/richtext</type>
+		</mimetype>
+		<mimetype>
+			<extension>tiff</extension>
+			<type>image/tiff</type>
+		</mimetype>
+		<mimetype>
+			<extension>tif</extension>
+			<type>image/tiff</type>
+		</mimetype>
+		<mimetype>
+			<extension>rdl</extension>
+			<type>application/rdl</type>
+		</mimetype>
+	</mimetypes>
+</config>

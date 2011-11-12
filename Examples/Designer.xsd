@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<xsd:schema 
+targetNamespace="http://www.fyireporting.com/schemas" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://www.fyireporting.com/schemas" elementFormDefault="qualified">
+
+<xsd:annotation>
+<xsd:documentation>The following schema for fyiReporting Project RDL describes the extensions to the Report Definition Language (RDL) for defining reports. fyiReporting does not make any representation or warranty regarding the schema or any product or item developed based on the schema. The schema is provided to you on an AS IS basis. fyiReporting disclaims all express, implied and statutory warranties, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and freedom from infringement. Without limiting the generality of the foregoing, fyiReporting does not make any warranty of any kind that any item developed based on the schema, or any portion of the schema, will not infringe any copyright, patent, trade secret, or other intellectual property right of any person or entity in any country. It is your responsibility to seek licenses for such intellectual property rights where appropriate. FYIREPORTING SHALL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING OUT OF OR IN CONNECTION WITH THE USE OF THE SCHEMA, INCLUDING WITHOUT LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL (INCLUDING ANY LOST PROFITS), PUNITIVE OR SPECIAL DAMAGES, WHETHER OR NOT MICROSOFT HAS BEEN ADVISED OF SUCH DAMAGES. (c) fyiReportin Software, LLC. All rights reserved.</xsd:documentation> 
+</xsd:annotation>
+
+<xsd:element name="Rows">
+  <xsd:complexType>
+  <xsd:choice minOccurs="1" maxOccurs="unbounded">
+  <xsd:element name="Row" type="RowType" /> 
+  <xsd:any namespace="##other" processContents="skip" /> 
+  </xsd:choice>
+  <xsd:anyAttribute namespace="##other" processContents="skip" /> 
+  </xsd:complexType>
+</xsd:element>
+<xsd:complexType name="RowType">
+  <xsd:choice minOccurs="1" maxOccurs="unbounded">
+  <xsd:any namespace="##other" processContents="skip" /> 
+  </xsd:choice>
+  <xsd:anyAttribute namespace="##other" processContents="skip" /> 
+</xsd:complexType>
+<xsd:element name="CanOmit">
+  <xsd:extension base="xsd:string"/>
+  <xsd:anyAttribute namespace="##other" processContents="skip" /> 
+</xsd:element>
+</xsd:schema>

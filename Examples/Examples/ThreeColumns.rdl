@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2003/10/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <RightMargin>0.25in</RightMargin>
+  <Body>
+    <ReportItems>
+      <List Name="list1">
+        <Style>
+          <BorderStyle xmlns="" />
+          <BorderColor xmlns="" />
+          <BorderWidth xmlns="" />
+        </Style>
+        <DataSetName>Data</DataSetName>
+        <ReportItems>
+          <Textbox Name="Phone">
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingRight>2pt</PaddingRight>
+              <BorderStyle xmlns="" />
+              <BorderColor xmlns="" />
+              <BorderWidth xmlns="" />
+            </Style>
+            <ZIndex>1</ZIndex>
+            <CanGrow>false</CanGrow>
+            <Value>=Fields!Phone.Value</Value>
+            <Left>115.8pt</Left>
+            <Width xmlns="">144.00pt</Width>
+            <Height xmlns="">15.99pt</Height>
+            <Top xmlns="">0.0pt</Top>
+          </Textbox>
+          <Textbox Name="ContactName">
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingBottom>2pt</PaddingBottom>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingRight>2pt</PaddingRight>
+              <BorderStyle xmlns="" />
+              <BorderColor xmlns="" />
+              <BorderWidth xmlns="" />
+            </Style>
+            <Width>116.18pt</Width>
+            <CanGrow>True</CanGrow>
+            <Value>=Fields!ContactName.Value</Value>
+            <Height xmlns="">15.17pt</Height>
+            <Left xmlns="">0.00pt</Left>
+            <Top xmlns="">0.00pt</Top>
+          </Textbox>
+        </ReportItems>
+        <Sorting xmlns="">
+          <SortBy>
+            <SortExpression>=Fields!ContactName.Value</SortExpression>
+            <Direction>Ascending</Direction>
+          </SortBy>
+        </Sorting>
+      </List>
+    </ReportItems>
+    <Style />
+    <Height>16.5pt</Height>
+    <ColumnSpacing>0.25in</ColumnSpacing>
+    <Columns>3</Columns>
+  </Body>
+  <TopMargin>0.5in</TopMargin>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Server=(local)\VSDotNet;DataBase=Northwind;Integrated Security=SSPI;Connect Timeout=5</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>SELECT ContactName, Phone FROM Customers</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ContactName">
+          <DataField>ContactName</DataField>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <LeftMargin>0.25in</LeftMargin>
+  <BottomMargin>0.5in</BottomMargin>
+  <Width>2.5in</Width>
+  <PageHeader xmlns="">
+    <Height>23.8pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Height>10.35pt</Height>
+        <Width>114.55pt</Width>
+        <Value>=First(ReportItems!ContactName)</Value>
+        <Left>0.0pt</Left>
+        <Top>0.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+          <FontWeight>Bold</FontWeight>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <Height>12.44pt</Height>
+        <Width>124.11pt</Width>
+        <Value>=Last(ReportItems!ContactName)</Value>
+        <Left>460.1pt</Left>
+        <Top>0.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+          <FontWeight>Bold</FontWeight>
+          <TextAlign>Right</TextAlign>
+        </Style>
+      </Textbox>
+    </ReportItems>
+  </PageHeader>
+  <PageFooter xmlns="">
+    <Height>0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageFooter>
+  <Author xmlns="">
+  </Author>
+  <Description xmlns="">
+  </Description>
+  <PageWidth xmlns="">8.5in</PageWidth>
+  <PageHeight xmlns="">4in</PageHeight>
+  <DataElementName xmlns="">Report</DataElementName>
+  <DataElementStyle xmlns="">AttributeNormal</DataElementStyle>
+</Report>

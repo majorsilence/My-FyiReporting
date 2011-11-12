@@ -1,0 +1,168 @@
+/* ====================================================================
+   Copyright (C) 2004-2008  fyiReporting Software, LLC
+
+   This file is part of the fyiReporting RDL project.
+	
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+   For additional information, email info@fyireporting.com or visit
+   the website www.fyiReporting.com.
+*/
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
+using System.ComponentModel;            // need this for the properties metadata
+using System.Drawing.Design;
+using System.Xml;
+using System.Globalization;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
+
+namespace fyiReporting.RdlDesign
+{
+    /// <summary>
+    /// PropertyAction - 
+    /// </summary>
+    [TypeConverter(typeof(PropertyActionConverter)),
+        Editor(typeof(PropertyActionUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    internal class PropertyAction
+    {
+        PropertyReportItem pri;
+
+        internal PropertyAction(PropertyReportItem ri)
+        {
+            pri = ri;
+        }
+        
+        public override string ToString()
+        {
+            string result = "";
+            DesignXmlDraw dr = pri.Draw;
+            XmlNode aNode = dr.GetNamedChildNode(pri.Node, "Action");
+            if (aNode == null)
+                result = "None";
+            else
+            {
+                XmlNode vLink = dr.GetNamedChildNode(aNode, "Hyperlink");
+                if (vLink != null)
+                {	// Hyperlink specified
+                    result = string.Format("Hyperlink: {0}", vLink.InnerText);
+                }
+                else
+                {
+                    vLink = dr.GetNamedChildNode(aNode, "Drillthrough");
+                    if (vLink != null)
+                    {	// Drillthrough specified
+                        result = string.Format("Drillthrough: {0}", dr.GetElementValue(vLink, "ReportName", ""));
+                    }
+                    else
+                    {
+                        vLink = dr.GetNamedChildNode(aNode, "BookmarkLink");
+                        if (vLink != null)
+                        {	// BookmarkLink specified
+                            result = string.Format("BookmarkLink: {0}", vLink.InnerText);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
+
+    internal class PropertyActionConverter : StringConverter
+    {
+        public override bool GetStandardValuesExclusive(ITypeDescriptorContext context)
+        {
+            return false;
+        }
+
+        public override bool CanConvertTo(ITypeDescriptorContext context,
+                                          System.Type destinationType)
+        {
+            if (destinationType == typeof(PropertyAction))
+                return true;
+            
+            return base.CanConvertTo(context, destinationType);
+        }
+
+        public override object ConvertTo(ITypeDescriptorContext context, 
+            CultureInfo culture, object value, Type destinationType)
+        {
+            if (destinationType == typeof(string) && value is PropertyAction)
+            {
+                PropertyAction pa = value as PropertyAction;
+                return pa.ToString();
+            }
+
+            return base.ConvertTo(context, culture, value, destinationType);
+        }
+
+    }
+
+    internal class PropertyActionUIEditor : UITypeEditor
+    {
+        internal PropertyActionUIEditor()
+        {
+        }
+
+        public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
+        {
+            return UITypeEditorEditStyle.Modal;
+        }
+
+        public override object EditValue(ITypeDescriptorContext context,
+                                        IServiceProvider provider,
+                                        object value)
+        {
+
+            if ((context == null) || (provider == null))
+                return base.EditValue(context, provider, value);
+
+            // Access the Property Browser's UI display service
+            IWindowsFormsEditorService editorService =
+                (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
+
+            if (editorService == null)
+                return base.EditValue(context, provider, value);
+
+            // Create an instance of the UI editor form
+            IReportItem iri = context.Instance as IReportItem;
+            if (iri == null)
+                return base.EditValue(context, provider, value);
+            PropertyReportItem pre = iri.GetPRI();
+
+            PropertyAction pa = value as PropertyAction;
+            if (pa == null)
+                return base.EditValue(context, provider, value);
+
+            SingleCtlDialog scd = new SingleCtlDialog(pre.DesignCtl, pre.Draw, pre.Nodes, SingleCtlTypeEnum.InteractivityCtl, null);
+            try
+            {
+                // Display the UI editor dialog
+                if (editorService.ShowDialog(scd) == DialogResult.OK)
+                {
+                    // Return the new property value from the UI editor form
+                    return new PropertyAction(pre);
+                }
+            }
+            finally
+            {
+                scd.Dispose();
+            }
+            return base.EditValue(context, provider, value);
+        }
+    }
+}
