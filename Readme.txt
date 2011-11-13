@@ -6,6 +6,8 @@ found at http://www.fyireporting.com/ and it has exmpales found at http://www.fy
 the forum is http://www.fyireporting.com/forum/index.php.  However has I said above for the most part it is a dead 
 project.
 
+Also check this projects wiki as information will be slowly added.
+
 This is currently built with visual studio 2008 and targets .net 2.  It should be easy to use visual studio 2010
 and target .net 4,  just upgrade the solutions.
 
