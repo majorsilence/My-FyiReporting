@@ -65,7 +65,9 @@ namespace fyiReporting.RDL
 			// final file
 			_styles = new Hashtable();
 		}
-		~RenderHtmlTable()
+        //Replaced from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
+		//~RenderHtmlTable()
+        public void Dispose() 
 		{
 			// These should already be cleaned up; but in case of an unexpected error 
 			//   these still need to be disposed of
