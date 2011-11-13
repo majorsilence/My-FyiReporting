@@ -45,7 +45,6 @@ Layout:
 
 
 TODO (if not already patches on fyi reporting forum):  
-1. Tooltips on designer buttons
-2. Drag and Drop report into designer
-3. Pass report path to RdlDesigner.exe when executing and have it open the report
-4. Can shrink on horizontal space if row is suppressed
+* Drag and Drop report into designer
+* Pass report path to RdlDesigner.exe when executing and have it open the report
+* Can shrink on horizontal space if row is suppressed
