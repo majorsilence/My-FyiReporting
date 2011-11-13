@@ -1,7 +1,10 @@
 My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
 
-I know there are other forks but last I checked they also seemed to be dead.
+I know there are other forks but last I checked they also seemed to be dead.  The main fyiReporting site is 
+found at http://www.fyireporting.com/ and it has exmpales found at http://www.fyireporting.com/helpv4/index.php and 
+the forum is http://www.fyireporting.com/forum/index.php.  However has I said above for the most part it is a dead 
+project.
 
 This is currently built with visual studio 2008 and targets .net 2.  It should be easy to use visual studio 2010
 and target .net 4,  just upgrade the solutions.
