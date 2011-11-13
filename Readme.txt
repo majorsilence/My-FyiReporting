@@ -48,3 +48,4 @@ TODO (if not already patches on fyi reporting forum):
 * Drag and Drop report into designer
 * Pass report path to RdlDesigner.exe when executing and have it open the report
 * Can shrink on horizontal space if row is suppressed
+* Merge patches from fyiReporting forum
