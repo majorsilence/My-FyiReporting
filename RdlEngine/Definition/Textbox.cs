@@ -139,6 +139,7 @@ namespace fyiReporting.RDL
 			base.FinalPass();
 			_Value.FinalPass();
 
+            //The Changes below were added from Forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
 			if (this.DataElementName == null && this.Name == null)
 			{
 				// no name or dataelementname; try using expression
@@ -146,7 +147,19 @@ namespace fyiReporting.RDL
 				if (ff != null && ff.Fld != null)
 				{
 					this.DataElementName = ff.Fld.DataField;
+                    this.Name = ff.Fld.Name; // Added 
 				}
+                
+                FunctionAggr fa = _Value.Expr as FunctionAggr; 
+                if (fa != null)
+                {
+                    FunctionField ff2 = fa.Expr as FunctionField;
+                    if (ff2 != null && ff2.Fld != null)
+                    {
+                        this.DataElementName = ff2.Fld.DataField;
+                        this.Name = ff2.Fld.Name; 
+                    }
+                }
 			}
 
 			if (_ToggleImage != null)

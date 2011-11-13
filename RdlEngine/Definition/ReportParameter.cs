@@ -232,6 +232,10 @@ namespace fyiReporting.RDL
             }
 
 			object rtv;
+            if (v is Guid)
+            { //Added from Forum, User: solidstore http://www.fyireporting.com/forum/viewtopic.php?t=905
+                v = ((Guid)v).ToString("B"); 
+            }
 			if (!AllowBlank && _dt == TypeCode.String && (string) v == "")
 				throw new ArgumentException(string.Format("Empty string isn't allowed for {0}.", Name.Nm));
 			try 

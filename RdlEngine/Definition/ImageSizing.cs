@@ -57,6 +57,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns>The enumerated value corresponding to the string.</returns>
+        //[System.Diagnostics.DebuggerStepThrough] 
 		static public ImageSizingEnum GetStyle(string s)
 		{
 			return GetStyle(s, null);
@@ -66,6 +67,20 @@ namespace fyiReporting.RDL
 			{
 			ImageSizingEnum rs;
 
+            try
+            {
+                rs = (ImageSizingEnum)Enum.Parse(typeof(ImageSizingEnum), s);
+            }
+            catch 
+            {
+                if (rl != null)
+                {
+                    rl.LogError(4, "Unknown ImageSizing '" + s + "'. AutoSize assumed.");
+                }
+                rs = ImageSizingEnum.AutoSize; 
+            }
+            
+            /*
 			switch (s)
 			{		
 				case "AutoSize":
@@ -87,6 +102,7 @@ namespace fyiReporting.RDL
 					rs = ImageSizingEnum.AutoSize;
 					break;
 			}
+            */
 			return rs;
 		}
 	}

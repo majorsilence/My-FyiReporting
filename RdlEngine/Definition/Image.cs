@@ -51,6 +51,16 @@ namespace fyiReporting.RDL
 	
 		bool _ConstantImage;	// true if Image is a constant at runtime
 
+        private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
+        /// <summary>
+        /// Only gets set for Images which contain urls rather than coming from the database etc..
+        /// </summary>
+        public string ImageUrl
+        {
+            get { return imageUrl; }
+            private set { imageUrl = value; }
+        }      
+        
 		internal Image(ReportDefn r, ReportLink p, XmlNode xNode):base(r,p,xNode)
 		{
 			_ImageSource=ImageSourceEnum.Unknown;
@@ -269,7 +279,8 @@ namespace fyiReporting.RDL
 						strm = new MemoryStream(ba);
 						break;
 					case ImageSourceEnum.External:
-						string fname = _Value.EvaluateString(rpt, row);
+						//Added Image URL from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
+                        string fname = this.ImageUrl = _Value.EvaluateString(rpt, row);
 						mtype = GetMimeType(fname);
 						if (fname.StartsWith("http:") ||
 							fname.StartsWith("file:") ||
