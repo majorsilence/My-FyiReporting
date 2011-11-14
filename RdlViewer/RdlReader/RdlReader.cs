@@ -96,13 +96,13 @@ namespace fyiReporting.RdlReader
 			// open up the current files if any
 			if (_CurrentFiles != null)
 			{
-				foreach (string file in _CurrentFiles)
+                foreach (Uri file in _CurrentFiles) 
 				{
 					MDIChild mc = new MDIChild(this.ClientRectangle.Width*3/4, this.ClientRectangle.Height*3/4);
 					mc.MdiParent = this;
 					mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
 					mc.SourceFile = file;
-					mc.Text = file;
+                    mc.Text = file.LocalPath; 
 					mc.Show();
 				}
 				_CurrentFiles = null;		// don't need this any longer
@@ -328,7 +328,7 @@ namespace fyiReporting.RdlReader
 			{
 				foreach (string file in ofd.FileNames)
 				{
-					CreateMDIChild(file, false);
+                    CreateMDIChild(new Uri(file), false); 
 				}
 				RecentFilesMenu();
 			}
@@ -337,22 +337,20 @@ namespace fyiReporting.RdlReader
 		private void menuRecentItem_Click(object sender, System.EventArgs e)
 		{
 			MenuItem m = (MenuItem) sender;
-			string file = m.Text.Substring(2);
+            Uri file = new Uri(m.Text.Substring(2)); 
 
 			CreateMDIChild(file, true);
 		}
 
 		// Create an MDI child.   Only creates it if not already open
-		private void CreateMDIChild(string file, bool bMenuUpdate)
+        private void CreateMDIChild(Uri file, bool bMenuUpdate) 
 		{
 			MDIChild mcOpen=null;
 			if (file != null)
 			{
-				file = file.Trim();
-
 				foreach (MDIChild mc in this.MdiChildren)
 				{
-					if (file == mc.SourceFile.Trim())	
+                    if (file == mc.SourceFile) 	
 					{							// we found it
 						mcOpen = mc;
 						break;
@@ -365,7 +363,7 @@ namespace fyiReporting.RdlReader
 				mc.MdiParent = this;
 				mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
 				mc.SourceFile = file;
-				mc.Text = file;
+                mc.Text = file == null ? "" : file.LocalPath; 
 				NoteRecentFiles(file, bMenuUpdate);
 				mc.Show();
 			}
@@ -387,7 +385,7 @@ namespace fyiReporting.RdlReader
 			printChild = mc;
 
 			PrintDocument pd = new PrintDocument();
-			pd.DocumentName = mc.SourceFile;
+            pd.DocumentName = mc.SourceFile.LocalPath; 
 			pd.PrinterSettings.FromPage = 1;
 			pd.PrinterSettings.ToPage = mc.Viewer.PageCount;
 			pd.PrinterSettings.MaximumPage = mc.Viewer.PageCount;
@@ -437,13 +435,13 @@ namespace fyiReporting.RdlReader
                 "MHT files (*.mht)|*.mht";
 			sfd.FilterIndex = 1;
 
-			string file = mc.SourceFile;
+            Uri file = mc.SourceFile; 
 
 			if (file != null)
 			{
-				int index = file.LastIndexOf('.');
+                int index = file.LocalPath.LastIndexOf('.'); 
 				if (index > 1)
-					sfd.FileName = file.Substring(0, index) + ".pdf";
+                    sfd.FileName = file.LocalPath.Substring(0, index) + ".pdf"; 
 				else
 					sfd.FileName = "*.pdf";
 
@@ -686,23 +684,24 @@ namespace fyiReporting.RdlReader
 		{
 			SaveStartupState();
 		}
- 
-		private void NoteRecentFiles(string name, bool bResetMenu)
-		{
-			if (name == null)
-				return;
 
-			name = name.Trim();
-			if (_RecentFiles.ContainsValue(name))
+        private void NoteRecentFiles(Uri name, bool bResetMenu) 
+		{
+            if (name == null)
+            {
+                return;
+            }
+
+            if (_RecentFiles.ContainsValue(name.LocalPath)) 
 			{	// need to move it to top of list; so remove old one
-				int loc = _RecentFiles.IndexOfValue(name);
+                int loc = _RecentFiles.IndexOfValue(name.LocalPath); 
 				_RecentFiles.RemoveAt(loc);
 			}
 			if (_RecentFiles.Count >= 5)
 			{
 				_RecentFiles.RemoveAt(0);	// remove the first entry
 			}
-			_RecentFiles.Add(DateTime.Now, name);
+            _RecentFiles.Add(DateTime.Now, name.LocalPath); 
 			if (bResetMenu)
 				RecentFilesMenu();
 			return;
@@ -791,11 +790,11 @@ namespace fyiReporting.RdlReader
 				xDS.AppendChild(xFiles);
 				foreach (MDIChild mc in this.MdiChildren)
 				{
-					string file = mc.SourceFile;
+                    Uri file = mc.SourceFile;
 					if (file == null)
 						continue;
 					xN = xDoc.CreateElement("file");
-					xN.InnerText = file;
+                    xN.InnerText = file.LocalPath; 
 					xFiles.AppendChild(xN);
 				}
 

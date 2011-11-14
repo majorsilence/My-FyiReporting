@@ -47,7 +47,7 @@ namespace fyiReporting.RdlViewer
         public NeedPassword GetDataSourceReferencePassword = null;
 		bool _InPaint=false;
 		bool _InLoading=false;
-		private string _SourceFileName;		// file name to use
+        private Uri _SourceFileName;		// file name to use
 		private string _SourceRdl;			// source Rdl; if provided overrides filename
 		private string _Parameters;			// parameters to run the report
 		private Report _Report;				// the report
@@ -483,7 +483,7 @@ namespace fyiReporting.RdlViewer
 		/// this field will cause a new report to be loaded into the viewer.
 		/// SourceFile is mutually exclusive with SourceRdl.  Setting SourceFile will nullify SourceRdl.
 		/// </summary>
-		public string SourceFile
+        public Uri SourceFile
 		{
 			get 
 			{
@@ -743,6 +743,7 @@ namespace fyiReporting.RdlViewer
 					case "csv":
 						_Report.RunRender(sg, OutputPresentationType.CSV);
 						break;
+                    case "doc": 
                     case "rtf":
                         _Report.RunRender(sg, OutputPresentationType.RTF);
                         break;
@@ -1071,7 +1072,7 @@ namespace fyiReporting.RdlViewer
 				rdlp =  new RDLParser(prog);
 				rdlp.DataSourceReferencePassword = GetDataSourceReferencePassword;
 				if (_SourceFileName != null)
-					rdlp.Folder = Path.GetDirectoryName(_SourceFileName);
+                    rdlp.Folder = Path.GetDirectoryName(_SourceFileName.LocalPath); 
 				else
 					rdlp.Folder = this.Folder;
 
@@ -1095,8 +1096,8 @@ namespace fyiReporting.RdlViewer
 					{
 						if (_SourceFileName != null)
 						{
-							r.Name = Path.GetFileNameWithoutExtension(_SourceFileName);
-							r.Folder = Path.GetDirectoryName(_SourceFileName);
+                            r.Name = Path.GetFileNameWithoutExtension(_SourceFileName.LocalPath);
+                            r.Folder = Path.GetDirectoryName(_SourceFileName.LocalPath);
 						}
 						else
 						{
@@ -1310,7 +1311,7 @@ namespace fyiReporting.RdlViewer
 			string prog=null;
 			try
 			{
-				fs = new StreamReader(_SourceFileName);
+                fs = new StreamReader(_SourceFileName.LocalPath); 
 				prog = fs.ReadToEnd();
 			}
 			finally
@@ -1714,7 +1715,9 @@ namespace fyiReporting.RdlViewer
 				{
 					wvalue = _vScroll.Value + _vScroll.SmallChange;
 
-					_vScroll.Value = (int) Math.Min(_vScroll.Maximum - (_DrawPanel.Height / _zoom), wvalue);
+                    //Changed from forum, User: robertopisati http://www.fyireporting.com/forum/viewtopic.php?t=863
+                    float value = Math.Min(_vScroll.Maximum - (_DrawPanel.Height / _zoom), wvalue);
+                    _vScroll.Value = (int)Math.Max(_vScroll.Minimum, value); 
 					_DrawPanel.Refresh();
 				}
 			}

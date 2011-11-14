@@ -64,7 +64,7 @@ namespace fyiReporting.RdlReader
 		/// <summary>
 		/// The RDL file that should be displayed.
 		/// </summary>
-		public string SourceFile
+        public Uri SourceFile
 		{
 			get {return this.rdlViewer1.SourceFile;}
 			set 
