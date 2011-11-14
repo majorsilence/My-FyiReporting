@@ -923,10 +923,26 @@ namespace fyiReporting.RdlViewer
                 strm = new MemoryStream(pi.ImageData);
                 im = System.Drawing.Image.FromStream(strm);
 
-                RectangleF r2 = new RectangleF(r.Left + PixelsX(si.PaddingLeft),
-                    r.Top + PixelsY(si.PaddingTop),
-                    r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
-                    r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
+                // http://www.fyireporting.com/forum/viewtopic.php?t=892
+                //A.S.> convert pt to px if needed(when printing we need px, when draw preview - pt) 
+
+                RectangleF r2;
+                if (g.PageUnit == GraphicsUnit.Pixel)
+                {
+                    r2 = new RectangleF(r.Left + (si.PaddingLeft * g.DpiX) / 72,
+                    r.Top + (si.PaddingTop * g.DpiX) / 72,
+                    r.Width - ((si.PaddingLeft + si.PaddingRight) * g.DpiX) / 72,
+                    r.Height - ((si.PaddingTop + si.PaddingBottom) * g.DpiX) / 72);
+                }
+                else
+                {
+                    // adjust drawing rectangle based on padding
+                    r2 = new RectangleF(r.Left + si.PaddingLeft,
+                    r.Top + si.PaddingTop,
+                    r.Width - si.PaddingLeft - si.PaddingRight,
+                    r.Height - si.PaddingTop - si.PaddingBottom);
+                }
+
 
                 int repeatX = 0;
                 int repeatY = 0;
@@ -987,10 +1003,26 @@ namespace fyiReporting.RdlViewer
             StyleInfo si = pi.SI;
 
             // adjust drawing rectangle based on padding
-            RectangleF r2 = new RectangleF(r.Left + PixelsX(si.PaddingLeft),
-                r.Top + PixelsY(si.PaddingTop),
-                r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
-                r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
+
+            // http://www.fyireporting.com/forum/viewtopic.php?t=892
+            //A.S.> convert pt to px if needed(when printing we need px, when draw preview - pt) 
+
+            RectangleF r2;
+            if (g.PageUnit == GraphicsUnit.Pixel)
+            {
+                r2 = new RectangleF(r.Left + (si.PaddingLeft * g.DpiX) / 72,
+                r.Top + (si.PaddingTop * g.DpiX) / 72,
+                r.Width - ((si.PaddingLeft + si.PaddingRight) * g.DpiX) / 72,
+                r.Height - ((si.PaddingTop + si.PaddingBottom) * g.DpiX) / 72);
+            }
+            else
+            {
+                // adjust drawing rectangle based on padding
+                r2 = new RectangleF(r.Left + si.PaddingLeft,
+                r.Top + si.PaddingTop,
+                r.Width - si.PaddingLeft - si.PaddingRight,
+                r.Height - si.PaddingTop - si.PaddingBottom);
+            } 
 
             Rectangle ir;	// int work rectangle
             ir = new Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
@@ -1061,7 +1093,10 @@ namespace fyiReporting.RdlViewer
             if (bs == BorderStyleEnum.None || c.IsEmpty || w <= 0)	// nothing to draw
                 return;
 
-            Pen p = null;
+            float tmpW = w;
+            if (g.PageUnit == GraphicsUnit.Pixel)
+                tmpW = (tmpW * g.DpiX) / 72;
+            Pen p = new Pen(c, tmpW);
             try
             {
                 p = new Pen(c, w);
@@ -1323,13 +1358,31 @@ namespace fyiReporting.RdlViewer
                 DrawBackground(g, r, si);
 
                 // adjust drawing rectangle based on padding
-                RectangleF r2 = new RectangleF(r.Left + si.PaddingLeft,
-                                               r.Top + si.PaddingTop,
-                                               r.Width - si.PaddingLeft - si.PaddingRight,
-                                               r.Height - si.PaddingTop - si.PaddingBottom);
+                // http://www.fyireporting.com/forum/viewtopic.php?t=892
+                //A.S.> convert pt to px if needed(when printing we need px, when draw preview - pt) 
+                RectangleF r2;
+                if (g.PageUnit == GraphicsUnit.Pixel)
+                {
+                    r2 = new RectangleF(r.Left + (si.PaddingLeft * g.DpiX) / 72,
+                    r.Top + (si.PaddingTop * g.DpiX) / 72,
+                    r.Width - ((si.PaddingLeft + si.PaddingRight) * g.DpiX) / 72,
+                    r.Height - ((si.PaddingTop + si.PaddingBottom) * g.DpiX) / 72);
+                }
+                else
+                {
+                    // adjust drawing rectangle based on padding
+                   r2 = new RectangleF(r.Left + si.PaddingLeft,
+                   r.Top + si.PaddingTop,
+                   r.Width - si.PaddingLeft - si.PaddingRight,
+                   r.Height - si.PaddingTop - si.PaddingBottom);
+                } 
 
                 drawBrush = new SolidBrush(si.Color);
-                if (pt.NoClip)	// request not to clip text
+                if (si.TextAlign == TextAlignEnum.Justified)
+                {
+                    GraphicsExtended.DrawStringJustified(g, pt.Text, drawFont, drawBrush, r2); 
+                }
+                else if (pt.NoClip)	// request not to clip text
                 {
                     g.DrawString(pt.Text, drawFont, drawBrush, new PointF(r.Left, r.Top), drawFormat);
                     HighlightString(g, pt, new RectangleF(r.Left, r.Top, float.MaxValue, float.MaxValue),

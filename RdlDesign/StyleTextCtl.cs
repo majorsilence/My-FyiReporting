@@ -374,7 +374,8 @@ namespace fyiReporting.RdlDesign
             "Left",
             "Center",
             "Right",
-            "General"});
+            "General",
+            "Justified"});
             this.cbHorzAlign.Location = new System.Drawing.Point(80, 168);
             this.cbHorzAlign.Name = "cbHorzAlign";
             this.cbHorzAlign.Size = new System.Drawing.Size(64, 21);
