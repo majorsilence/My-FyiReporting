@@ -341,40 +341,15 @@ namespace fyiReporting.RDL
 		{
 			FontWeightEnum fw;
 
-			switch(v.ToLower())
-			{
-				case "Lighter":
-					fw = FontWeightEnum.Lighter;
-					break;
-				case "Normal":
-					fw = FontWeightEnum.Normal;
-					break;
-				case "bold":
-					fw = FontWeightEnum.Bold;
-					break;
-				case "bolder":
-					fw = FontWeightEnum.Bolder;
-					break;
-				case "500":
-					fw = FontWeightEnum.W500;
-					break;
-				case "600":
-					fw = FontWeightEnum.W600;
-					break;
-				case "700":
-					fw = FontWeightEnum.W700;
-					break;
-				case "800":
-					fw = FontWeightEnum.W800;
-					break;
-				case "900":
-					fw = FontWeightEnum.W900;
-					break;
-				default:
-					fw = def;
-					break;
-			}
-			return fw;
+            try
+            {
+                fw = (FontWeightEnum)Enum.Parse(typeof(FontWeightEnum), v);
+            }
+            catch
+            {
+                fw = def;
+            }
+            return fw; 
 		}
 
 		/// <summary>
@@ -386,19 +361,16 @@ namespace fyiReporting.RDL
 		public static FontStyleEnum GetFontStyle(string v, FontStyleEnum def)
 		{
 			FontStyleEnum f;
-			switch (v.ToLower())
-			{
-				case "normal":
-					f = FontStyleEnum.Normal;
-					break;
-				case "italic":
-					f = FontStyleEnum.Italic;
-					break;
-				default:
-					f = def;
-					break;
-			}
-			return f;
+            try
+            {
+                f = (FontStyleEnum)Enum.Parse(typeof(FontStyleEnum), v);
+            }
+            catch
+            {
+                f = def;
+            }
+
+            return f; 
 		}
 
 		/// <summary>
@@ -410,37 +382,16 @@ namespace fyiReporting.RDL
 		static public BackgroundGradientTypeEnum GetBackgroundGradientType(string v, BackgroundGradientTypeEnum def)
 		{
 			BackgroundGradientTypeEnum gt;
-			switch(v.ToLower())
-			{
-				case "none":
-					gt = BackgroundGradientTypeEnum.None;
-					break;
-				case "leftright":
-					gt = BackgroundGradientTypeEnum.LeftRight;
-					break;
-				case "topbottom":
-					gt = BackgroundGradientTypeEnum.TopBottom;
-					break;
-				case "center":
-					gt = BackgroundGradientTypeEnum.Center;
-					break;
-				case "diagonalleft":
-					gt = BackgroundGradientTypeEnum.DiagonalLeft;
-					break;
-				case "diagonalright":
-					gt = BackgroundGradientTypeEnum.DiagonalRight;
-					break;
-				case "horizontalcenter":
-					gt = BackgroundGradientTypeEnum.HorizontalCenter;
-					break;
-				case "verticalcenter":
-					gt = BackgroundGradientTypeEnum.VerticalCenter;
-					break;
-				default:
-					gt = def;
-					break;
-			}
-			return gt;
+            try
+            {
+                gt = (BackgroundGradientTypeEnum)Enum.Parse(typeof(BackgroundGradientTypeEnum), v);
+            }
+            catch
+            {
+                gt = def;
+            }
+            return gt; 
+
 		}
 
 		/// <summary>
@@ -452,25 +403,16 @@ namespace fyiReporting.RDL
 		public static TextDecorationEnum GetTextDecoration(string v, TextDecorationEnum def)
 		{
 			TextDecorationEnum td;
-			switch (v.ToLower())
-			{
-				case "underline":
-					td = TextDecorationEnum.Underline;
-					break;
-				case "overline":
-					td = TextDecorationEnum.Overline;
-					break;
-				case "linethrough":
-					td = TextDecorationEnum.LineThrough;
-					break;
-				case "none":
-					td = TextDecorationEnum.None;
-					break;
-				default:
-					td = def;
-					break;
-			}
-			return td;
+            try
+            {
+                td = (TextDecorationEnum)Enum.Parse(typeof(TextDecorationEnum), v);
+            }
+            catch
+            {
+                td = def;
+            }
+
+            return td; 
 		}
 
 		/// <summary>
@@ -482,25 +424,16 @@ namespace fyiReporting.RDL
 		public static TextAlignEnum GetTextAlign(string v, TextAlignEnum def)
 		{
 			TextAlignEnum ta;
-			switch(v.ToLower())
-			{
-				case "left":
-					ta = TextAlignEnum.Left;
-					break;
-				case "right":
-					ta = TextAlignEnum.Right;
-					break;
-				case "center":
-					ta = TextAlignEnum.Center;
-					break;
-				case "general":
-					ta = TextAlignEnum.General;
-					break;
-				default:
-					ta = def;
-					break;
-			}
-			return ta;
+            try
+            {
+                ta = (TextAlignEnum)Enum.Parse(typeof(TextAlignEnum), v);
+            }
+            catch
+            {
+                ta = def;
+            }
+            return ta; 
+
 		}
 
 		/// <summary>
@@ -512,22 +445,17 @@ namespace fyiReporting.RDL
 		public static VerticalAlignEnum GetVerticalAlign(string v, VerticalAlignEnum def)
 		{
 			VerticalAlignEnum va;
-			switch (v.ToLower())
-			{
-				case "top":
-					va = VerticalAlignEnum.Top;
-					break;
-				case "middle":
-					va = VerticalAlignEnum.Middle;
-					break;
-				case "bottom":
-					va = VerticalAlignEnum.Bottom;
-					break;
-				default:
-					va = def;
-					break;
-			}
-			return va;
+            try
+            {
+                va = (VerticalAlignEnum)Enum.Parse(typeof(VerticalAlignEnum), v);
+            }
+            catch
+            {
+                va = def;
+            }
+
+            return va;
+ 
 		}
 
 		/// <summary>
@@ -538,20 +466,18 @@ namespace fyiReporting.RDL
 		/// <returns></returns>
 		public static DirectionEnum GetDirection(string v, DirectionEnum def)
 		{
-			DirectionEnum d;   
-			switch(v.ToLower())
-			{
-				case "ltr":
-					d = DirectionEnum.LTR;
-					break;
-				case "rtl":
-					d = DirectionEnum.RTL;
-					break;
-				default:
-					d = def;
-					break;
-			}
-			return d;
+			DirectionEnum d;
+            try
+            {
+                d = (DirectionEnum)Enum.Parse(typeof(DirectionEnum), v);
+            }
+            catch
+            {
+                d = def;
+            }
+            return d; 
+
+
 		}
 		/// <summary>
 		/// Gets the writing mode; e.g. left right top bottom or top bottom left right.
@@ -562,19 +488,18 @@ namespace fyiReporting.RDL
 		public static WritingModeEnum GetWritingMode(string v, WritingModeEnum def)
 		{
 			WritingModeEnum w;
-			switch(v.ToLower())
-			{
-				case "lr-tb":
-					w = WritingModeEnum.lr_tb;
-					break;
-				case "tb-rl":
-					w = WritingModeEnum.tb_rl;
-					break;
-                default:
-					w = def;
-					break;
-			}
-			return w;
+
+            try
+            {
+                w = (WritingModeEnum)Enum.Parse(typeof(WritingModeEnum), v);
+            }
+            catch
+            {
+                w = def;
+            }
+
+            return w;
+ 
 		}
 
 		/// <summary>
@@ -586,22 +511,16 @@ namespace fyiReporting.RDL
 		public static UnicodeBiDirectionalEnum GetUnicodeBiDirectional(string v, UnicodeBiDirectionalEnum def)
 		{
 			UnicodeBiDirectionalEnum u;
-			switch (v.ToLower())
-			{
-				case "normal":
-					u = UnicodeBiDirectionalEnum.Normal;
-					break;
-				case "embed":
-					u = UnicodeBiDirectionalEnum.Embed;
-					break;
-				case "bidi-override":
-					u = UnicodeBiDirectionalEnum.BiDi_Override;
-					break;
-				default:
-					u = def;
-					break;
-			}
-			return u;
+            try
+            {
+                u = (UnicodeBiDirectionalEnum)Enum.Parse(typeof(UnicodeBiDirectionalEnum), v);
+            }
+            catch
+            {
+                u = def;
+            }
+            return u; 
+
 		}
 
 		/// <summary>
@@ -614,50 +533,15 @@ namespace fyiReporting.RDL
 		{
 			CalendarEnum c;
 
-			switch (v.ToLower())
-			{
-				case "gregorian":
-					c = CalendarEnum.Gregorian;
-					break;
-				case "gregorianarabic":
-					c = CalendarEnum.GregorianArabic;
-					break;
-				case "gregorianmiddleeastfrench":
-					c = CalendarEnum.GregorianMiddleEastFrench;
-					break;
-				case "gregoriantransliteratedenglish":
-					c = CalendarEnum.GregorianTransliteratedEnglish;
-					break;
-				case "gregoriantransliteratedfrench":
-					c = CalendarEnum.GregorianTransliteratedFrench;
-					break;
-				case "gregorianusenglish":
-					c = CalendarEnum.GregorianUSEnglish;
-					break;
-				case "hebrew":
-					c = CalendarEnum.Hebrew;
-					break;
-				case "hijri":
-					c = CalendarEnum.Hijri;
-					break;
-				case "japanese":
-					c = CalendarEnum.Japanese;
-					break;
-				case "korea":
-					c = CalendarEnum.Korea;
-					break;
-				case "taiwan":
-					c = CalendarEnum.Taiwan;
-					break;
-				case "thaibuddhist":
-					c = CalendarEnum.ThaiBuddhist;
-					break;
-				default:
-					c = def;
-					break;
-			}
-			return c;
-
+            try
+            {
+                c = (CalendarEnum)Enum.Parse(typeof(CalendarEnum), v);
+            }
+            catch
+            {
+                c = def;
+            }
+            return c; 
 		}
         // WRP 301008 return Excel07 format code as defined in section 3.8.30 of the ECMA-376 standard for Office Open XML Excel07 file formats
         public static int GetFormatCode (string val)
@@ -914,7 +798,8 @@ namespace fyiReporting.RDL
 		Left,
 		Center,
 		Right,
-		General
+		General,
+        Justified 
 	}
 
 	public enum VerticalAlignEnum
