@@ -42,10 +42,15 @@ namespace fyiReporting.RdlDesign
 	{
 		static internal readonly float POINTSIZED = 72.27f;
 		static internal readonly decimal POINTSIZEM = 72.27m;
+        readonly Color BANDBORDERCOLOR = Color.DimGray; //Josh: added for Band Border
+        readonly BorderStyleEnum BANDBORDERSTYLE = BorderStyleEnum.Solid; //Josh: Band Border Style
+        const float BANDBORDERWIDTH = 1f; //Josh: Band border width
+        readonly Color AREABACKCOLOR = Color.LightGray; //Josh: added for area background color (behind page) 
+
 		const float RADIUS = 2.5f;
         readonly Color BANDCOLOR = Color.LightGray;
 		const int BANDHEIGHT = 12;              // height of band (e.g. body, pageheader, pagefooter) in pts
-		const float LEFTGAP = 0f;				// keep a gap on the left size of the screen
+		const float LEFTGAP = 10f; // keep a gap on the left size of the screen
 		// Various page measurements that we keep
 		float rWidth, pHeight, pWidth;
 		float lMargin, rMargin, tMargin, bMargin;
@@ -934,9 +939,10 @@ namespace fyiReporting.RdlDesign
 			}
 
 			ProcessReport(xNode);
-
+            
 			// Render the report
-			DrawMargins();
+            DrawMargins(_clip.Y + _clip.Height); 
+
 			float yLoc=0;
 			yLoc += DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, "Page Header \x2191");
 			yLoc += DrawReportPrimaryRegions(bodyNode, LEFTGAP, yLoc, "Body \x2191");
@@ -1054,20 +1060,45 @@ namespace fyiReporting.RdlDesign
 				height = 0;
 			}
 
+            // Josh:
+            // Added the effect of "paper" so that
+            // the displayed page size would not extend
+            // past the paper size selected. If a region
+            // is extended past the end of the paper
+            // the paper will no longer display and the
+            // items placed will only be shown with an outline
+            // in the "off-paper" area.
+            //White "Paper" 
 			StyleInfo si = new StyleInfo();
             si.BackgroundColor = Color.White;
 
-			RectangleF b = new RectangleF(xLoc, yLoc, PointsX(Width)+_hScroll, height);
+            RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) + _hScroll, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0); 
 			DrawBackground(b, si);
-			
+            //End "Paper"
+
+            // Josh:
+            // Draws the items before the band
+            // so that the items will appear "below" the band.
+            //Items
+            DrawReportItems(items, b); // now draw the report items
+            //End Items 
+
+            //Band and Text 
 			RectangleF bm = new RectangleF(_hScroll,yLoc+height, PointsX(Width)+_hScroll, BANDHEIGHT);
 			si.BackgroundColor = BANDCOLOR;
 			si.FontFamily = "Arial";
 			si.FontSize = 8;
 			si.FontWeight = FontWeightEnum.Bold;
-			DrawString(title, si, bm);
 
-			DrawReportItems(items, b);			// now draw the report items
+            //Josh: Added border styles for the dividing bars.
+            //Makes it easier to see where page stops in a section.
+            //Added padding on the left side of the text too due to the border line
+            si.BStyleBottom = si.BStyleLeft = si.BStyleRight = si.BStyleTop = BANDBORDERSTYLE;
+            si.BWidthBottom = si.BWidthLeft = si.BWidthRight = si.BWidthTop = BANDBORDERWIDTH;
+            si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = BANDBORDERCOLOR;
+            si.PaddingLeft = BANDBORDERWIDTH + 1f; 
+			DrawString(title, si, bm);
+            //End Band and Text 
 
 			return height+BANDHEIGHT;
 		}
@@ -1122,6 +1153,13 @@ namespace fyiReporting.RdlDesign
 						rir = DrawLine(xNodeLoop, r);
 						break;
 				}
+                // Josh:
+                // Draws the item "Out of bounds" if the item is
+                // "off paper".
+                if (!r.Contains(rir))
+                {
+                    DrawOutOfBounds(xNodeLoop, r);
+                }
 				if (!rir.IsEmpty)
 				{
 					if (this._SelectedReportItems.IndexOf(xNodeLoop) >= 0)
@@ -1130,14 +1168,32 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 
-		private List<XmlNode> DrawReportItemsOrdered(XmlNode xNode)
+        // Josh: Modified so that items can be returned in reverse order as well
+        // That way, items can be drawn on top of each other correctly.
+        // This is useful when attempting to have text boxes over an image for example.
+        private List<XmlNode> DrawReportItemsOrdered(XmlNode xNode)
+        {
+            return DrawReportItemsOrdered(xNode, false);
+        }
+        //Josh: Modified so that items can be returned in reverse order as well 
+		private List<XmlNode> DrawReportItemsOrdered(XmlNode xNode, bool reverse)
 		{
 			// build the array
             List<XmlNode> al = new List<XmlNode>(xNode.ChildNodes.Count);
-			foreach (XmlNode n in xNode.ChildNodes)
-				al.Add(n);
+            foreach (XmlNode n in xNode.ChildNodes)
+            {
+                al.Add(n);
+            }
 
-			al.Sort(new ReportItemSorter(this));
+            // Josh: See above comment.
+            if (!reverse)
+            {
+                al.Sort(new ReportItemSorter(this));
+            }
+            else
+            {
+                al.Sort(new ReportItemReverseSorter(this));
+            }
 
 			return al;
 		}
@@ -1152,9 +1208,63 @@ namespace fyiReporting.RdlDesign
 				rir.Height = r.Height - rir.Top;
 
 			rir = new RectangleF(rir.Left + r.Left, rir.Top + r.Top , rir.Width, rir.Height);
-			rir.Intersect(r);
-			return rir;
+            //rir.Intersect(r); //Josh: Removed so that the items will still display
+            // an outline if they go farther than
+            // the edge of the page
+            return rir; 
 		}
+
+        // Josh: This method returns the rectangle to the Right of the paper border where the
+        // item should be outlined only.
+        private RectangleF GetOutOfBoundsRightReportItemRect(XmlNode xNode, RectangleF r)
+        {
+            RectangleF rir = GetReportItemRect(xNode);
+
+            if (rir.Right + LEFTGAP <= r.Right)
+            {
+                return rir;
+            }
+            else
+            {
+                if (rir.Width == float.MinValue)
+                    rir.Width = r.Width - rir.Left;
+                if (rir.Height == float.MinValue)
+                    rir.Height = r.Height - rir.Top;
+
+                RectangleF ibr = new RectangleF(rir.Left + r.Left, rir.Top + r.Top, rir.Width, rir.Height);
+
+                ibr.Intersect(r);
+
+                rir = new RectangleF(ibr.X + ibr.Width, ibr.Y, rir.Width - ibr.Width, rir.Height);
+                return rir;
+            }
+        }
+
+        // Josh: This method returns the rectangle to the Bottom of the paper border where the
+        // item should be outlined only.
+        private RectangleF GetOutOfBoundsBottomReportItemRect(XmlNode xNode, RectangleF r)
+        {
+            RectangleF rir = GetReportItemRect(xNode);
+
+            if (rir.Bottom <= r.Bottom)
+            {
+                return rir;
+            }
+            else
+            {
+                if (rir.Width == float.MinValue)
+                    rir.Width = r.Width - rir.Left;
+                if (rir.Height == float.MinValue)
+                    rir.Height = r.Height - rir.Top;
+
+                RectangleF ibr = new RectangleF(rir.Left + r.Left, rir.Top + r.Top, rir.Width, rir.Height);
+
+                ibr.Intersect(r);
+
+                rir = new RectangleF(ibr.X, ibr.Y + ibr.Height, ibr.Width, rir.Height - ibr.Height);
+                return rir;
+            }
+        } 
 
 		/// <summary>
 		/// Return the rectangle as specified by Left, Top, Height, Width elements 
@@ -1357,8 +1467,11 @@ namespace fyiReporting.RdlDesign
                     DrawBorder(si, ir);
                     break;
                 case "Embedded":
-                    if (DrawImageEmbedded(xNode, sNode, vNode, si, ir))
+                    // Josh: adds base rectangle so the "paper" size is known when drawing image.
+                    if (DrawImageEmbedded(xNode, sNode, vNode, si, ir, r))
+                    {
                         ir = GetReportItemRect(xNode, r);
+                    }
 
                     DrawBorder(si, ir);
                     break;
@@ -1372,7 +1485,8 @@ namespace fyiReporting.RdlDesign
             return ir;
         }
 
-		private bool DrawImageEmbedded(XmlNode iNode, XmlNode sNode, XmlNode vNode, StyleInfo si, RectangleF r)
+        // Josh: adds base rectangle so the "paper" size is known when drawing image.
+        private bool DrawImageEmbedded(XmlNode iNode, XmlNode sNode, XmlNode vNode, StyleInfo si, RectangleF r, RectangleF rBase) 
 		{
 			// First we need to find the embedded image list
 			XmlNode emNode = this.GetNamedChildNode(rDoc.LastChild, "EmbeddedImages");
@@ -1412,7 +1526,8 @@ namespace fyiReporting.RdlDesign
 				strm = new MemoryStream(ba);
 				im = System.Drawing.Image.FromStream(strm);	 
 				// Draw based on sizing options
-				bResize = DrawImageSized(iNode, im, si, r);
+                // Josh: adds base rectangle so the "paper" size is known when drawing image.
+                bResize = DrawImageSized(iNode, im, si, r, rBase); 
 			}
 			catch (Exception e)
 			{
@@ -1526,13 +1641,25 @@ namespace fyiReporting.RdlDesign
             return ise;
         }
 
+        // Josh: adds the base rectange so the paper size is known.
+        private bool DrawImageSized(XmlNode iNode, Image im, StyleInfo si, RectangleF r, RectangleF rBase)
+        {
+            return DrawImageSized(iNode, GetSizing(iNode), im, si, r, rBase);
+        }
+
+        private bool DrawImageSized(XmlNode iNode, ImageSizingEnum ise, Image im, StyleInfo si, RectangleF r)
+        {
+            return DrawImageSized(iNode, ise, im, si, r, r);
+        } 
+
         private bool DrawImageSized(XmlNode iNode, Image im, StyleInfo si, RectangleF r)
         {
             return DrawImageSized(iNode, GetSizing(iNode), im, si, r);
         }
 
-		private bool DrawImageSized(XmlNode iNode, ImageSizingEnum ise, Image im, StyleInfo si, RectangleF r)
-		{
+        // Josh: adds the base rectange so the paper size is known.
+        private bool DrawImageSized(XmlNode iNode, ImageSizingEnum ise, Image im, StyleInfo si, RectangleF r, RectangleF rBase)
+        {
 			// calculate new rectangle based on padding and scroll
 			RectangleF r2 = new RectangleF(r.Left + si.PaddingLeft - _hScroll,
 				r.Top + si.PaddingTop - _vScroll,
@@ -1577,7 +1704,12 @@ namespace fyiReporting.RdlDesign
                     g.PageUnit = gu;
                     g.Clip = saveRegion;
 					break;
-				case ImageSizingEnum.FitProportional:
+                case ImageSizingEnum.FitProportional: //Josh: Modified to allow
+                    //accurate scaling of image
+                    //when scrolling page.
+                    // Previously, the image would
+                    // "shrink" as it's box was
+                    // scrolled off the page. 
 					float ratioIm = (float) im.Height / (float) im.Width;
 					float ratioR = r2.Height / r2.Width;
 					height = r2.Height;
@@ -1590,8 +1722,32 @@ namespace fyiReporting.RdlDesign
 					{	// this means the ractangle height must be corrected
 						height = width * ratioIm;
 					}
-					r2 = new RectangleF(r2.X, r2.Y, width, height);
-					g.DrawImage(im, r2);
+
+                    // Josh: creates another rectangle used to determine the area to draw
+                    // so that the entire image is not "drawn" off screen and only the
+                    // portion displayed is drawn.
+                    RectangleF r3 = new RectangleF(r2.X, r2.Y, width, height);
+
+                    width = (float)im.Width / (float)PixelsX(width);
+                    height = (float)im.Height / (float)PixelsY(height);
+                    r3.Y = rBase.Y;
+                    r3.X = rBase.X;
+                    r3.Intersect(rBase);
+                    r3.Y = r2.Y;
+                    r3.X = r2.X;
+
+                    width = PixelsX(r3.Width) * width;
+                    height = PixelsY(r3.Height) * height;
+
+                    float startingX = PixelsX(/*(_hScroll > rBase.X) ? (_hScroll - */si.PaddingLeft/* + rBase.X) : 0*/);
+                    float startingY = PixelsY(/*(_vScroll > rBase.Y) ? (_vScroll - */si.PaddingTop/* + rBase.Y) : 0*/);
+                    g.DrawImage(im, r3,
+                    new RectangleF(
+                    startingX,
+                    startingY,
+                    (width > im.Width ? im.Width : width) - startingX,
+                    (height > im.Height ? im.Height : height) - startingY),
+                    GraphicsUnit.Pixel); 
 					break;
 				case ImageSizingEnum.Fit:
 				default:
@@ -1694,7 +1850,8 @@ namespace fyiReporting.RdlDesign
 		
 			si.BStyleBottom = si.BStyleLeft = si.BStyleTop = si.BStyleRight = BorderStyleEnum.Solid;
 			si.BWidthBottom = si.BWidthLeft = si.BWidthRight = si.BWidthTop = 1;
-			si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = Color.LightGray;
+            // Josh: Changed to DimGray (personal preference)
+            si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = Color.DimGray; //Color.LightGray; 
 			DrawBorder(si, r);
 
 			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
@@ -1719,6 +1876,28 @@ namespace fyiReporting.RdlDesign
 			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
 				p2.X + - RADIUS, p2.Y - RADIUS, RADIUS*2, true);
 		}
+
+        // Josh: Draws the "out of bounds" area of the "off paper" controls.
+        private void DrawOutOfBounds(XmlNode xNode, RectangleF r)
+        {
+            StyleInfo si = GetStyleInfo(xNode);
+            RectangleF ri = GetOutOfBoundsRightReportItemRect(xNode, r);
+            si.BackgroundColor = AREABACKCOLOR;
+
+            if (ri.Right > r.Right)//(!r.Contains(ri))
+            {
+                DrawBackground(ri, si);
+            }
+
+            ri = GetOutOfBoundsBottomReportItemRect(xNode, r);
+
+            if (ri.Bottom > r.Bottom)
+            {
+                DrawBackground(ri, si);
+            }
+            return;
+        }
+ 
 
 		private RectangleF DrawSubreport(XmlNode xNode, RectangleF r)
 		{
@@ -1915,16 +2094,17 @@ namespace fyiReporting.RdlDesign
 			return ir;
 		}
 
-		private void DrawMargins()
+        private void DrawMargins(float lowerEdge) //Josh: Added Lower Edge so that the area would be filled behind the page. 
 		{
 			// left margin
-			RectangleF m = new RectangleF(0, 0, LEFTGAP, TotalPageHeight);
+            // left margin //Removed Left Margin, as right margin will fill full beind page
+            //RectangleF m = new RectangleF(0, 0, LEFTGAP, /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
 			StyleInfo si = new StyleInfo();
 			si.BackgroundColor = Color.LightGray;
-			DrawBackground(m, si);
+            si.BackgroundColor = AREABACKCOLOR; //Josh: Changed to use variable to ease page customizing. 
 
-			// right margin
-			m = new RectangleF(pWidth - rMargin, 0, PointsX(Width), TotalPageHeight);
+            //Full Margin // right margin
+            RectangleF m = new RectangleF(/*pWidth - rMargin*/0, 0, PointsX(Width), /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
 			DrawBackground(m, si);
 		}
 
@@ -2185,43 +2365,15 @@ namespace fyiReporting.RdlDesign
 		BorderStyleEnum GetBorderStyle(string v, BorderStyleEnum def)
 		{
 			BorderStyleEnum bs;
-			switch (v)
-			{
-				case "None":
-					bs = BorderStyleEnum.None;
-					break;
-				case "Dotted":
-					bs = BorderStyleEnum.Dotted;
-					break;
-				case "Dashed":
-					bs = BorderStyleEnum.Dashed;
-					break;
-				case "Solid":
-					bs = BorderStyleEnum.Solid;
-					break;
-				case "Double":
-					bs = BorderStyleEnum.Double;
-					break;
-				case "Groove":
-					bs = BorderStyleEnum.Groove;
-					break;
-				case "Ridge":
-					bs = BorderStyleEnum.Ridge;
-					break;
-				case "Inset":
-					bs = BorderStyleEnum.Inset;
-					break;
-				case "WindowInset":
-					bs = BorderStyleEnum.WindowInset;
-					break;
-				case "Outset":
-					bs = BorderStyleEnum.Outset;
-					break;
-				default:
-					bs = def;
-					break;
-			}
-			return bs;
+            try
+            {
+                bs = (BorderStyleEnum)Enum.Parse(typeof(BorderStyleEnum), v);
+            }
+            catch
+            {
+                bs = def;
+            }
+            return bs; 
 		}
 
 		private void GetStyleInfoBorderWidth(XmlNode xNode, StyleInfo si)
@@ -2827,8 +2979,9 @@ namespace fyiReporting.RdlDesign
 
 		internal void PasteImage(XmlNode parent, System.Drawing.Bitmap img, PointF p)
 		{
-			string t = string.Format(NumberFormatInfo.InvariantInfo, 
-				"<ReportItems><Image><Source>Embedded</Source><Height>{0:0.00}in</Height><Width>{1:0.00}in</Width><Sizing>FitProportional</Sizing></Image></ReportItems>",
+            // Josh: Adds a default ZIndex of 1 to paste above "background". 
+			string t = string.Format(NumberFormatInfo.InvariantInfo,
+                "<ReportItems><Image><Source>Embedded</Source><Height>{0:0.00}in</Height><Width>{1:0.00}in</Width><Sizing>FitProportional</Sizing><Zindex>1</ZIndex></Image></ReportItems>", 
 									PointsY(img.Height)/POINTSIZED, PointsX(img.Width)/POINTSIZED);
 			PasteReportItems(parent, t, p);
 			if (_SelectedReportItems.Count != 1)	
@@ -3191,12 +3344,21 @@ namespace fyiReporting.RdlDesign
 						break;
 					case "Line":
 						// for line a simplification is to require endpoints to be in rectangle
-						//  TODO more sophisticated line segment crosses rectangle but endpoints not in rect
+                        // Josh: Done: more sophisticated line segment crosses rectangle but endpoints not in rect
+                        // Josh: Implemented formula found on http://en.wikipedia.org/wiki/Line-line_intersection
+                        // Detects collision of two lines and returns the point they intersect 
 						PointF p1;
 						PointF p2;
 						this.GetLineEnds(xNodeLoop, r, out p1, out p2);
-						if (_HitRect.Contains(p1) || _HitRect.Contains(p2))
-							this.AddSelection(xNodeLoop);
+                        if (_HitRect.Contains(p1) || _HitRect.Contains(p2))
+                        {
+                            this.AddSelection(xNodeLoop);
+                        }
+
+                        if (AdvancedLineCollision(p1, p2, _HitRect))
+                        {
+                            this.AddSelection(xNodeLoop);
+                        }
 						break;
 					case "Rectangle":
 						SelectInRectangle(xNodeLoop, r);
@@ -3215,6 +3377,74 @@ namespace fyiReporting.RdlDesign
 			}
 			return;
 		}
+
+        // Josh: Advanced Line Collision
+        /// <summary>
+        /// Tests each line segment of the selection rectangle against a line
+        /// Also performs pre-calculations of formula portions that are consistent among all line segment tests
+        /// </summary>
+        /// <param name="p1">The beginning point of the line to test</param>
+        /// <param name="p2">The ending point of the line to test</param>
+        /// <param name="_hr">The HitRectangle to test for collisions with</param>
+        /// <returns>True if the line intersects the rectangle, false otherwise</returns>
+        private bool AdvancedLineCollision(PointF p1, PointF p2, RectangleF _hr)
+        {
+            //Pre-Calculations to save cycles, used in AdvancedLineCollisionDetails
+            float calcSegment1 = (p1.X * p2.Y) - (p1.Y * p2.X);
+            float calcX1_X2 = (p1.X - p2.X);
+            float calcY1_Y2 = (p1.Y - p2.Y);
+
+            //Test Top-Left to Bottom-Left
+            PointF p3 = new PointF(_hr.Left, _hr.Top);
+            PointF p4 = new PointF(_hr.Left, _hr.Bottom);
+            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+                return true;
+
+            //Test Top-Left to Top-Right
+            p4 = new PointF(_hr.Right, _hr.Top);
+            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+                return true;
+
+            //Test Top-Right to Bottom-Right
+            p3 = new PointF(_hr.Right, _hr.Bottom);
+            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+                return true;
+
+            //Test Bottom-Right to Bottom-Left
+            p4 = new PointF(_hr.Left, _hr.Bottom);
+            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Performs the actual test of one line segment against another
+        /// </summary>
+        /// <param name="segment1">The first segment of the formula, calculated prior</param>
+        /// <param name="xMinus">The x1 minus x2 segment of the formula, calculated prior</param>
+        /// <param name="yMinus">The y1 minus y2 segment of the formula, calculated prior</param>
+        /// <param name="p3">The beginning point of the line to test from the rectangle</param>
+        /// <param name="p4">The ending point of the line to test from the rectangle</param>
+        /// <returns>True if the lines intersect, false otherwise</returns>
+        private bool AdvancedLineCollisionDetails(float segment1, float xMinus, float yMinus, PointF p3, PointF p4)
+        {
+
+            float calcSection2 = (p3.X * p4.Y) - (p3.Y * p4.X);
+            float calcSectionDenom = (xMinus * (p3.Y - p4.Y)) - (yMinus * (p3.X - p4.X));
+
+            float x = (
+            ((segment1 * (p3.X - p4.X)) - (xMinus * calcSection2))
+            / calcSectionDenom
+            );
+            float y = (
+            ((segment1 * (p3.Y - p4.Y)) - (yMinus * calcSection2))
+            / calcSectionDenom
+            );
+
+            return _HitRect.Contains(x, y);
+
+        } 
 
 		private void SelectInList(XmlNode xNode, RectangleF r)
 		{
@@ -3367,7 +3597,14 @@ namespace fyiReporting.RdlDesign
 		/// <param name="vScroll">Vertical scroll position in points</param>
 		internal HitLocation HitContainer(Point p, float hScroll, float vScroll)
 		{
-			return HitNode(p, hScroll, vScroll);
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) //Josh: Added so Report can be selected below items.
+            {
+                return HitNode(p, hScroll, vScroll, true);
+            }
+            else
+            {
+                return HitNode(p, hScroll, vScroll, false);
+            }
 		}
 
 		/// <summary>
@@ -3378,6 +3615,18 @@ namespace fyiReporting.RdlDesign
 		/// <param name="vScroll">Vertical scroll position in points</param>
 		internal HitLocation HitNode(Point p, float hScroll, float vScroll)
 		{
+            return HitNode(p, hScroll, vScroll, false);
+        }
+
+        /// <summary>
+        /// Returns the XmlNode of the object hit
+        /// </summary>
+        /// <param name="p">Location to look for in pixels</param>
+        /// <param name="hScroll">Horizontal scroll position in points</param>
+        /// <param name="vScroll">Vertical scroll position in points</param>
+        /// <param name="baseOnly">True if base node is desired in place of report item</param>
+        internal HitLocation HitNode(Point p, float hScroll, float vScroll, bool baseOnly)
+        {
 			if (rDoc == null)
 				return null;
 
@@ -3402,18 +3651,7 @@ namespace fyiReporting.RdlDesign
 				{
 					rf.Y = 0;
 					rf.Height = hh;
-					if (rf.Contains(_HitPoint))
-					{
-						XmlNode ri = GetNamedChildNode(phNode, "ReportItems");
-						HitLocation ril = HitReportItems(ri, rf);
-						if (ril == null)
-							return new HitLocation(phNode, phNode, HitLocationEnum.Inside, 
-													new PointF(_HitPoint.X - rf.X, _HitPoint.Y - rf.Y));
-						else
-							return ril;
-					}
-					else
-						return null;
+                    return HitNodeTest(rf, _HitPoint, phNode, baseOnly); 
 				}
 			}
 
@@ -3429,18 +3667,7 @@ namespace fyiReporting.RdlDesign
 				{
 					rf.Y = hh+BANDHEIGHT;
 					rf.Height = bh;
-					if (rf.Contains(_HitPoint))
-					{
-						XmlNode ri = GetNamedChildNode(bodyNode, "ReportItems");
-						HitLocation ril = HitReportItems(ri, rf);
-						if (ril == null)
-							return new HitLocation(bodyNode, bodyNode, HitLocationEnum.Inside,
-													new PointF(_HitPoint.X - rf.X, _HitPoint.Y - rf.Y));
-						else
-							return ril;
-					}
-					else
-						return null;
+                    return HitNodeTest(rf, _HitPoint, bodyNode, baseOnly); 
 				}
 			}
 			// Check for hit in the footer
@@ -3455,22 +3682,46 @@ namespace fyiReporting.RdlDesign
 				{
 					rf.Y = hh+BANDHEIGHT+bh+BANDHEIGHT;
 					rf.Height = fh;
-					if (rf.Contains(_HitPoint))
-					{
-						XmlNode ri = GetNamedChildNode(pfNode, "ReportItems");
-						HitLocation ril = HitReportItems(ri, rf);
-						if (ril == null)
-							return new HitLocation(pfNode, pfNode, HitLocationEnum.Inside,
-													new PointF(_HitPoint.X - rf.X, _HitPoint.Y - rf.Y));
-						else
-							return ril;
-					}
-					else
-						return null;
+                    return HitNodeTest(rf, _HitPoint, pfNode, baseOnly);
 				}
 			}
 			return null;
 		}
+
+        //Josh: Added to reduce code in previous function.
+        /// <summary>
+        /// Determines if the Hit Point is located in the indicated node
+        /// and returns the report item or the base node hit.
+        /// </summary>
+        /// <param name="rf">The rectangle to test for the hit</param>
+        /// <param name="_HitPoint">The location of the hit to test</param>
+        /// <param name="node">The node being tested for a hit</param>
+        /// <param name="baseOnly">True if only the base is to be returned instead of the item hit</param>
+        /// <returns>A HitLocation if a hit was found, otherwise null</returns>
+        internal HitLocation HitNodeTest(RectangleF rf, PointF _HitPoint, XmlNode node, bool baseOnly)
+        {
+            if (rf.Contains(_HitPoint))
+            {
+                XmlNode ri = GetNamedChildNode(node, "ReportItems");
+                HitLocation ril = null;
+                if (!baseOnly)
+                {
+                    ril = HitReportItems(ri, rf);
+                }
+                if (ril == null)
+                {
+                    return new HitLocation(node, node, HitLocationEnum.Inside,
+                   new PointF(_HitPoint.X - rf.X, _HitPoint.Y - rf.Y));
+                }
+                else
+                {
+                    return ril;
+                }
+            }
+
+            return null;
+        }
+
 		/// <summary>
 		/// Changes the height of the node (if possible) using the specified increment
 		/// </summary>
@@ -3529,8 +3780,8 @@ namespace fyiReporting.RdlDesign
 				return null;
 			
 			HitLocation hnl=null;
-
-			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
+            HitLocation hnlLoop = null; //Josh: Added to select highest zOrder Item. 
+            foreach (XmlNode xNodeLoop in DrawReportItemsOrdered(xNode, true))//xNode.ChildNodes) 
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
@@ -3541,29 +3792,32 @@ namespace fyiReporting.RdlDesign
 					case "Image":
 					case "Subreport":
                     case "CustomReportItem":
-						hnl = HitReportItem(xNodeLoop, r);
+                        hnlLoop = HitReportItem(xNodeLoop, r); 
 						break;
 					case "Rectangle":
-						hnl = HitRectangle(xNodeLoop, r);
+                        hnlLoop = HitRectangle(xNodeLoop, r);
 						break;
 					case "Table":
                     case "fyi:Grid":
-						hnl = HitTable(xNodeLoop, r);
+                        hnlLoop = HitTable(xNodeLoop, r); 
 						break;
 					case "Matrix":
-						hnl = HitMatrix(xNodeLoop, r);
+                        hnlLoop = HitMatrix(xNodeLoop, r); 
 						break;
 					case "List":
-						hnl = HitList(xNodeLoop, r);
+                        hnlLoop = HitList(xNodeLoop, r); 
 						break;
 					case "Line":
-						hnl = HitLine(xNodeLoop, r);
+                        hnlLoop = HitLine(xNodeLoop, r); 
 						break;
 				}
-				if (hnl != null)
-					return hnl;
+                if (hnlLoop != null)
+                {
+                    hnl = hnlLoop;//return hnl; //Josh: Changed to allow selecting of topmost item 
+                    break;
+                }
 			}
-			return null;
+            return hnl; //Josh: Changed to allow selecting of topmost item
 		}
 
 		private HitLocation HitList(XmlNode xNode, RectangleF r)
@@ -4084,7 +4338,7 @@ namespace fyiReporting.RdlDesign
 				lNode.InnerText = lv;
 				changed = true;
 			}
-			// handle right
+            // handle top
 			float t = GetSize(tNode.InnerText);
 			t += PointsY(yInc);
 			if (t < 0)
@@ -5686,4 +5940,27 @@ namespace fyiReporting.RdlDesign
 
 	}
 
+    internal class ReportItemReverseSorter : IComparer<XmlNode>
+    {
+        DesignXmlDraw _Draw;
+        [System.Diagnostics.DebuggerStepThrough]
+        internal ReportItemReverseSorter(DesignXmlDraw d)
+        {
+            _Draw = d;
+        }
+
+        #region IComparer Members
+
+        [System.Diagnostics.DebuggerStepThrough]
+        public int Compare(XmlNode x, XmlNode y)
+        {
+            int xi = Convert.ToInt32(_Draw.GetElementValue(x, "ZIndex", "0"));
+            int yi = Convert.ToInt32(_Draw.GetElementValue(y, "ZIndex", "0"));
+
+            return yi - xi;
+        }
+
+        #endregion
+
+    } 
 }
