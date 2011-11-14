@@ -42,5 +42,6 @@ copy .\RdlMapFile\bin\Release\RdlMapFile.exe .\my-fyi-build\RdlMapFile.exe /Y
 copy .\RdlViewer\bin\Release\RdlViewer.dll .\my-fyi-build\RdlViewer.dll /Y
 copy .\RdlViewer\RdlReader\bin\Release\RdlReader.exe .\my-fyi-build\RdlReader.exe /Y
 
+7za.exe a my-fyi-build.zip my-fyi-build\
 
 
