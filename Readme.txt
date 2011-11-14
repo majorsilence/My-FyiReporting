@@ -1,3 +1,8 @@
+"FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
+Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
+A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new 
+reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
+
 My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
 
@@ -49,3 +54,4 @@ TODO (if not already patches on fyi reporting forum):
 * Pass report path to RdlDesigner.exe when executing and have it open the report
 * Can shrink on horizontal space if row is suppressed
 * Merge patches from fyiReporting forum
+* Create a user control in the designer executable that other application can use
