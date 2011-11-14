@@ -63,7 +63,7 @@ namespace fyiReporting.RDL
 			// final file
 			_styles = new Hashtable();
 		}
-		~RenderHtml()
+        public void Dispose() 
 		{
 			// These should already be cleaned up; but in case of an unexpected error 
 			//   these still need to be disposed of

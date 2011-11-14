@@ -66,7 +66,7 @@ namespace fyiReporting.RDL
             _Fonts = new System.Collections.Generic.List<string>();
             _Colors = new System.Collections.Generic.List<Color>();
         }
-		~RenderRtf()
+        public void Dispose() 
 		{
 			// These should already be cleaned up; but in case of an unexpected error 
 			//   these still need to be disposed of

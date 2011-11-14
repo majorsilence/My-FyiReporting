@@ -30,7 +30,8 @@ namespace fyiReporting.RDL
 	/// Presentation: generation of presentation; e.g. html, pdf, xml, ...
 	/// </summary>
 
-	internal interface IPresent
+    //Changed from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
+    internal interface IPresent : IDisposable 
 	{
 		// Meta Information: can be called at any time
 		bool IsPagingNeeded();						// should report engine perform paging

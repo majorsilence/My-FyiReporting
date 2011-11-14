@@ -58,7 +58,7 @@ namespace fyiReporting.RDL
             _Excel = new ExcelValet();
 
         }
-		~RenderExcel()
+        public void Dispose() 
 		{
 			// These should already be cleaned up; but in case of an unexpected error 
 			//   these still need to be disposed of

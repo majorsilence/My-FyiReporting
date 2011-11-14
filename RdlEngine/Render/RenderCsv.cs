@@ -43,6 +43,8 @@ namespace fyiReporting.RDL
             tw = new DelimitedTextWriter(sg.GetTextWriter(), ",");
         }
 
+        public void Dispose() { } 
+
         public Report Report()
         {
             return report;

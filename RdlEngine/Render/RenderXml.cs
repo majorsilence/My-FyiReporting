@@ -48,6 +48,8 @@ namespace fyiReporting.RDL
 			stkContainers = new Stack();
 		}
 
+        public void Dispose() { } 
+
 		public Report Report()
 		{
 			return r;

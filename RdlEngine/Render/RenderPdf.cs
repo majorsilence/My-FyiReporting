@@ -63,6 +63,8 @@ namespace fyiReporting.RDL
 			tw = sg.GetStream();
 		}
 
+        public void Dispose() { }
+
 		public Report Report()
 		{
 			return r;

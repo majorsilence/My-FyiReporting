@@ -56,6 +56,9 @@ namespace fyiReporting.RDL
             tw = sg.GetStream();
             _RenderColor = true;
         }
+
+        public void Dispose() { } 
+
         /// <summary>
         /// Set RenderColor to false if you want to create a fax compatible tiff in black and white
         /// </summary>
