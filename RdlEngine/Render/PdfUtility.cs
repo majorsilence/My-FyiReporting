@@ -255,7 +255,16 @@ namespace fyiReporting.RDL
             {
                 // Escape any other non-printable ASCII characters using
                 // octal notation.
-                buffer.Append(escapeOctetOctal(octet));
+                //FIX
+                if (octet != 172)
+                {
+                    buffer.Append(escapeOctetOctal(octet));
+                }
+                else
+                {
+                    buffer.Append("\\200");
+                }
+                //END FIX 
             }
             else
             {
