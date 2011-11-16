@@ -72,7 +72,7 @@ namespace fyiReporting.RdlDesign
             }
             set
             {
-                SetPadding("PaddingLeft", value);
+                SetPadding("PaddingLeft", value, true);
             }
         }
         [RefreshProperties(RefreshProperties.Repaint)]
@@ -84,7 +84,7 @@ namespace fyiReporting.RdlDesign
             }
             set
             {
-                SetPadding("PaddingRight", value);
+                SetPadding("PaddingRight", value, false);
             }
         }
         [RefreshProperties(RefreshProperties.Repaint)]
@@ -96,7 +96,7 @@ namespace fyiReporting.RdlDesign
             }
             set
             {
-                SetPadding("PaddingTop", value);
+                SetPadding("PaddingTop", value, true); 
             }
         }
         [RefreshProperties(RefreshProperties.Repaint)]
@@ -108,14 +108,16 @@ namespace fyiReporting.RdlDesign
             }
             set
             {
-                SetPadding("PaddingBottom", value);
+                SetPadding("PaddingBottom", value, false); 
             }
         }
 
-        void SetPadding(string l, PropertyExpr pe)
+        void SetPadding(string l, PropertyExpr pe, bool bMinus) //Josh: Eddited to allow negative padding on top and left 
         {
             if (!_pri.IsExpression(pe.Expression))
-                DesignerUtility.ValidateSize(pe.Expression, true, false);
+            {
+                DesignerUtility.ValidateSize(pe.Expression, true, /*false*/bMinus);
+            }
             SetStyleValue(l, pe.Expression);
         }
 

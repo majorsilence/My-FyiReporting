@@ -1609,8 +1609,15 @@ namespace fyiReporting.RdlDesign
 
 		private void DrawPanelMouseDown(object sender, MouseEventArgs e)
 		{
-			_MousePosition = new Point(e.X, e.Y);		
-			HitLocation hl = _DrawPanel.HitNode(_MousePosition, PointsX(_hScroll.Value), PointsY(_vScroll.Value));
+            bool baseOnly = false; //Josh: Added so base form can be force selected for inserting/selecting
+            //Hold shift to select the base form instead of the control the mouse is over.
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                baseOnly = true;
+            } 
+
+			_MousePosition = new Point(e.X, e.Y);
+            HitLocation hl = _DrawPanel.HitNode(_MousePosition, PointsX(_hScroll.Value), PointsY(_vScroll.Value), baseOnly); 
 			_MouseDownNode = hl == null? null: hl.HitNode;
 			_MouseDownLoc = hl == null? HitLocationEnum.Inside: hl.HitSpot;
 
@@ -2143,7 +2150,8 @@ namespace fyiReporting.RdlDesign
 				{
 					t = t.Replace("&", "&amp;");
 					t = t.Replace("<", "&lt;");
-					t = string.Format("<ReportItems><Textbox><Height>12pt</Height><Width>1in</Width><Value>{0}</Value></Textbox></ReportItems>", t);
+					// Josh: Added a default ZIndex of 1 so that a "Backgroud" image can be applied to the form.
+                    t = string.Format("<ReportItems><Textbox><Height>12pt</Height><Width>1in</Width><Value>{0}</Value><ZIndex>1</ZIndex></Textbox></ReportItems>", t); 
 				}
 				// PasteReportItems throws exception when you try to paste an illegal object
 				try	
@@ -2708,7 +2716,8 @@ namespace fyiReporting.RdlDesign
 	
 		private void menuInsertTextbox_Click(object sender, EventArgs e)
 		{
-			string ri = "<ReportItems><Textbox><Height>12pt</Height><Width>1in</Width><Value>Text</Value></Textbox></ReportItems>";
+			// Josh: Added a default ZIndex of 1 so that a "Backgroud" image can be applied to the form.
+            string ri = "<ReportItems><Textbox><Height>12pt</Height><Width>1in</Width><Value>Text</Value><ZIndex>1</ZIndex></Textbox></ReportItems>"; 
 			menuInsertReportItem(sender, e, ri);
 		}
 

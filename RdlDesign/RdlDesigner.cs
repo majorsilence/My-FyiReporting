@@ -19,6 +19,18 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
+
+/*
+ Changes were made to this file.
+ Most changes are marked with "// Josh:", not including the parenthesis
+ and followed by a desciprtion of the change. Most strings throughout this
+ file that reference a file path have been changed to Uris.
+
+ Added support for IPC through IpcChannels instead of the "file" method previously used.
+ Added RdlIpcObject or IPC.
+*/ 
+
+
 using System;
 using System.Drawing;
 using System.Collections;
@@ -34,6 +46,9 @@ using System.Diagnostics;
 using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Ipc; 
 
 namespace fyiReporting.RdlDesign
 {
@@ -44,6 +59,9 @@ namespace fyiReporting.RdlDesign
 	{
         static readonly string IpcFileName = @"\fyiIpcData400.txt"; // note: change file name with every release
         Timer _IpcTimer = null;
+
+        IpcChannel channel = new IpcChannel("RdlProject");
+        WellKnownServiceTypeEntry ipcEntry = null; 
         
         /// <summary>
 		/// Required designer variable.
@@ -51,16 +69,16 @@ namespace fyiReporting.RdlDesign
 		private System.ComponentModel.Container components = null;
 		private MDIChild printChild=null;
 		SortedList<DateTime, string> _RecentFiles=null;
-		List<string> _CurrentFiles=null;		// temporary variable for current files
+        List<Uri> _CurrentFiles = null;		// temporary variable for current files
 		List<string> _Toolbar = null;			// temporary variable for toolbar entries
-		List<string> _TempReportFiles = null;		// temporary files created for report browsing
+        List<Uri> _TempReportFiles = null;		// temporary files created for report browsing
 		int _RecentFilesMax = 5;			// # of items in recent files
 		Process _ServerProcess = null;		// process for the RdlDesktop.exe --
 		private RDL.NeedPassword _GetPassword;
 		private string _DataSourceReferencePassword=null;
 		private bool bGotPassword=false;
 		private bool bMono = DesignerUtility.IsMono();
-		private readonly string DefaultHelpUrl="http://www.fyireporting.com/helpv4/index.php";
+        private readonly string DefaultHelpUrl = "https://github.com/majorsilence/My-FyiReporting/wiki/_pages";
 		private readonly string DefaultSupportUrl="http://www.fyireporting.com/forum";
 		private string _HelpUrl;
 		private string _SupportUrl;
@@ -292,7 +310,7 @@ namespace fyiReporting.RdlDesign
 			// open up the current files if any
 			if (_CurrentFiles != null) 
 			{
-				foreach (string file in _CurrentFiles)
+                foreach (Uri file in _CurrentFiles)
 				{
 					CreateMDIChild(file, null, false);
 				}
@@ -345,6 +363,13 @@ namespace fyiReporting.RdlDesign
             _IpcTimer.Interval = 1000;       // every second
             _IpcTimer.Tick += new EventHandler(Ipc_Tick);
             _IpcTimer.Start();
+
+            ChannelServices.RegisterChannel(this.channel);
+
+            RemotingConfiguration.RegisterWellKnownServiceType(
+            typeof(RdlIpcObject),
+            "IpcCommands",
+            WellKnownObjectMode.Singleton); 
         }
         /// <summary>
         /// Handle the timer tick event.   Check if the IPC file has been created.  If so then 
@@ -353,7 +378,7 @@ namespace fyiReporting.RdlDesign
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void Ipc_Tick(object sender, EventArgs e)
+        void Ipc_Tick(object sender, EventArgs e) //Josh: changed to allow IPC without text file. 
         {
             lock (_IpcTimer)
             {
@@ -361,32 +386,43 @@ namespace fyiReporting.RdlDesign
                 if (!File.Exists(filename))
                     return;
 
-                try
-                {
-                    using (StreamReader sr = new StreamReader(filename, Encoding.Unicode))
+                RdlIpcObject ipc =
+                     (RdlIpcObject)(Activator.GetObject
+                     (typeof(RdlIpcObject),
+                     "ipc://RdlProject/IpcCommands"));
+                if (ipc != null) 
+                {     
+                    List<string> cmds = ipc.getCommands(); 
+                    if (cmds != null) 
                     {
-                        while (!sr.EndOfStream)
+                        try
                         {
-                            string cmd = sr.ReadLine();
-  //                          Console.WriteLine(cmd);
-                            if (cmd.StartsWith("/a", StringComparison.InvariantCultureIgnoreCase))
+                            foreach (string cmd in cmds)
                             {
-                                if (this.WindowState == FormWindowState.Minimized)
-                                    this.WindowState = FormWindowState.Normal;
-                                this.Activate();
-                            }
-                            else
-                            {
-                                CreateMDIChild(cmd, null, true);
+                                //                          Console.WriteLine(cmd);
+                                if (cmd.StartsWith("/a", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    if (this.WindowState == FormWindowState.Minimized)
+                                        this.WindowState = FormWindowState.Normal;
+                                    this.Activate();
+                                }
+                                else
+                                {
+                                    CreateMDIChild(new Uri(cmd), null, true);
+                                }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Exception in Ipc_Tick:" + ex.Message);
+                        }
+                        finally
+                        {
+                            ipc.setCommands(null); 
+                        }
                     }
-                    File.Delete(filename);
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Exception in Ipc_Tick:" + ex.Message);
-                }
+                
             }
         }
 
@@ -418,24 +454,16 @@ namespace fyiReporting.RdlDesign
         private DockStyle GetPropertiesDockStyle(string l)
         {
             DockStyle ds;
-
-            switch (l.Trim().ToLower())
+            try
             {
-                case "left":
-                    ds = DockStyle.Left;     // left
-                    break;
-                case "top":
-                    ds = DockStyle.Top;     // top
-                    break;
-                case "bottom":
-                    ds = DockStyle.Bottom;   // bottom
-                    break;
-                case "right":
-                default:
-                    ds = DockStyle.Right;    // right
-                    break;
+                ds = (DockStyle)Enum.Parse(typeof(DockStyle), l, true);
             }
-            return ds;
+            catch
+            {
+                ds = DockStyle.Right;
+            }
+
+            return ds; 
         }
 
 		private void InitStatusBar()
@@ -1836,16 +1864,28 @@ namespace fyiReporting.RdlDesign
              
             // Process already running.   Notify other process that is might need to open another file
             string[] args = Environment.GetCommandLineArgs();
-            string filename = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + RdlDesigner.IpcFileName;
-            using (StreamWriter sw = new StreamWriter(filename, true, Encoding.Unicode))
+
+            IpcChannel clientChannel = new IpcChannel("RdlClientSend");
+            ChannelServices.RegisterChannel(clientChannel);
+
+            RdlIpcObject ipc =
+            (RdlIpcObject)Activator.GetObject(
+            typeof(RdlIpcObject),
+            "ipc://RdlProject/IpcCommands");
+
+
+            List<string> commands = new List<string>();
+
+
+            commands.Add("/a");
+            //sw.WriteLine("/a"); // signal that application should activate itself 
+            // copy all the command line arguments process received
+            for (int i = 1; i < args.Length; i++)
             {
-                sw.WriteLine("/a");     // signal that application should activate itself
-                // copy all the command line arguments process received
-                for (int i = 1; i < args.Length; i++)
-                {
-                    sw.WriteLine(args[i]);
-                }
+                commands.Add(args[i]);
             }
+            ipc.setCommands(commands); 
+            
 
 		}
 
@@ -1864,7 +1904,7 @@ namespace fyiReporting.RdlDesign
             menuExportTif = new MenuItem("TIF...", new EventHandler(this.menuExportTif_Click));
             menuExportCsv = new MenuItem("CSV...", new EventHandler(this.menuExportCsv_Click));
             menuExportExcel = new MenuItem("Excel...", new EventHandler(this.menuExportExcel_Click));
-            menuExportRtf = new MenuItem("RTF...", new EventHandler(this.menuExportRtf_Click));
+            menuExportRtf = new MenuItem("RTF, DOC...", new EventHandler(this.menuExportRtf_Click)); 
             menuExportXml = new MenuItem("XML...", new EventHandler(this.menuExportXml_Click));
 			menuExportHtml =  new MenuItem("Web Page, HTML...", new EventHandler(this.menuExportHtml_Click));
 			menuExportMHtml =  new MenuItem("Web Archive, single file MHT...", new EventHandler(this.menuExportMHtml_Click));
@@ -1895,7 +1935,7 @@ namespace fyiReporting.RdlDesign
 			menuEditCut = new MenuItem("Cu&t", new EventHandler(this.menuEditCut_Click), Shortcut.CtrlX);
 			menuEditCopy = new MenuItem("&Copy", new EventHandler(this.menuEditCopy_Click), Shortcut.CtrlC);
 			menuEditPaste = new MenuItem("&Paste", new EventHandler(this.menuEditPaste_Click), Shortcut.CtrlV);
-			menuEditDelete = new MenuItem("&Delete", new EventHandler(this.menuEditDelete_Click));
+            menuEditDelete = new MenuItem("&Delete", new EventHandler(this.menuEditDelete_Click), Shortcut.CtrlDel); // Josh: Added Ctrl+Del Shortcut 
 			menuFSep2 = new MenuItem("-");
 			menuEditSelectAll = new MenuItem("Select &All", new EventHandler(this.menuEditSelectAll_Click), Shortcut.CtrlA);
 			menuFSep3 = new MenuItem("-");
@@ -1928,12 +1968,13 @@ namespace fyiReporting.RdlDesign
 							  new MenuItem("-"), menuViewBrowser, new MenuItem("-"), menuViewProperties});
 			
 			// Data Menu
-			menuNewDataSourceRef = new MenuItem("&Create Shared Data Source...", new EventHandler(this.menuFileNewDataSourceRef_Click));
-			menuDataSources = new MenuItem("Data &Sources...", new EventHandler(this.menuDataSources_Click));
 			menuDataSets = new MenuItem("&Data Sets");
-			menuDataSets.MenuItems.Add(new MenuItem());	// this will actually get build dynamically
 
+            menuDataSets.MenuItems.Add(new MenuItem()); // this will actually get built dynamically
+            menuDataSources = new MenuItem("Data &Sources...", new EventHandler(this.menuDataSources_Click)); 
 			menuEmbeddedImages = new MenuItem("&Embedded Images...", new EventHandler(this.menuEmbeddedImages_Click));
+            menuNewDataSourceRef = new MenuItem("&Create Shared Data Source...", new EventHandler(this.menuFileNewDataSourceRef_Click)); 
+
 			menuData = new MenuItem("&Data");
 			menuData.Popup +=new EventHandler(this.menuData_Popup);
 			menuData.MenuItems.AddRange(
@@ -1948,7 +1989,9 @@ namespace fyiReporting.RdlDesign
 			menuFormatAlignM = new MenuItem("&Middles", new EventHandler(this.menuFormatAlignM_Click));
 			menuFormatAlignB = new MenuItem("&Bottoms", new EventHandler(this.menuFormatAlignB_Click));
 			menuFormatAlign.MenuItems.AddRange(
-				new MenuItem[] {menuFormatAlignL,menuFormatAlignC,menuFormatAlignR,new MenuItem("-"),menuFormatAlignT,menuFormatAlignM,menuFormatAlignB });
+                new MenuItem[] {menuFormatAlignL,menuFormatAlignC,menuFormatAlignR,
+                 new MenuItem("-"),
+                 menuFormatAlignT,menuFormatAlignM,menuFormatAlignB }); 
 
 			menuFormatSize = new MenuItem("&Size");
 			menuFormatSizeW = new MenuItem("&Width", new EventHandler(this.menuFormatSizeW_Click));
@@ -2099,7 +2142,7 @@ namespace fyiReporting.RdlDesign
 			{
 				try 
 				{
-					ofd.InitialDirectory = Path.GetDirectoryName(mc.SourceFile);
+                    ofd.InitialDirectory = Path.GetDirectoryName(mc.SourceFile.LocalPath); 
 				}
 				catch
 				{
@@ -2117,7 +2160,7 @@ namespace fyiReporting.RdlDesign
                 {
                     foreach (string file in ofd.FileNames)
                     {
-                        CreateMDIChild(file, null, false);
+                        CreateMDIChild(new Uri(file), null, false); 
                     }
                     RecentFilesMenu();		// update the menu for recent files
                 }
@@ -2129,16 +2172,15 @@ namespace fyiReporting.RdlDesign
 		}
 
 		// Create an MDI child.   Only creates it if not already open.
-		private MDIChild CreateMDIChild(string file, string rdl, bool bMenuUpdate)
+        private MDIChild CreateMDIChild(Uri file, string rdl, bool bMenuUpdate) 
 		{
 			MDIChild mcOpen=null;
 			if (file != null)
 			{
-				file = file.Trim();
-
+		
 				foreach (MDIChild mc in this.MdiChildren)
 				{
-					if (mc.SourceFile != null && file == mc.SourceFile.Trim())	
+                    if (mc.SourceFile != null && file.LocalPath == mc.SourceFile.LocalPath) 
 					{							// we found it
 						mcOpen = mc;
 						break;
@@ -2164,11 +2206,11 @@ namespace fyiReporting.RdlDesign
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
                     if (file != null)
                     {
-                        mc.Viewer.Folder = Path.GetDirectoryName(file);
+                        mc.Viewer.Folder = Path.GetDirectoryName(file.LocalPath);
                         mc.SourceFile = file;
-                        mc.Text = Path.GetFileName(file);
-                        mc.Viewer.Folder = Path.GetDirectoryName(file);
-                        mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(file);
+                        mc.Text = Path.GetFileName(file.LocalPath);
+                        mc.Viewer.Folder = Path.GetDirectoryName(file.LocalPath);
+                        mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(file.LocalPath); 
                         NoteRecentFiles(file, bMenuUpdate);
                     }
                     else
@@ -2186,7 +2228,7 @@ namespace fyiReporting.RdlDesign
                     tp.TabIndex = 1;
                     tp.Text = mc.Text;
                     tp.Tag = mc;                // tie the mdichild to the tabpage
-                    tp.ToolTipText = file;
+                    tp.ToolTipText = file == null ? "" : file.LocalPath; 
                     mainTC.Controls.Add(tp);
                     mc.Tab = tp;
 
@@ -2392,11 +2434,15 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			string file = mc.Viewer.Folder;
-			if (e.SubReportName[0] == Path.DirectorySeparatorChar)
-				file = file + e.SubReportName;
-			else
-				file = file + Path.DirectorySeparatorChar + e.SubReportName + ".rdl";
+            Uri file = new Uri(mc.Viewer.Folder);
+            if (e.SubReportName[0] == Path.DirectorySeparatorChar)
+            {
+                file = new Uri(file.LocalPath + e.SubReportName); 
+            }
+            else
+            {
+                file = new Uri(file.LocalPath + Path.DirectorySeparatorChar + e.SubReportName + ".rdl"); 
+            }
 
 			CreateMDIChild(file, null, true);
 		}
@@ -2708,7 +2754,7 @@ namespace fyiReporting.RdlDesign
 			printChild = mc;
 
 			PrintDocument pd = new PrintDocument();
-			pd.DocumentName = mc.SourceFile;
+            pd.DocumentName = mc.SourceFile.LocalPath; 
 			pd.PrinterSettings.FromPage = 1;
 			pd.PrinterSettings.ToPage = mc.PageCount;
 			pd.PrinterSettings.MaximumPage = mc.PageCount;
@@ -2845,9 +2891,9 @@ namespace fyiReporting.RdlDesign
 			if (!mc.FileSaveAs())
 				return;
 
-			mc.Viewer.Folder = Path.GetDirectoryName(mc.SourceFile);
-			mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(mc.SourceFile);
-			mc.Text = Path.GetFileName(mc.SourceFile);
+            mc.Viewer.Folder = Path.GetDirectoryName(mc.SourceFile.LocalPath);
+            mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(mc.SourceFile.LocalPath);
+            mc.Text = Path.GetFileName(mc.SourceFile.LocalPath); 
 			
 			NoteRecentFiles(mc.SourceFile, true);
 
@@ -3307,7 +3353,7 @@ namespace fyiReporting.RdlDesign
 		{
 			MenuItem m = (MenuItem) sender;
 			int si = m.Text.IndexOf(" ");
-			string file = m.Text.Substring(si+1);
+            Uri file = new Uri(m.Text.Substring(si + 1)); 
 
 			CreateMDIChild(file, null, true);
 		}
@@ -3318,25 +3364,28 @@ namespace fyiReporting.RdlDesign
 			menuToolsCloseProcess(false);
 			CleanupTempFiles();
 		}
- 
-		private void NoteRecentFiles(string name, bool bResetMenu)
-		{
-			if (name == null)
-				return;
 
-			name = name.Trim();
-			if (_RecentFiles.ContainsValue(name))
+        private void NoteRecentFiles(Uri name, bool bResetMenu) 
+		{
+            if (name == null)
+            {
+                return;
+            }
+
+            if (_RecentFiles.ContainsValue(name.LocalPath)) 
 			{	// need to move it to top of list; so remove old one
-				int loc = _RecentFiles.IndexOfValue(name);
+                int loc = _RecentFiles.IndexOfValue(name.LocalPath); 
 				_RecentFiles.RemoveAt(loc);
 			}
 			if (_RecentFiles.Count >= _RecentFilesMax)
 			{
 				_RecentFiles.RemoveAt(0);	// remove the first entry
 			}
-			_RecentFiles.Add(DateTime.Now, name);
-			if (bResetMenu)
-				RecentFilesMenu();
+            _RecentFiles.Add(DateTime.Now, name.LocalPath); 
+            if (bResetMenu)
+            {
+                RecentFilesMenu();
+            }
 			return;
 		}
 
@@ -3377,9 +3426,9 @@ namespace fyiReporting.RdlDesign
 
 		private void GetStartupState()
 		{
-			string optFileName = AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml";
+            Uri optFileName = new Uri(AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml"); 
 			_RecentFiles = new SortedList<DateTime, string>();
-			_CurrentFiles = new List<string>();
+            _CurrentFiles = new List<Uri>(); 
 			_HelpUrl = DefaultHelpUrl;				// set as default
 			_SupportUrl = DefaultSupportUrl;
 			
@@ -3387,7 +3436,7 @@ namespace fyiReporting.RdlDesign
 			{
 				XmlDocument xDoc = new XmlDocument();
 				xDoc.PreserveWhitespace = false;
-				xDoc.Load(optFileName);
+                xDoc.Load(optFileName.AbsoluteUri); 
 				XmlNode xNode;
 				xNode = xDoc.SelectSingleNode("//designerstate");
 
@@ -3398,8 +3447,10 @@ namespace fyiReporting.RdlDesign
 					if (larg == "/m" || larg == "-m")
 						continue;
 
-					if (File.Exists(args[i]))			// only add it if it exists
-						_CurrentFiles.Add(args[i]);
+                    if (File.Exists(args[i]))			// only add it if it exists
+                    {
+                        _CurrentFiles.Add(new Uri(args[i]));
+                    }
 				}
 
 				// Loop thru all the child nodes
@@ -3412,10 +3463,10 @@ namespace fyiReporting.RdlDesign
 							now = now.Subtract(new TimeSpan(0,1,0,0,0));	// subtract an hour
 							foreach (XmlNode xN in xNodeLoop.ChildNodes)
 							{
-								string file = xN.InnerText.Trim();
-								if (File.Exists(file))			// only add it if it exists
+                                Uri file = new Uri(xN.InnerText.Trim()); 
+								if (File.Exists(file.LocalPath)) // only add it if it exists 	
 								{
-									_RecentFiles.Add(now, file);
+									_RecentFiles.Add(now, file.LocalPath); 
 									now = now.AddSeconds(1);
 								}
 							}
@@ -3435,9 +3486,11 @@ namespace fyiReporting.RdlDesign
 								break;
 							foreach (XmlNode xN in xNodeLoop.ChildNodes)
 							{
-								string file = xN.InnerText.Trim();
-								if (File.Exists(file))			// only add it if it exists
-									_CurrentFiles.Add(file);
+                                Uri file = new Uri(xN.InnerText.Trim());
+                                if (File.Exists(file.LocalPath)) // only add it if it exists 
+                                {
+                                    _CurrentFiles.Add(file);
+                                }
 							}
 							break;
 						case "Toolbar":
@@ -3477,7 +3530,8 @@ namespace fyiReporting.RdlDesign
                         case "MapSubtypes":
                             RdlDesigner.MapSubtypes = xNodeLoop.InnerText.Split(new char[] { ',' });
                             break;
-
+                        case "CustomColors":
+                            break;
                         default:
 							break;
 					}
@@ -3513,11 +3567,13 @@ namespace fyiReporting.RdlDesign
 				xDS.AppendChild(xFiles);
 				foreach (MDIChild mc in this.MdiChildren)
 				{
-					string file = mc.SourceFile;
-					if (file == null)
-						continue;
+                    Uri file = mc.SourceFile;
+                    if (file == null)
+                    {
+                        continue;
+                    }
 					xN = xDoc.CreateElement("file");
-					xN.InnerText = file;
+                    xN.InnerText = file.LocalPath; 
 					xFiles.AppendChild(xN);
 				}
 
@@ -4305,30 +4361,36 @@ namespace fyiReporting.RdlDesign
 
 				DesktopConfig dc = DialogToolOptions.DesktopConfiguration;
 
-				string rdlfile = Path.GetFileNameWithoutExtension(mc.SourceFile) + "_" + (++TEMPRDL_INC).ToString() + TEMPRDL;
-				string file; 
-				if (Path.IsPathRooted(dc.Directory))
-					file = dc.Directory + Path.DirectorySeparatorChar + rdlfile;
-				else
-					file = AppDomain.CurrentDomain.BaseDirectory +  
-						 dc.Directory + Path.DirectorySeparatorChar + rdlfile;
+                string rdlfile = Path.GetFileNameWithoutExtension(mc.SourceFile.LocalPath) + "_" + (++TEMPRDL_INC).ToString() + TEMPRDL;
+				Uri file;
+                if (Path.IsPathRooted(dc.Directory))
+                {
+                    file = new Uri(dc.Directory + Path.DirectorySeparatorChar + rdlfile);
+                }
+                else
+                {
+                    file = new Uri(AppDomain.CurrentDomain.BaseDirectory +
+                        dc.Directory + Path.DirectorySeparatorChar + rdlfile); 
+                }
 
 				if (_TempReportFiles == null)
 				{
-					_TempReportFiles = new List<string>();
+                    _TempReportFiles = new List<Uri>(); 
 					_TempReportFiles.Add(file);
 				}
 				else
 				{
-					if (!_TempReportFiles.Contains(file))
-						_TempReportFiles.Add(file);
+                    if (!_TempReportFiles.Contains(file))
+                    {
+                        _TempReportFiles.Add(file);
+                    }
 				}
-				StreamWriter sw = File.CreateText(file);
+                StreamWriter sw = File.CreateText(file.LocalPath); 
 				sw.Write(mc.SourceRdl);
 				sw.Close();
 		 // http://localhost:8080/aReport.rdl?rs:Format=HTML
-				string url = string.Format("http://localhost:{0}/{1}?rd:Format=HTML", dc.Port, rdlfile);
-				System.Diagnostics.Process.Start(url);
+                Uri url = new Uri(string.Format("http://localhost:{0}/{1}?rd:Format=HTML", dc.Port, rdlfile));
+                System.Diagnostics.Process.Start(url.AbsoluteUri); 
 				
 			}
 			catch (Exception ex)
@@ -4427,13 +4489,15 @@ namespace fyiReporting.RdlDesign
 
 		private void CleanupTempFiles()
 		{
-			if (_TempReportFiles == null)
-				return;
-			foreach (string file in _TempReportFiles)
+            if (_TempReportFiles == null)
+            {
+                return;
+            }
+            foreach (Uri file in _TempReportFiles) 
 			{
 				try		
 				{	// It's ok for the delete to fail
-					File.Delete(file);
+                    File.Delete(file.LocalPath); 
 				}
 				catch
 				{}
@@ -4441,4 +4505,34 @@ namespace fyiReporting.RdlDesign
 			_TempReportFiles = null;
 		}
 	}
+
+    public class RdlIpcObject : MarshalByRefObject
+    {
+        public RdlIpcObject()
+        {
+        }
+
+        private List<string> _commands;
+
+        //public List<string> Commands
+        //{
+        // get { return _commands; }
+        // set { _commands = value; }
+        //}
+
+        public List<string> getCommands()
+        {
+            return _commands;
+        }
+
+        public void setCommands(List<string> value)
+        {
+            _commands = value;
+        }
+        public override object InitializeLifetimeService()
+        {
+            return null;
+        }
+
+    } 
 }

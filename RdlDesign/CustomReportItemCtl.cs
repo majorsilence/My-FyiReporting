@@ -180,14 +180,9 @@ namespace fyiReporting.RdlDesign
                 if (dr == DialogResult.OK)
                 {
                     // There's probably a better way without reflection but this works fine.
-                    string nm = gi.Label;
+                    
                     object sel = pgProps.SelectedObject;
-                    Type t = sel.GetType();
-                    PropertyInfo pi = t.GetProperty(nm);
-                    MethodInfo mi = pi.GetSetMethod();
-                    object[] oa = new object[1];
-                    oa[0] = ee.Expression;
-                    mi.Invoke(sel, oa);
+                    gi.PropertyDescriptor.SetValue(sel, ee.Expression); 
                     gi.Select();
                 }
             }

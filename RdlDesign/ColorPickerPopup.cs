@@ -128,6 +128,7 @@ namespace fyiReporting.RdlDesign
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.lbColors_Hide);
+            this.Load += new System.EventHandler(this.ColorPickerPopup_Load); 
             this.Shown += new System.EventHandler(this.ColorPickerPopup_Shown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ColorPickerPopup_KeyPress);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerPopup_MouseMove);
@@ -199,8 +200,13 @@ namespace fyiReporting.RdlDesign
 
         private void ColorPickerPopup_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar == (int)System.Windows.Forms.Keys.Escape) 
-                Hide(); 
+            if ((int)e.KeyChar == (int)System.Windows.Forms.Keys.Escape)
+            {
+                Hide();
+            }
+        }
+        private void ColorPickerPopup_Load(object sender, EventArgs e)
+        {
         }
 	}
 }

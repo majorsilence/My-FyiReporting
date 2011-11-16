@@ -47,7 +47,7 @@ namespace fyiReporting.RdlDesign
         public event DesignCtl.HeightEventHandler OnHeightChanged;
 
 		private fyiReporting.RdlDesign.RdlEditPreview rdlDesigner;
-		string _SourceFile;
+        Uri _SourceFile; 
         TabPage _Tab;               // TabPage for this MDI Child
 
 		public MDIChild(int width, int height)
@@ -188,8 +188,8 @@ namespace fyiReporting.RdlDesign
 
 		public bool FileSave()
 		{
-			string file = SourceFile;
-			if (file == "" || file == null)			// if no file name then do SaveAs
+			Uri file = SourceFile;
+            if (file == null || file.LocalPath == "" )		// if no file name then do SaveAs
 			{
 				return FileSaveAs();
 			}
@@ -198,13 +198,13 @@ namespace fyiReporting.RdlDesign
 			return FileSave(file, rdl);
 		}
 
-		private bool FileSave(string file, string rdl)
+        private bool FileSave(Uri file, string rdl) 
 		{
 			StreamWriter writer=null;
 			bool bOK=true;
 			try
 			{
-				writer = new StreamWriter(file);
+                writer = new StreamWriter(file.LocalPath); 
 				writer.Write(rdl);
 				//				editRDL.ClearUndo();
 				//				editRDL.Modified = false;
@@ -244,8 +244,8 @@ namespace fyiReporting.RdlDesign
                 case "tif": case "tiff":
                     sfd.Filter = "TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*";
                     break;
-                case "rtf":
-                    sfd.Filter = "RTF file (*.rtf)|*.rtf|All files (*.*)|*.*";
+                case "rtf": case "doc":
+                    sfd.Filter = "RTF file (*.rtf)|*.rtf|DOC file (*.doc)|*.doc|All files (*.*)|*.*";
                     break;
                 case "xlsx": case "excel":
                     type = "xlsx";
@@ -260,14 +260,19 @@ namespace fyiReporting.RdlDesign
 					sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
 					break;
 				default:
-					throw new Exception("Only HTML, MHT, XML, CSV, RTF, Excel, TIF and PDF are allowed as Export types.");
+					throw new Exception("Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types."); 
 			}
 			sfd.FilterIndex = 1;
 
             if (SourceFile != null)
-				sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile) + "." + type;
+            {
+				sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile.LocalPath) + "." + type; 
+            }
 			else
+            {
 				sfd.FileName = "*." + type;
+            }
+
             try
             {
                 if (sfd.ShowDialog(this) != DialogResult.OK)
@@ -306,9 +311,9 @@ namespace fyiReporting.RdlDesign
 			sfd.Filter = "RDL files (*.rdl)|*.rdl|All files (*.*)|*.*";
 			sfd.FilterIndex = 1;
 
-			string file = SourceFile;
+            Uri file = SourceFile;
 
-			sfd.FileName = file == null? "*.rdl": file;
+            sfd.FileName = file == null ? "*.rdl" : file.LocalPath; 
             try
             {
                 if (sfd.ShowDialog(this) != DialogResult.OK)
@@ -316,11 +321,11 @@ namespace fyiReporting.RdlDesign
 
                 // User wants to save!
                 string rdl = GetRdlText();
-                if (FileSave(sfd.FileName, rdl))
+                if (FileSave(new Uri(sfd.FileName), rdl)) 
                 {	// Save was successful
                     Text = sfd.FileName;
                     Tab.Text = Path.GetFileName(sfd.FileName);
-                    _SourceFile = sfd.FileName;
+                    _SourceFile = new Uri(sfd.FileName); 
                     Tab.ToolTipText = sfd.FileName;
                     return true;
                 }
@@ -350,7 +355,7 @@ namespace fyiReporting.RdlDesign
 		/// <summary>
 		/// The RDL file that should be displayed.
 		/// </summary>
-		public string SourceFile
+        public Uri SourceFile 
 		{
 			get {return _SourceFile;}
 			set 
@@ -373,7 +378,7 @@ namespace fyiReporting.RdlDesign
 			string prog=null;
 			try
 			{
-				fs = new StreamReader(_SourceFile);
+                fs = new StreamReader(_SourceFile.LocalPath); 
 				prog = fs.ReadToEnd();
 			}
 			finally
@@ -486,7 +491,7 @@ namespace fyiReporting.RdlDesign
 
 			DialogResult r = 
 					MessageBox.Show(this, String.Format("Do you want to save changes you made to '{0}'?",
-					_SourceFile==null?"Untitled":Path.GetFileName(_SourceFile)), 
+                    _SourceFile == null ? "Untitled" : Path.GetFileName(_SourceFile.LocalPath)), 
 					"fyiReporting Designer",
 					MessageBoxButtons.YesNoCancel,
 					MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button3);
@@ -547,16 +552,17 @@ namespace fyiReporting.RdlDesign
 
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MDIChild));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIChild));
+            this.SuspendLayout();
 			// 
 			// MDIChild
 			// 
-            this.AutoScaleMode = AutoScaleMode.None;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None; 
 			this.ClientSize = new System.Drawing.Size(292, 266);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MDIChild";
-
+            this.Load += new System.EventHandler(this.MDIChild_Load);
+            this.ResumeLayout(false); 
 		}
 
 		private void SetTitle()
@@ -582,6 +588,11 @@ namespace fyiReporting.RdlDesign
 		{
 			get {return rdlDesigner.Viewer;}
 		}
+
+        private void MDIChild_Load(object sender, EventArgs e)
+        {
+
+        } 
 
 	}
 }

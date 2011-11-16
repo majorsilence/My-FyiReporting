@@ -630,7 +630,11 @@ namespace fyiReporting.RdlDesign
             }
             
             XmlNode xNode = _Draw.GetNamedChildNode(rNode, "Style");
-
+            if (xNode == null)
+            {
+                _Draw.SetElement(rNode, "Style", "");
+                xNode = _Draw.GetNamedChildNode(rNode, "Style");
+            } 
 			if (fEndColor)
 			{ _Draw.SetElement(xNode, "BackgroundGradientEndColor", cbEndColor.Text); }
 			if (fBackColor)

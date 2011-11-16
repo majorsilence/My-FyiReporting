@@ -17,7 +17,7 @@ namespace fyiReporting.RdlDesign
 	internal class DialogDataSources : System.Windows.Forms.Form
 	{
 		DesignXmlDraw _Draw;
-        string _FileName;           // file name of open file; used to obtain directory
+        Uri _FileName;           // file name of open file; used to obtain directory
 		private System.Windows.Forms.TextBox tbFilename;
 		private System.Windows.Forms.Button bGetFilename;
 		private System.Windows.Forms.ComboBox cbDataProvider;
@@ -42,7 +42,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		internal DialogDataSources(string filename, DesignXmlDraw draw)
+        internal DialogDataSources(Uri filename, DesignXmlDraw draw) 
 		{
 			_Draw = draw;
             _FileName = filename;
@@ -240,6 +240,7 @@ namespace fyiReporting.RdlDesign
 			// 
 			this.bOK.Location = new System.Drawing.Point(272, 344);
 			this.bOK.Name = "bOK";
+            this.bOK.Size = new System.Drawing.Size(75, 23); 
 			this.bOK.TabIndex = 9;
 			this.bOK.Text = "OK";
 			this.bOK.Click += new System.EventHandler(this.bOK_Click);
@@ -317,7 +318,7 @@ namespace fyiReporting.RdlDesign
 			// 
 			// bExprConnect
 			// 
-			this.bExprConnect.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+            this.bExprConnect.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0))); 
 			this.bExprConnect.Location = new System.Drawing.Point(416, 192);
 			this.bExprConnect.Name = "bExprConnect";
 			this.bExprConnect.Size = new System.Drawing.Size(22, 16);
@@ -361,6 +362,7 @@ namespace fyiReporting.RdlDesign
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "DataSources in Report";
 			this.ResumeLayout(false);
+            this.PerformLayout(); 
 
 		}
 		#endregion
@@ -414,7 +416,9 @@ namespace fyiReporting.RdlDesign
             try
             {
                 if (_FileName != null)
-                    ofd.InitialDirectory = Path.GetDirectoryName(_FileName);
+                {
+                    ofd.InitialDirectory = Path.GetDirectoryName(_FileName.LocalPath);
+                }
             }
             catch
             {
@@ -426,7 +430,7 @@ namespace fyiReporting.RdlDesign
                     try
                     {
                         string dsr = DesignerUtility.RelativePathTo(
-                            Path.GetDirectoryName(_FileName), Path.GetDirectoryName(ofd.FileName));
+                            Path.GetDirectoryName(_FileName.LocalPath), Path.GetDirectoryName(ofd.FileName));
 
                         string f = Path.GetFileNameWithoutExtension(ofd.FileName);
 

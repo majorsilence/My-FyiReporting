@@ -262,9 +262,11 @@ namespace fyiReporting.RdlDesign
                     MessageBox.Show("Unable to locate DataSource Shared file.  Try saving report first");
                     return false;
                 }
-                string filename = Path.GetDirectoryName(mc.SourceFile) + Path.DirectorySeparatorChar + dataSourceReference;
-                if (!DesignerUtility.GetSharedConnectionInfo((RdlDesigner)p, filename, out dataProvider, out connection))
+                Uri filename = new Uri(Path.GetDirectoryName(mc.SourceFile.LocalPath) + Path.DirectorySeparatorChar + dataSourceReference);
+                if (!DesignerUtility.GetSharedConnectionInfo((RdlDesigner)p, filename.LocalPath, out dataProvider, out connection))
+                {
                     return false;
+                }
             }
             else
             {
@@ -1341,7 +1343,8 @@ namespace fyiReporting.RdlDesign
 																	  "=User!Language"};
 
 
-		static public readonly string[] OperatorList = new string[] {	" & ", " + "," - "," * "," / "," mod ", 
+        static public readonly string[] OperatorList = new string[] { 
+                                " & ", " + "," - "," * "," / "," mod ", 
 								" and ", " or ", 
 								" = ", " != ", " > ", " >= ", " < ", " <= "	};
 
