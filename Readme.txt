@@ -54,7 +54,7 @@ Contribute:
 All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few days at the most.
 
 *Install visual studio 2008/2010 (express should work)
-*Install .net 3.5sp1 sdk http://msdn.microsoft.com/en-us/netframework/cc378097
+*Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
 ----*This is to use the release build script in the setup\ folder
 ----*Only required if you want to use the release script
 *Create github account if you already do not have one
