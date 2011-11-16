@@ -110,8 +110,10 @@ namespace fyiReporting.RdlDesign
 					qpRoot = new TreeNode("Query Parameters");
 					tvTablesColumns.Nodes.Add(qpRoot);
 				}
-				if (pName[0] == '@')
-					pName = "@" + pName;
+                if (pName[0] != '@')
+                {
+                    pName = "@" + pName;
+                }
 				// Add the node to the tree
 				TreeNode aRoot = new TreeNode(pName);
 				qpRoot.Nodes.Add(aRoot);
