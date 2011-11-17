@@ -941,7 +941,7 @@ namespace fyiReporting.RdlDesign
 			ProcessReport(xNode);
             
 			// Render the report
-            DrawMargins(_clip.Y + _clip.Height); 
+            DrawMargins(_clip); 
 
 			float yLoc=0;
 			yLoc += DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, "Page Header \x2191");
@@ -1072,8 +1072,8 @@ namespace fyiReporting.RdlDesign
 			StyleInfo si = new StyleInfo();
             si.BackgroundColor = Color.White;
 
-            RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) + _hScroll, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0); 
-			DrawBackground(b, si);
+            RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
+            DrawBackground(b, si); 
             //End "Paper"
 
             // Josh:
@@ -2094,19 +2094,26 @@ namespace fyiReporting.RdlDesign
 			return ir;
 		}
 
-        private void DrawMargins(float lowerEdge) //Josh: Added Lower Edge so that the area would be filled behind the page. 
-		{
-			// left margin
-            // left margin //Removed Left Margin, as right margin will fill full beind page
-            //RectangleF m = new RectangleF(0, 0, LEFTGAP, /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
-			StyleInfo si = new StyleInfo();
-			si.BackgroundColor = Color.LightGray;
-            si.BackgroundColor = AREABACKCOLOR; //Josh: Changed to use variable to ease page customizing. 
+        private void DrawMargins(RectangleF behindPage)
+        {
+            StyleInfo si = new StyleInfo();
+            si.BackgroundColor = AREABACKCOLOR;
+            DrawBackground(behindPage, si);
+        } 
 
-            //Full Margin // right margin
-            RectangleF m = new RectangleF(/*pWidth - rMargin*/0, 0, PointsX(Width), /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
-			DrawBackground(m, si);
-		}
+        //private void DrawMargins(float lowerEdge) //Josh: Added Lower Edge so that the area would be filled behind the page. 
+        //{
+        //    // left margin
+        //    // left margin //Removed Left Margin, as right margin will fill full beind page
+        //    //RectangleF m = new RectangleF(0, 0, LEFTGAP, /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
+        //    StyleInfo si = new StyleInfo();
+        //    si.BackgroundColor = Color.LightGray;
+        //    si.BackgroundColor = AREABACKCOLOR; //Josh: Changed to use variable to ease page customizing. 
+
+        //    //Full Margin // right margin
+        //    RectangleF m = new RectangleF(/*pWidth - rMargin*/0, 0, PointsX(Width), /*TotalPageHeight + LEFTGAP*/ lowerEdge); //Josh: Add a margin on bottom too. 
+        //    DrawBackground(m, si);
+        //}
 
 		private float TotalPageHeight
 		{

@@ -161,6 +161,8 @@ namespace fyiReporting.RDL
 					case '"':
 					case '\'':
 						return ReadQuoted(ch);
+                    case '{':
+                        return ReadIdentifier(ch, 4); 
 					default:
 						break;
 				} // end of swith
@@ -242,10 +244,20 @@ namespace fyiReporting.RDL
 			return new Token(number, startLine, startCol, reader.Line, reader.Column, t);
 		}
 
-		// Reads an identifier:  
-		//  Must consist of letters, digits, "_".  "!", "." are allowed
-		//  but have special meaning that is disambiguated later
-		private Token ReadIdentifier(char ch)
+
+        // Reads an identifier:
+        // Must consist of letters, digits, "_". "!", "." are allowed
+        // but have special meaning that is disambiguated later
+        private Token ReadIdentifier(char ch)
+        {
+            return ReadIdentifier(ch, 1);
+        }
+
+        // Reads an identifier:
+        // Must consist of letters, digits, "_". "!", "." are allowed
+        // but have special meaning that is disambiguated later
+        // Josh: 6:21:10 overloaded to allow for setting initial state.
+        private Token ReadIdentifier(char ch, int initialState) 
 		{
 			int startLine = reader.Line;
 			int startCol = reader.Column;
@@ -289,7 +301,7 @@ namespace fyiReporting.RDL
                     else 
                         break;
                 }
-                else
+                else if (state == 3)
                 {   // state must equal 3
                     if (Char.IsLetter(cPeek) || cPeek == '_')
                     {
@@ -303,6 +315,21 @@ namespace fyiReporting.RDL
                     else
                         break;
                 }
+                else if (state == 4)
+                { // state must equal 4 Josh: 6:21:10 added state 4 for field/param shortcuts
+                    if (Char.IsLetterOrDigit(cPeek) || cPeek == '@' ||
+                    cPeek == '?' || cPeek == '_' || cPeek == '}' ||
+                    cPeek == '!')
+                        identifier.Append(reader.GetNext());
+
+                    if (cPeek == '}')
+                        break;
+
+                    else if (Char.IsWhiteSpace(cPeek))
+                    {
+                        reader.GetNext(); // skip space
+                    }
+                } 
 			}
 
 			string key = identifier.ToString().ToLower();
@@ -314,6 +341,14 @@ namespace fyiReporting.RDL
                 return new Token(identifier.ToString(), reader.Line, reader.Column, reader.Line, reader.Column, TokenTypes.NOT);
 			else if (key == "mod")
                 return new Token(identifier.ToString(), reader.Line, reader.Column, reader.Line, reader.Column, TokenTypes.MODULUS);
+
+            //Shortcut identifier
+            if (state == 4)
+            {
+                if (identifier[identifier.Length - 1] != '}')
+                    identifier.Append('}');
+                identifier = new StringBuilder(ParseShortcut(identifier.ToString()));
+            } 
 
 			// normal identifier
 			return new Token(identifier.ToString(), startLine, startCol, reader.Line, reader.Column, TokenTypes.IDENTIFIER);
@@ -374,6 +409,35 @@ namespace fyiReporting.RDL
 			}
 			throw new ParserException("Unterminated comment!");
 		}
+
+        // fields, parameters, and globals
+        // Shortcuts for fields, parameters, globals
+        private string ParseShortcut(string identifier)
+        {
+
+            if (identifier.StartsWith("{?"))
+            {
+                identifier = identifier.Replace("{?", "Parameters!");
+                identifier = identifier.Replace("}", ".Value");
+            }
+            else if (identifier.StartsWith("{@"))
+            {
+                identifier = identifier.Replace("{@", "Globals!");
+                identifier = identifier.Replace("}", "");
+            }
+            else if (identifier.StartsWith("{!"))
+            {
+                identifier = identifier.Replace("{!", "User!");
+                identifier = identifier.Replace("}", "");
+            }
+            else if (identifier.StartsWith("{"))
+            {
+                identifier = identifier.Replace("{", "Fields!");
+                identifier = identifier.Replace("}", ".Value");
+            }
+
+            return identifier;
+        }
 
 
 //		// Handles case of "<", "<=", and "<! ... xml string  !>
