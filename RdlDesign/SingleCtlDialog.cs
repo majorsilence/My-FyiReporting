@@ -29,45 +29,38 @@ using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
-	internal enum SingleCtlTypeEnum
-	{
+    internal enum SingleCtlTypeEnum
+    {
         InteractivityCtl, VisibilityCtl, BorderCtl, FontCtl, BackgroundCtl, BackgroundImage,
         ReportParameterCtl, ReportCodeCtl, ReportModulesClassesCtl, ImageCtl, SubreportCtl,
         FiltersCtl, SortingCtl, GroupingCtl
-	}
+    }
 
-	/// <summary>
-	/// Summary description for PropertyDialog.
-	/// </summary>
-	internal class SingleCtlDialog : System.Windows.Forms.Form
-	{
-        private DesignCtl _DesignCtl;
-		private DesignXmlDraw _Draw;		// design draw 
-		private List<XmlNode> _Nodes;			// selected nodes
+    /// <summary>
+    /// Summary description for PropertyDialog.
+    /// </summary>
+    internal partial class SingleCtlDialog
+    {
+
+        // design draw 
+        private List<XmlNode> _Nodes;			// selected nodes
         private SingleCtlTypeEnum _Type;
-		IProperty _Ctl;
-        private Button bOK;
-        private Button bCancel;
-        private Panel pMain;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        IProperty _Ctl;
 
-		internal SingleCtlDialog(DesignCtl dc, DesignXmlDraw dxDraw, List<XmlNode> sNodes, 
+        internal SingleCtlDialog(DesignCtl dc, DesignXmlDraw dxDraw, List<XmlNode> sNodes,
             SingleCtlTypeEnum type, string[] names)
-		{
+        {
             this._Type = type;
             this._DesignCtl = dc;
-			this._Draw = dxDraw;
-			this._Nodes = sNodes;
-            
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+            this._Draw = dxDraw;
+            this._Nodes = sNodes;
 
- 			//   Add the control for the selected ReportItems
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+
+            //   Add the control for the selected ReportItems
             //     We could have forced the user to create this (and maybe should have) 
             //     instead of using an enum.
             UserControl uc = null;
@@ -144,90 +137,8 @@ namespace fyiReporting.RdlDesign
             this.ResumeLayout(true);
         }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            this.bOK = new System.Windows.Forms.Button();
-            this.bCancel = new System.Windows.Forms.Button();
-            this.pMain = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
-            // 
-            // bOK
-            // 
-            this.bOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bOK.Location = new System.Drawing.Point(452, 410);
-            this.bOK.Name = "bOK";
-            this.bOK.Size = new System.Drawing.Size(75, 23);
-            this.bOK.TabIndex = 0;
-            this.bOK.Text = "OK";
-            this.bOK.UseVisualStyleBackColor = true;
-            this.bOK.Click += new System.EventHandler(this.bOK_Click);
-            // 
-            // bCancel
-            // 
-            this.bCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bCancel.CausesValidation = false;
-            this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bCancel.Location = new System.Drawing.Point(542, 410);
-            this.bCancel.Name = "bCancel";
-            this.bCancel.Size = new System.Drawing.Size(75, 23);
-            this.bCancel.TabIndex = 1;
-            this.bCancel.Text = "Cancel";
-            this.bCancel.UseVisualStyleBackColor = true;
-            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
-            // 
-            // pMain
-            // 
-            this.pMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pMain.Location = new System.Drawing.Point(3, 3);
-            this.pMain.Name = "pMain";
-            this.pMain.Size = new System.Drawing.Size(614, 401);
-            this.pMain.TabIndex = 2;
-            // 
-            // SingleCtlDialog
-            // 
-            this.AcceptButton = this.bOK;
-            this.CancelButton = this.bCancel;
-            this.ClientSize = new System.Drawing.Size(620, 436);
-            this.Controls.Add(this.pMain);
-            this.Controls.Add(this.bCancel);
-            this.Controls.Add(this.bOK);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "SingleCtlDialog";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Properties";
-            this.ResumeLayout(false);
-
-		}
-		#endregion
-
-		private void bOK_Click(object sender, System.EventArgs e)
-		{
+        private void bOK_Click(object sender, System.EventArgs e)
+        {
             string c = "";
             switch (_Type)
             {
@@ -277,7 +188,7 @@ namespace fyiReporting.RdlDesign
             _DesignCtl.SignalReportChanged();
             _Draw.Invalidate();
 
-			this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -286,5 +197,5 @@ namespace fyiReporting.RdlDesign
         }
 
 
-	}
+    }
 }

@@ -114,8 +114,14 @@
     <Compile Include="DataSourcePassword.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DataSourcePassword.Designer.cs">
+      <DependentUpon>DataSourcePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogMessages.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogMessages.Designer.cs">
+      <DependentUpon>DialogMessages.cs</DependentUpon>
     </Compile>
     <Compile Include="DialogWait.cs">
       <SubType>Form</SubType>

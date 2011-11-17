@@ -113,14 +113,26 @@
     <Compile Include="DialogAbout.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DialogAbout.Designer.cs">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIChild.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIChild.Designer.cs">
+      <DependentUpon>MDIChild.cs</DependentUpon>
     </Compile>
     <Compile Include="RdlReader.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RdlReader.Designer.cs">
+      <DependentUpon>RdlReader.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZoomTo.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZoomTo.Designer.cs">
+      <DependentUpon>ZoomTo.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DialogAbout.resx">
       <DependentUpon>DialogAbout.cs</DependentUpon>

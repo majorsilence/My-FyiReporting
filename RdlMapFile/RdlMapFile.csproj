@@ -62,8 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogAbout.Designer.cs">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogFindByKey.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogFindByKey.Designer.cs">
+      <DependentUpon>DialogFindByKey.cs</DependentUpon>
     </Compile>
     <Compile Include="DPSimp.cs" />
     <Compile Include="DialogAbout.cs">
