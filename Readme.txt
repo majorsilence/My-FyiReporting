@@ -4,7 +4,7 @@ A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizard
 reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
 
 Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#, VB.NET, IronPython, or any 
-other .NET language.
+other .NET language.  The viewer also works in linux using mono.
 
 My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
