@@ -111,109 +111,221 @@ namespace fyiReporting.RdlDesign
 
 		void BuildTree(string[] flds)
 		{
-			// suppress redraw until tree view is complete
-			tvOp.BeginUpdate();
-			//AJM GJL Adding Missing 'User' Menu
+            // suppress redraw until tree view is complete
+            tvOp.BeginUpdate();
+
+            //AJM GJL Adding Missing 'User' Menu
             // Handle the user
-            TreeNode ndRoot = new TreeNode("User");
+            InitUsers();
+            // Handle the globals
+            InitGlobals();
+            // Fields - only when a dataset is specified
+            InitFields(flds);
+            // Report parameters
+            InitReportParameters();
+            // Handle the functions
+            InitFunctions();
+            // Aggregate functions
+            InitAggrFunctions();
+            // Operators
+            InitOperators();
+            // Colors (if requested)
+            InitColors();
+
+            tvOp.EndUpdate(); 
+
+		}
+        // Josh: 6:22:10 Added as a uniform method of addind nodes to the TreeView.
+        void InitTreeNodes(string node, IEnumerable<string> list)
+        {
+            TreeNode ndRoot = new TreeNode(node);
             tvOp.Nodes.Add(ndRoot);
-            foreach (string item in StaticLists.UserList)
+            foreach (string item in list)
             {
-                // Add the node to the tree
-                TreeNode aRoot = new TreeNode(item.StartsWith("=") ? item.Substring(1) : item);
+                TreeNode aRoot = new TreeNode(item);
                 ndRoot.Nodes.Add(aRoot);
             }
+        }
 
-			// Handle the globals
-			ndRoot = new TreeNode("Globals");
-			tvOp.Nodes.Add(ndRoot);
-			foreach (string item in StaticLists.GlobalList)
-			{
-				// Add the node to the tree
-				TreeNode aRoot = new TreeNode(item.StartsWith("=")? item.Substring(1): item);
-				ndRoot.Nodes.Add(aRoot);
-			}
+        //Josh: 6:22:10 Added to place the start and end shortcut "caps" on the fields.
+        List<string> ArrayToFormattedList(IEnumerable<string> array, string frontCap, string endCap)
+        {
+            List<string> returnList = new List<string>(array);
 
-			// Fields - only when a dataset is specified
-			if (flds != null && flds.Length > 0)
-			{
-				ndRoot = new TreeNode("Fields");
-				tvOp.Nodes.Add(ndRoot);
+            returnList.ForEach(
+            delegate(string item)
+            {
+                returnList[returnList.IndexOf(item)] =
+                item.StartsWith("=") ?
+                string.Format("{0}{1}{2}",
+                frontCap,
+                item.Split('!')[1].Replace(".Value", string.Empty),
+                endCap)
+                : item;
+            });
 
-				foreach (string f in flds)
-				{	
-					TreeNode aRoot = new TreeNode(f.StartsWith("=")? f.Substring(1): f);
-					ndRoot.Nodes.Add(aRoot);
-				}
-			}
+            return returnList;
+        }
 
-			// Report parameters
-			InitReportParameters();
+        // Josh: 6:22:10 Begin Init Methods.
+        // Methods have been changed to use InitTreeNodes
+        // and ArrayToFormattedList methods
+        // Initializes the user functions
+        void InitUsers()
+        {
+            List<string> users = ArrayToFormattedList(StaticLists.UserList, "{!", "}");
+            InitTreeNodes("User", users);
+        }
+        // Initializes the Globals
+        void InitGlobals()
+        {
+            List<string> globals = ArrayToFormattedList(StaticLists.GlobalList, "{@", "}");
+            InitTreeNodes("Globals", globals);
+        }
+        // Initializes the database fields
+        void InitFields(string[] flds)
+        {
+            if (flds != null && flds.Length > 0)
+            {
+                List<string> fields = ArrayToFormattedList(flds, "{", "}");
+                InitTreeNodes("Fields", fields);
+            }
+        }
+        // Initializes the aggregate functions
+        void InitAggrFunctions()
+        {
+            InitTreeNodes("Aggregate Functions", StaticLists.AggrFunctionList);
+        }
+        // Initializes the operators
+        void InitOperators()
+        {
+            InitTreeNodes("Operators", StaticLists.OperatorList);
+        }
+        // Initializes the colors
+        void InitColors()
+        {
+            if (_Color)
+            {
+                InitTreeNodes("Colors", StaticLists.ColorList);
+            }
+        }
+        /// <summary>
+        /// Populate tree view with the report parameters (if any)
+        /// </summary>
+        void InitReportParameters()
+        {
+            string[] ps = _Draw.GetReportParameters(true);
 
-			// Handle the functions
-			ndRoot = new TreeNode("Functions");
-			tvOp.Nodes.Add(ndRoot);
-			InitFunctions(ndRoot);
+            if (ps != null && ps.Length != 0)
+            {
+                List<string> parameters = ArrayToFormattedList(ps, "{?", "}");
+                InitTreeNodes("Parameters", parameters);
+            }
+        }
 
-			// Aggregate functions
-			ndRoot = new TreeNode("Aggregate Functions");
-			tvOp.Nodes.Add(ndRoot);
-			foreach (string item in StaticLists.AggrFunctionList)
-			{
-				// Add the node to the tree
-				TreeNode aRoot = new TreeNode(item);
-				ndRoot.Nodes.Add(aRoot);
-			}
+        //Done: Look at grouping items, such as Math, Financial, etc
+        // Josh: 6:21:10 added grouping for common items.
+        void InitFunctions()
+        {
+            List<string> ar = new List<string>();
 
-			// Operators
-			ndRoot = new TreeNode("Operators");
-			tvOp.Nodes.Add(ndRoot);
-			foreach (string item in StaticLists.OperatorList)
-			{
-				// Add the node to the tree
-				TreeNode aRoot = new TreeNode(item);
-				ndRoot.Nodes.Add(aRoot);
-			}
+            ar.AddRange(StaticLists.FunctionList);
 
-			// Colors (if requested)
-			if (_Color)
-			{
-				ndRoot = new TreeNode("Colors");
-				tvOp.Nodes.Add(ndRoot);
-				foreach (string item in StaticLists.ColorList)
-				{
-					// Add the node to the tree
-					TreeNode aRoot = new TreeNode(item);
-					ndRoot.Nodes.Add(aRoot);
-				}
-			}
+            // Build list of methods in the VBFunctions class
+            fyiReporting.RDL.FontStyleEnum fsi = FontStyleEnum.Italic; // just want a class from RdlEngine.dll assembly
+            Assembly a = Assembly.GetAssembly(fsi.GetType());
+            if (a == null)
+                return;
+            Type ft = a.GetType("fyiReporting.RDL.VBFunctions");
+            BuildMethods(ar, ft, "");
 
+            // build list of financial methods in Financial class
+            ft = a.GetType("fyiReporting.RDL.Financial");
+            BuildMethods(ar, ft, "Financial.");
 
-			tvOp.EndUpdate();
+            a = Assembly.GetAssembly("".GetType());
+            ft = a.GetType("System.Math");
+            BuildMethods(ar, ft, "Math.");
 
-		}
+            ft = a.GetType("System.Convert");
+            BuildMethods(ar, ft, "Convert.");
 
-		/// <summary>
-		/// Populate tree view with the report parameters (if any)
-		/// </summary>
-		void InitReportParameters()
-		{
-			string[] ps = _Draw.GetReportParameters(true);
-			
-			if (ps == null || ps.Length == 0)
-				return;
+            ft = a.GetType("System.String");
+            BuildMethods(ar, ft, "String.");
 
-			TreeNode ndRoot = new TreeNode("Parameters");
-			tvOp.Nodes.Add(ndRoot);
+            ar.Sort();
 
-			foreach (string p in ps)
-			{
-				TreeNode aRoot = new TreeNode(p.StartsWith("=")?p.Substring(1): p);
-				ndRoot.Nodes.Add(aRoot);
-			}
+            TreeNode ndRoot = new TreeNode("Functions");
+            tvOp.Nodes.Add(ndRoot);
 
-			return;
-		}
+            foreach (TreeNode node in GroupMethods(RemoveDuplicates(ar)))
+            {
+                ndRoot.Nodes.Add(node);
+            }
+        }
+        // Josh: 6:22:10 End Init Methods
+
+        List<string> RemoveDuplicates(IEnumerable<string> ar)
+        {
+            List<string> newAr = new List<string>();
+            string previous = "";
+            foreach (string str in ar)
+            {
+                if (str != previous)
+                    newAr.Add(str);
+
+                previous = str;
+            }
+
+            return newAr;
+        }
+
+        List<TreeNode> GroupMethods(List<string> ar)
+        {
+            List<TreeNode> nodeList = new List<TreeNode>();
+
+            string group = " ";
+            foreach (string str in ar)
+            {
+                if (!str.StartsWith(group))
+                {
+                    if (str.Contains("."))
+                    {
+                        if (str.IndexOf("(") > str.IndexOf("."))
+                        {
+                            group = str.Split('.')[0];
+                            TreeNode aRoot = new TreeNode(group);
+                            List<string> groupList = ar.FindAll(
+                            delegate(string methodName)
+                            {
+                                return methodName.StartsWith(group);
+                            }
+                            );
+
+                            if (groupList != null)
+                            {
+                                foreach (string method in groupList)
+                                {
+                                    aRoot.Nodes.Add(new TreeNode(
+                                    method.Replace(group, string.Empty)
+                                    .Replace(".", string.Empty)));
+                                }
+                            }
+                            nodeList.Add(aRoot);
+                        }
+                        else
+                        {
+                            nodeList.Add(new TreeNode(str));
+                        }
+                    }
+                    else
+                    {
+                        nodeList.Add(new TreeNode(str));
+                    }
+                }
+            }
+            return nodeList;
+        }
 
 		void InitFunctions(TreeNode ndRoot)
 		{
@@ -477,15 +589,23 @@ namespace fyiReporting.RdlDesign
 
 		private void bCopy_Click(object sender, System.EventArgs e)
 		{
-			if (tvOp.SelectedNode == null ||
-				tvOp.SelectedNode.Parent == null)
-				return;		// this is the top level nodes (Fields, Parameters, ...)
+            if (tvOp.SelectedNode == null ||
+            tvOp.SelectedNode.Parent == null ||
+            tvOp.SelectedNode.Nodes.Count > 0)
+                return; // this is the top level nodes (Fields, Parameters, ...)
 
-			TreeNode node = tvOp.SelectedNode;
-			string t = node.Text;
+            TreeNode node = tvOp.SelectedNode;
+            string t = string.Empty;
+            // Josh: 6:21:10 Changed to add parent node name for grouped nodes (eg: Convert.ToByte(value))
+            // and not to add it for the root functions (the non grouped).
+            if (tvOp.Nodes.Contains(node.Parent))
+                t = node.Text;
+            else
+                t = node.Parent.Text + "." + node.Text;
+
             if (tbExpr.Text.Length == 0)
                 t = "=" + t;
-			tbExpr.SelectedText = t;
+            tbExpr.SelectedText = t; 
 		}
 
 	}
