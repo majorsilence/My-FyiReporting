@@ -17,7 +17,8 @@ project.
 Also check this projects wiki as information will be slowly added.
 
 This is currently built with visual studio 2008 and targets .net 2.  It should be easy to use visual studio 2010
-and target .net 4,  just upgrade the solutions.
+and target .net 4, just upgrade the solution files.  You can also run the build script in the Release-Builds folder
+to build .net 3.5 and 4.0 packages.
 
 Layout:
 
@@ -58,9 +59,10 @@ All contributions welcome.  I'll try to respond the same day to any emails or pu
 days at the most.
 
 *Install visual studio 2008/2010 (express should work)
-*Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
-----*This is to use the release build script in the setup\ folder
-----*Only required if you want to use the release script
+    *Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
+    *Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
+    ----*This is to use the release build script in the Release-Builds\ folder
+    ----*Only required if you want to use the release script
 *Create github account if you already do not have one
 *Create a fork of My-FyiReporting master branch
 *Do your changes
