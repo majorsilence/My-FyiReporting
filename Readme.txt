@@ -3,7 +3,8 @@ Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Con
 A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new 
 reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
 
-Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#, VB.NET, IronPython, or any other .NET language.
+Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#, VB.NET, IronPython, or any 
+other .NET language.
 
 My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
@@ -53,7 +54,8 @@ Layout:
 
 
 Contribute:
-All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few days at the most.
+All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few 
+days at the most.
 
 *Install visual studio 2008/2010 (express should work)
 *Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
@@ -80,8 +82,8 @@ Open Positions:
 *RdlMapFile Maintainer
 
 RDL Compliance
-Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly compatiable with
-RDL 2005.  If you want to add more features see the specfications.
+Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly 
+compatiable with RDL 2005.  If you want to add more features see the specfications.
 
 RDL specifications: http://msdn.microsoft.com/en-us/library/dd297486%28v=sql.100%29.aspx
 2005 direct link: http://download.microsoft.com/download/c/2/0/c2091a26-d7bf-4464-8535-dbc31fb45d3c/rdlNov05.pdf
