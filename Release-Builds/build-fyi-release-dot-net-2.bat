@@ -4,25 +4,25 @@ REM /p:Configuration="Debug" or "Release"
 
 REM ************* Begin ANY CPU *********************************************
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\DataProviders\DataProviders.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\DataProviders\DataProviders.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-REM "C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "..\%CD%\..\OracleSP\OracleSp.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+REM "C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "..\%CD%\..\OracleSP\OracleSp.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlAsp\RdlAsp.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlAsp\RdlAsp.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlCmd\RdlCmd.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlCmd\RdlCmd.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlCri\RdlCri.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlCri\RdlCri.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlDesign\RdlDesign.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlDesign\RdlDesign.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlDesktop\RdlDesktop.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlDesktop\RdlDesktop.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlEngine\RdlEngine.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlEngine\RdlEngine.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
-"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:3.5 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:2.0 /p:Configuration="Release";Platform="Any CPU" /t:clean;rebuild /m:4
 
 REM ************* End ANY CPU *********************************************
 
