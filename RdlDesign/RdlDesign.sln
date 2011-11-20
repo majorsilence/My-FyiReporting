@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlEngine", "..\RdlEngine\R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer", "..\RdlViewer\RdlViewer.csproj", "{D99145B1-CB6C-41F5-BA86-723325145FB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "..\DataProviders\DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
