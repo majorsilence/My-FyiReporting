@@ -37,6 +37,7 @@ copy ..\RdlCmd\bin\Release\RdlCmd.exe .\my-fyi-build-dot-net-4\RdlCmd.exe /Y
 copy ..\RdlCri\bin\Release\RdlCri.dll .\my-fyi-build-dot-net-4\RdlCri.dll /Y
 copy ..\RdlDesign\bin\Release\RdlDesigner.exe .\my-fyi-build-dot-net-4\RdlDesigner.exe /Y
 copy ..\RdlDesktop\bin\Release\RdlDesktop.exe .\my-fyi-build-dot-net-4\RdlDesktop.exe /Y
+copy ..\RdlDesktop\bin\Release\config.xml .\my-fyi-build-dot-net-4\config.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\my-fyi-build-dot-net-4\RdlEngine.dll /Y
 copy ..\RdlMapFile\bin\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.dll .\my-fyi-build-dot-net-4\RdlViewer.dll /Y
