@@ -312,6 +312,14 @@ namespace fyiReporting.RDL
                 Assembly la = null;
                 if (codemodule != null && cname != null)
                 {
+
+                    if (System.IO.File.Exists(codemodule) == false)
+                    {
+                        sce = new SqlConfigEntry(provider, codemodule , cname, null, tselect, codemodule + " could not be found");
+                        dsDir.Add(provider, sce);
+                        return;
+                    }
+
                     // check to see if the DLL has been previously loaded 
                     //   many of the DataProvider done by fyiReporting are in a single code module 
                     foreach (SqlConfigEntry sc in dsDir.Values)

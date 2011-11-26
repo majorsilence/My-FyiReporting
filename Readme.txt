@@ -65,6 +65,11 @@ days at the most.
     *Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
     ----*This is to use the release build script in the Release-Builds\ folder
     ----*Only required if you want to use the release script
+*Install database references for the databases you want to work with
+    * SQLite http://sqlite.phxsoftware.com/
+    * MySQL ADO.NET Driver http://www.mysql.com/downloads/connector/net/
+    * Firebird http://www.firebirdsql.org/en/net-provider/
+    * Oracel http://www.oracle.com/technetwork/topics/dotnet/index-085163.html
 *Create github account if you already do not have one
 *Create a fork of My-FyiReporting master branch
 *Do your changes

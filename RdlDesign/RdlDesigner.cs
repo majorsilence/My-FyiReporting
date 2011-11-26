@@ -57,7 +57,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     public partial class RdlDesigner :  IMessageFilter
     {
-        static readonly string IpcFileName = @"\fyiIpcData400.txt"; // note: change file name with every release
+        static readonly string IpcFileName = @"\fyiIpcData400.txt"; // TODO: change file name with every release
 
 
         IpcChannel channel = new IpcChannel("RdlProject");
