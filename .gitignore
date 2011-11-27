@@ -864,3 +864,11 @@
 /Release-Builds/my-fyi-build-dot-net-2-x86/config.xml
 /Release-Builds/my-fyi-build-dot-net-2/RdlEngineConfig.xml
 /Release-Builds/my-fyi-build-dot-net-2/config.xml
+/Release-Builds/my-fyi-build-dot-net-2-x86/ICSharpCode.SharpZipLib.dll
+/Release-Builds/my-fyi-build-dot-net-2-x86/Mono.Security.dll
+/Release-Builds/my-fyi-build-dot-net-2-x86/Npgsql.dll
+/Release-Builds/my-fyi-build-dot-net-2-x86/System.Data.SQLite.dll
+/Release-Builds/my-fyi-build-dot-net-2/ICSharpCode.SharpZipLib.dll
+/Release-Builds/my-fyi-build-dot-net-2/Mono.Security.dll
+/Release-Builds/my-fyi-build-dot-net-2/Npgsql.dll
+/Release-Builds/my-fyi-build-dot-net-2/System.Data.SQLite.dll

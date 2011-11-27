@@ -39,6 +39,10 @@ copy ..\RdlDesign\bin\Release\RdlDesigner.exe .\my-fyi-build-dot-net-2\RdlDesign
 copy ..\RdlDesktop\bin\Release\RdlDesktop.exe .\my-fyi-build-dot-net-2\RdlDesktop.exe /Y
 copy ..\RdlDesktop\bin\Release\config.xml .\my-fyi-build-dot-net-2\config.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\my-fyi-build-dot-net-2\RdlEngine.dll /Y
+copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\my-fyi-build-dot-net-2\ICSharpCode.SharpZipLib.dll /Y
+copy ..\RdlEngine\bin\Release\Mono.Security.dll .\my-fyi-build-dot-net-2\Mono.Security.dll /Y
+copy ..\RdlEngine\bin\Release\Npgsql.dll .\my-fyi-build-dot-net-2\Npgsql.dll /Y
+copy ..\RdlEngine\bin\Release\System.Data.SQLite.dll .\my-fyi-build-dot-net-2\System.Data.SQLite.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-2\RdlEngineConfig.xml /Y
 copy ..\RdlMapFile\bin\Release\RdlMapFile.exe .\my-fyi-build-dot-net-2\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.dll .\my-fyi-build-dot-net-2\RdlViewer.dll /Y
@@ -86,6 +90,10 @@ copy ..\RdlDesign\bin\x86\Release\RdlDesigner.exe .\my-fyi-build-dot-net-2-x86\R
 copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\my-fyi-build-dot-net-2-x86\RdlDesktop.exe /Y
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\my-fyi-build-dot-net-2-x86\config.xml /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngine.dll .\my-fyi-build-dot-net-2-x86\RdlEngine.dll /Y
+copy ..\RdlEngine\bin\x86\Release\ICSharpCode.SharpZipLib.dll .\my-fyi-build-dot-net-2-x86\ICSharpCode.SharpZipLib.dll /Y
+copy ..\RdlEngine\bin\x86\Release\Mono.Security.dll .\my-fyi-build-dot-net-2-x86\Mono.Security.dll /Y
+copy ..\RdlEngine\bin\x86\Release\Npgsql.dll .\my-fyi-build-dot-net-2-x86\Npgsql.dll /Y
+copy ..\RdlEngine\bin\x86\Release\System.Data.SQLite.dll .\my-fyi-build-dot-net-2-x86\System.Data.SQLite.dll /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-2-x86\RdlEngineConfig.xml /Y
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\my-fyi-build-dot-net-2-x86\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\my-fyi-build-dot-net-2-x86\RdlViewer.dll /Y
