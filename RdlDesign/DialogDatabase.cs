@@ -1248,33 +1248,39 @@ namespace fyiReporting.RdlDesign
             {
                 lODBC.Visible = cbOdbcNames.Visible = false;
             }
-#if DEBUG
+
             // this is only for ease of testing
             switch (cbConnectionTypes.Text)
             {
                 case "SQL":
-                    tbConnection.Text = "Server=(local)\\VSDotNet;DataBase=Northwind;Integrated Security=SSPI;Connect Timeout=5";
+                    tbConnection.Text = "Server=(local)\\ServerInstance;DataBase=DatabaseName;Integrated Security=SSPI;Connect Timeout=5";
                     break;
                 case "ODBC":
-                    tbConnection.Text = "dsn=world;UID=user;PWD=pswd;";
+                    tbConnection.Text = "dsn=world;UID=user;PWD=password;";
                     break;
                 case "Oracle":
-                    tbConnection.Text = "User Id=SYSTEM;Password=tiger;Data Source=orcl";
+                    tbConnection.Text = "User Id=SYSTEM;Password=password;Data Source=server";
                     break;
                 case "Firebird.NET":
-                    tbConnection.Text = @"Dialect=3;User Id=SYSDBA;Database=C:\Program Files\Firebird\Firebird_1_5\examples\employee.fdb;Data Source=localhost;Password=masterkey";
+                    tbConnection.Text = @"Dialect=3;User Id=SYSDBA;Database=daabaseFile.fdb;Data Source=localhost;Password=password";
                     break;
                 case "MySQL.NET":
-                    tbConnection.Text = "database=world;user id=user;password=pswd;";
+                    tbConnection.Text = "database=world;user id=user;password=password;";
                     break;
                 case "iAnywhere.NET":
-                    tbConnection.Text = "Data Source=ASA 9.0 Sample;UID=DBA;PWD=SQL";
+                    tbConnection.Text = "Data Source=ASA 9.0 Sample;UID=DBA;PWD=password";
                     break;
+                case "SQLite":
+                    tbConnection.Text = "Data Source=filename;Version=3;Password=myPassword;Pooling=True;Max Pool Size=100;";
+                    break;
+                case "PostgreSQL":
+                    tbConnection.Text = "Server=127.0.0.1;Port=5432;Database=myDataBase;User Id=myUsername;Password=myPassword;";
+                    break;               
                 default:
                     tbConnection.Text = "";
                     break;
             }
-#endif
+
         }
 
         private void cbOdbcNames_SelectedIndexChanged(object sender, System.EventArgs e)

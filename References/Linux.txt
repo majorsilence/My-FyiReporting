@@ -1,0 +1,2 @@
+On linux you will be required to provide managed sqlite dlls from 
+http://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki or your system repository.
