@@ -2105,10 +2105,13 @@ namespace fyiReporting.RdlDesign
             // These menus require an MDIChild in order to work
             RdlEditPreview e = mc == null ? null : mc.RdlEditor;
             bool bNotPreview = true;
-           
-            foreach (ToolStripMenuItem a in this.menuStrip1.Items)
+
+            foreach (object a in this.editToolStripMenuItem.DropDownItems)
             {
-                a.Enabled = false;   
+                if (a.GetType() == typeof(ToolStripMenuItem))
+                {
+                    ((ToolStripMenuItem)a).Enabled = false; 
+                }
             }
 
             if (e == null || e.DesignTab != "edit")
