@@ -93,6 +93,8 @@ namespace fyiReporting.RdlDesign
 
         public RdlDesigner()
         {
+            InitializeComponent();
+
             KeyPreview = true;
             GetStartupState();
 
@@ -101,7 +103,7 @@ namespace fyiReporting.RdlDesign
             propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
             IsMdiContainer = true;  
 
-            InitializeComponent();
+            
             Application.AddMessageFilter(this);
 
             this.MdiChildActivate += new EventHandler(RdlDesigner_MdiChildActivate);
