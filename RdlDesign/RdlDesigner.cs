@@ -1283,94 +1283,14 @@ namespace fyiReporting.RdlDesign
 
         private void BuildMenus()
         {
-            // FILE MENU
-            menuNew = new MenuItem("&New Report...", new EventHandler(this.menuFileNewReport_Click), Shortcut.CtrlN);
-            menuOpen = new MenuItem("&Open...", new EventHandler(this.menuFileOpen_Click), Shortcut.CtrlO);
-            menuClose = new MenuItem("&Close", new EventHandler(this.menuFileClose_Click), Shortcut.CtrlW);
-            menuFSep1 = new MenuItem("-");
-            menuSave = new MenuItem("&Save", new EventHandler(this.menuFileSave_Click), Shortcut.CtrlS);
-            menuSaveAs = new MenuItem("Save &As...", new EventHandler(this.menuFileSaveAs_Click));
-            menuPrint = new MenuItem("Print...", new EventHandler(this.menuFilePrint_Click), Shortcut.CtrlP);
-            menuExport = new MenuItem("Export");
-            menuExportPdf = new MenuItem("PDF...", new EventHandler(this.menuExportPdf_Click));
-            menuExportTif = new MenuItem("TIF...", new EventHandler(this.menuExportTif_Click));
-            menuExportCsv = new MenuItem("CSV...", new EventHandler(this.menuExportCsv_Click));
-            menuExportExcel = new MenuItem("Excel...", new EventHandler(this.menuExportExcel_Click));
-            menuExportRtf = new MenuItem("RTF, DOC...", new EventHandler(this.menuExportRtf_Click));
-            menuExportXml = new MenuItem("XML...", new EventHandler(this.menuExportXml_Click));
-            menuExportHtml = new MenuItem("Web Page, HTML...", new EventHandler(this.menuExportHtml_Click));
-            menuExportMHtml = new MenuItem("Web Archive, single file MHT...", new EventHandler(this.menuExportMHtml_Click));
-            menuExport.MenuItems.AddRange(new MenuItem[] { menuExportPdf, menuExportHtml, menuExportMHtml, menuExportExcel, menuExportXml, menuExportCsv, menuExportRtf, menuExportTif });
-
-            menuFSep2 = new MenuItem("-");
-            MenuItem menuRecentItem = new MenuItem("");
-            menuRecentFile = new MenuItem("Recent &Files");
-            menuRecentFile.MenuItems.AddRange(new MenuItem[] { menuRecentItem });
-            menuFSep3 = new MenuItem("-");
-            menuExit = new MenuItem("E&xit", new EventHandler(this.menuFileExit_Click), Shortcut.CtrlQ);
-
-            // Create file menu and add array of sub-menu items
-            MenuItem menuFile = new MenuItem("&File");
-            menuFile.Popup += new EventHandler(this.menuFile_Popup);
-            menuFile.MenuItems.AddRange(
-                new MenuItem[] { menuNew, menuOpen, menuClose, menuFSep1, menuSave, menuSaveAs, 
-								   menuPrint, menuExport, menuFSep2, menuRecentFile, menuFSep3, menuExit });
-
+          
             // Intialize the recent file menu
             RecentFilesMenu();
+            propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
 
-            // EDIT MENU
-            menuEditUndo = new MenuItem("&Undo", new EventHandler(this.menuEditUndo_Click), Shortcut.CtrlZ);
-            menuEditRedo = new MenuItem("&Redo", new EventHandler(this.menuEditRedo_Click), Shortcut.CtrlY);
-            menuFSep1 = new MenuItem("-");
-            menuEditCut = new MenuItem("Cu&t", new EventHandler(this.menuEditCut_Click), Shortcut.CtrlX);
-            menuEditCopy = new MenuItem("&Copy", new EventHandler(this.menuEditCopy_Click), Shortcut.CtrlC);
-            menuEditPaste = new MenuItem("&Paste", new EventHandler(this.menuEditPaste_Click), Shortcut.CtrlV);
-            menuEditDelete = new MenuItem("&Delete", new EventHandler(this.menuEditDelete_Click), Shortcut.CtrlDel); // Josh: Added Ctrl+Del Shortcut 
-            menuFSep2 = new MenuItem("-");
-            menuEditSelectAll = new MenuItem("Select &All", new EventHandler(this.menuEditSelectAll_Click), Shortcut.CtrlA);
-            menuFSep3 = new MenuItem("-");
-            menuEditFind = new MenuItem("&Find...", new EventHandler(this.menuEditFind_Click), Shortcut.CtrlF);
-            menuEditFindNext = new MenuItem("Find Next", new EventHandler(this.menuEditFindNext_Click), Shortcut.F3);
-            menuEditReplace = new MenuItem("&Replace...", new EventHandler(this.menuEditReplace_Click), Shortcut.CtrlH);
-            menuEditGoto = new MenuItem("&Go To...", new EventHandler(this.menuEditGoto_Click), Shortcut.CtrlG);
-            menuFSep4 = new MenuItem("-");
-            menuEditFormatXml = new MenuItem("Format XM&L", new EventHandler(this.menuEdit_FormatXml), Shortcut.CtrlL);
-            // Create edit menu and add array of sub-menu items
-            menuEdit = new MenuItem("&Edit");
-            menuEdit.Popup += new EventHandler(this.menuEdit_Popup);
-
-            menuEdit.MenuItems.AddRange(
-                new MenuItem[] { menuEditUndo, menuEditRedo, menuFSep1, menuEditCut, menuEditPaste, 
-								   menuEditDelete, menuFSep2, menuEditSelectAll, menuFSep3,
-								   menuEditFind, menuEditFindNext, menuEditReplace, menuEditGoto,
-								   menuFSep4, menuEditFormatXml});
-            // View Menu
-            menuViewDesigner = new MenuItem("Designer", new EventHandler(this.menuViewDesigner_Click), Shortcut.F7);
-            menuViewRDL = new MenuItem("RDL Text", new EventHandler(this.menuViewRDL_Click), Shortcut.ShiftF7);
-            menuViewPreview = new MenuItem("Preview", new EventHandler(this.menuViewPreview_Click), Shortcut.F5);
-            menuViewBrowser = new MenuItem("Show Report in Browser", new EventHandler(this.menuViewBrowser_Click), Shortcut.F6);
-            menuViewProperties = new MenuItem("Properties Window", new EventHandler(this.menuEditProperties_Click), Shortcut.F4);
-            menuViewProperties.Checked = _ShowProperties;
-            menuView = new MenuItem("&View");
-            menuView.Popup += new EventHandler(menuView_Popup);
-            menuView.MenuItems.AddRange(
-                new MenuItem[] {menuViewDesigner, menuViewRDL, menuViewPreview, 
-							  new MenuItem("-"), menuViewBrowser, new MenuItem("-"), menuViewProperties});
-
-            // Data Menu
-            menuDataSets = new MenuItem("&Data Sets");
 
             menuDataSets.MenuItems.Add(new MenuItem()); // this will actually get built dynamically
-            menuDataSources = new MenuItem("Data &Sources...", new EventHandler(this.menuDataSources_Click));
-            menuEmbeddedImages = new MenuItem("&Embedded Images...", new EventHandler(this.menuEmbeddedImages_Click));
-            menuNewDataSourceRef = new MenuItem("&Create Shared Data Source...", new EventHandler(this.menuFileNewDataSourceRef_Click));
-
-            menuData = new MenuItem("&Data");
-            menuData.Popup += new EventHandler(this.menuData_Popup);
-            menuData.MenuItems.AddRange(
-                new MenuItem[] { menuDataSets, menuDataSources, new MenuItem("-"), menuEmbeddedImages, new MenuItem("-"), menuNewDataSourceRef });
-
+            
             // Format menu
             menuFormatAlign = new MenuItem("&Align");
             menuFormatAlignL = new MenuItem("&Lefts", new EventHandler(this.menuFormatAlignL_Click));
@@ -2603,13 +2523,6 @@ namespace fyiReporting.RdlDesign
 
         private void menuTools_Popup(object sender, EventArgs e)
         {
-            // If the server process isn't running then we'll start it up
-            if (_ServerProcess != null && _ServerProcess.HasExited)
-                _ServerProcess = null;
-            menuToolsProcess.Text = this._ServerProcess == null ? "Start Desktop" : "Stop Desktop";
-
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            this.menuToolsValidateSchema.Enabled = (mc != null && mc.DesignTab == "edit");
 
         }
 
@@ -3895,6 +3808,8 @@ namespace fyiReporting.RdlDesign
             }
             _TempReportFiles = null;
         }
+
+
     }
 
     public class RdlIpcObject : MarshalByRefObject
