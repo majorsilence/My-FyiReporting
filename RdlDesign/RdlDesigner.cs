@@ -95,7 +95,12 @@ namespace fyiReporting.RdlDesign
         {
             KeyPreview = true;
             GetStartupState();
-            BuildMenus();
+
+            // Intialize the recent file menu
+            RecentFilesMenu();
+            propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
+            IsMdiContainer = true;  
+
             InitializeComponent();
             Application.AddMessageFilter(this);
 
@@ -387,9 +392,9 @@ namespace fyiReporting.RdlDesign
                         x = LEFTMARGIN;
                         break;
                     case "Align":
-                        ctlLAlign = InitToolbarInsertToggle(ref x, y, "Left Align", bLAlign.Image, new EventHandler(this.menuFormatAlignButton_Click));
-                        ctlCAlign = InitToolbarInsertToggle(ref x, y, "Center Align", bCAlign.Image, new EventHandler(this.menuFormatAlignButton_Click));
-                        ctlRAlign = InitToolbarInsertToggle(ref x, y, "Right Align", bRAlign.Image, new EventHandler(this.menuFormatAlignButton_Click));
+                        ctlLAlign = InitToolbarInsertToggle(ref x, y, "Left Align", bLAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
+                        ctlCAlign = InitToolbarInsertToggle(ref x, y, "Center Align", bCAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
+                        ctlRAlign = InitToolbarInsertToggle(ref x, y, "Right Align", bRAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
                         break;
                     case "Bold":
                         x += InitToolbarBold(x, y);
@@ -447,28 +452,28 @@ namespace fyiReporting.RdlDesign
                         x += InitToolbarSelectTool(x, y);
                         break;
                     case "XML":
-                        ctlXml = InitToolbarMenu(ref x, y, "XML", bXml.Image, new EventHandler(this.menuExportXml_Click));
+                        ctlXml = InitToolbarMenu(ref x, y, "XML", bXml.Image, new EventHandler(this.exportToolStripMenuItemXml_Click));
                         break;
                     case "PDF":
-                        ctlPdf = InitToolbarMenu(ref x, y, "PDF", bPdf.Image, new EventHandler(this.menuExportPdf_Click));
+                        ctlPdf = InitToolbarMenu(ref x, y, "PDF", bPdf.Image, new EventHandler(this.exportToolStripMenuItemPdf_Click));
                         break;
                     case "TIF":
-                        ctlTif = InitToolbarMenu(ref x, y, "TIF", bTif.Image, new EventHandler(this.menuExportTif_Click));
+                        ctlTif = InitToolbarMenu(ref x, y, "TIF", bTif.Image, new EventHandler(this.exportToolStripMenuItemTif_Click));
                         break;
                     case "HTML":
-                        ctlHtml = InitToolbarMenu(ref x, y, "HTML", bHtml.Image, new EventHandler(this.menuExportHtml_Click));
+                        ctlHtml = InitToolbarMenu(ref x, y, "HTML", bHtml.Image, new EventHandler(this.exportToolStripMenuItemHtml_Click));
                         break;
                     case "MHT":
-                        ctlMht = InitToolbarMenu(ref x, y, "MHT", bMht.Image, new EventHandler(this.menuExportMHtml_Click));
+                        ctlMht = InitToolbarMenu(ref x, y, "MHT", bMht.Image, new EventHandler(this.exportToolStripMenuItemMHtml_Click));
                         break;
                     case "CSV":
-                        ctlCsv = InitToolbarMenu(ref x, y, "CSV", bCsv.Image, new EventHandler(this.menuExportCsv_Click));
+                        ctlCsv = InitToolbarMenu(ref x, y, "CSV", bCsv.Image, new EventHandler(this.exportToolStripMenuItemCsv_Click));
                         break;
                     case "Excel":
-                        ctlExcel = InitToolbarMenu(ref x, y, "Excel", bExcel.Image, new EventHandler(this.menuExportExcel_Click));
+                        ctlExcel = InitToolbarMenu(ref x, y, "Excel", bExcel.Image, new EventHandler(this.exportToolStripMenuItemExcel_Click));
                         break;
                     case "RTF":
-                        ctlRtf = InitToolbarMenu(ref x, y, "RTF", bRtf.Image, new EventHandler(this.menuExportRtf_Click));
+                        ctlRtf = InitToolbarMenu(ref x, y, "RTF", bRtf.Image, new EventHandler(this.exportToolStripMenuItemRtf_Click));
                         break;
                     case "Edit":
                         ctlEditTextbox = InitToolbarEditTextbox(ref x, y);
@@ -1280,128 +1285,6 @@ namespace fyiReporting.RdlDesign
 
 
         }
-
-        private void BuildMenus()
-        {
-          
-            // Intialize the recent file menu
-            RecentFilesMenu();
-            propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
-
-
-            menuDataSets.MenuItems.Add(new MenuItem()); // this will actually get built dynamically
-            
-            // Format menu
-            menuFormatAlign = new MenuItem("&Align");
-            menuFormatAlignL = new MenuItem("&Lefts", new EventHandler(this.menuFormatAlignL_Click));
-            menuFormatAlignC = new MenuItem("&Centers", new EventHandler(this.menuFormatAlignC_Click));
-            menuFormatAlignR = new MenuItem("&Rights", new EventHandler(this.menuFormatAlignR_Click));
-            menuFormatAlignT = new MenuItem("&Tops", new EventHandler(this.menuFormatAlignT_Click));
-            menuFormatAlignM = new MenuItem("&Middles", new EventHandler(this.menuFormatAlignM_Click));
-            menuFormatAlignB = new MenuItem("&Bottoms", new EventHandler(this.menuFormatAlignB_Click));
-            menuFormatAlign.MenuItems.AddRange(
-                new MenuItem[] {menuFormatAlignL,menuFormatAlignC,menuFormatAlignR,
-                 new MenuItem("-"),
-                 menuFormatAlignT,menuFormatAlignM,menuFormatAlignB });
-
-            menuFormatSize = new MenuItem("&Size");
-            menuFormatSizeW = new MenuItem("&Width", new EventHandler(this.menuFormatSizeW_Click));
-            menuFormatSizeH = new MenuItem("&Height", new EventHandler(this.menuFormatSizeH_Click));
-            menuFormatSizeB = new MenuItem("&Both", new EventHandler(this.menuFormatSizeB_Click));
-            menuFormatSize.MenuItems.AddRange(
-                new MenuItem[] { menuFormatSizeW, menuFormatSizeH, menuFormatSizeB });
-
-            menuFormatHorz = new MenuItem("&Horizontal Spacing");
-            menuFormatHorzE = new MenuItem("&Make Equal", new EventHandler(this.menuFormatHorzE_Click));
-            menuFormatHorzI = new MenuItem("&Increase", new EventHandler(this.menuFormatHorzI_Click));
-            menuFormatHorzD = new MenuItem("&Decrease", new EventHandler(this.menuFormatHorzD_Click));
-            menuFormatHorzZ = new MenuItem("&Zero", new EventHandler(this.menuFormatHorzZ_Click));
-            menuFormatHorz.MenuItems.AddRange(
-                new MenuItem[] { menuFormatHorzE, menuFormatHorzI, menuFormatHorzD, menuFormatHorzZ });
-
-            menuFormatVert = new MenuItem("&Vertical Spacing");
-            menuFormatVertE = new MenuItem("&Make Equal", new EventHandler(this.menuFormatVertE_Click));
-            menuFormatVertI = new MenuItem("&Increase", new EventHandler(this.menuFormatVertI_Click));
-            menuFormatVertD = new MenuItem("&Decrease", new EventHandler(this.menuFormatVertD_Click));
-            menuFormatVertZ = new MenuItem("&Zero", new EventHandler(this.menuFormatVertZ_Click));
-            menuFormatVert.MenuItems.AddRange(
-                new MenuItem[] { menuFormatVertE, menuFormatVertI, menuFormatVertD, menuFormatVertZ });
-
-            menuFormatPaddingLeft = new MenuItem("Padding Left");
-            menuFormatPaddingLeftI = new MenuItem("Increase", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingLeftD = new MenuItem("Decrease", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingLeftZ = new MenuItem("Zero", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingLeft.MenuItems.AddRange(
-                new MenuItem[] { menuFormatPaddingLeftI, menuFormatPaddingLeftD, menuFormatPaddingLeftZ });
-
-            menuFormatPaddingRight = new MenuItem("Padding Right");
-            menuFormatPaddingRightI = new MenuItem("Increase", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingRightD = new MenuItem("Decrease", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingRightZ = new MenuItem("Zero", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingRight.MenuItems.AddRange(
-                new MenuItem[] { menuFormatPaddingRightI, menuFormatPaddingRightD, menuFormatPaddingRightZ });
-
-            menuFormatPaddingTop = new MenuItem("Padding Top");
-            menuFormatPaddingTopI = new MenuItem("Increase", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingTopD = new MenuItem("Decrease", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingTopZ = new MenuItem("Zero", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingTop.MenuItems.AddRange(
-                new MenuItem[] { menuFormatPaddingTopI, menuFormatPaddingTopD, menuFormatPaddingTopZ });
-
-            menuFormatPaddingBottom = new MenuItem("Padding Bottom");
-            menuFormatPaddingBottomI = new MenuItem("Increase", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingBottomD = new MenuItem("Decrease", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingBottomZ = new MenuItem("Zero", new EventHandler(this.menuFormatPadding_Click));
-            menuFormatPaddingBottom.MenuItems.AddRange(
-                new MenuItem[] { menuFormatPaddingBottomI, menuFormatPaddingBottomD, menuFormatPaddingBottomZ });
-
-            menuFormat = new MenuItem("F&ormat");
-            menuFormat.Popup += new EventHandler(menuFormat_Popup);
-            menuFormat.MenuItems.AddRange(
-                new MenuItem[] { menuFormatAlign, menuFormatSize, menuFormatHorz, menuFormatVert, 
-								   new MenuItem("-"), 
-								   menuFormatPaddingLeft,menuFormatPaddingRight,
-								   menuFormatPaddingTop,menuFormatPaddingBottom});
-
-            // Tools menu
-            this.menuToolsProcess = new MenuItem("Start Desktop Server", new EventHandler(this.menuToolsProcess_Click));
-            this.menuToolsValidateSchema = new MenuItem("Validate RDL", new EventHandler(this.menuToolsValidateSchema_Click));
-            this.menuToolsOptions = new MenuItem("Options...", new EventHandler(this.menuToolsOptions_Click));
-            menuTools = new MenuItem("&Tools");
-            menuTools.MenuItems.AddRange(
-                new MenuItem[] { menuToolsValidateSchema, new MenuItem("-"), menuToolsProcess, 
-								   new MenuItem("-"), menuToolsOptions});
-            menuTools.Popup += new EventHandler(this.menuTools_Popup);
-
-            // WINDOW MENU
-            menuCascade = new MenuItem("&Cascade", new EventHandler(this.menuWndCascade_Click), Shortcut.CtrlShiftJ);
-
-            menuTileH = new MenuItem("&Horizontally", new EventHandler(this.menuWndTileH_Click), Shortcut.CtrlShiftK);
-            menuTileV = new MenuItem("&Vertically", new EventHandler(this.menuWndTileV_Click), Shortcut.CtrlShiftL);
-            menuTile = new MenuItem("&Tile");
-            menuTile.MenuItems.AddRange(new MenuItem[] { menuTileH, menuTileV });
-
-            menuCloseAll = new MenuItem("Close &All", new EventHandler(this.menuWndCloseAll_Click), Shortcut.CtrlShiftW);
-
-            // Add the Window menu
-            MenuItem menuWindow = new MenuItem("&Window");
-            menuWindow.Popup += new EventHandler(this.menuWnd_Popup);
-            menuWindow.MdiList = true;
-            menuWindow.MenuItems.AddRange(new MenuItem[] { menuCascade, menuTile, menuCloseAll });
-
-            // HELP MENU
-            MenuItem menuAbout = new MenuItem("&About...", new EventHandler(this.menuHelpAbout_Click));
-            MenuItem menuHelpItem = new MenuItem("&Help", new EventHandler(this.menuHelpHelp_Click));
-            MenuItem menuSupport = new MenuItem("&Support", new EventHandler(this.menuHelpSupport_Click));
-            MenuItem menuHelp = new MenuItem("&Help");
-            menuHelp.MenuItems.AddRange(new MenuItem[] { menuHelpItem, new MenuItem("-"), menuSupport, new MenuItem("-"), menuAbout });
-
-            MainMenu menuMain = new MainMenu(new MenuItem[]{menuFile, menuEdit, menuView, menuData, 
-															menuFormat, menuTools, menuWindow, menuHelp});
-            IsMdiContainer = true;
-            this.Menu = menuMain;
-        }
-
         private bool OkToSave()
         {
             foreach (MDIChild mc in this.MdiChildren)
@@ -1416,15 +1299,15 @@ namespace fyiReporting.RdlDesign
         {
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
-            menuClose.Enabled = bEnable;
-            menuSave.Enabled = bEnable;
-            menuSaveAs.Enabled = bEnable;
+            closeToolStripMenuItem.Enabled = bEnable;
+            saveToolStripMenuItem.Enabled = bEnable;
+            saveAsToolStripMenuItem.Enabled = bEnable;
 
             MDIChild mc = this.ActiveMdiChild as MDIChild;
-            menuPrint.Enabled = menuExport.Enabled = (mc != null && mc.DesignTab == "preview");
+            printToolStripMenuItem.Enabled = exportToolStripMenuItem.Enabled = (mc != null && mc.DesignTab == "preview");
 
             // Recent File is enabled when there exists some files 
-            menuRecentFile.Enabled = this._RecentFiles.Count <= 0 ? false : true;
+            recentFilesToolStripMenuItem.Enabled = this._RecentFiles.Count <= 0 ? false : true;
         }
 
         private void menuFileClose_Click(object sender, EventArgs e)
@@ -1852,14 +1735,14 @@ namespace fyiReporting.RdlDesign
             if (mc != null && mc.DesignTab == "design")
                 bEnable = true;
 
-            this.menuDataSources.Enabled = this.menuDataSets.Enabled = this.menuEmbeddedImages.Enabled = bEnable;
+            this.dataSourcesToolStripMenuItem1.Enabled = this.dataSetsToolStripMenuItem.Enabled = this.embeddedImagesToolStripMenuItem.Enabled = bEnable;
             if (!bEnable)
                 return;
 
             // Run thru all the existing DataSets
-            menuDataSets.MenuItems.Clear();
-            menuDataSets.MenuItems.Add(new MenuItem("New...",
-                        new EventHandler(this.menuDataSets_Click)));
+            dataSetsToolStripMenuItem.DropDownItems.Clear();
+            dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem("New...", null,
+                        new EventHandler(this.dataSetsToolStripMenuItem_Click)));
 
             DesignXmlDraw draw = mc.DrawCtl;
             XmlNode rNode = draw.GetReportNode();
@@ -1873,13 +1756,13 @@ namespace fyiReporting.RdlDesign
                     XmlAttribute nAttr = dNode.Attributes["Name"];
                     if (nAttr == null)	// shouldn't really happen
                         continue;
-                    menuDataSets.MenuItems.Add(new MenuItem(nAttr.Value,
-                        new EventHandler(this.menuDataSets_Click)));
+                    dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nAttr.Value,null,
+                        new EventHandler(this.dataSetsToolStripMenuItem_Click)));
                 }
             }
         }
 
-        private void menuDataSources_Click(object sender, System.EventArgs e)
+        private void dataSourcesToolStripMenuItem1_Click(object sender, System.EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -1896,7 +1779,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        private void menuDataSets_Click(object sender, System.EventArgs e)
+        private void dataSetsToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null || mc.DrawCtl == null || mc.ReportDocument == null)
@@ -2002,7 +1885,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        private void menuEmbeddedImages_Click(object sender, System.EventArgs e)
+        private void embeddedImagesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2113,7 +1996,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportCsv_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemCsv_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2123,7 +2006,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportExcel_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemExcel_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2133,7 +2016,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportRtf_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemRtf_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2143,7 +2026,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportXml_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemXml_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2153,7 +2036,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportHtml_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemHtml_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2163,7 +2046,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportMHtml_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemMHtml_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2173,7 +2056,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportPdf_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2183,7 +2066,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        private void menuExportTif_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItemTif_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2220,52 +2103,76 @@ namespace fyiReporting.RdlDesign
             // These menus require an MDIChild in order to work
             RdlEditPreview e = mc == null ? null : mc.RdlEditor;
             bool bNotPreview = true;
-            menuEdit.MenuItems.Clear();
+           
+            foreach (ToolStripMenuItem a in this.menuStrip1.Items)
+            {
+                a.Enabled = false;   
+            }
+
             if (e == null || e.DesignTab != "edit")
             {
-                menuEditUndo.Text = e == null ? "Undo" : "Undo " + e.UndoDescription;
+                undoToolStripMenuItem.Text = e == null ? "Undo" : "Undo " + e.UndoDescription;
                 if (e != null && e.DesignTab == "preview")
                 {
                     bNotPreview = false;
-                    menuEdit.MenuItems.AddRange(
-                        new MenuItem[] {  menuEditUndo, /* menuEditRedo,*/ menuFSep1,  menuEditCut, menuEditCopy,
-									   menuEditPaste, menuEditDelete, menuFSep2, menuEditFind, menuFSep3, menuEditSelectAll});
-                    menuEditFind.Enabled = true;
+                    undoToolStripMenuItem.Enabled = true;
+                    cutToolStripMenuItem.Enabled = true;
+                    copyToolStripMenuItem.Enabled = true;
+                    pasteToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = true;
+                    findToolStripMenuItem.Enabled = true;
+                    selectAllToolStripMenuItem.Enabled = true;
                 }
                 else
-                    menuEdit.MenuItems.AddRange(
-                        new MenuItem[] {  menuEditUndo, /* menuEditRedo,*/ menuFSep1,  menuEditCut, menuEditCopy,
-									   menuEditPaste, menuEditDelete, menuFSep2, menuEditSelectAll});
+                {
+                    undoToolStripMenuItem.Enabled = true;
+                    cutToolStripMenuItem.Enabled = true;
+                    copyToolStripMenuItem.Enabled = true;
+                    pasteToolStripMenuItem.Enabled = true;
+                    deleteToolStripMenuItem.Enabled = true;
+                    selectAllToolStripMenuItem.Enabled = true;
+                }
+
+                    
 
                 if (mc == null || e == null)
                 {
-                    menuEditUndo.Enabled = menuEditRedo.Enabled = menuEditCut.Enabled = menuEditCopy.Enabled =
-                        menuEditPaste.Enabled = menuEditDelete.Enabled = menuEditSelectAll.Enabled =
-                        menuEditFind.Enabled = false;
+                    undoToolStripMenuItem.Enabled = redoToolStripMenuItem.Enabled =
+                        cutToolStripMenuItem.Enabled = copyToolStripMenuItem.Enabled =
+                        pasteToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled =
+                        selectAllToolStripMenuItem.Enabled =
+                        findToolStripMenuItem.Enabled = false;
                     return;
                 }
             }
             else
             {
-                menuEditUndo.Text = "Undo";
-                menuEdit.MenuItems.AddRange(
-                    new MenuItem[] { menuEditUndo, menuEditRedo, menuFSep1, menuEditCut, menuEditCopy,
-									   menuEditPaste, menuEditDelete, menuFSep2, menuEditSelectAll, menuFSep3,
-									   menuEditFind, menuEditFindNext, menuEditReplace, menuEditGoto,
-									   menuFSep4, menuEditFormatXml});
+                undoToolStripMenuItem.Text = "Undo";
+                undoToolStripMenuItem.Enabled = true;
+                redoToolStripMenuItem.Enabled = true;
+                cutToolStripMenuItem.Enabled = true;
+                copyToolStripMenuItem.Enabled = true;
+                pasteToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+                selectAllToolStripMenuItem.Enabled = true;
+                findToolStripMenuItem.Enabled = true;
+                findNextToolStripMenuItem.Enabled = true;
+                replaceToolStripMenuItem.Enabled = true;
+                goToToolStripMenuItem.Enabled = true;
+                formatXMLToolStripMenuItem.Enabled = true;
 
                 bool bAnyText = e.Text.Length > 0;			// any text to search at all?
-                menuEditFind.Enabled = menuEditFindNext.Enabled =
-                    menuEditReplace.Enabled = menuEditGoto.Enabled = bAnyText;
+                findToolStripMenuItem.Enabled = findNextToolStripMenuItem.Enabled =
+                    replaceToolStripMenuItem.Enabled = goToToolStripMenuItem.Enabled = bAnyText;
             }
-            menuEditUndo.Enabled = e.CanUndo && bNotPreview;
-            menuEditRedo.Enabled = e.CanRedo && bNotPreview;
+            undoToolStripMenuItem.Enabled = e.CanUndo && bNotPreview;
+            redoToolStripMenuItem.Enabled = e.CanRedo && bNotPreview;
             bool bSelection = e.SelectionLength > 0;	// any text selected?
-            menuEditCut.Enabled = bSelection && bNotPreview;
-            menuEditCopy.Enabled = bSelection;
-            menuEditPaste.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) && bNotPreview;
-            menuEditDelete.Enabled = bSelection && bNotPreview;
-            menuEditSelectAll.Enabled = bNotPreview;
+            cutToolStripMenuItem.Enabled = bSelection && bNotPreview;
+            copyToolStripMenuItem.Enabled = bSelection;
+            pasteToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) && bNotPreview;
+            deleteToolStripMenuItem.Enabled = bSelection && bNotPreview;
+            selectAllToolStripMenuItem.Enabled = bNotPreview;
 
         }
 
@@ -2390,7 +2297,7 @@ namespace fyiReporting.RdlDesign
             if (mc != null && !_ShowProperties)
                 mc.SetFocus();
             mainProperties.Visible = mainSp.Visible = _ShowProperties;
-            menuViewProperties.Checked = _ShowProperties;
+            propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
         }
 
         private void menuEditSelectAll_Click(object sender, System.EventArgs ea)
@@ -2613,9 +2520,9 @@ namespace fyiReporting.RdlDesign
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
 
-            menuCascade.Enabled = bEnable;
-            menuTile.Enabled = bEnable;
-            menuCloseAll.Enabled = bEnable;
+            cascadeToolStripMenuItem.Enabled = bEnable;
+            tileToolStripMenuItem.Enabled = bEnable;
+            closeAllToolStripMenuItem.Enabled = bEnable;
         }
 
         private void menuWndCascade_Click(object sender, EventArgs e)
@@ -2695,14 +2602,15 @@ namespace fyiReporting.RdlDesign
 
         internal void RecentFilesMenu()
         {
-            menuRecentFile.MenuItems.Clear();
+            
+            recentFilesToolStripMenuItem.DropDownItems.Clear();
             int mi = 1;
             for (int i = _RecentFiles.Count - 1; i >= 0; i--)
             {
                 string menuText = string.Format("&{0} {1}", mi++, _RecentFiles.Values[i]);
-                MenuItem m = new MenuItem(menuText);
+                ToolStripMenuItem m = new ToolStripMenuItem(menuText);
                 m.Click += new EventHandler(this.menuRecentItem_Click);
-                menuRecentFile.MenuItems.Add(m);
+                recentFilesToolStripMenuItem.DropDownItems.Add(m);
             }
         }
 
@@ -3393,34 +3301,427 @@ namespace fyiReporting.RdlDesign
             // Determine if group operation on selected is currently allowed
             bool bEnable = (mc != null && mc.DesignTab == "design" && mc.DrawCtl.AllowGroupOperationOnSelected);
 
-            this.menuFormatAlignB.Enabled = this.menuFormatAlignC.Enabled =
-                this.menuFormatAlignL.Enabled = this.menuFormatAlignM.Enabled =
-                this.menuFormatAlignR.Enabled = this.menuFormatAlignT.Enabled =
+            this.bottomsToolStripMenuItem.Enabled = this.centersToolStripMenuItem.Enabled =
+                this.leftsToolStripMenuItem.Enabled = this.middlesToolStripMenuItem.Enabled =
+                this.rightsToolStripMenuItem.Enabled = this.topsToolStripMenuItem.Enabled =
                 bEnable;
 
-            menuFormatSizeW.Enabled = menuFormatSizeH.Enabled = menuFormatSizeB.Enabled = bEnable;
+            widthToolStripMenuItem.Enabled = heightToolStripMenuItem.Enabled = bothToolStripMenuItem.Enabled = bEnable;
 
-            menuFormatHorzE.Enabled = menuFormatHorzI.Enabled = menuFormatHorzD.Enabled =
-                menuFormatHorzZ.Enabled = bEnable;
+            makeEqualToolStripMenuItem.Enabled = increaseToolStripMenuItem.Enabled = decreaseToolStripMenuItem.Enabled =
+                zeroToolStripMenuItem.Enabled = bEnable;
 
-            menuFormatVertE.Enabled = menuFormatVertI.Enabled = menuFormatVertD.Enabled =
-                menuFormatVertZ.Enabled = bEnable;
+            makeEqualToolStripMenuItem1.Enabled = increaseToolStripMenuItem1.Enabled = decreaseToolStripMenuItem1.Enabled =
+                zeroToolStripMenuItem1.Enabled = bEnable;
 
             bEnable = (mc != null && mc.DesignTab == "design" && mc.DrawCtl.SelectedCount > 0);
-            this.menuFormatPaddingBottomI.Enabled =
-                this.menuFormatPaddingBottomD.Enabled =
-                this.menuFormatPaddingBottomZ.Enabled =
-                this.menuFormatPaddingTopI.Enabled =
-                this.menuFormatPaddingTopD.Enabled =
-                this.menuFormatPaddingTopZ.Enabled =
-                this.menuFormatPaddingLeftI.Enabled =
-                this.menuFormatPaddingLeftD.Enabled =
-                this.menuFormatPaddingLeftZ.Enabled =
-                this.menuFormatPaddingRightI.Enabled =
-                this.menuFormatPaddingRightD.Enabled =
-                this.menuFormatPaddingRightZ.Enabled =
+            this.increaseToolStripMenuItem5.Enabled =
+                this.decreaseToolStripMenuItem5.Enabled =
+                this.zeroToolStripMenuItem5.Enabled =
+                this.increaseToolStripMenuItem4.Enabled =
+                this.decreaseToolStripMenuItem4.Enabled =
+                this.zeroToolStripMenuItem4.Enabled =
+                this.increaseToolStripMenuItem2.Enabled =
+                this.decreaseToolStripMenuItem2.Enabled =
+                this.zeroToolStripMenuItem2.Enabled =
+                this.increaseToolStripMenuItem3.Enabled =
+                this.decreaseToolStripMenuItem3.Enabled =
+                this.zeroToolStripMenuItem3.Enabled =
                     bEnable;
         }
+
+        private void bottomsToolStripMenuItemutton_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            TextAlignEnum ta = TextAlignEnum.General;
+
+            if (sender == ctlLAlign)
+            {
+                ta = TextAlignEnum.Left;
+                ctlLAlign.Checked = true;
+                ctlRAlign.Checked = ctlCAlign.Checked = false;
+            }
+            else if (sender == ctlRAlign)
+            {
+                ta = TextAlignEnum.Right;
+                ctlRAlign.Checked = true;
+                ctlLAlign.Checked = ctlCAlign.Checked = false;
+            }
+            else if (sender == ctlCAlign)
+            {
+                ta = TextAlignEnum.Center;
+                ctlCAlign.Checked = true;
+                ctlRAlign.Checked = ctlLAlign.Checked = false;
+            }
+
+            mc.ApplyStyleToSelected("TextAlign", ta.ToString());
+            SetProperties(mc);
+
+            SetProperties(mc);
+            SetMDIChildFocus(mc);
+        }
+
+        private void centersToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignCenters();
+            SetProperties(mc);
+        }
+
+        private void leftsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignLefts();
+            SetProperties(mc);
+        }
+
+        private void rightsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignRights();
+            SetProperties(mc);
+        }
+
+        private void bottomsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignBottoms();
+            SetProperties(mc);
+        }
+
+        private void topsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignTops();
+            SetProperties(mc);
+        }
+
+        private void middlesToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.AlignMiddles();
+            SetProperties(mc);
+        }
+
+        private void heightToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.SizeHeights();
+            SetProperties(mc);
+        }
+
+        private void widthToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.SizeWidths();
+            SetProperties(mc);
+        }
+
+        private void bothToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.SizeBoth();
+            SetProperties(mc);
+        }
+
+        private void makeEqualToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.HorzSpacingMakeEqual();
+            SetProperties(mc);
+        }
+
+        private void increaseToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.HorzSpacingIncrease();
+            SetProperties(mc);
+        }
+
+        private void decreaseToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.HorzSpacingDecrease();
+            SetProperties(mc);
+        }
+
+        private void zeroToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.HorzSpacingMakeZero();
+            SetProperties(mc);
+        }
+
+        private void makeEqualToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.VertSpacingMakeEqual();
+            SetProperties(mc);
+        }
+
+        private void increaseToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.VertSpacingIncrease();
+            SetProperties(mc);
+        }
+
+        private void decreaseToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.VertSpacingDecrease();
+            SetProperties(mc);
+        }
+
+        private void zeroToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Editor.DesignCtl.VertSpacingMakeZero();
+            SetProperties(mc);
+        }
+
+        private void menuView_Popup(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            bool bEnable = mc != null;
+
+            designerToolStripMenuItem.Enabled = rDLTextToolStripMenuItem.Enabled =
+                previewToolStripMenuItem.Enabled = bEnable;
+
+            propertiesWindowsToolStripMenuItem.Enabled = bEnable && mc.DesignTab == "design";
+        }
+
+        private void menuViewDesigner_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            mc.RdlEditor.DesignTab = "design";
+        }
+
+        private void menuViewRDL_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            mc.RdlEditor.DesignTab = "edit";
+        }
+
+        private void menuViewBrowser_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            try
+            {
+                menuToolsStartProcess(true);		// start desktop if not already up
+
+                DesktopConfig dc = DialogToolOptions.DesktopConfiguration;
+
+                string rdlfile = Path.GetFileNameWithoutExtension(mc.SourceFile.LocalPath) + "_" + (++TEMPRDL_INC).ToString() + TEMPRDL;
+                Uri file;
+                if (Path.IsPathRooted(dc.Directory))
+                {
+                    file = new Uri(dc.Directory + Path.DirectorySeparatorChar + rdlfile);
+                }
+                else
+                {
+                    file = new Uri(AppDomain.CurrentDomain.BaseDirectory +
+                        dc.Directory + Path.DirectorySeparatorChar + rdlfile);
+                }
+
+                if (_TempReportFiles == null)
+                {
+                    _TempReportFiles = new List<Uri>();
+                    _TempReportFiles.Add(file);
+                }
+                else
+                {
+                    if (!_TempReportFiles.Contains(file))
+                    {
+                        _TempReportFiles.Add(file);
+                    }
+                }
+                StreamWriter sw = File.CreateText(file.LocalPath);
+                sw.Write(mc.SourceRdl);
+                sw.Close();
+                // http://localhost:8080/aReport.rdl?rs:Format=HTML
+                Uri url = new Uri(string.Format("http://localhost:{0}/{1}?rd:Format=HTML", dc.Port, rdlfile));
+                System.Diagnostics.Process.Start(url.AbsoluteUri);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unable to Show Report");
+            }
+
+        }
+
+        private void menuViewPreview_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            mc.RdlEditor.DesignTab = "preview";
+        }
+
+        private void menuFormatPadding_Click(object sender, System.EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            ToolStripMenuItem mi = sender as ToolStripMenuItem;
+
+            string padname = null;
+            int paddiff = 0;
+            if (mi == increaseToolStripMenuItem2)
+            {
+                padname = "PaddingLeft";
+                paddiff = 4;
+            }
+            else if (mi == decreaseToolStripMenuItem2)
+            {
+                padname = "PaddingLeft";
+                paddiff = -4;
+            }
+            else if (mi == zeroToolStripMenuItem2)
+            {
+                padname = "PaddingLeft";
+                paddiff = 0;
+            }
+            else if (mi == increaseToolStripMenuItem3)
+            {
+                padname = "PaddingRight";
+                paddiff = 4;
+            }
+            else if (mi == decreaseToolStripMenuItem3)
+            {
+                padname = "PaddingRight";
+                paddiff = -4;
+            }
+            else if (mi == zeroToolStripMenuItem3)
+            {
+                padname = "PaddingRight";
+                paddiff = 0;
+            }
+            else if (mi == increaseToolStripMenuItem4)
+            {
+                padname = "PaddingTop";
+                paddiff = 4;
+            }
+            else if (mi == decreaseToolStripMenuItem4)
+            {
+                padname = "PaddingTop";
+                paddiff = -4;
+            }
+            else if (mi == zeroToolStripMenuItem4)
+            {
+                padname = "PaddingTop";
+                paddiff = 0;
+            }
+            else if (mi == increaseToolStripMenuItem5)
+            {
+                padname = "PaddingBottom";
+                paddiff = 4;
+            }
+            else if (mi == decreaseToolStripMenuItem5)
+            {
+                padname = "PaddingBottom";
+                paddiff = -4;
+            }
+            else if (mi == zeroToolStripMenuItem5)
+            {
+                padname = "PaddingBottom";
+                paddiff = 0;
+            }
+
+            if (padname != null)
+            {
+                mc.Editor.DesignCtl.SetPadding(padname, paddiff);
+                SetProperties(mc);
+            }
+
+        }
+
+        private void CleanupTempFiles()
+        {
+            if (_TempReportFiles == null)
+            {
+                return;
+            }
+            foreach (Uri file in _TempReportFiles)
+            {
+                try
+                {	// It's ok for the delete to fail
+                    File.Delete(file.LocalPath);
+                }
+                catch
+                { }
+            }
+            _TempReportFiles = null;
+        }
+
+        private void RdlDesigner_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void menuFormatAlignButton_Click(object sender, System.EventArgs e)
         {
@@ -3624,189 +3925,6 @@ namespace fyiReporting.RdlDesign
 
             mc.Editor.DesignCtl.VertSpacingMakeZero();
             SetProperties(mc);
-        }
-
-        private void menuView_Popup(object sender, EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            bool bEnable = mc != null;
-
-            menuViewDesigner.Enabled = menuViewRDL.Enabled =
-                menuViewPreview.Enabled = bEnable;
-
-            menuViewProperties.Enabled = bEnable && mc.DesignTab == "design";
-        }
-
-        private void menuViewDesigner_Click(object sender, System.EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-            mc.RdlEditor.DesignTab = "design";
-        }
-
-        private void menuViewRDL_Click(object sender, System.EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-            mc.RdlEditor.DesignTab = "edit";
-        }
-
-        private void menuViewBrowser_Click(object sender, System.EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-
-            try
-            {
-                menuToolsStartProcess(true);		// start desktop if not already up
-
-                DesktopConfig dc = DialogToolOptions.DesktopConfiguration;
-
-                string rdlfile = Path.GetFileNameWithoutExtension(mc.SourceFile.LocalPath) + "_" + (++TEMPRDL_INC).ToString() + TEMPRDL;
-                Uri file;
-                if (Path.IsPathRooted(dc.Directory))
-                {
-                    file = new Uri(dc.Directory + Path.DirectorySeparatorChar + rdlfile);
-                }
-                else
-                {
-                    file = new Uri(AppDomain.CurrentDomain.BaseDirectory +
-                        dc.Directory + Path.DirectorySeparatorChar + rdlfile);
-                }
-
-                if (_TempReportFiles == null)
-                {
-                    _TempReportFiles = new List<Uri>();
-                    _TempReportFiles.Add(file);
-                }
-                else
-                {
-                    if (!_TempReportFiles.Contains(file))
-                    {
-                        _TempReportFiles.Add(file);
-                    }
-                }
-                StreamWriter sw = File.CreateText(file.LocalPath);
-                sw.Write(mc.SourceRdl);
-                sw.Close();
-                // http://localhost:8080/aReport.rdl?rs:Format=HTML
-                Uri url = new Uri(string.Format("http://localhost:{0}/{1}?rd:Format=HTML", dc.Port, rdlfile));
-                System.Diagnostics.Process.Start(url.AbsoluteUri);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Unable to Show Report");
-            }
-
-        }
-
-        private void menuViewPreview_Click(object sender, System.EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-            mc.RdlEditor.DesignTab = "preview";
-        }
-
-        private void menuFormatPadding_Click(object sender, System.EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-
-            MenuItem mi = sender as MenuItem;
-
-            string padname = null;
-            int paddiff = 0;
-            if (mi == menuFormatPaddingLeftI)
-            {
-                padname = "PaddingLeft";
-                paddiff = 4;
-            }
-            else if (mi == menuFormatPaddingLeftD)
-            {
-                padname = "PaddingLeft";
-                paddiff = -4;
-            }
-            else if (mi == menuFormatPaddingLeftZ)
-            {
-                padname = "PaddingLeft";
-                paddiff = 0;
-            }
-            else if (mi == menuFormatPaddingRightI)
-            {
-                padname = "PaddingRight";
-                paddiff = 4;
-            }
-            else if (mi == menuFormatPaddingRightD)
-            {
-                padname = "PaddingRight";
-                paddiff = -4;
-            }
-            else if (mi == menuFormatPaddingRightZ)
-            {
-                padname = "PaddingRight";
-                paddiff = 0;
-            }
-            else if (mi == menuFormatPaddingTopI)
-            {
-                padname = "PaddingTop";
-                paddiff = 4;
-            }
-            else if (mi == menuFormatPaddingTopD)
-            {
-                padname = "PaddingTop";
-                paddiff = -4;
-            }
-            else if (mi == menuFormatPaddingTopZ)
-            {
-                padname = "PaddingTop";
-                paddiff = 0;
-            }
-            else if (mi == menuFormatPaddingBottomI)
-            {
-                padname = "PaddingBottom";
-                paddiff = 4;
-            }
-            else if (mi == menuFormatPaddingBottomD)
-            {
-                padname = "PaddingBottom";
-                paddiff = -4;
-            }
-            else if (mi == menuFormatPaddingBottomZ)
-            {
-                padname = "PaddingBottom";
-                paddiff = 0;
-            }
-
-            if (padname != null)
-            {
-                mc.Editor.DesignCtl.SetPadding(padname, paddiff);
-                SetProperties(mc);
-            }
-
-        }
-
-        private void CleanupTempFiles()
-        {
-            if (_TempReportFiles == null)
-            {
-                return;
-            }
-            foreach (Uri file in _TempReportFiles)
-            {
-                try
-                {	// It's ok for the delete to fail
-                    File.Delete(file.LocalPath);
-                }
-                catch
-                { }
-            }
-            _TempReportFiles = null;
         }
 
 
