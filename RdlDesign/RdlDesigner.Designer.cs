@@ -757,6 +757,7 @@ private Button bTif;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.DropDownOpening += new System.EventHandler(this.menuEdit_Popup);
             // 
             // undoToolStripMenuItem
             // 
@@ -884,6 +885,7 @@ private Button bTif;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "&View";
+            this.viewToolStripMenuItem.DropDownOpening += new System.EventHandler(this.menuView_Popup);
             // 
             // designerToolStripMenuItem
             // 
@@ -937,6 +939,7 @@ private Button bTif;
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.dataToolStripMenuItem.Text = "&Data";
+            this.dataToolStripMenuItem.DropDownOpening += new System.EventHandler(this.menuData_Popup);
             // 
             // dataSetsToolStripMenuItem
             // 
@@ -988,6 +991,7 @@ private Button bTif;
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             this.formatToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.formatToolStripMenuItem.Text = "F&ormat";
+            this.formatToolStripMenuItem.DropDownOpening += new System.EventHandler(this.menuFormat_Popup);
             // 
             // alignToolStripMenuItem
             // 
@@ -1006,47 +1010,47 @@ private Button bTif;
             // leftsToolStripMenuItem
             // 
             this.leftsToolStripMenuItem.Name = "leftsToolStripMenuItem";
-            this.leftsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.leftsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.leftsToolStripMenuItem.Text = "&Lefts";
             this.leftsToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignL_Click);
             // 
             // centersToolStripMenuItem
             // 
             this.centersToolStripMenuItem.Name = "centersToolStripMenuItem";
-            this.centersToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.centersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.centersToolStripMenuItem.Text = "&Centers";
             this.centersToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignC_Click);
             // 
             // rightsToolStripMenuItem
             // 
             this.rightsToolStripMenuItem.Name = "rightsToolStripMenuItem";
-            this.rightsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.rightsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rightsToolStripMenuItem.Text = "&Rights";
             this.rightsToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignR_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(116, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
             // 
             // topsToolStripMenuItem
             // 
             this.topsToolStripMenuItem.Name = "topsToolStripMenuItem";
-            this.topsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.topsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.topsToolStripMenuItem.Text = "&Tops";
             this.topsToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignT_Click);
             // 
             // middlesToolStripMenuItem
             // 
             this.middlesToolStripMenuItem.Name = "middlesToolStripMenuItem";
-            this.middlesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.middlesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.middlesToolStripMenuItem.Text = "&Middles";
             this.middlesToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignM_Click);
             // 
             // bottomsToolStripMenuItem
             // 
             this.bottomsToolStripMenuItem.Name = "bottomsToolStripMenuItem";
-            this.bottomsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.bottomsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bottomsToolStripMenuItem.Text = "&Bottoms";
             this.bottomsToolStripMenuItem.Click += new System.EventHandler(this.menuFormatAlignB_Click);
             // 
@@ -1063,21 +1067,21 @@ private Button bTif;
             // widthToolStripMenuItem
             // 
             this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
-            this.widthToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.widthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.widthToolStripMenuItem.Text = "&Width";
             this.widthToolStripMenuItem.Click += new System.EventHandler(this.menuFormatSizeW_Click);
             // 
             // heightToolStripMenuItem
             // 
             this.heightToolStripMenuItem.Name = "heightToolStripMenuItem";
-            this.heightToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.heightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.heightToolStripMenuItem.Text = "&Height";
             this.heightToolStripMenuItem.Click += new System.EventHandler(this.menuFormatSizeH_Click);
             // 
             // bothToolStripMenuItem
             // 
             this.bothToolStripMenuItem.Name = "bothToolStripMenuItem";
-            this.bothToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.bothToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bothToolStripMenuItem.Text = "&Both";
             this.bothToolStripMenuItem.Click += new System.EventHandler(this.menuFormatSizeB_Click);
             // 
@@ -1095,28 +1099,28 @@ private Button bTif;
             // makeEqualToolStripMenuItem
             // 
             this.makeEqualToolStripMenuItem.Name = "makeEqualToolStripMenuItem";
-            this.makeEqualToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.makeEqualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makeEqualToolStripMenuItem.Text = "&Make Equal";
             this.makeEqualToolStripMenuItem.Click += new System.EventHandler(this.menuFormatHorzE_Click);
             // 
             // increaseToolStripMenuItem
             // 
             this.increaseToolStripMenuItem.Name = "increaseToolStripMenuItem";
-            this.increaseToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.increaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.increaseToolStripMenuItem.Text = "&Increase";
             this.increaseToolStripMenuItem.Click += new System.EventHandler(this.menuFormatHorzI_Click);
             // 
             // decreaseToolStripMenuItem
             // 
             this.decreaseToolStripMenuItem.Name = "decreaseToolStripMenuItem";
-            this.decreaseToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.decreaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.decreaseToolStripMenuItem.Text = "&Decrease";
             this.decreaseToolStripMenuItem.Click += new System.EventHandler(this.menuFormatHorzD_Click);
             // 
             // zeroToolStripMenuItem
             // 
             this.zeroToolStripMenuItem.Name = "zeroToolStripMenuItem";
-            this.zeroToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.zeroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zeroToolStripMenuItem.Text = "&Zero";
             this.zeroToolStripMenuItem.Click += new System.EventHandler(this.menuFormatHorzZ_Click);
             // 
@@ -1208,21 +1212,21 @@ private Button bTif;
             // increaseToolStripMenuItem3
             // 
             this.increaseToolStripMenuItem3.Name = "increaseToolStripMenuItem3";
-            this.increaseToolStripMenuItem3.Size = new System.Drawing.Size(121, 22);
+            this.increaseToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.increaseToolStripMenuItem3.Text = "&Increase";
             this.increaseToolStripMenuItem3.Click += new System.EventHandler(this.menuFormatPadding_Click);
             // 
             // decreaseToolStripMenuItem3
             // 
             this.decreaseToolStripMenuItem3.Name = "decreaseToolStripMenuItem3";
-            this.decreaseToolStripMenuItem3.Size = new System.Drawing.Size(121, 22);
+            this.decreaseToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.decreaseToolStripMenuItem3.Text = "&Decrease";
             this.decreaseToolStripMenuItem3.Click += new System.EventHandler(this.menuFormatPadding_Click);
             // 
             // zeroToolStripMenuItem3
             // 
             this.zeroToolStripMenuItem3.Name = "zeroToolStripMenuItem3";
-            this.zeroToolStripMenuItem3.Size = new System.Drawing.Size(121, 22);
+            this.zeroToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.zeroToolStripMenuItem3.Text = "&Zero";
             this.zeroToolStripMenuItem3.Click += new System.EventHandler(this.menuFormatPadding_Click);
             // 
