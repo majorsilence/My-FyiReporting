@@ -126,6 +126,7 @@ namespace fyiReporting.RdlDesign
             }
 
             DesignTabChanged(this, new EventArgs());		// force toolbar to get updated
+    
         }
         /// <summary>
         /// Handles mousewheel processing when window under mousewheel doesn't have focus
@@ -321,212 +322,20 @@ namespace fyiReporting.RdlDesign
 
         private void InitToolbar()
         {
+            InitToolbarFont();
+            InitToolbarFontSize();
+
+           zoomToolStripComboBox1.Items.AddRange(StaticLists.ZoomList);
+        
             bool bResumeLayout = false;
             // Clear out anything from before
-            if (mainTB != null)
-            {
-                this.SuspendLayout();
-                mainTB.SuspendLayout();
+           
                 bResumeLayout = true;
-                mainTB.Controls.Clear();
-                if (ctlLAlign != null) { ctlLAlign = null; }
-                if (ctlRAlign != null) { ctlRAlign = null; }
-                if (ctlCAlign != null) { ctlCAlign = null; }
-                if (ctlBold != null) { ctlBold = null; }
-                if (ctlItalic != null) { ctlItalic = null; }
-                if (ctlUnderline != null) { ctlUnderline = null; }
-                if (ctlFont != null) { ctlFont = null; }
-                if (ctlFontSize != null) { ctlFontSize = null; }
-                if (ctlForeColor != null) { ctlForeColor = null; }
-                if (ctlBackColor != null) { ctlBackColor = null; }
-                if (ctlNew != null) { ctlNew = null; }
-                if (ctlOpen != null) { ctlOpen = null; }
-                if (ctlSave != null) { ctlSave = null; }
-                if (ctlCut != null) { ctlCut = null; }
-                if (ctlCopy != null) { ctlCopy = null; }
-                if (ctlUndo != null) { ctlUndo = null; }
-                if (ctlPaste != null) { ctlPaste = null; }
-                if (ctlPrint != null) { ctlPrint = null; }
-                if (ctlPdf != null) { ctlPdf = null; }
-                if (ctlTif != null) { ctlTif = null; }
-                if (ctlXml != null) { ctlXml = null; }
-                if (ctlHtml != null) { ctlHtml = null; }
-                if (ctlMht != null) { ctlMht = null; }
-                if (ctlCsv != null) { ctlCsv = null; }
-                if (ctlExcel != null) { ctlExcel = null; }
-                if (ctlRtf != null) { ctlRtf = null; }
-                if (ctlZoom != null) { ctlZoom = null; }
-                if (ctlInsertCurrent != null) { ctlInsertCurrent = null; }
-                if (ctlInsertTextbox != null) { ctlInsertTextbox = null; }
-                if (ctlInsertChart != null) { ctlInsertChart = null; }
-                if (ctlInsertRectangle != null) { ctlInsertRectangle = null; }
-                if (ctlInsertTable != null) { ctlInsertTable = null; }
-                if (ctlInsertMatrix != null) { ctlInsertMatrix = null; }
-                if (ctlInsertList != null) { ctlInsertList = null; }
-                if (ctlInsertLine != null) { ctlInsertLine = null; }
-                if (ctlInsertImage != null) { ctlInsertImage = null; }
-                if (ctlInsertSubreport != null) { ctlInsertSubreport = null; }
-                if (ctlSelectTool != null) { ctlSelectTool = null; }
-                if (ctlEditTextbox != null) { ctlEditTextbox = null; }
-                if (ctlEditLabel != null) { ctlEditLabel = null; }
-            }
-            else
-            {
-                mainTB = new ToolBar();
-                mainTB.SizeChanged += new EventHandler(mainTB_SizeChanged);
-                mainTB.SuspendLayout();
-            }
-            const int LINEHEIGHT = 22;
-            const int LEFTMARGIN = 5;
-            int y = 2;
-            int x = LEFTMARGIN;
-
+               
+           
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(RdlDesigner));
 
-            // Build the controls the user wants
-            foreach (string tbi in _Toolbar)
-            {
-                switch (tbi)
-                {
-                    case "\n":
-                    case "Newline":
-                        y += LINEHEIGHT;
-                        x = LEFTMARGIN;
-                        break;
-                    case "Align":
-                        ctlLAlign = InitToolbarInsertToggle(ref x, y, "Left Align", bLAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
-                        ctlCAlign = InitToolbarInsertToggle(ref x, y, "Center Align", bCAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
-                        ctlRAlign = InitToolbarInsertToggle(ref x, y, "Right Align", bRAlign.Image, new EventHandler(this.bottomsToolStripMenuItemutton_Click));
-                        break;
-                    case "Bold":
-                        x += InitToolbarBold(x, y);
-                        break;
-                    case "Italic":
-                        x += InitToolbarItalic(x, y);
-                        break;
-                    case "Underline":
-                        x += InitToolbarUnderline(x, y);
-                        break;
-                    case "Space":
-                        x += 5;
-                        break;
-                    case "Font":
-                        x += InitToolbarFont(x, y);
-                        break;
-                    case "FontSize":
-                        x += InitToolbarFontSize(x, y);
-                        break;
-                    case "ForeColor":
-                        ctlForeColor = InitToolbarColor(ref x, y, "Fore Color", new PopupEventHandler(tip_Popup_Fore));
-                        ctlForeColor.SelectedValueChanged += new EventHandler(ctlForeColor_Change);
-                        ctlForeColor.Validated += new EventHandler(ctlForeColor_Change);
-                        break;
-                    case "BackColor":
-                        ctlBackColor = InitToolbarColor(ref x, y, "Back Color", new PopupEventHandler(tip_Popup_Back));
-                        ctlBackColor.SelectedValueChanged += new EventHandler(ctlBackColor_Change);
-                        ctlBackColor.Validated += new EventHandler(ctlBackColor_Change);
-                        break;
-                    case "New":
-                        ctlNew = InitToolbarMenu(ref x, y, "New", bNew.Image, new EventHandler(this.menuFileNewReport_Click));
-                        break;
-                    case "Open":
-                        ctlOpen = InitToolbarMenu(ref x, y, "Open", bOpen.Image, new EventHandler(this.menuFileOpen_Click));
-                        break;
-                    case "Save":
-                        ctlSave = InitToolbarMenu(ref x, y, "Save", bSave.Image, new EventHandler(this.menuFileSave_Click));
-                        break;
-                    case "Cut":
-                        ctlCut = InitToolbarMenu(ref x, y, "Cut", bCut.Image, new EventHandler(this.menuEditCut_Click));
-                        break;
-                    case "Copy":
-                        ctlCopy = InitToolbarMenu(ref x, y, "Copy", bCopy.Image, new EventHandler(this.menuEditCopy_Click));
-                        break;
-                    case "Undo":
-                        ctlUndo = InitToolbarMenu(ref x, y, "Undo", bUndo.Image, new EventHandler(this.menuEditUndo_Click));
-                        break;
-                    case "Paste":
-                        ctlPaste = InitToolbarMenu(ref x, y, "Paste", bPaste.Image, new EventHandler(this.menuEditPaste_Click));
-                        break;
-                    case "Print":
-                        ctlPrint = InitToolbarMenu(ref x, y, "Print", bPrint.Image, new EventHandler(this.menuFilePrint_Click));
-                        break;
-                    case "SelectTool":
-                        x += InitToolbarSelectTool(x, y);
-                        break;
-                    case "XML":
-                        ctlXml = InitToolbarMenu(ref x, y, "XML", bXml.Image, new EventHandler(this.exportToolStripMenuItemXml_Click));
-                        break;
-                    case "PDF":
-                        ctlPdf = InitToolbarMenu(ref x, y, "PDF", bPdf.Image, new EventHandler(this.exportToolStripMenuItemPdf_Click));
-                        break;
-                    case "TIF":
-                        ctlTif = InitToolbarMenu(ref x, y, "TIF", bTif.Image, new EventHandler(this.exportToolStripMenuItemTif_Click));
-                        break;
-                    case "HTML":
-                        ctlHtml = InitToolbarMenu(ref x, y, "HTML", bHtml.Image, new EventHandler(this.exportToolStripMenuItemHtml_Click));
-                        break;
-                    case "MHT":
-                        ctlMht = InitToolbarMenu(ref x, y, "MHT", bMht.Image, new EventHandler(this.exportToolStripMenuItemMHtml_Click));
-                        break;
-                    case "CSV":
-                        ctlCsv = InitToolbarMenu(ref x, y, "CSV", bCsv.Image, new EventHandler(this.exportToolStripMenuItemCsv_Click));
-                        break;
-                    case "Excel":
-                        ctlExcel = InitToolbarMenu(ref x, y, "Excel", bExcel.Image, new EventHandler(this.exportToolStripMenuItemExcel_Click));
-                        break;
-                    case "RTF":
-                        ctlRtf = InitToolbarMenu(ref x, y, "RTF", bRtf.Image, new EventHandler(this.exportToolStripMenuItemRtf_Click));
-                        break;
-                    case "Edit":
-                        ctlEditTextbox = InitToolbarEditTextbox(ref x, y);
-                        break;
-                    case "Textbox":
-                        ctlInsertTextbox = InitToolbarInsertToggle(ref x, y, "Textbox", bText.Image);
-                        break;
-                    case "Chart":
-                        ctlInsertChart = InitToolbarInsertToggle(ref x, y, "Chart", bChart.Image);
-                        break;
-                    case "Rectangle":
-                        ctlInsertRectangle = InitToolbarInsertToggle(ref x, y, "Rectangle", bRectangle.Image);
-                        break;
-                    case "Table":
-                        ctlInsertTable = InitToolbarInsertToggle(ref x, y, "Table", bTable.Image);
-                        break;
-                    case "Matrix":
-                        ctlInsertMatrix = InitToolbarInsertToggle(ref x, y, "Matrix", bMatrix.Image);
-                        break;
-                    case "List":
-                        ctlInsertList = InitToolbarInsertToggle(ref x, y, "List", bList.Image);
-                        break;
-                    case "Line":
-                        ctlInsertLine = InitToolbarInsertToggle(ref x, y, "Line", bLine.Image);
-                        break;
-                    case "Image":
-                        ctlInsertImage = InitToolbarInsertToggle(ref x, y, "Image", bImage.Image);
-                        break;
-                    case "Subreport":
-                        ctlInsertSubreport = InitToolbarInsertToggle(ref x, y, "Subreport", bSubreport.Image);
-                        break;
-                    case "Zoom":
-                        ctlZoom = InitToolbarZoom(ref x, y);
-                        ctlZoom.SelectedValueChanged += new EventHandler(ctlZoom_Change);
-                        ctlZoom.Validated += new EventHandler(ctlZoom_Change);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // put the tab control in
-            if (mainTC == null)
-            {
-                mainTC = new TabControl();
-                mainTC.MouseClick += new MouseEventHandler(mainTC_MouseClick);
-
-                mainTC.SelectedIndexChanged += new EventHandler(mainTC_SelectedIndexChanged);
-                mainTC.ShowToolTips = true;
-            }
-            mainTC.Parent = mainTB;
+            
             mainTC.Visible = _ShowTabbedInterface;
             if (_ShowTabbedInterface)
             {   // When tabbed we force the mdi children to be maximized (on reset)
@@ -535,25 +344,13 @@ namespace fyiReporting.RdlDesign
                     mc.WindowState = FormWindowState.Maximized;
                 }
             }
-            mainTC.Location = new Point(0, y + LINEHEIGHT + 1);
-            mainTC.Size = new Size(mainTB.Width, LINEHEIGHT);
-            if (_ShowTabbedInterface)
-                y += LINEHEIGHT;
-
-            mainTB.Parent = this;
-            mainTB.BorderStyle = BorderStyle.None;
-            mainTB.DropDownArrows = true;
+           
+           
             mainTB.Name = "mainTB";
-            mainTB.ShowToolTips = true;
+    
             //			mainTB.Size = new Size(440,20);
-            mainTB.TabIndex = 1;
-            mainTB.AutoSize = false;
-            mainTB.Height = y + LINEHEIGHT + 1;     // 1 was 4	
-            if (bResumeLayout)
-            {
-                mainTB.ResumeLayout();
-                this.ResumeLayout();
-            }
+      
+          
         }
         /// <summary>
         /// Handles right mouse button processing on current tab
@@ -846,77 +643,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        private Button InitToolbarMenu(ref int x, int y, string t, System.EventHandler handler)
-        {
-            return InitToolbarMenu(ref x, y, t, null, handler);
-        }
-
-        private Button InitToolbarMenu(ref int x, int y, string t, Image img, System.EventHandler handler)
-        {
-            SimpleButton ctl = new SimpleButton(this);
-
-            ctl.Click += handler;
-            if (img == null)
-            {
-                ctl.Text = t;
-                ctl.Font = new Font("Arial", 8, FontStyle.Regular);
-
-                using (Graphics g = ctl.CreateGraphics())
-                {
-                    SizeF fs = g.MeasureString(ctl.Text, ctl.Font);
-                    ctl.Height = (int)fs.Height + 8;		// 8 is for margin so entire text shows in button
-                    ctl.Width = (int)fs.Width + 4;
-                    ctl.TextAlign = ContentAlignment.MiddleCenter;
-                }
-            }
-            else
-            {
-                ctl.Image = img;
-                ctl.ImageAlign = ContentAlignment.MiddleCenter;
-                ctl.Height = img.Height + 5;
-                ctl.Width = img.Width + 8;
-                ctl.Text = "";
-            }
-            ctl.Tag = t;
-            ctl.Left = x;
-            ctl.Top = y;
-            ctl.FlatStyle = FlatStyle.Flat;
-            ToolTip tip = new ToolTip();
-            tip.AutomaticDelay = 500;
-            tip.ShowAlways = true;
-            tip.SetToolTip(ctl, t);
-            mainTB.Controls.Add(ctl);
-
-            x = x + ctl.Width;
-
-            return ctl;
-        }
-
-        private System.Windows.Forms.TextBox InitToolbarEditTextbox(ref int x, int y)
-        {
-            System.Windows.Forms.TextBox tb = new System.Windows.Forms.TextBox();
-            Label l = this.ctlEditLabel = new Label();
-            l.AutoSize = true;
-            l.Font = new Font("Arial", 8, FontStyle.Bold | FontStyle.Italic);
-            l.Text = "fx";
-            l.Left = x;
-            l.Top = y + (tb.Height / 2) - (l.Height / 2);
-
-            l.MouseEnter += new EventHandler(fxExpr_MouseEnter);
-            l.MouseLeave += new EventHandler(fxExpr_MouseLeave);
-            l.Click += new EventHandler(fxExpr_Click);
-            mainTB.Controls.Add(l);
-            x += l.Width;
-            tb.Left = x;
-            tb.Width = 230;
-            x += tb.Width;
-            tb.Top = y;
-            tb.Validated += new EventHandler(this.EditTextbox_Validated);	// handler for edit changes
-            tb.KeyDown += new KeyEventHandler(EditTextBox_KeyDown);
-
-            mainTB.Controls.Add(tb);
-            return tb;
-        }
+               
 
         void fxExpr_MouseLeave(object sender, EventArgs e)
         {
@@ -1012,182 +739,28 @@ namespace fyiReporting.RdlDesign
             return ctl;
         }
 
-        private int InitToolbarSelectTool(int x, int y)
-        {
-            ctlSelectTool = new SimpleToggle();
-            ctlSelectTool.Image = bSelectTool.Image;
-            ctlSelectTool.ImageAlign = ContentAlignment.MiddleCenter;
-            ctlSelectTool.Height = ctlSelectTool.Image.Height + 5;
-            ctlSelectTool.Width = ctlSelectTool.Image.Width + 8;
-            ctlSelectTool.Text = "";
-
-            ctlSelectTool.Click += new EventHandler(ctlSelectTool_Click);
-
-            ctlSelectTool.Tag = "Selection Tool";
-            ctlSelectTool.Left = x;
-            ctlSelectTool.Top = y;
-            ctlSelectTool.FlatStyle = FlatStyle.Flat;
-            ctlSelectTool.TextAlign = ContentAlignment.MiddleCenter;
-
-            ToolTip tipb = new ToolTip();
-            tipb.AutomaticDelay = 500;
-            tipb.ShowAlways = true;
-            tipb.SetToolTip(ctlSelectTool, "Selection Tool");
-            mainTB.Controls.Add(ctlSelectTool);
-
-            return ctlSelectTool.Width;
-        }
-
-
-        private int InitToolbarBold(int x, int y)
-        {
-            ctlBold = new SimpleToggle();
-            ctlBold.UpColor = this.BackColor;
-
-            ctlBold.Click += new EventHandler(ctlBold_Click);
-
-            ctlBold.Font = new Font("Courier New", 10, FontStyle.Bold);
-            ctlBold.Text = "B";
-            using (Graphics g = ctlBold.CreateGraphics())
-            {
-                SizeF fs = g.MeasureString(ctlBold.Text, ctlBold.Font);
-                ctlBold.Height = (int)fs.Height + 6;	// 6 is for margins
-                ctlBold.Width = ctlBold.Height;
-            }
-
-            ctlBold.Tag = "bold";
-            ctlBold.Left = x;
-            ctlBold.Top = y;
-            ctlBold.FlatStyle = FlatStyle.Flat;
-            ctlBold.TextAlign = ContentAlignment.MiddleCenter;
-
-            ToolTip tipb = new ToolTip();
-            tipb.AutomaticDelay = 500;
-            tipb.ShowAlways = true;
-            tipb.SetToolTip(ctlBold, "Bold");
-            mainTB.Controls.Add(ctlBold);
-
-            return ctlBold.Width;
-        }
-
-        private int InitToolbarItalic(int x, int y)
-        {
-            ctlItalic = new SimpleToggle();
-            ctlItalic.UpColor = this.BackColor;
-            ctlItalic.Click += new EventHandler(ctlItalic_Click);
-
-            ctlItalic.Font = new Font("Courier New", 10, FontStyle.Italic | FontStyle.Bold);
-            ctlItalic.Text = "I";
-            using (Graphics g = ctlItalic.CreateGraphics())
-            {
-                SizeF fs = g.MeasureString(ctlItalic.Text, ctlItalic.Font);
-                ctlItalic.Height = (int)fs.Height + 6;	// 6 is for margins
-                ctlItalic.Width = ctlItalic.Height;
-            }
-
-            ctlItalic.Tag = "italic";
-            ctlItalic.Left = x;
-            ctlItalic.Top = y;
-            ctlItalic.FlatStyle = FlatStyle.Flat;
-            ToolTip tipb = new ToolTip();
-            tipb.AutomaticDelay = 500;
-            tipb.ShowAlways = true;
-            tipb.SetToolTip(ctlItalic, "Italic");
-            mainTB.Controls.Add(ctlItalic);
-
-            return ctlItalic.Width;
-        }
-
-        private int InitToolbarUnderline(int x, int y)
-        {
-            ctlUnderline = new SimpleToggle();
-            ctlUnderline.UpColor = this.BackColor;
-            ctlUnderline.Click += new EventHandler(ctlUnderline_Click);
-            ctlUnderline.Font = new Font("Courier New", 10, FontStyle.Underline | FontStyle.Bold);
-            ctlUnderline.Text = "U";
-            using (Graphics g = ctlUnderline.CreateGraphics())
-            {
-                SizeF fs = g.MeasureString(ctlUnderline.Text, ctlUnderline.Font);
-                ctlUnderline.Height = (int)fs.Height + 6;	// 6 is for margins
-                ctlUnderline.Width = ctlUnderline.Height;
-            }
-
-            ctlUnderline.Tag = "italic";
-            ctlUnderline.Left = x;
-            ctlUnderline.Top = y;
-            ctlUnderline.FlatStyle = FlatStyle.Flat;
-            ToolTip tipb = new ToolTip();
-            tipb.AutomaticDelay = 500;
-            tipb.ShowAlways = true;
-            tipb.SetToolTip(ctlUnderline, "Underline");
-            mainTB.Controls.Add(ctlUnderline);
-
-            return ctlUnderline.Width;
-        }
-
-        private int InitToolbarFont(int x, int y)
+       
+        private int InitToolbarFont()
         {
             // Create the font
-            ctlFont = new ComboBox();
-            ctlFont.SelectedValueChanged += new EventHandler(ctlFont_Change);
-            ctlFont.Validated += new EventHandler(ctlFont_Change);
-            ctlFont.Left = x;
-            ctlFont.Top = y;
-            ctlFont.DropDownStyle = ComboBoxStyle.DropDown;
-
+            
+            
             foreach (FontFamily ff in FontFamily.Families)
             {
-                ctlFont.Items.Add(ff.Name);
+                fontToolStripComboBox1.Items.Add(ff.Name);
             }
-            ToolTip tip = new ToolTip();
-            tip.AutomaticDelay = 500;
-            tip.ShowAlways = true;
-            tip.SetToolTip(ctlFont, "Font");
-            mainTB.Controls.Add(ctlFont);
 
-            return ctlFont.Width;
+            return fontToolStripComboBox1.Width;
         }
 
-        private int InitToolbarFontSize(int x, int y)
+        private int InitToolbarFontSize()
         {
             // Create the font
-            ctlFontSize = new ComboBox();
-            ctlFontSize.SelectedValueChanged += new EventHandler(ctlFontSize_Change);
-            ctlFontSize.Validated += new EventHandler(ctlFontSize_Change);
-            ctlFontSize.Width = 42;
-            ctlFontSize.Left = x;
-            ctlFontSize.Top = y;
-            ctlFontSize.DropDownStyle = ComboBoxStyle.DropDown;
-
+           
             string[] sizes = new string[] { "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72" };
-            ctlFontSize.Items.AddRange(sizes);
-            ToolTip tip = new ToolTip();
-            tip.AutomaticDelay = 500;
-            tip.ShowAlways = true;
-            tip.SetToolTip(ctlFontSize, "Font Size");
-            mainTB.Controls.Add(ctlFontSize);
+            fontSizeToolStripComboBox1.Items.AddRange(sizes);
 
-            return ctlFontSize.Width;
-        }
-
-        private ColorPicker InitToolbarColor(ref int x, int y, string t, PopupEventHandler peh)
-        {
-            // Create the font
-            ColorPicker ctl = new ColorPicker();
-            ctl.Width = 37;
-            ctl.Left = x;
-            ctl.Top = y;
-            ctl.Tag = t;
-
-            ToolTip tip = new ToolTip();
-            tip.AutomaticDelay = 500;
-            tip.ShowAlways = true;
-            tip.SetToolTip(ctl, t);
-            tip.Popup += peh;
-            mainTB.Controls.Add(ctl);
-
-            x += ctl.Width;
-            return ctl;
+            return fontSizeToolStripComboBox1.Width;
         }
 
         void tip_Popup_Fore(object sender, PopupEventArgs e)
@@ -1221,26 +794,7 @@ namespace fyiReporting.RdlDesign
             tt.ToolTipTitle = title;
         }
 
-        private ComboBox InitToolbarZoom(ref int x, int y)
-        {
-            ComboBox ctl = new ComboBox();
-            ctl.Width = 85;
-            ctl.Left = x;
-            ctl.Top = y;
-            ctl.Tag = "Zoom";
-            ctl.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            ctl.Items.AddRange(StaticLists.ZoomList);
-            ToolTip tip = new ToolTip();
-            tip.AutomaticDelay = 500;
-            tip.ShowAlways = true;
-            tip.SetToolTip(ctl, "Zoom");
-            mainTB.Controls.Add(ctl);
-
-            x += ctl.Width;
-            return ctl;
-        }
-
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -3008,7 +2562,7 @@ namespace fyiReporting.RdlDesign
             if (ctlInsertCurrent != null)
                 ctlInsertCurrent.Checked = false;
 
-            SimpleToggle ctl = (SimpleToggle)sender;
+            ToolStripButton ctl = (ToolStripButton)sender;
             ctlInsertCurrent = ctl.Checked ? ctl : null;
 
             MDIChild mc = this.ActiveMdiChild as MDIChild;
