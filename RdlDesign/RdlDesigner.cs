@@ -60,7 +60,7 @@ namespace fyiReporting.RdlDesign
         static readonly string IpcFileName = @"\fyiIpcData400.txt"; // TODO: change file name with every release
 
 
-        IpcChannel channel = new IpcChannel("RdlProject");
+        IpcChannel channel = new IpcChannel("RdlProject403");
         SortedList<DateTime, string> _RecentFiles = null;
         List<Uri> _CurrentFiles = null;		// temporary variable for current files
         List<string> _Toolbar = null;			// temporary variable for toolbar entries
@@ -90,6 +90,18 @@ namespace fyiReporting.RdlDesign
         // Tool bar  --- if you add to this list LOOK AT INIT TOOLBAR FIRST
         bool bSuppressChange = false;
         private Color _SaveExprBackColor = Color.LightGray;
+
+
+        private string _ipcName = "";
+        public string IpcName { 
+            get { return _ipcName; } 
+            set { _ipcName = value ;} 
+        }
+        
+        // TODO: Property to set server\database connection, Form title, form icon
+        // Event raise on file save (with path and name to saved file)
+        // Property to get saved file(s)
+        // Properties to control which controls in the menu and toolbar are available.
 
         public RdlDesigner()
         {
@@ -772,10 +784,24 @@ namespace fyiReporting.RdlDesign
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc != null && mc.DesignTab == "design" && mc.DrawCtl.SelectedCount == 1)
             {
-                title = ctlForeColor.Text;
+                title = foreColorPicker1.Text;
             }
 
             tt.ToolTipTitle = title;
+        }
+
+        private void ctlForeColor_Change(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            if (!bSuppressChange)
+            {
+                mc.ApplyStyleToSelected("Color", foreColorPicker1.Text);
+                SetProperties(mc);
+            }
+            SetMDIChildFocus(mc);
         }
 
         void tip_Popup_Back(object sender, PopupEventArgs e)
@@ -788,7 +814,7 @@ namespace fyiReporting.RdlDesign
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc != null && mc.DesignTab == "design" && mc.DrawCtl.SelectedCount == 1)
             {
-                title = ctlBackColor.Text;
+                title = backColorPicker1.Text;
             }
 
             tt.ToolTipTitle = title;
@@ -1032,82 +1058,82 @@ namespace fyiReporting.RdlDesign
                 this._ValidateRdl.Close();
             }
             mainProperties.Visible = mainSp.Visible = bShowProp;
-            if (ctlLAlign != null)
-                ctlLAlign.Enabled = bEnableDesign;
-            if (ctlCAlign != null)
-                ctlCAlign.Enabled = bEnableDesign;
-            if (ctlRAlign != null)
-                ctlRAlign.Enabled = bEnableDesign;
-            if (ctlBold != null)
-                ctlBold.Enabled = bEnableDesign;
-            if (ctlItalic != null)
-                ctlItalic.Enabled = bEnableDesign;
-            if (ctlUnderline != null)
-                ctlUnderline.Enabled = bEnableDesign;
-            if (ctlFont != null)
-                ctlFont.Enabled = bEnableDesign;
-            if (ctlFontSize != null)
-                ctlFontSize.Enabled = bEnableDesign;
-            if (ctlForeColor != null)
-                ctlForeColor.Enabled = bEnableDesign;
-            if (ctlBackColor != null)
-                ctlBackColor.Enabled = bEnableDesign;
-            if (ctlCut != null)
-                ctlCut.Enabled = bEnableDesign | bEnableEdit;
-            if (ctlCopy != null)
-                ctlCopy.Enabled = bEnableDesign | bEnableEdit | bEnablePreview;
-            if (ctlUndo != null)
-                ctlUndo.Enabled = bEnableDesign | bEnableEdit;
-            if (ctlPaste != null)
-                ctlPaste.Enabled = bEnableDesign | bEnableEdit;
-            if (ctlPrint != null)
-                ctlPrint.Enabled = bEnablePreview;
+            if (leftAlignToolStripButton2 != null)
+                leftAlignToolStripButton2.Enabled = bEnableDesign;
+            if (centerAlignToolStripButton2 != null)
+                centerAlignToolStripButton2.Enabled = bEnableDesign;
+            if (rightAlignToolStripButton3 != null)
+                rightAlignToolStripButton3.Enabled = bEnableDesign;
+            if (boldToolStripButton1 != null)
+                boldToolStripButton1.Enabled = bEnableDesign;
+            if (italiacToolStripButton1 != null)
+                italiacToolStripButton1.Enabled = bEnableDesign;
+            if (underlineToolStripButton2 != null)
+                underlineToolStripButton2.Enabled = bEnableDesign;
+            if (fontToolStripComboBox1 != null)
+                fontToolStripComboBox1.Enabled = bEnableDesign;
+            if (fontSizeToolStripComboBox1 != null)
+                fontSizeToolStripComboBox1.Enabled = bEnableDesign;
+            if (foreColorPicker1 != null)
+                foreColorPicker1.Enabled = bEnableDesign;
+            if (backColorPicker1 != null)
+                backColorPicker1.Enabled = bEnableDesign;
+            if (cutToolStripButton1 != null)
+                cutToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            if (copyToolStripButton1 != null)
+                copyToolStripButton1.Enabled = bEnableDesign | bEnableEdit | bEnablePreview;
+            if (undoToolStripButton1 != null)
+                undoToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            if (pasteToolStripButton1 != null)
+                pasteToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            if (printToolStripButton2 != null)
+                printToolStripButton2.Enabled = bEnablePreview;
 
-            if (ctlInsertTextbox != null)
-                ctlInsertTextbox.Enabled = bEnableDesign;
-            if (ctlSelectTool != null)
+            if (textboxToolStripButton1 != null)
+                textboxToolStripButton1.Enabled = bEnableDesign;
+            if (selectToolStripButton2 != null)
             {
-                ctlSelectTool.Enabled = bEnablePreview;
-                ctlSelectTool.Checked = mc == null ? false : mc.SelectionTool;
+                selectToolStripButton2.Enabled = bEnablePreview;
+                selectToolStripButton2.Checked = mc == null ? false : mc.SelectionTool;
             }
-            if (ctlInsertChart != null)
-                ctlInsertChart.Enabled = bEnableDesign;
-            if (ctlInsertRectangle != null)
-                ctlInsertRectangle.Enabled = bEnableDesign;
-            if (ctlInsertTable != null)
-                ctlInsertTable.Enabled = bEnableDesign;
-            if (ctlInsertMatrix != null)
-                ctlInsertMatrix.Enabled = bEnableDesign;
-            if (ctlInsertList != null)
-                ctlInsertList.Enabled = bEnableDesign;
-            if (ctlInsertLine != null)
-                ctlInsertLine.Enabled = bEnableDesign;
-            if (ctlInsertImage != null)
-                ctlInsertImage.Enabled = bEnableDesign;
-            if (ctlInsertSubreport != null)
-                ctlInsertSubreport.Enabled = bEnableDesign;
-            if (ctlPdf != null)
-                ctlPdf.Enabled = bEnablePreview;
-            if (ctlTif != null)
-                ctlTif.Enabled = bEnablePreview;
-            if (ctlXml != null)
-                ctlXml.Enabled = bEnablePreview;
-            if (ctlHtml != null)
-                ctlHtml.Enabled = bEnablePreview;
-            if (ctlMht != null)
-                ctlMht.Enabled = bEnablePreview;
-            if (ctlCsv != null)
-                ctlCsv.Enabled = bEnablePreview;
-            if (ctlExcel != null)
-                ctlExcel.Enabled = bEnablePreview;
-            if (ctlRtf != null)
-                ctlRtf.Enabled = bEnablePreview;
+            if (chartToolStripButton1 != null)
+                chartToolStripButton1.Enabled = bEnableDesign;
+            if (rectangleToolStripButton1 != null)
+                rectangleToolStripButton1.Enabled = bEnableDesign;
+            if (tableToolStripButton1 != null)
+                tableToolStripButton1.Enabled = bEnableDesign;
+            if (matrixToolStripButton1 != null)
+                matrixToolStripButton1.Enabled = bEnableDesign;
+            if (listToolStripButton1 != null)
+                listToolStripButton1.Enabled = bEnableDesign;
+            if (lineToolStripButton1 != null)
+                lineToolStripButton1.Enabled = bEnableDesign;
+            if (imageToolStripButton1 != null)
+                imageToolStripButton1.Enabled = bEnableDesign;
+            if (subreportToolStripButton1 != null)
+                subreportToolStripButton1.Enabled = bEnableDesign;
+            if (pdfToolStripButton2 != null)
+                pdfToolStripButton2.Enabled = bEnablePreview;
+            if (TifToolStripButton2 != null)
+                TifToolStripButton2.Enabled = bEnablePreview;
+            if (XmlToolStripButton2 != null)
+                XmlToolStripButton2.Enabled = bEnablePreview;
+            if (htmlToolStripButton2 != null)
+                htmlToolStripButton2.Enabled = bEnablePreview;
+            if (MhtToolStripButton2 != null)
+                MhtToolStripButton2.Enabled = bEnablePreview;
+            if (CsvToolStripButton2 != null)
+                CsvToolStripButton2.Enabled = bEnablePreview;
+            if (excelToolStripButton2 != null)
+                excelToolStripButton2.Enabled = bEnablePreview;
+            if (RtfToolStripButton2 != null)
+                RtfToolStripButton2.Enabled = bEnablePreview;
 
             this.EnableEditTextBox();
 
-            if (ctlZoom != null)
+            if (zoomToolStripComboBox1 != null)
             {
-                ctlZoom.Enabled = bEnablePreview;
+                zoomToolStripComboBox1.Enabled = bEnablePreview;
                 string zText = "Actual Size";
                 if (mc != null)
                 {
@@ -1126,15 +1152,114 @@ namespace fyiReporting.RdlDesign
                                 zText = string.Format("{0:0}", mc.Zoom * 100f);
                             break;
                     }
-                    ctlZoom.Text = zText;
+                    zoomToolStripComboBox1.Text = zText;
                 }
             }
             // when no active sheet
-            if (this.ctlSave != null)
-                this.ctlSave.Enabled = mc != null;
+            if (this.saveToolStripButton1 != null)
+                this.saveToolStripButton1.Enabled = mc != null;
 
             // Update the status and position information
             SetStatusNameAndPosition();
+        }
+
+        private void ctlUnderline_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.ApplyStyleToSelected("TextDecoration", underlineToolStripButton2.Checked ? "Underline" : "None");
+            SetProperties(mc);
+
+            SetMDIChildFocus(mc);
+        }
+
+        private void ctlFont_Change(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            if (!bSuppressChange)
+            {
+                mc.ApplyStyleToSelected("FontFamily", fontToolStripComboBox1.Text);
+                SetProperties(mc);
+            }
+            SetMDIChildFocus(mc);
+        }
+
+        private void ctlFontSize_Change(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            if (!bSuppressChange)
+            {
+                mc.ApplyStyleToSelected("FontSize", fontSizeToolStripComboBox1.Text + "pt");
+                SetProperties(mc);
+            }
+            SetMDIChildFocus(mc);
+        }
+
+        private void ctlSelectTool_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.SelectionTool = selectToolStripButton2.Checked;
+
+            SetMDIChildFocus(mc);
+        }
+
+        private void ctlBackColor_Change(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            if (!bSuppressChange)
+            {
+                mc.ApplyStyleToSelected("BackgroundColor", backColorPicker1.Text);
+                SetProperties(mc);
+            }
+
+            SetMDIChildFocus(mc);
+        }
+
+        private void ctlZoom_Change(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            mc.SetFocus();
+
+            switch (zoomToolStripComboBox1.Text)
+            {
+                case "Actual Size":
+                    mc.Zoom = 1;
+                    break;
+                case "Fit Page":
+                    mc.ZoomMode = ZoomEnum.FitPage;
+                    break;
+                case "Fit Width":
+                    mc.ZoomMode = ZoomEnum.FitWidth;
+                    break;
+                default:
+                    string s = zoomToolStripComboBox1.Text.Substring(0, zoomToolStripComboBox1.Text.Length - 1);
+                    float z;
+                    try
+                    {
+                        z = Convert.ToSingle(s) / 100f;
+                        mc.Zoom = z;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Zoom Value Invalid");
+                    }
+                    break;
+            }
         }
 
         private void EnableEditTextBox()
@@ -1161,6 +1286,18 @@ namespace fyiReporting.RdlDesign
                 ctlEditTextbox.Enabled = bEnable;
                 ctlEditLabel.Enabled = bEnable;
             }
+        }
+
+        private void ctlItalic_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.ApplyStyleToSelected("FontStyle", italiacToolStripButton1.Checked ? "Italic" : "Normal");
+            SetProperties(mc);
+
+            SetMDIChildFocus(mc);
         }
 
         private void ReportItemInserted(object sender, System.EventArgs e)
@@ -1253,32 +1390,32 @@ namespace fyiReporting.RdlDesign
             if (si == null)
                 return;
 
-            if (ctlCAlign != null)
-                ctlCAlign.Checked = si.TextAlign == TextAlignEnum.Center ? true : false;
-            if (ctlLAlign != null)
-                ctlLAlign.Checked = si.TextAlign == TextAlignEnum.Left ? true : false;
-            if (ctlRAlign != null)
-                ctlRAlign.Checked = si.TextAlign == TextAlignEnum.Right ? true : false;
-            if (ctlBold != null)
-                ctlBold.Checked = si.IsFontBold() ? true : false;
-            if (ctlItalic != null)
-                ctlItalic.Checked = si.FontStyle == FontStyleEnum.Italic ? true : false;
-            if (ctlUnderline != null)
-                ctlUnderline.Checked = si.TextDecoration == TextDecorationEnum.Underline ? true : false;
-            if (ctlFont != null)
-                ctlFont.Text = si.FontFamily;
-            if (ctlFontSize != null)
+            if (centerAlignToolStripButton2 != null)
+                centerAlignToolStripButton2.Checked = si.TextAlign == TextAlignEnum.Center ? true : false;
+            if (leftAlignToolStripButton2 != null)
+                leftAlignToolStripButton2.Checked = si.TextAlign == TextAlignEnum.Left ? true : false;
+            if (rightAlignToolStripButton3 != null)
+                rightAlignToolStripButton3.Checked = si.TextAlign == TextAlignEnum.Right ? true : false;
+            if (boldToolStripButton1 != null)
+                boldToolStripButton1.Checked = si.IsFontBold() ? true : false;
+            if (italiacToolStripButton1 != null)
+                italiacToolStripButton1.Checked = si.FontStyle == FontStyleEnum.Italic ? true : false;
+            if (underlineToolStripButton2 != null)
+                underlineToolStripButton2.Checked = si.TextDecoration == TextDecorationEnum.Underline ? true : false;
+            if (fontToolStripComboBox1 != null)
+                fontToolStripComboBox1.Text = si.FontFamily;
+            if (fontSizeToolStripComboBox1 != null)
             {
                 string rs = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.#}", si.FontSize);
-                ctlFontSize.Text = rs;
+                fontSizeToolStripComboBox1.Text = rs;
             }
-            if (ctlForeColor != null)
+            if (foreColorPicker1 != null)
             {
-                ctlForeColor.Text = si.Color.IsEmpty ? si.ColorText : ColorTranslator.ToHtml(si.Color);
+                foreColorPicker1.Text = si.Color.IsEmpty ? si.ColorText : ColorTranslator.ToHtml(si.Color);
             }
-            if (ctlBackColor != null)
+            if (backColorPicker1 != null)
             {
-                ctlBackColor.Text = si.BackgroundColor.IsEmpty ? si.BackgroundColorText : ColorTranslator.ToHtml(si.BackgroundColor);
+                backColorPicker1.Text = si.BackgroundColor.IsEmpty ? si.BackgroundColorText : ColorTranslator.ToHtml(si.BackgroundColor);
             }
 
             bSuppressChange = false;
@@ -2573,43 +2710,43 @@ namespace fyiReporting.RdlDesign
             mc.CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
         }
 
-        private void ctlBold_Click(object sender, EventArgs e)
+        private void boldToolStripButton1_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
 
-            mc.ApplyStyleToSelected("FontWeight", ctlBold.Checked ? "Bold" : "Normal");
+            mc.ApplyStyleToSelected("FontWeight", boldToolStripButton1.Checked ? "Bold" : "Normal");
             SetProperties(mc);
 
             SetMDIChildFocus(mc);
         }
 
-        private void ctlItalic_Click(object sender, EventArgs e)
+        private void italiacToolStripButton1_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
 
-            mc.ApplyStyleToSelected("FontStyle", ctlItalic.Checked ? "Italic" : "Normal");
+            mc.ApplyStyleToSelected("FontStyle", italiacToolStripButton1.Checked ? "Italic" : "Normal");
             SetProperties(mc);
 
             SetMDIChildFocus(mc);
         }
 
-        private void ctlUnderline_Click(object sender, EventArgs e)
+        private void underlineToolStripButton2_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
 
-            mc.ApplyStyleToSelected("TextDecoration", ctlUnderline.Checked ? "Underline" : "None");
+            mc.ApplyStyleToSelected("TextDecoration", underlineToolStripButton2.Checked ? "Underline" : "None");
             SetProperties(mc);
 
             SetMDIChildFocus(mc);
         }
 
-        private void ctlForeColor_Change(object sender, EventArgs e)
+        private void foreColorPicker1_Change(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2617,41 +2754,27 @@ namespace fyiReporting.RdlDesign
 
             if (!bSuppressChange)
             {
-                mc.ApplyStyleToSelected("Color", ctlForeColor.Text);
+                mc.ApplyStyleToSelected("Color", foreColorPicker1.Text);
                 SetProperties(mc);
             }
             SetMDIChildFocus(mc);
         }
 
-        private void ctlBackColor_Change(object sender, EventArgs e)
+        private void backColorPicker1_Change(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
             if (!bSuppressChange)
             {
-                mc.ApplyStyleToSelected("BackgroundColor", ctlBackColor.Text);
+                mc.ApplyStyleToSelected("BackgroundColor", backColorPicker1.Text);
                 SetProperties(mc);
             }
 
             SetMDIChildFocus(mc);
         }
 
-        private void ctlFont_Change(object sender, EventArgs e)
-        {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-
-            if (!bSuppressChange)
-            {
-                mc.ApplyStyleToSelected("FontFamily", ctlFont.Text);
-                SetProperties(mc);
-            }
-            SetMDIChildFocus(mc);
-        }
-
-        private void ctlFontSize_Change(object sender, EventArgs e)
+        private void fontToolStripComboBox1_Change(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -2659,31 +2782,45 @@ namespace fyiReporting.RdlDesign
 
             if (!bSuppressChange)
             {
-                mc.ApplyStyleToSelected("FontSize", ctlFontSize.Text + "pt");
+                mc.ApplyStyleToSelected("FontFamily", fontToolStripComboBox1.Text);
                 SetProperties(mc);
             }
             SetMDIChildFocus(mc);
         }
 
-        private void ctlSelectTool_Click(object sender, EventArgs e)
+        private void fontSizeToolStripComboBox1_Change(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
 
-            mc.SelectionTool = ctlSelectTool.Checked;
+            if (!bSuppressChange)
+            {
+                mc.ApplyStyleToSelected("FontSize", fontSizeToolStripComboBox1.Text + "pt");
+                SetProperties(mc);
+            }
+            SetMDIChildFocus(mc);
+        }
+
+        private void selectToolStripButton2_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.SelectionTool = selectToolStripButton2.Checked;
 
             SetMDIChildFocus(mc);
         }
 
-        private void ctlZoom_Change(object sender, EventArgs e)
+        private void zoomToolStripComboBox1_Change(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
             mc.SetFocus();
 
-            switch (ctlZoom.Text)
+            switch (zoomToolStripComboBox1.Text)
             {
                 case "Actual Size":
                     mc.Zoom = 1;
@@ -2695,7 +2832,7 @@ namespace fyiReporting.RdlDesign
                     mc.ZoomMode = ZoomEnum.FitWidth;
                     break;
                 default:
-                    string s = ctlZoom.Text.Substring(0, ctlZoom.Text.Length - 1);
+                    string s = zoomToolStripComboBox1.Text.Substring(0, zoomToolStripComboBox1.Text.Length - 1);
                     float z;
                     try
                     {
@@ -2897,23 +3034,23 @@ namespace fyiReporting.RdlDesign
 
             TextAlignEnum ta = TextAlignEnum.General;
 
-            if (sender == ctlLAlign)
+            if (sender == leftAlignToolStripButton2)
             {
                 ta = TextAlignEnum.Left;
-                ctlLAlign.Checked = true;
-                ctlRAlign.Checked = ctlCAlign.Checked = false;
+                leftAlignToolStripButton2.Checked = true;
+                rightAlignToolStripButton3.Checked = centerAlignToolStripButton2.Checked = false;
             }
-            else if (sender == ctlRAlign)
+            else if (sender == rightAlignToolStripButton3)
             {
                 ta = TextAlignEnum.Right;
-                ctlRAlign.Checked = true;
-                ctlLAlign.Checked = ctlCAlign.Checked = false;
+                rightAlignToolStripButton3.Checked = true;
+                leftAlignToolStripButton2.Checked = centerAlignToolStripButton2.Checked = false;
             }
-            else if (sender == ctlCAlign)
+            else if (sender == centerAlignToolStripButton2)
             {
                 ta = TextAlignEnum.Center;
-                ctlCAlign.Checked = true;
-                ctlRAlign.Checked = ctlLAlign.Checked = false;
+                centerAlignToolStripButton2.Checked = true;
+                rightAlignToolStripButton3.Checked = leftAlignToolStripButton2.Checked = false;
             }
 
             mc.ApplyStyleToSelected("TextAlign", ta.ToString());
@@ -3290,23 +3427,23 @@ namespace fyiReporting.RdlDesign
 
             TextAlignEnum ta = TextAlignEnum.General;
 
-            if (sender == ctlLAlign)
+            if (sender == leftAlignToolStripButton2)
             {
                 ta = TextAlignEnum.Left;
-                ctlLAlign.Checked = true;
-                ctlRAlign.Checked = ctlCAlign.Checked = false;
+                leftAlignToolStripButton2.Checked = true;
+                rightAlignToolStripButton3.Checked = centerAlignToolStripButton2.Checked = false;
             }
-            else if (sender == ctlRAlign)
+            else if (sender == rightAlignToolStripButton3)
             {
                 ta = TextAlignEnum.Right;
-                ctlRAlign.Checked = true;
-                ctlLAlign.Checked = ctlCAlign.Checked = false;
+                rightAlignToolStripButton3.Checked = true;
+                leftAlignToolStripButton2.Checked = centerAlignToolStripButton2.Checked = false;
             }
-            else if (sender == ctlCAlign)
+            else if (sender == centerAlignToolStripButton2)
             {
                 ta = TextAlignEnum.Center;
-                ctlCAlign.Checked = true;
-                ctlRAlign.Checked = ctlLAlign.Checked = false;
+                centerAlignToolStripButton2.Checked = true;
+                rightAlignToolStripButton3.Checked = leftAlignToolStripButton2.Checked = false;
             }
 
             mc.ApplyStyleToSelected("TextAlign", ta.ToString());

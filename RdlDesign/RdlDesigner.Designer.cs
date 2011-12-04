@@ -20,109 +20,15 @@ private StatusBarPanel statusSelected;
 private StatusBarPanel statusPosition;
 private PropertyCtl mainProperties;
 private Splitter mainSp;
-private SimpleToggle ctlBold=null;
-private SimpleToggle ctlItalic=null;
-private SimpleToggle ctlUnderline=null;
-private SimpleToggle ctlLAlign = null;
-private SimpleToggle ctlRAlign = null;
-private SimpleToggle ctlCAlign = null;
-private ComboBox ctlFont = null;
-private ComboBox ctlFontSize=null;
-private ColorPicker ctlForeColor=null;
-private ColorPicker ctlBackColor = null;
-private Button ctlNew=null;
-private Button ctlOpen=null;
-private Button ctlSave=null;
-private Button ctlCut=null;
-private Button ctlCopy=null;
-private Button ctlUndo=null;
-private Button ctlPaste=null;
-private Button ctlPrint=null;
-private Button ctlPdf=null;
-private Button ctlTif = null;
-private Button ctlXml = null;
-private Button ctlHtml=null;
-private Button ctlMht=null;
-private Button ctlCsv = null;
-private Button ctlRtf = null;
-private Button ctlExcel = null;
-private ComboBox ctlZoom = null;
-private SimpleToggle ctlInsertCurrent=null;
-private SimpleToggle ctlInsertTextbox=null;
-private SimpleToggle ctlInsertChart=null;
-private SimpleToggle ctlInsertRectangle=null;
-private SimpleToggle ctlInsertTable=null;
-private SimpleToggle ctlInsertMatrix=null;
-private SimpleToggle ctlInsertList=null;
-private SimpleToggle ctlInsertLine=null;
-private SimpleToggle ctlInsertImage=null;
-private SimpleToggle ctlInsertSubreport=null;
-private SimpleToggle ctlSelectTool = null;
+
+private ToolStripButton ctlInsertCurrent=null;
 private System.Windows.Forms.TextBox ctlEditTextbox=null;
-private System.Windows.Forms.Label ctlEditLabel=null;
-private System.Windows.Forms.Button bTable;
-private System.Windows.Forms.Button bLine;
-private System.Windows.Forms.Button bImage;
-private System.Windows.Forms.Button bRectangle;
-private System.Windows.Forms.Button bSubreport;
-private System.Windows.Forms.Button bList;
-private System.Windows.Forms.Button bChart;
-private System.Windows.Forms.Button bText;
-private System.Windows.Forms.Button bMatrix;
-private System.Windows.Forms.Button bPrint;
-private System.Windows.Forms.Button bSave;
-private System.Windows.Forms.Button bOpen;
-private System.Windows.Forms.Button bPaste;
-private System.Windows.Forms.Button bCopy;
-private System.Windows.Forms.Button bCut;
-private System.Windows.Forms.Button bNew;
-private System.Windows.Forms.Button bUndo;
-private System.Windows.Forms.Button bPdf;
-private System.Windows.Forms.Button bXml;
-private System.Windows.Forms.Button bHtml;
-private System.Windows.Forms.Button bMht;
-private Button bCsv;
-private Button bCAlign;
-private Button bRAlign;
-private Button bLAlign;
-private Button bRtf;
-private Button bSelectTool;
-private Button bExcel;
-private Button bTif;
+private System.Windows.Forms.Label ctlEditLabel = null;
 
 
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlDesigner));
-            this.bExcel = new System.Windows.Forms.Button();
-            this.bSelectTool = new System.Windows.Forms.Button();
-            this.bRtf = new System.Windows.Forms.Button();
-            this.bLAlign = new System.Windows.Forms.Button();
-            this.bRAlign = new System.Windows.Forms.Button();
-            this.bCAlign = new System.Windows.Forms.Button();
-            this.bCsv = new System.Windows.Forms.Button();
-            this.bMht = new System.Windows.Forms.Button();
-            this.bHtml = new System.Windows.Forms.Button();
-            this.bXml = new System.Windows.Forms.Button();
-            this.bPdf = new System.Windows.Forms.Button();
-            this.bUndo = new System.Windows.Forms.Button();
-            this.bNew = new System.Windows.Forms.Button();
-            this.bCut = new System.Windows.Forms.Button();
-            this.bCopy = new System.Windows.Forms.Button();
-            this.bPaste = new System.Windows.Forms.Button();
-            this.bOpen = new System.Windows.Forms.Button();
-            this.bSave = new System.Windows.Forms.Button();
-            this.bPrint = new System.Windows.Forms.Button();
-            this.bMatrix = new System.Windows.Forms.Button();
-            this.bText = new System.Windows.Forms.Button();
-            this.bChart = new System.Windows.Forms.Button();
-            this.bList = new System.Windows.Forms.Button();
-            this.bSubreport = new System.Windows.Forms.Button();
-            this.bRectangle = new System.Windows.Forms.Button();
-            this.bImage = new System.Windows.Forms.Button();
-            this.bLine = new System.Windows.Forms.Button();
-            this.bTable = new System.Windows.Forms.Button();
-            this.bTif = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -252,7 +158,7 @@ private Button bTif;
             this.fxToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.boldToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.italiacToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.underlineToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.leftAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.centerAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -275,330 +181,13 @@ private Button bTif;
             this.mainTC = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.mainTC.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bExcel
-            // 
-            this.bExcel.Image = ((System.Drawing.Image)(resources.GetObject("bExcel.Image")));
-            this.bExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bExcel.Location = new System.Drawing.Point(410, 84);
-            this.bExcel.Name = "bExcel";
-            this.bExcel.Size = new System.Drawing.Size(75, 23);
-            this.bExcel.TabIndex = 27;
-            this.bExcel.Text = "XLS";
-            this.bExcel.Visible = false;
-            // 
-            // bSelectTool
-            // 
-            this.bSelectTool.Image = ((System.Drawing.Image)(resources.GetObject("bSelectTool.Image")));
-            this.bSelectTool.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSelectTool.Location = new System.Drawing.Point(317, 234);
-            this.bSelectTool.Name = "bSelectTool";
-            this.bSelectTool.Size = new System.Drawing.Size(75, 23);
-            this.bSelectTool.TabIndex = 26;
-            this.bSelectTool.Text = "SelectTool";
-            this.bSelectTool.Visible = false;
-            // 
-            // bRtf
-            // 
-            this.bRtf.Image = ((System.Drawing.Image)(resources.GetObject("bRtf.Image")));
-            this.bRtf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bRtf.Location = new System.Drawing.Point(504, 441);
-            this.bRtf.Name = "bRtf";
-            this.bRtf.Size = new System.Drawing.Size(75, 23);
-            this.bRtf.TabIndex = 25;
-            this.bRtf.Text = "RTF";
-            this.bRtf.Visible = false;
-            // 
-            // bLAlign
-            // 
-            this.bLAlign.Image = ((System.Drawing.Image)(resources.GetObject("bLAlign.Image")));
-            this.bLAlign.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bLAlign.Location = new System.Drawing.Point(504, 412);
-            this.bLAlign.Name = "bLAlign";
-            this.bLAlign.Size = new System.Drawing.Size(75, 23);
-            this.bLAlign.TabIndex = 24;
-            this.bLAlign.Text = "L Align";
-            this.bLAlign.Visible = false;
-            // 
-            // bRAlign
-            // 
-            this.bRAlign.Image = ((System.Drawing.Image)(resources.GetObject("bRAlign.Image")));
-            this.bRAlign.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bRAlign.Location = new System.Drawing.Point(608, 412);
-            this.bRAlign.Name = "bRAlign";
-            this.bRAlign.Size = new System.Drawing.Size(75, 23);
-            this.bRAlign.TabIndex = 23;
-            this.bRAlign.Text = "R Align";
-            this.bRAlign.Visible = false;
-            // 
-            // bCAlign
-            // 
-            this.bCAlign.Image = ((System.Drawing.Image)(resources.GetObject("bCAlign.Image")));
-            this.bCAlign.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCAlign.Location = new System.Drawing.Point(608, 441);
-            this.bCAlign.Name = "bCAlign";
-            this.bCAlign.Size = new System.Drawing.Size(75, 23);
-            this.bCAlign.TabIndex = 22;
-            this.bCAlign.Text = "C Align";
-            this.bCAlign.Visible = false;
-            // 
-            // bCsv
-            // 
-            this.bCsv.Image = global::fyiReporting.RdlDesign.Properties.Resources.csv;
-            this.bCsv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCsv.Location = new System.Drawing.Point(608, 383);
-            this.bCsv.Name = "bCsv";
-            this.bCsv.Size = new System.Drawing.Size(75, 23);
-            this.bCsv.TabIndex = 21;
-            this.bCsv.Text = "CSV";
-            this.bCsv.Visible = false;
-            // 
-            // bMht
-            // 
-            this.bMht.Image = ((System.Drawing.Image)(resources.GetObject("bMht.Image")));
-            this.bMht.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMht.Location = new System.Drawing.Point(504, 383);
-            this.bMht.Name = "bMht";
-            this.bMht.Size = new System.Drawing.Size(75, 23);
-            this.bMht.TabIndex = 20;
-            this.bMht.Text = "HTML";
-            this.bMht.Visible = false;
-            // 
-            // bHtml
-            // 
-            this.bHtml.Image = ((System.Drawing.Image)(resources.GetObject("bHtml.Image")));
-            this.bHtml.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bHtml.Location = new System.Drawing.Point(608, 343);
-            this.bHtml.Name = "bHtml";
-            this.bHtml.Size = new System.Drawing.Size(75, 23);
-            this.bHtml.TabIndex = 19;
-            this.bHtml.Text = "HTML";
-            this.bHtml.Visible = false;
-            // 
-            // bXml
-            // 
-            this.bXml.Image = ((System.Drawing.Image)(resources.GetObject("bXml.Image")));
-            this.bXml.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bXml.Location = new System.Drawing.Point(504, 311);
-            this.bXml.Name = "bXml";
-            this.bXml.Size = new System.Drawing.Size(75, 23);
-            this.bXml.TabIndex = 18;
-            this.bXml.Text = "XML";
-            this.bXml.Visible = false;
-            // 
-            // bPdf
-            // 
-            this.bPdf.Image = ((System.Drawing.Image)(resources.GetObject("bPdf.Image")));
-            this.bPdf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bPdf.Location = new System.Drawing.Point(504, 343);
-            this.bPdf.Name = "bPdf";
-            this.bPdf.Size = new System.Drawing.Size(75, 23);
-            this.bPdf.TabIndex = 17;
-            this.bPdf.Text = "PDF";
-            this.bPdf.Visible = false;
-            // 
-            // bUndo
-            // 
-            this.bUndo.Image = ((System.Drawing.Image)(resources.GetObject("bUndo.Image")));
-            this.bUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bUndo.Location = new System.Drawing.Point(504, 279);
-            this.bUndo.Name = "bUndo";
-            this.bUndo.Size = new System.Drawing.Size(75, 23);
-            this.bUndo.TabIndex = 16;
-            this.bUndo.Text = "Undo";
-            this.bUndo.Visible = false;
-            // 
-            // bNew
-            // 
-            this.bNew.Image = ((System.Drawing.Image)(resources.GetObject("bNew.Image")));
-            this.bNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bNew.Location = new System.Drawing.Point(504, 247);
-            this.bNew.Name = "bNew";
-            this.bNew.Size = new System.Drawing.Size(75, 23);
-            this.bNew.TabIndex = 15;
-            this.bNew.Text = "New";
-            this.bNew.Visible = false;
-            // 
-            // bCut
-            // 
-            this.bCut.Image = ((System.Drawing.Image)(resources.GetObject("bCut.Image")));
-            this.bCut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCut.Location = new System.Drawing.Point(411, 234);
-            this.bCut.Name = "bCut";
-            this.bCut.Size = new System.Drawing.Size(75, 23);
-            this.bCut.TabIndex = 14;
-            this.bCut.Text = "Cut";
-            this.bCut.Visible = false;
-            // 
-            // bCopy
-            // 
-            this.bCopy.Image = ((System.Drawing.Image)(resources.GetObject("bCopy.Image")));
-            this.bCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCopy.Location = new System.Drawing.Point(504, 87);
-            this.bCopy.Name = "bCopy";
-            this.bCopy.Size = new System.Drawing.Size(75, 23);
-            this.bCopy.TabIndex = 13;
-            this.bCopy.Text = "Copy";
-            this.bCopy.Visible = false;
-            // 
-            // bPaste
-            // 
-            this.bPaste.Image = ((System.Drawing.Image)(resources.GetObject("bPaste.Image")));
-            this.bPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bPaste.Location = new System.Drawing.Point(504, 119);
-            this.bPaste.Name = "bPaste";
-            this.bPaste.Size = new System.Drawing.Size(75, 23);
-            this.bPaste.TabIndex = 12;
-            this.bPaste.Text = "Paste";
-            this.bPaste.Visible = false;
-            // 
-            // bOpen
-            // 
-            this.bOpen.Image = ((System.Drawing.Image)(resources.GetObject("bOpen.Image")));
-            this.bOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bOpen.Location = new System.Drawing.Point(504, 151);
-            this.bOpen.Name = "bOpen";
-            this.bOpen.Size = new System.Drawing.Size(75, 23);
-            this.bOpen.TabIndex = 11;
-            this.bOpen.Text = "Open";
-            this.bOpen.Visible = false;
-            // 
-            // bSave
-            // 
-            this.bSave.Image = ((System.Drawing.Image)(resources.GetObject("bSave.Image")));
-            this.bSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSave.Location = new System.Drawing.Point(504, 183);
-            this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(75, 23);
-            this.bSave.TabIndex = 10;
-            this.bSave.Text = "Save";
-            this.bSave.Visible = false;
-            // 
-            // bPrint
-            // 
-            this.bPrint.Image = ((System.Drawing.Image)(resources.GetObject("bPrint.Image")));
-            this.bPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bPrint.Location = new System.Drawing.Point(504, 215);
-            this.bPrint.Name = "bPrint";
-            this.bPrint.Size = new System.Drawing.Size(75, 23);
-            this.bPrint.TabIndex = 9;
-            this.bPrint.Text = "Print";
-            this.bPrint.Visible = false;
-            // 
-            // bMatrix
-            // 
-            this.bMatrix.Image = ((System.Drawing.Image)(resources.GetObject("bMatrix.Image")));
-            this.bMatrix.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMatrix.Location = new System.Drawing.Point(608, 87);
-            this.bMatrix.Name = "bMatrix";
-            this.bMatrix.Size = new System.Drawing.Size(75, 23);
-            this.bMatrix.TabIndex = 8;
-            this.bMatrix.Text = "Matrix";
-            this.bMatrix.Visible = false;
-            // 
-            // bText
-            // 
-            this.bText.Image = ((System.Drawing.Image)(resources.GetObject("bText.Image")));
-            this.bText.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bText.Location = new System.Drawing.Point(608, 119);
-            this.bText.Name = "bText";
-            this.bText.Size = new System.Drawing.Size(75, 23);
-            this.bText.TabIndex = 7;
-            this.bText.Text = "Text";
-            this.bText.Visible = false;
-            // 
-            // bChart
-            // 
-            this.bChart.Image = ((System.Drawing.Image)(resources.GetObject("bChart.Image")));
-            this.bChart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bChart.Location = new System.Drawing.Point(608, 151);
-            this.bChart.Name = "bChart";
-            this.bChart.Size = new System.Drawing.Size(75, 23);
-            this.bChart.TabIndex = 6;
-            this.bChart.Text = "Chart";
-            this.bChart.Visible = false;
-            // 
-            // bList
-            // 
-            this.bList.Image = ((System.Drawing.Image)(resources.GetObject("bList.Image")));
-            this.bList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bList.Location = new System.Drawing.Point(608, 183);
-            this.bList.Name = "bList";
-            this.bList.Size = new System.Drawing.Size(75, 23);
-            this.bList.TabIndex = 5;
-            this.bList.Text = "List";
-            this.bList.Visible = false;
-            // 
-            // bSubreport
-            // 
-            this.bSubreport.Image = ((System.Drawing.Image)(resources.GetObject("bSubreport.Image")));
-            this.bSubreport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSubreport.Location = new System.Drawing.Point(608, 215);
-            this.bSubreport.Name = "bSubreport";
-            this.bSubreport.Size = new System.Drawing.Size(75, 23);
-            this.bSubreport.TabIndex = 4;
-            this.bSubreport.Text = "Subreport";
-            this.bSubreport.Visible = false;
-            // 
-            // bRectangle
-            // 
-            this.bRectangle.Image = ((System.Drawing.Image)(resources.GetObject("bRectangle.Image")));
-            this.bRectangle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bRectangle.Location = new System.Drawing.Point(608, 247);
-            this.bRectangle.Name = "bRectangle";
-            this.bRectangle.Size = new System.Drawing.Size(75, 23);
-            this.bRectangle.TabIndex = 3;
-            this.bRectangle.Text = "Rect";
-            this.bRectangle.Visible = false;
-            // 
-            // bImage
-            // 
-            this.bImage.Image = ((System.Drawing.Image)(resources.GetObject("bImage.Image")));
-            this.bImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bImage.Location = new System.Drawing.Point(608, 279);
-            this.bImage.Name = "bImage";
-            this.bImage.Size = new System.Drawing.Size(75, 23);
-            this.bImage.TabIndex = 2;
-            this.bImage.Text = "Image";
-            this.bImage.Visible = false;
-            // 
-            // bLine
-            // 
-            this.bLine.Image = ((System.Drawing.Image)(resources.GetObject("bLine.Image")));
-            this.bLine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bLine.Location = new System.Drawing.Point(608, 311);
-            this.bLine.Name = "bLine";
-            this.bLine.Size = new System.Drawing.Size(75, 23);
-            this.bLine.TabIndex = 1;
-            this.bLine.Text = "Line";
-            this.bLine.Visible = false;
-            // 
-            // bTable
-            // 
-            this.bTable.Image = ((System.Drawing.Image)(resources.GetObject("bTable.Image")));
-            this.bTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bTable.Location = new System.Drawing.Point(334, 183);
-            this.bTable.Name = "bTable";
-            this.bTable.Size = new System.Drawing.Size(75, 23);
-            this.bTable.TabIndex = 0;
-            this.bTable.Text = "Table";
-            this.bTable.Visible = false;
-            // 
-            // bTif
-            // 
-            this.bTif.Image = ((System.Drawing.Image)(resources.GetObject("bTif.Image")));
-            this.bTif.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bTif.Location = new System.Drawing.Point(410, 119);
-            this.bTif.Name = "bTif";
-            this.bTif.Size = new System.Drawing.Size(75, 23);
-            this.bTif.TabIndex = 28;
-            this.bTif.Text = "TIF";
-            this.bTif.Visible = false;
             // 
             // menuStrip1
             // 
@@ -1703,7 +1292,7 @@ private Button bTif;
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldToolStripButton1,
-            this.toolStripButton1,
+            this.italiacToolStripButton1,
             this.underlineToolStripButton2,
             this.leftAlignToolStripButton2,
             this.centerAlignToolStripButton2,
@@ -1739,21 +1328,20 @@ private Button bTif;
             this.boldToolStripButton1.Tag = "bold";
             this.boldToolStripButton1.Text = "B";
             this.boldToolStripButton1.ToolTipText = "Bold";
-            this.boldToolStripButton1.Click += new System.EventHandler(this.ctlBold_Click);
             // 
-            // toolStripButton1
+            // italiacToolStripButton1
             // 
-            this.toolStripButton1.CheckOnClick = true;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Font = new System.Drawing.Font("Courier New", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Tag = "italic";
-            this.toolStripButton1.Text = "I";
-            this.toolStripButton1.ToolTipText = "Italic";
-            this.toolStripButton1.Click += new System.EventHandler(this.ctlItalic_Click);
+            this.italiacToolStripButton1.CheckOnClick = true;
+            this.italiacToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.italiacToolStripButton1.Font = new System.Drawing.Font("Courier New", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.italiacToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("italiacToolStripButton1.Image")));
+            this.italiacToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.italiacToolStripButton1.Name = "italiacToolStripButton1";
+            this.italiacToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.italiacToolStripButton1.Tag = "italic";
+            this.italiacToolStripButton1.Text = "I";
+            this.italiacToolStripButton1.ToolTipText = "Italic";
+            this.italiacToolStripButton1.Click += new System.EventHandler(this.ctlItalic_Click);
             // 
             // underlineToolStripButton2
             // 
@@ -5868,9 +5456,429 @@ private Button bTif;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
-            this.foreColorPicker1.Location = new System.Drawing.Point(90, 89);
+            this.foreColorPicker1.Location = new System.Drawing.Point(71, 77);
             this.foreColorPicker1.Name = "foreColorPicker1";
             this.foreColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.foreColorPicker1.TabIndex = 32;
@@ -9947,9 +9955,429 @@ private Button bTif;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
-            this.backColorPicker1.Location = new System.Drawing.Point(230, 89);
+            this.backColorPicker1.Location = new System.Drawing.Point(278, 77);
             this.backColorPicker1.Name = "backColorPicker1";
             this.backColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.backColorPicker1.TabIndex = 33;
@@ -9959,12 +10387,15 @@ private Button bTif;
             // 
             // mainTC
             // 
+            this.mainTC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTC.Controls.Add(this.tabPage1);
             this.mainTC.Controls.Add(this.tabPage2);
-            this.mainTC.Location = new System.Drawing.Point(30, 151);
+            this.mainTC.Location = new System.Drawing.Point(0, 104);
             this.mainTC.Name = "mainTC";
             this.mainTC.SelectedIndex = 0;
-            this.mainTC.Size = new System.Drawing.Size(200, 100);
+            this.mainTC.Size = new System.Drawing.Size(712, 342);
             this.mainTC.TabIndex = 34;
             this.mainTC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainTC_MouseClick);
             this.mainTC.SelectedIndexChanged += new System.EventHandler(this.mainTC_SelectedIndexChanged);
@@ -9974,7 +10405,7 @@ private Button bTif;
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(192, 74);
+            this.tabPage1.Size = new System.Drawing.Size(704, 316);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -9984,49 +10415,40 @@ private Button bTif;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
+            this.tabPage2.Size = new System.Drawing.Size(704, 304);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Fore Color:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(214, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Back Color:";
             // 
             // RdlDesigner
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(712, 470);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.mainTC);
             this.Controls.Add(this.backColorPicker1);
             this.Controls.Add(this.foreColorPicker1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainTB);
-            this.Controls.Add(this.bTif);
-            this.Controls.Add(this.bExcel);
-            this.Controls.Add(this.bSelectTool);
-            this.Controls.Add(this.bRtf);
-            this.Controls.Add(this.bLAlign);
-            this.Controls.Add(this.bRAlign);
-            this.Controls.Add(this.bCAlign);
-            this.Controls.Add(this.bCsv);
-            this.Controls.Add(this.bMht);
-            this.Controls.Add(this.bHtml);
-            this.Controls.Add(this.bXml);
-            this.Controls.Add(this.bPdf);
-            this.Controls.Add(this.bUndo);
-            this.Controls.Add(this.bNew);
-            this.Controls.Add(this.bCut);
-            this.Controls.Add(this.bCopy);
-            this.Controls.Add(this.bPaste);
-            this.Controls.Add(this.bOpen);
-            this.Controls.Add(this.bSave);
-            this.Controls.Add(this.bPrint);
-            this.Controls.Add(this.bMatrix);
-            this.Controls.Add(this.bText);
-            this.Controls.Add(this.bChart);
-            this.Controls.Add(this.bList);
-            this.Controls.Add(this.bSubreport);
-            this.Controls.Add(this.bRectangle);
-            this.Controls.Add(this.bImage);
-            this.Controls.Add(this.bLine);
-            this.Controls.Add(this.bTable);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -10188,7 +10610,7 @@ private Button bTif;
         private ToolStripLabel fxToolStripLabel1;
         private ToolStripTextBox fxToolStripTextBox1;
         private ToolStripButton boldToolStripButton1;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton italiacToolStripButton1;
         private ToolStripButton underlineToolStripButton2;
         private ToolStripButton leftAlignToolStripButton2;
         private ToolStripButton centerAlignToolStripButton2;
@@ -10211,5 +10633,7 @@ private Button bTif;
         private ToolStripButton CsvToolStripButton2;
         private ToolStripButton RtfToolStripButton2;
         private ToolStripButton TifToolStripButton2;
+        private Label label1;
+        private Label label2;
 	}
 }
