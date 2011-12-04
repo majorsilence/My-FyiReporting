@@ -176,17 +176,16 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             this.CsvToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.RtfToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.TifToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.mainTC = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.menuStrip1.SuspendLayout();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.mainTC.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1526,6 +1525,47 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             this.TifToolStripButton2.Tag = "TIF";
             this.TifToolStripButton2.Text = "TIF";
             this.TifToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemTif_Click);
+            // 
+            // mainTC
+            // 
+            this.mainTC.Location = new System.Drawing.Point(3, 39);
+            this.mainTC.Name = "mainTC";
+            this.mainTC.SelectedIndex = 0;
+            this.mainTC.Size = new System.Drawing.Size(712, 21);
+            this.mainTC.TabIndex = 34;
+            this.mainTC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainTC_MouseClick);
+            this.mainTC.SelectedIndexChanged += new System.EventHandler(this.mainTC_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Fore Color:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(209, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Back Color:";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.foreColorPicker1);
+            this.panel1.Controls.Add(this.backColorPicker1);
+            this.panel1.Controls.Add(this.mainTC);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 74);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(712, 66);
+            this.panel1.TabIndex = 36;
             // 
             // foreColorPicker1
             // 
@@ -5876,9 +5916,149 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
-            this.foreColorPicker1.Location = new System.Drawing.Point(71, 77);
+            this.foreColorPicker1.Location = new System.Drawing.Point(66, 12);
             this.foreColorPicker1.Name = "foreColorPicker1";
             this.foreColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.foreColorPicker1.TabIndex = 32;
@@ -10375,9 +10555,149 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
-            this.backColorPicker1.Location = new System.Drawing.Point(278, 77);
+            this.backColorPicker1.Location = new System.Drawing.Point(273, 12);
             this.backColorPicker1.Name = "backColorPicker1";
             this.backColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.backColorPicker1.TabIndex = 33;
@@ -10385,68 +10705,11 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             this.backColorPicker1.SelectedValueChanged += new System.EventHandler(this.ctlBackColor_Change);
             this.backColorPicker1.Validated += new System.EventHandler(this.ctlBackColor_Change);
             // 
-            // mainTC
-            // 
-            this.mainTC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainTC.Controls.Add(this.tabPage1);
-            this.mainTC.Controls.Add(this.tabPage2);
-            this.mainTC.Location = new System.Drawing.Point(0, 104);
-            this.mainTC.Name = "mainTC";
-            this.mainTC.SelectedIndex = 0;
-            this.mainTC.Size = new System.Drawing.Size(712, 342);
-            this.mainTC.TabIndex = 34;
-            this.mainTC.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainTC_MouseClick);
-            this.mainTC.SelectedIndexChanged += new System.EventHandler(this.mainTC_SelectedIndexChanged);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(704, 316);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(704, 304);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fore Color:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(214, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Back Color:";
-            // 
             // RdlDesigner
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(712, 470);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.mainTC);
-            this.Controls.Add(this.backColorPicker1);
-            this.Controls.Add(this.foreColorPicker1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainTB);
             this.Controls.Add(this.menuStrip1);
@@ -10462,7 +10725,8 @@ private System.Windows.Forms.Label ctlEditLabel = null;
             this.mainTB.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.mainTC.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10623,8 +10887,6 @@ private System.Windows.Forms.Label ctlEditLabel = null;
         private ToolStripComboBox zoomToolStripComboBox1;
         private ToolStripButton selectToolStripButton2;
         private TabControl mainTC;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
         private ToolStripButton pdfToolStripButton2;
         private ToolStripButton htmlToolStripButton2;
         private ToolStripButton excelToolStripButton2;
@@ -10635,5 +10897,6 @@ private System.Windows.Forms.Label ctlEditLabel = null;
         private ToolStripButton TifToolStripButton2;
         private Label label1;
         private Label label2;
+        private Panel panel1;
 	}
 }
