@@ -123,7 +123,6 @@ namespace fyiReporting.RdlDesign
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
             InitToolbar();
-            InitStatusBar();
             InitIpc();
 
             // open up the current files if any
@@ -259,51 +258,6 @@ namespace fyiReporting.RdlDesign
             }
 
             return ds;
-        }
-
-        private void InitStatusBar()
-        {
-            mainSB = new StatusBar();
-
-            mainSB.Parent = this;
-            mainSB.Dock = DockStyle.Bottom;
-            mainSB.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-            statusPrimary = new StatusBarPanel();
-            statusPrimary.Width = 260;
-            statusPrimary.MinWidth = 10;
-            statusPrimary.AutoSize = StatusBarPanelAutoSize.Spring;
-            statusPrimary.Text = "";
-            statusPrimary.BorderStyle = StatusBarPanelBorderStyle.None;
-
-            statusSelected = new StatusBarPanel();
-            statusSelected.AutoSize = StatusBarPanelAutoSize.Contents;
-            statusSelected.Alignment = HorizontalAlignment.Center;
-            statusSelected.ToolTipText = "Name of selected ReportItem";
-            statusSelected.Width = 192;
-            statusSelected.MinWidth = 10;
-            statusSelected.Text = "";
-            statusSelected.BorderStyle = StatusBarPanelBorderStyle.Sunken;
-
-            statusPosition = new StatusBarPanel();
-            statusPosition.AutoSize = StatusBarPanelAutoSize.Contents;
-            statusPosition.ToolTipText = "Position of selected ReportItem";
-            statusPosition.Width = 96;
-            statusPosition.MinWidth = 10;
-            statusPosition.Alignment = HorizontalAlignment.Center;
-            statusPosition.Text = "";
-            statusPosition.BorderStyle = StatusBarPanelBorderStyle.Raised;
-
-            mainSB.Size = new System.Drawing.Size(472, 22);
-
-            mainSB.ShowPanels = true;
-            mainSB.Location = new System.Drawing.Point(0, 282);
-            mainSB.Name = "mainSB";
-            mainSB.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-																			  this.statusPrimary,
-																			  this.statusSelected,
-																			  this.statusPosition});
-            this.Controls.Add(mainSB);
         }
 
         private void InitToolbar()
