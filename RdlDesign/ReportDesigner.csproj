@@ -18,7 +18,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlDesign</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>fyiReporting.RdlDesign.RdlDesigner</StartupObject>
+    <StartupObject>fyiReporting.RdlDesign.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -272,6 +272,7 @@
     <Compile Include="DesignRuler.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

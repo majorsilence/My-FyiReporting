@@ -60,7 +60,7 @@ namespace fyiReporting.RdlDesign
         static readonly string IpcFileName = @"\fyiIpcData400.txt"; // TODO: change file name with every release
 
 
-        IpcChannel channel = new IpcChannel("RdlProject403");
+        IpcChannel channel;
         SortedList<DateTime, string> _RecentFiles = null;
         List<Uri> _CurrentFiles = null;		// temporary variable for current files
         List<string> _Toolbar = null;			// temporary variable for toolbar entries
@@ -90,22 +90,25 @@ namespace fyiReporting.RdlDesign
         // Tool bar  --- if you add to this list LOOK AT INIT TOOLBAR FIRST
         bool bSuppressChange = false;
         private Color _SaveExprBackColor = Color.LightGray;
-
-
-        private string _ipcName = "";
-        public string IpcName { 
-            get { return _ipcName; } 
-            set { _ipcName = value ;} 
-        }
-        
+       
         // TODO: Property to set server\database connection, Form title, form icon
         // Event raise on file save (with path and name to saved file)
         // Property to get saved file(s)
         // Properties to control which controls in the menu and toolbar are available.
 
-        public RdlDesigner()
+        private string _IpcChannelPortName = "RdlProject";
+
+        private RdlDesigner()
+        {
+        }
+
+        public RdlDesigner(string IpcChannelPortName)
         {
             InitializeComponent();
+
+            _IpcChannelPortName = IpcChannelPortName;
+
+            this.channel = new IpcChannel(IpcChannelPortName);
 
             KeyPreview = true;
             GetStartupState();
@@ -208,7 +211,7 @@ namespace fyiReporting.RdlDesign
                 RdlIpcObject ipc =
                      (RdlIpcObject)(Activator.GetObject
                      (typeof(RdlIpcObject),
-                     "ipc://RdlProject/IpcCommands"));
+                     string.Format("ipc://{0}/IpcCommands", _IpcChannelPortName)));
                 if (ipc != null)
                 {
                     List<string> cmds = ipc.getCommands();
@@ -749,52 +752,7 @@ namespace fyiReporting.RdlDesign
         }
 
         
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // Determine if an instance is already running?
-            bool firstInstance;
-            string mName = "Local\\RdlDesigner400";         // !!!! warning  !!!! string needs to be changed with when release version changes
-            //   can't use Assembly in this context
-            System.Threading.Mutex mutex = new System.Threading.Mutex(false, mName, out firstInstance);
-
-            if (firstInstance)
-            {   // just start up the designer when we're first in line
-                Application.EnableVisualStyles();
-                Application.DoEvents();
-                Application.Run(new RdlDesigner());
-                return;
-            }
-
-            // Process already running.   Notify other process that is might need to open another file
-            string[] args = Environment.GetCommandLineArgs();
-
-            IpcChannel clientChannel = new IpcChannel("RdlClientSend");
-            ChannelServices.RegisterChannel(clientChannel);
-
-            RdlIpcObject ipc =
-            (RdlIpcObject)Activator.GetObject(
-            typeof(RdlIpcObject),
-            "ipc://RdlProject/IpcCommands");
-
-
-            List<string> commands = new List<string>();
-
-
-            commands.Add("/a");
-            //sw.WriteLine("/a"); // signal that application should activate itself 
-            // copy all the command line arguments process received
-            for (int i = 1; i < args.Length; i++)
-            {
-                commands.Add(args[i]);
-            }
-            ipc.setCommands(commands);
-
-
-        }
+        
         private bool OkToSave()
         {
             foreach (MDIChild mc in this.MdiChildren)
