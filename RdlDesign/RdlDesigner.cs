@@ -1212,7 +1212,7 @@ namespace fyiReporting.RdlDesign
                 if (!bEnable)
                     ctlEditTextbox.Text = "";
                 ctlEditTextbox.Enabled = bEnable;
-                ctlEditLabel.Enabled = bEnable;
+                fxToolStripLabel1.Enabled = bEnable;
             }
         }
 
