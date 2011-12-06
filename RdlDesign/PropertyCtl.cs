@@ -51,7 +51,7 @@ namespace fyiReporting.RdlDesign
         private readonly string GROUP = "*Group Selection*"; 
         private readonly string NONAME = "*Unnamed*"; 
 
-        internal PropertyCtl()
+        public PropertyCtl()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();

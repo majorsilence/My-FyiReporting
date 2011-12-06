@@ -122,7 +122,6 @@ namespace fyiReporting.RdlDesign
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlDesigner_Closing);
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
-            InitProperties();
             InitToolbar();
             InitStatusBar();
             InitIpc();
@@ -245,31 +244,6 @@ namespace fyiReporting.RdlDesign
                 }
 
             }
-        }
-
-        private void InitProperties()
-        {
-            if (mainProperties != null)
-            {
-                this.Container.Remove(mainProperties);
-                this.Container.Remove(mainSp);
-                mainProperties = null;
-                mainSp = null;
-            }
-
-            if (!_ShowProperties)
-                return;
-
-            mainSp = new Splitter();
-            mainSp.Parent = this;
-            mainSp.Dock = _PropertiesLocation;
-
-            mainProperties = new PropertyCtl();
-            mainProperties.Parent = this;
-
-            // Left
-            mainProperties.Dock = _PropertiesLocation;
-            mainProperties.Anchor = AnchorStyles.Top | AnchorStyles.Left;
         }
 
         private DockStyle GetPropertiesDockStyle(string l)
@@ -517,7 +491,7 @@ namespace fyiReporting.RdlDesign
                     return;         // didn't change nothing to do
                 _PropertiesLocation = value;
 
-                mainSp.Dock = _PropertiesLocation;
+                mainSP.Dock = _PropertiesLocation;
                 mainProperties.Dock = _PropertiesLocation;
                 // Adjust the size of the property window so that it doesn't
                 //   fill the whole main window
@@ -1057,7 +1031,7 @@ namespace fyiReporting.RdlDesign
             {
                 this._ValidateRdl.Close();
             }
-            mainProperties.Visible = mainSp.Visible = bShowProp;
+            mainProperties.Visible = mainSP.Visible = bShowProp;
             if (leftAlignToolStripButton2 != null)
                 leftAlignToolStripButton2.Enabled = bEnableDesign;
             if (centerAlignToolStripButton2 != null)
@@ -1992,7 +1966,7 @@ namespace fyiReporting.RdlDesign
 
             if (mc != null && !_ShowProperties)
                 mc.SetFocus();
-            mainProperties.Visible = mainSp.Visible = _ShowProperties;
+            mainProperties.Visible = mainSP.Visible = _ShowProperties;
             propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
         }
 
