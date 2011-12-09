@@ -434,8 +434,10 @@ namespace fyiReporting.RdlDesign
 					{
 						cmSQL.Dispose();
 					}
-					if (dr != null)
-						dr.Close();
+                    if ((dr != null) && (dataProvider != "SQLite"))
+                    {
+                        dr.Close();
+                    }
 				}
 				Cursor.Current=saveCursor;
 			}
