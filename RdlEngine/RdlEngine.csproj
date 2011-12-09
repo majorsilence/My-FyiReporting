@@ -1113,7 +1113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RdlEngineConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -50,7 +50,7 @@
     			<DataProvider>SQLite</DataProvider> 
 		    	<CodeModule>System.Data.SQLite.DLL</CodeModule> 
 		    	<ClassName>System.Data.SQLite.SQLiteConnection</ClassName> 
-		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = "table"</TableSelect> 
+		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect> 
 		    	<Interface>SQL</Interface> 
 		</DataSource> 
 		<DataSource>

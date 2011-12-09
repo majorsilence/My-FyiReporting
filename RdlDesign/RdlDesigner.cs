@@ -1335,7 +1335,7 @@ namespace fyiReporting.RdlDesign
                     XmlAttribute nAttr = dNode.Attributes["Name"];
                     if (nAttr == null)	// shouldn't really happen
                         continue;
-                    dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nAttr.Value,null,
+                    dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nAttr.Value, null,
                         new EventHandler(this.dataSetsToolStripMenuItem_Click)));
                 }
             }
@@ -1364,7 +1364,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null || mc.DrawCtl == null || mc.ReportDocument == null)
                 return;
 
-            MenuItem menu = sender as MenuItem;
+            ToolStripMenuItem menu = sender as ToolStripMenuItem;
             if (menu == null)
                 return;
             mc.Editor.StartUndoGroup("DataSet Dialog");
