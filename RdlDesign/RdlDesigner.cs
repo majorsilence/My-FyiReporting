@@ -55,6 +55,17 @@ namespace fyiReporting.RdlDesign
     /// <summary>
     /// RdlDesigner is used for building and previewing RDL based reports.
     /// </summary>
+    /// <example>
+    /// The designer can be used from other applications by adding a reference to
+    /// RdelDesigner.exe to your projects.
+    /// <code lang="cs>
+    /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+    /// </code>
+    /// <code lang="vb">
+    /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+    /// designer.Show() 
+    /// </code>
+    /// </example>
     public partial class RdlDesigner :  IMessageFilter
     {
         static readonly string IpcFileName = @"\fyiIpcData400.txt"; // TODO: change file name with every release
@@ -102,6 +113,27 @@ namespace fyiReporting.RdlDesign
         {
         }
 
+        /// <summary>
+        /// Open a file programmatically when the designer is already open.
+        /// </summary>
+        /// <param name="filePath">The full path to the rdl report.</param>
+        /// <example>
+        /// An example of opening a designer form and loading one report.
+        /// <code lang="cs">
+        /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+        /// designer.Show();
+        /// designer.OpenFile(@"Path\to\a\report.rdl");
+        /// </code>
+        /// <code lang="vb">
+        /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+        /// designer.Show() 
+        /// designer.OpenFile("Path\to\a\report.rdl")
+        /// </code>
+        /// </example>
+        /// <remarks>
+        /// You can open as many reports as you want by calling this function. The only limitation is that
+        /// the designer must already be running by having called the Show() function first.
+        /// </remarks>
         public void OpenFile(string filePath)
         {
             this.OpenFile(new Uri(filePath));
