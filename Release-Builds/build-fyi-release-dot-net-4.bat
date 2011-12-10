@@ -40,9 +40,9 @@ copy ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe .\my-fyi-build-dot-net-4-x64\R
 copy ..\RdlDesktop\bin\x64\Release\config.xml .\my-fyi-build-dot-net-4-x64\config.xml /Y
 copy ..\RdlEngine\bin\x64\Release\RdlEngine.dll .\my-fyi-build-dot-net-4-x64\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\x64\Release\ICSharpCode.SharpZipLib.dll .\my-fyi-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
-copy ..\References\dot net 4\Mono.Security.dll .\my-fyi-build-dot-net-4-x64\Mono.Security.dll /Y
-copy ..\References\dot net 4\Npgsql.dll .\my-fyi-build-dot-net-4-x64\Npgsql.dll /Y
-copy ..\References\dot net 4\64bit\System.Data.SQLite.dll .\my-fyi-build-dot-net-4-x64\System.Data.SQLite.dll /Y
+copy "..\References\dot net 4\Mono.Security.dll" .\my-fyi-build-dot-net-4-x64\Mono.Security.dll /Y
+copy "..\References\dot net 4\Npgsql.dll" .\my-fyi-build-dot-net-4-x64\Npgsql.dll /Y
+copy "..\References\dot net 4\64bit\System.Data.SQLite.dll" .\my-fyi-build-dot-net-4-x64\System.Data.SQLite.dll /Y
 copy ..\RdlEngine\bin\x64\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-x64\RdlEngineConfig.xml /Y
 copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x64\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x64\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x64\RdlViewer.dll /Y
@@ -91,9 +91,9 @@ copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\my-fyi-build-dot-net-4-x86\R
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\my-fyi-build-dot-net-4-x86\config.xml /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngine.dll .\my-fyi-build-dot-net-4-x86\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\x86\Release\ICSharpCode.SharpZipLib.dll .\my-fyi-build-dot-net-4-x86\ICSharpCode.SharpZipLib.dll /Y
-copy ..\References\dot net 4\Mono.Security.dll .\my-fyi-build-dot-net-4-x86\Mono.Security.dll /Y
-copy ..\References\dot net 4\Npgsql.dll .\my-fyi-build-dot-net-4-x86\Npgsql.dll /Y
-copy ..\References\dot net 4\32bit\System.Data.SQLite.dll .\my-fyi-build-dot-net-4-x86\System.Data.SQLite.dll /Y
+copy "..\References\dot net 4\Mono.Security.dll" .\my-fyi-build-dot-net-4-x86\Mono.Security.dll /Y
+copy "..\References\dot net 4\Npgsql.dll" .\my-fyi-build-dot-net-4-x86\Npgsql.dll /Y
+copy "..\References\dot net 4\32bit\System.Data.SQLite.dll" .\my-fyi-build-dot-net-4-x86\System.Data.SQLite.dll /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-x86\RdlEngineConfig.xml /Y
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x86\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x86\RdlViewer.dll /Y
