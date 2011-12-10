@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1088" projectName="MyFyiReporting" projectUuid="5e1924f2-5396-45d9-947b-4707ea6a1a98" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.3.0" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 2" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds" projectTargetName="setup-my-fyiReporting-dot-net2-x86" projectType="0" projectUserInterface="WixUI_Minimal">
+<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1152" projectName="MyFyiReporting" projectUuid="acc9afa1-52f6-4e91-90bb-400546c9f179" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.3.0" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 2" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds" projectTargetName="setup-my-fyiReporting-dot-net2-x86" projectType="0" projectUserInterface="WixUI_Minimal">
   <LicencePaths>
     <string>C:\Program Files (x86)\Jgaa's Internet\War Setup\Licenses</string>
   </LicencePaths>
@@ -87,6 +87,18 @@
       <components componentId="ID1087" componentGuid="dca17666-6240-47a2-af68-3d4a4bd8e905">
         <componentFiles fileId="ID_bf906c86_9b87_4632_9716_9b25ac2d9ddd" srcName="System.Data.SQLite.dll" srcDirectory=".\my-fyi-build-dot-net-2-x86" dstName="System.Data.SQLite.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="System.Data.SQLite" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
           <service StartWhenInstalled="true" Remove="both" id="ID1086" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <components componentId="ID1149" componentGuid="62d1aa07-a62d-4432-92ee-704200772f72">
+        <componentFiles fileId="ID_a30c65ad_0a8c_4635_8d4c_62abb99a1f9b" srcName="config.xml" srcDirectory=".\my-fyi-build-dot-net-2-x86" dstName="config.xml" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="config" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1148" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <components componentId="ID1151" componentGuid="6afb238f-fe84-42b2-88f2-d4df3cc48672">
+        <componentFiles fileId="ID_f26e721e_f5f7_45f3_a833_6603018c5cfe" srcName="RdlEngineConfig.xml" srcDirectory=".\my-fyi-build-dot-net-2-x86" dstName="RdlEngineConfig.xml" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="RdlEngineConfig" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1150" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
         </componentFiles>
         <addToCreateFolder>false</addToCreateFolder>
       </components>
