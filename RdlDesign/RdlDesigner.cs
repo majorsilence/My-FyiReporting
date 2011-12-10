@@ -102,6 +102,16 @@ namespace fyiReporting.RdlDesign
         {
         }
 
+        public void OpenFile(string filePath)
+        {
+            this.OpenFile(new Uri(filePath));
+        }
+        public void OpenFile(Uri filePath)
+        {
+            CreateMDIChild(filePath, null, false);
+            RecentFilesMenu();	
+        }
+
         public RdlDesigner(string IpcChannelPortName)
         {
             InitializeComponent();
