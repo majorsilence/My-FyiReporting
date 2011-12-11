@@ -331,6 +331,21 @@ namespace fyiReporting.RDL
 			}
 		}
 
+
+        public static string ToUpperFirstLetter(string source)
+        {
+            if (string.IsNullOrEmpty(source))
+            {
+                return string.Empty;
+            }
+            // convert to char array of the string
+            char[] letters = source.ToCharArray();
+            // upper case the first char
+            letters[0] = char.ToUpper(letters[0]);
+            // return the array made of the new char array
+            return new string(letters);
+        }
+
 		/// <summary>
 		/// Gets the enumerated font weight.
 		/// </summary>
@@ -343,7 +358,7 @@ namespace fyiReporting.RDL
 
             try
             {
-                fw = (FontWeightEnum)Enum.Parse(typeof(FontWeightEnum), v);
+                fw = (FontWeightEnum)System.Enum.Parse(typeof(FontWeightEnum), ToUpperFirstLetter(v));
             }
             catch
             {
@@ -491,6 +506,10 @@ namespace fyiReporting.RDL
 
             try
             {
+                if (v == "rl-tb")
+                { // How the hell did it ever get saved as rl-tb?
+                    v = "tb_rl";
+                }
                 w = (WritingModeEnum)Enum.Parse(typeof(WritingModeEnum), v);
             }
             catch
