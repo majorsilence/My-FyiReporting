@@ -30,7 +30,7 @@ namespace fyiReporting.RdlDesign
             {   // just start up the designer when we're first in line
                 Application.EnableVisualStyles();
                 Application.DoEvents();
-                Application.Run(new RdlDesigner(ipcChannelPortName));
+                Application.Run(new RdlDesigner(ipcChannelPortName, true));
                 return;
             }
 

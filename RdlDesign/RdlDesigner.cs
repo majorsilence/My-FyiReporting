@@ -59,10 +59,10 @@ namespace fyiReporting.RdlDesign
     /// The designer can be used from other applications by adding a reference to
     /// RdelDesigner.exe to your projects.
     /// <code lang="cs>
-    /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+    /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel", true);
     /// </code>
     /// <code lang="vb">
-    /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+    /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel", true)
     /// designer.Show() 
     /// </code>
     /// </example>
@@ -102,11 +102,6 @@ namespace fyiReporting.RdlDesign
         bool bSuppressChange = false;
         private Color _SaveExprBackColor = Color.LightGray;
        
-        // TODO: Property to set server\database connection, Form title, form icon
-        // Event raise on file save (with path and name to saved file)
-        // Property to get saved file(s)
-        // Properties to control which controls in the menu and toolbar are available.
-
         private string _IpcChannelPortName = "RdlProject";
 
         private RdlDesigner()
@@ -144,7 +139,40 @@ namespace fyiReporting.RdlDesign
             RecentFilesMenu();	
         }
 
-        public RdlDesigner(string IpcChannelPortName)
+        /// <summary>
+        /// Open a file programmatically when the designer is already open.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="connectionString">The connection string that will be used</param>
+        public void OpenFile(string filePath, string connectionString)
+        {
+            OpenFile(new Uri(filePath), connectionString);
+        }
+        public void OpenFile(Uri filePath, string connectionString)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath.AbsolutePath);
+
+            foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
+            {
+                node.InnerText = connectionString;
+            }
+
+            xmlDoc.Save(filePath.AbsolutePath);
+
+            CreateMDIChild(filePath, null, false);
+            RecentFilesMenu();	
+        }
+
+        // TODO: Event raise on file save (with path and name to saved file)
+        // Properties to control which controls in the menu and toolbar are available.
+
+        /// <summary>
+        /// Designer constructor.
+        /// </summary>
+        /// <param name="IpcChannelPortName">The IPC channel that the designer will use.</param>
+        /// <param name="openPreviousSession">True or False open the previous reports that were open in the designer.</param>
+        public RdlDesigner(string IpcChannelPortName, bool openPreviousSession)
         {
             InitializeComponent();
 
@@ -171,7 +199,7 @@ namespace fyiReporting.RdlDesign
             InitIpc();
 
             // open up the current files if any
-            if (_CurrentFiles != null)
+            if (_CurrentFiles != null && openPreviousSession == true)
             {
                 foreach (Uri file in _CurrentFiles)
                 {
