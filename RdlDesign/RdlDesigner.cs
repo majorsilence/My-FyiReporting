@@ -167,6 +167,8 @@ namespace fyiReporting.RdlDesign
         // TODO: Event raise on file save (with path and name to saved file)
         // Properties to control which controls in the menu and toolbar are available.
 
+        public event RdlDesign.RdlDesignerSavedFileEventHandler SavedFileEvent;
+
         /// <summary>
         /// Designer constructor.
         /// </summary>
@@ -1637,6 +1639,11 @@ namespace fyiReporting.RdlDesign
             if (!mc.FileSave())
                 return;
 
+            if (this.SavedFileEvent != null)
+            {
+                this.SavedFileEvent(this, new RdlDesignerSavedFileEvent(mc.SourceFile));
+            }
+            
             NoteRecentFiles(mc.SourceFile, true);
 
             if (mc.Editor != null)
@@ -1737,6 +1744,12 @@ namespace fyiReporting.RdlDesign
             mc.Viewer.Folder = Path.GetDirectoryName(mc.SourceFile.LocalPath);
             mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(mc.SourceFile.LocalPath);
             mc.Text = Path.GetFileName(mc.SourceFile.LocalPath);
+
+
+            if (this.SavedFileEvent != null)
+            {
+                this.SavedFileEvent(this, new RdlDesignerSavedFileEvent(mc.SourceFile));
+            }
 
             NoteRecentFiles(mc.SourceFile, true);
 
