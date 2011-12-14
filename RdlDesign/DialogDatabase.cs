@@ -257,6 +257,65 @@ namespace fyiReporting.RdlDesign
             cbOrientation.SelectedIndex = 0;
         }
 
+        public enum ConnectionType
+        {
+            MYSQL,
+            MSSQL,
+            SQLITE,
+            POSTGRESQL,
+            XML,
+            WEBSERVICE
+        }
+
+        /// <summary>
+        /// Pre set a connection string.  This is useful when you need to create
+        /// a new report from a program other then RdlDesigner. 
+        /// </summary>
+        /// <param name="connectionString">A full and correct database connection string</param>
+        /// <param name="hideConnectionTab">If true this will hide the connection string.  This is useful
+        /// when you do not want the users to need to know this information.</param>
+        /// <param name="ct">The database connection type.</param>
+        public void SetConnection(string connectionString, bool hideConnectionTab, ConnectionType ct)
+        {
+
+            if (ct == ConnectionType.MSSQL)
+            {
+                cbConnectionTypes.SelectedItem = "SQL";
+            }
+            else if (ct == ConnectionType.MYSQL)
+            {
+                cbConnectionTypes.SelectedItem = "MySQL.NET";
+            }
+            else if (ct == ConnectionType.POSTGRESQL)
+            {
+                cbConnectionTypes.SelectedItem = "PostgreSQL";
+            }
+            else if (ct == ConnectionType.SQLITE)
+            {
+                cbConnectionTypes.SelectedItem = "SQLite";
+            }
+            else if (ct == ConnectionType.WEBSERVICE)
+            {
+                cbConnectionTypes.SelectedItem = "WebService";
+            }
+            else if (ct == ConnectionType.XML)
+            {
+                cbConnectionTypes.SelectedItem = "XML";
+            }
+            else
+            {
+                throw new Exception("You should not have reached this far in the SetConnection function.");
+            }
+
+            tbConnection.Text = connectionString;
+
+            if (hideConnectionTab == true)
+            {
+                tcDialog.TabPages.Remove(tcDialog.TabPages["DBConnection"]);
+            }
+
+        }
+
         public string ResultReport
         {
             get { return _ResultReport; }
