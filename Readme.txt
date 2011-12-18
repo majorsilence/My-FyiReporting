@@ -13,6 +13,9 @@ I know there are other forks but last I checked they also seemed to be dead.  Th
 found at http://www.fyireporting.com/ and it has exmpales found at http://www.fyireporting.com/helpv4/index.php and 
 the forum is http://www.fyireporting.com/forum/index.php.  However has I said above for the most part it is a dead 
 project.
+UPDATE: It looks like there is another fork ReportFU http://reportfu.org and it looks alive.  
+Perhaps I will be able to merge my changes into that project at some point.
+
 
 Also check this projects wiki as information will be slowly added.
 
@@ -104,11 +107,3 @@ ReportingCloud (another fork) has made some tutorials for using the designer and
 http://sourceforge.net/projects/reportingcloud/files/
 
 
-
-
-TODO (if not already patches on fyi reporting forum):  
-* Drag and Drop report into designer
-* Pass report path to RdlDesigner.exe when executing and have it open the report
-* Can shrink on horizontal space if row is suppressed
-* Merge patches from fyiReporting forum
-* Create a user control in the designer executable that other application can use
