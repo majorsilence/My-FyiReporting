@@ -13,9 +13,13 @@ namespace fyiReporting.RdlViewer
         private DateTime Started;
         private RdlViewer _viewer;
 
-        public DialogWait(RdlViewer viewer)
+        public delegate bool CheckStopWaitDialog();
+        private CheckStopWaitDialog _checkStopFunction;
+
+        public DialogWait(RdlViewer viewer, CheckStopWaitDialog checkStopFunction)
         {
             InitializeComponent();
+            _checkStopFunction = checkStopFunction; 
             _viewer = viewer;
             Started = DateTime.Now;
             timer1.Interval = 1000;
@@ -27,7 +31,11 @@ namespace fyiReporting.RdlViewer
         {
             TimeSpan time = DateTime.Now - Started;
             lblTimeTaken.Text = (((time.Days * 24 + time.Hours) * 60) + time.Minutes) + " Minutes " + time.Seconds + " Seconds";
-            //lblStatus.Text = _viewer.ReportStatus();
+           
+            if (_checkStopFunction())
+            {
+                Close();
+            } 
             Application.DoEvents();
         }
     }

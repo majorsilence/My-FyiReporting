@@ -35,7 +35,7 @@ namespace fyiReporting.RdlViewer
 	/// <summary>
 	/// RdlViewer displays RDL files or syntax. 
 	/// </summary>
-	public class RdlViewer : System.Windows.Forms.Control
+	public class RdlViewer : System.Windows.Forms.UserControl
 	{
         public delegate void HyperlinkEventHandler(object source, HyperlinkEventArgs e);
         /// <summary>
@@ -97,6 +97,7 @@ namespace fyiReporting.RdlViewer
 
 		private bool _ShowParameters=true;
         private bool _ShowWaitDialog = true;    // show wait dialog when running report
+        private volatile bool _stopWaitDialog = false;
         
 		public RdlViewer()
 		{
@@ -1326,9 +1327,15 @@ namespace fyiReporting.RdlViewer
         // 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
         private void showWait()
         {
-            DialogWait wait = new DialogWait(this);
+            DialogWait wait = new DialogWait(this, StopWaitDialog);
             wait.ShowDialog();
         }
+
+        public bool StopWaitDialog()
+        {
+            return _stopWaitDialog;
+            // This is the callback
+        } 
 
 		/// <summary>
 		/// Call LoadPageIfNeeded when a routine requires the report to be loaded in order
@@ -1347,6 +1354,11 @@ namespace fyiReporting.RdlViewer
                     {
                         t = new System.Threading.Thread(new System.Threading.ThreadStart(showWait));
                         t.Start();
+
+                        while (!t.IsAlive)
+                        {
+                            System.Threading.Thread.Sleep(1);
+                        }
                     }
 					_InLoading = true;
                     savec = this.Cursor;				// this could take a while so put up wait cursor
@@ -1362,21 +1374,9 @@ namespace fyiReporting.RdlViewer
 						this.Cursor = savec;
                     if (t != null)
                     {
-                        int i = 0;
-                        while ((t.ThreadState & System.Threading.ThreadState.AbortRequested) != System.Threading.ThreadState.AbortRequested &&
-                            (t.ThreadState & System.Threading.ThreadState.Aborted) != System.Threading.ThreadState.Aborted &&
-                            (t.ThreadState & System.Threading.ThreadState.Stopped) != System.Threading.ThreadState.Stopped &&
-                            (t.ThreadState & System.Threading.ThreadState.StopRequested) != System.Threading.ThreadState.StopRequested)
-                        {
-                            try
-                            {
-                                t.Abort();
-                            }
-                            catch //(Exception e) PJR don't declare variable as we aren't using it anyway.
-                            {
-                            }
-                            i++;
-                        }
+                        _stopWaitDialog = true;
+                        t.Join();
+                        _stopWaitDialog = false; 
                     }
                     
 				}
@@ -1542,6 +1542,10 @@ namespace fyiReporting.RdlViewer
                 {
                     t = new System.Threading.Thread(new System.Threading.ThreadStart(showWait));
                     t.Start();
+                    while (!t.IsAlive)
+                    {
+                        System.Threading.Thread.Sleep(1);
+                    }
                 }
                 _pgs = GetPages(this._Report);
                 _DrawPanel.Pgs = _pgs;
@@ -1560,10 +1564,9 @@ namespace fyiReporting.RdlViewer
                 Cursor.Current = Cursors.Default;
                 if (t != null)
                 {
-                    int i = 0;
-                    while (t.ThreadState != System.Threading.ThreadState.AbortRequested && t.ThreadState != System.Threading.ThreadState.Aborted && t.ThreadState != System.Threading.ThreadState.Stopped && t.ThreadState != System.Threading.ThreadState.StopRequested)
-                    { t.Abort(); 
-                        i++; }
+                    _stopWaitDialog = true;
+                    t.Join();
+                    _stopWaitDialog = false; 
                 }
             }
 
