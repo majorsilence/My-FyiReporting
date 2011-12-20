@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -70,14 +71,14 @@ namespace fyiReporting.RDL
 						//recursive hierarchy (see
 						//ToggleItem)
 						//If filters on the group eliminate a group
-						// instance’s parent, it is instead treated as a
-						// child of the parent’s parent.
+						// instanceï¿½s parent, it is instead treated as a
+						// child of the parentï¿½s parent.
 		string _DataElementName;	// The name to use for the data element for
 									// instances of this group.
 									// Default: Name of the group
 		string _DataCollectionName;	// The name to use for the data element for
 						// the collection of all instances of this group.
-						// Default: “DataElementName_Collection”
+						// Default: ï¿½DataElementName_Collectionï¿½
 		DataElementOutputEnum _DataElementOutput;	// Indicates whether the group should appear
 						// in a data rendering.  Default: Output
 		List<Textbox> _HideDuplicates;	// holds any textboxes that use this as a hideduplicate scope

@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -34,8 +35,8 @@ namespace fyiReporting.RDL
 	[Serializable]
 	internal class Subreport : ReportItem
 	{
-		string _ReportName;		// The full path (e.g. “/salesreports/orderdetails”) or
-								// relative path (e.g. “orderdetails”) to a subreport.
+		string _ReportName;		// The full path (e.g. ï¿½/salesreports/orderdetailsï¿½) or
+								// relative path (e.g. ï¿½orderdetailsï¿½) to a subreport.
 								// Relative paths start in the same folder as the current
 								// 
 								// Cannot be an empty string (ignoring whitespace)

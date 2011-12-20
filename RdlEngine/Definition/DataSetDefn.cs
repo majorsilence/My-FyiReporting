@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -53,7 +54,7 @@ namespace fyiReporting.RDL
 							// If no Collation is specified, the application
 							// should attempt to derive the collation setting by
 							// querying the data provider.
-							// Defaults to the application’s locale settings if
+							// Defaults to the applicationï¿½s locale settings if
 							// the data provider does not support that method
 							// or returns an unsupported or invalid value
 		TrueFalseAutoEnum _AccentSensitivity;	// Indicates whether the data is accent sensitive

@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -47,7 +48,7 @@ namespace fyiReporting.RDL
 							// should appear before (left/above) or after
 							// (right/below) the detail columns/rows.
 		string _DataElementName;	// The name to use for this subtotal.
-									//  Default: “Total”
+									//  Default: ï¿½Totalï¿½
 		DataElementOutputEnum _DataElementOutput;	// Indicates whether the subtotal should appear in a data rendering.
 									// Default: NoOutput
 	

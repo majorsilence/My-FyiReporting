@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -53,7 +54,7 @@ namespace fyiReporting.RDL
 		Expression _FontWeight;		//(Enum FontWeight) Thickness of the font
 		Expression _Format;			//(string) .NET Framework formatting string1
 		//	Note: Locale-dependent currency
-		//	formatting (format code “C”) is based on
+		//	formatting (format code ï¿½Cï¿½) is based on
 		//	the language setting for the report item
 		//	Locale-dependent date formatting is
 		//	supported and should be based on the

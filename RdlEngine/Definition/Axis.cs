@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -53,7 +54,7 @@ namespace fyiReporting.RDL
 		// If omitted, uses the default behavior for the chart type.
 		bool _Interlaced;	// If this property is true then strip lines are drawn
 		//every other grid line interval for the axis. If grid
-		//lines are not used for the axis then the axis’ tick
+		//lines are not used for the axis then the axisï¿½ tick
 		//marks or labels are used to determine the
 		//interlaced strip lines interval.
 		//Defaults to False.

@@ -1,6 +1,7 @@
 /* ====================================================================
    Copyright (C) 2008  samuelchoi - donated to RDL Project
-   Copyright (C) 2004-2008  fyiReporting Software, LLC  -- most of the drawing originally came from Viewer
+   Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>  -- most of the drawing originally came from Viewer
 
    This file is part of the fyiReporting RDL project.
 	

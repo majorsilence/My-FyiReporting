@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
  * Copyright 2011 rcmillard31 (http://www.fyireporting.com/forum/viewtopic.php?t=1103&highlight=threadabortexception)
 
    This file is part of the fyiReporting RDL project.

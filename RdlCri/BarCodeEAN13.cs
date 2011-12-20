@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -66,13 +67,13 @@ namespace fyiReporting.CRI
         string _ProductCode;        // Product code (assigned by company)
 
 //  The EAN-13 Bar Code Symbol shall be made up as follows, reading from left to right: 
-//•  A left Quiet Zone
-//•  A normal Guard Bar Pattern
-//•  Six symbol characters from number sets A and B (each 7 modules long)
-//•  A centre Guard Bar Pattern
-//•  Six symbol characters from number set C (each 7 modules long)
-//•  A normal Guard Bar Pattern
-//•  A right Quiet Zone
+//ï¿½  A left Quiet Zone
+//ï¿½  A normal Guard Bar Pattern
+//ï¿½  Six symbol characters from number sets A and B (each 7 modules long)
+//ï¿½  A centre Guard Bar Pattern
+//ï¿½  Six symbol characters from number set C (each 7 modules long)
+//ï¿½  A normal Guard Bar Pattern
+//ï¿½  A right Quiet Zone
 
         static public readonly float OptimalHeight = 25.91f;          // Optimal height at magnification 1    
         static public readonly float OptimalWidth = 37.29f;            // Optimal width at mag 1

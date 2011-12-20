@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -53,7 +54,7 @@ namespace fyiReporting.RDL
 									// appear to the left of the row headers
 									// (right of the row headers for RTL
 									// matrixes). Default is 0.
-		string _CellDataElementName;	// The name to use for the cell element. Default: “Cell”
+		string _CellDataElementName;	// The name to use for the cell element. Default: ï¿½Cellï¿½
 		MatrixCellDataElementOutputEnum _CellDataElementOutput; // Indicates whether the cell contents
 									//should appear in a data rendering.  Default is Output.
 		static string nullterminal = '\ufffe'.ToString();

@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -34,8 +35,8 @@ namespace fyiReporting.RDL
 		Expression _InitialState;	//(Boolean)
 					//A Boolean expression, the value of which
 					//determines the initial state of the toggle image.
-					//True = “expanded” (i.e. a minus sign). False =
-					//“collapsed” (i.e. a plus sign)		
+					//True = ï¿½expandedï¿½ (i.e. a minus sign). False =
+					//ï¿½collapsedï¿½ (i.e. a plus sign)		
 	
 		internal ToggleImage(ReportDefn r, ReportLink p, XmlNode xNode) : base(r, p)
 		{

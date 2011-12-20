@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -146,7 +147,7 @@ namespace fyiReporting.RDL
         * starting 0xfe 0xff marker. This is the flag within a PDF string to
         * interpret the byte sequence as a string of UTF-16-encoded
         * characters. If the String contains no characters outside the
-        * Unicode U+0000 – U+00ff range, no UTF-16 transformation is needed,
+        * Unicode U+0000 ï¿½ U+00ff range, no UTF-16 transformation is needed,
         * and we simply return the same String, with the exception that some
         * characters are quoted, as required by PDF, and any non-prinable
         * US-ASCII characters are encoded as escaped octals.

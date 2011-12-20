@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -77,8 +78,8 @@ namespace fyiReporting.RDL
 		//							report for use in expressions.
 		Classes _Classes;		// Classes 0-1 Element Classes to instantiate during report initialization
 		string _DataTransform;	// The location to a transformation to apply
-		// to a report data rendering. This can be a full folder path (e.g. “/xsl/xfrm.xsl”),
-		// relative path (e.g. “xfrm.xsl”).
+		// to a report data rendering. This can be a full folder path (e.g. ï¿½/xsl/xfrm.xslï¿½),
+		// relative path (e.g. ï¿½xfrm.xslï¿½).
 		string _DataSchema;		// The schema or namespace to use for a report data rendering.
 		string _DataElementName;	// Name of a top level element that
 		//		represents the report data. Default: Report.

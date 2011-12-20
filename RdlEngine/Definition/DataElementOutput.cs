@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -33,7 +34,7 @@ namespace fyiReporting.RDL
 		Output,		// Indicates the item should appear in the output
 		NoOutput,	// Indicates the item should not appear in the output
 		ContentsOnly,	// Indicates the item should not appear in the XML, but its contents should be
-						// rendered as if they were in this item’s
+						// rendered as if they were in this itemï¿½s
 						// container. Only applies to Lists.
 		Auto		// (Default): Will behave as NoOutput for
 					// Textboxes with constant values,

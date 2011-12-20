@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -42,8 +43,8 @@ namespace fyiReporting.RDL
 							// source should be executed in a single transaction.
 		ConnectionProperties _ConnectionProperties;	//Information about how to connect to the data source
 		string _DataSourceReference;	//The full path (e.g.
-							// “/salesreports/salesdatabase”) or relative path
-							// (e.g. “salesdatabase”) to a data source
+							// ï¿½/salesreports/salesdatabaseï¿½) or relative path
+							// (e.g. ï¿½salesdatabaseï¿½) to a data source
 							// reference. Relative paths start in the same
 							// location as the report.		
 		[NonSerialized] IDbConnection _ParseConnection;	// while parsing we sometimes need to connect

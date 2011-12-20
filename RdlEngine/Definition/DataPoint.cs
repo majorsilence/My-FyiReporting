@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -43,7 +44,7 @@ namespace fyiReporting.RDL
 									//	this data point.
 									//	Default: Name of corresponding static
 									//	series or category. If there is no static
-									//	series or categories, “Value”
+									//	series or categories, ï¿½Valueï¿½
 		DataElementOutputEnum _DataElementOutput;	// Indicates whether the data point should
 									// appear in a data rendering.
 	

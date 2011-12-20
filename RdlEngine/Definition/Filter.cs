@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -70,8 +71,8 @@ namespace fyiReporting.RDL
 						//filtered out.)
 						
 						//Like uses the same special characters as the
-						//Visual Basic LIKE operator (e.g. “?” to
-						//represent a single character and “*” to
+						//Visual Basic LIKE operator (e.g. ï¿½?ï¿½ to
+						//represent a single character and ï¿½*ï¿½ to
 						//represent any series of characers). See
 						//http://msdn.microsoft.com/library/enus/vblr7/html/vaoprlike.asp.	
 			bool _FilterOperatorSingleRow;	// false for Top/Bottom N and Percent; otherwise true

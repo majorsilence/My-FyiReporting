@@ -1,5 +1,6 @@
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
+   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
 	
@@ -48,10 +49,10 @@ namespace fyiReporting.RDL
 		string _DetailDataElementName;	//The name to use for the data element
 									// for instances of this group. Ignored if
 									// there is a grouping defined for the details.
-									// Default: “Details”
+									// Default: ï¿½Detailsï¿½
 		string _DetailDataCollectionName;	// The name to use for the data element
 											// for the collection of all instances of this group.
-											// Default: “Details_Collection”
+											// Default: ï¿½Details_Collectionï¿½
 		DataElementOutputEnum _DetailDataElementOutput;	// Indicates whether the details should appear in a data rendering.
         bool _IsGrid;
 	
