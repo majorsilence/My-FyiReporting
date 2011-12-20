@@ -172,7 +172,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RdlViewer.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RdlViewerFind.cs">
       <SubType>UserControl</SubType>
