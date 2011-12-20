@@ -1312,7 +1312,7 @@ namespace fyiReporting.RdlDesign
             switch (cbConnectionTypes.Text)
             {
                 case "SQL":
-                    tbConnection.Text = "Server=(local)\\ServerInstance;DataBase=DatabaseName;Integrated Security=SSPI;Connect Timeout=5";
+                    tbConnection.Text = "Server=(local)\\ServerInstance;DataBase=DatabaseName;User Id=myUsername;Password=myPassword;Connect Timeout=5";
                     break;
                 case "ODBC":
                     tbConnection.Text = "dsn=world;UID=user;PWD=password;";
