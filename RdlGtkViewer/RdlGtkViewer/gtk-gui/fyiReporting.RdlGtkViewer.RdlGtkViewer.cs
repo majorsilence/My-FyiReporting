@@ -20,10 +20,10 @@ namespace fyiReporting.RdlGtkViewer
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
-			// Widget RdlGtkViewer.RdlGtkViewer
+			// Widget fyiReporting.RdlGtkViewer.RdlGtkViewer
 			global::Stetic.BinContainer.Attach (this);
-			this.Name = "RdlGtkViewer.RdlGtkViewer";
-			// Container child RdlGtkViewer.RdlGtkViewer.Gtk.Container+ContainerChild
+			this.Name = "fyiReporting.RdlGtkViewer.RdlGtkViewer";
+			// Container child fyiReporting.RdlGtkViewer.RdlGtkViewer.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;

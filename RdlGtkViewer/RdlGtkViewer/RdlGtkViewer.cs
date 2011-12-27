@@ -4,7 +4,7 @@ using System;
 using fyiReporting.RDL;
 
 
-namespace RdlGtkViewer
+namespace fyiReporting.RdlGtkViewer
 {
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class RdlGtkViewer : Gtk.Bin
@@ -39,39 +39,7 @@ namespace RdlGtkViewer
 			vboxImages.Add (img);		
 			
     		}
-		
-		/// <summary>
-		/// Loads the pdf.  This is the function you call when you want to display a pdf.
-		/// </summary>
-		/// <param name='pdfFileName'>
-		/// Pdf file name.
-		/// </param>
-		public void LoadPdf(string pdfFileName)
-		{			
-			pdf = Poppler.Document.NewFromFile(pdfFileName, "");
-			PageCountLabel.Text = @"/" + (pdf.NPages - 1).ToString();	
-			CurrentPage.Value = 0;
-			CurrentPage.Adjustment.Upper = pdf.NPages-1;
-		
-			foreach (Gtk.Widget w in vboxImages.AllChildren)
-			{
-				vboxImages.Remove(w);
-			}
-				
-			for (this.pageIndex = 0; this.pageIndex < pdf.NPages; this.pageIndex++)
-			{
-				Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 0, 0);
-				Gtk.Image img = new Gtk.Image();
-				img.Pixbuf = pixbuf;		
-				img.Name = "image1";
-								
-				//vboxImages.Add (img);
-				RenderPage(ref img);
-			}
-			
-			this.ShowAll();
-		}
-				
+						
 		/// <summary>
 		/// Raises the next button clicked event.  Only used in single page mode.
 		/// </summary>
@@ -217,7 +185,6 @@ namespace RdlGtkViewer
         {
         }
 		
-		
 
 		protected void OnSaveButtonClicked (object sender, System.EventArgs e)
 		{
@@ -275,6 +242,187 @@ namespace RdlGtkViewer
 				_ignorePageChange = false;
 			}
 		}
+		
+		
+		/// <summary>
+		/// Loads the pdf.  This is the function you call when you want to display a pdf.
+		/// </summary>
+		/// <param name='pdfFileName'>
+		/// Pdf file name.
+		/// </param>
+		private void LoadPdf(Uri pdfFileName)
+		{			
+			pdf = Poppler.Document.NewFromFile(pdfFileName.AbsoluteUri, "");
+			PageCountLabel.Text = @"/" + (pdf.NPages - 1).ToString();	
+			CurrentPage.Value = 0;
+			CurrentPage.Adjustment.Upper = pdf.NPages-1;
+		
+			foreach (Gtk.Widget w in vboxImages.AllChildren)
+			{
+				vboxImages.Remove(w);
+			}
+				
+			for (this.pageIndex = 0; this.pageIndex < pdf.NPages; this.pageIndex++)
+			{
+				Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 0, 0);
+				Gtk.Image img = new Gtk.Image();
+				img.Pixbuf = pixbuf;		
+				img.Name = "image1";
+								
+				//vboxImages.Add (img);
+				RenderPage(ref img);
+			}
+			
+			this.ShowAll();
+		}
+		
+		
+		private string _Parameters="";
+		/// <summary>
+		/// Parameters passed to report when run. Parameters are separated by '&'. For example,
+		/// OrderID=10023&OrderDate=10/14/2002
+		/// Note: these parameters will override the user specified ones.
+		/// </summary>
+		public string Parameters
+		{
+			get {return _Parameters;}
+			set {_Parameters=value;}
+		}
+		
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// </param>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+      public void LoadReport(string filename)
+      {
+            string source;
+            Report report;
+            int index;
+            System.Collections.Specialized.ListDictionary ld;
+            string file;
+			
+			// Any parameters?  e.g.  file1.rdl?orderid=5 
+			index = filename.LastIndexOf('?');
+			if (index >= 0)
+			{
+			    ld = this.GetParmeters(filename.Substring(index));
+			    file = filename.Substring(0, index);
+			}
+			else 
+			{
+			    ld = null;
+			    file = filename;
+			}
+			
+			// Obtain the source 
+			source = System.IO.File.ReadAllText(file);
+			// GetSource is omitted: all it does is read the file.
+			// Compile the report 
+			report = this.GetReport(source);
+			
+			// Obtain the data passing any parameters 
+			report.RunGetData(ld);
+
+              // Render the report in each of the requested types 
+			string tempFile = System.IO.Path.GetTempFileName();
+            SaveTemp(report, tempFile);
+			LoadPdf(new Uri(tempFile));
+        
+      }
+		
+	  /// <summary>
+	  /// Saves a temporary pdf to be used in the viewer.
+	  /// </summary>
+	  /// <param name='report'>
+	  /// Report.
+	  /// </param>
+	  /// <param name='FileName'>
+	  /// File name.
+	  /// </param>
+      private void SaveTemp(Report report, string FileName)
+      {
+            OneFileStreamGen sg=null;
+
+            try 
+            {
+                  sg = new OneFileStreamGen(FileName, true);
+                  // overwrite with this name
+                  report.RunRender(sg, OutputPresentationType.PDF);     
+            }
+            catch(Exception e)
+            {
+                  Console.WriteLine(e.Message);
+            }
+            finally 
+            {
+                  if (sg != null)
+                  {
+                        sg.CloseMainStream();
+                  }
+            }
+            return;
+      }
+		
+      // GetParameters creates a list dictionary
+      // consisting of a report parameter name and a value.
+      private System.Collections.Specialized.ListDictionary GetParmeters(string parms)
+      {
+            System.Collections.Specialized.ListDictionary ld = new System.Collections.Specialized.ListDictionary();
+            if (parms == null)
+			{
+                  return ld; // dictionary will be empty in this case
+			}
+
+            // parms are separated by & 
+
+            char[] breakChars = new char[] {'&'};
+            string[] ps = parms.Split(breakChars);
+
+            foreach (string p in ps)
+            {
+                  int iEq = p.IndexOf("=");
+                  if (iEq > 0)
+                  {
+                        string name = p.Substring(0, iEq);
+                        string val = p.Substring(iEq+1);
+                        ld.Add(name, val);
+                  }
+            }
+            return ld;
+      }
+
+      private Report GetReport(string reportSource)
+      {
+            // Now parse the file 
+
+            RDLParser rdlp;
+            Report r;
+
+			rdlp =  new RDLParser(reportSource);
+			// RDLParser takes RDL XML and Parse compiles the report
+			
+			r = rdlp.Parse();
+			if (r.ErrorMaxSeverity > 0) 
+			{
+			
+			    foreach (string emsg in r.ErrorItems)
+			    {
+			          Console.WriteLine(emsg);
+			    }
+			
+			    int severity = r.ErrorMaxSeverity;
+				r.ErrorReset();
+			    if (severity > 4)
+			    {
+			          r = null; // don't return when severe errors
+			    }
+			}
+
+            return r;
+      }
 		
 	}
 }
