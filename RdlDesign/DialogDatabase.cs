@@ -476,7 +476,12 @@ namespace fyiReporting.RdlDesign
             foreach (string p in parts)
             {
                 // Handle conditional special
-                if (p.Substring(0, 5) == "ifdef")
+                int length = 5;
+                if (p.Length < 5)
+                {
+                    length = p.Length;
+                }
+                if (p.Substring(0, length) == "ifdef")
                 {
                     args = p.Substring(6);
                     switch (args)
