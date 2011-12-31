@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>
+  </Description>
+  <Author>
+  </Author>
+  <PageHeight>11in</PageHeight>
+  <PageWidth>8.5in</PageWidth>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQLite</DataProvider>
+        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <Width>7.5in</Width>
+  <TopMargin>.25in</TopMargin>
+  <LeftMargin>.25in</LeftMargin>
+  <RightMargin>.25in</RightMargin>
+  <BottomMargin>.25in</BottomMargin>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued, DiscontinuedDate FROM Products</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ProductID">
+          <DataField>ProductID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ProductName">
+          <DataField>ProductName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SupplierID">
+          <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="CategoryID">
+          <DataField>CategoryID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="QuantityPerUnit">
+          <DataField>QuantityPerUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="UnitsInStock">
+          <DataField>UnitsInStock</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="UnitsOnOrder">
+          <DataField>UnitsOnOrder</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="ReorderLevel">
+          <DataField>ReorderLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="Discontinued">
+          <DataField>Discontinued</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="DiscontinuedDate">
+          <DataField>DiscontinuedDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageHeader>
+    <Height>.5in</Height>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Top>.02in</Top>
+        <Left>.1in</Left>
+        <Width>6in</Width>
+        <Height>.25in</Height>
+        <Value>Simple Test 2</Value>
+        <Style>
+          <FontSize>15pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <Top>.3in</Top>
+        <Left>0.0in</Left>
+        <Width>1.125in</Width>
+        <Height>.2in</Height>
+        <Value>ProductID</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <Top>.3in</Top>
+        <Left>1.125in</Left>
+        <Width>1.375in</Width>
+        <Height>.2in</Height>
+        <Value>ProductName</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <Top>.3in</Top>
+        <Left>2.500in</Left>
+        <Width>1.25in</Width>
+        <Height>.2in</Height>
+        <Value>SupplierID</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <Top>.3in</Top>
+        <Left>3.750in</Left>
+        <Width>1.25in</Width>
+        <Height>.2in</Height>
+        <Value>CategoryID</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <Top>.3in</Top>
+        <Left>5.000in</Left>
+        <Width>1.875in</Width>
+        <Height>.2in</Height>
+        <Value>QuantityPerUnit</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox7">
+        <Top>.3in</Top>
+        <Left>6.875in</Left>
+        <Width>1.125in</Width>
+        <Height>.2in</Height>
+        <Value>UnitPrice</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox8">
+        <Top>.3in</Top>
+        <Left>8.000in</Left>
+        <Width>1.5in</Width>
+        <Height>.2in</Height>
+        <Value>UnitsInStock</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <Top>.3in</Top>
+        <Left>9.500in</Left>
+        <Width>1.5in</Width>
+        <Height>.2in</Height>
+        <Value>UnitsOnOrder</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <Top>.3in</Top>
+        <Left>11.000in</Left>
+        <Width>1.5in</Width>
+        <Height>.2in</Height>
+        <Value>ReorderLevel</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox11">
+        <Top>.3in</Top>
+        <Left>12.500in</Left>
+        <Width>1.5in</Width>
+        <Height>.2in</Height>
+        <Value>Discontinued</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <Top>.3in</Top>
+        <Left>14.000in</Left>
+        <Width>2in</Width>
+        <Height>.2in</Height>
+        <Value>DiscontinuedDate</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <Height>25pt</Height>
+    <ReportItems>
+      <List Name="List1">
+        <DataSetName>Data</DataSetName>
+        <Height>24pt</Height>
+        <NoRows>Query returned no rows!</NoRows>
+        <ReportItems>
+          <Textbox Name="ProductID">
+            <Top>.1in</Top>
+            <Left>0.0in</Left>
+            <Width>1.125in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!ProductID.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="ProductName">
+            <Top>.1in</Top>
+            <Left>1.125in</Left>
+            <Width>1.375in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!ProductName.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="SupplierID">
+            <Top>.1in</Top>
+            <Left>2.500in</Left>
+            <Width>1.25in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!SupplierID.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="CategoryID">
+            <Top>.1in</Top>
+            <Left>3.750in</Left>
+            <Width>1.25in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!CategoryID.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="QuantityPerUnit">
+            <Top>.1in</Top>
+            <Left>5.000in</Left>
+            <Width>1.875in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!QuantityPerUnit.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="UnitPrice">
+            <Top>.1in</Top>
+            <Left>6.875in</Left>
+            <Width>1.125in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!UnitPrice.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingRight>2pt</PaddingRight>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Textbox>
+          <Textbox Name="UnitsInStock">
+            <Top>.1in</Top>
+            <Left>8.000in</Left>
+            <Width>1.5in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!UnitsInStock.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingRight>2pt</PaddingRight>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Textbox>
+          <Textbox Name="UnitsOnOrder">
+            <Top>.1in</Top>
+            <Left>9.500in</Left>
+            <Width>1.5in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!UnitsOnOrder.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingRight>2pt</PaddingRight>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Textbox>
+          <Textbox Name="ReorderLevel">
+            <Top>.1in</Top>
+            <Left>11.000in</Left>
+            <Width>1.5in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!ReorderLevel.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingRight>2pt</PaddingRight>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Textbox>
+          <Textbox Name="Discontinued">
+            <Top>.1in</Top>
+            <Left>12.500in</Left>
+            <Width>1.5in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Discontinued.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="DiscontinuedDate">
+            <Top>.1in</Top>
+            <Left>14.000in</Left>
+            <Width>2in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!DiscontinuedDate.Value</Value>
+            <CanGrow>false</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Width>16.000in</Width>
+      </List>
+    </ReportItems>
+  </Body>
+  <PageFooter>
+    <Height>14pt</Height>
+    <ReportItems>
+      <Textbox Name="Textbox13">
+        <Top>1pt</Top>
+        <Left>10pt</Left>
+        <Height>12pt</Height>
+        <Width>3in</Width>
+        <Value>=Globals!PageNumber + ' of ' + Globals!TotalPages</Value>
+        <Style>
+          <FontSize>10pt</FontSize>
+          <FontWeight>Normal</FontWeight>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+</Report>

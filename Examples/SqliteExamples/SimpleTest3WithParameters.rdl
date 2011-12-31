@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>
+  </Description>
+  <Author>
+  </Author>
+  <PageHeight>11in</PageHeight>
+  <PageWidth>8.5in</PageWidth>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQLite</DataProvider>
+        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <Width>7.5in</Width>
+  <TopMargin>.25in</TopMargin>
+  <LeftMargin>.25in</LeftMargin>
+  <RightMargin>.25in</RightMargin>
+  <BottomMargin>.25in</BottomMargin>
+  <ReportParameters>
+    <ReportParameter Name="TestParam1">
+      <DataType>String</DataType>
+      <Nullable>False</Nullable>
+      <AllowBlank>False</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TestParam2">
+      <DataType>String</DataType>
+      <Nullable>False</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>Hello World</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>False</AllowBlank>
+    </ReportParameter>
+  </ReportParameters>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax FROM Customers</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CustomerID">
+          <DataField>CustomerID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactName">
+          <DataField>ContactName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactTitle">
+          <DataField>ContactTitle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="City">
+          <DataField>City</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PostalCode">
+          <DataField>PostalCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Fax">
+          <DataField>Fax</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageHeader>
+    <Height>.5in</Height>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Top>.02in</Top>
+        <Left>.1in</Left>
+        <Width>6in</Width>
+        <Height>.25in</Height>
+        <Value>Simple Parameter Test 3</Value>
+        <Style>
+          <FontSize>15pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <Top>.3in</Top>
+        <Left>0.0in</Left>
+        <Width>1.25in</Width>
+        <Height>.2in</Height>
+        <Value>CustomerID</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <Top>.3in</Top>
+        <Left>1.25in</Left>
+        <Width>1.375in</Width>
+        <Height>.2in</Height>
+        <Value>CompanyName</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <Top>.3in</Top>
+        <Left>2.625in</Left>
+        <Width>1.375in</Width>
+        <Height>.2in</Height>
+        <Value>ContactName</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <Top>.3in</Top>
+        <Left>4.000in</Left>
+        <Width>1.5in</Width>
+        <Height>.2in</Height>
+        <Value>ContactTitle</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <Top>.3in</Top>
+        <Left>5.500in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>Address</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox7">
+        <Top>.3in</Top>
+        <Left>6.500in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>City</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox8">
+        <Top>.3in</Top>
+        <Left>7.500in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>Region</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <Top>.3in</Top>
+        <Left>8.500in</Left>
+        <Width>1.25in</Width>
+        <Height>.2in</Height>
+        <Value>PostalCode</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <Top>.3in</Top>
+        <Left>9.750in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>Country</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox11">
+        <Top>.3in</Top>
+        <Left>10.750in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>Phone</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <Top>.3in</Top>
+        <Left>11.750in</Left>
+        <Width>1in</Width>
+        <Height>.2in</Height>
+        <Value>Fax</Value>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <Height>25pt</Height>
+    <ReportItems>
+      <List Name="List1">
+        <DataSetName>Data</DataSetName>
+        <Height>24pt</Height>
+        <NoRows>Query returned no rows!</NoRows>
+        <ReportItems>
+          <Textbox Name="CustomerID">
+            <Top>.1in</Top>
+            <Left>0.0in</Left>
+            <Width>1.25in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!CustomerID.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="CompanyName">
+            <Top>.1in</Top>
+            <Left>1.25in</Left>
+            <Width>1.375in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!CompanyName.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="ContactName">
+            <Top>.1in</Top>
+            <Left>2.625in</Left>
+            <Width>1.375in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!ContactName.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="ContactTitle">
+            <Top>.1in</Top>
+            <Left>4.000in</Left>
+            <Width>1.5in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!ContactTitle.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="Address">
+            <Top>.1in</Top>
+            <Left>5.500in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Address.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="City">
+            <Top>.1in</Top>
+            <Left>6.500in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!City.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="Region">
+            <Top>.1in</Top>
+            <Left>7.500in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Region.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="PostalCode">
+            <Top>.1in</Top>
+            <Left>8.500in</Left>
+            <Width>1.25in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!PostalCode.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="Country">
+            <Top>.1in</Top>
+            <Left>9.750in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Country.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="Phone">
+            <Top>.1in</Top>
+            <Left>10.750in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Phone.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+          <Textbox Name="Fax">
+            <Top>.1in</Top>
+            <Left>11.750in</Left>
+            <Width>1in</Width>
+            <Height>.25in</Height>
+            <Value>=Fields!Fax.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Width>12.750in</Width>
+      </List>
+    </ReportItems>
+  </Body>
+  <PageFooter>
+    <Height>14pt</Height>
+    <ReportItems>
+      <Textbox Name="Textbox13">
+        <Top>1pt</Top>
+        <Left>10pt</Left>
+        <Height>12pt</Height>
+        <Width>3in</Width>
+        <Value>=Globals!PageNumber + ' of ' + Globals!TotalPages</Value>
+        <Style>
+          <FontSize>10pt</FontSize>
+          <FontWeight>Normal</FontWeight>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+</Report>
