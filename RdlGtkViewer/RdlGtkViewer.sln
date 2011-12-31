@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "..\DataPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlEngine", "..\RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlCri", "..\RdlCri\RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -23,6 +25,14 @@ Global
 		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|x86.Build.0 = Debug|x86
 		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x86.ActiveCfg = Release|x86
 		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x86.Build.0 = Release|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.ActiveCfg = Debug|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.Build.0 = Debug|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x86.ActiveCfg = Debug|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x86.Build.0 = Debug|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.ActiveCfg = Release|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.Build.0 = Release|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.ActiveCfg = Release|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.Build.0 = Release|x86
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x64.ActiveCfg = Debug|x64
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x64.Build.0 = Debug|x64
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x86.ActiveCfg = Debug|x86
