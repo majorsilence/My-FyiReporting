@@ -63,6 +63,7 @@
       <HintPath>..\..\..\..\..\..\usr\lib\poppler-sharp\poppler-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cairo" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

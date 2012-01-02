@@ -1,6 +1,6 @@
 
 using System;
-
+using System.Xml;
 using fyiReporting.RDL;
 
 
@@ -288,18 +288,18 @@ namespace fyiReporting.RdlGtkViewer
 		/// <param name='connectionString'>
 		/// Sets the connection string of the report to whatever is passed in.
 		/// </param>
-		public void LoadReport(string filename, string parameters, string connectionString)
+		public void LoadReport(Uri filename, string parameters, string connectionString)
 		{
 
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filePath.AbsolutePath);
+            xmlDoc.Load(filename.AbsolutePath);
 
             foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
             {
                 node.InnerText = connectionString;
             }
 
-            xmlDoc.Save(filePath.AbsolutePath);
+            xmlDoc.Save(filename.AbsolutePath);
 
 			LoadReport(filename, parameters);
         }
