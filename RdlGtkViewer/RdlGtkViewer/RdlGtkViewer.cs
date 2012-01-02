@@ -277,61 +277,62 @@ namespace fyiReporting.RdlGtkViewer
 		}
 		
 		
-		private string _Parameters="";
-		/// <summary>
-		/// Parameters passed to report when run. Parameters are separated by '&'. For example,
-		/// OrderID=10023&OrderDate=10/14/2002
-		/// Note: these parameters will override the user specified ones.
-		/// </summary>
-		public string Parameters
+		public void LoadReport(string filename, string parameters, string connectionString)
 		{
-			get {return _Parameters;}
-			set {_Parameters=value;}
+			
 		}
 		
 		/// <summary>
 		/// Loads the report.
 		/// </summary>
-		/// </param>
 		/// <param name='filename'>
 		/// Filename.
 		/// </param>
-      public void LoadReport(string filename)
-      {
-            string source;
-            Report report;
-            int index;
-            System.Collections.Specialized.ListDictionary ld;
-            string file;
+		public void LoadReport(Uri filename)
+		{
+			LoadReport(filename, "");
+		}
+				
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		/// <param name='parameters'>
+		/// Parameters. parameter1=someValue&parameter2=anotherValue
+		/// </param>
+		public void LoadReport(Uri filename, string parameters)
+		{
+			string source;
+			Report report;
+			System.Collections.Specialized.ListDictionary ld;
 			
 			// Any parameters?  e.g.  file1.rdl?orderid=5 
-			index = filename.LastIndexOf('?');
-			if (index >= 0)
+			if (parameters.Trim() != "")
 			{
-			    ld = this.GetParmeters(filename.Substring(index));
-			    file = filename.Substring(0, index);
+			    ld = this.GetParmeters(parameters);
 			}
 			else 
 			{
 			    ld = null;
-			    file = filename;
 			}
 			
 			// Obtain the source 
-			source = System.IO.File.ReadAllText(file);
+			source = System.IO.File.ReadAllText(filename.AbsolutePath);
 			// GetSource is omitted: all it does is read the file.
 			// Compile the report 
 			report = this.GetReport(source);
 			
 			// Obtain the data passing any parameters 
 			report.RunGetData(ld);
-
-              // Render the report in each of the requested types 
+			
+			// Render the report in each of the requested types 
 			string tempFile = System.IO.Path.GetTempFileName();
-            SaveTemp(report, tempFile);
+			SaveTemp(report, tempFile);
 			LoadPdf(new Uri(tempFile));
-        
-      }
+			
+		}
 		
 	  /// <summary>
 	  /// Saves a temporary pdf to be used in the viewer.

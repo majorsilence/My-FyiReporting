@@ -8,7 +8,8 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 		
 		this.rdlgtkviewer1.LoadReport(
-			@"/home/peter/Projects/My-FyiReporting/Examples/SqliteExamples/SimpleTest2.rdl");
+			new Uri(@"/home/peter/Projects/My-FyiReporting/Examples/SqliteExamples/SimpleTest3WithParameters.rdl"), 
+			"TestParam1=Hello and Goodbye&TestParam2=Testing parameter 2");
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)

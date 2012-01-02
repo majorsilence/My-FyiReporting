@@ -98,4 +98,14 @@
       <Name>DataProviders</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\RdlEngine\RdlEngineConfig.xml">
+      <Link>RdlEngineConfig.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\References\dot net 3.5\ICSharpCode.SharpZipLib.dll">
+      <Link>ICSharpCode.SharpZipLib.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
