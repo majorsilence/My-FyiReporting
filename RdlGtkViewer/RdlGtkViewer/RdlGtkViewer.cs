@@ -276,11 +276,34 @@ namespace fyiReporting.RdlGtkViewer
 			this.ShowAll();
 		}
 		
-		
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		/// <param name='parameters'>
+		///  Example: parameter1=someValue&parameter2=anotherValue
+		/// </param>
+		/// <param name='connectionString'>
+		/// Sets the connection string of the report to whatever is passed in.
+		/// </param>
 		public void LoadReport(string filename, string parameters, string connectionString)
 		{
-			
-		}
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath.AbsolutePath);
+
+            foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
+            {
+                node.InnerText = connectionString;
+            }
+
+            xmlDoc.Save(filePath.AbsolutePath);
+
+			LoadReport(filename, parameters);
+        }
+		
 		
 		/// <summary>
 		/// Loads the report.
@@ -300,7 +323,7 @@ namespace fyiReporting.RdlGtkViewer
 		/// Filename.
 		/// </param>
 		/// <param name='parameters'>
-		/// Parameters. parameter1=someValue&parameter2=anotherValue
+		/// Example: parameter1=someValue&parameter2=anotherValue
 		/// </param>
 		public void LoadReport(Uri filename, string parameters)
 		{
