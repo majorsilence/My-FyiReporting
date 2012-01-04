@@ -223,6 +223,9 @@ namespace fyiReporting.RdlGtkViewer
 			
 			Gtk.FileFilter rtfFilter = new Gtk.FileFilter();
 			rtfFilter.Name = "RTF";
+			
+			Gtk.FileFilter xmlFilter = new Gtk.FileFilter();
+			xmlFilter.Name = "XML";
 					
 			fc.AddFilter(pdfFilter);
 			fc.AddFilter(csvFilter);
@@ -230,6 +233,7 @@ namespace fyiReporting.RdlGtkViewer
 			fc.AddFilter(excel2003);
 			fc.AddFilter(htmlFilter);
 			fc.AddFilter(mhtmlFilter);
+			fc.AddFilter(xmlFilter);
 			
 			if (fc.Run() == (int)Gtk.ResponseType.Accept) 
 			{
@@ -287,6 +291,14 @@ namespace fyiReporting.RdlGtkViewer
 						if (filename.ToLower().Trim().EndsWith(".mhtml") == false)
 						{
 							filename = filename + ".mhtml";
+						}
+					}
+					else if(fc.Filter.Name == "XML")
+					{
+						exportType = OutputPresentationType.XML;
+						if (filename.ToLower().Trim().EndsWith(".xml") == false)
+						{
+							filename = filename + ".xml";
 						}
 					}
 					
