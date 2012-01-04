@@ -11,8 +11,10 @@ namespace fyiReporting.RdlGtkViewer
 	{
 
 		private Poppler.Document pdf;
+		private Report report = null;
 		private int pageIndex = 0;
 		private int pageHeight = 0;
+		private string parameters=""; 
 		
 		public RdlGtkViewer ()
 		{
@@ -200,16 +202,95 @@ namespace fyiReporting.RdlGtkViewer
 			                            null,
 			                            Gtk.FileChooserAction.Save,
 			                            param);
-	
 			
+			Gtk.FileFilter pdfFilter = new Gtk.FileFilter();
+			pdfFilter.Name = "PDF";
 			
+			Gtk.FileFilter csvFilter = new Gtk.FileFilter();
+			csvFilter.Name = "CSV";
+			
+			Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
+			asphtmlFilter.Name = "ASP HTML";
+			
+			Gtk.FileFilter excel2003 = new Gtk.FileFilter();
+			excel2003.Name = "Excel 2003";
+			
+			Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
+			htmlFilter.Name = "HTML";
+			
+			Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter();
+			mhtmlFilter.Name = "MHTML";
+			
+			Gtk.FileFilter rtfFilter = new Gtk.FileFilter();
+			rtfFilter.Name = "RTF";
+					
+			fc.AddFilter(pdfFilter);
+			fc.AddFilter(csvFilter);
+			fc.AddFilter(asphtmlFilter);
+			fc.AddFilter(excel2003);
+			fc.AddFilter(htmlFilter);
+			fc.AddFilter(mhtmlFilter);
 			
 			if (fc.Run() == (int)Gtk.ResponseType.Accept) 
 			{
 				try
 				{
-					Uri file = new Uri(fc.Filename);
-					pdf.SaveACopy(file.AbsoluteUri);
+					// Must use the RunGetData before each export or there is no data.
+					System.Collections.Specialized.ListDictionary ld = this.GetParmeters(this.parameters);		// split parms into dictionary
+                	report.RunGetData(ld); 
+										
+					string filename = fc.Filename;		
+					OutputPresentationType exportType = OutputPresentationType.PDF;
+					if(fc.Filter.Name == "CSV")
+					{
+						exportType = OutputPresentationType.CSV;
+						if (filename.ToLower().Trim().EndsWith(".csv") == false)
+						{
+							filename = filename + ".csv";
+						}
+					}
+					else if(fc.Filter.Name == "PDF")
+					{
+						exportType = OutputPresentationType.PDF;
+						if (filename.ToLower().Trim().EndsWith(".pdf") == false)
+						{
+							filename = filename + ".pdf";
+						}
+					}
+					else if(fc.Filter.Name == "ASP HTML")
+					{
+						exportType = OutputPresentationType.ASPHTML;
+						if (filename.ToLower().Trim().EndsWith(".asphtml") == false)
+						{
+							filename = filename + ".asphtml";
+						}
+					}
+					else if(fc.Filter.Name == "Excel 2003")
+					{
+						exportType = OutputPresentationType.Excel;
+						if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
+						{
+							filename = filename + ".xlsx";
+						}
+					}
+					else if(fc.Filter.Name == "HTML")
+					{
+						exportType = OutputPresentationType.HTML;
+						if (filename.ToLower().Trim().EndsWith(".html") == false)
+						{
+							filename = filename + ".html";
+						}
+					}
+					else if(fc.Filter.Name == "MHTML")
+					{
+						exportType = OutputPresentationType.MHTML;
+						if (filename.ToLower().Trim().EndsWith(".mhtml") == false)
+						{
+							filename = filename + ".mhtml";
+						}
+					}
+					
+					ExportReport(report, filename, exportType);				
 				}
 				catch(Exception ex)
 				{
@@ -328,9 +409,8 @@ namespace fyiReporting.RdlGtkViewer
 		public void LoadReport(Uri filename, string parameters)
 		{
 			string source;
-			Report report;
 			System.Collections.Specialized.ListDictionary ld;
-			
+			this.parameters = parameters;
 			// Any parameters?  e.g.  file1.rdl?orderid=5 
 			if (parameters.Trim() != "")
 			{
@@ -352,7 +432,7 @@ namespace fyiReporting.RdlGtkViewer
 			
 			// Render the report in each of the requested types 
 			string tempFile = System.IO.Path.GetTempFileName();
-			SaveTemp(report, tempFile);
+			ExportReport(report, tempFile, OutputPresentationType.PDF);
 			LoadPdf(new Uri(tempFile));
 			
 		}
@@ -366,19 +446,23 @@ namespace fyiReporting.RdlGtkViewer
 	  /// <param name='FileName'>
 	  /// File name.
 	  /// </param>
-      private void SaveTemp(Report report, string FileName)
+      private void ExportReport(Report report, string FileName, OutputPresentationType exportType)
       {
             OneFileStreamGen sg=null;
 
             try 
             {
                   sg = new OneFileStreamGen(FileName, true);
-                  // overwrite with this name
-                  report.RunRender(sg, OutputPresentationType.PDF);     
+                  report.RunRender(sg, exportType);     
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                  Console.WriteLine(e.Message);
+				Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
+						Gtk.ButtonsType.Ok, false, 
+						ex.Message);
+						
+					m.Run();
+					m.Destroy();
             }
             finally 
             {
