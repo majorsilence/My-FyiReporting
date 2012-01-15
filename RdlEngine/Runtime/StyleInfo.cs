@@ -507,9 +507,13 @@ namespace fyiReporting.RDL
 
             try
             {
-                if (v == "rl-tb")
+                if (v == "rl-tb" || v == "tb-rl")
                 { // How the hell did it ever get saved as rl-tb?
                     v = "tb_rl";
+                }
+                else if (v == "lr-tb")
+                {
+                    v = "lr_tb";
                 }
                 w = (WritingModeEnum)Enum.Parse(typeof(WritingModeEnum), v);
             }
