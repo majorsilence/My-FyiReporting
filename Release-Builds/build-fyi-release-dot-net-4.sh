@@ -36,6 +36,6 @@ cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./my-fyi-build-dot-net-4-AnyCPU/RdlM
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./my-fyi-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./my-fyi-build-dot-net-4-AnyCPU/RdlReader.exe 
 
-#7za.exe a my-fyi-build-dot-net-4-AnyCPU.zip my-fyi-build-dot-net-4-AnyCPU/
+zip -r my-fyi-build-dot-net-4-AnyCPU.zip my-fyi-build-dot-net-4-AnyCPU/
 
 # ************* End AnyCPU *********************************************
