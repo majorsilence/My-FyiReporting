@@ -3593,7 +3593,18 @@ namespace fyiReporting.RdlDesign
             SetProperties(mc);
         }
 
-
+        private void RdlDesigner_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                ChannelServices.UnregisterChannel(this.channel);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
     }
 
     public class RdlIpcObject : MarshalByRefObject
