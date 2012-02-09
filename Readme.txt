@@ -24,7 +24,7 @@ This is currently built with visual studio 2008 and targets .net 2.  It should b
 and target .net 4, just upgrade the solution files.  You can also run the build script in the Release-Builds folder
 to build .net 3.5 and 4.0 packages.  
 
-Binary packages are always available from http://files.majorsilence.com/myfyireporting/
+Binary packages are always available from https://github.com/majorsilence/My-FyiReporting/downloads
 
 Layout:
 
