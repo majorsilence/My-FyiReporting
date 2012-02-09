@@ -267,7 +267,7 @@ namespace fyiReporting.RDL
 			StringBuilder identifier = new StringBuilder(30);	// initial capacity 30 characters
 			identifier.Append(ch.ToString());
 
-            int state = 1;      // state=1 means accept letter,digit,'.','!','_'
+            int state = initialState;      // state=1 means accept letter,digit,'.','!','_'
                                 // state=2 means accept whitespace ends with '.' or '!'
                                 // state=3 means accept letter to start new qualifier
             while (!reader.EndOfInput())
