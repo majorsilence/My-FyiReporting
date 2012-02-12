@@ -433,20 +433,24 @@ namespace fyiReporting.RDL
 			}
 
 			posBreak = method.IndexOf('.');
-			if (posBreak > 0)
-			{
-				thirdPart = method.Substring(posBreak+1);	// rest of expression
-				method = method.Substring(0, posBreak);
-			}
-			else
-				thirdPart = null;
+            if (posBreak > 0)
+            {
+                thirdPart = method.Substring(posBreak + 1);	// rest of expression
+                method = method.Substring(0, posBreak);
+            }
+            else
+            {
+                thirdPart = null;
+            }
 
 			if (curToken.Type != TokenTypes.LPAREN) switch (firstPart)
 			{
 				case "Fields":
 					Field f = idLookup.LookupField(method);
-					if (f == null && !this._InAggregate)
-						throw new ParserException("Field '" + method + "'  not found.");
+                    if (f == null && !this._InAggregate)
+                    {
+                        throw new ParserException("Field '" + method + "'  not found.");
+                    }
 					if (thirdPart == null || thirdPart == "Value")
 					{
 						if (f == null)

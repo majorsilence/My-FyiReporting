@@ -731,10 +731,14 @@ namespace fyiReporting.RDL
 
 		string GetKey(ReportDefn rd, string name)
 		{
-			if (rd.Subreport == null)	// top level report use 0 
-				return GetKey(0, name);
-			else						// Use the subreports object number
-				return GetKey(rd.Subreport.ObjectNumber, name);
+            if (rd.Subreport == null)	// top level report use 0 
+            {
+                return GetKey(0, name);
+            }
+            else						// Use the subreports object number
+            {
+                return GetKey(rd.Subreport.ObjectNumber, name);
+            }
 		}
 
 		string GetKey(int onum, string name)

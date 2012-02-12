@@ -330,12 +330,16 @@ namespace fyiReporting.RDL
 		{
             bool bRows = false;
 			// Step 1- set the parameter values for the runtime
-			if (parms != null && ReportParameters != null)
-				ReportParameters.SetRuntimeValues(rpt, parms);	// set the parameters
+            if (parms != null && ReportParameters != null)
+            {
+                ReportParameters.SetRuntimeValues(rpt, parms);	// set the parameters
+            }
 
 			// Step 2- prep the datasources (ie connect and execute the queries)
-			if (this._DataSourcesDefn != null)
-				_DataSourcesDefn.ConnectDataSources(rpt);
+            if (this._DataSourcesDefn != null)
+            {
+                _DataSourcesDefn.ConnectDataSources(rpt);
+            }
 
 			// Step 3- obtain the data; applying filters
 			if (_DataSetsDefn != null)
@@ -345,11 +349,13 @@ namespace fyiReporting.RDL
 			}
 
 			// Step 4- cleanup any DB connections
-			if (_DataSourcesDefn != null)
-			{
-				if (!this.ContainsSubreport)
-					_DataSourcesDefn.CleanUp(rpt);	// no subreports means that nothing will use this transaction
-			}
+            if (_DataSourcesDefn != null)
+            {
+                if (!this.ContainsSubreport)
+                {
+                    _DataSourcesDefn.CleanUp(rpt);	// no subreports means that nothing will use this transaction
+                }
+            }
 
 			return bRows;
 		}
@@ -369,8 +375,10 @@ namespace fyiReporting.RDL
  
 		private void ResetCachedData(Report rpt)
 		{
-			foreach (ICacheData icd in this._DataCache)
-				icd.ClearCache(rpt);
+            foreach (ICacheData icd in this._DataCache)
+            {
+                icd.ClearCache(rpt);
+            }
 		}
 
 		internal void Run(IPresent ip)

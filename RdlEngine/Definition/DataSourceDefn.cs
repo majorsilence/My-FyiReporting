@@ -130,15 +130,21 @@ namespace fyiReporting.RDL
 		internal bool ConnectDataSource(Report rpt)
 		{
 			IDbConnection cn = GetConnection(rpt);
-			if (cn != null)
-				return true;
+            if (cn != null)
+            {
+                return true;
+            }
 
-			if (_DataSourceReference != null)		
-				ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
+            if (_DataSourceReference != null)
+            {
+                ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
+            }
 
-			if (_ConnectionProperties == null ||
-				_ConnectionProperties.ConnectstringValue == null)
-				return false;
+            if (_ConnectionProperties == null ||
+                _ConnectionProperties.ConnectstringValue == null)
+            {
+                return false;
+            }
 
 			bool rc = false;
 			try 
@@ -254,8 +260,10 @@ namespace fyiReporting.RDL
 		{
 			IDbConnection cn;
 
-			if (rpt == null)
-				return _ParseConnection;
+            if (rpt == null)
+            {
+                return _ParseConnection;
+            }
 
 			cn = rpt.Cache.Get(this, "UserConnection") as IDbConnection;
 			if (cn == null)

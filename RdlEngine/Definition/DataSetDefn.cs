@@ -183,15 +183,19 @@ namespace fyiReporting.RDL
 			if (_XmlRowData != null)
 			{		// Override the query and provide data from XML
 				string xdata = GetDataFile(rpt, _XmlRowFile);
-				if (xdata == null)
-					xdata = _XmlRowData;					// didn't find any data
+                if (xdata == null)
+                {
+                    xdata = _XmlRowData;					// didn't find any data
+                }
 
 				bRows = _Query.GetData(rpt, xdata, _Fields, _Filters);	// get the data (and apply the filters
 				return bRows;
 			}
 
-			if (_Query == null)
-				return bRows;
+            if (_Query == null)
+            {
+                return bRows;
+            }
 
 			bRows = _Query.GetData(rpt, this._Fields, _Filters);	// get the data (and apply the filters
             return bRows;
@@ -199,17 +203,23 @@ namespace fyiReporting.RDL
 
 		private string GetDataFile(Report rpt, string file)
 		{
-			if (file == null)		// no file no data
-				return null;
+            if (file == null)		// no file no data
+            {
+                return null;
+            }
 
 			StreamReader fs=null;
 			string d=null;
 			string fullpath;
 			string folder = rpt.Folder;
-			if (folder == null || folder.Length == 0)
-				fullpath = file;
-			else
-				fullpath= folder + Path.DirectorySeparatorChar + file;
+            if (folder == null || folder.Length == 0)
+            {
+                fullpath = file;
+            }
+            else
+            {
+                fullpath = folder + Path.DirectorySeparatorChar + file;
+            }
 
 			try
 			{
@@ -256,11 +266,15 @@ namespace fyiReporting.RDL
 
 		internal void ResetHideDuplicates(Report rpt)
 		{
-			if (_HideDuplicates == null)
-				return;
+            if (_HideDuplicates == null)
+            {
+                return;
+            }
 
-			foreach (Textbox tb in _HideDuplicates)
-				tb.ResetPrevious(rpt);
+            foreach (Textbox tb in _HideDuplicates)
+            {
+                tb.ResetPrevious(rpt);
+            }
 		}
 
 		internal Name Name

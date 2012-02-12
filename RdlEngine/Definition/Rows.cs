@@ -146,10 +146,14 @@ namespace fyiReporting.RDL
 					_SortBy.Add(new RowsSortExpression(sb.SortExpression, sb.Direction == SortDirectionEnum.Ascending));
 				}
 			}
-			if (_SortBy.Count > 0)
+            if (_SortBy.Count > 0)
+            {
                 _SortBy.TrimExcess();
-			else
-				_SortBy = null;
+            }
+            else
+            {
+                _SortBy = null;
+            }
 		}
 
 		internal Report Report

@@ -316,29 +316,39 @@ namespace fyiReporting.RDL
 			int rowCount=0;
 			foreach(XmlNode xNodeRow in xNode.ChildNodes)
 			{
-				if (xNodeRow.NodeType != XmlNodeType.Element)
-					continue;
-				if (xNodeRow.Name != "Row")
-					continue;
+                if (xNodeRow.NodeType != XmlNodeType.Element)
+                {
+                    continue;
+                }
+                if (xNodeRow.Name != "Row")
+                {
+                    continue;
+                }
 				Row or = new Row(_Data, fieldCount);
 				foreach (XmlNode xNodeColumn in xNodeRow.ChildNodes)
 				{	
 					Field fld = (Field) (flds.Items[xNodeColumn.Name]);	// Find the column
-					if (fld == null)
-						continue;			// Extraneous data is ignored
+                    if (fld == null)
+                    {
+                        continue;			// Extraneous data is ignored
+                    }
 					TypeCode tc = fld.qColumn != null? fld.qColumn.colType: fld.Type;
 
-					if (xNodeColumn.InnerText == null || xNodeColumn.InnerText.Length == 0)
-						or.Data[fld.ColumnNumber] = null;
-					else if (tc == TypeCode.String)
-						or.Data[fld.ColumnNumber] = xNodeColumn.InnerText;
+                    if (xNodeColumn.InnerText == null || xNodeColumn.InnerText.Length == 0)
+                    {
+                        or.Data[fld.ColumnNumber] = null;
+                    }
+                    else if (tc == TypeCode.String)
+                    {
+                        or.Data[fld.ColumnNumber] = xNodeColumn.InnerText;
+                    }
                     else if (tc == TypeCode.DateTime)
                     {
                         try
                         {
                             or.Data[fld.ColumnNumber] =
                                 Convert.ToDateTime(xNodeColumn.InnerText,
-                                System.Globalization.DateTimeFormatInfo.InvariantInfo); 
+                                System.Globalization.DateTimeFormatInfo.InvariantInfo);
                         }
                         catch	// all conversion errors result in a null value
                         {
@@ -368,8 +378,10 @@ namespace fyiReporting.RDL
 			}
 
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
-			if (f != null)
-				f.ApplyFinalFilters(rpt, _Data, false);
+            if (f != null)
+            {
+                f.ApplyFinalFilters(rpt, _Data, false);
+            }
 
 			SetMyData(rpt, _Data);
             return _Data == null || _Data.Data == null || _Data.Data.Count == 0 ? false : true;
@@ -801,10 +813,14 @@ namespace fyiReporting.RDL
 
 		private void SetMyData(Report rpt, Rows data)
 		{
-			if (data == null)
-				rpt.Cache.Remove(this, "data");
-			else
-				rpt.Cache.AddReplace(this, "data", data);
+            if (data == null)
+            {
+                rpt.Cache.Remove(this, "data");
+            }
+            else
+            {
+                rpt.Cache.AddReplace(this, "data", data);
+            }
 		}
 
 		private Rows GetMyUserData(Report rpt)
@@ -812,13 +828,17 @@ namespace fyiReporting.RDL
 			return rpt.Cache.Get(this, "userdata") as Rows;
 		}
 
-		private void SetMyUserData(Report rpt, Rows data)
-		{
-			if (data == null)
-				rpt.Cache.Remove(this, "userdata");
-			else
-				rpt.Cache.AddReplace(this, "userdata", data);
-		}
+        private void SetMyUserData(Report rpt, Rows data)
+        {
+            if (data == null)
+            {
+                rpt.Cache.Remove(this, "userdata");
+            }
+            else
+            {
+                rpt.Cache.AddReplace(this, "userdata", data);
+            }
+        }
 
 	}
 }

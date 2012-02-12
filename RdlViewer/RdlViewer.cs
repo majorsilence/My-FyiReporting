@@ -1265,13 +1265,17 @@ namespace fyiReporting.RdlViewer
 
 				if (report.ErrorMaxSeverity > 0) 
 				{
-					if (_errorMsgs == null)
-						_errorMsgs = report.ErrorItems;		// keep a copy of the errors
-					else
-					{
-						foreach (string err in report.ErrorItems)
-							_errorMsgs.Add(err);
-					}
+                    if (_errorMsgs == null)
+                    {
+                        _errorMsgs = report.ErrorItems;		// keep a copy of the errors
+                    }
+                    else
+                    {
+                        foreach (string err in report.ErrorItems)
+                        {
+                            _errorMsgs.Add(err);
+                        }
+                    }
 
 					report.ErrorReset();
 				}
@@ -1288,8 +1292,10 @@ namespace fyiReporting.RdlViewer
 		private ListDictionary GetParameters()
 		{
 			ListDictionary ld= new ListDictionary();
-			if (_Parameters == null)
-				return ld;				// dictionary will be empty in this case
+            if (_Parameters == null)
+            {
+                return ld;				// dictionary will be empty in this case
+            }
 
 			// parms are separated by &
 			char[] breakChars = new char[] {'&'};
@@ -1329,8 +1335,19 @@ namespace fyiReporting.RdlViewer
         // 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
         private void showWait()
         {
-            DialogWait wait = new DialogWait(this, StopWaitDialog);
-            wait.ShowDialog();
+            try
+            {
+                DialogWait wait = new DialogWait(this, StopWaitDialog);
+                wait.ShowDialog();
+            }
+            catch (ObjectDisposedException ode)
+            {
+                // Just let it go
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public bool StopWaitDialog()
@@ -1512,7 +1529,9 @@ namespace fyiReporting.RdlViewer
                 _RunButton.Enabled = false;
                 _errorMsgs = null;			// reset the error message
                 if (this._Report == null)
+                {
                     return;
+                }
 
                 // Force parameters to get built
                 foreach (Control ctl in _ParameterPanel.Controls)
@@ -1520,9 +1539,13 @@ namespace fyiReporting.RdlViewer
                     if (ctl.Tag is UserReportParameter)
                     {
                         if (ctl is TextBox)
+                        {
                             this.ParametersTextValidated(ctl, new EventArgs());
+                        }
                         else if (ctl is ComboBox)
+                        {
                             this.ParametersLeave(ctl, new EventArgs());
+                        }
                     }
                 }
 
@@ -1538,7 +1561,9 @@ namespace fyiReporting.RdlViewer
                     }
                 }
                 if (bFail)
+                {
                     return;
+                }
 
                 if (_ShowWaitDialog)
                 {
