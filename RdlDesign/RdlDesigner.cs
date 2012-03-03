@@ -1590,7 +1590,9 @@ namespace fyiReporting.RdlDesign
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
+            {
                 return;
+            }
             if (printChild != null)			// already printing
             {
                 MessageBox.Show("Can only print one file at a time.", "RDL Design");
@@ -1607,6 +1609,28 @@ namespace fyiReporting.RdlDesign
             pd.PrinterSettings.MinimumPage = 1;
             pd.DefaultPageSettings.Landscape = mc.PageWidth > mc.PageHeight ? true : false;
 
+            // Set the paper size.
+            if (mc.SourceRdl != null)
+            {
+                System.Xml.XmlDocument docxml = new System.Xml.XmlDocument();
+                docxml.LoadXml(mc.SourceRdl);
+                                
+                float height = 11;
+                float width = 8.5f;
+                XmlNodeList heightList = docxml.GetElementsByTagName("PageHeight");
+                for (int i = 0; i < heightList.Count; i++)
+                {
+                  height = float.Parse(heightList[i].InnerText.Replace("in", "")) * 100;
+                }
+
+                XmlNodeList widthList = docxml.GetElementsByTagName("PageWidth");
+                for (int i = 0; i < widthList.Count; i++)
+                {
+                    width = float.Parse(widthList[i].InnerText.Replace("in", "")) * 100;
+                }
+
+                pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", (int)width, (int)height);
+            }
             using (PrintDialog dlg = new PrintDialog())
             {
                 dlg.Document = pd;
