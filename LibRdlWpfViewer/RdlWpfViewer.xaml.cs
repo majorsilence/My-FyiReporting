@@ -23,5 +23,56 @@ namespace LibRdlWpfViewer
         {
             InitializeComponent();
         }
+
+        public void Rebuild()
+        {
+            this.reportViewer.Rebuild();
+        }
+
+        public void SaveAs(string FileName, string type)
+        {
+            this.reportViewer.SaveAs(FileName, type);
+        }
+
+        public Uri SourceFile
+        {
+            get 
+            { 
+                return this.reportViewer.SourceFile; 
+            }
+            set 
+            { 
+                this.reportViewer.SourceFile = value; 
+            }
+        }
+
+        public string SourceRdl
+        {
+            get
+            {
+                return this.reportViewer.SourceRdl;
+            }
+            set
+            {
+                this.reportViewer.SourceRdl = value;
+            }
+        }
+
+        public string Parameters
+        {
+            get
+            {
+                return this.reportViewer.Parameters;
+            }
+            set
+            {
+                this.reportViewer.Parameters = value;
+            }
+        }
+
+        
+
     }
+
+
 }
