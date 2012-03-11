@@ -72,18 +72,21 @@ namespace fyiReporting.RdlDesign
             PrinterSettings settings = new PrinterSettings();
             cbPageSize.DisplayMember = "PaperName";
 
-            for (int i = 0; i < settings.PaperSizes.Count; i++)
+            int width = (int)(decimal.Parse(tbPageWidth.Text.Replace("in", "").Trim()) * 100);
+            int height = (int)(decimal.Parse(tbPageHeight.Text.Replace("in", "").Trim()) * 100);
+            int pageCount = settings.PaperSizes.Count;
+
+            int count = 0;
+            foreach (PaperSize psize in settings.PaperSizes)
             {
-                PaperSize size = settings.PaperSizes[i];
-                cbPageSize.Items.Add(size);
+                cbPageSize.Items.Add(psize);
 
-                if ((GetPaperSizeAsInch(size.Width) == tbPageWidth.Text) &&
-                    (GetPaperSizeAsInch(size.Height) == tbPageHeight.Text))
+                if ((psize.Width == width) &&
+                    (psize.Height == height))
                 {
-                    cbPageSize.SelectedIndex = i;
+                    cbPageSize.SelectedIndex = count;
                 }
-
-
+                count = count + 1;
             }
         }
 
