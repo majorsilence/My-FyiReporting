@@ -304,6 +304,9 @@
       <DependentUpon>RdlDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="RdlDesignerSavedFileEvent.cs" />
+    <Compile Include="ReportCtl.Designer.cs">
+      <DependentUpon>ReportCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingleCtlDialog.Designer.cs">
       <DependentUpon>SingleCtlDialog.cs</DependentUpon>
     </Compile>
