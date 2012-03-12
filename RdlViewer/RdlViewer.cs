@@ -651,28 +651,52 @@ namespace fyiReporting.RdlViewer
 			LoadPageIfNeeded();
 
 			pd.PrintPage += new PrintPageEventHandler(PrintPage);
-			printCurrentPage=-1;
-			switch (pd.PrinterSettings.PrintRange)
-			{
-				case PrintRange.AllPages:
-					printCurrentPage = 0;
-					printEndPage = _pgs.PageCount - 1;
-					break;
-				case PrintRange.Selection:
-					printCurrentPage = pd.PrinterSettings.FromPage - 1;
-					printEndPage = pd.PrinterSettings.FromPage - 1;
-					break;
-				case PrintRange.SomePages:
-					printCurrentPage = pd.PrinterSettings.FromPage - 1;
-					if (printCurrentPage < 0)
-						printCurrentPage = 0;
-					printEndPage = pd.PrinterSettings.ToPage - 1;
-					if (printEndPage >= _pgs.PageCount)
-						printEndPage = _pgs.PageCount - 1;
-					break;
-			}
-			pd.Print();
+			
+            // This is a work around where many printers do not support printing
+            // more then one copy.  This will cause a prompt for each copy if using XPS
+            //
+            // http://msdn.microsoft.com/en-us/library/system.drawing.printing.printersettings.copies.aspx
+            // "Not all printers support printing multiple copes. You can use the MaximumCopies property 
+            // to determine the maximum number of copies the printer supports. If the number of 
+            // copies is set higher than the maximum copies supported by the printer, only the 
+            // maximum number of copies will be printed, and no exception will occur."
+            // 
+            if (pd.PrinterSettings.MaximumCopies == 1 && pd.PrinterSettings.Copies > 1)
+            {
+                for (int i = 0; i < pd.PrinterSettings.Copies; i++)
+                {
+                    _Print(pd);
+                }
+            }
+            else
+            {
+                _Print(pd);
+            }
 		}
+        private void _Print(PrintDocument pd)
+        {
+            printCurrentPage = -1;
+            switch (pd.PrinterSettings.PrintRange)
+            {
+                case PrintRange.AllPages:
+                    printCurrentPage = 0;
+                    printEndPage = _pgs.PageCount - 1;
+                    break;
+                case PrintRange.Selection:
+                    printCurrentPage = pd.PrinterSettings.FromPage - 1;
+                    printEndPage = pd.PrinterSettings.FromPage - 1;
+                    break;
+                case PrintRange.SomePages:
+                    printCurrentPage = pd.PrinterSettings.FromPage - 1;
+                    if (printCurrentPage < 0)
+                        printCurrentPage = 0;
+                    printEndPage = pd.PrinterSettings.ToPage - 1;
+                    if (printEndPage >= _pgs.PageCount)
+                        printEndPage = _pgs.PageCount - 1;
+                    break;
+            }
+            pd.Print();
+        }
 
 		private void PrintPage(object sender, PrintPageEventArgs e)
 		{
