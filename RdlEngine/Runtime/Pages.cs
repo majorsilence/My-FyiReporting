@@ -733,6 +733,7 @@ namespace fyiReporting.RDL
 		string text;			// the text
 		float descent;			// in some cases the Font descent will be recorded; 0 otherwise
 		bool bGrow;
+        bool bCanShrink;
 		bool _NoClip=false;		// on drawing disallow clipping
         PageTextHtml _HtmlParent=null;
 
@@ -741,6 +742,7 @@ namespace fyiReporting.RDL
 			text = t;
 			descent=0;
 			bGrow=false;
+            bCanShrink = false;
 		}
 
         public PageTextHtml HtmlParent
@@ -771,6 +773,13 @@ namespace fyiReporting.RDL
 			get {return bGrow;}
 			set {bGrow = value;}
 		}
+
+        public bool CanShrink
+        {
+            get { return bCanShrink; }
+            set { bCanShrink = value; }
+        }
+
 		#region ICloneable Members
 
 		new public object Clone()
