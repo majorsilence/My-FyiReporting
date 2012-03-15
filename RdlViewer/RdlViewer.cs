@@ -409,7 +409,9 @@ namespace fyiReporting.RdlViewer
                 // Aulofee customization - start. Code added (2 lines) to avoid to execute twice GetPages and so the SQL query (custo end). 
             }
             else
+            {
                 _pgs = GetPages(this._Report);
+            }
             _DrawPanel.Pgs = _pgs;
             _vScroll.Value = 0;
             CalcZoom();

@@ -663,6 +663,7 @@ namespace fyiReporting.RdlViewer
         // render all the objects in a page (or any composite object
         private void ProcessPage(Graphics g, IEnumerable p, RectangleF clipRect, bool bHitList)
         {
+            // TODO: (Peter) Support can grow and can shrink
             foreach (PageItem pi in p)
             {
                 if (pi is PageTextHtml)
@@ -726,6 +727,9 @@ namespace fyiReporting.RdlViewer
 
                 if (pi is PageText)
                 {
+                    // TODO: enable can shrink, can grow
+                    // 2005 spec file, page 9, in the text box has
+                    // CanGrow and CanShrink
                     PageText pt = pi as PageText;
                     DrawString(pt, g, rect);
                 }
