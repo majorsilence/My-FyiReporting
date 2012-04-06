@@ -137,11 +137,21 @@ namespace fyiReporting.RDL
 						re = new RowEnumerable (0, row.R.Data.Count-1, row.R.Data, false);
 					bSave = false;
 				}
+                else if (t == typeof(DataSetDefn))
+                {
+                    DataSetDefn ds = this._Scope as DataSetDefn;
+                    if (ds != null && ds.Query != null)
+                    {
+                        Rows rows = ds.Query.GetMyData(rpt);
+                        if (rows != null)
+                            re = new RowEnumerable(0, rows.Data.Count - 1, rows.Data, false);
+                    }
+                }
 				else if (row != null)
 				{
 					re = new RowEnumerable (0, row.R.Data.Count-1, row.R.Data, false);
 				}
-				else
+                else
 				{
 					DataSetDefn ds = this._Scope as DataSetDefn;
 					if (ds != null && ds.Query != null)
