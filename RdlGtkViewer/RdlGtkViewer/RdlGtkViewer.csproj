@@ -116,6 +116,7 @@
       <Link>ICSharpCode.SharpZipLib.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Icons\Pdf_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />

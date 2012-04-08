@@ -8,6 +8,13 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/RdlGtkViewer.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="PdfIcon">
+      <source>
+        <property name="Image">file:./Resources/Icons/Pdf_16x16.png</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="487 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -269,7 +276,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Pdf</property>
         <property name="ShortLabel" translatable="yes">_Pdf</property>
-        <property name="StockId">Pdf</property>
+        <property name="StockId">PdfIcon</property>
         <signal name="Activated" handler="OnPdfActionActivated" />
       </action>
       <action id="printAction">
