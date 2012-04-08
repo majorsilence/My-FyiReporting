@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="Mono.Cairo" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -78,6 +79,13 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="RdlGtkViewer.cs" />
     <Compile Include="gtk-gui\fyiReporting.RdlGtkViewer.RdlGtkViewer.cs" />
+    <Compile Include="Extensions\GdkExtensions.cs" />
+    <Compile Include="Extensions\CairoExtensions.cs" />
+    <Compile Include="CairoPdfWriter.cs" />
+    <Compile Include="RenderCairo.cs" />
+    <Compile Include="ReportArea.cs" />
+    <Compile Include="ReportViewer.cs" />
+    <Compile Include="gtk-gui\fyiReporting.RdlGtkViewer.ReportViewer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -108,5 +116,8 @@
       <Link>ICSharpCode.SharpZipLib.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
