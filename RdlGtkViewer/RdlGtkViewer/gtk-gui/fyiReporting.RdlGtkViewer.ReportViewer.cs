@@ -32,7 +32,7 @@ namespace fyiReporting.RdlGtkViewer
 			this.refreshAction = new global::Gtk.Action ("refreshAction", null, null, "gtk-refresh");
 			this.refreshAction.IsImportant = true;
 			w2.Add (this.refreshAction, null);
-			this.PdfAction = new global::Gtk.Action ("PdfAction", global::Mono.Unix.Catalog.GetString ("_Pdf"), null, "Pdf");
+			this.PdfAction = new global::Gtk.Action ("PdfAction", global::Mono.Unix.Catalog.GetString ("_Pdf"), null, "PdfIcon");
 			this.PdfAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Pdf");
 			w2.Add (this.PdfAction, null);
 			this.printAction = new global::Gtk.Action ("printAction", global::Mono.Unix.Catalog.GetString ("_Print"), null, "gtk-print");

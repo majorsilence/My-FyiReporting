@@ -5,8 +5,10 @@
 //       Krzysztof Marecki
 // 
 //  Copyright (c) 2010 Krzysztof Marecki
+//  Copyright (c) 2012 Peter Gill
 // 
 // This file is part of the NReports project
+// This file is part of the My-FyiReporting project 
 //	
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -80,7 +82,7 @@ namespace fyiReporting.RdlGtkViewer
 			}
 		}
 		
-		public string SourceFile { get; private set; }
+		public Uri SourceFile { get; private set; }
 		
 		public ReportViewer ()
 		{
@@ -93,14 +95,14 @@ namespace fyiReporting.RdlGtkViewer
 		}
 		
 		
-		public void LoadReport (string sourcefile)
+		public void LoadReport (Uri sourcefile)
 		{
 			SourceFile = sourcefile;
 			
 			string xml = GetRdlSource ();
 			RDLParser parser = new RDLParser (xml);
 			parser.DataSourceReferencePassword = DataSourceReferencePassword;
-			parser.Folder = System.IO.Path.GetDirectoryName (SourceFile);
+			parser.Folder = System.IO.Path.GetDirectoryName (SourceFile.AbsolutePath);
 			
 			report = parser.Parse ();
 			AddParameterControls ();
@@ -215,7 +217,7 @@ namespace fyiReporting.RdlGtkViewer
 		{
 			string xml = null;
 			
-			using (var fs = new StreamReader (SourceFile))
+			using (var fs = new StreamReader (SourceFile.AbsolutePath))
 				xml = fs.ReadToEnd ();
 			
 			return xml;
@@ -234,7 +236,7 @@ namespace fyiReporting.RdlGtkViewer
 
 		protected virtual void OnPdfActionActivated (object sender, System.EventArgs e)
 		{
-			string reportname = System.IO.Path.GetFileNameWithoutExtension (SourceFile);
+			string reportname = System.IO.Path.GetFileNameWithoutExtension (SourceFile.AbsolutePath);
 			string filename = string.Format ("{0}.pdf", reportname);
 			int width = (int)report.PageWidthPoints;
 			int height = (int)report.PageHeightPoints;

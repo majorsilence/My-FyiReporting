@@ -34,6 +34,11 @@ namespace fyiReporting.RdlGtkViewer
 		// Invalidate the whole thing
 		public static void Invalidate (this Window w)
 		{
+			if (w == null)
+			{
+				return;
+			}
+			
 			int width;
 			int height;
 			

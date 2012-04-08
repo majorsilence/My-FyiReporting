@@ -92,6 +92,10 @@
     <Content Include="app.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
+    <Content Include="Resources\Icons\Pdf_16x16.png">
+      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RdlEngine\RdlEngine.csproj">
@@ -116,7 +120,6 @@
       <Link>ICSharpCode.SharpZipLib.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Icons\Pdf_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
