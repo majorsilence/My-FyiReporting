@@ -104,6 +104,8 @@ namespace fyiReporting.RdlDesign
         private Color _SaveExprBackColor = Color.LightGray;
        
         private string _IpcChannelPortName = "RdlProject";
+        private ToolStripButton ctlInsertCurrent = null;
+        private ToolStripMenuItem ctlMenuInsertCurrent = null;
 
         private RdlDesigner()
         {
@@ -1018,75 +1020,186 @@ namespace fyiReporting.RdlDesign
             }
             mainProperties.Visible = mainSP.Visible = bShowProp;
             if (leftAlignToolStripButton2 != null)
+            {
                 leftAlignToolStripButton2.Enabled = bEnableDesign;
+            }
             if (centerAlignToolStripButton2 != null)
+            {
                 centerAlignToolStripButton2.Enabled = bEnableDesign;
+            }
             if (rightAlignToolStripButton3 != null)
+            {
                 rightAlignToolStripButton3.Enabled = bEnableDesign;
+            }
             if (boldToolStripButton1 != null)
+            {
                 boldToolStripButton1.Enabled = bEnableDesign;
+            }
             if (italiacToolStripButton1 != null)
+            {
                 italiacToolStripButton1.Enabled = bEnableDesign;
+            }
             if (underlineToolStripButton2 != null)
+            {
                 underlineToolStripButton2.Enabled = bEnableDesign;
+            }
             if (fontToolStripComboBox1 != null)
+            {
                 fontToolStripComboBox1.Enabled = bEnableDesign;
+            }
             if (fontSizeToolStripComboBox1 != null)
+            {
                 fontSizeToolStripComboBox1.Enabled = bEnableDesign;
+            }
             if (foreColorPicker1 != null)
+            {
                 foreColorPicker1.Enabled = bEnableDesign;
+            }
             if (backColorPicker1 != null)
+            {
                 backColorPicker1.Enabled = bEnableDesign;
+            }
             if (cutToolStripButton1 != null)
+            {
                 cutToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
             if (copyToolStripButton1 != null)
+            {
                 copyToolStripButton1.Enabled = bEnableDesign | bEnableEdit | bEnablePreview;
+            }
             if (undoToolStripButton1 != null)
+            {
                 undoToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
             if (pasteToolStripButton1 != null)
+            {
                 pasteToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
             if (printToolStripButton2 != null)
+            {
                 printToolStripButton2.Enabled = bEnablePreview;
-
+            }
             if (textboxToolStripButton1 != null)
+            {
                 textboxToolStripButton1.Enabled = bEnableDesign;
+            }
             if (selectToolStripButton2 != null)
             {
                 selectToolStripButton2.Enabled = bEnablePreview;
                 selectToolStripButton2.Checked = mc == null ? false : mc.SelectionTool;
             }
             if (chartToolStripButton1 != null)
+            {
                 chartToolStripButton1.Enabled = bEnableDesign;
+            }
             if (rectangleToolStripButton1 != null)
+            {
                 rectangleToolStripButton1.Enabled = bEnableDesign;
+            }
             if (tableToolStripButton1 != null)
+            {
                 tableToolStripButton1.Enabled = bEnableDesign;
+            }
             if (matrixToolStripButton1 != null)
+            {
                 matrixToolStripButton1.Enabled = bEnableDesign;
+            }
             if (listToolStripButton1 != null)
+            {
                 listToolStripButton1.Enabled = bEnableDesign;
+            }
             if (lineToolStripButton1 != null)
+            {
                 lineToolStripButton1.Enabled = bEnableDesign;
+            }
             if (imageToolStripButton1 != null)
+            {
                 imageToolStripButton1.Enabled = bEnableDesign;
+            }
             if (subreportToolStripButton1 != null)
+            {
                 subreportToolStripButton1.Enabled = bEnableDesign;
+            }
             if (pdfToolStripButton2 != null)
+            {
                 pdfToolStripButton2.Enabled = bEnablePreview;
+            }
             if (TifToolStripButton2 != null)
+            {
                 TifToolStripButton2.Enabled = bEnablePreview;
+            }
             if (XmlToolStripButton2 != null)
+            {
                 XmlToolStripButton2.Enabled = bEnablePreview;
+            }
             if (htmlToolStripButton2 != null)
+            {
                 htmlToolStripButton2.Enabled = bEnablePreview;
+            }
             if (MhtToolStripButton2 != null)
+            {
                 MhtToolStripButton2.Enabled = bEnablePreview;
+            }
             if (CsvToolStripButton2 != null)
+            {
                 CsvToolStripButton2.Enabled = bEnablePreview;
+            }
             if (excelToolStripButton2 != null)
+            {
                 excelToolStripButton2.Enabled = bEnablePreview;
+            }
             if (RtfToolStripButton2 != null)
+            {
                 RtfToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (chartToolStripMenuItem != null)
+            {
+                chartToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (gridToolStripMenuItem != null)
+            {
+                gridToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (imageToolStripMenuItem != null)
+            {
+                imageToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (lineToolStripMenuItem.Enabled != null)
+            {
+                lineToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (listToolStripMenuItem != null)
+            {
+                listToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (matrixToolStripMenuItem != null)
+            {
+                matrixToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (rectangleToolStripMenuItem != null)
+            {
+                rectangleToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (subReportToolStripMenuItem != null)
+            {
+                subReportToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (tableToolStripMenuItem != null)
+            {
+                tableToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (textboxToolStripMenuItem != null)
+            {
+                textboxToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (barCodeBooklandToolStripMenuItem != null)
+            {
+                barCodeBooklandToolStripMenuItem.Enabled = bEnableDesign;
+            }
+            if (barCodeEAN13ToolStripMenuItem != null)
+            {
+                barCodeEAN13ToolStripMenuItem.Enabled = bEnableDesign;
+            }
 
             this.EnableEditTextBox();
 
@@ -1263,7 +1376,9 @@ namespace fyiReporting.RdlDesign
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
+            {
                 return;
+            }
 
             // turn off the current selection after an item is inserted
             if (ctlInsertCurrent != null)
@@ -1271,6 +1386,12 @@ namespace fyiReporting.RdlDesign
                 ctlInsertCurrent.Checked = false;
                 mc.CurrentInsert = null;
                 ctlInsertCurrent = null;
+            }
+            if (ctlMenuInsertCurrent != null)
+            {
+                ctlMenuInsertCurrent.Checked = false;
+                mc.CurrentInsert = null;
+                ctlMenuInsertCurrent = null;
             }
         }
 
@@ -2686,6 +2807,23 @@ namespace fyiReporting.RdlDesign
 
             mc.Editor.SetSelectedText(ctlEditTextbox.Text);
             SetProperties(mc);
+        }
+
+        private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ctlMenuInsertCurrent != null)
+                ctlMenuInsertCurrent.Checked = false;
+
+            ToolStripMenuItem ctl = (ToolStripMenuItem)sender;
+            ctl.Checked = true;
+            ctlMenuInsertCurrent = ctl.Checked ? ctl : null;
+
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            mc.SetFocus();
+
+            mc.CurrentInsert = ctlMenuInsertCurrent == null ? null : (string)ctlMenuInsertCurrent.Tag;
         }
 
         private void Insert_Click(object sender, EventArgs e)
