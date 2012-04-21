@@ -53,9 +53,9 @@ namespace fyiReporting.CRI
         /// Runtime: Draw the BarCode
         /// </summary>
         /// <param name="bm">Bitmap to draw the barcode in.</param>
-        public void DrawImage(System.Drawing.Bitmap bm)
+        public void DrawImage(ref System.Drawing.Bitmap bm)
         {
-            _Ean13.DrawImage(bm);
+            _Ean13.DrawImage(ref bm);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(System.Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
         {
             _Ean13.DrawImage(bm, "978015602732");    // Yann Martel-Life of Pi
         }

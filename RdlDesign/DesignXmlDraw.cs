@@ -1422,9 +1422,8 @@ namespace fyiReporting.RdlDesign
                 if (height <= 0)
                     height = 1;
                 bm = new Bitmap(width, height);
-                cri.DrawDesignerImage(bm);
+                cri.DrawDesignerImage(ref bm);
                 DrawImageSized(xNode,ImageSizingEnum.Clip, bm, si, ir);
-
                 DrawBorder(si, ir);
             }
             catch

@@ -105,7 +105,7 @@ namespace fyiReporting.CRI
         /// Runtime: Draw the BarCode
         /// </summary>
         /// <param name="bm">Bitmap to draw the barcode in.</param>
-        public void DrawImage(System.Drawing.Bitmap bm)
+        public void DrawImage(ref System.Drawing.Bitmap bm)
         {
             string upcode = _NumberSystem + _ManufacturerCode + _ProductCode;
 
@@ -117,7 +117,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(System.Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
         {
             DrawImage(bm, "00" + "12345" + "12345");
         }

@@ -171,7 +171,7 @@ namespace fyiReporting.RDL
                     (Style == null? 0 :
                         (Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
                 bm = new Bitmap(width, height);
-                cri.DrawImage(bm);
+                cri.DrawImage(ref bm);
 
                 MemoryStream ostrm = new MemoryStream();
                 // 06122007AJM Changed to use high quality JPEG encoding
