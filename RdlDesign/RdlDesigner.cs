@@ -3766,6 +3766,38 @@ namespace fyiReporting.RdlDesign
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void RdlDesigner_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                int i;
+                for (i = 0; i < s.Length; i++)
+                {
+                    if (s[i].ToLower().EndsWith(".rdl"))
+                    {
+                        CreateMDIChild(new Uri(s[i]), null, false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RdlDesigner_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
         
     }
 

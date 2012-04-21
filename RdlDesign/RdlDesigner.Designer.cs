@@ -184,14 +184,14 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainSP = new System.Windows.Forms.Splitter();
             this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
+            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.menuStrip1.SuspendLayout();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -1693,6 +1693,56 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.panel1.Size = new System.Drawing.Size(712, 66);
             this.panel1.TabIndex = 36;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusSelected,
+            this.toolStripStatusLabel2,
+            this.statusPosition});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.TabIndex = 40;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusSelected
+            // 
+            this.statusSelected.Name = "statusSelected";
+            this.statusSelected.Size = new System.Drawing.Size(31, 17);
+            this.statusSelected.Text = "        ";
+            this.statusSelected.ToolTipText = "Name of selected ReportItem";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel2.Text = "|";
+            // 
+            // statusPosition
+            // 
+            this.statusPosition.Name = "statusPosition";
+            this.statusPosition.Size = new System.Drawing.Size(31, 17);
+            this.statusPosition.Text = "        ";
+            this.statusPosition.ToolTipText = "Position of selected ReportItem";
+            // 
+            // mainSP
+            // 
+            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainSP.Location = new System.Drawing.Point(469, 140);
+            this.mainSP.Name = "mainSP";
+            this.mainSP.Size = new System.Drawing.Size(3, 308);
+            this.mainSP.TabIndex = 42;
+            this.mainSP.TabStop = false;
+            // 
+            // mainProperties
+            // 
+            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainProperties.Location = new System.Drawing.Point(472, 140);
+            this.mainProperties.Name = "mainProperties";
+            this.mainProperties.Size = new System.Drawing.Size(240, 308);
+            this.mainProperties.TabIndex = 41;
+            // 
             // foreColorPicker1
             // 
             this.foreColorPicker1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -1702,6 +1752,146 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.foreColorPicker1.FormattingEnabled = true;
             this.foreColorPicker1.IntegralHeight = false;
             this.foreColorPicker1.Items.AddRange(new object[] {
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "Aliceblue",
             "Antiquewhite",
             "Aqua",
@@ -15581,6 +15771,146 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
             this.backColorPicker1.Location = new System.Drawing.Point(273, 12);
@@ -15591,58 +15921,9 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.backColorPicker1.SelectedValueChanged += new System.EventHandler(this.ctlBackColor_Change);
             this.backColorPicker1.Validated += new System.EventHandler(this.ctlBackColor_Change);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusSelected,
-            this.toolStripStatusLabel2,
-            this.statusPosition});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
-            this.statusStrip1.TabIndex = 40;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusSelected
-            // 
-            this.statusSelected.Name = "statusSelected";
-            this.statusSelected.Size = new System.Drawing.Size(31, 17);
-            this.statusSelected.Text = "        ";
-            this.statusSelected.ToolTipText = "Name of selected ReportItem";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel2.Text = "|";
-            // 
-            // statusPosition
-            // 
-            this.statusPosition.Name = "statusPosition";
-            this.statusPosition.Size = new System.Drawing.Size(31, 17);
-            this.statusPosition.Text = "        ";
-            this.statusPosition.ToolTipText = "Position of selected ReportItem";
-            // 
-            // mainSP
-            // 
-            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainSP.Location = new System.Drawing.Point(469, 140);
-            this.mainSP.Name = "mainSP";
-            this.mainSP.Size = new System.Drawing.Size(3, 308);
-            this.mainSP.TabIndex = 42;
-            this.mainSP.TabStop = false;
-            // 
-            // mainProperties
-            // 
-            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainProperties.Location = new System.Drawing.Point(472, 140);
-            this.mainProperties.Name = "mainProperties";
-            this.mainProperties.Size = new System.Drawing.Size(240, 308);
-            this.mainProperties.TabIndex = 41;
-            // 
             // RdlDesigner
             // 
+            this.AllowDrop = true;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(712, 470);
             this.Controls.Add(this.mainSP);
@@ -15658,6 +15939,8 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "fyiReporting Designer";
             this.Load += new System.EventHandler(this.RdlDesigner_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.RdlDesigner_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.RdlDesigner_DragEnter);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RdlDesigner_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
