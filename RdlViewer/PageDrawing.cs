@@ -68,6 +68,9 @@ namespace fyiReporting.RdlViewer
         private Point _MousePosition = new Point();		// position of the mouse
         private List<PageItem> _SelectList;
 
+        public PageDrawing() : this(null)
+        {         
+        }
         public PageDrawing(Pages pgs)
         {
             // Set up the tooltip
@@ -1554,6 +1557,17 @@ namespace fyiReporting.RdlViewer
                 }
                 return bIn;
             }
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // PageDrawing
+            // 
+            this.Name = "PageDrawing";
+            this.ResumeLayout(false);
 
         }
     }
