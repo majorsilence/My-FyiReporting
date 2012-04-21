@@ -1294,6 +1294,7 @@ namespace fyiReporting.RdlDesign
         private void cbConnectionTypes_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             groupBoxSqlServer.Visible = false;
+            buttonSqliteSelectDatabase.Visible = false;
 
             if (cbConnectionTypes.Text == SHARED_CONNECTION)
             {
@@ -1342,6 +1343,7 @@ namespace fyiReporting.RdlDesign
                     break;
                 case "SQLite":
                     tbConnection.Text = "Data Source=filename;Version=3;Password=myPassword;Pooling=True;Max Pool Size=100;";
+                    buttonSqliteSelectDatabase.Visible = true;
                     break;
                 case "PostgreSQL":
                     tbConnection.Text = "Server=127.0.0.1;Port=5432;Database=myDataBase;User Id=myUsername;Password=myPassword;";
@@ -1403,7 +1405,49 @@ namespace fyiReporting.RdlDesign
 
         private void buttonSqliteSelectDatabase_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            try
+            {
+                ofd.Filter = "All files (*.*)|*.*";
+                ofd.CheckFileExists = true;
+                
+                try
+                {
+                    if (ofd.ShowDialog(this) != DialogResult.OK)
+                    {
+                        return;
+                    }
 
+                    if (tbConnection.Text.Trim() == "")
+                    {
+                        tbConnection.Text = "Data Source=" + ofd.FileName;
+                    }
+                    else
+                    {
+                        string[] sections = tbConnection.Text.Split(';');
+
+                        foreach (string section in sections)
+                        {
+                            if (section.ToLower().Contains("data source"))
+                            {
+                                string dataSource = string.Format("Data Source={0}", ofd.FileName);
+                                tbConnection.Text = tbConnection.Text.Replace(section, dataSource);
+                                break;
+                            }
+                        }
+                    }
+            
+                }
+                finally
+                {
+                    ofd.Dispose();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonSearchSqlServers_Click(object sender, EventArgs e)

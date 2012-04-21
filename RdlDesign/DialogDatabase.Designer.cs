@@ -100,12 +100,17 @@ private TextBox tbSQL;
             this.rbList = new System.Windows.Forms.RadioButton();
             this.rbTable = new System.Windows.Forms.RadioButton();
             this.DBConnection = new System.Windows.Forms.TabPage();
-            this.buttonDatabaseSearch = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboDatabaseList = new System.Windows.Forms.ComboBox();
-            this.buttonSearchSqlServers = new System.Windows.Forms.Button();
-            this.comboServerList = new System.Windows.Forms.ComboBox();
+            this.groupBoxSqlServer = new System.Windows.Forms.GroupBox();
+            this.textBoxSqlPassword = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxSqlUser = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.buttonDatabaseSearch = new System.Windows.Forms.Button();
+            this.comboServerList = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.buttonSearchSqlServers = new System.Windows.Forms.Button();
+            this.comboDatabaseList = new System.Windows.Forms.ComboBox();
             this.buttonSqliteSelectDatabase = new System.Windows.Forms.Button();
             this.bShared = new System.Windows.Forms.Button();
             this.bTestConnection = new System.Windows.Forms.Button();
@@ -149,20 +154,16 @@ private TextBox tbSQL;
             this.ReportSyntax = new System.Windows.Forms.TabPage();
             this.tbReportSyntax = new System.Windows.Forms.TextBox();
             this.ReportPreview = new System.Windows.Forms.TabPage();
+            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
-            this.groupBoxSqlServer = new System.Windows.Forms.GroupBox();
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxSqlUser = new System.Windows.Forms.TextBox();
-            this.textBoxSqlPassword = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tcDialog.SuspendLayout();
             this.ReportType.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.DBConnection.SuspendLayout();
+            this.groupBoxSqlServer.SuspendLayout();
             this.ReportParameters.SuspendLayout();
             this.DBSql.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -173,7 +174,6 @@ private TextBox tbSQL;
             this.ReportSyntax.SuspendLayout();
             this.ReportPreview.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBoxSqlServer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcDialog
@@ -392,6 +392,66 @@ private TextBox tbSQL;
             this.DBConnection.Text = "Connection";
             this.DBConnection.Validating += new System.ComponentModel.CancelEventHandler(this.DBConnection_Validating);
             // 
+            // groupBoxSqlServer
+            // 
+            this.groupBoxSqlServer.Controls.Add(this.textBoxSqlPassword);
+            this.groupBoxSqlServer.Controls.Add(this.label11);
+            this.groupBoxSqlServer.Controls.Add(this.textBoxSqlUser);
+            this.groupBoxSqlServer.Controls.Add(this.label10);
+            this.groupBoxSqlServer.Controls.Add(this.label8);
+            this.groupBoxSqlServer.Controls.Add(this.buttonDatabaseSearch);
+            this.groupBoxSqlServer.Controls.Add(this.comboServerList);
+            this.groupBoxSqlServer.Controls.Add(this.label9);
+            this.groupBoxSqlServer.Controls.Add(this.buttonSearchSqlServers);
+            this.groupBoxSqlServer.Controls.Add(this.comboDatabaseList);
+            this.groupBoxSqlServer.Location = new System.Drawing.Point(3, 147);
+            this.groupBoxSqlServer.Name = "groupBoxSqlServer";
+            this.groupBoxSqlServer.Size = new System.Drawing.Size(514, 140);
+            this.groupBoxSqlServer.TabIndex = 14;
+            this.groupBoxSqlServer.TabStop = false;
+            this.groupBoxSqlServer.Text = "Sql Server";
+            this.groupBoxSqlServer.Visible = false;
+            // 
+            // textBoxSqlPassword
+            // 
+            this.textBoxSqlPassword.Location = new System.Drawing.Point(306, 64);
+            this.textBoxSqlPassword.Name = "textBoxSqlPassword";
+            this.textBoxSqlPassword.PasswordChar = '*';
+            this.textBoxSqlPassword.Size = new System.Drawing.Size(195, 20);
+            this.textBoxSqlPassword.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(243, 63);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(72, 23);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "password:";
+            // 
+            // textBoxSqlUser
+            // 
+            this.textBoxSqlUser.Location = new System.Drawing.Point(76, 63);
+            this.textBoxSqlUser.Name = "textBoxSqlUser";
+            this.textBoxSqlUser.Size = new System.Drawing.Size(161, 20);
+            this.textBoxSqlUser.TabIndex = 16;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(13, 66);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 23);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Username:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Server:";
+            // 
             // buttonDatabaseSearch
             // 
             this.buttonDatabaseSearch.Location = new System.Drawing.Point(372, 90);
@@ -402,6 +462,14 @@ private TextBox tbSQL;
             this.buttonDatabaseSearch.UseVisualStyleBackColor = true;
             this.buttonDatabaseSearch.Click += new System.EventHandler(this.buttonDatabaseSearch_Click);
             // 
+            // comboServerList
+            // 
+            this.comboServerList.FormattingEnabled = true;
+            this.comboServerList.Location = new System.Drawing.Point(75, 21);
+            this.comboServerList.Name = "comboServerList";
+            this.comboServerList.Size = new System.Drawing.Size(291, 21);
+            this.comboServerList.TabIndex = 9;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -410,14 +478,6 @@ private TextBox tbSQL;
             this.label9.Size = new System.Drawing.Size(56, 13);
             this.label9.TabIndex = 12;
             this.label9.Text = "Database:";
-            // 
-            // comboDatabaseList
-            // 
-            this.comboDatabaseList.FormattingEnabled = true;
-            this.comboDatabaseList.Location = new System.Drawing.Point(76, 92);
-            this.comboDatabaseList.Name = "comboDatabaseList";
-            this.comboDatabaseList.Size = new System.Drawing.Size(290, 21);
-            this.comboDatabaseList.TabIndex = 13;
             // 
             // buttonSearchSqlServers
             // 
@@ -429,30 +489,21 @@ private TextBox tbSQL;
             this.buttonSearchSqlServers.UseVisualStyleBackColor = true;
             this.buttonSearchSqlServers.Click += new System.EventHandler(this.buttonSearchSqlServers_Click);
             // 
-            // comboServerList
+            // comboDatabaseList
             // 
-            this.comboServerList.FormattingEnabled = true;
-            this.comboServerList.Location = new System.Drawing.Point(75, 21);
-            this.comboServerList.Name = "comboServerList";
-            this.comboServerList.Size = new System.Drawing.Size(291, 21);
-            this.comboServerList.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Server:";
+            this.comboDatabaseList.FormattingEnabled = true;
+            this.comboDatabaseList.Location = new System.Drawing.Point(76, 92);
+            this.comboDatabaseList.Name = "comboDatabaseList";
+            this.comboDatabaseList.Size = new System.Drawing.Size(290, 21);
+            this.comboDatabaseList.TabIndex = 13;
             // 
             // buttonSqliteSelectDatabase
             // 
-            this.buttonSqliteSelectDatabase.Location = new System.Drawing.Point(352, 104);
+            this.buttonSqliteSelectDatabase.Location = new System.Drawing.Point(321, 104);
             this.buttonSqliteSelectDatabase.Name = "buttonSqliteSelectDatabase";
-            this.buttonSqliteSelectDatabase.Size = new System.Drawing.Size(146, 23);
+            this.buttonSqliteSelectDatabase.Size = new System.Drawing.Size(177, 23);
             this.buttonSqliteSelectDatabase.TabIndex = 7;
-            this.buttonSqliteSelectDatabase.Text = "Select SQLITE Database File";
+            this.buttonSqliteSelectDatabase.Text = "Select SQLite Database File";
             this.buttonSqliteSelectDatabase.UseVisualStyleBackColor = true;
             this.buttonSqliteSelectDatabase.Visible = false;
             this.buttonSqliteSelectDatabase.Click += new System.EventHandler(this.buttonSqliteSelectDatabase_Click);
@@ -873,6 +924,35 @@ private TextBox tbSQL;
             this.ReportPreview.Tag = "preview";
             this.ReportPreview.Text = "Report Preview";
             // 
+            // rdlViewer1
+            // 
+            this.rdlViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.rdlViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rdlViewer1.Folder = null;
+            this.rdlViewer1.HighlightAll = false;
+            this.rdlViewer1.HighlightAllColor = System.Drawing.Color.Fuchsia;
+            this.rdlViewer1.HighlightCaseSensitive = false;
+            this.rdlViewer1.HighlightItemColor = System.Drawing.Color.Aqua;
+            this.rdlViewer1.HighlightPageItem = null;
+            this.rdlViewer1.HighlightText = null;
+            this.rdlViewer1.Location = new System.Drawing.Point(0, 0);
+            this.rdlViewer1.Name = "rdlViewer1";
+            this.rdlViewer1.PageCurrent = 1;
+            this.rdlViewer1.Parameters = null;
+            this.rdlViewer1.ReportName = null;
+            this.rdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
+            this.rdlViewer1.SelectTool = false;
+            this.rdlViewer1.ShowFindPanel = false;
+            this.rdlViewer1.ShowParameterPanel = true;
+            this.rdlViewer1.ShowWaitDialog = true;
+            this.rdlViewer1.Size = new System.Drawing.Size(520, 300);
+            this.rdlViewer1.SourceFile = null;
+            this.rdlViewer1.SourceRdl = null;
+            this.rdlViewer1.TabIndex = 0;
+            this.rdlViewer1.UseTrueMargins = true;
+            this.rdlViewer1.Zoom = 0.5969851F;
+            this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -904,86 +984,6 @@ private TextBox tbSQL;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // groupBoxSqlServer
-            // 
-            this.groupBoxSqlServer.Controls.Add(this.textBoxSqlPassword);
-            this.groupBoxSqlServer.Controls.Add(this.label11);
-            this.groupBoxSqlServer.Controls.Add(this.textBoxSqlUser);
-            this.groupBoxSqlServer.Controls.Add(this.label10);
-            this.groupBoxSqlServer.Controls.Add(this.label8);
-            this.groupBoxSqlServer.Controls.Add(this.buttonDatabaseSearch);
-            this.groupBoxSqlServer.Controls.Add(this.comboServerList);
-            this.groupBoxSqlServer.Controls.Add(this.label9);
-            this.groupBoxSqlServer.Controls.Add(this.buttonSearchSqlServers);
-            this.groupBoxSqlServer.Controls.Add(this.comboDatabaseList);
-            this.groupBoxSqlServer.Location = new System.Drawing.Point(3, 147);
-            this.groupBoxSqlServer.Name = "groupBoxSqlServer";
-            this.groupBoxSqlServer.Size = new System.Drawing.Size(514, 140);
-            this.groupBoxSqlServer.TabIndex = 14;
-            this.groupBoxSqlServer.TabStop = false;
-            this.groupBoxSqlServer.Text = "Sql Server";
-            this.groupBoxSqlServer.Visible = false;
-            // 
-            // rdlViewer1
-            // 
-            this.rdlViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.rdlViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdlViewer1.Folder = null;
-            this.rdlViewer1.HighlightAll = false;
-            this.rdlViewer1.HighlightAllColor = System.Drawing.Color.Fuchsia;
-            this.rdlViewer1.HighlightCaseSensitive = false;
-            this.rdlViewer1.HighlightItemColor = System.Drawing.Color.Aqua;
-            this.rdlViewer1.HighlightPageItem = null;
-            this.rdlViewer1.HighlightText = null;
-            this.rdlViewer1.Location = new System.Drawing.Point(0, 0);
-            this.rdlViewer1.Name = "rdlViewer1";
-            this.rdlViewer1.PageCurrent = 1;
-            this.rdlViewer1.Parameters = null;
-            this.rdlViewer1.ReportName = null;
-            this.rdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
-            this.rdlViewer1.SelectTool = false;
-            this.rdlViewer1.ShowFindPanel = false;
-            this.rdlViewer1.ShowParameterPanel = true;
-            this.rdlViewer1.ShowWaitDialog = true;
-            this.rdlViewer1.Size = new System.Drawing.Size(520, 300);
-            this.rdlViewer1.SourceFile = null;
-            this.rdlViewer1.SourceRdl = null;
-            this.rdlViewer1.TabIndex = 0;
-            this.rdlViewer1.UseTrueMargins = true;
-            this.rdlViewer1.Zoom = 0.5969851F;
-            this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(13, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 23);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Username:";
-            // 
-            // textBoxSqlUser
-            // 
-            this.textBoxSqlUser.Location = new System.Drawing.Point(76, 63);
-            this.textBoxSqlUser.Name = "textBoxSqlUser";
-            this.textBoxSqlUser.Size = new System.Drawing.Size(161, 20);
-            this.textBoxSqlUser.TabIndex = 16;
-            // 
-            // textBoxSqlPassword
-            // 
-            this.textBoxSqlPassword.Location = new System.Drawing.Point(306, 64);
-            this.textBoxSqlPassword.Name = "textBoxSqlPassword";
-            this.textBoxSqlPassword.PasswordChar = '*';
-            this.textBoxSqlPassword.Size = new System.Drawing.Size(195, 20);
-            this.textBoxSqlPassword.TabIndex = 18;
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(243, 63);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 23);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "password:";
-            // 
             // DialogDatabase
             // 
             this.AcceptButton = this.btnOK;
@@ -1006,6 +1006,8 @@ private TextBox tbSQL;
             this.groupBox1.ResumeLayout(false);
             this.DBConnection.ResumeLayout(false);
             this.DBConnection.PerformLayout();
+            this.groupBoxSqlServer.ResumeLayout(false);
+            this.groupBoxSqlServer.PerformLayout();
             this.ReportParameters.ResumeLayout(false);
             this.ReportParameters.PerformLayout();
             this.DBSql.ResumeLayout(false);
@@ -1019,8 +1021,6 @@ private TextBox tbSQL;
             this.ReportSyntax.PerformLayout();
             this.ReportPreview.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.groupBoxSqlServer.ResumeLayout(false);
-            this.groupBoxSqlServer.PerformLayout();
             this.ResumeLayout(false);
 
 		}
