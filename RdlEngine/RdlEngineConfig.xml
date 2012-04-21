@@ -145,5 +145,10 @@
       <CodeModule>RdlCri.dll</CodeModule>
       <ClassName>fyiReporting.CRI.BarCodeBookland</ClassName>
     </CustomReportItem>
+    <CustomReportItem>
+      <Type>QR Code</Type>
+      <CodeModule>RdlCri.dll</CodeModule>
+      <ClassName>fyiReporting.CRI.QrCode</ClassName>
+    </CustomReportItem>
   </CustomReportItems>
 </config>
