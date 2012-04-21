@@ -1475,3 +1475,7 @@
 /RdlViewer/RdlReader/bin/Debug/Npgsql.dll
 /RdlViewer/RdlReader/bin/Debug/RdlEngineConfig.xml
 /RdlViewer/RdlReader/bin/Debug/System.Data.SQLite.dll
+/DataProviders/obj/Debug/Refactor/DataProviders.dll
+/RdlCri/obj/Debug/Refactor/RdlCri.dll
+/RdlEngine/obj/Debug/Refactor/RdlEngine.dll
+/RdlViewer/obj/Debug/Refactor/RdlViewer.dll
