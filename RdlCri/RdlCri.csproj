@@ -126,6 +126,10 @@
       <Project>{C97E91F4-B310-44E2-9B6C-96775395722D}</Project>
       <Name>RdlEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ZXing\zxing.csproj">
+      <Project>{6431CF13-7A7B-4602-B96A-47CDA6F0B008}</Project>
+      <Name>zxing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
