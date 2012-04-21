@@ -34,56 +34,46 @@ using fyiReporting.RdlViewer;
 
 namespace fyiReporting.RdlDesign
 {
-	/// <summary>
-	/// RdlReader is a application for displaying reports based on RDL.
-	/// </summary>
-	internal class MDIChild : Form
-	{
-		public delegate void RdlChangeHandler(object sender, EventArgs e);
-		public event RdlChangeHandler OnSelectionChanged;
-		public event RdlChangeHandler OnSelectionMoved;
-		public event RdlChangeHandler OnReportItemInserted;
-		public event RdlChangeHandler OnDesignTabChanged;
-		public event DesignCtl.OpenSubreportEventHandler OnOpenSubreport;
+    /// <summary>
+    /// RdlReader is a application for displaying reports based on RDL.
+    /// </summary>
+    internal partial class MDIChild 
+    {
+        public delegate void RdlChangeHandler(object sender, EventArgs e);
+        public event RdlChangeHandler OnSelectionChanged;
+        public event RdlChangeHandler OnSelectionMoved;
+        public event RdlChangeHandler OnReportItemInserted;
+        public event RdlChangeHandler OnDesignTabChanged;
+        public event DesignCtl.OpenSubreportEventHandler OnOpenSubreport;
         public event DesignCtl.HeightEventHandler OnHeightChanged;
 
-		private fyiReporting.RdlDesign.RdlEditPreview rdlDesigner;
-        Uri _SourceFile; 
-        TabPage _Tab;               // TabPage for this MDI Child
+        Uri _SourceFile;
+        // TabPage for this MDI Child
 
-		public MDIChild(int width, int height)
-		{
-			this.rdlDesigner = new fyiReporting.RdlDesign.RdlEditPreview();
-			this.SuspendLayout();
-			// 
-			// rdlDesigner
-			// 
-			this.rdlDesigner.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rdlDesigner.Location = new System.Drawing.Point(0, 0);
-			this.rdlDesigner.Name = "rdlDesigner";
-			this.rdlDesigner.Size = new System.Drawing.Size(width, height);
-			this.rdlDesigner.TabIndex = 0;
-			// register event for RDL changed.
-			rdlDesigner.OnRdlChanged += new RdlEditPreview.RdlChangeHandler(rdlDesigner_RdlChanged);
-            rdlDesigner.OnHeightChanged += new DesignCtl.HeightEventHandler(rdlDesigner_HeightChanged);
-            rdlDesigner.OnSelectionChanged += new RdlEditPreview.RdlChangeHandler(rdlDesigner_SelectionChanged);
-			rdlDesigner.OnSelectionMoved += new RdlEditPreview.RdlChangeHandler(rdlDesigner_SelectionMoved);
-			rdlDesigner.OnReportItemInserted += new RdlEditPreview.RdlChangeHandler(rdlDesigner_ReportItemInserted);
-			rdlDesigner.OnDesignTabChanged += new RdlEditPreview.RdlChangeHandler(rdlDesigner_DesignTabChanged);
-			rdlDesigner.OnOpenSubreport += new DesignCtl.OpenSubreportEventHandler(rdlDesigner_OpenSubreport);
+        private MDIChild() { }
+        public MDIChild(int width, int height)
+        {
+            this.InitializeComponent();
 
-			// 
-			// MDIChild
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(width, height);
-			this.Controls.Add(this.rdlDesigner);
-			this.Name = "";
-			this.Text = "";
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.MDIChild_Closing);
+            this.SuspendLayout();
+            // 
+            // rdlDesigner
+            // 
+            this.rdlDesigner.Name = "rdlDesigner";
+            this.rdlDesigner.Size = new System.Drawing.Size(width, height);
 
-			this.ResumeLayout(false);
-		}
+            // 
+            // MDIChild
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(width, height);
+
+            this.Name = "";
+            this.Text = "";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.MDIChild_Closing);
+
+            this.ResumeLayout(false);
+        }
 
         internal TabPage Tab
         {
@@ -91,21 +81,21 @@ namespace fyiReporting.RdlDesign
             set { _Tab = value; }
         }
 
-		public RdlEditPreview Editor
-		{
-			get
-			{
-				return rdlDesigner.CanEdit? rdlDesigner: null;	// only return when it can edit
-			}
-		}
+        public RdlEditPreview Editor
+        {
+            get
+            {
+                return rdlDesigner.CanEdit ? rdlDesigner : null;	// only return when it can edit
+            }
+        }
 
-		public RdlEditPreview RdlEditor
-		{
-			get
-			{
-				return rdlDesigner;			// always return
-			}
-		}
+        public RdlEditPreview RdlEditor
+        {
+            get
+            {
+                return rdlDesigner;			// always return
+            }
+        }
 
         public void ShowEditLines(bool bShow)
         {
@@ -122,156 +112,159 @@ namespace fyiReporting.RdlDesign
             set { rdlDesigner.ShowReportItemOutline = value; }
         }
 
-		public string CurrentInsert
-		{
-			get {return rdlDesigner.CurrentInsert; }
-			set 
-			{
-				rdlDesigner.CurrentInsert = value;
-			}
-		}
+        public string CurrentInsert
+        {
+            get { return rdlDesigner.CurrentInsert; }
+            set
+            {
+                rdlDesigner.CurrentInsert = value;
+            }
+        }
 
-		public int CurrentLine
-		{
-			get {return rdlDesigner.CurrentLine; }
-		}
+        public int CurrentLine
+        {
+            get { return rdlDesigner.CurrentLine; }
+        }
 
-		public int CurrentCh
-		{
-			get {return rdlDesigner.CurrentCh; }
-		}
+        public int CurrentCh
+        {
+            get { return rdlDesigner.CurrentCh; }
+        }
 
-		internal string DesignTab
-		{
-			get {return rdlDesigner.DesignTab;}
-			set { rdlDesigner.DesignTab = value; }
-		}
+        internal string DesignTab
+        {
+            get { return rdlDesigner.DesignTab; }
+            set { rdlDesigner.DesignTab = value; }
+        }
 
-		internal DesignXmlDraw DrawCtl
-		{
-			get {return rdlDesigner.DrawCtl;}
-		}
+        internal DesignXmlDraw DrawCtl
+        {
+            get { return rdlDesigner.DrawCtl; }
+        }
 
-		public XmlDocument ReportDocument
-		{
-			get {return rdlDesigner.ReportDocument;}
-		}
-		
-		internal void SetFocus()
-		{
-			rdlDesigner.SetFocus();
-		}
+        public XmlDocument ReportDocument
+        {
+            get { return rdlDesigner.ReportDocument; }
+        }
 
-		public StyleInfo SelectedStyle
-		{
-			get {return rdlDesigner.SelectedStyle;}
-		}
-		
-		public string SelectionName
-		{
-			get {return rdlDesigner.SelectionName;}
-		}
-		
-		public PointF SelectionPosition
-		{
-			get {return rdlDesigner.SelectionPosition;}
-		}
+        internal void SetFocus()
+        {
+            rdlDesigner.SetFocus();
+        }
 
-		public SizeF SelectionSize
-		{
-			get {return rdlDesigner.SelectionSize;}
-		}
-		
-		public void ApplyStyleToSelected(string name, string v)
-		{
-			rdlDesigner.ApplyStyleToSelected(name, v);
-		}
+        public StyleInfo SelectedStyle
+        {
+            get { return rdlDesigner.SelectedStyle; }
+        }
 
-		public bool FileSave()
-		{
-			Uri file = SourceFile;
-            if (file == null || file.LocalPath == "" )		// if no file name then do SaveAs
-			{
-				return FileSaveAs();
-			}
-			string rdl = GetRdlText();
+        public string SelectionName
+        {
+            get { return rdlDesigner.SelectionName; }
+        }
 
-			return FileSave(file, rdl);
-		}
+        public PointF SelectionPosition
+        {
+            get { return rdlDesigner.SelectionPosition; }
+        }
 
-        private bool FileSave(Uri file, string rdl) 
-		{
-			StreamWriter writer=null;
-			bool bOK=true;
-			try
-			{
-                writer = new StreamWriter(file.LocalPath); 
-				writer.Write(rdl);
-				//				editRDL.ClearUndo();
-				//				editRDL.Modified = false;
-				//				SetTitle();
-				//				statusBar.Text = "Saved " + curFileName;
-			}
-			catch (Exception ae)
-			{
-				bOK=false;
-				MessageBox.Show(ae.Message + "\r\n" +  ae.StackTrace);
-				//				statusBar.Text = "Save of file '" + curFileName + "' failed";
-			}
-			finally
-			{
-				writer.Close();
-			}
-			if (bOK)
-				this.Modified=false;
-			return bOK;
-		}
+        public SizeF SelectionSize
+        {
+            get { return rdlDesigner.SelectionSize; }
+        }
 
-		public bool Export(string type)
-		{
-			SaveFileDialog sfd = new SaveFileDialog();
-			sfd.Title = "Export to " + type.ToUpper();
-			switch (type.ToLower())
-			{
+        public void ApplyStyleToSelected(string name, string v)
+        {
+            rdlDesigner.ApplyStyleToSelected(name, v);
+        }
+
+        public bool FileSave()
+        {
+            Uri file = SourceFile;
+            if (file == null || file.LocalPath == "")		// if no file name then do SaveAs
+            {
+                return FileSaveAs();
+            }
+            string rdl = GetRdlText();
+
+            return FileSave(file, rdl);
+        }
+
+        private bool FileSave(Uri file, string rdl)
+        {
+            StreamWriter writer = null;
+            bool bOK = true;
+            try
+            {
+                writer = new StreamWriter(file.LocalPath);
+                writer.Write(rdl);
+                //				editRDL.ClearUndo();
+                //				editRDL.Modified = false;
+                //				SetTitle();
+                //				statusBar.Text = "Saved " + curFileName;
+            }
+            catch (Exception ae)
+            {
+                bOK = false;
+                MessageBox.Show(ae.Message + "\r\n" + ae.StackTrace);
+                //				statusBar.Text = "Save of file '" + curFileName + "' failed";
+            }
+            finally
+            {
+                writer.Close();
+            }
+            if (bOK)
+                this.Modified = false;
+            return bOK;
+        }
+
+        public bool Export(string type)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Export to " + type.ToUpper();
+            switch (type.ToLower())
+            {
                 case "csv":
                     sfd.Filter = "CSV file (*.csv)|*.csv|All files (*.*)|*.*";
                     break;
                 case "xml":
-					sfd.Filter = "XML file (*.xml)|*.xml|All files (*.*)|*.*";
-					break;
-				case "pdf":
-					sfd.Filter = "PDF file (*.pdf)|*.pdf|All files (*.*)|*.*";
-					break;
-                case "tif": case "tiff":
+                    sfd.Filter = "XML file (*.xml)|*.xml|All files (*.*)|*.*";
+                    break;
+                case "pdf":
+                    sfd.Filter = "PDF file (*.pdf)|*.pdf|All files (*.*)|*.*";
+                    break;
+                case "tif":
+                case "tiff":
                     sfd.Filter = "TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*";
                     break;
-                case "rtf": case "doc":
+                case "rtf":
+                case "doc":
                     sfd.Filter = "RTF file (*.rtf)|*.rtf|DOC file (*.doc)|*.doc|All files (*.*)|*.*";
                     break;
-                case "xlsx": case "excel":
+                case "xlsx":
+                case "excel":
                     type = "xlsx";
                     sfd.Filter = "Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*";
                     break;
                 case "html":
-				case "htm":
-					sfd.Filter = "Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*";
+                case "htm":
+                    sfd.Filter = "Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*";
                     break;
-				case "mhtml":
-				case "mht":
-					sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
-					break;
-				default:
-					throw new Exception("Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types."); 
-			}
-			sfd.FilterIndex = 1;
+                case "mhtml":
+                case "mht":
+                    sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
+                    break;
+                default:
+                    throw new Exception("Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types.");
+            }
+            sfd.FilterIndex = 1;
 
             if (SourceFile != null)
             {
-				sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile.LocalPath) + "." + type; 
+                sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile.LocalPath) + "." + type;
             }
-			else
+            else
             {
-				sfd.FileName = "*." + type;
+                sfd.FileName = "*." + type;
             }
 
             try
@@ -304,17 +297,17 @@ namespace fyiReporting.RdlDesign
             {
                 sfd.Dispose();
             }
-		}
+        }
 
-		public bool FileSaveAs()
-		{
-			SaveFileDialog sfd = new SaveFileDialog();
-			sfd.Filter = "RDL files (*.rdl)|*.rdl|All files (*.*)|*.*";
-			sfd.FilterIndex = 1;
+        public bool FileSaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "RDL files (*.rdl)|*.rdl|All files (*.*)|*.*";
+            sfd.FilterIndex = 1;
 
             Uri file = SourceFile;
 
-            sfd.FileName = file == null ? "*.rdl" : file.LocalPath; 
+            sfd.FileName = file == null ? "*.rdl" : file.LocalPath;
             try
             {
                 if (sfd.ShowDialog(this) != DialogResult.OK)
@@ -322,11 +315,11 @@ namespace fyiReporting.RdlDesign
 
                 // User wants to save!
                 string rdl = GetRdlText();
-                if (FileSave(new Uri(sfd.FileName), rdl)) 
+                if (FileSave(new Uri(sfd.FileName), rdl))
                 {	// Save was successful
                     Text = sfd.FileName;
                     Tab.Text = Path.GetFileName(sfd.FileName);
-                    _SourceFile = new Uri(sfd.FileName); 
+                    _SourceFile = new Uri(sfd.FileName);
                     Tab.ToolTipText = sfd.FileName;
                     return true;
                 }
@@ -335,141 +328,141 @@ namespace fyiReporting.RdlDesign
             {
                 sfd.Dispose();
             }
-			return false;
-		}
- 
-		public string GetRdlText()
-		{
-			return this.rdlDesigner.GetRdlText();
-		}
+            return false;
+        }
 
-		public bool Modified
-		{
-			get {return rdlDesigner.Modified;}
-			set 
-			{
-				rdlDesigner.Modified = value;
-				SetTitle();
-			}
-		}
+        public string GetRdlText()
+        {
+            return this.rdlDesigner.GetRdlText();
+        }
 
-		/// <summary>
-		/// The RDL file that should be displayed.
-		/// </summary>
-        public Uri SourceFile 
-		{
-			get {return _SourceFile;}
-			set 
-			{
-				_SourceFile = value;
-				string rdl = GetRdlSource();
-				this.rdlDesigner.SetRdlText(rdl == null? "": rdl);
-			}
-		}
+        public bool Modified
+        {
+            get { return rdlDesigner.Modified; }
+            set
+            {
+                rdlDesigner.Modified = value;
+                SetTitle();
+            }
+        }
 
-		public string SourceRdl
-		{
-			get {return this.rdlDesigner.GetRdlText();}
-			set	{this.rdlDesigner.SetRdlText(value);}
-		}
+        /// <summary>
+        /// The RDL file that should be displayed.
+        /// </summary>
+        public Uri SourceFile
+        {
+            get { return _SourceFile; }
+            set
+            {
+                _SourceFile = value;
+                string rdl = GetRdlSource();
+                this.rdlDesigner.SetRdlText(rdl == null ? "" : rdl);
+            }
+        }
 
-		private string GetRdlSource()
-		{
-			StreamReader fs=null;
-			string prog=null;
-			try
-			{
-                fs = new StreamReader(_SourceFile.LocalPath); 
-				prog = fs.ReadToEnd();
-			}
-			finally
-			{
-				if (fs != null)
-					fs.Close();
-			}
+        public string SourceRdl
+        {
+            get { return this.rdlDesigner.GetRdlText(); }
+            set { this.rdlDesigner.SetRdlText(value); }
+        }
 
-			return prog;
-		}
+        private string GetRdlSource()
+        {
+            StreamReader fs = null;
+            string prog = null;
+            try
+            {
+                fs = new StreamReader(_SourceFile.LocalPath);
+                prog = fs.ReadToEnd();
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+            }
 
-		/// <summary>
-		/// Number of pages in the report.
-		/// </summary>
-		public int PageCount
-		{
-			get {return this.rdlDesigner.PageCount;}
-		}
+            return prog;
+        }
 
-		/// <summary>
-		/// Current page in view on report
-		/// </summary>
-		public int PageCurrent
-		{
-			get {return this.rdlDesigner.PageCurrent;}
-		}
+        /// <summary>
+        /// Number of pages in the report.
+        /// </summary>
+        public int PageCount
+        {
+            get { return this.rdlDesigner.PageCount; }
+        }
 
-		/// <summary>
-		/// Page height of the report.
-		/// </summary>
-		public float PageHeight
-		{
-			get {return this.rdlDesigner.PageHeight;}  
-		}
-/// <summary>
-/// Turns the Selection Tool on in report preview
-/// </summary>
+        /// <summary>
+        /// Current page in view on report
+        /// </summary>
+        public int PageCurrent
+        {
+            get { return this.rdlDesigner.PageCurrent; }
+        }
+
+        /// <summary>
+        /// Page height of the report.
+        /// </summary>
+        public float PageHeight
+        {
+            get { return this.rdlDesigner.PageHeight; }
+        }
+        /// <summary>
+        /// Turns the Selection Tool on in report preview
+        /// </summary>
         public bool SelectionTool
         {
             get
             {
-               return this.rdlDesigner.SelectionTool;
+                return this.rdlDesigner.SelectionTool;
             }
             set
             {
-               this.rdlDesigner.SelectionTool = value;
+                this.rdlDesigner.SelectionTool = value;
             }
         }
 
-		/// <summary>
-		/// Page width of the report.
-		/// </summary>
-		public float PageWidth
-		{
-			get {return this.rdlDesigner.PageWidth;}
-		}
+        /// <summary>
+        /// Page width of the report.
+        /// </summary>
+        public float PageWidth
+        {
+            get { return this.rdlDesigner.PageWidth; }
+        }
 
-		/// <summary>
-		/// Zoom 
-		/// </summary>
-		public float Zoom
-		{
-			get {return this.rdlDesigner.Zoom;}
-			set {this.rdlDesigner.Zoom = value;}
-		}
+        /// <summary>
+        /// Zoom 
+        /// </summary>
+        public float Zoom
+        {
+            get { return this.rdlDesigner.Zoom; }
+            set { this.rdlDesigner.Zoom = value; }
+        }
 
-		/// <summary>
-		/// ZoomMode 
-		/// </summary>
-		public ZoomEnum ZoomMode
-		{
-			get {return this.rdlDesigner.ZoomMode;}
-			set {this.rdlDesigner.ZoomMode = value;}
-		}
- 
-		/// <summary>
-		/// Print the report.  
-		/// </summary>
-		public void Print(PrintDocument pd)
-		{
-			this.rdlDesigner.Print(pd);
-		}
+        /// <summary>
+        /// ZoomMode 
+        /// </summary>
+        public ZoomEnum ZoomMode
+        {
+            get { return this.rdlDesigner.ZoomMode; }
+            set { this.rdlDesigner.ZoomMode = value; }
+        }
 
-		public void SaveAs(string filename, string ext)
-		{
-			rdlDesigner.SaveAs(filename, ext);
-		}
+        /// <summary>
+        /// Print the report.  
+        /// </summary>
+        public void Print(PrintDocument pd)
+        {
+            this.rdlDesigner.Print(pd);
+        }
 
-		private void MDIChild_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
+        public void SaveAs(string filename, string ext)
+        {
+            rdlDesigner.SaveAs(filename, ext);
+        }
+
+        private void MDIChild_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             if (!OkToClose())
             {
                 e.Cancel = true;
@@ -483,35 +476,35 @@ namespace fyiReporting.RdlDesign
             ctl.Controls.Remove(Tab);
             Tab.Tag = null;             // this is the Tab reference to this
             Tab = null;
-		}
+        }
 
-		public bool OkToClose()
-		{
-			if (!this.Modified)
-				return true;
+        public bool OkToClose()
+        {
+            if (!this.Modified)
+                return true;
 
-			DialogResult r = 
-					MessageBox.Show(this, String.Format("Do you want to save changes you made to '{0}'?",
-                    _SourceFile == null ? "Untitled" : Path.GetFileName(_SourceFile.LocalPath)), 
-					"fyiReporting Designer",
-					MessageBoxButtons.YesNoCancel,
-					MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button3);
+            DialogResult r =
+                    MessageBox.Show(this, String.Format("Do you want to save changes you made to '{0}'?",
+                    _SourceFile == null ? "Untitled" : Path.GetFileName(_SourceFile.LocalPath)),
+                    "fyiReporting Designer",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button3);
 
-			bool bOK = true;
-			if (r == DialogResult.Cancel)
-				bOK = false;
-			else if (r == DialogResult.Yes)
-			{
-				if (!FileSave())
-					bOK = false;
-			}
-			return bOK;
-		}
+            bool bOK = true;
+            if (r == DialogResult.Cancel)
+                bOK = false;
+            else if (r == DialogResult.Yes)
+            {
+                if (!FileSave())
+                    bOK = false;
+            }
+            return bOK;
+        }
 
-		private void rdlDesigner_RdlChanged(object sender, System.EventArgs e)
-		{
-			SetTitle();
-		}
+        private void rdlDesigner_RdlChanged(object sender, System.EventArgs e)
+        {
+            SetTitle();
+        }
 
         private void rdlDesigner_HeightChanged(object sender, HeightEventArgs e)
         {
@@ -519,81 +512,68 @@ namespace fyiReporting.RdlDesign
                 OnHeightChanged(this, e);
         }
 
-		private void rdlDesigner_SelectionChanged(object sender, System.EventArgs e)
-		{
-			if (OnSelectionChanged != null)
-				OnSelectionChanged(this, e);
-		}
+        private void rdlDesigner_SelectionChanged(object sender, System.EventArgs e)
+        {
+            if (OnSelectionChanged != null)
+                OnSelectionChanged(this, e);
+        }
 
-		private void rdlDesigner_DesignTabChanged(object sender, System.EventArgs e)
-		{
-			if (OnDesignTabChanged != null)
-				OnDesignTabChanged(this, e);
-		}
+        private void rdlDesigner_DesignTabChanged(object sender, System.EventArgs e)
+        {
+            if (OnDesignTabChanged != null)
+                OnDesignTabChanged(this, e);
+        }
 
-		private void rdlDesigner_ReportItemInserted(object sender, System.EventArgs e)
-		{
-			if (OnReportItemInserted != null)
-				OnReportItemInserted(this, e);
-		}
+        private void rdlDesigner_ReportItemInserted(object sender, System.EventArgs e)
+        {
+            if (OnReportItemInserted != null)
+                OnReportItemInserted(this, e);
+        }
 
-		private void rdlDesigner_SelectionMoved(object sender, System.EventArgs e)
-		{
-			if (OnSelectionMoved != null)
-				OnSelectionMoved(this, e);
-		}
+        private void rdlDesigner_SelectionMoved(object sender, System.EventArgs e)
+        {
+            if (OnSelectionMoved != null)
+                OnSelectionMoved(this, e);
+        }
 
-		private void rdlDesigner_OpenSubreport(object sender, SubReportEventArgs e)
-		{
-			if (OnOpenSubreport != null)
-			{
-				OnOpenSubreport(this, e);
-			}
-		}
+        private void rdlDesigner_OpenSubreport(object sender, SubReportEventArgs e)
+        {
+            if (OnOpenSubreport != null)
+            {
+                OnOpenSubreport(this, e);
+            }
+        }
 
-		private void InitializeComponent()
-		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIChild));
-            this.SuspendLayout();
-			// 
-			// MDIChild
-			// 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None; 
-			this.ClientSize = new System.Drawing.Size(292, 266);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "MDIChild";
-            this.Load += new System.EventHandler(this.MDIChild_Load);
-            this.ResumeLayout(false); 
-		}
 
-		private void SetTitle()
-		{
-			string title = this.Text;
-			if (title.Length < 1)
-				return;
-			char m = title[title.Length-1];
-			if (this.Modified)
-			{
-				if (m != '*')
-					title = title + "*";
-			}
-			else if (m == '*')
-				title = title.Substring(0, title.Length-1);
 
-			if (title != this.Text)
-				this.Text = title;
-			return;
-		}
+        private void SetTitle()
+        {
+            string title = this.Text;
+            if (title.Length < 1)
+                return;
+            char m = title[title.Length - 1];
+            if (this.Modified)
+            {
+                if (m != '*')
+                    title = title + "*";
+            }
+            else if (m == '*')
+                title = title.Substring(0, title.Length - 1);
 
-		public fyiReporting.RdlViewer.RdlViewer Viewer
-		{
-			get {return rdlDesigner.Viewer;}
-		}
+            if (title != this.Text)
+                this.Text = title;
+            return;
+        }
+
+        public fyiReporting.RdlViewer.RdlViewer Viewer
+        {
+            get { return rdlDesigner.Viewer; }
+        }
 
         private void MDIChild_Load(object sender, EventArgs e)
         {
 
-        } 
+        }
 
-	}
+    }
 }

@@ -272,6 +272,9 @@
     <Compile Include="DesignRuler.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MDIChild.Designer.cs">
+      <DependentUpon>MDIChild.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
