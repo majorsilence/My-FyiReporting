@@ -1293,6 +1293,8 @@ namespace fyiReporting.RdlDesign
 
         private void cbConnectionTypes_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            groupBoxSqlServer.Visible = false;
+
             if (cbConnectionTypes.Text == SHARED_CONNECTION)
             {
                 this.lConnection.Text = "Shared Data Source File:";
@@ -1314,11 +1316,14 @@ namespace fyiReporting.RdlDesign
                 lODBC.Visible = cbOdbcNames.Visible = false;
             }
 
+            
+
             // this is only for ease of testing
             switch (cbConnectionTypes.Text)
             {
                 case "SQL":
                     tbConnection.Text = "Server=(local)\\ServerInstance;DataBase=DatabaseName;User Id=myUsername;Password=myPassword;Connect Timeout=5";
+                    groupBoxSqlServer.Visible = true;
                     break;
                 case "ODBC":
                     tbConnection.Text = "dsn=world;UID=user;PWD=password;";
@@ -1395,5 +1400,95 @@ namespace fyiReporting.RdlDesign
                 ofd.Dispose();
             }
         }
+
+        private void buttonSqliteSelectDatabase_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSearchSqlServers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Data.Sql.SqlDataSourceEnumerator instance = System.Data.Sql.SqlDataSourceEnumerator.Instance;
+                DataTable dt;
+                dt = instance.GetDataSources();
+
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    string server = row["ServerName"].ToString();
+                    if (row["InstanceName"].ToString() != "")
+                    {
+                        server = server + @"\" + row["InstanceName"].ToString();
+                    }
+                    dict.Add(server, server);
+                }
+                comboServerList.ValueMember = "Value";
+                comboServerList.DisplayMember = "Key";
+                comboServerList.DataSource = new BindingSource(dict, null);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonDatabaseSearch_Click(object sender, EventArgs e)
+        {
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            System.Data.SqlClient.SqlDataAdapter da;
+
+            DataTable dt = new DataTable();
+
+            string connectionString = string.Format("server={0}; Database={1};User ID={2}; Password={3}; Trusted_Connection=False;",
+                comboServerList.SelectedValue.ToString(), "master", textBoxSqlUser.Text, textBoxSqlPassword.Text);
+
+            SqlConnection cn = new System.Data.SqlClient.SqlConnection(connectionString); ;
+            try
+            {
+                
+                cn.Open();
+
+                cmd.Connection = cn;
+                cmd.CommandText = "sp_databases";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                da = new System.Data.SqlClient.SqlDataAdapter(cmd);
+                da.Fill(dt);
+                dt.TableName = "master";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+
+            try
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    string database = row["DATABASE_NAME"].ToString();
+                    dict.Add(database, database);
+                }
+
+                comboDatabaseList.ValueMember = "Value";
+                comboDatabaseList.DisplayMember = "Key";
+                comboDatabaseList.DataSource = new BindingSource(dict, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }
