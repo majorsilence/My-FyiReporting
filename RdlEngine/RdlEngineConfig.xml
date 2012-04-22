@@ -151,9 +151,9 @@
       <ClassName>fyiReporting.CRI.QrCode</ClassName>
     </CustomReportItem>
     <CustomReportItem>
-      <Type>Code39</Type>
+      <Type>BarCode39</Type>
       <CodeModule>RdlCri.dll</CodeModule>
-      <ClassName>fyiReporting.CRI.Code39</ClassName>
+      <ClassName>fyiReporting.CRI.BarCode39</ClassName>
     </CustomReportItem>
   </CustomReportItems>
 </config>

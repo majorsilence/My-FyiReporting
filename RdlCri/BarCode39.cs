@@ -8,42 +8,52 @@ using System.Xml;
 
 namespace fyiReporting.CRI
 {
-    public class QrCode : ICustomReportItem
+    public class BarCode39 : ICustomReportItem
     {
 
         static public readonly float OptimalHeight = 35.91f;          // Optimal height at magnification 1    
-        static public readonly float OptimalWidth = 35.91f;            // Optimal width at mag 1
+        static public readonly float OptimalWidth = 65.91f;            // Optimal width at mag 1
+        private string _code39 = "";
 
         #region ICustomReportItem Members
 
-        bool ICustomReportItem.IsDataRegion()
+        public bool IsDataRegion()
         {
             return false;
         }
 
-        void ICustomReportItem.DrawImage(ref System.Drawing.Bitmap bm)
+        public void DrawImage(ref Bitmap bm)
         {
-            DrawImage(ref bm, _qrCode);
+            DrawImage(ref bm, _code39.ToUpper());
         }
 
         /// <summary>
-        /// Does the actual drawing of the image.
+        /// Design time: Draw a hard coded BarCode for design time;  Parameters can't be
+        /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        /// <param name="qrcode"></param>
-        internal void DrawImage(ref System.Drawing.Bitmap bm, string qrcode)
+        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
         {
-            com.google.zxing.qrcode.QRCodeWriter writer = new com.google.zxing.qrcode.QRCodeWriter();
+            //string code = "https://github.com/majorsilence/My-FyiReporting".ToUpper();
+            string code = "HELLO";
+            DrawImage(ref bm, code);
+        }
+
+        public void DrawImage(ref Bitmap bm, string code39)
+        {
+            com.google.zxing.oned.Code39Writer writer = new com.google.zxing.oned.Code39Writer();
             com.google.zxing.common.ByteMatrix matrix;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
-            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
+            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, 
+                OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
             int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
-
-            matrix = writer.encode(qrcode, com.google.zxing.BarcodeFormat.QR_CODE, barWidth, barHeight, null);
+            
+            matrix = writer.encode(code39, com.google.zxing.BarcodeFormat.CODE_39, 
+                barWidth, barHeight, null);
 
 
             bm = new Bitmap(barWidth, barHeight);
@@ -68,32 +78,21 @@ namespace fyiReporting.CRI
             }
         }
 
-        /// <summary>
-        /// Design time: Draw a hard coded BarCode for design time;  Parameters can't be
-        /// relied on since they aren't available.
-        /// </summary>
-        /// <param name="bm"></param>
-        void ICustomReportItem.DrawDesignerImage(ref System.Drawing.Bitmap bm)
-        {
-            DrawImage(ref bm, "https://github.com/majorsilence/My-FyiReporting");
-        }
-
-        private string _qrCode = "";
-        void ICustomReportItem.SetProperties(IDictionary<string, object> props)
+        public void SetProperties(IDictionary<string, object> props)
         {
             try
             {
-                _qrCode = props["QrCode"].ToString();
+                _code39 = props["Code"].ToString();
             }
             catch (KeyNotFoundException)
             {
-                throw new Exception("QrCode property must be specified");
+                throw new Exception("Code property must be specified");
             }
         }
 
-        object ICustomReportItem.GetPropertiesInstance(System.Xml.XmlNode iNode)
+        public object GetPropertiesInstance(XmlNode iNode)
         {
-            BarCodePropertiesQR bcp = new BarCodePropertiesQR(this, iNode);
+            BarCodeProperties bcp = new BarCodeProperties(this, iNode);
             foreach (XmlNode n in iNode.ChildNodes)
             {
                 if (n.Name != "CustomProperty")
@@ -101,8 +100,8 @@ namespace fyiReporting.CRI
                 string pname = XmlHelpers.GetNamedElementValue(n, "Name", "");
                 switch (pname)
                 {
-                    case "QrCode":
-                        bcp.SetQrCode(XmlHelpers.GetNamedElementValue(n, "Value", ""));
+                    case "Code":
+                        bcp.SetBarCode(XmlHelpers.GetNamedElementValue(n, "Value", ""));
                         break;
                     default:
                         break;
@@ -112,20 +111,17 @@ namespace fyiReporting.CRI
             return bcp;
         }
 
-        public void SetPropertiesInstance(System.Xml.XmlNode node, object inst)
+        public void SetPropertiesInstance(XmlNode node, object inst)
         {
             node.RemoveAll();       // Get rid of all properties
 
-            BarCodePropertiesQR bcp = inst as BarCodePropertiesQR;
+            BarCodeProperties bcp = inst as BarCodeProperties;
             if (bcp == null)
                 return;
 
 
-            XmlHelpers.CreateChild(node, "QrCode", bcp.QrCode);
-
+            XmlHelpers.CreateChild(node, "Code", bcp.Code);
         }
-
-        
 
 
         /// <summary>
@@ -135,13 +131,13 @@ namespace fyiReporting.CRI
         /// the configuration file.
         /// </summary>
         /// <returns></returns>
-        string ICustomReportItem.GetCustomReportItemXml()
+        public string GetCustomReportItemXml()
         {
             return "<CustomReportItem><Type>{0}</Type>" +
                 string.Format("<Height>{0}mm</Height><Width>{1}mm</Width>", OptimalHeight, OptimalWidth) +
                 "<CustomProperties>" +
                 "<CustomProperty>" +
-                "<Name>QrCode</Name>" +
+                "<Name>Code</Name>" +
                 "<Value>Enter Your Value</Value>" +
                 "</CustomProperty>" +
                 "</CustomProperties>" +
@@ -152,44 +148,43 @@ namespace fyiReporting.CRI
 
         #region IDisposable Members
 
-        void IDisposable.Dispose()
+        public void Dispose()
         {
             return;
         }
 
         #endregion
 
+
         /// <summary>
         /// BarCodeProperties- All properties are type string to allow for definition of
         /// a runtime expression.
         /// </summary>
-        public class BarCodePropertiesQR
+        public class BarCodeProperties
         {
-            string _QrCode;
-            QrCode _bc;
+            string _code39;
+            BarCode39 _bc;
             XmlNode _node;
 
-            internal BarCodePropertiesQR(QrCode bc, XmlNode node)
+            internal BarCodeProperties(BarCode39 bc, XmlNode node)
             {
                 _bc = bc;
                 _node = node;
             }
 
-            internal void SetQrCode(string ns)
+            internal void SetBarCode(string ns)
             {
-                _QrCode = ns;
+                _code39 = ns;
             }
-            [CategoryAttribute("QrCode"),
-               DescriptionAttribute("The text string to be encoded as a QR Code.")]
-            public string QrCode
+            [CategoryAttribute("Code"),
+               DescriptionAttribute("The text string to be encoded as a BarCode39 Code.")]
+            public string Code
             {
-                get { return _QrCode; }
-                set { _QrCode = value; _bc.SetPropertiesInstance(_node, this); }
+                get { return _code39; }
+                set { _code39 = value; _bc.SetPropertiesInstance(_node, this); }
             }
 
 
         }
     }
-
-    
 }
