@@ -10,6 +10,10 @@ namespace fyiReporting.CRI
 {
     public class QrCode : ICustomReportItem
     {
+
+        static public readonly float OptimalHeight = 35.91f;          // Optimal height at magnification 1    
+        static public readonly float OptimalWidth = 35.91f;            // Optimal width at mag 1
+
         #region ICustomReportItem Members
 
         bool ICustomReportItem.IsDataRegion()
@@ -32,11 +36,17 @@ namespace fyiReporting.CRI
             com.google.zxing.qrcode.QRCodeWriter writer = new com.google.zxing.qrcode.QRCodeWriter();
             com.google.zxing.common.ByteMatrix matrix;
 
-            int size = 180;
-            matrix = writer.encode(qrcode, com.google.zxing.BarcodeFormat.QR_CODE, size, size, null);
+            Graphics g = null;
+            g = Graphics.FromImage(bm);
+            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
+
+            int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
+            int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
+
+            matrix = writer.encode(qrcode, com.google.zxing.BarcodeFormat.QR_CODE, barWidth, barHeight, null);
 
 
-            bm = new Bitmap(size, size);
+            bm = new Bitmap(barWidth, barHeight);
             Color Color = Color.FromArgb(0, 0, 0);
 
             for (int y = 0; y < matrix.Height; ++y)
@@ -152,8 +162,6 @@ namespace fyiReporting.CRI
             cp.AppendChild(v);
         }
 
-        static public readonly float OptimalHeight = 180.0f;          // Optimal height at magnification 1    
-        static public readonly float OptimalWidth = 180.0f;            // Optimal width at mag 1
 
         /// <summary>
         /// Design time call: return string with <CustomReportItem> ... </CustomReportItem> syntax for 

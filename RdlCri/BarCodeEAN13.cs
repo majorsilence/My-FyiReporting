@@ -77,7 +77,6 @@ namespace fyiReporting.CRI
 
         static public readonly float OptimalHeight = 25.91f;          // Optimal height at magnification 1    
         static public readonly float OptimalWidth = 37.29f;            // Optimal width at mag 1
-        static readonly float AspectRatio = OptimalHeight / OptimalWidth;   // h / w: dimension at magnification factor 1
         static readonly float ModuleWidth = 0.33f;             // module width in mm at mag factor 1
         static readonly float FontHeight = 8;                  // Font height at mag factor 1
         static readonly int LeftQuietZoneModules = 11;          // # of modules in left quiet zone  
@@ -132,7 +131,7 @@ namespace fyiReporting.CRI
             string barPattern = this.GetEncoding(upcode);
             Graphics g = null;
             g = Graphics.FromImage(bm);
-            float mag = GetMagnification(g, bm.Width, bm.Height);
+            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth );
 
             float barWidth = ModuleWidth * mag;
             float barHeight = OptimalHeight * mag;
@@ -356,26 +355,6 @@ namespace fyiReporting.CRI
 
         #endregion
 
-        float GetMagnification(Graphics g, int width, int height)
-        {
-            float r = (float)height / (float)width;
-            if (r <= BarCodeEAN13.AspectRatio)
-            {   // height is the limiting value
-                r = BarCodeEAN13.MmYFromPixel(g, height) / BarCodeEAN13.OptimalHeight;
-            }
-            else
-            {   // width is the limiting value
-                r = BarCodeEAN13.MmXFromPixel(g, width) / BarCodeEAN13.OptimalWidth;
-            }
-            // Set the magnification limits
-            //    Specification says 80% to 200% magnification allowed
-            if (r < .8f)
-                r = .8f;
-            else if (r > 2f)
-                r = 2;
-
-            return r;
-        }
 
         /// <summary>
         /// GetEncoding returns a string representing the on/off bars.  It should be passed
@@ -433,20 +412,6 @@ namespace fyiReporting.CRI
             sb.Append("101");       
 
             return sb.ToString();
-        }
-
-        static internal int MmXFromPixel(Graphics g, float x)
-        {
-            int result = (int)(x / g.DpiX * 25.4f);	// convert to pixels
-
-            return result;
-        }
-
-        static internal int MmYFromPixel(Graphics g, float y)
-        {
-            int result = (int)(y / g.DpiY * 25.4f);	// convert to pixels
-
-            return result;
         }
 
 
