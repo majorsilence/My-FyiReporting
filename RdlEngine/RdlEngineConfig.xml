@@ -155,5 +155,10 @@
       <CodeModule>RdlCri.dll</CodeModule>
       <ClassName>fyiReporting.CRI.BarCode39</ClassName>
     </CustomReportItem>
+    <CustomReportItem>
+      <Type>BarCodeEAN8</Type>
+      <CodeModule>RdlCri.dll</CodeModule>
+      <ClassName>fyiReporting.CRI.BarCodeEAN8</ClassName>
+    </CustomReportItem>
   </CustomReportItems>
 </config>

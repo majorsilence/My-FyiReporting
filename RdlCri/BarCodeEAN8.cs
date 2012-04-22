@@ -8,12 +8,11 @@ using System.Xml;
 
 namespace fyiReporting.CRI
 {
-    public class BarCode39 : ICustomReportItem
+    public class BarCodeEAN8 : ICustomReportItem
     {
-
         static public readonly float OptimalHeight = 35.91f;          // Optimal height at magnification 1    
         static public readonly float OptimalWidth = 65.91f;            // Optimal width at mag 1
-        private string _code39 = "";
+        private string _codeEan8 = "";
 
         #region ICustomReportItem Members
 
@@ -24,33 +23,34 @@ namespace fyiReporting.CRI
 
         public void DrawImage(ref Bitmap bm)
         {
-            DrawImage(ref bm, _code39.ToUpper());
+            DrawImage(ref bm, _codeEan8);
         }
+
 
         /// <summary>
         /// Design time: Draw a hard coded BarCode for design time;  Parameters can't be
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref Bitmap bm)
         {
-            DrawImage(ref bm, "MYFYI");
+            DrawImage(ref bm, "12345678");
         }
 
-        public void DrawImage(ref Bitmap bm, string code39)
+        public void DrawImage(ref Bitmap bm, string code)
         {
-            com.google.zxing.oned.Code39Writer writer = new com.google.zxing.oned.Code39Writer();
+            com.google.zxing.oned.EAN8Writer writer = new com.google.zxing.oned.EAN8Writer();
             com.google.zxing.common.ByteMatrix matrix;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
-            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, 
+            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height,
                 OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
             int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
-            
-            matrix = writer.encode(code39, com.google.zxing.BarcodeFormat.CODE_39, 
+
+            matrix = writer.encode(code, com.google.zxing.BarcodeFormat.EAN_8,
                 barWidth, barHeight, null);
 
 
@@ -80,7 +80,7 @@ namespace fyiReporting.CRI
         {
             try
             {
-                _code39 = props["Code"].ToString();
+                _codeEan8 = props["Code"].ToString();
             }
             catch (KeyNotFoundException)
             {
@@ -136,7 +136,7 @@ namespace fyiReporting.CRI
                 "<CustomProperties>" +
                 "<CustomProperty>" +
                 "<Name>Code</Name>" +
-                "<Value>Enter Your Value</Value>" +
+                "<Value>00123456</Value>" +
                 "</CustomProperty>" +
                 "</CustomProperties>" +
                 "</CustomReportItem>";
@@ -153,18 +153,17 @@ namespace fyiReporting.CRI
 
         #endregion
 
-
         /// <summary>
         /// BarCodeProperties- All properties are type string to allow for definition of
         /// a runtime expression.
         /// </summary>
         public class BarCodeProperties
         {
-            string _code39;
-            BarCode39 _bc;
+            string _codeEan8;
+            BarCodeEAN8 _bc;
             XmlNode _node;
 
-            internal BarCodeProperties(BarCode39 bc, XmlNode node)
+            internal BarCodeProperties(BarCodeEAN8 bc, XmlNode node)
             {
                 _bc = bc;
                 _node = node;
@@ -172,14 +171,14 @@ namespace fyiReporting.CRI
 
             internal void SetBarCode(string ns)
             {
-                _code39 = ns;
+                _codeEan8 = ns;
             }
             [CategoryAttribute("Code"),
-               DescriptionAttribute("The text string to be encoded as a BarCode39 Code.")]
+               DescriptionAttribute("The text string to be encoded as a BarCodeEAN8 Code.")]
             public string Code
             {
-                get { return _code39; }
-                set { _code39 = value; _bc.SetPropertiesInstance(_node, this); }
+                get { return _codeEan8; }
+                set { _codeEan8 = value; _bc.SetPropertiesInstance(_node, this); }
             }
 
 

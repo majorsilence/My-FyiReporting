@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BarCodeEAN8.cs" />
     <Compile Include="BarCodeBookland.cs" />
     <Compile Include="BarCodeEAN13.cs" />
     <Compile Include="BarCode39.cs" />
