@@ -285,24 +285,39 @@ namespace fyiReporting.RDL
 
 			RunPageHeader(pgs, wc.Data.Data[0], true, null);
 
-			if (wc.RecursiveGroup != null)
-				RunRecursiveGroupsPage(pgs, wc);
-			else
-				RunGroupsPage(pgs, wc, wc.Groups, wc.Data.Data.Count-1, 0);
+            if (wc.RecursiveGroup != null)
+            {
+                RunRecursiveGroupsPage(pgs, wc);
+            }
+            else
+            {
+                float groupHeight = 0;
+                if (wc.Data.Data.Count > 0 && _Footer != null)
+                    groupHeight = _Footer.HeightOfRows(pgs, wc.Data.Data[0]);
+                RunGroupsPage(pgs, wc, wc.Groups, wc.Data.Data.Count - 1, groupHeight);
+            }
 
-			// Footer
-			if (_Footer != null)
-			{
-				Row lrow = wc.Data.Data.Count > 0?  wc.Data.Data[wc.Data.Data.Count-1]: null;
-				p = pgs.CurrentPage;
-				// make sure the footer fits on the page
-				if (p.YOffset + _Footer.HeightOfRows(pgs, lrow) > pgs.BottomOfPage)
-				{
-					p = RunPageNew(pgs, p);
-					RunPageHeader(pgs, row, false, null);
-				}
-				_Footer.RunPage(pgs, lrow);
-			}
+		    // Footer
+            if (row == null)
+            {
+                // Row == null means the inital/last page
+                Row lRow = wc.Data.Data.Count > 0 ? wc.Data.Data[wc.Data.Data.Count - 1] : null;
+                RunPageFooter(pgs, lRow, true);
+            }
+
+            // dst, use the code above
+		    //if (_Footer != null)
+            //{
+            //    Row lrow = wc.Data.Data.Count > 0?  wc.Data.Data[wc.Data.Data.Count-1]: null;
+            //    p = pgs.CurrentPage;
+            //    // make sure the footer fits on the page
+            //    if (p.YOffset + _Footer.HeightOfRows(pgs, lrow) > pgs.BottomOfPage)
+            //    {
+            //        p = RunPageNew(pgs, p);
+            //        RunPageHeader(pgs, row, false, null);
+            //    }
+            //    _Footer.RunPage(pgs, lrow);
+            //}
 
 			RunPageRegionEnd(pgs);
 
@@ -311,6 +326,20 @@ namespace fyiReporting.RDL
 		}
 
         internal bool IsGrid { get { return _IsGrid; } }
+
+        internal void RunPageFooter(Pages pgs, Row row, bool bLast)
+        {
+            if (_Footer != null && (_Footer.RepeatOnNewPage || bLast))
+            {
+                Page p = pgs.CurrentPage;
+                if (p.YOffset + _Footer.HeightOfRows(pgs, row) > pgs.BottomOfPage)
+                {
+                    p = RunPageNew(pgs, p);
+                    RunPageHeader(pgs, row, false, null);
+                }
+                _Footer.RunPage(pgs, row);                
+            }
+        }
 
 		internal void RunPageHeader(Pages pgs, Row frow, bool bFirst, TableGroup stoptg)
 		{
@@ -792,7 +821,9 @@ namespace fyiReporting.RDL
 					}
 				}
 				float footerHeight = RunGroupsFooterHeight(pgs, wc, ge);
-				if (ge.EndRow == endRow)
+                
+				// dst, always use the footer height
+				//if (ge.EndRow == endRow)
 					footerHeight += groupHeight;
 				// Handle the nested groups if any
 				if (ge.NestedGroup.Count > 0)
