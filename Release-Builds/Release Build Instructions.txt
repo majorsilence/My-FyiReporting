@@ -1,0 +1,13 @@
+*Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
+*Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
+
+1. Update Assembly version numbers in all projects
+2. Build .NET 3.5 package:
+	* Run build-fyi-release-dot-net-3.5.bat
+3. Build .NET 4.0 package:
+	* Run build-fyi-release-dot-net-4.bat
+4. Build Linux package:
+	* Run build-fyi-release-dot-net-4.sh
+5. Update warsetup project and version number
+6. Build warsetup project
+7. Create Git TAG
