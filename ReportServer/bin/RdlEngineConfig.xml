@@ -26,7 +26,7 @@
 		</DataSource>
 		<DataSource>
 			<DataProvider>MySQL.NET</DataProvider>
-			<CodeModule>C:\Program Files\MySQL\MySQL Connector Net 1.0.6\bin\.NET 1.1\MySql.Data.dll</CodeModule>
+			<CodeModule>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.3.7\Assemblies\v2.0\MySql.Data.dll</CodeModule>
 			<ClassName>MySql.Data.MySqlClient.MySqlConnection</ClassName>
 			<TableSelect>show tables</TableSelect>
 			<Interface>SQL</Interface>
@@ -50,7 +50,7 @@
     			<DataProvider>SQLite</DataProvider> 
 		    	<CodeModule>System.Data.SQLite.DLL</CodeModule> 
 		    	<ClassName>System.Data.SQLite.SQLiteConnection</ClassName> 
-		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = "table"</TableSelect> 
+		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect> 
 		    	<Interface>SQL</Interface> 
 		</DataSource> 
 		<DataSource>
@@ -73,49 +73,49 @@
 		</DataSource>
 		<DataSource>
 			<DataProvider>XML</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+			<CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.XmlConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>WebService</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+      <CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.WebServiceConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>WebService</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>WebLog</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+			<CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.LogConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>Text</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+			<CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.TxtConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>iTunes</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+			<CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.iTunesConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>FileDirectory</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\DataProviders\bin\Debug\DataProviders.dll</CodeModule>
+			<CodeModule>DataProviders.dll</CodeModule>
 			<ClassName>fyiReporting.Data.FileDirConnection</ClassName>
 			<TableSelect></TableSelect>
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>OracleSp</DataProvider>
-			<CodeModule>C:\fyiReporting\RDL Project 3\src\OracleSp\bin\Debug\OracleSp.dll</CodeModule>
+			<CodeModule>OracleSp.dll</CodeModule>
 			<ClassName>fyiReporting.OracleSp.OracleSpConnection</ClassName>
 			<TableSelect>select OWNER || '.' || TABLE_NAME from ALL_TABLES WHERE TABLESPACE_NAME NOT IN ('SYSTEM', 'SYSAUX')</TableSelect>
 			<Interface>SQL</Interface>
@@ -129,7 +129,7 @@
     </DataSource>
 	</DataSources>
 	<Compression>
-		<CodeModule>C:\fyiReporting\RDL Project 3\bin\ICSharpCode.SharpZipLib.dll</CodeModule>
+		<CodeModule>ICSharpCode.SharpZipLib.dll</CodeModule>
 		<ClassName>ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream</ClassName>
 		<Finish>Finish</Finish>
 		<Enable>true</Enable>
@@ -137,13 +137,28 @@
   <CustomReportItems>
     <CustomReportItem>
       <Type>BarCode EAN-13</Type>
-      <CodeModule>C:\fyiReporting\RDL Project 3\src\RdlCri\bin\Debug\RdlCri.dll</CodeModule>
+      <CodeModule>RdlCri.dll</CodeModule>
       <ClassName>fyiReporting.CRI.BarCodeEAN13</ClassName>
     </CustomReportItem>
     <CustomReportItem>
       <Type>BarCode Bookland</Type>
-      <CodeModule>C:\fyiReporting\RDL Project 3\src\RdlCri\bin\Debug\RdlCri.dll</CodeModule>
+      <CodeModule>RdlCri.dll</CodeModule>
       <ClassName>fyiReporting.CRI.BarCodeBookland</ClassName>
+    </CustomReportItem>
+    <CustomReportItem>
+      <Type>QR Code</Type>
+      <CodeModule>RdlCri.dll</CodeModule>
+      <ClassName>fyiReporting.CRI.QrCode</ClassName>
+    </CustomReportItem>
+    <CustomReportItem>
+      <Type>BarCode39</Type>
+      <CodeModule>RdlCri.dll</CodeModule>
+      <ClassName>fyiReporting.CRI.BarCode39</ClassName>
+    </CustomReportItem>
+    <CustomReportItem>
+      <Type>BarCodeEAN8</Type>
+      <CodeModule>RdlCri.dll</CodeModule>
+      <ClassName>fyiReporting.CRI.BarCodeEAN8</ClassName>
     </CustomReportItem>
   </CustomReportItems>
 </config>
