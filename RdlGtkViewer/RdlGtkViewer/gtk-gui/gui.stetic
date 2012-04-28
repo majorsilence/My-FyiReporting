@@ -26,6 +26,7 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Open</property>
         <property name="ShortLabel" translatable="yes">Open</property>
+        <signal name="Activated" handler="OnFileOpen_Activated" />
       </action>
     </action-group>
     <property name="MemberName" />
