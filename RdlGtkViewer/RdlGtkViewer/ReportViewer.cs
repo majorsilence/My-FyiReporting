@@ -332,21 +332,173 @@ namespace fyiReporting.RdlGtkViewer
 
 		protected virtual void OnPdfActionActivated (object sender, System.EventArgs e)
 		{
-			string reportname = System.IO.Path.GetFileNameWithoutExtension (SourceFile.AbsolutePath);
-			string filename = string.Format ("{0}.pdf", reportname);
-			int width = (int)report.PageWidthPoints;
-			int height = (int)report.PageHeightPoints;
-			
-			using (Cairo.PdfSurface pdf = new Cairo.PdfSurface (filename, width, height))
-				using (Cairo.Context g = new Cairo.Context (pdf)) {
-					
-					RenderCairo render = new RenderCairo (g);
-					render.RunPages (pages);
-					
-					pdf.Finish ();
-				}
-		}
 
+			// *********************************
+			object []param= new object[4];
+			param[0] = "Cancel";
+			param[1] = Gtk.ResponseType.Cancel;
+			param[2] = "Save";
+			param[3] = Gtk.ResponseType.Accept;
+			
+			Gtk.FileChooserDialog fc=
+			new Gtk.FileChooserDialog("Save File As",
+			                            null,
+			                            Gtk.FileChooserAction.Save,
+			                            param);
+			
+			Gtk.FileFilter pdfFilter = new Gtk.FileFilter();
+			pdfFilter.Name = "PDF";
+			
+			Gtk.FileFilter csvFilter = new Gtk.FileFilter();
+			csvFilter.Name = "CSV";
+			
+			Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
+			asphtmlFilter.Name = "ASP HTML";
+			
+			Gtk.FileFilter excel2003 = new Gtk.FileFilter();
+			excel2003.Name = "Excel 2003";
+			
+			Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
+			htmlFilter.Name = "HTML";
+			
+			Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter();
+			mhtmlFilter.Name = "MHTML";
+			
+			Gtk.FileFilter rtfFilter = new Gtk.FileFilter();
+			rtfFilter.Name = "RTF";
+			
+			Gtk.FileFilter xmlFilter = new Gtk.FileFilter();
+			xmlFilter.Name = "XML";
+					
+			fc.AddFilter(pdfFilter);
+			fc.AddFilter(csvFilter);
+			fc.AddFilter(asphtmlFilter);
+			fc.AddFilter(excel2003);
+			fc.AddFilter(htmlFilter);
+			fc.AddFilter(mhtmlFilter);
+			fc.AddFilter(xmlFilter);
+			
+			if (fc.Run() == (int)Gtk.ResponseType.Accept) 
+			{
+				try
+				{
+					// Must use the RunGetData before each export or there is no data.
+                	report.RunGetData(this.Parameters); 
+										
+					string filename = fc.Filename;		
+					OutputPresentationType exportType = OutputPresentationType.PDF;
+					if(fc.Filter.Name == "CSV")
+					{
+						exportType = OutputPresentationType.CSV;
+						if (filename.ToLower().Trim().EndsWith(".csv") == false)
+						{
+							filename = filename + ".csv";
+						}
+					}
+					else if(fc.Filter.Name == "PDF")
+					{
+						exportType = OutputPresentationType.PDF;
+						if (filename.ToLower().Trim().EndsWith(".pdf") == false)
+						{
+							filename = filename + ".pdf";
+						}
+					}
+					else if(fc.Filter.Name == "ASP HTML")
+					{
+						exportType = OutputPresentationType.ASPHTML;
+						if (filename.ToLower().Trim().EndsWith(".asphtml") == false)
+						{
+							filename = filename + ".asphtml";
+						}
+					}
+					else if(fc.Filter.Name == "Excel 2003")
+					{
+						exportType = OutputPresentationType.Excel;
+						if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
+						{
+							filename = filename + ".xlsx";
+						}
+					}
+					else if(fc.Filter.Name == "HTML")
+					{
+						exportType = OutputPresentationType.HTML;
+						if (filename.ToLower().Trim().EndsWith(".html") == false)
+						{
+							filename = filename + ".html";
+						}
+					}
+					else if(fc.Filter.Name == "MHTML")
+					{
+						exportType = OutputPresentationType.MHTML;
+						if (filename.ToLower().Trim().EndsWith(".mhtml") == false)
+						{
+							filename = filename + ".mhtml";
+						}
+					}
+					else if(fc.Filter.Name == "XML")
+					{
+						exportType = OutputPresentationType.XML;
+						if (filename.ToLower().Trim().EndsWith(".xml") == false)
+						{
+							filename = filename + ".xml";
+						}
+					}
+					
+					ExportReport(report, filename, exportType);				
+				}
+				catch(Exception ex)
+				{
+					Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+						Gtk.ButtonsType.Ok, false, 
+						"Error Saving Copy of PDF." + System.Environment.NewLine + ex.Message);
+						
+					m.Run();
+					m.Destroy();
+				}
+			}
+			//Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
+			fc.Destroy();
+			
+			
+		}
+		
+	  /// <summary>
+	  /// Save the report to the output selected.
+	  /// </summary>
+	  /// <param name='report'>
+	  /// Report.
+	  /// </param>
+	  /// <param name='FileName'>
+	  /// File name.
+	  /// </param>
+      private void ExportReport(Report report, string FileName, OutputPresentationType exportType)
+      {
+            OneFileStreamGen sg=null;
+
+            try 
+            {
+                  sg = new OneFileStreamGen(FileName, true);
+                  report.RunRender(sg, exportType);     
+            }
+            catch(Exception ex)
+            {
+				Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
+						Gtk.ButtonsType.Ok, false, 
+						ex.Message);
+						
+					m.Run();
+					m.Destroy();
+            }
+            finally 
+            {
+                  if (sg != null)
+                  {
+                        sg.CloseMainStream();
+                  }
+            }
+            return;
+      }
+		
 		protected virtual void OnPrintActionActivated (object sender, System.EventArgs e)
 		{
 			using (PrintContext context = new PrintContext (GdkWindow.Handle)) {
