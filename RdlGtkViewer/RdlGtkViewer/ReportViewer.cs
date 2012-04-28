@@ -31,6 +31,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Xml;
 
 using Gtk;
 using fyiReporting.RDL;
@@ -40,10 +41,10 @@ namespace fyiReporting.RdlGtkViewer
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class ReportViewer : Gtk.Bin
 	{
-		Report report;
-		Pages pages;
-		PrintOperation printing;
-
+		private Report report;
+		private Pages pages;
+		private PrintOperation printing;
+		
 		public NeedPassword DataSourceReferencePassword = null;
 		
 		public string connstr_param_name = "connection_string";
@@ -94,21 +95,142 @@ namespace fyiReporting.RdlGtkViewer
 			ShowErrors = false;
 		}
 		
+		public void LoadReport(Uri filename, string parameters, string connectionString)
+		{
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filename.AbsolutePath);
+
+            foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
+            {
+                node.InnerText = connectionString;
+            }
+
+            xmlDoc.Save(filename.AbsolutePath);
+
+			LoadReport(filename, parameters);
+        }
 		
-		public void LoadReport (Uri sourcefile)
+		
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		public void LoadReport(Uri filename)
+		{
+			LoadReport(filename, "");
+		}
+				
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name='filename'>
+		/// Filename.
+		/// </param>
+		/// <param name='parameters'>
+		/// Example: parameter1=someValue&parameter2=anotherValue
+		/// </param>
+		public void LoadReport(Uri sourcefile, string parameters)
 		{
 			SourceFile = sourcefile;
+						
+			string source;
+			// Any parameters?  e.g.  file1.rdl?orderid=5 
+			if (parameters.Trim() != "")
+			{
+			    this.Parameters = this.GetParmeters(parameters);
+			}
+			else 
+			{
+			    this.Parameters = null;
+			}
 			
-			string xml = GetRdlSource ();
-			RDLParser parser = new RDLParser (xml);
-			parser.DataSourceReferencePassword = DataSourceReferencePassword;
-			parser.Folder = System.IO.Path.GetDirectoryName (SourceFile.AbsolutePath);
+			// Obtain the source 
+			source = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
+			// GetSource is omitted: all it does is read the file.
+			// Compile the report 
+			report = this.GetReport(source);
+			AddParameterControls ();		
 			
-			report = parser.Parse ();
-			AddParameterControls ();
 			RefreshReport ();
 		}
+		
+		void RefreshReport ()
+		{
+			SetParametersFromControls ();
+			report.RunGetData (Parameters);
+			pages = report.BuildPages ();
+			
+			reportarea.SetReport (report, pages);
+			
+			if (report.ErrorMaxSeverity > 0)
+				SetErrorMessages (report.ErrorItems);
+			
+//			Title = string.Format ("RDL report viewer - {0}", report.Name);
+			EnableActions ();
+			CheckVisibility ();
+		}
+		
+		// GetParameters creates a list dictionary
+      // consisting of a report parameter name and a value.
+      private System.Collections.Specialized.ListDictionary GetParmeters(string parms)
+      {
+            System.Collections.Specialized.ListDictionary ld = new System.Collections.Specialized.ListDictionary();
+            if (parms == null)
+			{
+                  return ld; // dictionary will be empty in this case
+			}
 
+            // parms are separated by & 
+
+            char[] breakChars = new char[] {'&'};
+            string[] ps = parms.Split(breakChars);
+
+            foreach (string p in ps)
+            {
+                  int iEq = p.IndexOf("=");
+                  if (iEq > 0)
+                  {
+                        string name = p.Substring(0, iEq);
+                        string val = p.Substring(iEq+1);
+                        ld.Add(name, val);
+                  }
+            }
+            return ld;
+      }
+		
+		private Report GetReport(string reportSource)
+		{
+		    // Now parse the file 
+		
+		    RDLParser rdlp;
+		    Report r;
+		
+			rdlp =  new RDLParser(reportSource);
+			// RDLParser takes RDL XML and Parse compiles the report
+			
+			r = rdlp.Parse();
+			if (r.ErrorMaxSeverity > 0) 
+			{
+			
+			    foreach (string emsg in r.ErrorItems)
+			    {
+			          Console.WriteLine(emsg);
+			    }
+			
+			    int severity = r.ErrorMaxSeverity;
+				r.ErrorReset();
+			    if (severity > 4)
+			    {
+			          r = null; // don't return when severe errors
+			    }
+			}
+		
+		    return r;
+		}
+		
 
 		void OnErrorsActionToggled (object sender, EventArgs e)
 		{
@@ -195,32 +317,6 @@ namespace fyiReporting.RdlGtkViewer
 				Parameters [rp.Name] = entry.Text;
 				i++;
 			}
-		}
-
-		void RefreshReport ()
-		{
-			SetParametersFromControls ();
-			report.RunGetData (Parameters);
-			pages = report.BuildPages ();
-			
-			reportarea.SetReport (report, pages);
-			
-			if (report.ErrorMaxSeverity > 0)
-				SetErrorMessages (report.ErrorItems);
-			
-//			Title = string.Format ("RDL report viewer - {0}", report.Name);
-			EnableActions ();
-			CheckVisibility ();
-		}
-
-		string GetRdlSource ()
-		{
-			string xml = null;
-			
-			using (var fs = new StreamReader (SourceFile.AbsolutePath))
-				xml = fs.ReadToEnd ();
-			
-			return xml;
 		}
 
 		void SetErrorMessages (IList errors)

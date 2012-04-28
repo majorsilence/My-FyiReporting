@@ -21,7 +21,7 @@ namespace fyiReporting.RdlGtkViewer
 		private global::fyiReporting.RdlGtkViewer.ReportArea reportarea;
 		private global::Gtk.ScrolledWindow scrolledwindowErrors;
 		private global::Gtk.TextView textviewErrors;
-        
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

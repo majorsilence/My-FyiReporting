@@ -16,7 +16,7 @@ namespace fyiReporting.RdlGtkViewer
 		private global::Gtk.Label PageCountLabel;
 		private global::Gtk.ScrolledWindow scrolledwindow1;
 		private global::Gtk.VBox vboxImages;
-        
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
