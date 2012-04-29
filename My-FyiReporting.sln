@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "DataProviders\DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibRdlWpfViewer", "LibRdlWpfViewer\LibRdlWpfViewer.csproj", "{DA84B318-4210-4C7C-9A47-3A9356BC8D83}"
