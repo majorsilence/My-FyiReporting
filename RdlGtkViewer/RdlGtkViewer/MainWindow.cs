@@ -52,39 +52,66 @@ public partial class MainWindow: Gtk.Window
 			                            null,
 			                            Gtk.FileChooserAction.Open,
 			                            param);
-		
-			Gtk.FileFilter rdlFilter = new Gtk.FileFilter();
-			rdlFilter.Name = "RDL";
-		
-			//fc.AddFilter(rdlFilter);
-		
+				
 		
 		if (fc.Run() == (int)Gtk.ResponseType.Accept) 
+		{
+			try
 			{
-				try
+												
+				string filename = fc.Filename;		
+			
+				if (System.IO.File.Exists(filename))
 				{
-													
-					string filename = fc.Filename;		
 				
-					if (System.IO.File.Exists(filename))
-					{
-						this.reportviewer1.LoadReport(new Uri(filename));
-					}
+					string parameters = this.GetParameters(new Uri(filename));
 				
+					this.reportviewer1.LoadReport(new Uri(filename), parameters);
 				}
-				catch(Exception ex)
-				{
-					Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-						Gtk.ButtonsType.Ok, false, 
-						"Error Opening File." + System.Environment.NewLine + ex.Message);
-						
-					m.Run();
-					m.Destroy();
-				}
+			
 			}
-			//Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
-			fc.Destroy();
-		
+			catch(Exception ex)
+			{
+				Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+					Gtk.ButtonsType.Ok, false, 
+					"Error Opening File." + System.Environment.NewLine + ex.Message);
+					
+				m.Run();
+				m.Destroy();
+			}
+		}
+		//Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
+		fc.Destroy();
+	
 			
 	}
+	
+	private string GetParameters(Uri sourcefile)
+	{
+		string parameters = "";
+		string sourceRdl = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
+		fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
+		parser.Parse();
+		if (parser.Report.UserReportParameters.Count > 0)
+		{
+					
+			int count=0;
+			foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters) 
+			{
+			 	parameters += "&" + rp.Name + "=";
+			}
+			
+			fyiReporting.RdlGtkViewer.ParameterPrompt prompt = new fyiReporting.RdlGtkViewer.ParameterPrompt();
+			prompt.Parameters = parameters;
+			if (prompt.Run() == (int)Gtk.ResponseType.Ok) 
+			{
+				parameters = prompt.Parameters;
+			}
+			prompt.Destroy();
+			
+		}	
+		
+		return parameters;
+	}
+	
 }
