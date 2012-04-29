@@ -560,6 +560,22 @@ namespace fyiReporting.RdlGtkViewer
 			}
 		}
 		
+		public void RunPage (Page pgs)
+		{
+			//TODO : Why Cairo is broken when CurrentThread.CurrentCulture is set to local ?
+			//At Linux when CurrentCulture is set to local culture, Cairo rendering is serious broken
+			CultureInfo oldci = Thread.CurrentThread.CurrentCulture;
+			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+			
+			try 
+			{
+				ProcessPage (g, pgs);
+			} finally {
+				Thread.CurrentThread.CurrentCulture = oldci;
+			}
+		}
+		
+		
 		#endregion
 
 	}

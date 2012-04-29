@@ -17,8 +17,8 @@ namespace fyiReporting.RdlGtkViewer
 		private global::Gtk.HBox hbox;
 		private global::Gtk.VBox vboxParameters;
 		private global::Gtk.HPaned hpanedReport;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		private global::fyiReporting.RdlGtkViewer.ReportArea reportarea;
+		private global::Gtk.ScrolledWindow scrolledwindowPages;
+		private global::Gtk.VBox vboxPages;
 		private global::Gtk.ScrolledWindow scrolledwindowErrors;
 		private global::Gtk.TextView textviewErrors;
 		
@@ -95,20 +95,21 @@ namespace fyiReporting.RdlGtkViewer
 			this.hpanedReport.Name = "hpanedReport";
 			this.hpanedReport.Position = 455;
 			// Container child hpanedReport.Gtk.Paned+PanedChild
-			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			this.scrolledwindowPages = new global::Gtk.ScrolledWindow ();
+			this.scrolledwindowPages.CanFocus = true;
+			this.scrolledwindowPages.Name = "scrolledwindowPages";
+			this.scrolledwindowPages.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child scrolledwindowPages.Gtk.Container+ContainerChild
 			global::Gtk.Viewport w6 = new global::Gtk.Viewport ();
 			w6.ShadowType = ((global::Gtk.ShadowType)(0));
 			// Container child GtkViewport.Gtk.Container+ContainerChild
-			this.reportarea = new global::fyiReporting.RdlGtkViewer.ReportArea ();
-			this.reportarea.Name = "reportarea";
-			this.reportarea.Scale = 0F;
-			w6.Add (this.reportarea);
-			this.GtkScrolledWindow.Add (w6);
-			this.hpanedReport.Add (this.GtkScrolledWindow);
-			global::Gtk.Paned.PanedChild w9 = ((global::Gtk.Paned.PanedChild)(this.hpanedReport [this.GtkScrolledWindow]));
+			this.vboxPages = new global::Gtk.VBox ();
+			this.vboxPages.Name = "vboxPages";
+			this.vboxPages.Spacing = 6;
+			w6.Add (this.vboxPages);
+			this.scrolledwindowPages.Add (w6);
+			this.hpanedReport.Add (this.scrolledwindowPages);
+			global::Gtk.Paned.PanedChild w9 = ((global::Gtk.Paned.PanedChild)(this.hpanedReport [this.scrolledwindowPages]));
 			w9.Resize = false;
 			// Container child hpanedReport.Gtk.Paned+PanedChild
 			this.scrolledwindowErrors = new global::Gtk.ScrolledWindow ();

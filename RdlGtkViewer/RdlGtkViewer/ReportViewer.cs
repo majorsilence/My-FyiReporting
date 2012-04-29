@@ -163,7 +163,20 @@ namespace fyiReporting.RdlGtkViewer
 			report.RunGetData (Parameters);
 			pages = report.BuildPages ();
 			
-			reportarea.SetReport (report, pages);
+			
+			foreach (Gtk.Widget w in vboxPages.AllChildren)
+			{
+				vboxPages.Remove(w);
+			}
+			
+			for (int pageCount = 0; pageCount < pages.Count; pageCount++)
+			{
+				ReportArea area = new ReportArea();
+				area.SetReport (report, pages[pageCount]);
+				//area.Scale
+				vboxPages.Add(area);
+			}
+			this.ShowAll();
 			
 			if (report.ErrorMaxSeverity > 0)
 				SetErrorMessages (report.ErrorItems);
@@ -171,6 +184,31 @@ namespace fyiReporting.RdlGtkViewer
 //			Title = string.Format ("RDL report viewer - {0}", report.Name);
 			EnableActions ();
 			CheckVisibility ();
+		}
+		
+		
+		protected virtual void OnZoomOutActionActivated (object sender, System.EventArgs e)
+		{
+			foreach (Gtk.Widget w in vboxPages.AllChildren)
+			{
+				if (w is ReportArea)
+				{
+					((ReportArea)w).Scale -= 0.1f;
+				}
+			}
+			//reportarea.Scale -= 0.1f;
+		}
+
+		protected virtual void OnZoomInActionActivated (object sender, System.EventArgs e)
+		{
+			foreach (Gtk.Widget w in vboxPages.AllChildren)
+			{
+				if (w is ReportArea)
+				{
+					((ReportArea)w).Scale += 0.1f;
+				}
+			}
+			//reportarea.Scale += 0.1f;
 		}
 		
 		// GetParameters creates a list dictionary
@@ -531,16 +569,6 @@ namespace fyiReporting.RdlGtkViewer
 		void HandlePrintEndPrint (object o, EndPrintArgs args)
 		{
 			
-		}
-
-		protected virtual void OnZoomOutActionActivated (object sender, System.EventArgs e)
-		{
-			reportarea.Scale -= 0.1f;
-		}
-
-		protected virtual void OnZoomInActionActivated (object sender, System.EventArgs e)
-		{
-			reportarea.Scale += 0.1f;
 		}
 
 		protected virtual void OnRefreshActionActivated (object sender, System.EventArgs e)

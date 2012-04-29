@@ -32,7 +32,7 @@ namespace fyiReporting.RdlGtkViewer
 	[System.ComponentModel.ToolboxItem(true)]
 	public class ReportArea : Gtk.DrawingArea
 	{
-		Pages pages;
+		Page pages;
 		Report report;
 		int rep_padding = 10;
 		int shadow_padding = 16;
@@ -57,7 +57,7 @@ namespace fyiReporting.RdlGtkViewer
 			// Insert initialization code here.
 		}
 		
-		public void SetReport (Report report, Pages pages)
+		public void SetReport (Report report, Page pages)
 		{
 			this.pages = pages;
 			this.report = report;
@@ -101,7 +101,8 @@ namespace fyiReporting.RdlGtkViewer
 				rep_g.DrawRectangle (rep_r, new Color (0.1, 0.1, 0.1), 1);
 				
 				RenderCairo render = new RenderCairo (rep_g, Scale);
-				render.RunPages (pages);
+				render.RunPage (pages);
+				
 
 				g.SetSourceSurface (rep_s, rep_padding, rep_padding);
 				g.Paint ();

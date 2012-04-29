@@ -413,18 +413,21 @@
                 <property name="Position">455</property>
                 <signal name="SizeAllocated" handler="OnHpanedReportSizeAllocated" />
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                  <widget class="Gtk.ScrolledWindow" id="scrolledwindowPages">
                     <property name="MemberName" />
+                    <property name="CanFocus">True</property>
                     <property name="ShadowType">In</property>
                     <child>
                       <widget class="Gtk.Viewport" id="GtkViewport">
                         <property name="MemberName" />
                         <property name="ShadowType">None</property>
                         <child>
-                          <widget class="fyiReporting.RdlGtkViewer.ReportArea" id="reportarea">
+                          <widget class="Gtk.VBox" id="vboxPages">
                             <property name="MemberName" />
-                            <property name="ShowScrollbars">True</property>
-                            <property name="Scale">0</property>
+                            <property name="Spacing">6</property>
+                            <child>
+                              <placeholder />
+                            </child>
                           </widget>
                         </child>
                       </widget>
