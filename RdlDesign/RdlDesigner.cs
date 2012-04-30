@@ -261,7 +261,7 @@ namespace fyiReporting.RdlDesign
             _IpcTimer.Tick += new EventHandler(Ipc_Tick);
             _IpcTimer.Start();
 
-            ChannelServices.RegisterChannel(this.channel);
+            ChannelServices.RegisterChannel(this.channel, false);
 
             RemotingConfiguration.RegisterWellKnownServiceType(
             typeof(RdlIpcObject),
