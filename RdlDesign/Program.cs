@@ -38,7 +38,7 @@ namespace fyiReporting.RdlDesign
             string[] args = Environment.GetCommandLineArgs();
 
             IpcChannel clientChannel = new IpcChannel("RdlClientSend");
-            ChannelServices.RegisterChannel(clientChannel);
+            ChannelServices.RegisterChannel(clientChannel, false);
 
             RdlIpcObject ipc =
             (RdlIpcObject)Activator.GetObject(
