@@ -344,13 +344,7 @@ namespace fyiReporting.RdlDesign
             InitToolbarFontSize();
 
            zoomToolStripComboBox1.Items.AddRange(StaticLists.ZoomList);
-        
-            bool bResumeLayout = false;
-            // Clear out anything from before
-           
-                bResumeLayout = true;
-               
-           
+                   
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(RdlDesigner));
 
             
@@ -1164,7 +1158,7 @@ namespace fyiReporting.RdlDesign
             {
                 imageToolStripMenuItem.Enabled = bEnableDesign;
             }
-            if (lineToolStripMenuItem.Enabled != null)
+            if (lineToolStripMenuItem != null)
             {
                 lineToolStripMenuItem.Enabled = bEnableDesign;
             }
