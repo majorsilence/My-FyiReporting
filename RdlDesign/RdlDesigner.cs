@@ -71,8 +71,6 @@ namespace fyiReporting.RdlDesign
     {
         static readonly string IpcFileName = @"\fyiIpcData400.txt"; // TODO: change file name with every release
 
-
-        IpcChannel channel;
         SortedList<DateTime, string> _RecentFiles = null;
         List<Uri> _CurrentFiles = null;		// temporary variable for current files
         List<string> _Toolbar = null;			// temporary variable for toolbar entries
@@ -103,7 +101,6 @@ namespace fyiReporting.RdlDesign
         bool bSuppressChange = false;
         private Color _SaveExprBackColor = Color.LightGray;
        
-        private string _IpcChannelPortName = "RdlProject";
         private ToolStripButton ctlInsertCurrent = null;
         private ToolStripMenuItem ctlMenuInsertCurrent = null;
 
@@ -181,10 +178,6 @@ namespace fyiReporting.RdlDesign
         {
             InitializeComponent();
 
-            _IpcChannelPortName = IpcChannelPortName;
-
-            this.channel = new IpcChannel(IpcChannelPortName);
-
             KeyPreview = true;
             GetStartupState();
 
@@ -201,8 +194,7 @@ namespace fyiReporting.RdlDesign
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
             InitToolbar();
-            InitIpc();
-
+            
             // open up the current files if any
             if (_CurrentFiles != null && openPreviousSession == true)
             {
@@ -248,81 +240,7 @@ namespace fyiReporting.RdlDesign
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
 #endif
-        /// <summary>
-        /// InitIpc starts up the inter-process commmunciation capabilities.  For now it is only used to 
-        /// enable only a single RdlDesigner .exe is up and running at any one time.
-        /// </summary>
-        private void InitIpc()
-        {
-            // considered using FileWatcher but it has restrictions on type of file system it will watch
-            //    if want to do real Ipc should use TCP (see http://msdn2.microsoft.com/en-us/library/Aa446520.aspx )
-            _IpcTimer = new Timer();
-            _IpcTimer.Interval = 1000;       // every second
-            _IpcTimer.Tick += new EventHandler(Ipc_Tick);
-            _IpcTimer.Start();
-
-            ChannelServices.RegisterChannel(this.channel, false);
-
-            RemotingConfiguration.RegisterWellKnownServiceType(
-            typeof(RdlIpcObject),
-            "IpcCommands",
-            WellKnownObjectMode.Singleton);
-        }
-        /// <summary>
-        /// Handle the timer tick event.   Check if the IPC file has been created.  If so then 
-        /// handle each command (line in file).  If it isn't a command then it is assumed to be
-        /// a file name that should be opened.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void Ipc_Tick(object sender, EventArgs e) //Josh: changed to allow IPC without text file. 
-        {
-            lock (_IpcTimer)
-            {
-                string filename = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + RdlDesigner.IpcFileName;
-                if (!File.Exists(filename))
-                    return;
-
-                RdlIpcObject ipc =
-                     (RdlIpcObject)(Activator.GetObject
-                     (typeof(RdlIpcObject),
-                     string.Format("ipc://{0}/IpcCommands", _IpcChannelPortName)));
-                if (ipc != null)
-                {
-                    List<string> cmds = ipc.getCommands();
-                    if (cmds != null)
-                    {
-                        try
-                        {
-                            foreach (string cmd in cmds)
-                            {
-                                //                          Console.WriteLine(cmd);
-                                if (cmd.StartsWith("/a", StringComparison.InvariantCultureIgnoreCase))
-                                {
-                                    if (this.WindowState == FormWindowState.Minimized)
-                                        this.WindowState = FormWindowState.Normal;
-                                    this.Activate();
-                                }
-                                else
-                                {
-                                    CreateMDIChild(new Uri(cmd), null, true);
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Exception in Ipc_Tick:" + ex.Message);
-                        }
-                        finally
-                        {
-                            ipc.setCommands(null);
-                        }
-                    }
-                }
-
-            }
-        }
-
+        
         private DockStyle GetPropertiesDockStyle(string l)
         {
             DockStyle ds;
@@ -3747,18 +3665,6 @@ namespace fyiReporting.RdlDesign
 
             mc.Editor.DesignCtl.VertSpacingMakeZero();
             SetProperties(mc);
-        }
-
-        private void RdlDesigner_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                ChannelServices.UnregisterChannel(this.channel);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void RdlDesigner_DragDrop(object sender, DragEventArgs e)

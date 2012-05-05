@@ -37,28 +37,6 @@ namespace fyiReporting.RdlDesign
             // Process already running.   Notify other process that is might need to open another file
             string[] args = Environment.GetCommandLineArgs();
 
-            IpcChannel clientChannel = new IpcChannel("RdlClientSend");
-            ChannelServices.RegisterChannel(clientChannel, false);
-
-            RdlIpcObject ipc =
-            (RdlIpcObject)Activator.GetObject(
-            typeof(RdlIpcObject),
-            string.Format("ipc://{0}/IpcCommands", ipcChannelPortName));
-
-
-            List<string> commands = new List<string>();
-
-
-            commands.Add("/a");
-            //sw.WriteLine("/a"); // signal that application should activate itself 
-            // copy all the command line arguments process received
-            for (int i = 1; i < args.Length; i++)
-            {
-                commands.Add(args[i]);
-            }
-            ipc.setCommands(commands);
-
-
         }
 
     }
