@@ -2,12 +2,14 @@
 *Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
 
 1. Update Assembly version numbers in all projects
-2. Build .NET 3.5 package:
+2. Update RdlDesign\Program.cs version string to match version number
+3. Update RdlDesign\RdlDesigner.cs IpcFileName to match version number
+4. Build .NET 3.5 package:
 	* Run build-fyi-release-dot-net-3.5.bat
-3. Build .NET 4.0 package:
+5. Build .NET 4.0 package:
 	* Run build-fyi-release-dot-net-4.bat
-4. Build Linux package:
+6. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh
-5. Update warsetup project and version number
-6. Build warsetup project
-7. Create Git TAG
+7. Update warsetup project and version number
+8. Build warsetup project
+9. Create Git TAG
