@@ -167,6 +167,7 @@ private TextBox tbSQL;
             this.ReportParameters.SuspendLayout();
             this.DBSql.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -576,7 +577,7 @@ private TextBox tbSQL;
             this.tbConnection.Size = new System.Drawing.Size(488, 20);
             this.tbConnection.TabIndex = 2;
             this.tbConnection.Text = "Server=(local)\\VSDotNet;DataBase=Northwind;Integrated Security=SSPI;Connect Timeo" +
-                "ut=5";
+    "ut=5";
             this.tbConnection.TextChanged += new System.EventHandler(this.tbConnection_TextChanged);
             // 
             // ReportParameters
@@ -816,15 +817,16 @@ private TextBox tbSQL;
             // tbSQL
             // 
             this.tbSQL.AllowDrop = true;
-            this.tbSQL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSQL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSQL.Location = new System.Drawing.Point(41, 3);
             this.tbSQL.Multiline = true;
             this.tbSQL.Name = "tbSQL";
             this.tbSQL.Size = new System.Drawing.Size(299, 294);
             this.tbSQL.TabIndex = 6;
             this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
+            this.tbSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSQL_KeyDown);
             // 
             // bMove
             // 
@@ -1015,6 +1017,7 @@ private TextBox tbSQL;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.TabularGroup.ResumeLayout(false);
             this.ReportSyntax.ResumeLayout(false);

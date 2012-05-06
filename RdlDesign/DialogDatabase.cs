@@ -1533,6 +1533,15 @@ namespace fyiReporting.RdlDesign
             }
         }
 
+        private void tbSQL_KeyDown(object sender, KeyEventArgs e)
+        {
+             if (e.Control && e.KeyCode == Keys.A)
+             {
+                tbSQL.SelectAll();
+             }
+
+        }
+
 
     }
 }
