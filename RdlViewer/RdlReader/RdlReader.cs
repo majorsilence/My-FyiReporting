@@ -132,6 +132,8 @@ namespace fyiReporting.RdlReader
 
         #endregion
 
+        private static List<Uri> _startUpFiles;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -151,6 +153,16 @@ namespace fyiReporting.RdlReader
                 Application.EnableVisualStyles();
                 Application.DoEvents();				// when Mono this goes into a loop
             }
+
+            if (args.Length > 1)
+            {
+                if (args[1].Length >= 5 && File.Exists(args[1]))
+                {
+                    _startUpFiles = new List<Uri>();
+                    _startUpFiles.Add(new Uri(args[1]));
+                }
+            }
+
             Application.Run(new RdlReader(bMono));
         }
 
@@ -677,6 +689,11 @@ namespace fyiReporting.RdlReader
             string optFileName = AppDomain.CurrentDomain.BaseDirectory + "readerstate.xml";
             _RecentFiles = new SortedList();
             _CurrentFiles = new List<Uri>();
+
+            if (_startUpFiles != null)
+            {
+                _CurrentFiles.AddRange(_startUpFiles);   
+            }
 
             try
             {
