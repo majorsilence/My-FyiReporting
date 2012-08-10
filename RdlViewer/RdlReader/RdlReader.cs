@@ -31,6 +31,7 @@ using System.IO;
 using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace fyiReporting.RdlReader
 {
@@ -41,7 +42,7 @@ namespace fyiReporting.RdlReader
     {
 
         SortedList _RecentFiles = null;
-        ArrayList _CurrentFiles = null;			// temporary variable for current files
+        List<Uri> _CurrentFiles = null;			// temporary variable for current files
         private RDL.NeedPassword _GetPassword;
         private string _DataSourceReferencePassword = null;
         private bool bMono;
@@ -675,7 +676,7 @@ namespace fyiReporting.RdlReader
         {
             string optFileName = AppDomain.CurrentDomain.BaseDirectory + "readerstate.xml";
             _RecentFiles = new SortedList();
-            _CurrentFiles = new ArrayList();
+            _CurrentFiles = new List<Uri>();
 
             try
             {
@@ -708,7 +709,9 @@ namespace fyiReporting.RdlReader
                             {
                                 string file = xN.InnerText.Trim();
                                 if (File.Exists(file))			// only add it if it exists
-                                    _CurrentFiles.Add(file);
+                                {
+                                    _CurrentFiles.Add(new Uri(file));
+                                }
                             }
                             break;
                         default:
