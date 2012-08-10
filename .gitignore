@@ -1784,3 +1784,6 @@
 /RdlViewer/RdlReader/obj/x64/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 /RdlViewer/RdlReader/obj/x86/Debug/build.force
 /RdlViewer/obj/x64/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+RdlCri.dll
+RdlCri.pdb
+RdlReader.vshost.exe.manifest
