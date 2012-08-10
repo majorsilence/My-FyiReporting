@@ -1787,3 +1787,5 @@
 RdlCri.dll
 RdlCri.pdb
 RdlReader.vshost.exe.manifest
+RdlReader.csproj.user
+readerstate.xml
