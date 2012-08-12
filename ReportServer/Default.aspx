@@ -24,11 +24,11 @@ string Meta
 			return "";
 	}
 }
-</Script>
+</script>
 <html>
 <head>
-    <script language="javascript" src="datetimepicker.js"></script>
-    <script language="javascript" src="limitinput.js"></script>
+    <script language="javascript" src="datetimepicker.js" type="text/javascript"></script>
+    <script language="javascript" src="limitinput.js" type="text/javascript"></script>
 <%=_Report.JavaScript%>
 <style type='text/css'>
 <%=_Report.CSS%>
@@ -48,7 +48,6 @@ This is the header
 <td valign="top">
 <!-- Beginning of list directory  -->
  <rdl:RdlListReports
-		  RunPage="Default.aspx"
 		  Runat="Server" />
 <!-- End of list directory    -->
 </td> 
