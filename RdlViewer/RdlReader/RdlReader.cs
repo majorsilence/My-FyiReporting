@@ -691,7 +691,7 @@ namespace fyiReporting.RdlReader
             _CurrentFiles = new List<Uri>();
 
             if (_startUpFiles != null)
-            {
+            {            
                 _CurrentFiles.AddRange(_startUpFiles);   
             }
 
@@ -727,7 +727,10 @@ namespace fyiReporting.RdlReader
                                 string file = xN.InnerText.Trim();
                                 if (File.Exists(file))			// only add it if it exists
                                 {
-                                    _CurrentFiles.Add(new Uri(file));
+                                    if (_CurrentFiles.Contains(new Uri(file)) == false)
+                                    {
+                                        _CurrentFiles.Add(new Uri(file));
+                                    }
                                 }
                             }
                             break;
