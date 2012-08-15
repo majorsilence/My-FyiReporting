@@ -51,8 +51,11 @@ namespace fyiReporting.RdlReader
         {
             bMono = mono;
             GetStartupState();
-            BuildMenus();
+            
             InitializeComponent();
+
+            BuildMenus();
+
             Application.AddMessageFilter(this);
 
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlReader_Closing);
@@ -176,94 +179,41 @@ namespace fyiReporting.RdlReader
         private void BuildMenus()
         {
             // FILE MENU
-            menuOpen = new MenuItem("&Open...", new EventHandler(this.menuFileOpen_Click), Shortcut.CtrlO);
-            menuClose = new MenuItem("&Close", new EventHandler(this.menuFileClose_Click), Shortcut.CtrlW);
-            menuFSep1 = new MenuItem("-");
-            menuSaveAs = new MenuItem("&Save As...", new EventHandler(this.menuFileSaveAs_Click), Shortcut.CtrlS);
-            menuPrint = new MenuItem("Print...", new EventHandler(this.menuFilePrint_Click), Shortcut.CtrlP);
-            menuFSep2 = new MenuItem("-");
-            MenuItem menuRecentItem = new MenuItem("");
-            menuRecentFile = new MenuItem("Recent &Files");
-            menuRecentFile.MenuItems.AddRange(new MenuItem[] { menuRecentItem });
-            menuFSep3 = new MenuItem("-");
-            menuExit = new MenuItem("E&xit", new EventHandler(this.menuFileExit_Click), Shortcut.CtrlQ);
-
-            // Create file menu and add array of sub-menu items
-            menuFile = new MenuItem("&File");
-            menuFile.Popup += new EventHandler(this.menuFile_Popup);
-            menuFile.MenuItems.AddRange(
-                new MenuItem[] { menuOpen, menuClose, menuFSep1, menuSaveAs, menuPrint, menuFSep2, menuRecentFile, menuFSep3, menuExit });
+           
+           ToolStripMenuItem menuRecentItem = new ToolStripMenuItem("");
+           recentFilesToolStripMenuItem.DropDownItems.AddRange ( new ToolStripItem[] { menuRecentItem});;
+           fileToolStripMenuItem.DropDownOpening += new EventHandler(menuFile_Popup);
 
             // Intialize the recent file menu
             RecentFilesMenu();
             // Edit menu
-            menuSelection = new MenuItem("&Selection Tool", new EventHandler(this.menuSelection_Click));
-
-            menuCopy = new MenuItem("&Copy", new EventHandler(this.menuCopy_Click), Shortcut.CtrlC);
-            menuFind = new MenuItem("&Find", new EventHandler(this.menuFind_Click), Shortcut.CtrlF);
-            menuEdit = new MenuItem("&Edit");
-            menuEdit.Popup += new EventHandler(this.menuEdit_Popup);
-            menuEdit.MenuItems.AddRange(
-                new MenuItem[] { menuSelection, new MenuItem("-"), menuCopy, new MenuItem("-"), menuFind });
-
+            editToolStripMenuItem.DropDownOpening += new EventHandler(this.menuEdit_Popup);
+    
             // VIEW MENU
-            menuPLZoomTo = new MenuItem("&Zoom To...", new EventHandler(this.menuPLZoomTo_Click));
-            menuPLActualSize = new MenuItem("Act&ual Size", new EventHandler(this.menuPLActualSize_Click));
-            menuPLFitPage = new MenuItem("Fit &Page", new EventHandler(this.menuPLFitPage_Click));
-            menuPLFitWidth = new MenuItem("Fit &Width", new EventHandler(this.menuPLFitWidth_Click));
-            menuFSep1 = new MenuItem("-");
-            menuPLSinglePage = new MenuItem("Single Page", new EventHandler(this.menuPLSinglePage_Click));
-            menuPLContinuous = new MenuItem("Continuous", new EventHandler(this.menuPLContinuous_Click));
-            menuPLFacing = new MenuItem("Facing", new EventHandler(this.menuPLFacing_Click));
-            menuPLContinuousFacing = new MenuItem("Continuous Facing", new EventHandler(this.menuPLContinuousFacing_Click));
 
-            menuPL = new MenuItem("Page La&yout");
-            menuPL.Popup += new EventHandler(this.menuPL_Popup);
-            menuPL.MenuItems.AddRange(
-                new MenuItem[] { menuPLSinglePage, menuPLContinuous, menuPLFacing, menuPLContinuousFacing });
 
-            menuView = new MenuItem("&View");
-            menuView.Popup += new EventHandler(this.menuView_Popup);
-            menuView.MenuItems.AddRange(
-                new MenuItem[] { menuPLZoomTo, menuPLActualSize, menuPLFitPage, menuPLFitWidth, menuFSep1, menuPL });
-
-            // WINDOW MENU
-            menuCascade = new MenuItem("&Cascade", new EventHandler(this.menuWndCascade_Click), Shortcut.CtrlShiftJ);
-
-            menuTileH = new MenuItem("&Horizontally", new EventHandler(this.menuWndTileH_Click), Shortcut.CtrlShiftK);
-            menuTileV = new MenuItem("&Vertically", new EventHandler(this.menuWndTileV_Click), Shortcut.CtrlShiftL);
-            menuTile = new MenuItem("&Tile");
-            menuTile.MenuItems.AddRange(new MenuItem[] { menuTileH, menuTileV });
-
-            menuCloseAll = new MenuItem("Close &All", new EventHandler(this.menuWndCloseAll_Click), Shortcut.CtrlShiftW);
-
+            pageLayoutToolStripMenuItem.DropDownOpening += new EventHandler(this.menuPL_Popup);
+            viewToolStripMenuItem.DropDownOpening += new EventHandler(this.menuView_Popup);
+   
             // Add the Window menu
-            menuWindow = new MenuItem("&Window");
-            menuWindow.Popup += new EventHandler(this.menuWnd_Popup);
-            menuWindow.MdiList = true;
-            menuWindow.MenuItems.AddRange(new MenuItem[] { menuCascade, menuTile, menuCloseAll });
-
-            // HELP MENU
-            MenuItem menuAbout = new MenuItem("&About...", new EventHandler(this.menuHelpAbout_Click));
-            MenuItem menuHelp = new MenuItem("&Help");
-            menuHelp.MenuItems.AddRange(new MenuItem[] { menuAbout });
+            windowToolStripMenuItem.DropDownOpening += new EventHandler(this.menuWnd_Popup);    
 
             // MAIN
-            menuMain = new MainMenu(new MenuItem[] { menuFile, menuEdit, menuView, menuWindow, menuHelp });
+            
             IsMdiContainer = true;
-            this.Menu = menuMain;
+           
         }
 
         private void menuFile_Popup(object sender, EventArgs e)
         {
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
-            menuClose.Enabled = bEnable;
-            menuSaveAs.Enabled = bEnable;
-            menuPrint.Enabled = bEnable;
+            closeToolStripMenuItem.Enabled = bEnable;
+            saveAsToolStripMenuItem.Enabled = bEnable;
+            printToolStripMenuItem.Enabled = bEnable;
 
             // Recent File is enabled when there exists some files 
-            menuRecentFile.Enabled = this._RecentFiles.Count <= 0 ? false : true;
+            recentFilesToolStripMenuItem.Enabled = this._RecentFiles.Count <= 0 ? false : true;
         }
 
         private void menuFileClose_Click(object sender, EventArgs e)
@@ -298,7 +248,7 @@ namespace fyiReporting.RdlReader
 
         private void menuRecentItem_Click(object sender, System.EventArgs e)
         {
-            MenuItem m = (MenuItem)sender;
+            ToolStripMenuItem m = (ToolStripMenuItem)sender;
             Uri file = new Uri(m.Text.Substring(2));
 
             CreateMDIChild(file, true);
@@ -497,38 +447,38 @@ namespace fyiReporting.RdlReader
         {
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
-            menuCopy.Enabled = bEnable;
-            menuFind.Enabled = bEnable;
-            menuSelection.Enabled = bEnable;
+            copyToolStripMenuItem.Enabled = bEnable;
+            findToolStripMenuItem.Enabled = bEnable;
+            selectionToolToolStripMenuItem.Enabled = bEnable;
             if (!bEnable)
                 return;
 
             MDIChild mc = this.ActiveMdiChild as MDIChild;
-            menuCopy.Enabled = mc.Viewer.CanCopy;
-            menuSelection.Checked = mc.Viewer.SelectTool;
+            copyToolStripMenuItem.Enabled = mc.Viewer.CanCopy;
+            selectionToolToolStripMenuItem.Checked = mc.Viewer.SelectTool;
         }
         private void menuView_Popup(object sender, EventArgs e)
         {
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
-            menuPLZoomTo.Enabled = bEnable;
-            menuPLActualSize.Enabled = bEnable;
-            menuPLFitPage.Enabled = bEnable;
-            menuPLFitWidth.Enabled = bEnable;
-            menuPL.Enabled = bEnable;
+            zoomToToolStripMenuItem.Enabled = bEnable;
+            actualSizeToolStripMenuItem.Enabled = bEnable;
+            fitPageToolStripMenuItem.Enabled = bEnable;
+            fitWidthToolStripMenuItem.Enabled = bEnable;
+            pageLayoutToolStripMenuItem.Enabled = bEnable;
             if (!bEnable)
                 return;
 
             // Now handle checking the correct sizing menu
             MDIChild mc = this.ActiveMdiChild as MDIChild;
-            menuPLActualSize.Checked = menuPLFitPage.Checked = menuPLFitWidth.Checked = false;
+            actualSizeToolStripMenuItem.Checked = fitPageToolStripMenuItem.Checked = fitWidthToolStripMenuItem.Checked = false;
 
             if (mc.Viewer.ZoomMode == ZoomEnum.FitWidth)
-                menuPLFitWidth.Checked = true;
+                fitWidthToolStripMenuItem.Checked = true;
             else if (mc.Viewer.ZoomMode == ZoomEnum.FitPage)
-                menuPLFitPage.Checked = true;
+                fitPageToolStripMenuItem.Checked = true;
             else if (mc.Viewer.Zoom == 1)
-                menuPLActualSize.Checked = true;
+                actualSizeToolStripMenuItem.Checked = true;
 
         }
 
@@ -538,22 +488,22 @@ namespace fyiReporting.RdlReader
             if (mc == null)
                 return;
 
-            menuPLSinglePage.Checked = menuPLContinuous.Checked =
-                    menuPLFacing.Checked = menuPLContinuousFacing.Checked = false; ;
+            singlePageToolStripMenuItem.Checked = continuousToolStripMenuItem.Checked =
+                    facingToolStripMenuItem.Checked = continuousFacingToolStripMenuItem.Checked = false; ;
 
             switch (mc.Viewer.ScrollMode)
             {
                 case ScrollModeEnum.Continuous:
-                    menuPLContinuous.Checked = true;
+                    continuousToolStripMenuItem.Checked = true;
                     break;
                 case ScrollModeEnum.ContinuousFacing:
-                    menuPLContinuousFacing.Checked = true;
+                    continuousFacingToolStripMenuItem.Checked = true;
                     break;
                 case ScrollModeEnum.Facing:
-                    menuPLFacing.Checked = true;
+                    facingToolStripMenuItem.Checked = true;
                     break;
                 case ScrollModeEnum.SinglePage:
-                    menuPLSinglePage.Checked = true;
+                    singlePageToolStripMenuItem.Checked = true;
                     break;
             }
         }
@@ -623,9 +573,9 @@ namespace fyiReporting.RdlReader
             // These menus require an MDIChild in order to work
             bool bEnable = this.MdiChildren.Length > 0 ? true : false;
 
-            menuCascade.Enabled = bEnable;
-            menuTile.Enabled = bEnable;
-            menuCloseAll.Enabled = bEnable;
+            cascadeToolStripMenuItem.Enabled = bEnable;
+            tileToolStripMenuItem.Enabled = bEnable;
+            closeAllToolStripMenuItem.Enabled = bEnable;
         }
 
         private void menuWndCascade_Click(object sender, EventArgs e)
@@ -680,14 +630,15 @@ namespace fyiReporting.RdlReader
 
         private void RecentFilesMenu()
         {
-            menuRecentFile.MenuItems.Clear();
+
+            recentFilesToolStripMenuItem.DropDownItems.Clear();
             int mi = 1;
             for (int i = _RecentFiles.Count - 1; i >= 0; i--)
             {
                 string menuText = string.Format("&{0} {1}", mi++, (string)(_RecentFiles.GetValueList()[i]));
-                MenuItem m = new MenuItem(menuText);
+                ToolStripMenuItem m = new ToolStripMenuItem(menuText);
                 m.Click += new EventHandler(this.menuRecentItem_Click);
-                menuRecentFile.MenuItems.Add(m);
+                recentFilesToolStripMenuItem.DropDownItems.Add(m);
             }
         }
 
