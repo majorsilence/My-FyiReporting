@@ -43,8 +43,9 @@ namespace fyiReporting.RdlReader
 
             tbLicense.Text = @"RDL Reader displays reports defined using the Report Definition Language Specification.
 Copyright (C) 2004-2008  fyiReporting Software, LLC
+Copyright (C) 2012 Peter Gill <peter@majorsilence.com>
 
-This file is part of the fyiReporting RDL project.
+This file is part of the My-FyiReporting RDL project.
 	
 Licensed under the Apache License, Version 2.0 (the ""License"");
 you may not use this file except in compliance with the License.
@@ -58,8 +59,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-For additional information, email info@fyireporting.com or visit
-the website www.fyiReporting.com.";
+For additional information, email peter@majorsilence.com or visit
+the website https://github.com/majorsilence/My-FyiReporting.";
 
             lVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             return;
@@ -67,9 +68,16 @@ the website www.fyiReporting.com.";
 
         private void lnk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs ea)
         {
-            LinkLabel lnk = (LinkLabel)sender;
-            lnk.Links[lnk.Links.IndexOf(ea.Link)].Visited = true;
-            System.Diagnostics.Process.Start(lnk.Tag.ToString());
+            try
+            {
+                LinkLabel lnk = (LinkLabel)sender;
+                lnk.Links[lnk.Links.IndexOf(ea.Link)].Visited = true;
+                System.Diagnostics.Process.Start(lnk.Tag.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
