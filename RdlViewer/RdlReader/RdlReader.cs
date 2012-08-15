@@ -156,10 +156,17 @@ namespace fyiReporting.RdlReader
 
             if (args.Length > 1)
             {
-                if (args[1].Length >= 5 && File.Exists(args[1]))
+                if (args[1].Length >= 5)
                 {
-                    _startUpFiles = new List<Uri>();
-                    _startUpFiles.Add(new Uri(args[1]));
+                    if (File.Exists(args[1]))
+                    {
+                        _startUpFiles = new List<Uri>();
+                        _startUpFiles.Add(new Uri(args[1]));
+                    }
+                    else
+                    {
+                        MessageBox.Show("The specified report [ " + args[1] + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
 
