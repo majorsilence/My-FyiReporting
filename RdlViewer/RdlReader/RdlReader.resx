@@ -120,7 +120,34 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripButtonOpen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB3SURBVDhPnZJRDgAxBEQd3c2VJprVnaKV+MLrmCJJgkjE
+        89SmLb0wEIprwA5qA+x1tM4EkFZO6bJPfiyAYgwV0qBVpAADImVfaAmolD0BXNn0z01E+2fmrhoCWJGZ
+        y4QKusP+Q2GF2+Gg4GX4B+iYth9WfWrFKQ6SKelpLLzsNAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABVSURBVDhPY/hPIWAA6WdgYCALg/XCDGhoaAAbQgiA1CCr
+        HY4GEBOgOMMAJEEshgU4SiASq5m2LqA4DLAZgJy48CYkmN/QDaG9AeRmKHhmIpSB8MkDAL9Chu2XtBLy
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB7SURBVDhPzVNBDsAgCOP/n3aBDWQVYYseNDEetLWtldri
+        II8nopbN6K6BIBPE5Dh+ETAYSQ4h8MFVj4JnxYL6ikIaQnuCNMx2gqoLqPZlofKPpRP1aGFJgYXIQWnr
+        YE0t9M2OFyL5I7eBKYFKN59Ohf8CYQ8U9MU/duUCpdf1J5b5LRQAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAAAC
