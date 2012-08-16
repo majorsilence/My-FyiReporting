@@ -161,10 +161,17 @@ namespace fyiReporting.RdlReader
             {
                 if (args[1].Length >= 5)
                 {
-                    if (File.Exists(args[1]))
+                    string file = args[1];
+                    if (System.IO.Path.GetDirectoryName(file) == "")
+                    {
+                        // Try to find the file in the current working directory
+                        file = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(file));
+                    }
+
+                    if (File.Exists(file))
                     {
                         _startUpFiles = new List<Uri>();
-                        _startUpFiles.Add(new Uri(args[1]));
+                        _startUpFiles.Add(new Uri(file));
                     }
                     else
                     {
