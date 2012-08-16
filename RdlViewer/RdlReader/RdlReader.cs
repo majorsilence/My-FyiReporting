@@ -71,7 +71,14 @@ namespace fyiReporting.RdlReader
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
                     mc.SourceFile = file;
                     mc.Text = file.LocalPath;
+
+                    if (_CurrentFiles.Count == 1)
+                    {
+                        mc.WindowState = FormWindowState.Maximized;
+                    }
+
                     mc.Show();
+               
                 }
                 _CurrentFiles = null;		// don't need this any longer
             }
