@@ -142,6 +142,40 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.supportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTB = new System.Windows.Forms.ToolStrip();
+            this.fxToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.ctlEditTextbox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.fontToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.fontSizeToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.zoomToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.mainTC = new System.Windows.Forms.TabControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusPosition = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mainSP = new System.Windows.Forms.Splitter();
+            this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
+            this.boldToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.italiacToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.underlineToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.leftAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.centerAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.rightAlignToolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.printToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.selectToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.pdfToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.htmlToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.excelToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.XmlToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.MhtToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.CsvToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.RtfToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.TifToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -158,40 +192,6 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.subreportToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.rectangleToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.lineToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.fxToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.ctlEditTextbox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.boldToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.italiacToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.underlineToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.leftAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.centerAlignToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.rightAlignToolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.fontToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.fontSizeToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.printToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.zoomToolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.selectToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.pdfToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.htmlToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.excelToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.XmlToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.MhtToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.CsvToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.RtfToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.TifToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.mainTC = new System.Windows.Forms.TabControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusPosition = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mainSP = new System.Windows.Forms.Splitter();
-            this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
             this.menuStrip1.SuspendLayout();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -1209,191 +1209,6 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.mainTB.TabIndex = 30;
             this.mainTB.Text = "toolStrip1";
             // 
-            // newToolStripButton1
-            // 
-            this.newToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton1.Image")));
-            this.newToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton1.Name = "newToolStripButton1";
-            this.newToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton1.Tag = "New";
-            this.newToolStripButton1.Text = "New";
-            this.newToolStripButton1.Click += new System.EventHandler(this.menuFileNewReport_Click);
-            // 
-            // openToolStripButton1
-            // 
-            this.openToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton1.Image")));
-            this.openToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton1.Name = "openToolStripButton1";
-            this.openToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton1.Tag = "Open";
-            this.openToolStripButton1.Text = "Open";
-            this.openToolStripButton1.Click += new System.EventHandler(this.menuFileOpen_Click);
-            // 
-            // saveToolStripButton1
-            // 
-            this.saveToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton1.Image")));
-            this.saveToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton1.Name = "saveToolStripButton1";
-            this.saveToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton1.Tag = "Save";
-            this.saveToolStripButton1.Text = "Save";
-            this.saveToolStripButton1.Click += new System.EventHandler(this.menuFileSave_Click);
-            // 
-            // cutToolStripButton1
-            // 
-            this.cutToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton1.Image")));
-            this.cutToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton1.Name = "cutToolStripButton1";
-            this.cutToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton1.Tag = "Cut";
-            this.cutToolStripButton1.Text = "Cut";
-            this.cutToolStripButton1.Click += new System.EventHandler(this.menuEditCut_Click);
-            // 
-            // copyToolStripButton1
-            // 
-            this.copyToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton1.Image")));
-            this.copyToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton1.Name = "copyToolStripButton1";
-            this.copyToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton1.Tag = "Copy";
-            this.copyToolStripButton1.Text = "Copy";
-            this.copyToolStripButton1.Click += new System.EventHandler(this.menuEditCopy_Click);
-            // 
-            // pasteToolStripButton1
-            // 
-            this.pasteToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton1.Image")));
-            this.pasteToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton1.Name = "pasteToolStripButton1";
-            this.pasteToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton1.Tag = "Paste";
-            this.pasteToolStripButton1.Text = "Paste";
-            this.pasteToolStripButton1.Click += new System.EventHandler(this.menuEditPaste_Click);
-            // 
-            // undoToolStripButton1
-            // 
-            this.undoToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.undoToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripButton1.Image")));
-            this.undoToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.undoToolStripButton1.Name = "undoToolStripButton1";
-            this.undoToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.undoToolStripButton1.Tag = "Undo";
-            this.undoToolStripButton1.Text = "Undo";
-            this.undoToolStripButton1.Click += new System.EventHandler(this.menuEditUndo_Click);
-            // 
-            // textboxToolStripButton1
-            // 
-            this.textboxToolStripButton1.CheckOnClick = true;
-            this.textboxToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.textboxToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("textboxToolStripButton1.Image")));
-            this.textboxToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.textboxToolStripButton1.Name = "textboxToolStripButton1";
-            this.textboxToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.textboxToolStripButton1.Tag = "Textbox";
-            this.textboxToolStripButton1.Text = "Textbox";
-            this.textboxToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // chartToolStripButton1
-            // 
-            this.chartToolStripButton1.CheckOnClick = true;
-            this.chartToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.chartToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("chartToolStripButton1.Image")));
-            this.chartToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.chartToolStripButton1.Name = "chartToolStripButton1";
-            this.chartToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.chartToolStripButton1.Tag = "Chart";
-            this.chartToolStripButton1.Text = "Chart";
-            this.chartToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // tableToolStripButton1
-            // 
-            this.tableToolStripButton1.CheckOnClick = true;
-            this.tableToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tableToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("tableToolStripButton1.Image")));
-            this.tableToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tableToolStripButton1.Name = "tableToolStripButton1";
-            this.tableToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.tableToolStripButton1.Tag = "Table";
-            this.tableToolStripButton1.Text = "Table";
-            this.tableToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // listToolStripButton1
-            // 
-            this.listToolStripButton1.CheckOnClick = true;
-            this.listToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.listToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("listToolStripButton1.Image")));
-            this.listToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.listToolStripButton1.Name = "listToolStripButton1";
-            this.listToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.listToolStripButton1.Tag = "List";
-            this.listToolStripButton1.Text = "List";
-            this.listToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // imageToolStripButton1
-            // 
-            this.imageToolStripButton1.CheckOnClick = true;
-            this.imageToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.imageToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("imageToolStripButton1.Image")));
-            this.imageToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.imageToolStripButton1.Name = "imageToolStripButton1";
-            this.imageToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.imageToolStripButton1.Tag = "Image";
-            this.imageToolStripButton1.Text = "Image";
-            this.imageToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // matrixToolStripButton1
-            // 
-            this.matrixToolStripButton1.CheckOnClick = true;
-            this.matrixToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.matrixToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("matrixToolStripButton1.Image")));
-            this.matrixToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.matrixToolStripButton1.Name = "matrixToolStripButton1";
-            this.matrixToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.matrixToolStripButton1.Tag = "Matrix";
-            this.matrixToolStripButton1.Text = "Matrix";
-            this.matrixToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // subreportToolStripButton1
-            // 
-            this.subreportToolStripButton1.CheckOnClick = true;
-            this.subreportToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.subreportToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("subreportToolStripButton1.Image")));
-            this.subreportToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.subreportToolStripButton1.Name = "subreportToolStripButton1";
-            this.subreportToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.subreportToolStripButton1.Tag = "Subreport";
-            this.subreportToolStripButton1.Text = "Subreport";
-            this.subreportToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // rectangleToolStripButton1
-            // 
-            this.rectangleToolStripButton1.CheckOnClick = true;
-            this.rectangleToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.rectangleToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("rectangleToolStripButton1.Image")));
-            this.rectangleToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.rectangleToolStripButton1.Name = "rectangleToolStripButton1";
-            this.rectangleToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.rectangleToolStripButton1.Tag = "Rectangle";
-            this.rectangleToolStripButton1.Text = "Rectangle";
-            this.rectangleToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
-            // lineToolStripButton1
-            // 
-            this.lineToolStripButton1.CheckOnClick = true;
-            this.lineToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.lineToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("lineToolStripButton1.Image")));
-            this.lineToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lineToolStripButton1.Name = "lineToolStripButton1";
-            this.lineToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.lineToolStripButton1.Tag = "Line";
-            this.lineToolStripButton1.Text = "Line";
-            this.lineToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
-            // 
             // fxToolStripLabel1
             // 
             this.fxToolStripLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1441,80 +1256,6 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.toolStrip1.TabIndex = 31;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // boldToolStripButton1
-            // 
-            this.boldToolStripButton1.CheckOnClick = true;
-            this.boldToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.boldToolStripButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boldToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("boldToolStripButton1.Image")));
-            this.boldToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.boldToolStripButton1.Name = "boldToolStripButton1";
-            this.boldToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.boldToolStripButton1.Tag = "bold";
-            this.boldToolStripButton1.Text = "B";
-            this.boldToolStripButton1.ToolTipText = "Bold";
-            // 
-            // italiacToolStripButton1
-            // 
-            this.italiacToolStripButton1.CheckOnClick = true;
-            this.italiacToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.italiacToolStripButton1.Font = new System.Drawing.Font("Courier New", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.italiacToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("italiacToolStripButton1.Image")));
-            this.italiacToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.italiacToolStripButton1.Name = "italiacToolStripButton1";
-            this.italiacToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.italiacToolStripButton1.Tag = "italic";
-            this.italiacToolStripButton1.Text = "I";
-            this.italiacToolStripButton1.ToolTipText = "Italic";
-            this.italiacToolStripButton1.Click += new System.EventHandler(this.ctlItalic_Click);
-            // 
-            // underlineToolStripButton2
-            // 
-            this.underlineToolStripButton2.CheckOnClick = true;
-            this.underlineToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.underlineToolStripButton2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.underlineToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("underlineToolStripButton2.Image")));
-            this.underlineToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.underlineToolStripButton2.Name = "underlineToolStripButton2";
-            this.underlineToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.underlineToolStripButton2.Tag = "underline";
-            this.underlineToolStripButton2.Text = "U";
-            this.underlineToolStripButton2.ToolTipText = "Underline";
-            this.underlineToolStripButton2.Click += new System.EventHandler(this.ctlUnderline_Click);
-            // 
-            // leftAlignToolStripButton2
-            // 
-            this.leftAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.leftAlignToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("leftAlignToolStripButton2.Image")));
-            this.leftAlignToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.leftAlignToolStripButton2.Name = "leftAlignToolStripButton2";
-            this.leftAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.leftAlignToolStripButton2.Tag = "Left Align";
-            this.leftAlignToolStripButton2.Text = "Left Align";
-            this.leftAlignToolStripButton2.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
-            // 
-            // centerAlignToolStripButton2
-            // 
-            this.centerAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.centerAlignToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("centerAlignToolStripButton2.Image")));
-            this.centerAlignToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.centerAlignToolStripButton2.Name = "centerAlignToolStripButton2";
-            this.centerAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.centerAlignToolStripButton2.Tag = "Center Align";
-            this.centerAlignToolStripButton2.Text = "Center Align";
-            this.centerAlignToolStripButton2.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
-            // 
-            // rightAlignToolStripButton3
-            // 
-            this.rightAlignToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.rightAlignToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("rightAlignToolStripButton3.Image")));
-            this.rightAlignToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.rightAlignToolStripButton3.Name = "rightAlignToolStripButton3";
-            this.rightAlignToolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.rightAlignToolStripButton3.Tag = "Right Align";
-            this.rightAlignToolStripButton3.Text = "Right Align";
-            this.rightAlignToolStripButton3.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
-            // 
             // fontToolStripComboBox1
             // 
             this.fontToolStripComboBox1.Name = "fontToolStripComboBox1";
@@ -1533,17 +1274,6 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.fontSizeToolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ctlFontSize_Change);
             this.fontSizeToolStripComboBox1.Validated += new System.EventHandler(this.ctlFontSize_Change);
             // 
-            // printToolStripButton2
-            // 
-            this.printToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton2.Image")));
-            this.printToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton2.Name = "printToolStripButton2";
-            this.printToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton2.Tag = "Print";
-            this.printToolStripButton2.Text = "Print";
-            this.printToolStripButton2.Click += new System.EventHandler(this.menuFilePrint_Click);
-            // 
             // zoomToolStripComboBox1
             // 
             this.zoomToolStripComboBox1.Name = "zoomToolStripComboBox1";
@@ -1552,105 +1282,6 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.zoomToolStripComboBox1.ToolTipText = "Zoom";
             this.zoomToolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ctlZoom_Change);
             this.zoomToolStripComboBox1.Validated += new System.EventHandler(this.ctlZoom_Change);
-            // 
-            // selectToolStripButton2
-            // 
-            this.selectToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.selectToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("selectToolStripButton2.Image")));
-            this.selectToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.selectToolStripButton2.Name = "selectToolStripButton2";
-            this.selectToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.selectToolStripButton2.Tag = "Select Tool";
-            this.selectToolStripButton2.Text = "Select Tool";
-            this.selectToolStripButton2.Click += new System.EventHandler(this.ctlSelectTool_Click);
-            // 
-            // pdfToolStripButton2
-            // 
-            this.pdfToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pdfToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("pdfToolStripButton2.Image")));
-            this.pdfToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pdfToolStripButton2.Name = "pdfToolStripButton2";
-            this.pdfToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.pdfToolStripButton2.Tag = "PDF";
-            this.pdfToolStripButton2.Text = "PDF";
-            this.pdfToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemPdf_Click);
-            // 
-            // htmlToolStripButton2
-            // 
-            this.htmlToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.htmlToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("htmlToolStripButton2.Image")));
-            this.htmlToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.htmlToolStripButton2.Name = "htmlToolStripButton2";
-            this.htmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.htmlToolStripButton2.Tag = "HTML";
-            this.htmlToolStripButton2.Text = "HTML";
-            this.htmlToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemHtml_Click);
-            // 
-            // excelToolStripButton2
-            // 
-            this.excelToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.excelToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("excelToolStripButton2.Image")));
-            this.excelToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.excelToolStripButton2.Name = "excelToolStripButton2";
-            this.excelToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.excelToolStripButton2.Tag = "Excel";
-            this.excelToolStripButton2.Text = "Excel";
-            this.excelToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemExcel_Click);
-            // 
-            // XmlToolStripButton2
-            // 
-            this.XmlToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.XmlToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("XmlToolStripButton2.Image")));
-            this.XmlToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.XmlToolStripButton2.Name = "XmlToolStripButton2";
-            this.XmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.XmlToolStripButton2.Tag = "XML";
-            this.XmlToolStripButton2.Text = "XML";
-            this.XmlToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemXml_Click);
-            // 
-            // MhtToolStripButton2
-            // 
-            this.MhtToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MhtToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("MhtToolStripButton2.Image")));
-            this.MhtToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MhtToolStripButton2.Name = "MhtToolStripButton2";
-            this.MhtToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.MhtToolStripButton2.Tag = "MHT";
-            this.MhtToolStripButton2.Text = "MHT";
-            this.MhtToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemMHtml_Click);
-            // 
-            // CsvToolStripButton2
-            // 
-            this.CsvToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CsvToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("CsvToolStripButton2.Image")));
-            this.CsvToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CsvToolStripButton2.Name = "CsvToolStripButton2";
-            this.CsvToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.CsvToolStripButton2.Tag = "CSV";
-            this.CsvToolStripButton2.Text = "CSV";
-            this.CsvToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemCsv_Click);
-            // 
-            // RtfToolStripButton2
-            // 
-            this.RtfToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RtfToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("RtfToolStripButton2.Image")));
-            this.RtfToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RtfToolStripButton2.Name = "RtfToolStripButton2";
-            this.RtfToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.RtfToolStripButton2.Tag = "RTF";
-            this.RtfToolStripButton2.Text = "RTF";
-            this.RtfToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemRtf_Click);
-            // 
-            // TifToolStripButton2
-            // 
-            this.TifToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TifToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("TifToolStripButton2.Image")));
-            this.TifToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TifToolStripButton2.Name = "TifToolStripButton2";
-            this.TifToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.TifToolStripButton2.Tag = "TIF";
-            this.TifToolStripButton2.Text = "TIF";
-            this.TifToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemTif_Click);
             // 
             // mainTC
             // 
@@ -1702,6 +1333,566 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.foreColorPicker1.FormattingEnabled = true;
             this.foreColorPicker1.IntegralHeight = false;
             this.foreColorPicker1.Items.AddRange(new object[] {
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "Aliceblue",
             "Antiquewhite",
             "Aqua",
@@ -16141,6 +16332,566 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
             this.backColorPicker1.Location = new System.Drawing.Point(273, 12);
@@ -16200,6 +16951,375 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.mainProperties.Name = "mainProperties";
             this.mainProperties.Size = new System.Drawing.Size(240, 308);
             this.mainProperties.TabIndex = 41;
+            // 
+            // boldToolStripButton1
+            // 
+            this.boldToolStripButton1.CheckOnClick = true;
+            this.boldToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.boldToolStripButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boldToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_bold;
+            this.boldToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.boldToolStripButton1.Name = "boldToolStripButton1";
+            this.boldToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.boldToolStripButton1.Tag = "bold";
+            this.boldToolStripButton1.Text = "B";
+            this.boldToolStripButton1.ToolTipText = "Bold";
+            // 
+            // italiacToolStripButton1
+            // 
+            this.italiacToolStripButton1.CheckOnClick = true;
+            this.italiacToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.italiacToolStripButton1.Font = new System.Drawing.Font("Courier New", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.italiacToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_italic;
+            this.italiacToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.italiacToolStripButton1.Name = "italiacToolStripButton1";
+            this.italiacToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.italiacToolStripButton1.Tag = "italic";
+            this.italiacToolStripButton1.Text = "I";
+            this.italiacToolStripButton1.ToolTipText = "Italic";
+            this.italiacToolStripButton1.Click += new System.EventHandler(this.ctlItalic_Click);
+            // 
+            // underlineToolStripButton2
+            // 
+            this.underlineToolStripButton2.CheckOnClick = true;
+            this.underlineToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.underlineToolStripButton2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.underlineToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_underline;
+            this.underlineToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.underlineToolStripButton2.Name = "underlineToolStripButton2";
+            this.underlineToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.underlineToolStripButton2.Tag = "underline";
+            this.underlineToolStripButton2.Text = "U";
+            this.underlineToolStripButton2.ToolTipText = "Underline";
+            this.underlineToolStripButton2.Click += new System.EventHandler(this.ctlUnderline_Click);
+            // 
+            // leftAlignToolStripButton2
+            // 
+            this.leftAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.leftAlignToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_left;
+            this.leftAlignToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.leftAlignToolStripButton2.Name = "leftAlignToolStripButton2";
+            this.leftAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.leftAlignToolStripButton2.Tag = "Left Align";
+            this.leftAlignToolStripButton2.Text = "Left Align";
+            this.leftAlignToolStripButton2.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
+            // 
+            // centerAlignToolStripButton2
+            // 
+            this.centerAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.centerAlignToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_center;
+            this.centerAlignToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.centerAlignToolStripButton2.Name = "centerAlignToolStripButton2";
+            this.centerAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.centerAlignToolStripButton2.Tag = "Center Align";
+            this.centerAlignToolStripButton2.Text = "Center Align";
+            this.centerAlignToolStripButton2.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
+            // 
+            // rightAlignToolStripButton3
+            // 
+            this.rightAlignToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.rightAlignToolStripButton3.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_right;
+            this.rightAlignToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.rightAlignToolStripButton3.Name = "rightAlignToolStripButton3";
+            this.rightAlignToolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.rightAlignToolStripButton3.Tag = "Right Align";
+            this.rightAlignToolStripButton3.Text = "Right Align";
+            this.rightAlignToolStripButton3.Click += new System.EventHandler(this.bottomsToolStripMenuItemutton_Click);
+            // 
+            // printToolStripButton2
+            // 
+            this.printToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.printToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_print;
+            this.printToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.printToolStripButton2.Name = "printToolStripButton2";
+            this.printToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.printToolStripButton2.Tag = "Print";
+            this.printToolStripButton2.Text = "Print";
+            this.printToolStripButton2.Click += new System.EventHandler(this.menuFilePrint_Click);
+            // 
+            // selectToolStripButton2
+            // 
+            this.selectToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.selectToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("selectToolStripButton2.Image")));
+            this.selectToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.selectToolStripButton2.Name = "selectToolStripButton2";
+            this.selectToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.selectToolStripButton2.Tag = "Select Tool";
+            this.selectToolStripButton2.Text = "Select Tool";
+            this.selectToolStripButton2.Click += new System.EventHandler(this.ctlSelectTool_Click);
+            // 
+            // pdfToolStripButton2
+            // 
+            this.pdfToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pdfToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("pdfToolStripButton2.Image")));
+            this.pdfToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pdfToolStripButton2.Name = "pdfToolStripButton2";
+            this.pdfToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.pdfToolStripButton2.Tag = "PDF";
+            this.pdfToolStripButton2.Text = "PDF";
+            this.pdfToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemPdf_Click);
+            // 
+            // htmlToolStripButton2
+            // 
+            this.htmlToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.htmlToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("htmlToolStripButton2.Image")));
+            this.htmlToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.htmlToolStripButton2.Name = "htmlToolStripButton2";
+            this.htmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.htmlToolStripButton2.Tag = "HTML";
+            this.htmlToolStripButton2.Text = "HTML";
+            this.htmlToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemHtml_Click);
+            // 
+            // excelToolStripButton2
+            // 
+            this.excelToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.excelToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("excelToolStripButton2.Image")));
+            this.excelToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.excelToolStripButton2.Name = "excelToolStripButton2";
+            this.excelToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.excelToolStripButton2.Tag = "Excel";
+            this.excelToolStripButton2.Text = "Excel";
+            this.excelToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemExcel_Click);
+            // 
+            // XmlToolStripButton2
+            // 
+            this.XmlToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.XmlToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("XmlToolStripButton2.Image")));
+            this.XmlToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.XmlToolStripButton2.Name = "XmlToolStripButton2";
+            this.XmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.XmlToolStripButton2.Tag = "XML";
+            this.XmlToolStripButton2.Text = "XML";
+            this.XmlToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemXml_Click);
+            // 
+            // MhtToolStripButton2
+            // 
+            this.MhtToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MhtToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("MhtToolStripButton2.Image")));
+            this.MhtToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MhtToolStripButton2.Name = "MhtToolStripButton2";
+            this.MhtToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.MhtToolStripButton2.Tag = "MHT";
+            this.MhtToolStripButton2.Text = "MHT";
+            this.MhtToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemMHtml_Click);
+            // 
+            // CsvToolStripButton2
+            // 
+            this.CsvToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CsvToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("CsvToolStripButton2.Image")));
+            this.CsvToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CsvToolStripButton2.Name = "CsvToolStripButton2";
+            this.CsvToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.CsvToolStripButton2.Tag = "CSV";
+            this.CsvToolStripButton2.Text = "CSV";
+            this.CsvToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemCsv_Click);
+            // 
+            // RtfToolStripButton2
+            // 
+            this.RtfToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RtfToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("RtfToolStripButton2.Image")));
+            this.RtfToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RtfToolStripButton2.Name = "RtfToolStripButton2";
+            this.RtfToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.RtfToolStripButton2.Tag = "RTF";
+            this.RtfToolStripButton2.Text = "RTF";
+            this.RtfToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemRtf_Click);
+            // 
+            // TifToolStripButton2
+            // 
+            this.TifToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TifToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("TifToolStripButton2.Image")));
+            this.TifToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TifToolStripButton2.Name = "TifToolStripButton2";
+            this.TifToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.TifToolStripButton2.Tag = "TIF";
+            this.TifToolStripButton2.Text = "TIF";
+            this.TifToolStripButton2.Click += new System.EventHandler(this.exportToolStripMenuItemTif_Click);
+            // 
+            // newToolStripButton1
+            // 
+            this.newToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.newToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_new;
+            this.newToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newToolStripButton1.Name = "newToolStripButton1";
+            this.newToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.newToolStripButton1.Tag = "New";
+            this.newToolStripButton1.Text = "New";
+            this.newToolStripButton1.Click += new System.EventHandler(this.menuFileNewReport_Click);
+            // 
+            // openToolStripButton1
+            // 
+            this.openToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_open;
+            this.openToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripButton1.Name = "openToolStripButton1";
+            this.openToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton1.Tag = "Open";
+            this.openToolStripButton1.Text = "Open";
+            this.openToolStripButton1.Click += new System.EventHandler(this.menuFileOpen_Click);
+            // 
+            // saveToolStripButton1
+            // 
+            this.saveToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.saveToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_save;
+            this.saveToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripButton1.Name = "saveToolStripButton1";
+            this.saveToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton1.Tag = "Save";
+            this.saveToolStripButton1.Text = "Save";
+            this.saveToolStripButton1.Click += new System.EventHandler(this.menuFileSave_Click);
+            // 
+            // cutToolStripButton1
+            // 
+            this.cutToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cutToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_cut;
+            this.cutToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cutToolStripButton1.Name = "cutToolStripButton1";
+            this.cutToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.cutToolStripButton1.Tag = "Cut";
+            this.cutToolStripButton1.Text = "Cut";
+            this.cutToolStripButton1.Click += new System.EventHandler(this.menuEditCut_Click);
+            // 
+            // copyToolStripButton1
+            // 
+            this.copyToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copyToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_copy;
+            this.copyToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copyToolStripButton1.Name = "copyToolStripButton1";
+            this.copyToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.copyToolStripButton1.Tag = "Copy";
+            this.copyToolStripButton1.Text = "Copy";
+            this.copyToolStripButton1.Click += new System.EventHandler(this.menuEditCopy_Click);
+            // 
+            // pasteToolStripButton1
+            // 
+            this.pasteToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pasteToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_paste;
+            this.pasteToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pasteToolStripButton1.Name = "pasteToolStripButton1";
+            this.pasteToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.pasteToolStripButton1.Tag = "Paste";
+            this.pasteToolStripButton1.Text = "Paste";
+            this.pasteToolStripButton1.Click += new System.EventHandler(this.menuEditPaste_Click);
+            // 
+            // undoToolStripButton1
+            // 
+            this.undoToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.undoToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_undo;
+            this.undoToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.undoToolStripButton1.Name = "undoToolStripButton1";
+            this.undoToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.undoToolStripButton1.Tag = "Undo";
+            this.undoToolStripButton1.Text = "Undo";
+            this.undoToolStripButton1.Click += new System.EventHandler(this.menuEditUndo_Click);
+            // 
+            // textboxToolStripButton1
+            // 
+            this.textboxToolStripButton1.CheckOnClick = true;
+            this.textboxToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.textboxToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("textboxToolStripButton1.Image")));
+            this.textboxToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.textboxToolStripButton1.Name = "textboxToolStripButton1";
+            this.textboxToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.textboxToolStripButton1.Tag = "Textbox";
+            this.textboxToolStripButton1.Text = "Textbox";
+            this.textboxToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // chartToolStripButton1
+            // 
+            this.chartToolStripButton1.CheckOnClick = true;
+            this.chartToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.chartToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("chartToolStripButton1.Image")));
+            this.chartToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.chartToolStripButton1.Name = "chartToolStripButton1";
+            this.chartToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.chartToolStripButton1.Tag = "Chart";
+            this.chartToolStripButton1.Text = "Chart";
+            this.chartToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // tableToolStripButton1
+            // 
+            this.tableToolStripButton1.CheckOnClick = true;
+            this.tableToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tableToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("tableToolStripButton1.Image")));
+            this.tableToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tableToolStripButton1.Name = "tableToolStripButton1";
+            this.tableToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.tableToolStripButton1.Tag = "Table";
+            this.tableToolStripButton1.Text = "Table";
+            this.tableToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // listToolStripButton1
+            // 
+            this.listToolStripButton1.CheckOnClick = true;
+            this.listToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.listToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("listToolStripButton1.Image")));
+            this.listToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.listToolStripButton1.Name = "listToolStripButton1";
+            this.listToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.listToolStripButton1.Tag = "List";
+            this.listToolStripButton1.Text = "List";
+            this.listToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // imageToolStripButton1
+            // 
+            this.imageToolStripButton1.CheckOnClick = true;
+            this.imageToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.imageToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("imageToolStripButton1.Image")));
+            this.imageToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.imageToolStripButton1.Name = "imageToolStripButton1";
+            this.imageToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.imageToolStripButton1.Tag = "Image";
+            this.imageToolStripButton1.Text = "Image";
+            this.imageToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // matrixToolStripButton1
+            // 
+            this.matrixToolStripButton1.CheckOnClick = true;
+            this.matrixToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.matrixToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("matrixToolStripButton1.Image")));
+            this.matrixToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.matrixToolStripButton1.Name = "matrixToolStripButton1";
+            this.matrixToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.matrixToolStripButton1.Tag = "Matrix";
+            this.matrixToolStripButton1.Text = "Matrix";
+            this.matrixToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // subreportToolStripButton1
+            // 
+            this.subreportToolStripButton1.CheckOnClick = true;
+            this.subreportToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.subreportToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("subreportToolStripButton1.Image")));
+            this.subreportToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.subreportToolStripButton1.Name = "subreportToolStripButton1";
+            this.subreportToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.subreportToolStripButton1.Tag = "Subreport";
+            this.subreportToolStripButton1.Text = "Subreport";
+            this.subreportToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // rectangleToolStripButton1
+            // 
+            this.rectangleToolStripButton1.CheckOnClick = true;
+            this.rectangleToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.rectangleToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("rectangleToolStripButton1.Image")));
+            this.rectangleToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.rectangleToolStripButton1.Name = "rectangleToolStripButton1";
+            this.rectangleToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.rectangleToolStripButton1.Tag = "Rectangle";
+            this.rectangleToolStripButton1.Text = "Rectangle";
+            this.rectangleToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // lineToolStripButton1
+            // 
+            this.lineToolStripButton1.CheckOnClick = true;
+            this.lineToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.lineToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("lineToolStripButton1.Image")));
+            this.lineToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lineToolStripButton1.Name = "lineToolStripButton1";
+            this.lineToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.lineToolStripButton1.Tag = "Line";
+            this.lineToolStripButton1.Text = "Line";
+            this.lineToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
             // 
             // RdlDesigner
             // 
