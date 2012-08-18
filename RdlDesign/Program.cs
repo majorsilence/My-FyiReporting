@@ -17,7 +17,7 @@ namespace fyiReporting.RdlDesign
         static void Main()
         {
 
-            string version = "450";// !!!! warning  !!!! string needs to be changed with when release version changes
+            string version = "452";// !!!! warning  !!!! string needs to be changed with when release version changes
            
             string ipcChannelPortName = string.Format("RdlProject{0}", version); 
             // Determine if an instance is already running?
