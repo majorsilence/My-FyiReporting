@@ -132,13 +132,6 @@
         gg==
 </value>
   </data>
-  <data name="chartToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA3SURBVDhPY/hPIWCgUP9/iAEMQAqGSTSRJAOw2TOIDWAA
-        Bg8MwoKFJC+MGgBMVyMtEEnMQMjKAU4mMPryqJ1HAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="tableToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -153,15 +146,6 @@
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABqSURBVDhPY/hPIWCA6WdgYPgPw+hiID66HFwNsmKYQnQa
         WTOIjQxQeWR4B7cBMJtw0VDLCLsAZAAMY3EhYQMIeAtvLBATJCgGIIc+MZrB6olViEvdcI4FfPkCa1KG
         pXHktI6cwbDJUyUWAPuTfa2p/KUwAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="imageToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPpZLrFoAgCIN5dN+8wltjo9KT/Ukb3wZpx89l
-        sd63dPRhAOpRvAfZAphpuuUWvLg+BEkbFtEoXgGw09w3f0khCRDAxaUoJABGwRRi9O7OEAG4QEXNOZz3
-        eUwAxl0GVGxf6bBgaNA9JfHLC72i+1uS+xsApEfs+8HkMsdwcVD50KI++VEkwAuUvJ+gHLF9uqpXuwAA
-        AABJRU5ErkJggg==
 </value>
   </data>
   <data name="matrixToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

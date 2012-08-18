@@ -60,6 +60,13 @@ namespace fyiReporting.RdlDesign.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap chart {
+            get {
+                object obj = ResourceManager.GetObject("chart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap csv {
             get {
                 object obj = ResourceManager.GetObject("csv", resourceCulture);
@@ -168,6 +175,13 @@ namespace fyiReporting.RdlDesign.Properties {
         internal static System.Drawing.Bitmap format_text_underline {
             get {
                 object obj = ResourceManager.GetObject("format_text_underline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Image {
+            get {
+                object obj = ResourceManager.GetObject("Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

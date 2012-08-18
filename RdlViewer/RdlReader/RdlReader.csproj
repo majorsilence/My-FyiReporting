@@ -179,6 +179,9 @@
     <Compile Include="ZoomTo.Designer.cs">
       <DependentUpon>ZoomTo.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\document-save.png" />
+    <None Include="Resources\document-print.png" />
+    <None Include="Resources\document-open.png" />
     <EmbeddedResource Include="DialogAbout.resx">
       <DependentUpon>DialogAbout.cs</DependentUpon>
       <SubType>Designer</SubType>

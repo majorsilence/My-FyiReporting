@@ -179,6 +179,8 @@
     <None Include="Images\format-text-italic.png" />
     <None Include="Images\format-text-underline.png" />
     <None Include="Images\document-new.png" />
+    <None Include="Images\chart.png" />
+    <None Include="Images\Image.png" />
     <Content Include="selecttool.gif" />
     <Content Include="copy.gif" />
     <Content Include="cut.gif" />
