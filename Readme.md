@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 "FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
 Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
 A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new 
@@ -17,7 +17,21 @@ My-FyiReporting is currently built with visual studio 2008 and targets .net 3.5.
 visual studio 2010 and target .net 4, just upgrade the solution files.  You can also run the build script in 
 the Release-Builds folder to build .net 3.5 and 4.0 packages.  
 
-Binary packages are always available from https://github.com/majorsilence/My-FyiReporting/downloads
+# Download
+
+If you have [NuGet](http://nuget.org) installed, the easiest way to get started is to install My-FyiReporting via NuGet:
+
+This will setup My-FyiReporting in your project ready to use the viewers or designer.
+* PM> Install-Package My-FyiReporting.x86 
+
+If you prefer not to use NuGet and just want to download the latest release binaries get them at:
+
+  * **[My-FyiReporting/downloads](https://github.com/majorsilence/My-FyiReporting/downloads/)**
+
+Alternatively if you want keep up with the latest version you can always use Git
+
+    git clone https://github.com/majorsilence/My-FyiReporting.git
+
 
 # Layout:
 
