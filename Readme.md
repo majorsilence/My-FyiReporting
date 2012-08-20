@@ -97,7 +97,7 @@ Perhaps I will be able to merge my changes into that project at some point.
 * [majorsilence](https://github.com/majorsilence) (Peter Gill)
 
 
-Contributors
+# Contributors
 
 A big thanks to all of My-FyiReporting contributors:
 
