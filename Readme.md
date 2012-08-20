@@ -92,3 +92,14 @@ UPDATE: It looks like there is another fork ReportFU [http://reportfu.org](http:
 UPDATE: What looks like another live fork NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/)
 Perhaps I will be able to merge my changes into that project at some point.
 
+# Core Team
+
+* [majorsilence](https://github.com/majorsilence) (Peter Gill)
+
+
+Contributors
+
+A big thanks to all of My-FyiReporting contributors:
+
+* [ausadmin](https://github.com/ausadmin)
+* [Geek648](https://github.com/Geek648)
