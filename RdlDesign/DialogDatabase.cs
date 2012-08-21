@@ -1363,6 +1363,13 @@ namespace fyiReporting.RdlDesign
 
         private void bTestConnection_Click(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrEmpty(tbConnection.Text))
+            {
+                MessageBox.Show("Please select a Data Provider before testing.", "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             string cType = GetDataProvider();
             if (cType == null)
                 return;

@@ -219,6 +219,12 @@ namespace fyiReporting.RdlDesign
 
         private void bTestConnection_Click(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.cbDataProvider.Text))
+            {
+                MessageBox.Show("Please select a Data Provider before testing.", "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (DesignerUtility.TestConnection(this.cbDataProvider.Text, tbConnection.Text))
                 MessageBox.Show("Connection succeeded!", "Test Connection");
         }
