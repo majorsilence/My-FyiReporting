@@ -182,27 +182,17 @@
     <None Include="Images\chart.png" />
     <None Include="Images\Image.png" />
     <Content Include="selecttool.gif" />
-    <Content Include="copy.gif" />
-    <Content Include="cut.gif" />
     <Content Include="html.gif" />
     <Content Include="image.gif" />
-    <Content Include="lalign.gif" />
     <Content Include="line.gif" />
     <Content Include="list.gif" />
     <Content Include="matrix.gif" />
     <Content Include="mht.gif" />
-    <Content Include="new.gif" />
-    <Content Include="open.gif" />
-    <Content Include="paste.gif" />
     <Content Include="pdf.gif" />
-    <Content Include="print.gif" />
-    <Content Include="ralign.gif" />
     <Content Include="rectangle.gif" />
-    <Content Include="save.gif" />
     <Content Include="subreport.gif" />
     <Content Include="table.gif" />
     <Content Include="text.gif" />
-    <Content Include="undo.gif" />
     <Content Include="xml.gif" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
