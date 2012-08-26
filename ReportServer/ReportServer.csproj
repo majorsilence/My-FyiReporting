@@ -224,6 +224,13 @@
     <Compile Include="Setup.aspx.designer.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShowReport.aspx.cs">
+      <DependentUpon>ShowReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowReport.aspx.designer.cs">
+      <DependentUpon>ShowReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
