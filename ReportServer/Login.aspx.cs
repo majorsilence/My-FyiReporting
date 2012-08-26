@@ -30,25 +30,33 @@ namespace ReportServer
             {
 
 
-                string sql = "SELECT Email, RoleId FROM users WHERE Email = @email AND Password = @password;";
+                string sql = "SELECT Email, FirstName, LastName, RoleId FROM users WHERE Email = @email AND Password = @password;";
 
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
                 cmd.Parameters.Add("@email", DbType.String).Value = TextBoxUser.Text;
-                cmd.Parameters.Add("@password", DbType.String).Value = TextBoxPassword.Text;
+                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxPassword.Text);
 
                 DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
 
                 if (dt.Rows.Count == 1)
                 {
                     SessionVariables.LoggedIn = true;
+                    SessionVariables.LoggedEmail = dt.Rows[0]["Email"].ToString();
+                    SessionVariables.LoggedFirstName = dt.Rows[0]["FirstName"].ToString();
+                    SessionVariables.LoggedLastName = dt.Rows[0]["LastName"].ToString();
+                    SessionVariables.LoggedRoleId = dt.Rows[0]["RoleId"].ToString();
                     this.Response.Redirect("Reports.aspx", true);
                 }
                 else
                 {
                     SessionVariables.LoggedIn = false;
+                    SessionVariables.LoggedEmail = "Anonymous";
+                    SessionVariables.LoggedFirstName = "Anonymous";
+                    SessionVariables.LoggedLastName = "Anonymous";
+                    SessionVariables.LoggedRoleId = "Anonymous";
                     lResult.Text = "Unknown user name and/or password!";
                 }
 
