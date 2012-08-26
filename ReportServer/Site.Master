@@ -30,7 +30,6 @@
   
     <ul>
         <li class="m-item"><a href="Default.aspx">Home</a></li>     
-        <asp:Literal ID="LiteralMenu" runat="server"></asp:Literal>
         <li class="m-item"><a href="Reports.aspx">Reports</a></li>
         <li class="m-item"><a href="Settings.aspx">Settings</a></li>
 
