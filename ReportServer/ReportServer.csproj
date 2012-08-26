@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ADefault.aspx" />
+    <Content Include="AdminRoleManagement.aspx" />
     <Content Include="datetimepicker.js" />
     <Content Include="Default.aspx" />
     <Content Include="dscrnshot1tn.jpg" />
@@ -191,6 +192,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminRoleManagement.aspx.cs">
+      <DependentUpon>AdminRoleManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminRoleManagement.aspx.designer.cs">
+      <DependentUpon>AdminRoleManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Code\DAL.cs" />
     <Compile Include="Code\Hashes.cs" />
     <Compile Include="Default.aspx.cs">
