@@ -142,6 +142,7 @@
     <Content Include="Setup.aspx" />
     <Content Include="ShowFile.aspx" />
     <Content Include="ShowReport.aspx" />
+    <Content Include="Signup.aspx" />
     <Content Include="Silverlight.js\localized\Silverlight.ar-sa.js" />
     <Content Include="Silverlight.js\localized\Silverlight.bg-bg.js" />
     <Content Include="Silverlight.js\localized\Silverlight.cs-cz.js" />
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="Setup.aspx.designer.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Signup.aspx.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Signup.aspx.designer.cs">
+      <DependentUpon>Signup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
