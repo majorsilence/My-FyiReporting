@@ -15,7 +15,7 @@ if (_Report.RenderType != "html" && error == false)
     </style>
     <title><%=_Report.ReportFile%></title>
     <%=Meta%>
-    <script language="javascript" src="datetimepicker.js"></script>
+    <script language="javascript" src="datetimepicker.js" type="text/javascript"></script>
     <script language="javascript" src="limitinput.js"></script>
 </head>
     <body>
