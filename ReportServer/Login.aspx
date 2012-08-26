@@ -10,10 +10,8 @@
 />
 <p>
 User Name (email): <asp:Textbox ID="TextBoxUser" Runat="Server"/>
-<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="tbUser" Text="Required!" Runat="Server"/>
 <p>
 Password: <asp:Textbox ID="TextBoxPassword" Runat="Server"/>
-<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="tbPswd" Text="Required!" Runat="Server"/>
 <p>
 <asp:Button ID="Button1" Text="Sign On" OnClick="bSignOn_Click" Runat="Server" 
         style="height: 26px"/>
