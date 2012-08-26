@@ -57,6 +57,11 @@ namespace ReportServer
                     LabelError.Text = "Password and confirm password do not match.";
                     return;
                 }
+                else if (TextBoxPassword.Text.Length < 1)
+                {
+                    LabelError.Text = "Password must be at least one character in length.";
+                    return;
+                }
 
                 string password = Code.Hashes.GetSHA512StringHash(TextBoxPassword.Text);
 
