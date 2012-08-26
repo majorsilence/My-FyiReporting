@@ -13,12 +13,30 @@ namespace ReportServer {
     public partial class Reports {
         
         /// <summary>
-        /// RdlListReports1 control.
+        /// lResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::fyiReporting.RdlAsp.RdlListReports RdlListReports1;
+        protected global::System.Web.UI.WebControls.Label lResult;
+        
+        /// <summary>
+        /// tbUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUser;
+        
+        /// <summary>
+        /// tbPswd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPswd;
     }
 }

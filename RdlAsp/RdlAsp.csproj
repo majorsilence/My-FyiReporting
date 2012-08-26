@@ -151,9 +151,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RdlSilverViewer.cs" />
-    <Compile Include="RdlListReports.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="RdlListReports.cs" />
     <Compile Include="RdlReport.cs">
       <SubType>Code</SubType>
     </Compile>

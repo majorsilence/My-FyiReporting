@@ -1822,3 +1822,8 @@ GenerateResource.read.35.tlog
 GenerateResource.write.35.tlog
 My-FyiReporting.4.5.2.x64.nupkg
 My-FyiReporting.4.5.2.x86.nupkg
+/DataProviders/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/RdlAsp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/RdlCri/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/ReportServer/bin/App_Data/serverdata.sqlite3
+/ReportServer/obj/Debug/ReportServer.csproj.FileListAbsolute.txt
