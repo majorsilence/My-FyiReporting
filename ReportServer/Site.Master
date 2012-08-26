@@ -51,21 +51,23 @@
   
   <div id="footer"><!-- footer -->
   
-    <div id="footer-1"><!-- footer-1-->
-    For more information please visit the <a href="https://github.com/majorsilence/My-FyiReporting/wiki">My-FyiReporting wiki page</a>.  
-    You will find info about database providers, designer tutorials, and code examples.
-    </div><!-- footer-1-->
         
-    <div id="footer-2"><!-- footer-2-->
+    <div id="footer-1">
     My-FYIReporting is a report and charting system based on Microsoft's Report Definition Language (RDL). Tabular, free form, matrix, charts 
     are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
     
-    </div><!-- footer-2-->
+    </div>
  
-     <div id="footer-3"><!-- footer-3-->
+     <div id="footer-2">
      A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for 
     creating new reports and for inserting new tables, matrixes, and charts into existing reports. 
-    </div><!-- footer-3-->
+    </div>
+
+
+    <div id="footer-3"><!-- footer-1-->
+    For more information please visit the <a href="https://github.com/majorsilence/My-FyiReporting/wiki">My-FyiReporting wiki page</a>.  
+    You will find info about database providers, designer tutorials, and code examples.
+    </div><!-- footer-1-->
 
      <div class="clr"></div>
   </div><!-- footer -->
