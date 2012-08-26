@@ -220,6 +220,9 @@
     <None Include="Reports\ChartTypes.rdl" />
     <None Include="Reports\WorldFacts.rdl" />
     <Content Include="Site.Master" />
+    <None Include="serverdata.sqlite3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SLViewer\desktop.ini" />
     <None Include="tempimages\desktop.ini" />
   </ItemGroup>
