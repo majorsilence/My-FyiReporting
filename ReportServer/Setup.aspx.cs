@@ -48,6 +48,9 @@ namespace ReportServer
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
+
+            SQLiteConnection cn = new SQLiteConnection(Code.DAL.ConnectionString);
+
             try
             {
 
@@ -67,7 +70,7 @@ namespace ReportServer
 
                 string sql = "INSERT INTO users (Email, FirstName, LastName, RoleId, Password) VALUES(@email, @firstname, @lastname, 'Admin', @password)";
                 SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
+                cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
                 cmd.Parameters.Add("@email", DbType.String).Value = TextBoxEmail.Text;
@@ -75,12 +78,20 @@ namespace ReportServer
                 cmd.Parameters.Add("@lastname", DbType.String).Value = TextBoxLastName.Text;
                 cmd.Parameters.Add("@password", DbType.String).Value = password;
 
-
+                cn.Open();
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
             {
                 LabelError.Text = ex.Message;
+            }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                {
+                    cn.Close();
+                }
             }
         }
     }

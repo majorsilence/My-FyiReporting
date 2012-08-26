@@ -17,10 +17,10 @@
         <asp:TextBox ID="TextBoxLastName" runat="server"></asp:TextBox>
         <br />
         Password:
-        <asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBoxPassword" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         Confirm Password:
-        <asp:TextBox ID="TextBoxConfirmPassword" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBoxConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" 
