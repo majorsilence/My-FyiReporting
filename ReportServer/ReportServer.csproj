@@ -126,6 +126,7 @@
     <Content Include="Login.aspx" />
     <Content Include="minus.gif" />
     <Content Include="plus.gif" />
+    <Content Include="Reports.aspx" />
     <Content Include="Reports\Contacts.xml" />
     <Content Include="Reports\empty.gif" />
     <Content Include="Reports\minus.gif" />
@@ -178,6 +179,7 @@
     <Content Include="SLViewer\zoomin.png" />
     <Content Include="SLViewer\zoomout.png" />
     <Content Include="SmallCalendar.gif" />
+    <Content Include="Styles\site.css" />
     <Content Include="tempimages\fyisv1570316002.png" />
     <Content Include="TestReportsSideBySide.aspx" />
     <Content Include="Web.config" />
@@ -191,12 +193,29 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Security.cs" />
+    <Compile Include="Code\SessionVariables.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Reports\ChartMap.rdl" />
     <None Include="Reports\ChartMapWorld.rdl" />
     <None Include="Reports\ChartTypes.rdl" />
     <None Include="Reports\WorldFacts.rdl" />
+    <Content Include="Site.Master" />
     <None Include="SLViewer\desktop.ini" />
     <None Include="tempimages\desktop.ini" />
   </ItemGroup>
@@ -232,7 +251,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52732</DevelopmentServerPort>
+          <DevelopmentServerPort>60365</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

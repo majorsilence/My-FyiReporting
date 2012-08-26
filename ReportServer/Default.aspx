@@ -1,72 +1,30 @@
-<%@ Page Language="C#" %>
-<%@ Register TagPrefix="rdl" Namespace="fyiReporting.RdlAsp"
-Assembly="RdlAsp"%>
-<script Runat="Server">
-private RdlReport _Report = new RdlReport();
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" %>
 
-void Page_Load(Object sender, EventArgs e)
-{
-	_Report.RenderType = "html";
-    _Report.PassPhrase = "northwind";
-	// ReportFile must be the last item set since it triggers the building of the report
-	string report_url = Request.QueryString["rs:url"];
-	if (report_url != null)
-		_Report.ReportFile = report_url;
-}
 
-string Meta
-{
-	get 
-	{
-		if (_Report.ReportFile == "statistics")
-			return "<meta http-equiv=\"Refresh\" contents=\"10\"/>";
-		else
-			return "";
-	}
-}
-</script>
-<html>
-<head>
-    <script language="javascript" src="datetimepicker.js" type="text/javascript"></script>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+
+    <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+        <script language="javascript" src="datetimepicker.js" type="text/javascript"></script>
     <script language="javascript" src="limitinput.js" type="text/javascript"></script>
-<%=_Report.JavaScript%>
-<style type='text/css'>
-<%=_Report.CSS%>
-</style>
-<title>fyiReporting Server <%=_Report.ReportFile%></title>
-<%=Meta%>
-</head>
 
-<body>
-<table border="border">
-<tr><td colspan="2" align="center">
-<!-- Beginning of header  -->
-This is the header
-<!-- End of header    -->
-</td></tr>
-<tr>
-<td valign="top">
-<!-- Beginning of list directory  -->
- <rdl:RdlListReports
-		  Runat="Server" />
-<!-- End of list directory    -->
-</td> 
-<td valign="top"> 
-<!-- Beginning of including the report     -->
-<table>
-<tr><td><%=_Report.ParameterHtml%></td></tr>
-<tr><td><%=_Report.Html%></td></tr>
-</table>
-<!-- End of including the report    -->
-</td>
-</tr>
-<tr>
-<td colspan="2" align="center">
-<!-- Beginning of footer  -->
-this is the footer
-<!-- End of footer    -->
-</td></tr>
-</table>
-</body>
-</html>
+    <p>
+    Welcome to the My-FyiReporting report server.  
+    </p>
+
+
+
+    <p>
+    The report server lets you view online any of the reports that were created with the designer.  Any reports that are public are viewable by all
+    users on this site.  Any reports that are secured will only be viewable by users with permissions to view the reports.
+    </p>
+
+
+
+</asp:Content>
+ 
+
+
+
 
