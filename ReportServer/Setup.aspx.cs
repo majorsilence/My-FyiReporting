@@ -81,6 +81,7 @@ namespace ReportServer
                 cn.Open();
                 cmd.ExecuteNonQuery();
 
+                this.Response.Redirect("Reports.aspx", true);
             }
             catch (Exception ex)
             {
