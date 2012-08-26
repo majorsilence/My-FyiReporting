@@ -15,10 +15,13 @@ namespace ReportServer
             if (SessionVariables.LoggedIn == true)
             {
                 LiteralMenu.Text = "<li class=\"m-item\"><a href=\"Logout.aspx\">Logout</a></li>";
+                LiteralLogin.Text = string.Format("{0} - <a href=\"Logout.aspx\">Logout</a>", SessionVariables.LoggedEmail);
+
             }
                 else
             {
                 LiteralMenu.Text = "<li class=\"m-item\"><a href=\"Login.aspx\">Login</a></li>";
+                LiteralLogin.Text = string.Format("{0} - <a href=\"Login.aspx\">Login</a>", SessionVariables.LoggedEmail);
             }
 
         }

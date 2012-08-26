@@ -23,6 +23,9 @@
     
   </div><!--header-->
   
+  <div style="float: right;">
+      <asp:Literal ID="LiteralLogin" runat="server"></asp:Literal></div>
+
   <div id="menu">
   
     <ul>
