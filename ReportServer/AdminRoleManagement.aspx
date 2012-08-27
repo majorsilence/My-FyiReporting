@@ -14,6 +14,22 @@
             onclick="ButtonCreateRole_Click" Text="Create Role" />
         <br />
     </asp:Panel>
+    <asp:Panel ID="Panel3" runat="server">
+    <h1>Role Permissions</h1> Select Role:
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
+            Height="20px" onselectedindexchanged="DropDownList1_SelectedIndexChanged" 
+            Width="216px">
+        </asp:DropDownList>
+        <br />
+        Select/Unselect Role Permissions:<br />
+        <asp:ListBox ID="ListBoxRoleTags" runat="server" Height="481px" Width="386px">
+        </asp:ListBox>
+        <br />
+        <asp:Button ID="ButtonSaveRoleTags" runat="server" 
+            onclick="ButtonSaveRoleTags_Click" Text="Save Role Tags" />
+        <br />
+
+    </asp:Panel>
     <asp:Panel ID="Panel2" runat="server">
     <h1>Delete Role</h1>
        <br />
