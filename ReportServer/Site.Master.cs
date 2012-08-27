@@ -19,7 +19,7 @@ namespace ReportServer
             }
                 else
             {
-                LiteralLogin.Text = string.Format("{0} - <a href=\"Login.aspx\">Login</a>", SessionVariables.LoggedEmail);
+                LiteralLogin.Text = string.Format("{0} - <a href=\"Login.aspx\">Login</a> / <a href=\"Signup.aspx\">Signup</a>", SessionVariables.LoggedEmail);
             }
 
         }
