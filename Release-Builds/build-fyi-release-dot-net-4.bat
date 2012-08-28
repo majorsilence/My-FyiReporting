@@ -102,3 +102,18 @@ copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\my-fyi-build-dot-net
 7za.exe a my-fyi-build-dot-net-4-x86.zip my-fyi-build-dot-net-4-x86\
 
 REM ************* End x86 *********************************************
+
+
+REM ************* ILMerge RdlReader *********************************************
+
+del .\my-fyi-build-dot-net-4-viewer-x86 /Q
+mkdir .\my-fyi-build-dot-net-4-viewer-x86
+
+"C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /targetplatform:v4 /target:winexe /out:"%CD%\my-fyi-build-dot-net-4-viewer-x86\RdlViewerSC.exe" "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe" "%CD%\..\DataProviders\bin\x86\Release\DataProviders.dll" "%CD%\..\RdlCri\bin\x86\Release\RdlCri.dll" "%CD%\..\RdlEngine\bin\x86\Release\RdlEngine.dll" "%CD%\..\RdlEngine\bin\x86\Release\ICSharpCode.SharpZipLib.dll" "%CD%\..\RdlViewer\bin\x86\Release\RdlViewer.dll" 
+
+copy ..\RdlDesktop\bin\x86\Release\config.xml .\my-fyi-build-dot-net-4-viewer-x86\config.xml /Y
+copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-viewer-x86\RdlEngineConfig.xml /Y
+del .\my-fyi-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
+
+
+7za.exe a my-fyi-build-dot-net-4-viewer-x86.zip my-fyi-build-dot-net-4-viewer-x86\
