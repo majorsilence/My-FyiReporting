@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ADefault.aspx" />
+    <Content Include="AdminReportUpload.aspx" />
     <Content Include="AdminRoleManagement.aspx" />
     <Content Include="AdminRoleUsers.aspx" />
     <Content Include="datetimepicker.js" />
@@ -127,6 +128,10 @@
     <Content Include="empty.gif" />
     <Content Include="FrameTest.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="AdminReportUploadHandler.ashx" />
+    <None Include="Javascript\fileuploader.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="limitinput.js" />
     <Content Include="ListReports.aspx" />
     <Content Include="Login.aspx" />
@@ -187,12 +192,28 @@
     <Content Include="SLViewer\zoomin.png" />
     <Content Include="SLViewer\zoomout.png" />
     <Content Include="SmallCalendar.gif" />
+    <None Include="Styles\fileuploader.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Styles\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Styles\site.css" />
     <Content Include="tempimages\fyisv1570316002.png" />
     <Content Include="TestReportsSideBySide.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminReportUpload.aspx.cs">
+      <DependentUpon>AdminReportUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminReportUpload.aspx.designer.cs">
+      <DependentUpon>AdminReportUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminReportUploadHandler.ashx.cs">
+      <DependentUpon>AdminReportUploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="AdminRoleManagement.aspx.cs">
       <DependentUpon>AdminRoleManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -134,5 +134,19 @@ namespace ReportServer
             }
         }
 
+
+        public static string ReportDirectory
+        {
+            get
+            {
+
+                string reportPath = HttpContext.Current.Server.MapPath("~/App_Data");
+                reportPath = System.IO.Path.Combine(reportPath, "Reports");
+
+                return reportPath;
+            }
+
+        }
+
     }
 }
