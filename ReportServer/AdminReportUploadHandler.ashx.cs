@@ -30,12 +30,12 @@ namespace ReportServer
 
                 if (context.Request.Browser.Type.StartsWith("IE"))
                 {
-                    inputStream = context.Request.Files[0].InputStream;
-                    filename = context.Request.Files[0].FileName;
+                    inputStream =  context.Request.Files[0].InputStream;
+                    filename = HttpUtility.UrlDecode( context.Request.Files[0].FileName);
                 }
                 else
                 {
-                    filename  = HttpContext.Current.Request.Headers["X-File-Name"];
+                    filename = HttpUtility.UrlDecode(HttpContext.Current.Request.Headers["X-File-Name"]);
                      inputStream = HttpContext.Current.Request.InputStream;
                 }
 
@@ -59,6 +59,7 @@ namespace ReportServer
                 try
                 {
 
+                    string tag = @"Reports/" + filename;
 
                     string sql = "INSERT INTO roletags (tag, description) VALUES (@tag, @description);";
                     SQLiteCommand cmd = new SQLiteCommand();
@@ -66,7 +67,7 @@ namespace ReportServer
                     cmd.Transaction = txn;
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = sql;
-                    cmd.Parameters.Add("@tag", DbType.String).Value = @"Reports/" + filename;
+                    cmd.Parameters.Add("@tag", DbType.String).Value = tag;
                     cmd.Parameters.Add("@description", DbType.String).Value = filename + " report";
                     cmd.ExecuteNonQuery();
 
@@ -75,10 +76,21 @@ namespace ReportServer
                     cmd2.Connection = cn;
                     cmd2.Transaction = txn;
                     cmd2.CommandType = System.Data.CommandType.Text;
-                    cmd2.CommandText = sql;
+                    cmd2.CommandText = sql2;
                     cmd2.Parameters.Add("@role", DbType.String).Value = "Admin";
-                    cmd2.Parameters.Add("@tag", DbType.String).Value = @"Reports/" + filename;
+                    cmd2.Parameters.Add("@tag", DbType.String).Value = tag;
                     cmd2.ExecuteNonQuery();
+
+
+                    string sql3 = "INSERT INTO reportfiles (reportname, tag) VALUES (@reportname, @tag);";
+                    SQLiteCommand cmd3 = new SQLiteCommand();
+                    cmd3.Connection = cn;
+                    cmd3.Transaction = txn;
+                    cmd3.CommandType = System.Data.CommandType.Text;
+                    cmd3.CommandText = sql3;
+                    cmd3.Parameters.Add("@reportname", DbType.String).Value = filename;
+                    cmd3.Parameters.Add("@tag", DbType.String).Value = tag;
+                    cmd3.ExecuteNonQuery();
 
 
                     txn.Commit();
