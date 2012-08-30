@@ -11,7 +11,7 @@
 <p>
 User Name (email): <asp:Textbox ID="TextBoxUser" Runat="Server"/>
 <p>
-Password: <asp:Textbox ID="TextBoxPassword" Runat="Server"/>
+Password: <asp:Textbox ID="TextBoxPassword" Runat="Server" TextMode="Password"/>
 <p>
 <asp:Button ID="Button1" Text="Sign On" OnClick="bSignOn_Click" Runat="Server" 
         style="height: 26px"/>

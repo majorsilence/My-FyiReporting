@@ -20,7 +20,7 @@ namespace ReportServer
             {
 
 
-                string sql = "SELECT role, tag FROM roleaccess WHERE role = @roleid and tag = 'Admin/Role Management' or tag = 'Admin/Report Upload' or tag = 'Admin/User Management'";
+                string sql = "SELECT role, tag FROM roleaccess WHERE role = @roleid and (tag = 'Admin/Role Management' or tag = 'Admin/Report Upload' or tag = 'Admin/User Management')";
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -45,7 +45,7 @@ namespace ReportServer
                     {
                         sb.Append("<a href=\"AdminReportUpload.aspx\">Upload Reports</a><br />");   
                     }
-                    else if (row["tag"].ToString() == "Admin/User Management<br />")
+                    else if (row["tag"].ToString() == "Admin/User Management")
                     {
                         sb.Append("<a href=\"AdminRoleUsers.aspx\">User Management</a><br />");   
                     }

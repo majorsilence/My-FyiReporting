@@ -48,7 +48,7 @@ namespace ReportServer
                     SessionVariables.LoggedFirstName = dt.Rows[0]["FirstName"].ToString();
                     SessionVariables.LoggedLastName = dt.Rows[0]["LastName"].ToString();
                     SessionVariables.LoggedRoleId = dt.Rows[0]["RoleId"].ToString();
-                    this.Response.Redirect("Reports.aspx", true);
+                    this.Response.Redirect("Reports.aspx", false);
                 }
                 else
                 {
@@ -64,6 +64,8 @@ namespace ReportServer
 
 
             }
+            catch (System.Threading.ThreadAbortException tae)
+            { }
             catch (Exception ex)
             {
                 SessionVariables.LoggedIn = false;

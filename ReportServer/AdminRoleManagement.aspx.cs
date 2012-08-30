@@ -25,7 +25,8 @@ namespace ReportServer
                 {
                     return;
                 }
-
+                ListBoxRoleTags.SelectionMode = ListSelectionMode.Multiple;
+                ListBoxRoleList.SelectionMode = ListSelectionMode.Multiple;
 
                 string sql = "SELECT tag, description FROM roletags;";
                 SQLiteCommand cmd = new SQLiteCommand();
@@ -34,6 +35,8 @@ namespace ReportServer
                 cmd.CommandText = sql;
 
                 DataTable dtAllTags = Code.DAL.ExecuteCmdTable(cmd);
+
+                
 
                 foreach (DataRow row in dtAllTags.Rows)
                 {
