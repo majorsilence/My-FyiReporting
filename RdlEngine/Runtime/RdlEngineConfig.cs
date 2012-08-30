@@ -314,6 +314,13 @@ namespace fyiReporting.RDL
                 if (codemodule != null && cname != null)
                 {
 
+                    // When running report server and RdlEngineConfig is configured for local directy
+                    // The file cannot be found without adding the current directoyr
+                    if (System.IO.File.Exists(codemodule) == false && System.IO.Path.GetFileName(codemodule) == codemodule)
+                    {
+                        codemodule = System.IO.Path.Combine(AppDomain.CurrentDomain.RelativeSearchPath, codemodule);
+                    }
+
                     if (System.IO.File.Exists(codemodule) == false)
                     {
                         sce = new SqlConfigEntry(provider, codemodule , cname, null, tselect, codemodule + " could not be found");
