@@ -133,19 +133,31 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="limitinput.js" />
-    <Content Include="ListReports.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="minus.gif" />
     <Content Include="plus.gif" />
     <Content Include="Reports.aspx" />
-    <Content Include="Reports\Contacts.xml" />
-    <Content Include="Reports\empty.gif" />
-    <Content Include="Reports\minus.gif" />
-    <Content Include="Reports\plus.gif" />
-    <Content Include="Reports\SalesData.xml" />
-    <Content Include="Reports\WorldFacts.xml" />
+    <None Include="App_Data\Reports\Contacts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\empty.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\minus.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\plus.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\SalesData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\WorldFacts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="ReportViewer.js" />
     <Content Include="SessionCount.aspx" />
+    <Content Include="Settings.aspx" />
     <Content Include="Setup.aspx" />
     <Content Include="ShowFile.aspx" />
     <Content Include="ShowReport.aspx" />
@@ -254,6 +266,13 @@
     </Compile>
     <Compile Include="Code\Security.cs" />
     <Compile Include="Code\SessionVariables.cs" />
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Setup.aspx.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -284,10 +303,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Reports\ChartMap.rdl" />
-    <None Include="Reports\ChartMapWorld.rdl" />
-    <None Include="Reports\ChartTypes.rdl" />
-    <None Include="Reports\WorldFacts.rdl" />
+    <None Include="App_Data\Reports\ChartMap.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\ChartMapWorld.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\ChartTypes.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Reports\WorldFacts.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Site.Master" />
     <None Include="App_Data\serverdata.sqlite3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -309,9 +336,7 @@
       <Name>RdlEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

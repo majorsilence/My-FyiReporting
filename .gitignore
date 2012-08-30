@@ -1850,3 +1850,13 @@ My-FyiReporting.4.5.2.x86.nupkg
 /ReportServer/bin/Javascript/fileuploader.js
 /ReportServer/bin/Styles/fileuploader.css
 /ReportServer/bin/Styles/loading.gif
+/ReportServer/bin/App_Data/Reports/ChartMap.rdl
+/ReportServer/bin/App_Data/Reports/ChartMapWorld.rdl
+/ReportServer/bin/App_Data/Reports/ChartTypes.rdl
+/ReportServer/bin/App_Data/Reports/Contacts.xml
+/ReportServer/bin/App_Data/Reports/SalesData.xml
+/ReportServer/bin/App_Data/Reports/WorldFacts.rdl
+/ReportServer/bin/App_Data/Reports/WorldFacts.xml
+/ReportServer/bin/App_Data/Reports/empty.gif
+/ReportServer/bin/App_Data/Reports/minus.gif
+/ReportServer/bin/App_Data/Reports/plus.gif

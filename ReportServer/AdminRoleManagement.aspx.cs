@@ -18,10 +18,8 @@ namespace ReportServer
             try
             {
 
-#if DEBUG == false
+                Security.IsValidateRequest(this.Response, this.Session, @"Admin/Role Management");
 
-                Security.IsValidateRequest(this.Response, this.Session);
-#endif
 
                 if (IsPostBack)
                 {

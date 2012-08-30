@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using System.Data.SQLite;
+using System.Data;
 
 namespace ReportServer
 {
@@ -14,7 +16,7 @@ namespace ReportServer
 
         public void ProcessRequest(HttpContext context)
         {
-           // Security.IsValidateRequest(context.Response, context.Session);
+            Security.IsValidateRequest(context.Response, context.Session, @"Admin/Report Upload");
 
 
             context.Response.ContentType = "application/json";
@@ -49,6 +51,54 @@ namespace ReportServer
                 fileStream.Close();
 
                 // TODO: Add insert into report table.
+
+                SQLiteConnection cn = new SQLiteConnection(Code.DAL.ConnectionString);
+                cn.Open();
+                SQLiteTransaction txn;
+                txn = cn.BeginTransaction();
+                try
+                {
+
+
+                    string sql = "INSERT INTO roletags (tag, description) VALUES (@tag, @description);";
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = cn;
+                    cmd.Transaction = txn;
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = sql;
+                    cmd.Parameters.Add("@tag", DbType.String).Value = @"Reports/" + filename;
+                    cmd.Parameters.Add("@description", DbType.String).Value = filename + " report";
+                    cmd.ExecuteNonQuery();
+
+                    string sql2 = "INSERT INTO roleaccess (role, tag) VALUES (@role, @tag);";
+                    SQLiteCommand cmd2 = new SQLiteCommand();
+                    cmd2.Connection = cn;
+                    cmd2.Transaction = txn;
+                    cmd2.CommandType = System.Data.CommandType.Text;
+                    cmd2.CommandText = sql;
+                    cmd2.Parameters.Add("@role", DbType.String).Value = "Admin";
+                    cmd2.Parameters.Add("@tag", DbType.String).Value = @"Reports/" + filename;
+                    cmd2.ExecuteNonQuery();
+
+
+                    txn.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    txn.Rollback();
+                    System.IO.File.Delete(System.IO.Path.Combine(path, filename));
+                    context.Response.Write(string.Format("{\"error\":\"{0}\"}", ex.Message)); // in case of error
+                    return;
+                }
+                finally
+                {
+                    if (cn.State != ConnectionState.Closed)
+                    {
+                        cn.Close();
+                    }
+                }
+
 
                 context.Response.Write("{\"success\":true}"); // when upload was successful
 

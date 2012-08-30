@@ -13,30 +13,21 @@ namespace ReportServer {
     public partial class Reports {
         
         /// <summary>
-        /// lResult control.
+        /// Literal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lResult;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
-        /// tbUser control.
+        /// LabelError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUser;
-        
-        /// <summary>
-        /// tbPswd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPswd;
+        protected global::System.Web.UI.WebControls.Label LabelError;
     }
 }

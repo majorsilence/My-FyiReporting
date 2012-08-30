@@ -12,6 +12,8 @@ namespace ReportServer
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            Security.IsValidateRequest(this.Response, this.Session, @"Admin/Report Upload");
+
         }
     }
 }

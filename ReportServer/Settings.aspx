@@ -5,6 +5,8 @@
 
 
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+    <br />
+    <asp:Label ID="LabelError" runat="server" ForeColor="Red"></asp:Label>
 
 
 </asp:Content>
