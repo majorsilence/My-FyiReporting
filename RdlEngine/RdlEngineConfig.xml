@@ -48,7 +48,7 @@
 		</DataSource> 
 		<DataSource> 
     			<DataProvider>SQLite</DataProvider> 
-		    	<CodeModule>System.Data.SQLite.DLL</CodeModule> 
+		    	<CodeModule>System.Data.SQLite.dll</CodeModule> 
 		    	<ClassName>System.Data.SQLite.SQLiteConnection</ClassName> 
 		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect> 
 		    	<Interface>SQL</Interface> 
