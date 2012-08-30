@@ -118,10 +118,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ADefault.aspx" />
     <Content Include="AdminReportUpload.aspx" />
     <Content Include="AdminRoleManagement.aspx" />
     <Content Include="AdminRoleUsers.aspx" />
+    <Content Include="ChangePassword.aspx" />
     <Content Include="datetimepicker.js" />
     <Content Include="Default.aspx" />
     <Content Include="dscrnshot1tn.jpg" />
@@ -240,6 +240,13 @@
     </Compile>
     <Compile Include="AdminRoleUsers.aspx.designer.cs">
       <DependentUpon>AdminRoleUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Code\DAL.cs" />
     <Compile Include="Code\Hashes.cs" />

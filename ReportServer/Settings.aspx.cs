@@ -35,6 +35,7 @@ namespace ReportServer
                 }
 
                 StringBuilder sb = new StringBuilder();
+                sb.Append("<a href=\"ChangePassword.aspx\">Change Password</a><br />");   
                 foreach (DataRow row in dt.Rows)
                 {
                     if (row["tag"].ToString() == "Admin/Role Management")
