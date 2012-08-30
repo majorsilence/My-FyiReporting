@@ -10,7 +10,7 @@
         &nbsp;&nbsp;<asp:Label ID="LabelError" runat="server" ForeColor="Red"></asp:Label>
         <br />
         Roles:
-        <asp:DropDownList ID="DropDownListRoles" runat="server" AutoPostBack="True" 
+        <asp:DropDownList ID="DropDownListRoles" runat="server" 
             Height="16px" Width="136px">
         </asp:DropDownList>
         &nbsp;
