@@ -521,11 +521,17 @@ namespace fyiReporting.RDL
                     // Check to see if previously loaded.  Many CustomReportItems share same CodeModule. 
                     Assembly[] allLoadedAss = AppDomain.CurrentDomain.GetAssemblies();
                     foreach (Assembly ass in allLoadedAss)
-                        if (ass.Location.Equals(codemodule, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        var type = ass.GetType();
+                        if( type.GetMethod("Location") != null)
                         {
-                            la = ass;
-                            break;
+                            if (ass.Location.Equals(codemodule, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                la = ass;
+                                break;
+                            }
                         }
+                    }
 
                     if (la == null)     // not previously loaded? 
                         la = XmlUtil.AssemblyLoadFrom(codemodule);
