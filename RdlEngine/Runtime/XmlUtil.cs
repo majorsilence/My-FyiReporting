@@ -151,7 +151,15 @@ namespace fyiReporting.RDL
 			Assembly ra=null;
 			try
 			{	// try 1) loading just from name
-				ra = Assembly.LoadFrom(s);
+                if (System.IO.File.Exists(s))
+                {
+                    ra = Assembly.LoadFrom(s);
+                }
+                else
+                {
+                    string path = System.IO.Path.Combine(RdlEngineConfig.DirectoryLoadedFrom, s);
+                    ra = Assembly.LoadFrom(path);
+                }
 			}
 			catch
 			{	// try 2) loading from the various directories available
