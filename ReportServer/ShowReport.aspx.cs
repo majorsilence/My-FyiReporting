@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using fyiReporting.RdlAsp;
+using System.Data.SQLite;
+using System.Data;
 
 namespace ReportServer
 {
@@ -24,12 +26,41 @@ namespace ReportServer
             _Report = new RdlReport();
         }
 
+        private bool HasPermissions(string reportName)
+        {
+            string nameOnly = System.IO.Path.GetFileName(reportName);
+            string sql = "SELECT a.reportname, a.tag, c.description FROM reportfiles a ";
+            sql += " JOIN roleaccess b ON a.tag=b.tag JOIN roletags c ON a.tag = c.tag ";
+            sql += " WHERE b.role = @roleid AND a.reportname=@reportname;";
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = sql;
+            cmd.Parameters.Add("@roleid", DbType.String).Value = SessionVariables.LoggedRoleId;
+            cmd.Parameters.Add("@reportname", DbType.String).Value = nameOnly;
+
+            DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Name = Request.QueryString["rs:Name"];
             string FirstRun = Request.QueryString["rs:FirstRun"];
-   
+
+            if (HasPermissions(Request.QueryString["rs:url"]) == false)
+            {
+                return;
+            }
+
+    
+
             if (FirstRun == "true")
             {
                 _Report.NoShow = true;
