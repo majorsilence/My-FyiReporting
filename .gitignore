@@ -1860,3 +1860,8 @@ My-FyiReporting.4.5.2.x86.nupkg
 /ReportServer/bin/App_Data/Reports/empty.gif
 /ReportServer/bin/App_Data/Reports/minus.gif
 /ReportServer/bin/App_Data/Reports/plus.gif
+/Examples/SqliteExamples/SimpleTest2 - Copy.rdl
+/ReportServer/App_Data/Reports/SimpleTest2 - Copy.rdl
+/ReportServer/bin/RdlEngineConfig.xml
+/ReportServer/bin/usa_map.xml
+/ReportServer/bin/world_map.xml
