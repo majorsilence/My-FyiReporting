@@ -99,7 +99,7 @@
                 <span id="numPages" class="toolbarLabel"></span>
 
 
-                <label class="toolbarLabel"><asp:Literal ID="LiteralOtherLinks" runat="server"></asp:Literal></label>
+                <label class="toolbarLabel"><asp:Literal ID="LiteralOtherLinks" runat="server"></asp:Literal> | <a href="Reports.aspx">All Reports</a></label>
 
                 <span id="Span1" class="toolbarLabel"></span>
 
