@@ -57,5 +57,29 @@ namespace ReportServer
             return false;
         }
 
+        public static bool HasPermissions(string reportName)
+        {
+            string nameOnly = System.IO.Path.GetFileName(reportName);
+            string sql = "SELECT a.reportname, a.tag, c.description FROM reportfiles a ";
+            sql += " JOIN roleaccess b ON a.tag=b.tag JOIN roletags c ON a.tag = c.tag ";
+            sql += " WHERE b.role = @roleid AND a.reportname=@reportname;";
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = sql;
+            cmd.Parameters.Add("@roleid", DbType.String).Value = SessionVariables.LoggedRoleId;
+            cmd.Parameters.Add("@reportname", DbType.String).Value = nameOnly;
+
+            DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
     }
 }

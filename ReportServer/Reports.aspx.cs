@@ -49,7 +49,7 @@ namespace ReportServer
                     string filename = System.IO.Path.GetFileNameWithoutExtension(row["reportname"].ToString());
                     string description =  row["description"].ToString();
 
-                    sb.Append(string.Format("<tr><td><a href=\"ShowReport.aspx?rs:url={0}\" target=_self>{1}</a></td><td>{2}</td></tr>",  path, filename, description ));
+                    sb.Append(string.Format("<tr><td><a href=\"Viewer.aspx?rs:url={0}\" target=_self>{1}</a></td><td>{2}</td></tr>",  path, filename, description ));
 
                 }
 
