@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SQLite;
 using System.Data;
+using System.Text;
 
 
 namespace ReportServer
@@ -19,7 +20,10 @@ namespace ReportServer
             bool FirstRun = false;
             try
             {
-               FirstRun = bool.Parse(Request.QueryString["rs:FirstRun"]);
+                if (Request.QueryString["rs:FirstRun"] != null)
+                {
+                    FirstRun = bool.Parse(Request.QueryString["rs:FirstRun"]);
+                }
             }
             catch (Exception ex)
             {
@@ -33,6 +37,14 @@ namespace ReportServer
             ses.url = url;
 
             Session["CurrentPdfReport"] = ses;
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=xml\" target=_self>XML</a> | ",  url));
+             sb.Append(string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=csv\" target=_self>CSV</a> | ",  url));
+            sb.Append(string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=html\" target=_self>HTML</a>",  url));
+
+            LiteralOtherLinks.Text =sb.ToString();
+
 
         }
 

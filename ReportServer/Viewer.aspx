@@ -97,6 +97,12 @@
                 <input type="number" id="pageNumber" class="toolbarField pageNumber" onchange="PDFView.page = this.value;" value="1" size="4" min="1" tabindex="7">
                 </input>
                 <span id="numPages" class="toolbarLabel"></span>
+
+
+                <label class="toolbarLabel"><asp:Literal ID="LiteralOtherLinks" runat="server"></asp:Literal></label>
+
+                <span id="Span1" class="toolbarLabel"></span>
+
               </div>
               <div id="toolbarViewerRight">
                 <input id="fileInput" class="fileInput" type="file" oncontextmenu="return false;" style="visibility: hidden; position: fixed; right: 0; top: 0" />
