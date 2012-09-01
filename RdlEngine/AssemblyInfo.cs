@@ -10,9 +10,9 @@ using System.Security;
 [assembly: AssemblyTitle("RDL Engine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("fyiReporting Software, LLC")]
+[assembly: AssemblyCompany("My-FyiReporting Software")]
 [assembly: AssemblyProduct("RDL Project")]
-[assembly: AssemblyCopyright("Copyright (C) 2004-2008  fyiReporting Software, LLC")]
+[assembly: AssemblyCopyright("Copyright (C) 2011-2012 Peter Gill")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
