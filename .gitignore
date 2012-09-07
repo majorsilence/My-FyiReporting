@@ -1894,3 +1894,13 @@ My-FyiReporting.4.5.2.x86.nupkg
 /ReportServer/bin/mozzila-pdf/pdf.js
 /ReportServer/bin/mozzila-pdf/viewer.css
 /ReportServer/bin/mozzila-pdf/viewer.js
+/LibRdlWpfViewer/bin/x86/Debug/itextsharp.dll
+/RdlAsp/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlCmd/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlCri/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlDesign/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlDesktop/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlEngine/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlViewer/RdlReader/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/RdlViewer/bin/x86/Debug/RdlEngineConfig.Linux.xml
+/ReportServer/bin/RdlEngineConfig.Linux.xml
