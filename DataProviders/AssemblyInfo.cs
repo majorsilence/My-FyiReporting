@@ -28,7 +28,6 @@ using System.Security;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("4.5.*")]
-[assembly: AllowPartiallyTrustedCallers]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
