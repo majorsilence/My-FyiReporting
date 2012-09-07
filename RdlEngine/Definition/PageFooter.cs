@@ -112,18 +112,19 @@ namespace fyiReporting.RDL
 			Report rpt = pgs.Report;
 
 			rpt.TotalPages = pgs.PageCount;
-			foreach (Page p in pgs)
+            for (int i = 0; i < rpt.TotalPages; i++)
 			{
-				rpt.CurrentPage = p;		// needs to know for page header/footer expr processing
-				p.YOffset = OwnerReport.PageHeight.Points 
+
+                rpt.CurrentPage = pgs[i];		// needs to know for page header/footer expr processing
+				pgs[i].YOffset = OwnerReport.PageHeight.Points 
 									- OwnerReport.BottomMargin.Points
 									- this._Height.Points;
-				p.XOffset = 0;
-				pgs.CurrentPage = p;
-				rpt.PageNumber = p.PageNumber;
-				if (p.PageNumber == 1 && pgs.Count > 1 && !_PrintOnFirstPage)
+                pgs[i].XOffset = 0;
+                pgs.CurrentPage = pgs[i];
+                rpt.PageNumber = pgs[i].PageNumber;
+                if (pgs[i].PageNumber == 1 && pgs.Count > 1 && !_PrintOnFirstPage)
 					continue;		// Don't put footer on the first page
-				if (p.PageNumber == pgs.Count && !_PrintOnLastPage)
+                if (pgs[i].PageNumber == pgs.Count && !_PrintOnLastPage)
 					continue;		// Don't put footer on the last page
 				_ReportItems.RunPage(pgs, null, OwnerReport.LeftMargin.Points);
 			}
