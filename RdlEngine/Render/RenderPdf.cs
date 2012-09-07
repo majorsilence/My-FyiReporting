@@ -36,6 +36,7 @@ using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using fyiReporting.RDL.Utility;
+using System.Security;
 
 namespace fyiReporting.RDL
 {
@@ -44,6 +45,7 @@ namespace fyiReporting.RDL
     ///<summary>
     /// Renders a report to PDF.   This is a page oriented formatting renderer.
     ///</summary>
+    [SecuritySafeCritical]
     internal class RenderPdf : IPresent
     {
         Report r;					// report
@@ -845,7 +847,7 @@ namespace fyiReporting.RDL
                 cb = writer.DirectContent;
                 pdfdocument.AddAuthor(r.Author);
                 pdfdocument.AddCreationDate();
-                pdfdocument.AddCreator("reportFU");
+                pdfdocument.AddCreator("MyFyiReporting");
                 pdfdocument.AddSubject(r.Description);
                 pdfdocument.AddTitle(r.Name);
 

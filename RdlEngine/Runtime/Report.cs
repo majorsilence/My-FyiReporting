@@ -64,12 +64,40 @@ namespace fyiReporting.RDL
 		internal int TotalPages=1;			// total number of pages in report
 		internal DateTime ExecutionTime;	// start time of report execution
 
+
+        // - Added due to Embedded font bug. Solution posted by sinnovasoft. http://www.fyireporting.com/forum/viewtopic.php?t=1049
+        private bool _itextpdf = true;
+        /// <summary> 
+        ///  True: Renderpdf will use Add elements by itextsharp code; 
+        ///  False : Render pdf by the old way if my code gets error or don't need font embedded. 
+        /// </summary> 
+        public bool ItextPDF
+        {
+            get { return _itextpdf; }
+            set { _itextpdf = value; }
+        }
+        private string _FontFolder = "";
+
+
+        /// <summary> 
+        /// Default I get embedded fonts in Fonts folder in current 
+        /// folder RdlEngine.dll in, can set font folder here 
+        /// </summary> 
+        public string FontFolder
+        {
+            get { return _FontFolder; }
+            set { _FontFolder = value; }
+        }
+
 		/// <summary>
 		/// Construct a runtime Report object using the compiled report definition.
 		/// </summary>
 		/// <param name="r"></param>
 		public Report(ReportDefn r)
 		{
+            this.FontFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
+
+
 			_Report = r;
 			_Cache = new RCache();
 			rl = new ReportLog(r.rl);
