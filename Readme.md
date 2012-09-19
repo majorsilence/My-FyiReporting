@@ -1,3 +1,7 @@
+If you have any question about My-FyiReporting or do you want to contribute a discussion group for My-FyiReporting is available here:
+
+https://groups.google.com/d/forum/myfyireporting
+
 # Introduction
 "FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
 Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
