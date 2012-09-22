@@ -17,7 +17,7 @@ The main purpose is to make sure that I have a copy of fyiReporting since that p
 
 Also check this projects wiki as information will be slowly added.
 
-My-FyiReporting is currently built with visual studio 2108 and targets .net 4.0.  You can also run the build script in 
+My-FyiReporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
 the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
 
 # Download
