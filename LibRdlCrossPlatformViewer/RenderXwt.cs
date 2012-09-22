@@ -25,7 +25,7 @@ namespace LibRdlCrossPlatformViewer
         public RenderXwt(Xwt.Drawing.Context g, float scale)
 		{
 			this.g = g;
-            this.layout = new Xwt.Drawing.TextLayout(this.g);
+            this.layout = new Xwt.Drawing.TextLayout(this.g );
 			
 			dpiX *= scale;
 			dpiY *= scale;
@@ -228,9 +228,11 @@ namespace LibRdlCrossPlatformViewer
             string s = pt.Text;
             g.Save();
             layout = new Xwt.Drawing.TextLayout(g);
+            layout.Font = g.Font;
+           
 
             float fontsize = (si.FontSize * 72 / 96);
-
+            
             layout.Font.WithFamily(si.GetFontFamily().Name);
             layout.Font.WithSize(fontsize * PixelsX(1));
 
