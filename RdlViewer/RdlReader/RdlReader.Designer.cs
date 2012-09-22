@@ -371,7 +371,7 @@ private MDIChild printChild=null;
             this.toolStripButtonOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpen.Name = "toolStripButtonOpen";
             this.toolStripButtonOpen.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonOpen.Text = "toolStripButton2";
+            this.toolStripButtonOpen.Text = "Open File";
             this.toolStripButtonOpen.Click += new System.EventHandler(this.menuFileOpen_Click);
             // 
             // toolStripButtonSave
@@ -381,7 +381,7 @@ private MDIChild printChild=null;
             this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSave.Name = "toolStripButtonSave";
             this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonSave.Text = "toolStripButton3";
+            this.toolStripButtonSave.Text = "Save File";
             this.toolStripButtonSave.Click += new System.EventHandler(this.menuFileSaveAs_Click);
             // 
             // toolStripButtonPrint
@@ -391,7 +391,7 @@ private MDIChild printChild=null;
             this.toolStripButtonPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonPrint.Name = "toolStripButtonPrint";
             this.toolStripButtonPrint.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonPrint.Text = "toolStripButton1";
+            this.toolStripButtonPrint.Text = "Print";
             this.toolStripButtonPrint.Click += new System.EventHandler(this.menuFilePrint_Click);
             // 
             // RdlReader
