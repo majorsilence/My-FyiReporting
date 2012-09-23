@@ -30,6 +30,7 @@ namespace LibRdlCrossPlatformViewer
         public ReportArea()
         {
             // Insert initialization code here.
+            this.BackgroundColor = Xwt.Drawing.Colors.White;
         }
 
         public void SetReport(Report report, Page pages)
