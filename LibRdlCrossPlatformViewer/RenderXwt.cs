@@ -271,29 +271,29 @@ namespace LibRdlCrossPlatformViewer
             //layout.Width = Pango.Units.FromPixels((int)(r.Width - si.PaddingLeft - si.PaddingRight - 2));
 
             layout.Text = s;
-
+            
 
                 
-            Xwt.Rectangle logical;
-            Xwt.Rectangle ink;
+            //Xwt.Rectangle logical;
+           // Xwt.Rectangle ink;
 
             // TODO: Fix
-            //layout.GetExtents(out ink, out logical);    
-            //double height = logical.Height / Pango.Scale.PangoScale;
+            //layout.GetExtents(out ink, out logical);   
+            double height = 12; // logical.Height / Pango.Scale.PangoScale;
 
             double y = 0;
-            //switch (si.VerticalAlign)
-            //{
-            //    case VerticalAlignEnum.Top:
-            //        y = r.Y + si.PaddingTop;
-            //        break;
-            //    case VerticalAlignEnum.Middle:
-            //        y = r.Y + (r.Height - height) / 2;
-            //        break;
-            //    case VerticalAlignEnum.Bottom:
-            //        y = r.Y + (r.Height - height) - si.PaddingBottom;
-            //        break;
-            //}
+            switch (si.VerticalAlign)
+            {
+                case VerticalAlignEnum.Top:
+                    y = r.Y + si.PaddingTop;
+                    break;
+                case VerticalAlignEnum.Middle:
+                    y = r.Y + (r.Height - height) / 2;
+                    break;
+                case VerticalAlignEnum.Bottom:
+                    y = r.Y + (r.Height - height) - si.PaddingBottom;
+                    break;
+            }
 
             // draw the background 
             DrawBackground(g, r, si);
@@ -308,7 +308,7 @@ namespace LibRdlCrossPlatformViewer
             g.SetColor(sicolor);
            
             g.MoveTo(box.X, box.Y);
-           
+            g.DrawTextLayout(layout, box.X, box.Y);
             g.Restore();
         }
 
