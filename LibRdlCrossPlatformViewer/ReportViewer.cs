@@ -147,7 +147,7 @@ namespace LibRdlCrossPlatformViewer
                 ReportArea area = new ReportArea();
                 area.SetReport(report, pages[pageCount]);
                 //area.Scale
-                this.PackEnd(area);
+                this.PackStart(area, BoxMode.FillAndExpand);
             }
             this.Show();
 
