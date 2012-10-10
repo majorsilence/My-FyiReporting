@@ -193,13 +193,6 @@ namespace fyiReporting.RDL
             byte[] im, int samplesW, int samplesH, string url, string tooltip)
         {
 
-            //Draw a rectangle if needed
-            if (!clipRect.IsEmpty)
-            {
-                cb.SetRGBColorStroke(0, 0, 0);
-                cb.Rectangle(clipRect.X, _pSize.yHeight - clipRect.Y - clipRect.Height, clipRect.Width, clipRect.Height);
-                cb.Stroke();
-            }
             iTextSharp.text.Image pdfImg = iTextSharp.text.Image.GetInstance(im);
             pdfImg.ScaleAbsolute(width, height); //zoom		  
             pdfImg.SetAbsolutePosition(x, _pSize.yHeight - y - height);//Set position
