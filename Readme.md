@@ -106,9 +106,8 @@ found at http://www.fyireporting.com/ and it has exmpales found at [http://www.f
 the forum is [http://www.fyireporting.com/forum/index.php](http://www.fyireporting.com/forum/index.php).  However has I said above for the most part it is a dead 
 project.
 
-UPDATE: It looks like there is another fork ReportFU [http://reportfu.org](http://reportfu.org) and it looks alive.  
-UPDATE: What looks like another live fork NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/)
-Perhaps I will be able to merge my changes into that project at some point.
+UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) is alive?  
+UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) - Looks dead.
 
 # Core Team
 
