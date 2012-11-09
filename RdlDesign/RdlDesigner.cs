@@ -1772,10 +1772,15 @@ namespace fyiReporting.RdlDesign
 
         private void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
         {
+            PdfExport(false);
+        }
+
+        private void PdfExport(bool oldStyle)
+        {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
-
+   
             mc.Export("pdf");
             return;
         }
@@ -3697,6 +3702,51 @@ namespace fyiReporting.RdlDesign
             {
                 e.Effect = DragDropEffects.None;
             }
+        }
+
+        private void pDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfExport(false);
+        }
+
+        private void pDFOldStyleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfExport(true);
+        }
+
+        private void tIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemTif_Click(sender, e);
+        }
+
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemExcel_Click(sender, e);
+        }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemXml_Click(sender, e);
+        }
+
+        private void webArchiveSingleFileMHTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemMHtml_Click(sender, e);
+        }
+
+        private void webPageHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemHtml_Click(sender, e);
+        }
+
+        private void cSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemCsv_Click(sender, e);
+        }
+
+        private void rTFDOCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemRtf_Click(sender, e);
         }
         
     }
