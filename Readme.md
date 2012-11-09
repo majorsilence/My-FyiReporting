@@ -1,3 +1,7 @@
+If you have any question about My-FyiReporting or do you want to contribute a discussion group for My-FyiReporting is available here:
+
+https://groups.google.com/d/forum/myfyireporting
+
 # Introduction
 "FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
 Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
@@ -13,9 +17,8 @@ The main purpose is to make sure that I have a copy of fyiReporting since that p
 
 Also check this projects wiki as information will be slowly added.
 
-My-FyiReporting is currently built with visual studio 2008 and targets .net 3.5.  It should be easy to use 
-visual studio 2010 and target .net 4, just upgrade the solution files.  You can also run the build script in 
-the Release-Builds folder to build .net 3.5 and 4.0 packages.  
+My-FyiReporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
+the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
 
 # Download
 
@@ -103,9 +106,8 @@ found at http://www.fyireporting.com/ and it has exmpales found at [http://www.f
 the forum is [http://www.fyireporting.com/forum/index.php](http://www.fyireporting.com/forum/index.php).  However has I said above for the most part it is a dead 
 project.
 
-UPDATE: It looks like there is another fork ReportFU [http://reportfu.org](http://reportfu.org) and it looks alive.  
-UPDATE: What looks like another live fork NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/)
-Perhaps I will be able to merge my changes into that project at some point.
+UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) is alive?  
+UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) - Looks dead.
 
 # Core Team
 
