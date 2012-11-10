@@ -29,7 +29,7 @@ namespace LibRdlWpfViewer
             this.reportViewer.Rebuild();
         }
 
-        public void SaveAs(string FileName, string type)
+        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
             this.reportViewer.SaveAs(FileName, type);
         }

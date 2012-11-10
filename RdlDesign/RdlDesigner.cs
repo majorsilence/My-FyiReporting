@@ -1716,7 +1716,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("csv");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.CSV);
             return;
         }
 
@@ -1726,7 +1726,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("Excel");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.Excel);
             return;
         }
 
@@ -1736,7 +1736,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("rtf");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.RTF);
             return;
         }
 
@@ -1746,7 +1746,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("xml");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.XML);
             return;
         }
 
@@ -1756,7 +1756,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("html");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.HTML);
             return;
         }
 
@@ -1766,17 +1766,29 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("mht");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.MHTML);
             return;
         }
 
         private void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
         {
+            PdfExport(false);
+        }
+
+        private void PdfExport(bool oldStyle)
+        {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
                 return;
 
-            mc.Export("pdf");
+            if (oldStyle)
+            {
+                mc.Export(fyiReporting.RDL.OutputPresentationType.PDFOldStyle);
+            }
+            else
+            {
+                mc.Export(fyiReporting.RDL.OutputPresentationType.PDF);
+            }
             return;
         }
 
@@ -1786,7 +1798,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export("tif");
+            mc.Export(fyiReporting.RDL.OutputPresentationType.TIF);
             return;
         }
 
@@ -3697,6 +3709,61 @@ namespace fyiReporting.RdlDesign
             {
                 e.Effect = DragDropEffects.None;
             }
+        }
+
+        private void pDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfExport(false);
+        }
+
+        private void pDFOldStyleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfExport(true);
+        }
+
+        private void tIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemTif_Click(sender, e);
+        }
+
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemExcel_Click(sender, e);
+        }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemXml_Click(sender, e);
+        }
+
+        private void webArchiveSingleFileMHTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemMHtml_Click(sender, e);
+        }
+
+        private void webPageHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemHtml_Click(sender, e);
+        }
+
+        private void cSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemCsv_Click(sender, e);
+        }
+
+        private void rTFDOCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItemRtf_Click(sender, e);
+        }
+
+        private void dOCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Export(fyiReporting.RDL.OutputPresentationType.Word);
+            return;
         }
         
     }

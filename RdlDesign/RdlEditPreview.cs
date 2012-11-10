@@ -943,9 +943,9 @@ namespace fyiReporting.RdlDesign
 			this.rdlPreview.Print(pd);
 		}
 
-		public void SaveAs(string filename, string ext)
+        public void SaveAs(string filename, OutputPresentationType type)
 		{
-			this.rdlPreview.SaveAs(filename, ext);
+			this.rdlPreview.SaveAs(filename, type);
 		}
 
 		public string GetRdlText()

@@ -39,8 +39,8 @@ namespace fyiReporting.RDL
 		/// </summary>
 		internal void SetInfo(string title,string author,string subject, string company)
 		{
-			info=string.Format("\r\n{0} 0 obj<</ModDate({1})/CreationDate({1})/Title({2})/Creator(fyiReporting Software, LLC)"+
-				"/Author({3})/Subject ({4})/Producer(fyiReporting Software, LLC)/Company({5})>>\tendobj\t",
+			info=string.Format("\r\n{0} 0 obj<</ModDate({1})/CreationDate({1})/Title({2})/Creator(My-FyiReporting)"+
+				"/Author({3})/Subject ({4})/Producer(My-FyiReporting Software)/Company({5})>>\tendobj\t",
 				this.objectNum,
 				GetDateTime(),
 				title==null?"":title,

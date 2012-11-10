@@ -131,6 +131,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\References\dot net 4\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -1085,6 +1088,7 @@
     <Compile Include="Runtime\StyleInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Utility\Measurement.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

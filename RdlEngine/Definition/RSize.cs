@@ -36,6 +36,13 @@ namespace fyiReporting.RDL
 	[Serializable]
 	public class RSize
 	{
+
+        internal const decimal PARTS_PER_INCH = 2450;   //24.5 mm/inch
+        internal const decimal PARTS_PER_CM = 1000;     //10 mm/cm
+        internal const decimal PARTS_PER_MM = 100;
+        internal const decimal PARTS_PER_POINT = (decimal)(PARTS_PER_INCH / fyiReporting.RDL.Utility.Measurement.POINTSIZE_M);
+        internal const decimal PARTS_PER_PICA = (decimal)(PARTS_PER_POINT * 12M);
+
 		int _Size;					// Normalized size in 1/100,000 meters
 		string _Original;			// save original string for recreation of syntax
 
@@ -93,27 +100,27 @@ namespace fyiReporting.RDL
 
 			switch(u)			// convert to millimeters
 			{
-				case "in":
-					_Size = (int) (d * 2540m);
-					break;
-				case "cm":
-					_Size = (int) (d * 1000m);
-					break;
-				case "mm":
-					_Size = (int) (d * 100m);
-					break;
-				case "pt":
-					_Size = (int) (d * (2540m / POINTSIZEM));
-					break;
-				case "pc":
-					_Size = (int) (d * (2540m / POINTSIZEM * 12m));
-					break;
-				default:	 
-					// Illegal unit
+                case "in": //Inches
+                    _Size = (int)(d * PARTS_PER_INCH);
+                    break;
+                case "cm": //Centimeters
+                    _Size = (int)(d * PARTS_PER_CM);
+                    break;
+                case "mm": //Millimeters
+                    _Size = (int)(d * PARTS_PER_MM);
+                    break;
+                case "pt": //Points
+                    _Size = (int)(d * PARTS_PER_POINT);
+                    break;
+                case "pc": //Picas
+                    _Size = (int)(d * PARTS_PER_PICA);
+                    break;
+                default:
+                    // Illegal unit
                     if (r != null)
-					    r.rl.LogError(4, "Unknown sizing unit '" + u + "' specified, assuming inches.");
-					_Size = (int) (d * 2540m);
-					break;
+                        r.rl.LogError(4, "Unknown sizing unit '" + u + "' specified, assuming inches.");
+                    _Size = (int)(d * PARTS_PER_INCH);
+                    break;
 			}
 			if (_Size > 160 * 2540)	// Size can't be greater than 160 inches according to spec
 			{   // but RdlEngine supports higher values so just do a warning
@@ -186,6 +193,34 @@ namespace fyiReporting.RDL
 			}
 		}
 
+        /// <summary>
+        /// Converts the size into pixels.
+        /// </summary>
+        /// <param name="dpi">The dpi to be used in the convertion.</param>
+        /// <returns>An int containing the size in pixels.</returns>
+        internal int ToPixels(decimal dpi)
+        {
+            return RSize.ToPixels(_Size, dpi);
+        }
+
+        /// <summary>
+        /// Converts the size into pixels.
+        /// </summary>
+        /// <param name="size">The size to be converted.</param>
+        /// <param name="dpi">The dpi to use in the convertion.</param>
+        /// <returns>An int containing the size in pixels based on the specified DPI.</returns>
+        static public int ToPixels(int size, decimal dpi)
+        {
+            // For now assume 96 dpi
+            decimal p = size;
+            p = p / PARTS_PER_INCH;		// get it in inches
+            p = p * dpi;				// 
+            if (p != 0)
+                return (int)p;
+            return (size > 0) ? 1 : (int)p;
+        }
+
+
 		internal float Points
 		{
 			get
@@ -193,6 +228,17 @@ namespace fyiReporting.RDL
 				return (float) ((double) _Size / 2540.0 * POINTSIZED);
 			}
 		}
+
+        internal float ToPoints()
+        {
+            return RSize.ToPoints(_Size);
+        }
+
+        static public float ToPoints(int size)
+        {
+            return (float)((double)size / (double)PARTS_PER_INCH * fyiReporting.RDL.Utility.Measurement.POINTSIZE_F);
+        }
+
         /// <summary>
         /// TWIPS is 1/20 th of the size in points
         /// </summary>
