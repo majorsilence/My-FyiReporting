@@ -1008,16 +1008,20 @@ namespace fyiReporting.RDL
                         {
                             currX = startX + i * imW;
                             currY = startY + j * imH;
-                            elements.AddImage(images, bgImg.Name,
-                                                content.objectNum, bgImg.SI, bgImg.ImgFormat,
-                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
-                           
+                       
                             if (r.ItextPDF)
                             {
 
                                 iAddImage(images, bgImg.Name,
                                                 content.objectNum, bgImg.SI, bgImg.ImgFormat,
                                                 currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                            }
+                            else
+                            {
+                                elements.AddImage(images, bgImg.Name,
+                                           content.objectNum, bgImg.SI, bgImg.ImgFormat,
+                                           currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+
                             }
                            
                         }
@@ -1037,13 +1041,17 @@ namespace fyiReporting.RDL
                     PageText pt = pi as PageText;
                     float[] textwidth;
                     string[] sa = MeasureString(pt, pgs.G, out textwidth);
-                    elements.AddText(pt.X, pt.Y, pt.H, pt.W, sa, pt.SI,
-                        fonts, textwidth, pt.CanGrow, pt.HyperLink, pt.NoClip, pt.Tooltip);
                    
+
                     if (r.ItextPDF)
                     {
                         iAddText(pt.X, pt.Y, pt.H, pt.W, sa, pt.SI,
                         fonts, textwidth, pt.CanGrow, pt.HyperLink, pt.NoClip, pt.Tooltip);
+                    }
+                    else
+                    {
+                        elements.AddText(pt.X, pt.Y, pt.H, pt.W, sa, pt.SI,
+                       fonts, textwidth, pt.CanGrow, pt.HyperLink, pt.NoClip, pt.Tooltip);
                     }
                     
                     if (pt.Bookmark != null)
@@ -1056,11 +1064,15 @@ namespace fyiReporting.RDL
                 if (pi is PageLine)
                 {
                     PageLine pl = pi as PageLine;
-                    elements.AddLine(pl.X, pl.Y, pl.X2, pl.Y2, pl.SI);
                     
+
                     if (r.ItextPDF)
                     {
                         iAddLine(pl.X, pl.Y, pl.X2, pl.Y2, pl.SI);
+                    }
+                    else
+                    {
+                        elements.AddLine(pl.X, pl.Y, pl.X2, pl.Y2, pl.SI);
                     }
                    
                     continue;
@@ -1069,12 +1081,17 @@ namespace fyiReporting.RDL
                 if (pi is PageEllipse)
                 {
                     PageEllipse pe = pi as PageEllipse;
-                    elements.AddEllipse(pe.X, pe.Y, pe.H, pe.W, pe.SI, pe.HyperLink);
-                    
+
+
                     if (r.ItextPDF)
                     {
                         iAddEllipse(pe.X, pe.Y, pe.H, pe.W, pe.SI, pe.HyperLink);
                     }
+                    else
+                    {
+                        elements.AddEllipse(pe.X, pe.Y, pe.H, pe.W, pe.SI, pe.HyperLink);
+                    }
+
                     
                     continue;
                 }
@@ -1138,13 +1155,17 @@ namespace fyiReporting.RDL
                     }
                     else
                     {
-                        elements.AddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
-                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
-                        
+                       
                         if (r.ItextPDF)
                         {
                             iAddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
                             adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+                        }
+                        else
+                        {
+                            elements.AddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
+                           adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+
                         }
                        
                     }
@@ -1154,11 +1175,15 @@ namespace fyiReporting.RDL
                 if (pi is PageRectangle)
                 {
                     PageRectangle pr = pi as PageRectangle;
-                    elements.AddRectangle(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
-                    
+
+
                     if (r.ItextPDF)
                     {
                         iAddRectangle(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
+                    }
+                    else
+                    {
+                        elements.AddRectangle(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
                     }
                     
                     continue;
@@ -1166,11 +1191,15 @@ namespace fyiReporting.RDL
                 if (pi is PagePie)
                 {   // TODO
                     PagePie pp = pi as PagePie;
-                    // elements.AddPie(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
-                    
+                    // 
+
                     if (r.ItextPDF)
                     {
                         iAddPie(pp.X, pp.Y, pp.H, pp.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
+                    }
+                    else
+                    {
+                        elements.AddPie(pp.X, pp.Y, pp.H, pp.W, pi.SI, pi.HyperLink, patterns, pi.Tooltip);
                     }
                    
                     continue;
@@ -1178,11 +1207,15 @@ namespace fyiReporting.RDL
                 if (pi is PagePolygon)
                 {
                     PagePolygon ppo = pi as PagePolygon;
-                    elements.AddPolygon(ppo.Points, pi.SI, pi.HyperLink, patterns);
                     
+
                     if (r.ItextPDF)
                     {
                         iAddPolygon(ppo.Points, pi.SI, pi.HyperLink, patterns);
+                    }
+                    else
+                    {
+                        elements.AddPolygon(ppo.Points, pi.SI, pi.HyperLink, patterns);
                     }
                     
                     continue;
@@ -1190,11 +1223,15 @@ namespace fyiReporting.RDL
                 if (pi is PageCurve)
                 {
                     PageCurve pc = pi as PageCurve;
-                    elements.AddCurve(pc.Points, pi.SI);
-                    
+
+
                     if (r.ItextPDF)
                     {
                         iAddCurve(pc.Points, pi.SI);
+                    }
+                    else
+                    {
+                        elements.AddCurve(pc.Points, pi.SI);
                     }
                     
                     continue;

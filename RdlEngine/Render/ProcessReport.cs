@@ -36,12 +36,14 @@ namespace fyiReporting.RDL
 	{
 		HTML,
 		PDF,
+        PDFOldStyle,
 		XML,
 		ASPHTML,
 		Internal,
 		MHTML,
         CSV,
         RTF,
+        Word,
         Excel,
         TIF,
         TIFBW                   // black and white tif

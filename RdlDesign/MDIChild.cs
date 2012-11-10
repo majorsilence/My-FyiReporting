@@ -217,40 +217,38 @@ namespace fyiReporting.RdlDesign
             return bOK;
         }
 
-        public bool Export(string type)
+        public bool Export(fyiReporting.RDL.OutputPresentationType type)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Export to " + type.ToUpper();
-            switch (type.ToLower())
+            sfd.Title = "Export to " + type.ToString().ToUpper();
+            switch (type)
             {
-                case "csv":
+                case  OutputPresentationType.CSV:
                     sfd.Filter = "CSV file (*.csv)|*.csv|All files (*.*)|*.*";
                     break;
-                case "xml":
+                case OutputPresentationType.XML:
                     sfd.Filter = "XML file (*.xml)|*.xml|All files (*.*)|*.*";
                     break;
-                case "pdf":
+                case OutputPresentationType.PDF:
+                case OutputPresentationType.PDFOldStyle:
                     sfd.Filter = "PDF file (*.pdf)|*.pdf|All files (*.*)|*.*";
                     break;
-                case "tif":
-                case "tiff":
+                case OutputPresentationType.TIF:
                     sfd.Filter = "TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*";
                     break;
-                case "rtf":
-                case "doc":
-                    sfd.Filter = "RTF file (*.rtf)|*.rtf|DOC file (*.doc)|*.doc|All files (*.*)|*.*";
+                case OutputPresentationType.RTF:
+                    sfd.Filter = "RTF file (*.rtf)|*.rtf|All files (*.*)|*.*";
                     break;
-                case "xlsx":
-                case "excel":
-                    type = "xlsx";
+                case OutputPresentationType.Word:
+                    sfd.Filter = "DOC file (*.doc)|*.doc|All files (*.*)|*.*";
+                    break;
+                case OutputPresentationType.Excel:
                     sfd.Filter = "Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*";
                     break;
-                case "html":
-                case "htm":
+                case OutputPresentationType.HTML:
                     sfd.Filter = "Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*";
                     break;
-                case "mhtml":
-                case "mht":
+                case OutputPresentationType.MHTML:
                     sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
                     break;
                 default:
@@ -275,11 +273,11 @@ namespace fyiReporting.RdlDesign
                 // save the report in the requested rendered format 
                 bool rc = true;
                 // tif can be either in color or black and white; ask user what they want
-                if (type == "tif" || type == "tiff")
+                if (type == OutputPresentationType.TIF)
                 {
                     DialogResult dr = MessageBox.Show(this, "Do you want to display colors in TIF?", "Export", MessageBoxButtons.YesNoCancel);
                     if (dr == DialogResult.No)
-                        type = "tifbw";
+                        type = OutputPresentationType.TIFBW;
                     else if (dr == DialogResult.Cancel)
                         return false;
                 }
@@ -456,9 +454,9 @@ namespace fyiReporting.RdlDesign
             this.rdlDesigner.Print(pd);
         }
 
-        public void SaveAs(string filename, string ext)
+        public void SaveAs(string filename, OutputPresentationType type)
         {
-            rdlDesigner.SaveAs(filename, ext);
+            rdlDesigner.SaveAs(filename, type);
         }
 
         private void MDIChild_Closing(object sender, System.ComponentModel.CancelEventArgs e)

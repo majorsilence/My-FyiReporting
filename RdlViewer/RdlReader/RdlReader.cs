@@ -385,34 +385,42 @@ namespace fyiReporting.RdlReader
                 ext = "";
             else
                 ext = sfd.FileName.Substring(i + 1).ToLower();
+
+            OutputPresentationType type = OutputPresentationType.Internal;
             switch (ext)
             {
                 case "pdf":
+                    type = OutputPresentationType.PDF;
+                    break;
                 case "xml":
+                    type = OutputPresentationType.XML;
+                    break;
                 case "html":
+                    type = OutputPresentationType.HTML;
+                    break;
                 case "htm":
+                    type = OutputPresentationType.HTML;
+                    break;
                 case "csv":
+                    type = OutputPresentationType.CSV;
+                    break;
                 case "rtf":
+                    type = OutputPresentationType.RTF;
+                    break;
                 case "mht":
+                    type = OutputPresentationType.MHTML;
+                    break;
                 case "mhtml":
+                    type = OutputPresentationType.MHTML;
+                    break;
                 case "xlsx":
+                    type = OutputPresentationType.Excel;
+                    break;
                 case "tif":
+                    type = OutputPresentationType.TIF;
+                    break;
                 case "tiff":
-                    if (ext == "tif" || ext == "tiff")
-                    {
-                        DialogResult dr = MessageBox.Show(this, "Do you want to save colors in TIF file?", "Export", MessageBoxButtons.YesNoCancel);
-                        if (dr == DialogResult.No)
-                            ext = "tifbw";
-                        else if (dr == DialogResult.Cancel)
-                            break;
-                    }
-                    try { mc.Viewer.SaveAs(sfd.FileName, ext); }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this,
-                            ex.Message, "Save As Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    type = OutputPresentationType.TIF;
                     break;
                 default:
                     MessageBox.Show(this,
@@ -420,6 +428,27 @@ namespace fyiReporting.RdlReader
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+
+            if (type == OutputPresentationType.TIF )
+            {
+                DialogResult dr = MessageBox.Show(this, "Do you want to save colors in TIF file?", "Export", MessageBoxButtons.YesNoCancel);
+                if (dr == DialogResult.No)
+                    type = OutputPresentationType.TIFBW;
+                else if (dr == DialogResult.Cancel)
+                    return;
+            }
+
+            if (type != OutputPresentationType.Internal)
+            {
+                try { mc.Viewer.SaveAs(sfd.FileName, type); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this,
+                        ex.Message, "Save As Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             return;
         }
 

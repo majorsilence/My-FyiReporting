@@ -719,56 +719,59 @@ namespace fyiReporting.RdlViewer
                 e.HasMorePages = true;
         }
 
+
         /// <summary>
         /// Save the file.  The extension determines the type of file to save.
         /// </summary>
         /// <param name="FileName">Name of the file to be saved to.</param>
-        /// <param name="ext">Type of file to save.  Should be "pdf", "xml", "html", "mhtml", "csv", "rtf", "excel", "tif".</param>
-        public void SaveAs(string FileName, string type)
+        /// <param name="type">Type of file to save.  Should be "pdf", "xml", "html", "mhtml", "csv", "rtf", "excel", "tif".</param>
+        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
             LoadPageIfNeeded();
-
-            string ext = type.ToLower();
+                        
+     
             OneFileStreamGen sg = new OneFileStreamGen(FileName, true);	// overwrite with this name
-            if (!(ext == "pdf" || ext == "tif" || ext == "tiff" || ext == "tifbw"))
+            if (!(type == OutputPresentationType.PDF || type == OutputPresentationType.PDFOldStyle || 
+                type == OutputPresentationType.TIF || type  == OutputPresentationType.TIFBW))
             {
                 ListDictionary ld = GetParameters();		// split parms into dictionary
                 _Report.RunGetData(ld);                     // obtain the data (again)
             }
             try
             {
-                switch (ext)
+                switch (type)
                 {
-                    case "pdf":
+                    case  OutputPresentationType.PDF:
+                         _Report.ItextPDF = true;
                         _Report.RunRenderPdf(sg, _pgs);
                         break;
-                    case "tif":
-                    case "tiff":
+                    case OutputPresentationType.PDFOldStyle:  
+                        _Report.ItextPDF = false;
+                        _Report.RunRenderPdf(sg, _pgs);
+                        break;
+                    case  OutputPresentationType.TIF:
                         _Report.RunRenderTif(sg, _pgs, true);
                         break;
-                    case "tifbw":
+                    case  OutputPresentationType.TIFBW:
                         _Report.RunRenderTif(sg, _pgs, false);
                         break;
-                    case "csv":
+                    case OutputPresentationType.CSV:
                         _Report.RunRender(sg, OutputPresentationType.CSV);
                         break;
-                    case "doc":
-                    case "rtf":
+                    case OutputPresentationType.Word:
+                    case OutputPresentationType.RTF:
                         _Report.RunRender(sg, OutputPresentationType.RTF);
                         break;
-                    case "excel":
-                    case "xlsx":
+                    case OutputPresentationType.Excel:
                         _Report.RunRender(sg, OutputPresentationType.Excel);
                         break;
-                    case "xml":
+                    case OutputPresentationType.XML:
                         _Report.RunRender(sg, OutputPresentationType.XML);
                         break;
-                    case "html":
-                    case "htm":
+                    case OutputPresentationType.HTML:
                         _Report.RunRender(sg, OutputPresentationType.HTML);
                         break;
-                    case "mhtml":
-                    case "mht":
+                    case OutputPresentationType.MHTML:
                         _Report.RunRender(sg, OutputPresentationType.MHTML);
                         break;
                     default:
@@ -782,6 +785,7 @@ namespace fyiReporting.RdlViewer
                     sg.CloseMainStream();
                 }
 
+                
             }
             return;
         }
