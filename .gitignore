@@ -1973,3 +1973,11 @@ My-FyiReporting.4.5.2.x86.nupkg
 /RdlMapFile/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
 /RdlViewer/RdlReader/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
 /RdlViewer/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
+/LibRdlCrossPlatformViewer/bin/x86/Debug/DataProviders.dll
+/LibRdlCrossPlatformViewer/bin/x86/Debug/DataProviders.pdb
+/LibRdlCrossPlatformViewer/bin/x86/Debug/LibRdlCrossPlatformViewer.vshost.exe.manifest
+/LibRdlCrossPlatformViewer/obj/x86/Debug/build.force
+/Examples/SqliteExamples/SimpleTest1.rtf
+/ReportServer/App_Data/Reports/SimpleTest3WithParameters.rdl
+/ReportServer/App_Data/Reports/TestParameter.rdl
+/ReportServer/obj/x86/Debug/ReportServer.csprojResolveAssemblyReference.cache
