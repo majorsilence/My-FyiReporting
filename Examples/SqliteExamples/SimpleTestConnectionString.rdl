@@ -6,14 +6,6 @@
   </Author>
   <PageHeight>11in</PageHeight>
   <PageWidth>8.5in</PageWidth>
-  <DataSources>
-    <DataSource Name="DS1">
-      <ConnectionProperties>
-        <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
-      </ConnectionProperties>
-    </DataSource>
-  </DataSources>
   <Width>7.5in</Width>
   <TopMargin>.25in</TopMargin>
   <LeftMargin>.25in</LeftMargin>
@@ -695,4 +687,23 @@
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageFooter>
+  <DataSources >
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQLite</DataProvider>
+        <ConnectString>={?ConnectionString}</ConnectString>
+        <IntegratedSecurity>false</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <ReportParameters >
+    <ReportParameter Name="ConnectionString">
+      <DataType>String</DataType>
+      <Nullable>false</Nullable>
+      <AllowBlank>false</AllowBlank>
+      <MultiValue>false</MultiValue>
+      <Prompt>
+      </Prompt>
+    </ReportParameter>
+  </ReportParameters>
 </Report>
