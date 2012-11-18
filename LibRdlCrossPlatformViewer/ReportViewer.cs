@@ -14,6 +14,8 @@ namespace LibRdlCrossPlatformViewer
         private Report report;
         private Pages pages;
         public NeedPassword DataSourceReferencePassword = null;
+        private Xwt.ScrollView scrollView;
+        private Xwt.VBox vboxPages;
 
 
         public string connstr_param_name = "connection_string";
@@ -63,6 +65,13 @@ namespace LibRdlCrossPlatformViewer
 
         public ReportViewer()
         {
+            
+            vboxPages = new Xwt.VBox();
+            scrollView = new Xwt.ScrollView();
+            scrollView.Content = vboxPages;
+            scrollView.VerticalScrollPolicy = ScrollPolicy.Always;
+            scrollView.BorderVisible = true;
+            this.PackStart(scrollView, BoxMode.FillAndExpand);
 
             Parameters = new ListDictionary();
 
@@ -128,6 +137,9 @@ namespace LibRdlCrossPlatformViewer
             report = this.GetReport(source);
 
             RefreshReport();
+
+            
+        
         }
 
         void RefreshReport()
@@ -137,7 +149,7 @@ namespace LibRdlCrossPlatformViewer
             pages = report.BuildPages();
 
 
-            foreach (Xwt.VBox w in this.Children)
+            foreach (Xwt.VBox w in this.vboxPages.Children)
             {
                 this.Remove(w);
             }
@@ -147,8 +159,9 @@ namespace LibRdlCrossPlatformViewer
                 ReportArea area = new ReportArea();
                 area.SetReport(report, pages[pageCount]);
                 //area.Scale
-                this.PackStart(area, BoxMode.FillAndExpand);
+                vboxPages.PackStart(area, BoxMode.FillAndExpand);
             }
+
             this.Show();
 
 

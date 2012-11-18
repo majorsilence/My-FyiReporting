@@ -169,7 +169,6 @@
     <Compile Include="DialogWait.Designer.cs">
       <DependentUpon>DialogWait.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsExtended.cs" />
     <Compile Include="PageDrawing.cs">
       <SubType>UserControl</SubType>
     </Compile>

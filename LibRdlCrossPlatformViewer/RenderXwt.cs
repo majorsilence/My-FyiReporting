@@ -234,7 +234,7 @@ namespace LibRdlCrossPlatformViewer
             float fontsize = (si.FontSize * 72 / 96);
             
             layout.Font.WithFamily(si.GetFontFamily().Name);
-            layout.Font.WithSize(fontsize * PixelsX(1));
+            layout.Font.WithPixelSize(fontsize * PixelsX(1));
 
             if (si.FontStyle == FontStyleEnum.Italic)
                 layout.Font.WithStyle(Xwt.Drawing.FontStyle.Italic);

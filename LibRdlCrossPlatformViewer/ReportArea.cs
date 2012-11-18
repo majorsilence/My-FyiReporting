@@ -56,13 +56,18 @@ namespace LibRdlCrossPlatformViewer
 
             int width = (int)(report.PageWidthPoints * Scale);
             int height = (int)(report.PageHeightPoints * Scale);
-            Xwt.Rectangle rep_r = new Xwt.Rectangle(1, 1, width - 1, height - 1);
+            //Xwt.Rectangle rep_r = new Xwt.Rectangle(1, 1, width - 1, height - 1);
 
+            //RenderXwt render = new RenderXwt(ctx, Scale);
+            //render.RunPage(pages);
+            //ctx.Stroke();
+           
 
-            RenderXwt render = new RenderXwt(ctx, Scale);
+            // Page Drawing using System.Drawing converted to Xwt Context
+            PageDrawing render = new PageDrawing(ctx, 1f);
             render.RunPage(pages);
             ctx.Stroke();
-
+            ctx.Save();
         }
 
     }

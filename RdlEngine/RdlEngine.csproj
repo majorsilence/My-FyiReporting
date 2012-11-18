@@ -689,6 +689,7 @@
     <Compile Include="Functions\FunctionPlusInt32.cs" />
     <Compile Include="Functions\FunctionMinusInt32.cs" />
     <Compile Include="Functions\FunctionAggrArray.cs" />
+    <Compile Include="GraphicsExtended.cs" />
     <Compile Include="Render\ExcelValet.cs" />
     <Compile Include="Render\PdfPattern.cs" />
     <Compile Include="Render\RenderExcel.cs" />
