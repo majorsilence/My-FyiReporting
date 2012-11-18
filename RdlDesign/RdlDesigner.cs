@@ -69,7 +69,7 @@ namespace fyiReporting.RdlDesign
     /// </example>
     public partial class RdlDesigner :  IMessageFilter
     {
-        static readonly string IpcFileName = @"\fyiIpcData452.txt"; // TODO: change file name with every release
+        static readonly string IpcFileName = @"\fyiIpcData453.txt"; // TODO: change file name with every release
 
         SortedList<DateTime, string> _RecentFiles = null;
         List<Uri> _CurrentFiles = null;		// temporary variable for current files
