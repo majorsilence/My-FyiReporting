@@ -30,7 +30,8 @@ cp ../RdlDesktop/bin/Release/config.xml ./my-fyi-build-dot-net-4-AnyCPU/config.x
 cp ../RdlEngine/bin/Release/RdlEngine.dll ./my-fyi-build-dot-net-4-AnyCPU/RdlEngine.dll 
 cp ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./my-fyi-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll 
 cp "../References/dot net 4/Mono.Security.dll" ./my-fyi-build-dot-net-4-AnyCPU/Mono.Security.dll 
-cp "../References/dot net 4/Npgsql.dll" ./my-fyi-build-dot-net-4-AnyCPU/Npgsql.dll  
+cp "../References/dot net 4/Npgsql.dll" ./my-fyi-build-dot-net-4-AnyCPU/Npgsql.dll 
+cp "../References/dot net 4/itextsharp.dll" ./my-fyi-build-dot-net-4-AnyCPU/itextsharp.dll 
 cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./my-fyi-build-dot-net-4-AnyCPU/RdlEngineConfig.xml 
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./my-fyi-build-dot-net-4-AnyCPU/RdlMapFile.exe 
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./my-fyi-build-dot-net-4-AnyCPU/RdlViewer.dll 

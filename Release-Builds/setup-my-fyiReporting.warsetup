@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1212" projectName="MyFyiReporting" projectUuid="3dc716d5-bded-4726-b04a-c14a4b1eb19d" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.5.3" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 3" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds" projectRequireDotNetVersion=".NET 4.0 FULL" projectTargetName="setup-my-fyiReporting-dot-net4-x86" projectType="0" projectUserInterface="WixUI_Minimal">
+<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1214" projectName="MyFyiReporting" projectUuid="3dc716d5-bded-4726-b04a-c14a4b1eb19d" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.5.3" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 3" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds" projectRequireDotNetVersion=".NET 4.0 FULL" projectTargetName="setup-my-fyiReporting-dot-net4-x86" projectType="0" projectUserInterface="WixUI_Minimal">
   <LicencePaths>
     <string>C:\Program Files (x86)\MajorSilence\War Setup Fork\Licenses</string>
   </LicencePaths>
@@ -99,6 +99,12 @@
       <components componentId="ID1151" componentGuid="6afb238f-fe84-42b2-88f2-d4df3cc48672">
         <componentFiles fileId="ID_f26e721e_f5f7_45f3_a833_6603018c5cfe" srcName="RdlEngineConfig.xml" srcDirectory=".\my-fyi-build-dot-net-4-x86" dstName="RdlEngineConfig.xml" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="RdlEngineConfig" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
           <service StartWhenInstalled="true" Remove="both" id="ID1150" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <components componentId="ID1213" componentGuid="4903a9f0-13fd-4f32-974a-27dbdde4d2d0">
+        <componentFiles fileId="ID_2c2756d3_1e6e_4d55_b311_2e302e2213c8" srcName="itextsharp.dll" srcDirectory=".\my-fyi-build-dot-net-4-x86" dstName="itextsharp.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="itextsharp" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1212" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
         </componentFiles>
         <addToCreateFolder>false</addToCreateFolder>
       </components>
