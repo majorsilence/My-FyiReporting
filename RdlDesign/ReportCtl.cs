@@ -128,6 +128,12 @@ namespace fyiReporting.RdlDesign
             return (paperSize / 100.0).ToString() + "in";
         }
 
+        private string GetPaperSizeAsMillimeter(int paperSize)
+        {
+            // paperSize is in hundredths of an inch.
+            return ((paperSize / 100.0) * 24.5).ToString() + "mm";
+        }
+
         public bool IsValid()
         {
             return true;
@@ -192,8 +198,25 @@ namespace fyiReporting.RdlDesign
             if (cbPageSize.SelectedItem is PaperSize)
             {
                 PaperSize size = (PaperSize)cbPageSize.SelectedItem;
-                tbPageWidth.Text = GetPaperSizeAsInch(size.Width);
-                tbPageHeight.Text = GetPaperSizeAsInch(size.Height);
+
+                // If the currnent size is in millimeter continue showing as millimeter when changing paper sizes
+                if (tbPageWidth.Text.Trim().ToLower().EndsWith("mm"))
+                {
+                    tbPageWidth.Text = GetPaperSizeAsMillimeter(size.Width);
+                }
+                else
+                {
+                    tbPageWidth.Text = GetPaperSizeAsInch(size.Width);
+                }
+
+                if (tbPageHeight.Text.Trim().ToLower().EndsWith("mm"))
+                {
+                    tbPageHeight.Text = GetPaperSizeAsMillimeter(size.Height);
+                }
+                else
+                {
+                    tbPageHeight.Text = GetPaperSizeAsInch(size.Height);
+                }
 
             }
 
