@@ -72,26 +72,59 @@ namespace fyiReporting.RdlDesign
             PrinterSettings settings = new PrinterSettings();
             cbPageSize.DisplayMember = "PaperName";
 
-            int width = (int)(decimal.Parse(tbPageWidth.Text.Replace("in", "").Trim()) * 100);
-            int height = (int)(decimal.Parse(tbPageHeight.Text.Replace("in", "").Trim()) * 100);
+
+            int width = MeasurementTypeAsHundrethsOfAnInch(tbPageWidth.Text);
+            int height = MeasurementTypeAsHundrethsOfAnInch(tbPageHeight.Text);
             int pageCount = settings.PaperSizes.Count;
 
+            // This conversion may be better converted to mm instead of hundrethds of an inch
             int count = 0;
+            bool sizeFound = false;
             foreach (PaperSize psize in settings.PaperSizes)
             {
                 cbPageSize.Items.Add(psize);
 
+
                 if ((psize.Width == width) &&
-                    (psize.Height == height))
-                {
+                    (psize.Height == height) && 
+                    (sizeFound == false))
+                {   
                     cbPageSize.SelectedIndex = count;
+                    sizeFound = true;
                 }
                 count = count + 1;
             }
         }
 
+        private int MeasurementTypeAsHundrethsOfAnInch(string value)
+        {
+            string measurementType = value.Trim().ToLower();
+            string measurementValue="0";
+            if (measurementType.Length>=2)
+            {
+                measurementValue = measurementType.Substring(0, measurementType.Length-2);
+                measurementType = measurementType.Substring(measurementType.Length-2);
+            }
+
+            if (measurementType == "mm")
+            {
+                // metric.  Convert to imperial for now
+                return (int) ((decimal.Parse(measurementValue) / 25.4m) * 100);
+            }
+            else
+            {
+                // assume imperial
+                return (int)(decimal.Parse(measurementValue) * 100);
+            }
+
+            
+
+        }
+
+
         private string GetPaperSizeAsInch(int paperSize)
         {
+            // paperSize is in hundredths of an inch.
             return (paperSize / 100.0).ToString() + "in";
         }
 
