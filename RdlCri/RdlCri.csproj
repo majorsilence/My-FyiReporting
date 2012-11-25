@@ -261,7 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RdlEngine\RdlEngine.csproj">
-      <Project>{C97E91F4-B310-44E2-9B6C-96775395722D}</Project>
+      <Project>{c97e91f4-b310-44e2-9b6c-96775395722d}</Project>
       <Name>RdlEngine</Name>
     </ProjectReference>
   </ItemGroup>

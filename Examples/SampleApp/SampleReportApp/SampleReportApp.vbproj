@@ -136,19 +136,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\DataProviders\DataProviders.csproj">
+    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj">
       <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
       <Name>DataProviders</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\RdlCri\RdlCri.csproj">
+    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj">
       <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
       <Name>RdlCri</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\RdlEngine\RdlEngine.csproj">
+    <ProjectReference Include="..\..\..\RdlEngine\RdlEngine.csproj">
       <Project>{c97e91f4-b310-44e2-9b6c-96775395722d}</Project>
       <Name>RdlEngine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\RdlViewer\RdlViewer.csproj">
+    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj">
       <Project>{d99145b1-cb6c-41f5-ba86-723325145fb5}</Project>
       <Name>RdlViewer</Name>
     </ProjectReference>
