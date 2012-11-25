@@ -35,6 +35,7 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.tIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dOCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rTFDOCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webPageHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -185,15 +186,14 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainSP = new System.Windows.Forms.Splitter();
             this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
-            this.dOCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+            this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.menuStrip1.SuspendLayout();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -215,7 +215,7 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1019, 24);
             this.menuStrip1.TabIndex = 29;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -346,6 +346,13 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.excelToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            // 
+            // dOCToolStripMenuItem
+            // 
+            this.dOCToolStripMenuItem.Name = "dOCToolStripMenuItem";
+            this.dOCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.dOCToolStripMenuItem.Text = "DOC";
+            this.dOCToolStripMenuItem.Click += new System.EventHandler(this.dOCToolStripMenuItem_Click);
             // 
             // rTFDOCToolStripMenuItem
             // 
@@ -1224,7 +1231,7 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.ctlEditTextbox});
             this.mainTB.Location = new System.Drawing.Point(0, 24);
             this.mainTB.Name = "mainTB";
-            this.mainTB.Size = new System.Drawing.Size(712, 25);
+            this.mainTB.Size = new System.Drawing.Size(1019, 25);
             this.mainTB.TabIndex = 30;
             this.mainTB.Text = "toolStrip1";
             // 
@@ -1308,23 +1315,21 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // textboxToolStripButton1
             // 
             this.textboxToolStripButton1.CheckOnClick = true;
-            this.textboxToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.textboxToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("textboxToolStripButton1.Image")));
             this.textboxToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.textboxToolStripButton1.Name = "textboxToolStripButton1";
-            this.textboxToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.textboxToolStripButton1.Size = new System.Drawing.Size(71, 22);
             this.textboxToolStripButton1.Tag = "Textbox";
-            this.textboxToolStripButton1.Text = "Textbox";
+            this.textboxToolStripButton1.Text = "Text Box";
             this.textboxToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
             // 
             // chartToolStripButton1
             // 
             this.chartToolStripButton1.CheckOnClick = true;
-            this.chartToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.chartToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.chart;
             this.chartToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.chartToolStripButton1.Name = "chartToolStripButton1";
-            this.chartToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.chartToolStripButton1.Size = new System.Drawing.Size(56, 22);
             this.chartToolStripButton1.Tag = "Chart";
             this.chartToolStripButton1.Text = "Chart";
             this.chartToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1332,11 +1337,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // tableToolStripButton1
             // 
             this.tableToolStripButton1.CheckOnClick = true;
-            this.tableToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tableToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("tableToolStripButton1.Image")));
             this.tableToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tableToolStripButton1.Name = "tableToolStripButton1";
-            this.tableToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.tableToolStripButton1.Size = new System.Drawing.Size(56, 22);
             this.tableToolStripButton1.Tag = "Table";
             this.tableToolStripButton1.Text = "Table";
             this.tableToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1344,11 +1348,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // listToolStripButton1
             // 
             this.listToolStripButton1.CheckOnClick = true;
-            this.listToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.listToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("listToolStripButton1.Image")));
             this.listToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.listToolStripButton1.Name = "listToolStripButton1";
-            this.listToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.listToolStripButton1.Size = new System.Drawing.Size(45, 22);
             this.listToolStripButton1.Tag = "List";
             this.listToolStripButton1.Text = "List";
             this.listToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1356,11 +1359,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // imageToolStripButton1
             // 
             this.imageToolStripButton1.CheckOnClick = true;
-            this.imageToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.imageToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.Image;
             this.imageToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.imageToolStripButton1.Name = "imageToolStripButton1";
-            this.imageToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.imageToolStripButton1.Size = new System.Drawing.Size(60, 22);
             this.imageToolStripButton1.Tag = "Image";
             this.imageToolStripButton1.Text = "Image";
             this.imageToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1368,11 +1370,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // matrixToolStripButton1
             // 
             this.matrixToolStripButton1.CheckOnClick = true;
-            this.matrixToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.matrixToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("matrixToolStripButton1.Image")));
             this.matrixToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.matrixToolStripButton1.Name = "matrixToolStripButton1";
-            this.matrixToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.matrixToolStripButton1.Size = new System.Drawing.Size(60, 22);
             this.matrixToolStripButton1.Tag = "Matrix";
             this.matrixToolStripButton1.Text = "Matrix";
             this.matrixToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1380,11 +1381,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // subreportToolStripButton1
             // 
             this.subreportToolStripButton1.CheckOnClick = true;
-            this.subreportToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.subreportToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("subreportToolStripButton1.Image")));
             this.subreportToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.subreportToolStripButton1.Name = "subreportToolStripButton1";
-            this.subreportToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.subreportToolStripButton1.Size = new System.Drawing.Size(79, 22);
             this.subreportToolStripButton1.Tag = "Subreport";
             this.subreportToolStripButton1.Text = "Subreport";
             this.subreportToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1392,11 +1392,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // rectangleToolStripButton1
             // 
             this.rectangleToolStripButton1.CheckOnClick = true;
-            this.rectangleToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.rectangleToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("rectangleToolStripButton1.Image")));
             this.rectangleToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rectangleToolStripButton1.Name = "rectangleToolStripButton1";
-            this.rectangleToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.rectangleToolStripButton1.Size = new System.Drawing.Size(79, 22);
             this.rectangleToolStripButton1.Tag = "Rectangle";
             this.rectangleToolStripButton1.Text = "Rectangle";
             this.rectangleToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1404,11 +1403,10 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             // lineToolStripButton1
             // 
             this.lineToolStripButton1.CheckOnClick = true;
-            this.lineToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.lineToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("lineToolStripButton1.Image")));
             this.lineToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.lineToolStripButton1.Name = "lineToolStripButton1";
-            this.lineToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.lineToolStripButton1.Size = new System.Drawing.Size(49, 22);
             this.lineToolStripButton1.Tag = "Line";
             this.lineToolStripButton1.Text = "Line";
             this.lineToolStripButton1.Click += new System.EventHandler(this.Insert_Click);
@@ -1456,7 +1454,7 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.TifToolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 49);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(712, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1019, 25);
             this.toolStrip1.TabIndex = 31;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1709,8 +1707,58 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 74);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 66);
+            this.panel1.Size = new System.Drawing.Size(1019, 66);
             this.panel1.TabIndex = 36;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusSelected,
+            this.toolStripStatusLabel2,
+            this.statusPosition});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1019, 22);
+            this.statusStrip1.TabIndex = 40;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusSelected
+            // 
+            this.statusSelected.Name = "statusSelected";
+            this.statusSelected.Size = new System.Drawing.Size(31, 17);
+            this.statusSelected.Text = "        ";
+            this.statusSelected.ToolTipText = "Name of selected ReportItem";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel2.Text = "|";
+            // 
+            // statusPosition
+            // 
+            this.statusPosition.Name = "statusPosition";
+            this.statusPosition.Size = new System.Drawing.Size(31, 17);
+            this.statusPosition.Text = "        ";
+            this.statusPosition.ToolTipText = "Position of selected ReportItem";
+            // 
+            // mainSP
+            // 
+            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainSP.Location = new System.Drawing.Point(776, 140);
+            this.mainSP.Name = "mainSP";
+            this.mainSP.Size = new System.Drawing.Size(3, 308);
+            this.mainSP.TabIndex = 42;
+            this.mainSP.TabStop = false;
+            // 
+            // mainProperties
+            // 
+            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainProperties.Location = new System.Drawing.Point(779, 140);
+            this.mainProperties.Name = "mainProperties";
+            this.mainProperties.Size = new System.Drawing.Size(240, 308);
+            this.mainProperties.TabIndex = 41;
             // 
             // foreColorPicker1
             // 
@@ -1721,6 +1769,146 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.foreColorPicker1.FormattingEnabled = true;
             this.foreColorPicker1.IntegralHeight = false;
             this.foreColorPicker1.Items.AddRange(new object[] {
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "Aliceblue",
             "Antiquewhite",
             "Aqua",
@@ -20360,6 +20548,146 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
             this.backColorPicker1.Location = new System.Drawing.Point(273, 12);
@@ -20370,68 +20698,11 @@ private DockStyle _PropertiesLocation = DockStyle.Right;
             this.backColorPicker1.SelectedValueChanged += new System.EventHandler(this.ctlBackColor_Change);
             this.backColorPicker1.Validated += new System.EventHandler(this.ctlBackColor_Change);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusSelected,
-            this.toolStripStatusLabel2,
-            this.statusPosition});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
-            this.statusStrip1.TabIndex = 40;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusSelected
-            // 
-            this.statusSelected.Name = "statusSelected";
-            this.statusSelected.Size = new System.Drawing.Size(31, 17);
-            this.statusSelected.Text = "        ";
-            this.statusSelected.ToolTipText = "Name of selected ReportItem";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel2.Text = "|";
-            // 
-            // statusPosition
-            // 
-            this.statusPosition.Name = "statusPosition";
-            this.statusPosition.Size = new System.Drawing.Size(31, 17);
-            this.statusPosition.Text = "        ";
-            this.statusPosition.ToolTipText = "Position of selected ReportItem";
-            // 
-            // mainSP
-            // 
-            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainSP.Location = new System.Drawing.Point(469, 140);
-            this.mainSP.Name = "mainSP";
-            this.mainSP.Size = new System.Drawing.Size(3, 308);
-            this.mainSP.TabIndex = 42;
-            this.mainSP.TabStop = false;
-            // 
-            // mainProperties
-            // 
-            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainProperties.Location = new System.Drawing.Point(472, 140);
-            this.mainProperties.Name = "mainProperties";
-            this.mainProperties.Size = new System.Drawing.Size(240, 308);
-            this.mainProperties.TabIndex = 41;
-            // 
-            // dOCToolStripMenuItem
-            // 
-            this.dOCToolStripMenuItem.Name = "dOCToolStripMenuItem";
-            this.dOCToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.dOCToolStripMenuItem.Text = "DOC";
-            this.dOCToolStripMenuItem.Click += new System.EventHandler(this.dOCToolStripMenuItem_Click);
-            // 
             // RdlDesigner
             // 
             this.AllowDrop = true;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(712, 470);
+            this.ClientSize = new System.Drawing.Size(1019, 470);
             this.Controls.Add(this.mainSP);
             this.Controls.Add(this.mainProperties);
             this.Controls.Add(this.statusStrip1);
