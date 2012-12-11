@@ -178,6 +178,17 @@ namespace fyiReporting.RDL
         static Assembly AssemblyLoadFromPvt(string file, params string[] dir)
         {
             Assembly ra = null;
+            // EBN: check if the assembly is already loaded
+            foreach (Assembly loadedAssembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (loadedAssembly.ManifestModule.Name == file)
+                {
+                    ra = loadedAssembly;
+                    return ra;
+                }
+            }
+
+
             for (int i = 0; i < dir.Length; i++)
             {
                 if (dir[i] == null)
@@ -186,7 +197,7 @@ namespace fyiReporting.RDL
                 string f = dir[i] + file;
                 try
                 {
-                    ra = Assembly.LoadFrom(f);
+                    ra = Assembly.LoadFile(f);
                     if (ra != null)             // don't really need this as call will throw exception when it fails
                         break;
                 }

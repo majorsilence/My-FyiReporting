@@ -43,7 +43,7 @@ namespace fyiReporting.RDL
             //Added from Forums, User: Solidstore http://www.fyireporting.com/forum/viewtopic.php?t=905
             if (!_CodeModule.Contains(","))
             { // if not a full assembly reference 
-                if (!_CodeModule.ToLower().EndsWith(".dll"))
+                if ((!_CodeModule.ToLower().EndsWith(".dll")) && ((!_CodeModule.ToLower().EndsWith(".exe"))))
                 { // check .dll ending 
                 _CodeModule += ".dll"; 
                 }
