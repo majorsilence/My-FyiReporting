@@ -69,7 +69,7 @@ namespace LibRdlCrossPlatformViewer
             vboxPages = new Xwt.VBox();
             scrollView = new Xwt.ScrollView();
             scrollView.Content = vboxPages;
-            scrollView.VerticalScrollPolicy = ScrollPolicy.Always;
+            scrollView.VerticalScrollPolicy = ScrollPolicy.Automatic;
             scrollView.BorderVisible = true;
             this.PackStart(scrollView, BoxMode.FillAndExpand);
 
@@ -158,7 +158,9 @@ namespace LibRdlCrossPlatformViewer
             {
                 ReportArea area = new ReportArea();
                 area.SetReport(report, pages[pageCount]);
-                //area.Scale
+
+                // TODO: set the correct height
+                area.MinHeight = 600;
                 vboxPages.PackStart(area, BoxMode.FillAndExpand);
             }
 
