@@ -12,6 +12,7 @@ namespace LibRdlCrossPlatformViewer
     public class Program
     {
 
+        [STAThread]
         public static void Main(string [] args)
         {
             Application.Initialize("Xwt.GtkBackend.GtkEngine, Xwt.Gtk, Version=1.0.0.0");
