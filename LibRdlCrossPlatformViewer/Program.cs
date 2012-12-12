@@ -22,6 +22,7 @@ namespace LibRdlCrossPlatformViewer
             w.Height = 400;
 
             ReportViewer rv = new ReportViewer();
+            rv.DefaultBackend = Backend.PureXwt;
             rv.LoadReport(new Uri(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\SqliteExamples\SimpleTest1.rdl"));
 
             w.Content = rv;

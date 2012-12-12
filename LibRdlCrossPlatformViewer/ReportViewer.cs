@@ -9,6 +9,7 @@ using Xwt;
 
 namespace LibRdlCrossPlatformViewer
 {
+
     public class ReportViewer : VBox
     {
         private Report report;
@@ -17,6 +18,12 @@ namespace LibRdlCrossPlatformViewer
         private Xwt.ScrollView scrollView;
         private Xwt.VBox vboxPages;
 
+        public Backend _defaultBackend = Backend.XwtWinforms;
+        public Backend DefaultBackend
+        {
+            get { return _defaultBackend; }
+            set { _defaultBackend = value; }
+        }
 
         public string connstr_param_name = "connection_string";
         public string ConnectionStringParameterName
@@ -156,11 +163,9 @@ namespace LibRdlCrossPlatformViewer
 
             for (int pageCount = 0; pageCount < pages.Count; pageCount++)
             {
-                ReportArea area = new ReportArea();
+                ReportArea area = new ReportArea(this.DefaultBackend);
                 area.SetReport(report, pages[pageCount]);
 
-                // TODO: set the correct height
-                area.MinHeight = 600;
                 vboxPages.PackStart(area, BoxMode.FillAndExpand);
             }
 

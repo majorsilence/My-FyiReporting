@@ -47,11 +47,7 @@ namespace LibRdlCrossPlatformViewer
         System.Drawing.Graphics g;
         System.Drawing.Image gImg;
 
-        public PageDrawing(Xwt.Drawing.Context g)
-            : this(g, 1.0f)
-        {
-        }
-        public PageDrawing(Xwt.Drawing.Context g, float scale)
+        public PageDrawing(Xwt.Drawing.Context g, float scale, int width, int height)
         {
 
             DpiX *= scale;
@@ -59,7 +55,7 @@ namespace LibRdlCrossPlatformViewer
 
             this.xwtContext = g;
 
-            System.Drawing.Bitmap bm = new Bitmap(600,600);
+            System.Drawing.Bitmap bm = new Bitmap(width, height);
             gImg= (Image)bm;
             this.g = Graphics.FromImage(gImg);
         }
@@ -214,8 +210,8 @@ namespace LibRdlCrossPlatformViewer
 
             // TO: convert System.Drawing.Graphics to Xwt.Drawing.Context and draw it to this.g
            
-            Bitmap bm = new Bitmap(600, 600 );
-            g.DrawImage(bm, 600, 600);
+            Bitmap bm = new Bitmap(gImg.Width, gImg.Height );
+            g.DrawImage(bm, gImg.Width, gImg.Height);
 
             System.IO.MemoryStream s = new System.IO.MemoryStream();
             gImg.Save(s, System.Drawing.Imaging.ImageFormat.Png);
@@ -223,7 +219,7 @@ namespace LibRdlCrossPlatformViewer
             // Xwt.Drawing.Image img = Xwt.Drawing.Image.FromStream(s);
             Xwt.Drawing.Image img = Xwt.Drawing.Image.FromFile("test.png");
 
-            xwtContext.DrawImage(img, new Xwt.Rectangle(0, 0, 600, 600), new Xwt.Rectangle(0, 0, 600, 600));
+            xwtContext.DrawImage(img, new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height), new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height));
             //Xwt.Drawing.TextLayout layout = new Xwt.Drawing.TextLayout(xwtContext);
             //layout.Font = xwtContext.Font;
             //layout.Text = "Test";
