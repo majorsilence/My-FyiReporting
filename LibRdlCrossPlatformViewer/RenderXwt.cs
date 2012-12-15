@@ -149,8 +149,26 @@ namespace LibRdlCrossPlatformViewer
             Xwt.Drawing.Image im = null;
             try
             {
-                im = Xwt.Drawing.Image.FromStream(ms);
+                // Xwt.Drawing.Image.FromStream does not work.  It crashes with both wpf and gtk
+                // As a work around save the image to a temporary file and load it into xwt using the
+                // FromFile method.
+
+
+                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                               
+                string fileName = System.IO.Path.GetTempFileName();
+                img.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+
+                //im = Xwt.Drawing.Image.FromStream(ms);
+                im = Xwt.Drawing.Image.FromFile(fileName);
                 DrawImageSized(pi, im, g, r);
+
+                im.Dispose();
+                System.IO.File.Delete(fileName);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
             }
             finally
             {
