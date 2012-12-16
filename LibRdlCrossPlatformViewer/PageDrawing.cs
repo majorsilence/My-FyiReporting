@@ -213,17 +213,22 @@ namespace LibRdlCrossPlatformViewer
             Bitmap bm = new Bitmap(gImg.Width, gImg.Height );
             g.DrawImage(bm, gImg.Width, gImg.Height);
 
+
+            // Xwt.Drawing.Image.FromStream does not work.  It crashes with both wpf and gtk
+            // As a work around save the image to a temporary file and load it into xwt using the
+            // FromFile method.
+
             System.IO.MemoryStream s = new System.IO.MemoryStream();
             gImg.Save(s, System.Drawing.Imaging.ImageFormat.Png);
-            gImg.Save("test.png", System.Drawing.Imaging.ImageFormat.Png);
-            // Xwt.Drawing.Image img = Xwt.Drawing.Image.FromStream(s);
-            Xwt.Drawing.Image img = Xwt.Drawing.Image.FromFile("test.png");
+            string fileName = System.IO.Path.GetTempFileName();
+            gImg.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
 
+            // Xwt.Drawing.Image img = Xwt.Drawing.Image.FromStream(s);
+           
+            Xwt.Drawing.Image img = Xwt.Drawing.Image.FromFile(fileName);
             xwtContext.DrawImage(img, new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height), new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height));
-            //Xwt.Drawing.TextLayout layout = new Xwt.Drawing.TextLayout(xwtContext);
-            //layout.Font = xwtContext.Font;
-            //layout.Text = "Test";
-            //xwtContext.DrawTextLayout(layout, 2, 4);
+            img.Dispose();
+            System.IO.File.Delete(fileName);
             
         }
 
