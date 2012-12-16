@@ -12,7 +12,7 @@ namespace LibRdlCrossPlatformViewer
 
     public class ReportViewer : VBox
     {
-        private Report report;
+        private Report _report;
         private Pages pages;
         public NeedPassword DataSourceReferencePassword = null;
         private Xwt.ScrollView scrollView;
@@ -72,7 +72,7 @@ namespace LibRdlCrossPlatformViewer
 
         public ReportViewer()
         {
-            
+
             vboxPages = new Xwt.VBox();
             scrollView = new Xwt.ScrollView();
             scrollView.Content = vboxPages;
@@ -141,30 +141,35 @@ namespace LibRdlCrossPlatformViewer
             source = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
             // GetSource is omitted: all it does is read the file.
             // Compile the report 
-            report = this.GetReport(source);
+            _report = this.GetReport(source);
 
             RefreshReport();
 
-            
-        
+
+
         }
 
         void RefreshReport()
         {
 
-            report.RunGetData(Parameters);
-            pages = report.BuildPages();
+            _report.RunGetData(Parameters);
+            pages = _report.BuildPages();
 
 
-            foreach (Xwt.VBox w in this.vboxPages.Children)
+            List<ReportArea> tempList = new List<ReportArea>();
+            foreach (ReportArea w in this.vboxPages.Children)
             {
-                this.Remove(w);
+                tempList.Add(w);     
+            }
+            foreach (ReportArea w in tempList)
+            {
+                vboxPages.Remove(w);
             }
 
             for (int pageCount = 0; pageCount < pages.Count; pageCount++)
             {
                 ReportArea area = new ReportArea(this.DefaultBackend);
-                area.SetReport(report, pages[pageCount]);
+                area.SetReport(_report, pages[pageCount]);
 
                 vboxPages.PackStart(area, BoxMode.FillAndExpand);
             }
@@ -172,7 +177,7 @@ namespace LibRdlCrossPlatformViewer
             this.Show();
 
 
-            if (report.ErrorMaxSeverity > 0)
+            if (_report.ErrorMaxSeverity > 0)
             {
                 // TODO: add error messages back
                 //SetErrorMessages(report.ErrorItems);
@@ -236,6 +241,30 @@ namespace LibRdlCrossPlatformViewer
             return r;
         }
 
+        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+        {
+            fyiReporting.RDL.OneFileStreamGen sg = null;
 
+            try
+            {
+                // Must use the RunGetData before each export or there is no data.
+                _report.RunGetData(this.Parameters);
+
+                sg = new fyiReporting.RDL.OneFileStreamGen(FileName, true);
+                _report.RunRender(sg, type);
+            }
+            catch (Exception ex)
+            {
+                MessageDialog.ShowError(ex.Message);
+            }
+            finally
+            {
+                if (sg != null)
+                {
+                    sg.CloseMainStream();
+                }
+            }
+            return;
+        }
     }
 }

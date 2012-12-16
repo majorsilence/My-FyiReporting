@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{C8B30110-D4E7-4480-B6CA-816311DB1631}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibRdlCrossPlatformViewer</RootNamespace>
-    <AssemblyName>LibRdlCrossPlatformViewer</AssemblyName>
+    <RootNamespace>SampleCrossPlatformViewer</RootNamespace>
+    <AssemblyName>SampleCrossPlatformViewer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,18 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;TargetXwt</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -50,54 +48,52 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Xwt">
-      <HintPath>..\References\dot net 4\Xwt.dll</HintPath>
+      <HintPath>..\..\..\References\dot net 4\Xwt.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend.cs" />
-    <Compile Include="PageDrawing.cs">
+    <Compile Include="MainWindow.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderXwt.cs" />
-    <Compile Include="ReportArea.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ReportViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="XwtColor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\References\dot net 4\Xwt.Gtk.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\References\dot net 4\Xwt.Gtk.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\References\dot net 4\Xwt.WPF.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\..\..\References\dot net 4\Xwt.WPF.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj">
+    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj">
       <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
       <Name>DataProviders</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj">
+    <ProjectReference Include="..\..\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj">
+      <Project>{d0262213-c37a-4ec9-a76b-b8bcffe5c882}</Project>
+      <Name>LibRdlCrossPlatformViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj">
       <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
       <Name>RdlCri</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj">
+    <ProjectReference Include="..\..\..\RdlEngine\RdlEngine.csproj">
       <Project>{c97e91f4-b310-44e2-9b6c-96775395722d}</Project>
       <Name>RdlEngine</Name>
     </ProjectReference>
