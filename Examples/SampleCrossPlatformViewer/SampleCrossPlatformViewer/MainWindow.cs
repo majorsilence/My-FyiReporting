@@ -24,8 +24,11 @@ namespace SampleCrossPlatformViewer
             rv = new LibRdlCrossPlatformViewer.ReportViewer();
             rv.DefaultBackend = LibRdlCrossPlatformViewer.Backend.XwtWinforms;
 
-#if DEBUG
-            rv.LoadReport(new Uri(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\SqliteExamples\SimpleTest1.rdl"));
+#if DEBUG 
+            if (System.Environment.MachineName == "GILL-PC")
+            {
+                rv.LoadReport(new Uri(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\SqliteExamples\SimpleTest1.rdl"));
+            }
 #endif
 
             this.Content = rv;
