@@ -29,7 +29,7 @@ This will setup My-FyiReporting in your project ready to use the viewers or desi
 
 If you prefer not to use NuGet and just want to download the latest release binaries get them at:
 
-  * **[http://files.majorsilence.com/myfyireporting/(http://files.majorsilence.com/myfyireporting/)**
+  * **[http://files.majorsilence.com/myfyireporting/](http://files.majorsilence.com/myfyireporting/)**
   * Also see the [downloads wiki page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads) for more details on the type of packages.
 
 Alternatively if you want keep up with the latest version you can always use Git
