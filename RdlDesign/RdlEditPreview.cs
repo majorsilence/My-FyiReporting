@@ -123,10 +123,12 @@ namespace fyiReporting.RdlDesign
 
 			tbEditor.SelectionChanged +=new EventHandler(tbEditor_SelectionChanged);
             // adjust size of line box by measuring a large #
+#if !MONO
             using (Graphics g = this.CreateGraphics())
             {
                 this.pbLines.Width = (int) (g.MeasureString("99999", tbEditor.Font).Width);
             }
+#endif
 
 		}
  
