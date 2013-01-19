@@ -82,7 +82,7 @@ namespace fyiReporting.RdlDesign
         private bool bGotPassword = false;
         private bool bMono = DesignerUtility.IsMono();
         private readonly string DefaultHelpUrl = "https://github.com/majorsilence/My-FyiReporting/wiki/_pages";
-        private readonly string DefaultSupportUrl = "http://www.fyireporting.com/forum";
+        private readonly string DefaultSupportUrl = "https://groups.google.com/d/forum/myfyireporting";
         private string _HelpUrl;
         private string _SupportUrl;
         static private string[] _MapSubtypes = new string[] { "usa_map" };
