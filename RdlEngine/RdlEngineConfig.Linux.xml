@@ -48,8 +48,8 @@
 		</DataSource> 
 		<DataSource> 
     			<DataProvider>SQLite</DataProvider> 
-		    	<CodeModule>System.Data.SQLite.dll</CodeModule> 
-		    	<ClassName>System.Data.SQLite.SQLiteConnection</ClassName> 
+		    	<CodeModule>/usr/lib/mono/4.0/Mono.Data.Sqlite.dll</CodeModule> 
+		    	<ClassName>Mono.Data.Sqlite.SqliteConnection</ClassName> 
 		    	<TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect> 
 		    	<Interface>SQL</Interface> 
 		</DataSource> 
