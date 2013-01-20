@@ -29,10 +29,10 @@ namespace SampleCrossPlatformViewer
             {
                 rv.LoadReport(new Uri(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\SqliteExamples\SimpleTest1.rdl"));
             }
-			else if(System.Environment.MachineName == "gill-desktop")
-			{
-				rv.LoadReport(new Uri(@"/home/peter/projects/My-FyiReporting/Examples/SqliteExamples/SimpleTest1.rdl"));
-			}
+            else if(System.Environment.MachineName == "gill-desktop")
+            {
+                rv.LoadReport(new Uri(@"/home/peter/projects/My-FyiReporting/Examples/SqliteExamples/SimpleTest1.rdl"));
+            }
 #endif
 
             this.Content = rv;
@@ -40,6 +40,7 @@ namespace SampleCrossPlatformViewer
 
             this.MainMenu = CreateMenu();
             this.Show();
+
 
         }
 
@@ -89,93 +90,8 @@ namespace SampleCrossPlatformViewer
 
         private void saveas_Clicked(object sender, EventArgs e)
         {
-            SaveFileDialog dlg = new SaveFileDialog("Select a file");
-            dlg.Multiselect = false;
-            dlg.Filters.Add(new FileDialogFilter("PDF files", "*.pdf"));
-            dlg.Filters.Add(new FileDialogFilter("XML files", "*.xml"));
-            dlg.Filters.Add(new FileDialogFilter("HTML files", "*.html"));
-            dlg.Filters.Add(new FileDialogFilter("CSV files", "*.csv"));
-            dlg.Filters.Add(new FileDialogFilter("RTF files", "*.rtf"));
-            dlg.Filters.Add(new FileDialogFilter("TIF files", "*.tif"));
-            dlg.Filters.Add(new FileDialogFilter("Excel files", "*.xlsx"));
-            dlg.Filters.Add(new FileDialogFilter("MHT files", "*.mht"));
 
-
-            Uri file = rv.SourceFile;
-
-            if (file != null)
-            {
-                int index = file.LocalPath.LastIndexOf('.');
-                if (index > 1)
-                    dlg.InitialFileName = file.LocalPath.Substring(0, index) + ".pdf";
-                else
-                    dlg.InitialFileName = "*.pdf";
-
-            }
-            else
-            {
-                dlg.InitialFileName = "*.pdf";
-            }
-
-
-
-            if (dlg.Run() == false)
-            {
-                return;
-            }
-
-            // save the report in a rendered format 
-            string ext = null;
-            int i = dlg.FileName.LastIndexOf('.');
-            if (i < 1)
-                ext = "";
-            else
-                ext = dlg.FileName.Substring(i + 1).ToLower();
-
-            fyiReporting.RDL.OutputPresentationType type = fyiReporting.RDL.OutputPresentationType.Internal;
-            switch (ext)
-            {
-                case "pdf":
-                    type = fyiReporting.RDL.OutputPresentationType.PDF;
-                    break;
-                case "xml":
-                    type = fyiReporting.RDL.OutputPresentationType.XML;
-                    break;
-                case "html":
-                    type = fyiReporting.RDL.OutputPresentationType.HTML;
-                    break;
-                case "htm":
-                    type = fyiReporting.RDL.OutputPresentationType.HTML;
-                    break;
-                case "csv":
-                    type = fyiReporting.RDL.OutputPresentationType.CSV;
-                    break;
-                case "rtf":
-                    type = fyiReporting.RDL.OutputPresentationType.RTF;
-                    break;
-                case "mht":
-                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
-                    break;
-                case "mhtml":
-                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
-                    break;
-                case "xlsx":
-                    type = fyiReporting.RDL.OutputPresentationType.Excel;
-                    break;
-                case "tif":
-                    type = fyiReporting.RDL.OutputPresentationType.TIF;
-                    break;
-                case "tiff":
-                    type = fyiReporting.RDL.OutputPresentationType.TIF;
-                    break;
-                default:
-                    MessageDialog.ShowMessage(String.Format("{0} is not a valid file type.  File extension must be PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.", dlg.FileName));
-                    break;
-            }
-
-
-            rv.SaveAs(dlg.FileName, type);
-
+            rv.SaveAs();
 
             return;
 

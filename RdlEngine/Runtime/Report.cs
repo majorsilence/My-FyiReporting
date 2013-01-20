@@ -192,6 +192,11 @@ namespace fyiReporting.RDL
 					ip = new RenderPdf(this, sg);
 					_Report.Run(ip);
 					break;
+                case OutputPresentationType.PDFOldStyle:
+                    ip = new RenderPdf(this, sg);
+                    this.ItextPDF = false;
+                    _Report.Run(ip);
+                    break;
                 case OutputPresentationType.TIF:
                     ip = new RenderTif(this, sg);
                     _Report.Run(ip);

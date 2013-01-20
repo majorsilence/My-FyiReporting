@@ -17,26 +17,39 @@ namespace LibRdlCrossPlatformViewer
         public NeedPassword DataSourceReferencePassword = null;
         private Xwt.ScrollView scrollView;
         private Xwt.VBox vboxPages;
+        private Xwt.HBox vboxToolMenu;
+        private Xwt.VBox vboxContents;
 
-        public Backend _defaultBackend = Backend.XwtWinforms;
+        private Backend _defaultBackend = Backend.XwtWinforms;
         public Backend DefaultBackend
         {
             get { return _defaultBackend; }
             set { _defaultBackend = value; }
         }
 
-        public string connstr_param_name = "connection_string";
+        private string connstr_param_name = "connection_string";
         public string ConnectionStringParameterName
         {
             get { return connstr_param_name; }
             set { connstr_param_name = value; }
         }
 
-        public string conntype_param_name = "connection_type";
+        private string conntype_param_name = "connection_type";
         public string ConnectionTypeParameterName
         {
             get { return conntype_param_name; }
             set { conntype_param_name = value; }
+        }
+
+        private bool displayButtonMenuToolbar = false;
+        public bool DisplayMenuToolBar 
+        {
+            get { return displayButtonMenuToolbar; }
+            set 
+            {
+                vboxToolMenu.Visible = value;
+                displayButtonMenuToolbar = value; 
+            }
         }
 
         public ListDictionary Parameters { get; private set; }
@@ -72,10 +85,29 @@ namespace LibRdlCrossPlatformViewer
 
         public ReportViewer()
         {
+            // Setup layout boxes
+            vboxContents = new Xwt.VBox();
+            vboxToolMenu = new Xwt.HBox();
 
+            // Setup tool button menu
+            Xwt.Button buttonExport = new Xwt.Button("Export");
+            buttonExport.Clicked += delegate(object sender, EventArgs e) {
+                SaveAs();
+            };
+            vboxToolMenu.PackStart(buttonExport);
+
+            Xwt.Button buttonPrint = new Xwt.Button("Print");
+            vboxToolMenu.PackStart(buttonPrint);
+
+            // Add vboxContent widgets
             vboxPages = new Xwt.VBox();
+            vboxContents.PackStart(vboxToolMenu);
+            vboxContents.PackStart(vboxPages);
+
+
+            // Setup Controls Contents
             scrollView = new Xwt.ScrollView();
-            scrollView.Content = vboxPages;
+            scrollView.Content = vboxContents;
             scrollView.VerticalScrollPolicy = ScrollPolicy.Automatic;
             scrollView.BorderVisible = true;
             this.PackStart(scrollView, BoxMode.FillAndExpand);
@@ -241,7 +273,8 @@ namespace LibRdlCrossPlatformViewer
             return r;
         }
 
-        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+
+        public void SaveAs (string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
             fyiReporting.RDL.OneFileStreamGen sg = null;
 
@@ -265,6 +298,104 @@ namespace LibRdlCrossPlatformViewer
                 }
             }
             return;
+        }
+
+        public void SaveAs ()
+        {
+
+            SaveFileDialog dlg = new SaveFileDialog ("Select a file");
+            dlg.Multiselect = false;
+            dlg.Filters.Add (new FileDialogFilter ("PDF files", "*.pdf"));
+            dlg.Filters.Add (new FileDialogFilter ("XML files", "*.xml"));
+            dlg.Filters.Add (new FileDialogFilter ("HTML files", "*.html"));
+            dlg.Filters.Add (new FileDialogFilter ("CSV files", "*.csv"));
+            dlg.Filters.Add (new FileDialogFilter ("RTF files", "*.rtf"));
+            dlg.Filters.Add (new FileDialogFilter ("TIF files", "*.tif"));
+            dlg.Filters.Add (new FileDialogFilter ("Excel files", "*.xlsx"));
+            dlg.Filters.Add (new FileDialogFilter ("MHT files", "*.mht"));
+
+
+            Uri file = this.SourceFile;
+
+            if (file != null) {
+                dlg.InitialFileName = "*.pdf";
+            } else {
+                dlg.InitialFileName = "*.pdf";
+            }
+
+
+
+            if (dlg.Run () == false) {
+                return;
+            }
+
+            // save the report in a rendered format 
+            string ext = null;
+            int i = dlg.FileName.LastIndexOf ('.');
+            if (i < 1) 
+            {
+                ext = "";
+            }
+            else 
+            {
+                ext = dlg.FileName.Substring (i + 1).ToLower ();
+            }
+
+            PlatformID pid = System.Environment.OSVersion.Platform;
+
+
+            fyiReporting.RDL.OutputPresentationType type = fyiReporting.RDL.OutputPresentationType.Internal;
+            switch (ext)
+            {
+                case "pdf":
+                    if (pid == PlatformID.Win32Windows || pid == PlatformID.Win32NT)
+                    {
+                        type = fyiReporting.RDL.OutputPresentationType.PDF;
+                    }
+                    else
+                    {
+                        type = fyiReporting.RDL.OutputPresentationType.PDFOldStyle;
+                    }
+                    
+                    break;
+                case "xml":
+                    type = fyiReporting.RDL.OutputPresentationType.XML;
+                    break;
+                case "html":
+                    type = fyiReporting.RDL.OutputPresentationType.HTML;
+                    break;
+                case "htm":
+                    type = fyiReporting.RDL.OutputPresentationType.HTML;
+                    break;
+                case "csv":
+                    type = fyiReporting.RDL.OutputPresentationType.CSV;
+                    break;
+                case "rtf":
+                    type = fyiReporting.RDL.OutputPresentationType.RTF;
+                    break;
+                case "mht":
+                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
+                    break;
+                case "mhtml":
+                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
+                    break;
+                case "xlsx":
+                    type = fyiReporting.RDL.OutputPresentationType.Excel;
+                    break;
+                case "tif":
+                    type = fyiReporting.RDL.OutputPresentationType.TIF;
+                    break;
+                case "tiff":
+                    type = fyiReporting.RDL.OutputPresentationType.TIF;
+                    break;
+                default:
+                    MessageDialog.ShowMessage(String.Format("{0} is not a valid file type.  File extension must be PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.", dlg.FileName));
+                    break;
+            }
+
+
+            SaveAs(dlg.FileName, type);
+
         }
     }
 }
