@@ -42,7 +42,11 @@ namespace fyiReporting.RdlReader
     {
 
         SortedList _RecentFiles = null;
-        List<Uri> _CurrentFiles = null;			// temporary variable for current files
+
+        /// <summary>
+        /// Uri, Parameter
+        /// </summary>
+        Dictionary<Uri, String> _CurrentFiles = null;			// temporary variable for current files
         private RDL.NeedPassword _GetPassword;
         private string _DataSourceReferencePassword = null;
         private bool bMono;
@@ -64,13 +68,19 @@ namespace fyiReporting.RdlReader
             // open up the current files if any
             if (_CurrentFiles != null)
             {
-                foreach (Uri file in _CurrentFiles)
+                foreach (var dict in _CurrentFiles)
                 {
                     MDIChild mc = new MDIChild(this.ClientRectangle.Width * 3 / 4, this.ClientRectangle.Height * 3 / 4);
                     mc.MdiParent = this;
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
-                    mc.SourceFile = file;
-                    mc.Text = file.LocalPath;
+
+                    mc.SourceFile = dict.Key;
+                    if(dict.Value != "")
+                    {
+                        mc.Parameters = dict.Value;
+                    }
+
+                    mc.Text = dict.Key.LocalPath;
 
                     if (_CurrentFiles.Count == 1)
                     {
@@ -142,7 +152,11 @@ namespace fyiReporting.RdlReader
 
         #endregion
 
-        private static List<Uri> _startUpFiles;
+
+        /// <summary>
+        /// Uri, Parameters
+        /// </summary>
+        private static Dictionary<Uri, String> _startUpFiles;
 
         /// <summary>
         /// The main entry point for the application.
@@ -150,41 +164,69 @@ namespace fyiReporting.RdlReader
         [STAThread]
         static void Main()
         {
-            bool bMono;
+            bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
-            if (args.Length >= 2 &&
-                (args[1].ToLower() == "/m" || args[1].ToLower() == "-m"))
-            {	// user want to run with mono simplifications
-                bMono = true;
-            }
-            else
-            {
-                bMono = false;
-                Application.EnableVisualStyles();
-                Application.DoEvents();				// when Mono this goes into a loop
-            }
 
-            if (args.Length > 1)
+            string reportFile = "";
+            string parameters = "";
+            for (int i = 0; i < Environment.GetCommandLineArgs().Length; i++)
             {
-                if (args[1].Length >= 5)
+                string argValue  = Environment.GetCommandLineArgs()[i];
+                if (argValue.ToLower() == "/m" || argValue.ToLower() == "-m")
                 {
-                    string file = args[1];
-                    if (System.IO.Path.GetDirectoryName(file) == "")
+                    // user want to run with mono simplifications
+                    bMono = true;
+                }
+                else if(argValue == "-r")
+                {
+                    reportFile = Environment.GetCommandLineArgs()[i + 1];
+                    if (System.IO.Path.GetDirectoryName(reportFile) == "")
                     {
                         // Try to find the file in the current working directory
-                        file = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(file));
-                    }
-
-                    if (File.Exists(file))
-                    {
-                        _startUpFiles = new List<Uri>();
-                        _startUpFiles.Add(new Uri(file));
-                    }
-                    else
-                    {
-                        MessageBox.Show("The specified report [ " + args[1] + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        reportFile = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(reportFile));
                     }
                 }
+                else if(argValue == "-p")
+                {
+                     parameters = Environment.GetCommandLineArgs()[i + 1];
+                }
+            }
+
+            if (reportFile == "")
+            {
+                // keep backwards compatiablity from when it worked with only a filename being passed in
+
+                if (args.Length > 1)
+                {
+                    if (args[1].Length >= 5)
+                    {
+                        if (System.IO.Path.GetDirectoryName(reportFile) == "")
+                        {
+                            // Try to find the file in the current working directory
+                            reportFile = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(reportFile));
+                        }
+                    }
+                }
+            }
+
+            if (reportFile != "")
+            {
+                if (File.Exists(reportFile))
+                {
+
+                    _startUpFiles = new Dictionary<Uri, string>();
+                    _startUpFiles.Add(new Uri(reportFile), parameters);
+                }
+                else
+                {
+                    MessageBox.Show("The specified report [ " + args[1] + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if(bMono == false)
+            {
+                Application.EnableVisualStyles();
+                Application.DoEvents();				// when Mono this goes into a loop
             }
 
             Application.Run(new RdlReader(bMono));
@@ -687,13 +729,16 @@ namespace fyiReporting.RdlReader
 
         private void GetStartupState()
         {
-            string optFileName = AppDomain.CurrentDomain.BaseDirectory + "readerstate.xml";
+            string optFileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "readerstate.xml");
             _RecentFiles = new SortedList();
-            _CurrentFiles = new List<Uri>();
+            _CurrentFiles = new Dictionary<Uri, string>();
 
             if (_startUpFiles != null)
-            {            
-                _CurrentFiles.AddRange(_startUpFiles);   
+            {
+                foreach(var dict in _startUpFiles)
+                {
+                    _CurrentFiles.Add( dict.Key, dict.Value);
+                }
             }
 
             try
@@ -728,9 +773,9 @@ namespace fyiReporting.RdlReader
                                 string file = xN.InnerText.Trim();
                                 if (File.Exists(file))			// only add it if it exists
                                 {
-                                    if (_CurrentFiles.Contains(new Uri(file)) == false)
+                                    if (_CurrentFiles.ContainsKey(new Uri(file)) == false)
                                     {
-                                        _CurrentFiles.Add(new Uri(file));
+                                        _CurrentFiles.Add(new Uri(file), "");
                                     }
                                 }
                             }

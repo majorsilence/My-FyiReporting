@@ -75,6 +75,22 @@ namespace fyiReporting.RdlReader
             }
         }
 
+        /// <summary>
+        /// Gets or sets the report parameters. Each parameter should be separated with an & character.
+        /// </summary>
+        /// <value>
+        /// The parameters.
+        /// </value>
+        public string Parameters
+        {
+            get { return this.rdlViewer1.Parameters; }
+            set
+            {
+                this.rdlViewer1.Parameters = value;
+            }
+        }
+
+
         public RdlViewer.RdlViewer Viewer
         {
             get { return this.rdlViewer1; }
