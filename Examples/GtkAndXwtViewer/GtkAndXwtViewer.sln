@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtkAndXwtViewer", "GtkAndXwtViewer\GtkAndXwtViewer.csproj", "{2CE4361D-5B5E-4E26-B39D-56D3DB9BF855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "..\..\DataProviders\DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlCri", "..\..\RdlCri\RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlEngine", "..\..\RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibRdlCrossPlatformViewer", "..\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj", "{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CE4361D-5B5E-4E26-B39D-56D3DB9BF855}.Debug|x86.ActiveCfg = Debug|x86
+		{2CE4361D-5B5E-4E26-B39D-56D3DB9BF855}.Debug|x86.Build.0 = Debug|x86
+		{2CE4361D-5B5E-4E26-B39D-56D3DB9BF855}.Release|x86.ActiveCfg = Release|x86
+		{2CE4361D-5B5E-4E26-B39D-56D3DB9BF855}.Release|x86.Build.0 = Release|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.ActiveCfg = Debug|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.Build.0 = Debug|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x86.ActiveCfg = Debug|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x86.Build.0 = Debug|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.ActiveCfg = Release|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.Build.0 = Release|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.ActiveCfg = Release|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.Build.0 = Release|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x64.ActiveCfg = Debug|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x64.Build.0 = Debug|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x86.ActiveCfg = Debug|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x86.Build.0 = Debug|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x64.ActiveCfg = Release|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x64.Build.0 = Release|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.ActiveCfg = Release|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.Build.0 = Release|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x86.ActiveCfg = Debug|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x86.Build.0 = Debug|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x64.Build.0 = Release|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x86.ActiveCfg = Release|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x86.Build.0 = Release|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|x64.ActiveCfg = Debug|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|x64.Build.0 = Debug|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|x86.ActiveCfg = Debug|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|x86.Build.0 = Debug|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x64.ActiveCfg = Release|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x64.Build.0 = Release|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.ActiveCfg = Release|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = GtkAndXwtViewer\GtkAndXwtViewer.csproj
+	EndGlobalSection
+EndGlobal

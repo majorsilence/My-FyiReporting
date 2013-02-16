@@ -4,8 +4,8 @@
   </Description>
   <Author>
   </Author>
-  <PageHeight>11in</PageHeight>
-  <PageWidth>8.5in</PageWidth>
+  <PageHeight>279.4mm</PageHeight>
+  <PageWidth>431.8mm</PageWidth>
   <DataSources>
     <DataSource Name="DS1">
       <ConnectionProperties>
@@ -674,8 +674,22 @@
           </TableRows>
         </Details>
       </Table>
+      <Image Name="Image1">
+        <Height>207.02pt</Height>
+        <Width>338.77pt</Width>
+        <Left>166.63pt</Left>
+        <Top>19.42pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <Source>External</Source>
+        <Value>C:\Users\Peter\Pictures\christmas_card.jpg</Value>
+      </Image>
     </ReportItems>
-    <Height>36pt</Height>
+    <Height>242.0pt</Height>
+    <Columns>1</Columns>
   </Body>
   <PageFooter>
     <Height>14pt</Height>
@@ -695,4 +709,6 @@
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageFooter>
+  <DataElementName>Report</DataElementName>
+  <DataElementStyle>AttributeNormal</DataElementStyle>
 </Report>

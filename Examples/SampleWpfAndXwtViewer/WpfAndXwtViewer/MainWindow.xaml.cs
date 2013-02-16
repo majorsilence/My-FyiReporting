@@ -32,6 +32,7 @@ namespace WpfAndXwtViewer
             InitializeComponent();
 
             // Before using any xwt code you must initialize its engine as wpf
+            // See https://groups.google.com/forum/?fromgroups=#!topic/xwt-list/9d2kb4cf5GU
             Xwt.Application.Initialize(Xwt.ToolkitType.Wpf);
             Xwt.Engine.Toolkit.ExitUserCode(null);
 
