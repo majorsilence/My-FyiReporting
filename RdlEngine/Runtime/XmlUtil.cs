@@ -378,7 +378,7 @@ namespace fyiReporting.RDL
                 if (dir[i] == null || dir[i] == string.Empty)
                     continue;
 
-                string f = dir[i] + file;
+                string f = Path.Combine(dir[i], file);  // Issue #37
                 if (File.Exists(f))
                     return f;
             }
