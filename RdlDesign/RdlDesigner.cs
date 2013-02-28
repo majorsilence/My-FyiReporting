@@ -2297,7 +2297,8 @@ namespace fyiReporting.RdlDesign
 
         private void menuRecentItem_Click(object sender, System.EventArgs e)
         {
-            MenuItem m = (MenuItem)sender;
+            ToolStripMenuItem m = (ToolStripMenuItem)sender;
+
             int si = m.Text.IndexOf(" ");
             Uri file = new Uri(m.Text.Substring(si + 1));
 
