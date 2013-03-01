@@ -133,7 +133,8 @@ namespace fyiReporting.RDL
                 }
                 else
                 {
-                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bin\\RdlEngine.dll");   // this can work especially in web scenarios
+                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bin");   // this can work especially in web scenarios
+                    re = Path.Combine(re, "RdlEngine.dll");  
                 }
             }
             else
