@@ -128,16 +128,17 @@ namespace fyiReporting.RDL
             string re;
             //AJM GJL 250608 - Try the Bin Directory too, for websites
             if (RdlEngineConfig.DirectoryLoadedFrom == null) {
-                if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "RdlEngine.dll")) {
-                    re = AppDomain.CurrentDomain.BaseDirectory + "RdlEngine.dll";   // this can fail especially in web scenarios
+                if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RdlEngine.dll"))) {
+                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RdlEngine.dll");   // this can fail especially in web scenarios
                 }
                 else
                 {
-                    re = AppDomain.CurrentDomain.BaseDirectory + "Bin\\RdlEngine.dll";   // this can work especially in web scenarios
+                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bin");   // this can work especially in web scenarios
+                    re = Path.Combine(re, "RdlEngine.dll");  
                 }
             }
             else
-                re = RdlEngineConfig.DirectoryLoadedFrom + "RdlEngine.dll";     // use RdlEngineConfig.xml directory when available
+                re = Path.Combine(RdlEngineConfig.DirectoryLoadedFrom, "RdlEngine.dll");     // use RdlEngineConfig.xml directory when available
 
 			cp.ReferencedAssemblies.Add(re);
             // also allow access to classes that have been added to report
