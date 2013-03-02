@@ -73,6 +73,9 @@ namespace fyiReporting.RDL
 				case "Char":
 					rs = TypeCode.String;
 					break;
+                case "Object":
+                    rs = TypeCode.Object;
+					break;
 				default:		// user error
 					rs = TypeCode.Object;
                     if (r != null)

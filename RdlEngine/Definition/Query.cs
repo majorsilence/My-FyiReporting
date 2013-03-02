@@ -162,8 +162,10 @@ namespace fyiReporting.RDL
 			}
 			catch (Exception e)
 			{
-				OwnerReport.rl.LogError(4, "SQL Exception during report compilation: " + e.Message + "\r\nSQL: " + sql);
-			}
+                // Issue #35 - Kept the logging
+                OwnerReport.rl.LogError(4, "SQL Exception during report compilation: " + e.Message + "\r\nSQL: " + sql);
+                throw;
+            }
 			finally
 			{
 				if (cmSQL != null)
@@ -271,7 +273,9 @@ namespace fyiReporting.RDL
 			}
 			catch (Exception e)
 			{
+                // Issue #35 - Kept the logging
 				rpt.rl.LogError(8, "SQL Exception" + e.Message + "\r\n" + e.StackTrace);
+                throw;
 			}
 			finally
 			{
