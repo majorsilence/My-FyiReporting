@@ -341,22 +341,11 @@ namespace LibRdlCrossPlatformViewer
                 ext = dlg.FileName.Substring (i + 1).ToLower ();
             }
 
-            PlatformID pid = System.Environment.OSVersion.Platform;
-
-
             fyiReporting.RDL.OutputPresentationType type = fyiReporting.RDL.OutputPresentationType.Internal;
             switch (ext)
             {
                 case "pdf":
-                    if (pid == PlatformID.Win32Windows || pid == PlatformID.Win32NT)
-                    {
-                        type = fyiReporting.RDL.OutputPresentationType.PDF;
-                    }
-                    else
-                    {
-                        type = fyiReporting.RDL.OutputPresentationType.PDFOldStyle;
-                    }
-                    
+                    type = fyiReporting.RDL.OutputPresentationType.PDF;
                     break;
                 case "xml":
                     type = fyiReporting.RDL.OutputPresentationType.XML;

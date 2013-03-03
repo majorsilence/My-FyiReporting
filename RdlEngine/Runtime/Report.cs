@@ -76,18 +76,6 @@ namespace fyiReporting.RDL
             get { return _itextpdf; }
             set { _itextpdf = value; }
         }
-        private string _FontFolder = "";
-
-
-        /// <summary> 
-        /// Default I get embedded fonts in Fonts folder in current 
-        /// folder RdlEngine.dll in, can set font folder here 
-        /// </summary> 
-        public string FontFolder
-        {
-            get { return _FontFolder; }
-            set { _FontFolder = value; }
-        }
 
 		/// <summary>
 		/// Construct a runtime Report object using the compiled report definition.
@@ -95,9 +83,6 @@ namespace fyiReporting.RDL
 		/// <param name="r"></param>
 		public Report(ReportDefn r)
 		{
-            this.FontFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
-
-
 			_Report = r;
 			_Cache = new RCache();
 			rl = new ReportLog(r.rl);

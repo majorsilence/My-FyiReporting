@@ -488,6 +488,45 @@ namespace fyiReporting.RDL
             }
             return faceName;
         }
+
+
+        bool dejavuFonts = false;
+        /// <summary> 
+        /// Default I get embedded fonts in Fonts folder in current 
+        /// folder RdlEngine.dll in, can set font folder here 
+        /// </summary> 
+        private string FontFolder {
+            get 
+            {
+                if (System.Environment.OSVersion.Platform == PlatformID.Unix) {
+
+                    if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
+                    {
+                        return "/usr/share/fonts/truetype/msttcorefonts";
+                    }
+                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
+                    {
+                        dejavuFonts=true;
+                        return "/usr/share/fonts/truetype/ttf-dejavu";
+                    }
+                    else
+                    {
+                        throw new System.IO.DirectoryNotFoundException("Cannot find font directory");
+                    }
+                }
+
+#if NET_4
+         return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
+#else
+                // get parent of System folder to have Windows folder
+                DirectoryInfo dirWindowsFolder = Directory.GetParent (Environment.GetFolderPath (Environment.SpecialFolder.System));
+                // Concatenate Fonts folder onto Windows folder.
+                return Path.Combine (dirWindowsFolder.FullName, "Fonts");
+                // Results in full path e.g. "C:\Windows\Fonts" 
+#endif
+            }
+        }
+
         /// <summary>
         /// Page Text element at the X Y position; multiple lines handled
         /// </summary>
@@ -505,21 +544,30 @@ namespace fyiReporting.RDL
             {
                 if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                 {
-                    face = "Times-BoldItalic";
-                    fontname = "\\timesbi.ttf";
+                    face = dejavuFonts ? "DejaVu Serif Condensed Bold Italic" : "Times-BoldItalic";
+                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-BoldItalic.ttf" : "timesbi.ttf");
                 }
                 else if (si.IsFontBold())
                 {
-                    face = "Times-Bold";
-                    fontname = "\\timesbd.ttf";
+                    face = dejavuFonts ? "DejaVu Serif Condensed Bold" : "Times-Bold";
+                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-Bold.ttf" : "timesbd.ttf");
+
+                    //face = "Times-Bold";
+                    //fontname = "\\timesbd.ttf";
                 }
                 else if (si.FontStyle == FontStyleEnum.Italic)
                 {
-                    face = "Times-Italic";
-                    fontname = "\\timesi.ttf";
+                    face = dejavuFonts ? "DejaVu Serif Condensed Italic" : "Times-Italic";
+                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-Italic.ttf" : "timesi.ttf");
+
+                    //face = "Times-Italic";
+                    //fontname = "\\timesi.ttf";
                 }
                 else
-                    fontname = "\\times.ttf";
+                {
+                    face = dejavuFonts ? "DejaVu Serif Condensed" : face;
+                    fontname = (dejavuFonts ? "DejaVuSerifCondensed.ttf" : "times.ttf");
+                }
                 fonttype1 = false;
             }
             else
@@ -527,22 +575,31 @@ namespace fyiReporting.RDL
                 {
                     if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                     {
-                        face = "Arial-BoldItalic";
-                        fontname = "\\arialbi.ttf";
-
+                        face = dejavuFonts ? "DejaVu Sans Condensed Bold Oblique" : "Arial-BoldItalic";
+                        fontname = (dejavuFonts ? "DejaVuSansCondensed-BoldOblique.ttf" : "arialbi.ttf");
+                        //face = "Arial-BoldItalic";
+                        //fontname = "\\arialbi.ttf";
                     }
                     else if (si.IsFontBold())
                     {
-                        face = "Arial-Bold";
-                        fontname = "\\arialbd.ttf";
+                        face = dejavuFonts ? "DejaVu Sans Condensed Bold" : "Arial-Bold";
+                        fontname = (dejavuFonts ? "DejaVuSansCondensed-Bold.ttf" : "arialbd.ttf");
+                        //face = "Arial-Bold";
+                        //fontname = "\\arialbd.ttf";
                     }
                     else if (si.FontStyle == FontStyleEnum.Italic)
                     {
-                        face = "Arial-Italic";
-                        fontname = "\\ariali.ttf";
+                        face = dejavuFonts ? "DejaVu Sans Condensed Oblique" : "Arial-Italic";
+                        fontname = (dejavuFonts ? "DejaVuSansCondensed-Oblique.ttf" : "ariali.ttf");
+                        //face = "Arial-Italic";
+                        //fontname = "\\ariali.ttf";
                     }
                     else
-                        fontname = "\\ariali.ttf";
+                    {
+                        face = dejavuFonts ? "DejaVu Sans Condensed" : face;
+                        fontname = (dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
+                        // original was: probsbly mispüeleld file name:  fontname = "\\ariali.ttf";
+                    }
                     fonttype1 = false;
                 }
                 else
@@ -550,29 +607,40 @@ namespace fyiReporting.RDL
                     {
                         if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                         {
-                            face = "Courier New-BoldItalic";
-                            fontname = "\\courbi.ttf";
+                            face = dejavuFonts ? "DejaVu Sans Mono Bold Oblique" : "Courier New-BoldItalic";
+                            fontname = (dejavuFonts ? "DejaVuSansMono-BoldOblique.ttf" : "courbi.ttf");
+                            //face = "Courier New-BoldItalic";
+                            //fontname = "\\courbi.ttf";
                         }
                         else if (si.IsFontBold())
                         {
-                            face = "Courier New-Bold";
-                            fontname = "\\courbd.ttf";
+                            face = dejavuFonts ? "DejaVu Sans Mono Bold" : "Courier New-Bold";
+                            fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "courbd.ttf");
+
+                            //face = "Courier New-Bold";
+                            //fontname = "\\courbd.ttf";
                         }
                         else if (si.FontStyle == FontStyleEnum.Italic)
                         {
-                            face = "Courier New-Italic";
-                            fontname = "\\couri.ttf";
+                            face = dejavuFonts ? "DejaVu Sans Mono Oblique" : "Courier New-Italic";
+                            fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "couri.ttf");
+                            //face = "Courier New-Italic";
+                            //fontname = "\\couri.ttf";
                         }
                         else
-                            fontname = "\\cour.ttf";
+                        {
+                            face = dejavuFonts ? "DejaVu Sans Mono" : face;
+                            fontname = (dejavuFonts ? "DejaVuSansMono.ttf" : "cour.ttf");
+                            //fontname = "\\cour.ttf";
+                        }
                         fonttype1 = false;
                     }
                     else
                     {
                         if (si.IsFontBold() &&
-                    si.FontStyle == FontStyleEnum.Italic)	// bold and italic?
+                    si.FontStyle == FontStyleEnum.Italic)   // bold and italic?
                             face = face + "-BoldOblique";
-                        else if (si.IsFontBold())			// just bold?
+                        else if (si.IsFontBold())           // just bold?
                             face = face + "-Bold";
                         else if (si.FontStyle == FontStyleEnum.Italic)
                             face = face + "-Oblique";
@@ -590,12 +658,8 @@ namespace fyiReporting.RDL
                 }
                 else
                 {
-                    //I uses font embedded in current folder the RdlEngine.dll in.
-                    string path = Path.GetDirectoryName(this.GetType().Assembly.Location) + "\\Fonts";
-                    //If manual set FontFolder, use it
-                    if (r.FontFolder != "")
-                        path = r.FontFolder;
-                    bf = BaseFont.CreateFont(path + fontname, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    string path = System.IO.Path.Combine(FontFolder, fontname);
+                    bf = BaseFont.CreateFont(path, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 }
                 BaseFonts.Add(bf);
             }
