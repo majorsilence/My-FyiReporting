@@ -10,7 +10,7 @@
     <DataSource Name="DS1">
       <ConnectionProperties>
         <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+        <ConnectString>Data Source=/home/peter/projects/My-FyiReporting/Examples/northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>
@@ -674,19 +674,6 @@
           </TableRows>
         </Details>
       </Table>
-      <Image Name="Image1">
-        <Height>207.02pt</Height>
-        <Width>338.77pt</Width>
-        <Left>166.63pt</Left>
-        <Top>19.42pt</Top>
-        <Style>
-          <BorderStyle />
-          <BorderColor />
-          <BorderWidth />
-        </Style>
-        <Source>External</Source>
-        <Value>C:\Users\Peter\Pictures\christmas_card.jpg</Value>
-      </Image>
     </ReportItems>
     <Height>242.0pt</Height>
     <Columns>1</Columns>

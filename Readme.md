@@ -120,3 +120,5 @@ A big thanks to all of My-FyiReporting contributors:
 
 * [ausadmin](https://github.com/ausadmin)
 * [Geek648](https://github.com/Geek648)
+* [kobruleht](https://github.com/kobruleht)
+* [jzielke](https://github.com/jzielke)
