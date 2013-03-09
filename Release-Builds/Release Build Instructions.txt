@@ -4,13 +4,11 @@
 1. Update Assembly version numbers in all projects
 2. Update RdlDesign\Program.cs version string to match version number
 3. Update RdlDesign\RdlDesigner.cs IpcFileName to match version number
-4. Build .NET 3.5 package:
-	* Run build-fyi-release-dot-net-3.5.bat
-5. Build .NET 4.0 package:
+4. Build .NET 4.0 package:
 	* Run build-fyi-release-dot-net-4.bat
-6. Build Linux package:
+5. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh
-7. Update warsetup project and version number
-8. Build warsetup project
-9. Build NuGet packages
-10. Create Git TAG
+6. Update warsetup project and version number
+7. Build warsetup project
+8. Build NuGet packages
+9. Create Git TAG
