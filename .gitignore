@@ -2528,3 +2528,14 @@ My-FyiReporting.4.5.2.x86.nupkg
 /RdlViewer/_UpgradeReport_Files/UpgradeReport_Information.png
 /RdlViewer/_UpgradeReport_Files/UpgradeReport_Success.png
 /RdlViewer/_UpgradeReport_Files/UpgradeReport_Warning.png
+
+/DataProviders/obj/Debug/DataProviders.csprojResolveAssemblyReference.cache
+/DataProviders/obj/x64/Release/DataProviders.csprojResolveAssemblyReference.cache
+/DataProviders/obj/x86/Release/DataProviders.csprojResolveAssemblyReference.cache
+/LibRdlCrossPlatformViewer/LibRdlCrossPlatformViewer.v11.suo
+/LibRdlCrossPlatformViewer/obj/x64/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/LibRdlCrossPlatformViewer/obj/x64/Release/DesignTimeResolveAssemblyReferencesInput.cache
+/Release-Builds/my-fyi-build-dot-net-4-x64/RdlEngineConfig.Linux.xml
+/Release-Builds/my-fyi-build-dot-net-4-x64/Xwt.Gtk.dll
+/Release-Builds/my-fyi-build-dot-net-4-x64/Xwt.WPF.dll
+/Release-Builds/my-fyi-build-dot-net-4-x64/Xwt.dll

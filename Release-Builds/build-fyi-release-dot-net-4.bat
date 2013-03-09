@@ -15,7 +15,7 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlWpfViewer\LibRdlWpfViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
-"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 
 del .\my-fyi-build-dot-net-4-x64 /Q
 mkdir .\my-fyi-build-dot-net-4-x64
@@ -63,7 +63,7 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlWpfViewer\LibRdlWpfViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
-"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 
 del .\my-fyi-build-dot-net-4-x86 /Q
 mkdir .\my-fyi-build-dot-net-4-x86

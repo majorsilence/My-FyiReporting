@@ -12,4 +12,5 @@
 	* Run build-fyi-release-dot-net-4.sh
 7. Update warsetup project and version number
 8. Build warsetup project
-9. Create Git TAG
+9. Build NuGet packages
+10. Create Git TAG
