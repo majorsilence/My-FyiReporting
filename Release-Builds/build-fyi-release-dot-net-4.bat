@@ -14,6 +14,8 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlEngine\RdlEngine.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlWpfViewer\LibRdlWpfViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 
 del .\my-fyi-build-dot-net-4-x64 /Q
 mkdir .\my-fyi-build-dot-net-4-x64
@@ -33,9 +35,15 @@ copy "..\References\dot net 4\Npgsql.dll" .\my-fyi-build-dot-net-4-x64\Npgsql.dl
 copy "..\References\dot net 4\64bit\System.Data.SQLite.dll" .\my-fyi-build-dot-net-4-x64\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\my-fyi-build-dot-net-4-x64\itextsharp.dll /Y
 copy ..\RdlEngine\bin\x64\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-x64\RdlEngineConfig.xml /Y
+copy ..\RdlEngine\bin\x64\Release\RdlEngineConfig.Linux.xml .\my-fyi-build-dot-net-4-x64\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x64\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x64\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x64\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x64\Release\RdlReader.exe .\my-fyi-build-dot-net-4-x64\RdlReader.exe /Y
+copy ..\LibRdlWpfViewer\bin\x64\Release\LibRdlWpfViewer.dll .\my-fyi-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
+copy ..\LibRdlWpfViewer\bin\x64\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
+copy "..\References\dot net 4\Xwt.dll" .\my-fyi-build-dot-net-4-x64\Xwt.dll /Y
+copy "..\References\dot net 4\Xwt.Gtk.dll" .\my-fyi-build-dot-net-4-x64\Xwt.Gtk.dll /Y
+copy "..\References\dot net 4\Xwt.WPF.dll" .\my-fyi-build-dot-net-4-x64\Xwt.WPF.dll /Y
 
 7za.exe a my-fyi-build-dot-net-4-x64.zip my-fyi-build-dot-net-4-x64\
 
@@ -54,6 +62,8 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlEngine\RdlEngine.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlMapFile\RdlMapFile.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\RdlViewer\RdlViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlWpfViewer\LibRdlWpfViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 
 del .\my-fyi-build-dot-net-4-x86 /Q
 mkdir .\my-fyi-build-dot-net-4-x86
@@ -76,6 +86,11 @@ copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-x
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x86\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x86\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\my-fyi-build-dot-net-4-x86\RdlReader.exe /Y
+copy ..\LibRdlWpfViewer\bin\x86\Release\LibRdlWpfViewer.dll .\my-fyi-build-dot-net-4-x86\LibRdlWpfViewer.dll /Y
+copy ..\LibRdlWpfViewer\bin\x86\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll /Y
+copy "..\References\dot net 4\Xwt.dll" .\my-fyi-build-dot-net-4-x86\Xwt.dll /Y
+copy "..\References\dot net 4\Xwt.Gtk.dll" .\my-fyi-build-dot-net-4-x86\Xwt.Gtk.dll /Y
+copy "..\References\dot net 4\Xwt.WPF.dll" .\my-fyi-build-dot-net-4-x86\Xwt.WPF.dll /Y
 
 7za.exe a my-fyi-build-dot-net-4-x86.zip my-fyi-build-dot-net-4-x86\
 
