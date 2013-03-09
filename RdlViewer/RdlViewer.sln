@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer", "RdlViewer.csproj", "{D99145B1-CB6C-41F5-BA86-723325145FB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlReader", "RdlReader\RdlReader.csproj", "{2412E381-D3D9-4AB7-A2FA-02D9786260F0}"
