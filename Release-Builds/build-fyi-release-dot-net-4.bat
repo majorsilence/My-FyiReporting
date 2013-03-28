@@ -83,6 +83,7 @@ copy "..\References\dot net 4\Npgsql.dll" .\my-fyi-build-dot-net-4-x86\Npgsql.dl
 copy "..\References\dot net 4\32bit\System.Data.SQLite.dll" .\my-fyi-build-dot-net-4-x86\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\my-fyi-build-dot-net-4-x86\itextsharp.dll /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\my-fyi-build-dot-net-4-x86\RdlEngineConfig.xml /Y
+copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.Linux.xml .\my-fyi-build-dot-net-4-x86\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x86\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x86\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\my-fyi-build-dot-net-4-x86\RdlReader.exe /Y
