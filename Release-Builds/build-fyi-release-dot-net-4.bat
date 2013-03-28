@@ -40,7 +40,7 @@ copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x64\R
 copy ..\RdlViewer\bin\x64\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x64\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x64\Release\RdlReader.exe .\my-fyi-build-dot-net-4-x64\RdlReader.exe /Y
 copy ..\LibRdlWpfViewer\bin\x64\Release\LibRdlWpfViewer.dll .\my-fyi-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
-copy ..\LibRdlWpfViewer\bin\x64\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
+copy ..\LibRdlCrossPlatformViewer\bin\x64\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
 copy "..\References\dot net 4\Xwt.dll" .\my-fyi-build-dot-net-4-x64\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\my-fyi-build-dot-net-4-x64\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\my-fyi-build-dot-net-4-x64\Xwt.WPF.dll /Y
@@ -87,7 +87,7 @@ copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\my-fyi-build-dot-net-4-x86\R
 copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\my-fyi-build-dot-net-4-x86\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\my-fyi-build-dot-net-4-x86\RdlReader.exe /Y
 copy ..\LibRdlWpfViewer\bin\x86\Release\LibRdlWpfViewer.dll .\my-fyi-build-dot-net-4-x86\LibRdlWpfViewer.dll /Y
-copy ..\LibRdlWpfViewer\bin\x86\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll /Y
+copy ..\LibRdlCrossPlatformViewer\bin\x86\Release\LibRdlCrossPlatformViewer.dll .\my-fyi-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll /Y
 copy "..\References\dot net 4\Xwt.dll" .\my-fyi-build-dot-net-4-x86\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\my-fyi-build-dot-net-4-x86\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\my-fyi-build-dot-net-4-x86\Xwt.WPF.dll /Y
