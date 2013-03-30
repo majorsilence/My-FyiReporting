@@ -768,6 +768,8 @@ namespace fyiReporting.RdlReader
                             }
                             break;
                         case "CurrentFiles":
+                            if (_startUpFiles != null)
+                                break;                          // not add if startUpFiles exists                        
                             foreach (XmlNode xN in xNodeLoop.ChildNodes)
                             {
                                 string file = xN.InnerText.Trim();
