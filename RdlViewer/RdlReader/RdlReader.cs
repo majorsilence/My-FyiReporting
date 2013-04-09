@@ -220,7 +220,7 @@ namespace fyiReporting.RdlReader
                 }
                 else
                 {
-                    MessageBox.Show("The specified report [ " + args[1] + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The specified report [ " + reportFile + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
