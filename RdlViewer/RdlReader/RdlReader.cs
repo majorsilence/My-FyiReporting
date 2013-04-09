@@ -200,6 +200,7 @@ namespace fyiReporting.RdlReader
                 {
                     if (args[1].Length >= 5)
                     {
+                        reportFile = args[1];
                         if (System.IO.Path.GetDirectoryName(reportFile) == "")
                         {
                             // Try to find the file in the current working directory
