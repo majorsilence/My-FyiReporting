@@ -46,6 +46,11 @@ namespace fyiReporting.RdlDesign
             get { return rdlEditPreview1.Viewer; }
         }
 
+        internal void ResetPassword()
+        {
+            bGotPassword = false;
+            _DataSourceReferencePassword = null;
+        }
 
         Uri _SourceFile;
         /// <summary>
