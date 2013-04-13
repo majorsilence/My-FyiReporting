@@ -200,6 +200,7 @@ namespace fyiReporting.RdlReader
                 {
                     if (args[1].Length >= 5)
                     {
+                        reportFile = args[1];
                         if (System.IO.Path.GetDirectoryName(reportFile) == "")
                         {
                             // Try to find the file in the current working directory
@@ -219,7 +220,7 @@ namespace fyiReporting.RdlReader
                 }
                 else
                 {
-                    MessageBox.Show("The specified report [ " + args[1] + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The specified report [ " + reportFile + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
