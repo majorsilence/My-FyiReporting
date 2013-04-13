@@ -157,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="csv.gif" />
     <EmbeddedResource Include="excel.gif" />
+    <EmbeddedResource Include="RdlUserControl.resx">
+      <DependentUpon>RdlUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="tif.gif" />
     <None Include="Images\document-open.png" />
     <None Include="Images\document-print.png" />
@@ -310,6 +313,12 @@
       <DependentUpon>RdlDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="RdlDesignerSavedFileEvent.cs" />
+    <Compile Include="RdlUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RdlUserControl.Designer.cs">
+      <DependentUpon>RdlUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportCtl.Designer.cs">
       <DependentUpon>ReportCtl.cs</DependentUpon>
     </Compile>
