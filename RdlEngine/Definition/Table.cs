@@ -833,9 +833,13 @@ namespace fyiReporting.RDL
 					}
 				}
 				float footerHeight = RunGroupsFooterHeight(pgs, wc, ge);
-                
-				if (ge.EndRow == endRow && !Footer.RepeatOnNewPage)
-					footerHeight += groupHeight;
+
+
+                if (ge.EndRow == endRow && (  Footer != null ? !Footer.RepeatOnNewPage: true))
+                {
+                    footerHeight += groupHeight;
+                    }        
+      
 				// Handle the nested groups if any
 				if (ge.NestedGroup.Count > 0)
 					RunGroupsPage(pgs, wc, ge.NestedGroup, ge.EndRow, footerHeight);
