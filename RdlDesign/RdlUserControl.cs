@@ -407,29 +407,52 @@ namespace fyiReporting.RdlDesign
             ToolStripButton ctl = (ToolStripButton)sender;
             ctlInsertCurrent = ctl.Checked ? ctl : null;
 
-
             CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
 
         }
 
         private void chartToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (ctlInsertCurrent != null)
+                ctlInsertCurrent.Checked = false;
 
+            ToolStripButton ctl = (ToolStripButton)sender;
+            ctlInsertCurrent = ctl.Checked ? ctl : null;
+
+            CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
         }
 
         private void tableToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (ctlInsertCurrent != null)
+                ctlInsertCurrent.Checked = false;
 
+            ToolStripButton ctl = (ToolStripButton)sender;
+            ctlInsertCurrent = ctl.Checked ? ctl : null;
+
+            CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
         }
 
         private void listToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (ctlInsertCurrent != null)
+                ctlInsertCurrent.Checked = false;
 
+            ToolStripButton ctl = (ToolStripButton)sender;
+            ctlInsertCurrent = ctl.Checked ? ctl : null;
+
+            CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
         }
 
         private void imageToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (ctlInsertCurrent != null)
+                ctlInsertCurrent.Checked = false;
 
+            ToolStripButton ctl = (ToolStripButton)sender;
+            ctlInsertCurrent = ctl.Checked ? ctl : null;
+
+            CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
         }
 
         private void matrixToolStripButton1_Click(object sender, EventArgs e)
