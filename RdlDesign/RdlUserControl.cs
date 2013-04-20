@@ -22,11 +22,7 @@ namespace fyiReporting.RdlDesign
         private bool bGotPassword = false;
         private string _DataSourceReferencePassword = null;
         public delegate void RdlChangeHandler(object sender, EventArgs e);
-        public event RdlChangeHandler OnSelectionChanged;
-        public event RdlChangeHandler OnSelectionMoved;
-        public event RdlChangeHandler OnReportItemInserted;
-        public event DesignCtl.OpenSubreportEventHandler OnOpenSubreport;
-        public event DesignCtl.HeightEventHandler OnHeightChanged;
+
         private ToolStripButton ctlInsertCurrent = null;
         private ToolStripMenuItem ctlMenuInsertCurrent = null;
         bool bSuppressChange = false;
@@ -39,6 +35,12 @@ namespace fyiReporting.RdlDesign
 
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
+
+            rdlEditPreview1.OnSelectionChanged += SelectionChanged;
+            rdlEditPreview1.OnReportItemInserted += ReportItemInserted;
+            rdlEditPreview1.OnOpenSubreport += OpenSubReportEvent;
+            rdlEditPreview1.OnHeightChanged += HeightChanged;
+            rdlEditPreview1.OnSelectionMoved += SelectionChanged;
         }
 
         public fyiReporting.RdlViewer.RdlViewer Viewer
@@ -73,9 +75,13 @@ namespace fyiReporting.RdlDesign
             string prog = null;
             try
             {
+   
+
                 fs = new StreamReader(_SourceFile.LocalPath);
                 prog = fs.ReadToEnd();
             }
+            catch
+            { }
             finally
             {
                 if (fs != null)
@@ -89,6 +95,15 @@ namespace fyiReporting.RdlDesign
         {
             get { return this.rdlEditPreview1.GetRdlText(); }
             set { this.rdlEditPreview1.SetRdlText(value); }
+        }
+
+        public string CurrentInsert
+        {
+            get { return rdlEditPreview1.CurrentInsert; }
+            set
+            {
+                rdlEditPreview1.CurrentInsert = value;
+            }
         }
 
         internal string GetPassword()
@@ -145,11 +160,6 @@ namespace fyiReporting.RdlDesign
             try
             {
 
-                OnSelectionChanged += new RdlChangeHandler(SelectionChanged);
-                OnSelectionMoved += new RdlChangeHandler(SelectionMoved);
-                OnReportItemInserted += new RdlChangeHandler(ReportItemInserted);
-                OnOpenSubreport += new DesignCtl.OpenSubreportEventHandler(OpenSubReportEvent);
-                OnHeightChanged += new DesignCtl.HeightEventHandler(HeightChanged);
 
 
                 Viewer.GetDataSourceReferencePassword = _GetPassword;
@@ -207,11 +217,13 @@ namespace fyiReporting.RdlDesign
             if (ctlInsertCurrent != null)
             {
                 ctlInsertCurrent.Checked = false;
+                CurrentInsert = null;
                 ctlInsertCurrent = null;
             }
             if (ctlMenuInsertCurrent != null)
             {
                 ctlMenuInsertCurrent.Checked = false;
+                CurrentInsert = null;
                 ctlMenuInsertCurrent = null;
             }
         }
@@ -387,6 +399,16 @@ namespace fyiReporting.RdlDesign
 
         private void textboxToolStripButton1_Click(object sender, EventArgs e)
         {
+            if (ctlInsertCurrent != null)
+            {
+                ctlInsertCurrent.Checked = false;
+            }
+
+            ToolStripButton ctl = (ToolStripButton)sender;
+            ctlInsertCurrent = ctl.Checked ? ctl : null;
+
+
+            CurrentInsert = ctlInsertCurrent == null ? null : (string)ctlInsertCurrent.Tag;
 
         }
 
@@ -436,6 +458,11 @@ namespace fyiReporting.RdlDesign
         }
 
         private void ctlEditTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void mainTB_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
