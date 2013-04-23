@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlUserControl));
-            this.rdlEditPreview1 = new fyiReporting.RdlDesign.RdlEditPreview();
             this.mainTB = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -72,31 +71,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.mainTC = new System.Windows.Forms.TabControl();
+            this.mainSP = new System.Windows.Forms.Splitter();
+            this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
             this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
             this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-            this.mainTC = new System.Windows.Forms.TabControl();
-            this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
-            this.mainSP = new System.Windows.Forms.Splitter();
+            this.rdlEditPreview1 = new fyiReporting.RdlDesign.RdlEditPreview();
             this.mainTB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rdlEditPreview1
-            // 
-            this.rdlEditPreview1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdlEditPreview1.CurrentInsert = null;
-            this.rdlEditPreview1.Location = new System.Drawing.Point(3, 116);
-            this.rdlEditPreview1.Modified = false;
-            this.rdlEditPreview1.Name = "rdlEditPreview1";
-            this.rdlEditPreview1.SelectedText = "";
-            this.rdlEditPreview1.SelectionTool = false;
-            this.rdlEditPreview1.Size = new System.Drawing.Size(746, 350);
-            this.rdlEditPreview1.TabIndex = 0;
-            this.rdlEditPreview1.Zoom = 1F;
-            this.rdlEditPreview1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.UseZoom;
             // 
             // mainTB
             // 
@@ -211,7 +195,7 @@
             this.textboxToolStripButton1.Size = new System.Drawing.Size(71, 22);
             this.textboxToolStripButton1.Tag = "Textbox";
             this.textboxToolStripButton1.Text = "Text Box";
-            this.textboxToolStripButton1.Click += new System.EventHandler(this.textboxToolStripButton1_Click);
+            this.textboxToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // chartToolStripButton1
             // 
@@ -222,7 +206,7 @@
             this.chartToolStripButton1.Size = new System.Drawing.Size(56, 22);
             this.chartToolStripButton1.Tag = "Chart";
             this.chartToolStripButton1.Text = "Chart";
-            this.chartToolStripButton1.Click += new System.EventHandler(this.chartToolStripButton1_Click);
+            this.chartToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // tableToolStripButton1
             // 
@@ -233,7 +217,7 @@
             this.tableToolStripButton1.Size = new System.Drawing.Size(56, 22);
             this.tableToolStripButton1.Tag = "Table";
             this.tableToolStripButton1.Text = "Table";
-            this.tableToolStripButton1.Click += new System.EventHandler(this.tableToolStripButton1_Click);
+            this.tableToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // listToolStripButton1
             // 
@@ -244,7 +228,7 @@
             this.listToolStripButton1.Size = new System.Drawing.Size(45, 22);
             this.listToolStripButton1.Tag = "List";
             this.listToolStripButton1.Text = "List";
-            this.listToolStripButton1.Click += new System.EventHandler(this.listToolStripButton1_Click);
+            this.listToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // imageToolStripButton1
             // 
@@ -255,7 +239,7 @@
             this.imageToolStripButton1.Size = new System.Drawing.Size(60, 22);
             this.imageToolStripButton1.Tag = "Image";
             this.imageToolStripButton1.Text = "Image";
-            this.imageToolStripButton1.Click += new System.EventHandler(this.imageToolStripButton1_Click);
+            this.imageToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // matrixToolStripButton1
             // 
@@ -266,7 +250,7 @@
             this.matrixToolStripButton1.Size = new System.Drawing.Size(60, 22);
             this.matrixToolStripButton1.Tag = "Matrix";
             this.matrixToolStripButton1.Text = "Matrix";
-            this.matrixToolStripButton1.Click += new System.EventHandler(this.matrixToolStripButton1_Click);
+            this.matrixToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // subreportToolStripButton1
             // 
@@ -277,7 +261,7 @@
             this.subreportToolStripButton1.Size = new System.Drawing.Size(79, 22);
             this.subreportToolStripButton1.Tag = "Subreport";
             this.subreportToolStripButton1.Text = "Subreport";
-            this.subreportToolStripButton1.Click += new System.EventHandler(this.subreportToolStripButton1_Click);
+            this.subreportToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // rectangleToolStripButton1
             // 
@@ -288,7 +272,7 @@
             this.rectangleToolStripButton1.Size = new System.Drawing.Size(79, 22);
             this.rectangleToolStripButton1.Tag = "Rectangle";
             this.rectangleToolStripButton1.Text = "Rectangle";
-            this.rectangleToolStripButton1.Click += new System.EventHandler(this.rectangleToolStripButton1_Click);
+            this.rectangleToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // lineToolStripButton1
             // 
@@ -299,7 +283,7 @@
             this.lineToolStripButton1.Size = new System.Drawing.Size(49, 22);
             this.lineToolStripButton1.Tag = "Line";
             this.lineToolStripButton1.Text = "Line";
-            this.lineToolStripButton1.Click += new System.EventHandler(this.lineToolStripButton1_Click);
+            this.lineToolStripButton1.Click += new System.EventHandler(this.ToolStripButtons_Clicked);
             // 
             // fxToolStripLabel1
             // 
@@ -313,7 +297,7 @@
             // ctlEditTextbox
             // 
             this.ctlEditTextbox.Name = "ctlEditTextbox";
-            this.ctlEditTextbox.Size = new System.Drawing.Size(250, 23);
+            this.ctlEditTextbox.Size = new System.Drawing.Size(250, 25);
             this.ctlEditTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ctlEditTextbox_KeyDown);
             this.ctlEditTextbox.Validated += new System.EventHandler(this.ctlEditTextbox_Validated);
             // 
@@ -357,6 +341,7 @@
             this.boldToolStripButton1.Tag = "bold";
             this.boldToolStripButton1.Text = "B";
             this.boldToolStripButton1.ToolTipText = "Bold";
+            this.boldToolStripButton1.Click += new System.EventHandler(this.boldToolStripButton1_Click);
             // 
             // italiacToolStripButton1
             // 
@@ -370,6 +355,7 @@
             this.italiacToolStripButton1.Tag = "italic";
             this.italiacToolStripButton1.Text = "I";
             this.italiacToolStripButton1.ToolTipText = "Italic";
+            this.italiacToolStripButton1.Click += new System.EventHandler(this.italiacToolStripButton1_Click);
             // 
             // underlineToolStripButton2
             // 
@@ -383,6 +369,7 @@
             this.underlineToolStripButton2.Tag = "underline";
             this.underlineToolStripButton2.Text = "U";
             this.underlineToolStripButton2.ToolTipText = "Underline";
+            this.underlineToolStripButton2.Click += new System.EventHandler(this.underlineToolStripButton2_Click);
             // 
             // leftAlignToolStripButton2
             // 
@@ -393,6 +380,7 @@
             this.leftAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.leftAlignToolStripButton2.Tag = "Left Align";
             this.leftAlignToolStripButton2.Text = "Left Align";
+            this.leftAlignToolStripButton2.Click += new System.EventHandler(this.leftAlignToolStripButton2_Click);
             // 
             // centerAlignToolStripButton2
             // 
@@ -403,6 +391,7 @@
             this.centerAlignToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.centerAlignToolStripButton2.Tag = "Center Align";
             this.centerAlignToolStripButton2.Text = "Center Align";
+            this.centerAlignToolStripButton2.Click += new System.EventHandler(this.leftAlignToolStripButton2_Click);
             // 
             // rightAlignToolStripButton3
             // 
@@ -413,6 +402,7 @@
             this.rightAlignToolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.rightAlignToolStripButton3.Tag = "Right Align";
             this.rightAlignToolStripButton3.Text = "Right Align";
+            this.rightAlignToolStripButton3.Click += new System.EventHandler(this.leftAlignToolStripButton2_Click);
             // 
             // fontToolStripComboBox1
             // 
@@ -420,6 +410,8 @@
             this.fontToolStripComboBox1.Size = new System.Drawing.Size(121, 25);
             this.fontToolStripComboBox1.Tag = "Font";
             this.fontToolStripComboBox1.ToolTipText = "Font";
+            this.fontToolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.fontToolStripComboBox1_SelectedIndexChanged);
+            this.fontToolStripComboBox1.Validated += new System.EventHandler(this.fontToolStripComboBox1_Validated);
             // 
             // fontSizeToolStripComboBox1
             // 
@@ -427,6 +419,8 @@
             this.fontSizeToolStripComboBox1.Size = new System.Drawing.Size(75, 25);
             this.fontSizeToolStripComboBox1.Tag = "Font Size";
             this.fontSizeToolStripComboBox1.ToolTipText = "Font Size";
+            this.fontSizeToolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.fontSizeToolStripComboBox1_SelectedIndexChanged);
+            this.fontSizeToolStripComboBox1.Validated += new System.EventHandler(this.fontSizeToolStripComboBox1_Validated);
             // 
             // printToolStripButton2
             // 
@@ -437,6 +431,7 @@
             this.printToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.printToolStripButton2.Tag = "Print";
             this.printToolStripButton2.Text = "Print";
+            this.printToolStripButton2.Click += new System.EventHandler(this.printToolStripButton2_Click);
             // 
             // zoomToolStripComboBox1
             // 
@@ -444,6 +439,8 @@
             this.zoomToolStripComboBox1.Size = new System.Drawing.Size(75, 25);
             this.zoomToolStripComboBox1.Tag = "Zoom";
             this.zoomToolStripComboBox1.ToolTipText = "Zoom";
+            this.zoomToolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.zoomToolStripComboBox1_SelectedIndexChanged);
+            this.zoomToolStripComboBox1.Validated += new System.EventHandler(this.zoomToolStripComboBox1_SelectedIndexChanged);
             // 
             // selectToolStripButton2
             // 
@@ -454,6 +451,7 @@
             this.selectToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.selectToolStripButton2.Tag = "Select Tool";
             this.selectToolStripButton2.Text = "Select Tool";
+            this.selectToolStripButton2.Click += new System.EventHandler(this.selectToolStripButton2_Click);
             // 
             // pdfToolStripButton2
             // 
@@ -464,6 +462,7 @@
             this.pdfToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.pdfToolStripButton2.Tag = "PDF";
             this.pdfToolStripButton2.Text = "PDF";
+            this.pdfToolStripButton2.Click += new System.EventHandler(this.pdfToolStripButton2_Click);
             // 
             // htmlToolStripButton2
             // 
@@ -474,6 +473,7 @@
             this.htmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.htmlToolStripButton2.Tag = "HTML";
             this.htmlToolStripButton2.Text = "HTML";
+            this.htmlToolStripButton2.Click += new System.EventHandler(this.htmlToolStripButton2_Click);
             // 
             // excelToolStripButton2
             // 
@@ -484,6 +484,7 @@
             this.excelToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.excelToolStripButton2.Tag = "Excel";
             this.excelToolStripButton2.Text = "Excel";
+            this.excelToolStripButton2.Click += new System.EventHandler(this.excelToolStripButton2_Click);
             // 
             // XmlToolStripButton2
             // 
@@ -494,6 +495,7 @@
             this.XmlToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.XmlToolStripButton2.Tag = "XML";
             this.XmlToolStripButton2.Text = "XML";
+            this.XmlToolStripButton2.Click += new System.EventHandler(this.XmlToolStripButton2_Click);
             // 
             // MhtToolStripButton2
             // 
@@ -504,6 +506,7 @@
             this.MhtToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.MhtToolStripButton2.Tag = "MHT";
             this.MhtToolStripButton2.Text = "MHT";
+            this.MhtToolStripButton2.Click += new System.EventHandler(this.MhtToolStripButton2_Click);
             // 
             // CsvToolStripButton2
             // 
@@ -514,6 +517,7 @@
             this.CsvToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.CsvToolStripButton2.Tag = "CSV";
             this.CsvToolStripButton2.Text = "CSV";
+            this.CsvToolStripButton2.Click += new System.EventHandler(this.CsvToolStripButton2_Click);
             // 
             // RtfToolStripButton2
             // 
@@ -524,6 +528,7 @@
             this.RtfToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.RtfToolStripButton2.Tag = "RTF";
             this.RtfToolStripButton2.Text = "RTF";
+            this.RtfToolStripButton2.Click += new System.EventHandler(this.RtfToolStripButton2_Click);
             // 
             // TifToolStripButton2
             // 
@@ -534,6 +539,7 @@
             this.TifToolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.TifToolStripButton2.Tag = "TIF";
             this.TifToolStripButton2.Text = "TIF";
+            this.TifToolStripButton2.Click += new System.EventHandler(this.TifToolStripButton2_Click);
             // 
             // panel1
             // 
@@ -565,6 +571,31 @@
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 35;
             this.label2.Text = "Back Color:";
+            // 
+            // mainTC
+            // 
+            this.mainTC.Location = new System.Drawing.Point(3, 39);
+            this.mainTC.Name = "mainTC";
+            this.mainTC.SelectedIndex = 0;
+            this.mainTC.Size = new System.Drawing.Size(712, 21);
+            this.mainTC.TabIndex = 34;
+            // 
+            // mainSP
+            // 
+            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainSP.Location = new System.Drawing.Point(755, 116);
+            this.mainSP.Name = "mainSP";
+            this.mainSP.Size = new System.Drawing.Size(3, 353);
+            this.mainSP.TabIndex = 45;
+            this.mainSP.TabStop = false;
+            // 
+            // mainProperties
+            // 
+            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
+            this.mainProperties.Location = new System.Drawing.Point(758, 116);
+            this.mainProperties.Name = "mainProperties";
+            this.mainProperties.Size = new System.Drawing.Size(240, 353);
+            this.mainProperties.TabIndex = 44;
             // 
             // foreColorPicker1
             // 
@@ -10375,6 +10406,286 @@
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
             this.foreColorPicker1.Location = new System.Drawing.Point(66, 12);
@@ -10382,6 +10693,8 @@
             this.foreColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.foreColorPicker1.TabIndex = 32;
             this.foreColorPicker1.Tag = "Fore Color";
+            this.foreColorPicker1.SelectedValueChanged += new System.EventHandler(this.foreColorPicker1_SelectedValueChanged);
+            this.foreColorPicker1.Validated += new System.EventHandler(this.foreColorPicker1_Validated);
             // 
             // backColorPicker1
             // 
@@ -20332,6 +20645,286 @@
             "Whitesmoke",
             "Yellow",
             "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
+            "Aliceblue",
+            "Antiquewhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "Blanchedalmond",
+            "Blue",
+            "Blueviolet",
+            "Brown",
+            "Burlywood",
+            "Cadetblue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "Cornflowerblue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "Darkblue",
+            "Darkcyan",
+            "Darkgoldenrod",
+            "Darkgray",
+            "Darkgreen",
+            "Darkkhaki",
+            "Darkmagenta",
+            "Darkolivegreen",
+            "Darkorange",
+            "Darkorchid",
+            "Darkred",
+            "Darksalmon",
+            "Darkseagreen",
+            "Darkslateblue",
+            "Darkslategray",
+            "Darkturquoise",
+            "Darkviolet",
+            "Deeppink",
+            "Deepskyblue",
+            "Dimgray",
+            "Dodgerblue",
+            "Firebrick",
+            "Floralwhite",
+            "Forestgreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Ghostwhite",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "Greenyellow",
+            "Honeydew",
+            "Hotpink",
+            "Indianred",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "Lavenderblush",
+            "Lawngreen",
+            "Lemonchiffon",
+            "Lightblue",
+            "Lightcoral",
+            "Lightcyan",
+            "Lightgoldenrodyellow",
+            "Lightgreen",
+            "Lightgrey",
+            "Lightpink",
+            "Lightsalmon",
+            "Lightseagreen",
+            "Lightskyblue",
+            "Lightslategrey",
+            "Lightsteelblue",
+            "Lightyellow",
+            "Lime",
+            "Limegreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "Mediumaquamarine",
+            "Mediumblue",
+            "Mediumorchid",
+            "Mediumpurple",
+            "Mediumseagreen",
+            "Mediumslateblue",
+            "Mediumspringgreen",
+            "Mediumturquoise",
+            "Mediumvioletred",
+            "Midnightblue",
+            "Mintcream",
+            "Mistyrose",
+            "Moccasin",
+            "Navajowhite",
+            "Navy",
+            "Oldlace",
+            "Olive",
+            "Olivedrab",
+            "Orange",
+            "Orangered",
+            "Orchid",
+            "Palegoldenrod",
+            "Palegreen",
+            "Paleturquoise",
+            "Palevioletred",
+            "Papayawhip",
+            "Peachpuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "Powderblue",
+            "Purple",
+            "Red",
+            "Rosybrown",
+            "Royalblue",
+            "Saddlebrown",
+            "Salmon",
+            "Sandybrown",
+            "Seagreen",
+            "Seashell",
+            "Sienna",
+            "Silver",
+            "Skyblue",
+            "Slateblue",
+            "Slategray",
+            "Snow",
+            "Springgreen",
+            "Steelblue",
+            "Tan",
+            "Teal",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "Whitesmoke",
+            "Yellow",
+            "Yellowgreen",
             "colorPicker1",
             ""});
             this.backColorPicker1.Location = new System.Drawing.Point(273, 12);
@@ -20339,31 +20932,24 @@
             this.backColorPicker1.Size = new System.Drawing.Size(121, 21);
             this.backColorPicker1.TabIndex = 33;
             this.backColorPicker1.Tag = "Back Color";
+            this.backColorPicker1.Click += new System.EventHandler(this.backColorPicker1_Click);
+            this.backColorPicker1.Validated += new System.EventHandler(this.backColorPicker1_Validated);
             // 
-            // mainTC
+            // rdlEditPreview1
             // 
-            this.mainTC.Location = new System.Drawing.Point(3, 39);
-            this.mainTC.Name = "mainTC";
-            this.mainTC.SelectedIndex = 0;
-            this.mainTC.Size = new System.Drawing.Size(712, 21);
-            this.mainTC.TabIndex = 34;
-            // 
-            // mainProperties
-            // 
-            this.mainProperties.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainProperties.Location = new System.Drawing.Point(758, 116);
-            this.mainProperties.Name = "mainProperties";
-            this.mainProperties.Size = new System.Drawing.Size(240, 353);
-            this.mainProperties.TabIndex = 44;
-            // 
-            // mainSP
-            // 
-            this.mainSP.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainSP.Location = new System.Drawing.Point(755, 116);
-            this.mainSP.Name = "mainSP";
-            this.mainSP.Size = new System.Drawing.Size(3, 353);
-            this.mainSP.TabIndex = 45;
-            this.mainSP.TabStop = false;
+            this.rdlEditPreview1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdlEditPreview1.CurrentInsert = null;
+            this.rdlEditPreview1.Location = new System.Drawing.Point(3, 116);
+            this.rdlEditPreview1.Modified = false;
+            this.rdlEditPreview1.Name = "rdlEditPreview1";
+            this.rdlEditPreview1.SelectedText = "";
+            this.rdlEditPreview1.SelectionTool = false;
+            this.rdlEditPreview1.Size = new System.Drawing.Size(746, 350);
+            this.rdlEditPreview1.TabIndex = 0;
+            this.rdlEditPreview1.Zoom = 1F;
+            this.rdlEditPreview1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.UseZoom;
             // 
             // RdlUserControl
             // 
