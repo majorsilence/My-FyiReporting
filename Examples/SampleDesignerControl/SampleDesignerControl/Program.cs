@@ -16,7 +16,11 @@ namespace SampleApp2_SetData
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form frm = new Form();
+            fyiReporting.RdlDesign.RdlUserControl ctl = new fyiReporting.RdlDesign.RdlUserControl();
+            ctl.Dock = DockStyle.Fill;
+            frm.Controls.Add(ctl);
+            Application.Run(frm);
         }
     }
 }
