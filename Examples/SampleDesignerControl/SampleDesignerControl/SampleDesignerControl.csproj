@@ -119,6 +119,10 @@
       <Project>{3e1d2c49-44a2-46a0-b107-9e8a87ae78a7}</Project>
       <Name>ReportDesigner</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj">
+      <Project>{d99145b1-cb6c-41f5-ba86-723325145fb5}</Project>
+      <Name>RdlViewer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="RdlEngineConfig.xml">
