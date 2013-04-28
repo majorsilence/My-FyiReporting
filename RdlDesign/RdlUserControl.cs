@@ -43,7 +43,11 @@ namespace fyiReporting.RdlDesign
             rdlEditPreview1.OnReportItemInserted += ReportItemInserted;
             rdlEditPreview1.OnOpenSubreport += OpenSubReportEvent;
             rdlEditPreview1.OnHeightChanged += HeightChanged;
-            rdlEditPreview1.OnSelectionMoved += SelectionChanged;
+            rdlEditPreview1.OnSelectionMoved += SelectionMoved;
+            mainProperties.HidePropertiesClicked += delegate(object sender, EventArgs e)
+            {
+                ShowProperties(!_ShowProperties);
+            };
         }
 
         public fyiReporting.RdlViewer.RdlViewer Viewer
@@ -460,6 +464,30 @@ namespace fyiReporting.RdlDesign
                 mainProperties.ResetSelection(null, null);
             else
                 mainProperties.ResetSelection(rdlEditPreview1.DrawCtl, rdlEditPreview1.DesignCtl);
+        }
+
+        internal void ShowProperties(bool bShow)
+        {
+            _ShowProperties = bShow;
+            if (!_ShowProperties || rdlEditPreview1.DesignTab != "design")
+                mainProperties.ResetSelection(null, null);
+            else
+                mainProperties.ResetSelection(rdlEditPreview1.DrawCtl, rdlEditPreview1.DesignCtl);
+
+            mainProperties.Visible = splitContainer1.Panel2.Visible = _ShowProperties;
+            if (splitContainer1.Panel2.Visible == false)
+            {
+                splitContainer1.Panel2Collapsed = true;
+                splitContainer1.Panel2.Hide();
+                ButtonShowProperties.Visible = true;
+            }
+            else 
+            {
+                ButtonShowProperties.Visible = false;
+                splitContainer1.Panel2Collapsed = false;
+                splitContainer1.Panel2.Show();
+            }
+
         }
 
         public void ApplyStyleToSelected(string name, string v)
@@ -1068,6 +1096,11 @@ namespace fyiReporting.RdlDesign
                 ApplyStyleToSelected("BackgroundColor", backColorPicker1.Text);
                 SetProperties();
             }
+        }
+
+        private void ButtonShowProperties_Click(object sender, EventArgs e)
+        {
+            ShowProperties(!_ShowProperties);
         }
 
     }
