@@ -1,6 +1,8 @@
-cd ../RdlCmd/bin/Release/
+cd ../RdlCmd
 
-xbuild "RdlCmd.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" //m:4
+xbuild "RdlCmd.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /m:4
+
+cd ./bin/Release/
 
 mkbundle -o RdlCmd --deps RdlCmd.exe RdlEngine.dll itextsharp.dll Mono.Security.dll Npgsql.dll ICSharpCode.SharpZipLib.dll --static
 
