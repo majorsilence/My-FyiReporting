@@ -44,10 +44,42 @@ namespace fyiReporting.RdlDesign
             rdlEditPreview1.OnOpenSubreport += OpenSubReportEvent;
             rdlEditPreview1.OnHeightChanged += HeightChanged;
             rdlEditPreview1.OnSelectionMoved += SelectionMoved;
+            rdlEditPreview1.OnDesignTabChanged += DesignTabChanged;
             mainProperties.HidePropertiesClicked += delegate(object sender, EventArgs e)
             {
                 ShowProperties(!_ShowProperties);
             };
+        }
+
+
+        /// <summary>
+        /// Open a file programmatically when the designer is already open.
+        /// </summary>
+        /// <param name="filePath">The full path to the rdl report.</param>
+        /// <example>
+        /// An example of opening a designer form and loading one report.
+        /// <code lang="cs">
+        /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+        /// designer.Show();
+        /// designer.OpenFile(@"Path\to\a\report.rdl");
+        /// </code>
+        /// <code lang="vb">
+        /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+        /// designer.Show() 
+        /// designer.OpenFile("Path\to\a\report.rdl")
+        /// </code>
+        /// </example>
+        /// <remarks>
+        /// You can open as many reports as you want by calling this function. The only limitation is that
+        /// the designer must already be running by having called the Show() function first.
+        /// </remarks>
+        public void OpenFile(string filePath)
+        {
+            this.OpenFile(new Uri(filePath));
+        }
+        public void OpenFile(Uri filePath)
+        {
+            OpenReport(filePath, null);
         }
 
         public fyiReporting.RdlViewer.RdlViewer Viewer
@@ -421,6 +453,194 @@ namespace fyiReporting.RdlDesign
             bSuppressChange = false;
         }
 
+        private void DesignTabChanged(object sender, System.EventArgs e)
+        {
+
+            string tab = "";
+            bool bEnableEdit = false;
+            bool bEnableDesign = false;
+            bool bEnablePreview = false;
+            bool bShowProp = _ShowProperties;
+            switch (rdlEditPreview1.CurrentTab)
+            {
+                case "edit":
+                    bEnableEdit = true;
+                    break;
+                case "design":
+                    bEnableDesign = true;
+                    break;
+                case "preview":
+                    bEnablePreview = true;
+                    break;
+            }
+ 
+            ShowProperties(bShowProp);
+            if (leftAlignToolStripButton2 != null)
+            {
+                leftAlignToolStripButton2.Enabled = bEnableDesign;
+            }
+            if (centerAlignToolStripButton2 != null)
+            {
+                centerAlignToolStripButton2.Enabled = bEnableDesign;
+            }
+            if (rightAlignToolStripButton3 != null)
+            {
+                rightAlignToolStripButton3.Enabled = bEnableDesign;
+            }
+            if (boldToolStripButton1 != null)
+            {
+                boldToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (italiacToolStripButton1 != null)
+            {
+                italiacToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (underlineToolStripButton2 != null)
+            {
+                underlineToolStripButton2.Enabled = bEnableDesign;
+            }
+            if (fontToolStripComboBox1 != null)
+            {
+                fontToolStripComboBox1.Enabled = bEnableDesign;
+            }
+            if (fontSizeToolStripComboBox1 != null)
+            {
+                fontSizeToolStripComboBox1.Enabled = bEnableDesign;
+            }
+            if (foreColorPicker1 != null)
+            {
+                foreColorPicker1.Enabled = bEnableDesign;
+            }
+            if (backColorPicker1 != null)
+            {
+                backColorPicker1.Enabled = bEnableDesign;
+            }
+            if (cutToolStripButton1 != null)
+            {
+                cutToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
+            if (copyToolStripButton1 != null)
+            {
+                copyToolStripButton1.Enabled = bEnableDesign | bEnableEdit | bEnablePreview;
+            }
+            if (undoToolStripButton1 != null)
+            {
+                undoToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
+            if (pasteToolStripButton1 != null)
+            {
+                pasteToolStripButton1.Enabled = bEnableDesign | bEnableEdit;
+            }
+            if (printToolStripButton2 != null)
+            {
+                printToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (textboxToolStripButton1 != null)
+            {
+                textboxToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (selectToolStripButton2 != null)
+            {
+                selectToolStripButton2.Enabled = bEnablePreview;
+                selectToolStripButton2.Checked = SelectionTool;
+            }
+            if (chartToolStripButton1 != null)
+            {
+                chartToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (rectangleToolStripButton1 != null)
+            {
+                rectangleToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (tableToolStripButton1 != null)
+            {
+                tableToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (matrixToolStripButton1 != null)
+            {
+                matrixToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (listToolStripButton1 != null)
+            {
+                listToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (lineToolStripButton1 != null)
+            {
+                lineToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (imageToolStripButton1 != null)
+            {
+                imageToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (subreportToolStripButton1 != null)
+            {
+                subreportToolStripButton1.Enabled = bEnableDesign;
+            }
+            if (pdfToolStripButton2 != null)
+            {
+                pdfToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (TifToolStripButton2 != null)
+            {
+                TifToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (XmlToolStripButton2 != null)
+            {
+                XmlToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (htmlToolStripButton2 != null)
+            {
+                htmlToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (MhtToolStripButton2 != null)
+            {
+                MhtToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (CsvToolStripButton2 != null)
+            {
+                CsvToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (excelToolStripButton2 != null)
+            {
+                excelToolStripButton2.Enabled = bEnablePreview;
+            }
+            if (RtfToolStripButton2 != null)
+            {
+                RtfToolStripButton2.Enabled = bEnablePreview;
+            }
+            
+            this.EnableEditTextBox();
+
+            if (zoomToolStripComboBox1 != null)
+            {
+                zoomToolStripComboBox1.Enabled = bEnablePreview;
+                string zText = "Actual Size";
+
+                switch (ZoomMode)
+                {
+                    case ZoomEnum.FitWidth:
+                        zText = "Fit Width";
+                        break;
+                    case ZoomEnum.FitPage:
+                        zText = "Fit Page";
+                        break;
+                    case ZoomEnum.UseZoom:
+                        if (Zoom == 1)
+                            zText = "Actual Size";
+                        else
+                            zText = string.Format("{0:0}", Zoom * 100f);
+                        break;
+                }
+                zoomToolStripComboBox1.Text = zText;
+                
+            }
+            // when no active sheet
+            if (this.saveToolStripButton1 != null)
+                this.saveToolStripButton1.Enabled = true;
+
+            // Update the status and position information
+            SetStatusNameAndPosition();
+        }
 
         private void EnableEditTextBox()
         {

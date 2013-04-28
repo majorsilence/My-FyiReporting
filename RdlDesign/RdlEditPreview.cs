@@ -152,6 +152,8 @@ namespace fyiReporting.RdlDesign
 			get {return dcDesign.ReportDocument;}
 		}
 
+        internal string CurrentTab { get { return _CurrentTab; } }
+
 		internal string DesignTab
 		{
 			get {return _CurrentTab;}

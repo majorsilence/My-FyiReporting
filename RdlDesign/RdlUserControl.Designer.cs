@@ -302,7 +302,7 @@
             // ctlEditTextbox
             // 
             this.ctlEditTextbox.Name = "ctlEditTextbox";
-            this.ctlEditTextbox.Size = new System.Drawing.Size(250, 25);
+            this.ctlEditTextbox.Size = new System.Drawing.Size(250, 23);
             this.ctlEditTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ctlEditTextbox_KeyDown);
             this.ctlEditTextbox.Validated += new System.EventHandler(this.ctlEditTextbox_Validated);
             // 
