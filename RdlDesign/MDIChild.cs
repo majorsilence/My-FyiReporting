@@ -39,6 +39,8 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     internal partial class MDIChild 
     {
+
+
         public delegate void RdlChangeHandler(object sender, EventArgs e);
         public event RdlChangeHandler OnSelectionChanged;
         public event RdlChangeHandler OnSelectionMoved;

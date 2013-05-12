@@ -9,7 +9,7 @@ namespace fyiReporting.RdlDesign
     public partial class DialogDatabase : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		RdlDesigner _rDesigner=null;
+		
 private System.Windows.Forms.Button btnCancel;
 private System.Windows.Forms.Panel panel1;
 private System.Windows.Forms.Button btnOK;
@@ -952,7 +952,7 @@ private TextBox tbSQL;
             this.rdlViewer1.SourceRdl = null;
             this.rdlViewer1.TabIndex = 0;
             this.rdlViewer1.UseTrueMargins = true;
-            this.rdlViewer1.Zoom = 0.5969851F;
+            this.rdlViewer1.Zoom = 0.6181992F;
             this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
             // 
             // btnCancel
@@ -1001,6 +1001,7 @@ private TextBox tbSQL;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Report from Database";
             this.Closed += new System.EventHandler(this.DialogDatabase_Closed);
+            this.Load += new System.EventHandler(this.DialogDatabase_Load);
             this.tcDialog.ResumeLayout(false);
             this.ReportType.ResumeLayout(false);
             this.ReportType.PerformLayout();

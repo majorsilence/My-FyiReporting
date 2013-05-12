@@ -141,6 +141,50 @@ namespace fyiReporting.RdlDesign
 			return sw.ToString();
 		}
 
+        static internal bool GetSharedConnectionInfo(RdlUserControl dsr, string filename, out string dataProvider, out string connectInfo)
+        {
+            dataProvider = null;
+            connectInfo = null;
+
+            string pswd = null;
+            string xml = "";
+            try
+            {
+                pswd = dsr.GetPassword();
+                if (pswd == null)
+                    return false;
+                if (!filename.EndsWith(".dsr", StringComparison.InvariantCultureIgnoreCase))
+                    filename += ".dsr";
+
+                xml = RDL.DataSourceReference.Retrieve(filename, pswd);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to open shared connection, password or file is invalid.", "Test Connection");
+                dsr.ResetPassword();			// make sure to prompt again for the password
+                return false;
+            }
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(xml);
+            XmlNode xNodeLoop = xDoc.FirstChild;
+            foreach (XmlNode node in xNodeLoop.ChildNodes)
+            {
+                switch (node.Name)
+                {
+                    case "DataProvider":
+                        dataProvider = node.InnerText;
+                        break;
+                    case "ConnectString":
+                        connectInfo = node.InnerText;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return true;
+        }
+
+
         static internal bool GetSharedConnectionInfo(RdlDesigner dsr, string filename, out string dataProvider, out string connectInfo)
         {
             dataProvider = null;
