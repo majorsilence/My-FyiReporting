@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -38,7 +38,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -141,6 +142,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataProviders\DataProviders.csproj">
+      <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
+      <Name>DataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RdlCri\RdlCri.csproj">
+      <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
+      <Name>RdlCri</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RdlEngine\RdlEngine.csproj">
       <Project>{C97E91F4-B310-44E2-9B6C-96775395722D}</Project>
       <Name>RdlEngine</Name>
@@ -172,6 +181,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

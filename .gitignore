@@ -2701,3 +2701,8 @@ My-FyiReporting.4.5.2.x86.nupkg
 /RdlDesign/obj/Debug/fyiReporting.RdlDesign.RdlUserControl.resources
 /RdlDesign/obj/x86/Debug/fyiReporting.RdlDesign.RdlUserControl.resources
 /RdlViewer/obj/Debug/RdlViewer.csprojResolveAssemblyReference.cache
+/RdlCmd/RdlCmd.csproj.user
+/RdlCmd/bin/x86/Debug/DataProviders.dll
+/RdlCmd/bin/x86/Debug/DataProviders.pdb
+/RdlCmd/bin/x86/Debug/RdlCmd.exe.config
+/RdlCmd/bin/x86/Debug/RdlCmd.vshost.exe.config
