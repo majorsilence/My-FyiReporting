@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDesigner", "..\..\Rdl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer", "..\..\RdlViewer\RdlViewer.csproj", "{D99145B1-CB6C-41F5-BA86-723325145FB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDesignerControlWPF", "SampleDesignerControlWPF\SampleDesignerControlWPF.csproj", "{24171317-5C8C-4583-AF20-8C67EF9032EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,14 @@ Global
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|x64.Build.0 = Release|x64
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|x86.ActiveCfg = Release|x86
 		{D99145B1-CB6C-41F5-BA86-723325145FB5}.Release|x86.Build.0 = Release|x86
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{24171317-5C8C-4583-AF20-8C67EF9032EE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
