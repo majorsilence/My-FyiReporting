@@ -1,6 +1,6 @@
 
 # Instructions (Ubuntu)
-# install build-essential, xbuild
+# install build-essential, xbuild, msttcorefonts
 
 cd ../RdlCmd
 
@@ -18,7 +18,7 @@ rm ./RdlCmd
 #mkbundle -o RdlCmd --deps RdlCmd.exe RdlEngine.dll itextsharp.dll Mono.Security.dll Npgsql.dll ICSharpCode.SharpZipLib.dll --static
 
 # Support building with static glibc
-mkbundle -c -o RdlCmd.c -oo RdlCmd.o --deps RdlCmd.exe RdlEngine.dll itextsharp.dll Mono.Security.dll Npgsql.dll ICSharpCode.SharpZipLib.dll --static
+mkbundle -c -o RdlCmd.c -oo RdlCmd.o --deps RdlCmd.exe RdlEngine.dll RdlCri.dll DataProviders.dll itextsharp.dll Mono.Security.dll Npgsql.dll ICSharpCode.SharpZipLib.dll --static
 
 # Debian 6
 # gcc -o RdlCmd -Wall `pkg-config --cflags mono` RdlCmd.c  `pkg-config --libs-only-L mono` -Wl,-Bstatic -lmono -Wl,-Bstatic `pkg-config --libs-only-l mono | sed -e "s/\-lmono //"` -static-libgcc RdlCmd.o
