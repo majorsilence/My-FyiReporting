@@ -293,11 +293,19 @@ namespace fyiReporting.RdlDesign
 		}
 		#endregion
 
+        public event EventHandler HidePropertiesClicked = null;
         private void bClose_Click(object sender, EventArgs e)
         {
             RdlDesigner rd = this.Parent as RdlDesigner;
             if (rd == null)
+            {
+                if (HidePropertiesClicked != null)
+                {
+                    HidePropertiesClicked(sender, e);
+                }
                 return;
+            }
+
             rd.ShowProperties(false);
         }
 

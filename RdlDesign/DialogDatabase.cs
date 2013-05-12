@@ -43,7 +43,8 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     public partial class DialogDatabase 
     {
-
+        RdlDesigner _rDesigner = null;
+        RdlUserControl _rUserControl = null;
         static private readonly string SHARED_CONNECTION = "Shared Data Source";
         string _StashConnection = null;
 
@@ -246,6 +247,22 @@ namespace fyiReporting.RdlDesign
         public DialogDatabase(RdlDesigner rDesigner)
         {
             _rDesigner = rDesigner;
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+
+            string[] items = RdlEngineConfig.GetProviders();
+            cbConnectionTypes.Items.Add(SHARED_CONNECTION);
+            cbConnectionTypes.Items.AddRange(items);
+            cbConnectionTypes.SelectedIndex = 1;
+            cbOrientation.SelectedIndex = 0;
+        }
+
+
+        public DialogDatabase(RdlUserControl rDesigner)
+        {
+            _rUserControl = rDesigner;
             //
             // Required for Windows Form Designer support
             //
@@ -887,7 +904,14 @@ namespace fyiReporting.RdlDesign
             if (!DoReportSyntax(true))
                 return false;
 
-            rdlViewer1.GetDataSourceReferencePassword = _rDesigner.SharedDatasetPassword;
+            if (_rDesigner != null)
+            {
+                rdlViewer1.GetDataSourceReferencePassword = _rDesigner.SharedDatasetPassword;
+            }
+            else if (_rUserControl != null)
+            {
+                rdlViewer1.GetDataSourceReferencePassword = _rUserControl.SharedDatasetPassword;
+            }
             rdlViewer1.SourceRdl = tbReportSyntax.Text;
             return true;
         }
@@ -898,8 +922,16 @@ namespace fyiReporting.RdlDesign
             _StashConnection = null;
             if (cType == SHARED_CONNECTION)
             {
-                if (!DesignerUtility.GetSharedConnectionInfo(_rDesigner, tbConnection.Text, out cType, out _StashConnection))
-                    return null;
+                if (_rDesigner != null)
+                {
+                    if (!DesignerUtility.GetSharedConnectionInfo(_rDesigner, tbConnection.Text, out cType, out _StashConnection))
+                        return null;
+                }
+                else if(_rUserControl != null)
+                {
+                    if (!DesignerUtility.GetSharedConnectionInfo(_rUserControl, tbConnection.Text, out cType, out _StashConnection))
+                        return null;
+                }
             }
             else
             {
@@ -1546,6 +1578,11 @@ namespace fyiReporting.RdlDesign
              {
                 tbSQL.SelectAll();
              }
+
+        }
+
+        private void DialogDatabase_Load(object sender, EventArgs e)
+        {
 
         }
 
