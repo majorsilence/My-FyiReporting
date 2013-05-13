@@ -210,7 +210,6 @@
 /RdlGtkViewer/RdlGtkViewer/bin/Debug/System.Data.SQLite.dll
 /RdlGtkViewer/RdlGtkViewer/bin/Debug/poppler-sharp.dll
 /RdlGtkViewer/RdlGtkViewer/bin/Debug/poppler-sharp.dll.config
-
 /RdlEngine/RdlEngine.suo
 /RdlEngine/bin/Debug/RdlEngine.dll
 /RdlEngine/bin/Debug/RdlEngine.pdb
@@ -1862,7 +1861,6 @@ setup-my-fyiReporting-dot-net2-x86.msi
 /Release-Builds/4.5.2-setup-my-fyiReporting-dot-net2-x86.msi
 GenerateResource.read.6.tlog
 GenerateResource.write.6.tlog
-SimpleTest1.rdl
 GenerateResource.read.12.tlog
 GenerateResource.write.12.tlog
 GenerateResource.read.35.tlog
