@@ -359,9 +359,13 @@ namespace fyiReporting.RDL
                         }
                     }
                     if (la == null)
+					{
                         la = XmlUtil.AssemblyLoadFrom(codemodule);
+					}
                     if (la == null)
+					{
                         msg = string.Format("{0} could not be loaded", codemodule);
+					}
                 }
                 sce = new SqlConfigEntry(provider, codemodule, cname, la, tselect, msg);
                 dsDir.Add(provider, sce);
@@ -391,16 +395,38 @@ namespace fyiReporting.RDL
                 case "oledb":
                     cn = new OleDbConnection(cstring);
                     break;
+			    case "filedirectory":
+    				cn = new fyiReporting.Data.FileDirConnection(cstring);
+    				break;
+                case "xml":
+                    cn = new fyiReporting.Data.XmlConnection(cstring);
+                    break;
+                case "webservice":
+                    cn = new fyiReporting.Data.WebServiceConnection(cstring);
+                    break;
+                case "weblog":
+                    cn = new fyiReporting.Data.LogConnection(cstring);
+                    break;
+                case "text":
+                    cn = new fyiReporting.Data.TxtConnection(cstring);
+                    break;
+                case "itunes":
+                    cn = new fyiReporting.Data.iTunesConnection(cstring);
+                    break;
                 default:
-                    if (SqlEntries == null)         // if never initialized; we should init 
+                    if (SqlEntries == null){         // if never initialized; we should init 
                         RdlEngineConfigInit();
+				}
+				System.Console.WriteLine("Attempt to find provider");
                     SqlConfigEntry sce = SqlEntries[provider] as SqlConfigEntry;
                     if (sce == null || sce.CodeModule == null)
                     {
-                        if (sce != null && sce.ErrorMsg != null)   // error during initialization?? 
+                        if (sce != null && sce.ErrorMsg != null){   // error during initialization?? 
                             throw new Exception(sce.ErrorMsg);
+					}
                         break;
                     }
+				System.Console.WriteLine("Provider Create Instance");
                     object[] args = new object[] { cstring };
                     Assembly asm = sce.CodeModule;
                     object o = asm.CreateInstance(sce.ClassName, false,

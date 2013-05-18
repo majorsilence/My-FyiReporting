@@ -33,3 +33,5 @@ rm -rf ./linux-rdlcmd-bundle
 mkdir ./linux-rdlcmd-bundle
 
 cp ../RdlCmd/bin/Release/RdlCmd ./linux-rdlcmd-bundle/RdlCmd
+cp ../RdlCmd/bin/Release/RdlEngineConfig.Linux.xml ./linux-rdlcmd-bundle/RdlEngineConfig.Linux.xml
+

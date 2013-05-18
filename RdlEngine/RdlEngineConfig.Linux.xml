@@ -72,48 +72,6 @@
 			<Interface>SQL</Interface>
 		</DataSource>
 		<DataSource>
-			<DataProvider>XML</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.XmlConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>File</Interface>
-		</DataSource>
-		<DataSource>
-			<DataProvider>WebService</DataProvider>
-      <CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.WebServiceConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>WebService</Interface>
-		</DataSource>
-		<DataSource>
-			<DataProvider>WebLog</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.LogConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>File</Interface>
-		</DataSource>
-		<DataSource>
-			<DataProvider>Text</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.TxtConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>File</Interface>
-		</DataSource>
-		<DataSource>
-			<DataProvider>iTunes</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.iTunesConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>File</Interface>
-		</DataSource>
-		<DataSource>
-			<DataProvider>FileDirectory</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.FileDirConnection</ClassName>
-			<TableSelect></TableSelect>
-			<Interface>File</Interface>
-		</DataSource>
-		<DataSource>
 			<DataProvider>OracleSp</DataProvider>
 			<CodeModule>OracleSp.dll</CodeModule>
 			<ClassName>fyiReporting.OracleSp.OracleSpConnection</ClassName>
