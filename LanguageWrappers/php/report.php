@@ -6,7 +6,7 @@ require_once("config.php");
 class Report {
 
 	private $report_path="";
-	private $parameters = array("");
+	private $parameters = array();
 	
 	public function __construct($report_path){
 		$this->report_path = $report_path;
@@ -19,26 +19,76 @@ class Report {
 	*/
 	public function set_parameter($name, $value){
 	
+		$this->parameters[$name] = $value;
 	}
 	
 	/**
 	* Export report to a file on the server
-	* @param string $type - Export type "PDF", "CSV", "EXCEL".  If type does not match it will default to PDF.
+	* @param string $type - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
 	* @param string $export_type - path on server to export file
 	*/
 	public function export($type, $export_path){
+		if ($type != "pdf" && $type != "csv" && $type != "xslx" && type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
+			$type = "pdf";
+		}
+		
 	
-	
-	
-	
+		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows;
+		
+		
+		$cmd = "";
+		if($self_hosting_rdlcmd == true || $is_running_on_windows == true){
+			// if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
+			$cmd = $path_to_rdlcmd . ' ';
+		}
+		else{
+			// mono is required to run rdlcmd
+			$cmd = '"' . $path_to_mono . '" "' . $path_to_rdlcmd . '" ';
+		}
+		
+		
+		// add path to rdl file
+		$cmd = $cmd . '"/f' . $this->report_path . ' ';
+		
+		// Add all parameters to report
+		$count=0;
+		foreach($this->parameters as $key => $value){
+			if ($count == 0){
+				$cmd = $cmd . '?' . $key . '=' . $value;
+			}
+			else {
+				$cmd = $cmd . '&' . $key . '=' . $value;
+			}
+		
+			$count = $count + 1;
+		}
+		if($count>0){
+			$cmd = $cmd . '"';
+		}
+		
+		// set the export type
+		$cmd = $cmd . '"/t' . $type . '" ';
+		
+		//set the folder that the file will be exported
+		$cmd = $cmd . '"/o' . $export_path . '" ';
+		
+		
+		
+		
 		//shell_exec();
+		
+		
 	}
 
 	/**
 	* Export report to memory for direct display on page
-	* @param string $type - Export type "PDF", "CSV", "EXCEL".  If type does not match it will default to PDF.
+	* @param string $type - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
 	*/
 	public function export_to_memory($type){
+		if ($type != "pdf" && $type != "csv" && $type != "xslx" && type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
+			$type = "pdf";
+		}
+	
 	
 		//shell_exec();
 	}
