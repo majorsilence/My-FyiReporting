@@ -166,14 +166,18 @@ namespace fyiReporting.RdlDesign
             // 
             // dgFilters
             // 
+            this.dgFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgFilters.Location = new System.Drawing.Point(8, 8);
             this.dgFilters.Name = "dgFilters";
-            this.dgFilters.Size = new System.Drawing.Size(376, 264);
+            this.dgFilters.Size = new System.Drawing.Size(423, 264);
             this.dgFilters.TabIndex = 2;
             // 
             // bDelete
             // 
-            this.bDelete.Location = new System.Drawing.Point(392, 40);
+            this.bDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bDelete.Location = new System.Drawing.Point(437, 37);
             this.bDelete.Name = "bDelete";
             this.bDelete.Size = new System.Drawing.Size(48, 23);
             this.bDelete.TabIndex = 1;
@@ -182,7 +186,8 @@ namespace fyiReporting.RdlDesign
             // 
             // bUp
             // 
-            this.bUp.Location = new System.Drawing.Point(392, 71);
+            this.bUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bUp.Location = new System.Drawing.Point(437, 68);
             this.bUp.Name = "bUp";
             this.bUp.Size = new System.Drawing.Size(48, 23);
             this.bUp.TabIndex = 3;
@@ -191,7 +196,8 @@ namespace fyiReporting.RdlDesign
             // 
             // bDown
             // 
-            this.bDown.Location = new System.Drawing.Point(392, 102);
+            this.bDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bDown.Location = new System.Drawing.Point(437, 99);
             this.bDown.Name = "bDown";
             this.bDown.Size = new System.Drawing.Size(48, 23);
             this.bDown.TabIndex = 4;
@@ -200,14 +206,14 @@ namespace fyiReporting.RdlDesign
             // 
             // bValueExpr
             // 
+            this.bValueExpr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bValueExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bValueExpr.Location = new System.Drawing.Point(392, 16);
+            this.bValueExpr.Location = new System.Drawing.Point(437, 8);
             this.bValueExpr.Name = "bValueExpr";
-            this.bValueExpr.Size = new System.Drawing.Size(22, 16);
+            this.bValueExpr.Size = new System.Drawing.Size(48, 23);
             this.bValueExpr.TabIndex = 5;
             this.bValueExpr.Tag = "value";
             this.bValueExpr.Text = "fx";
-            this.bValueExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
             // 
             // FiltersCtl

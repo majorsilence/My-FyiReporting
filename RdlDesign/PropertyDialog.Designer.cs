@@ -37,9 +37,9 @@ private System.ComponentModel.Container components = null;
             this.panel1.Controls.Add(this.bOK);
             this.panel1.Controls.Add(this.bCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 326);
+            this.panel1.Location = new System.Drawing.Point(0, 372);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(458, 40);
+            this.panel1.Size = new System.Drawing.Size(584, 40);
             this.panel1.TabIndex = 1;
             // 
             // bDelete
@@ -87,7 +87,7 @@ private System.ComponentModel.Container components = null;
             this.tcProps.Multiline = true;
             this.tcProps.Name = "tcProps";
             this.tcProps.SelectedIndex = 0;
-            this.tcProps.Size = new System.Drawing.Size(458, 326);
+            this.tcProps.Size = new System.Drawing.Size(584, 372);
             this.tcProps.TabIndex = 0;
             // 
             // PropertyDialog
@@ -95,12 +95,13 @@ private System.ComponentModel.Container components = null;
             this.AcceptButton = this.bOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.bCancel;
-            this.ClientSize = new System.Drawing.Size(458, 366);
+            this.ClientSize = new System.Drawing.Size(584, 412);
             this.Controls.Add(this.tcProps);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(700, 700);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(450, 300);
             this.Name = "PropertyDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

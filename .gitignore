@@ -2585,3 +2585,13 @@ My-FyiReporting.4.5.2.x86.nupkg
 /Release-Builds/my-fyi-build-dot-net-4-x86/Xwt.dll
 /Release-Builds/my-fyi-build-dot-net-4-x64/LibRdlCrossPlatformViewer.dll
 /Release-Builds/my-fyi-build-dot-net-4-x86/LibRdlCrossPlatformViewer.dll
+
+/LibRdlCrossPlatformViewer/bin/Debug/*.pdb
+
+/_bin/x86/Debug
+
+/LibRdlCrossPlatformViewer/bin/Debug
+
+/_bin/Debug
+
+/LibRdlCrossPlatformViewer/obj/Debug

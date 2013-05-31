@@ -1603,7 +1603,7 @@ namespace fyiReporting.RdlDesign
             using (DialogDatabase dlgDB = new DialogDatabase(this))
             {
                 dlgDB.StartPosition = FormStartPosition.CenterParent;
-                dlgDB.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                //dlgDB.FormBorderStyle = FormBorderStyle.SizableToolWindow;
 
                 // show modally
                 dlgDB.ShowDialog();
