@@ -221,6 +221,12 @@
     <Compile Include="ColorPickerPopup.Designer.cs">
       <DependentUpon>ColorPickerPopup.cs</DependentUpon>
     </Compile>
+	<Compile Include="DataSetsCtl.Designer.cs">
+      <DependentUpon>DataSetsCtl.cs</DependentUpon>
+    </Compile>
+	<Compile Include="DataSetRowsCtl.Designer.cs">
+      <DependentUpon>DataSetRowsCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogAbout.Designer.cs">
       <DependentUpon>DialogAbout.cs</DependentUpon>
     </Compile>

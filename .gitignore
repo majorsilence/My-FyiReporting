@@ -2709,3 +2709,11 @@ My-FyiReporting.4.5.2.x86.nupkg
 /LibRdlCrossPlatformViewer/obj/Debug
 
 /RdlDesign/bin/x86/Debug
+
+/RdlAsp/bin/x86/Debug
+
+/RdlDesktop/bin/x86/Debug
+
+/RdlViewer/bin/x86/Debug
+
+/RdlViewer/RdlReader/bin/x86/Debug
