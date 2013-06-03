@@ -2704,3 +2704,8 @@ My-FyiReporting.4.5.2.x86.nupkg
 /RdlCmd/bin/x86/Debug/DataProviders.pdb
 /RdlCmd/bin/x86/Debug/RdlCmd.exe.config
 /RdlCmd/bin/x86/Debug/RdlCmd.vshost.exe.config
+
+/LibRdlCrossPlatformViewer/bin/Debug
+/LibRdlCrossPlatformViewer/obj/Debug
+
+/RdlDesign/bin/x86/Debug
