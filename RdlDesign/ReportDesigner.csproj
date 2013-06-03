@@ -795,6 +795,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataProviders\DataProviders.csproj">
+      <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
+      <Name>DataProviders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RdlCri\RdlCri.csproj">
       <Project>{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}</Project>
       <Name>RdlCri</Name>
