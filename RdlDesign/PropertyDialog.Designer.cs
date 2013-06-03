@@ -37,9 +37,9 @@ private System.ComponentModel.Container components = null;
             this.panel1.Controls.Add(this.bOK);
             this.panel1.Controls.Add(this.bCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 326);
+            this.panel1.Location = new System.Drawing.Point(0, 372);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(458, 40);
+            this.panel1.Size = new System.Drawing.Size(584, 40);
             this.panel1.TabIndex = 1;
             // 
             // bDelete
@@ -54,6 +54,7 @@ private System.ComponentModel.Container components = null;
             // 
             // bApply
             // 
+            this.bApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bApply.Location = new System.Drawing.Point(376, 8);
             this.bApply.Name = "bApply";
             this.bApply.Size = new System.Drawing.Size(75, 23);
@@ -63,6 +64,7 @@ private System.ComponentModel.Container components = null;
             // 
             // bOK
             // 
+            this.bOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bOK.Location = new System.Drawing.Point(216, 8);
             this.bOK.Name = "bOK";
             this.bOK.Size = new System.Drawing.Size(75, 23);
@@ -72,6 +74,7 @@ private System.ComponentModel.Container components = null;
             // 
             // bCancel
             // 
+            this.bCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bCancel.CausesValidation = false;
             this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bCancel.Location = new System.Drawing.Point(296, 8);
@@ -87,7 +90,7 @@ private System.ComponentModel.Container components = null;
             this.tcProps.Multiline = true;
             this.tcProps.Name = "tcProps";
             this.tcProps.SelectedIndex = 0;
-            this.tcProps.Size = new System.Drawing.Size(458, 326);
+            this.tcProps.Size = new System.Drawing.Size(584, 372);
             this.tcProps.TabIndex = 0;
             // 
             // PropertyDialog
@@ -95,13 +98,15 @@ private System.ComponentModel.Container components = null;
             this.AcceptButton = this.bOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.bCancel;
-            this.ClientSize = new System.Drawing.Size(458, 366);
+            this.ClientSize = new System.Drawing.Size(584, 412);
             this.Controls.Add(this.tcProps);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1000, 700);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(450, 300);
             this.Name = "PropertyDialog";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Properties";

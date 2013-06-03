@@ -115,37 +115,39 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.dgParms = new System.Windows.Forms.DataGrid();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
-			((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// dgParms
-			// 
-			this.dgParms.CaptionVisible = false;
-			this.dgParms.DataMember = "";
-			this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgParms.Location = new System.Drawing.Point(8, 8);
-			this.dgParms.Name = "dgParms";
-			this.dgParms.Size = new System.Drawing.Size(384, 168);
-			this.dgParms.TabIndex = 2;
-			this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																								this.dgTableStyle});
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.AllowSorting = false;
-			this.dgTableStyle.DataGrid = this.dgParms;
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyle.MappingName = "";
-			// 
-			// SubreportCtl
-			// 
-			this.Controls.Add(this.dgParms);
-			this.Name = "SubreportCtl";
-			this.Size = new System.Drawing.Size(464, 304);
-			((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
-			this.ResumeLayout(false);
+            this.dgParms = new System.Windows.Forms.DataGrid();
+            this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgParms
+            // 
+            this.dgParms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgParms.CaptionVisible = false;
+            this.dgParms.DataMember = "";
+            this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgParms.Location = new System.Drawing.Point(8, 8);
+            this.dgParms.Name = "dgParms";
+            this.dgParms.Size = new System.Drawing.Size(384, 168);
+            this.dgParms.TabIndex = 2;
+            this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
+            this.dgTableStyle});
+            // 
+            // dgTableStyle
+            // 
+            this.dgTableStyle.AllowSorting = false;
+            this.dgTableStyle.DataGrid = this.dgParms;
+            this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            // 
+            // QueryParametersCtl
+            // 
+            this.Controls.Add(this.dgParms);
+            this.Name = "QueryParametersCtl";
+            this.Size = new System.Drawing.Size(464, 304);
+            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 		#endregion
