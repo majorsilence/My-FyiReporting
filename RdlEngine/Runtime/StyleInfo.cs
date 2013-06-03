@@ -442,7 +442,8 @@ namespace fyiReporting.RDL
 			TextAlignEnum ta;
             try
             {
-                ta = (TextAlignEnum)Enum.Parse(typeof(TextAlignEnum), v);
+
+                ta = (TextAlignEnum)Enum.Parse(typeof(TextAlignEnum), System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(v));
             }
             catch
             {

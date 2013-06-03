@@ -1,4 +1,4 @@
-/* ====================================================================
+﻿/* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
@@ -339,6 +339,18 @@ namespace fyiReporting.RDL
                 }
                 _Footer.RunPage(pgs, row);                
             }
+        }
+
+        internal float GetPageFooterHeight(Pages pgs, Row row)
+        {
+            // Calculate height of footer on every page
+            float FooterHeight = 0;
+
+            if (Footer != null && Footer.RepeatOnNewPage)
+                FooterHeight += Footer.HeightOfRows(pgs, row);
+
+            // Need add calculation for group footer which show on every page
+            return FooterHeight;
         }
 
 		internal void RunPageHeader(Pages pgs, Row frow, bool bFirst, TableGroup stoptg)
@@ -821,10 +833,13 @@ namespace fyiReporting.RDL
 					}
 				}
 				float footerHeight = RunGroupsFooterHeight(pgs, wc, ge);
-                
-				// dst, always use the footer height
-				//if (ge.EndRow == endRow)
-					footerHeight += groupHeight;
+
+
+                if (ge.EndRow == endRow && (  Footer != null ? !Footer.RepeatOnNewPage: true))
+                {
+                    footerHeight += groupHeight;
+                    }        
+      
 				// Handle the nested groups if any
 				if (ge.NestedGroup.Count > 0)
 					RunGroupsPage(pgs, wc, ge.NestedGroup, ge.EndRow, footerHeight);

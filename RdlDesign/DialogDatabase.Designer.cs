@@ -9,7 +9,7 @@ namespace fyiReporting.RdlDesign
     public partial class DialogDatabase : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		RdlDesigner _rDesigner=null;
+		
 private System.Windows.Forms.Button btnCancel;
 private System.Windows.Forms.Panel panel1;
 private System.Windows.Forms.Button btnOK;
@@ -154,10 +154,10 @@ private TextBox tbSQL;
             this.ReportSyntax = new System.Windows.Forms.TabPage();
             this.tbReportSyntax = new System.Windows.Forms.TextBox();
             this.ReportPreview = new System.Windows.Forms.TabPage();
+            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
             this.tcDialog.SuspendLayout();
             this.ReportType.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -190,7 +190,7 @@ private TextBox tbSQL;
             this.tcDialog.Location = new System.Drawing.Point(0, 0);
             this.tcDialog.Name = "tcDialog";
             this.tcDialog.SelectedIndex = 0;
-            this.tcDialog.Size = new System.Drawing.Size(534, 346);
+            this.tcDialog.Size = new System.Drawing.Size(528, 326);
             this.tcDialog.TabIndex = 0;
             this.tcDialog.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -208,7 +208,7 @@ private TextBox tbSQL;
             this.ReportType.Controls.Add(this.groupBox1);
             this.ReportType.Location = new System.Drawing.Point(4, 22);
             this.ReportType.Name = "ReportType";
-            this.ReportType.Size = new System.Drawing.Size(526, 320);
+            this.ReportType.Size = new System.Drawing.Size(520, 300);
             this.ReportType.TabIndex = 3;
             this.ReportType.Tag = "type";
             this.ReportType.Text = "Report Info";
@@ -387,7 +387,7 @@ private TextBox tbSQL;
             this.DBConnection.Controls.Add(this.tbConnection);
             this.DBConnection.Location = new System.Drawing.Point(4, 22);
             this.DBConnection.Name = "DBConnection";
-            this.DBConnection.Size = new System.Drawing.Size(526, 320);
+            this.DBConnection.Size = new System.Drawing.Size(520, 300);
             this.DBConnection.TabIndex = 0;
             this.DBConnection.Tag = "connect";
             this.DBConnection.Text = "Connection";
@@ -602,7 +602,7 @@ private TextBox tbSQL;
             this.ReportParameters.Controls.Add(this.lbParameters);
             this.ReportParameters.Location = new System.Drawing.Point(4, 22);
             this.ReportParameters.Name = "ReportParameters";
-            this.ReportParameters.Size = new System.Drawing.Size(529, 313);
+            this.ReportParameters.Size = new System.Drawing.Size(520, 300);
             this.ReportParameters.TabIndex = 6;
             this.ReportParameters.Tag = "parameters";
             this.ReportParameters.Text = "Parameters";
@@ -772,7 +772,7 @@ private TextBox tbSQL;
             this.DBSql.Controls.Add(this.panel2);
             this.DBSql.Location = new System.Drawing.Point(4, 22);
             this.DBSql.Name = "DBSql";
-            this.DBSql.Size = new System.Drawing.Size(526, 320);
+            this.DBSql.Size = new System.Drawing.Size(520, 300);
             this.DBSql.TabIndex = 1;
             this.DBSql.Tag = "sql";
             this.DBSql.Text = "SQL";
@@ -783,7 +783,7 @@ private TextBox tbSQL;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(526, 320);
+            this.panel2.Size = new System.Drawing.Size(520, 300);
             this.panel2.TabIndex = 1;
             // 
             // splitContainer1
@@ -800,8 +800,8 @@ private TextBox tbSQL;
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbSQL);
             this.splitContainer1.Panel2.Controls.Add(this.bMove);
-            this.splitContainer1.Size = new System.Drawing.Size(526, 320);
-            this.splitContainer1.SplitterDistance = 174;
+            this.splitContainer1.Size = new System.Drawing.Size(520, 300);
+            this.splitContainer1.SplitterDistance = 173;
             this.splitContainer1.TabIndex = 5;
             // 
             // tvTablesColumns
@@ -810,7 +810,7 @@ private TextBox tbSQL;
             this.tvTablesColumns.FullRowSelect = true;
             this.tvTablesColumns.Location = new System.Drawing.Point(0, 0);
             this.tvTablesColumns.Name = "tvTablesColumns";
-            this.tvTablesColumns.Size = new System.Drawing.Size(174, 320);
+            this.tvTablesColumns.Size = new System.Drawing.Size(173, 300);
             this.tvTablesColumns.TabIndex = 2;
             this.tvTablesColumns.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvTablesColumns_BeforeExpand);
             // 
@@ -823,7 +823,7 @@ private TextBox tbSQL;
             this.tbSQL.Location = new System.Drawing.Point(41, 3);
             this.tbSQL.Multiline = true;
             this.tbSQL.Name = "tbSQL";
-            this.tbSQL.Size = new System.Drawing.Size(304, 314);
+            this.tbSQL.Size = new System.Drawing.Size(299, 294);
             this.tbSQL.TabIndex = 6;
             this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
             this.tbSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSQL_KeyDown);
@@ -846,7 +846,7 @@ private TextBox tbSQL;
             this.TabularGroup.Controls.Add(this.cbColumnList);
             this.TabularGroup.Location = new System.Drawing.Point(4, 22);
             this.TabularGroup.Name = "TabularGroup";
-            this.TabularGroup.Size = new System.Drawing.Size(529, 313);
+            this.TabularGroup.Size = new System.Drawing.Size(520, 300);
             this.TabularGroup.TabIndex = 7;
             this.TabularGroup.Tag = "group";
             this.TabularGroup.Text = "Grouping";
@@ -899,7 +899,7 @@ private TextBox tbSQL;
             this.ReportSyntax.Controls.Add(this.tbReportSyntax);
             this.ReportSyntax.Location = new System.Drawing.Point(4, 22);
             this.ReportSyntax.Name = "ReportSyntax";
-            this.ReportSyntax.Size = new System.Drawing.Size(524, 333);
+            this.ReportSyntax.Size = new System.Drawing.Size(520, 300);
             this.ReportSyntax.TabIndex = 4;
             this.ReportSyntax.Tag = "syntax";
             this.ReportSyntax.Text = "Report Syntax";
@@ -912,7 +912,7 @@ private TextBox tbSQL;
             this.tbReportSyntax.Name = "tbReportSyntax";
             this.tbReportSyntax.ReadOnly = true;
             this.tbReportSyntax.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbReportSyntax.Size = new System.Drawing.Size(524, 333);
+            this.tbReportSyntax.Size = new System.Drawing.Size(520, 300);
             this.tbReportSyntax.TabIndex = 0;
             this.tbReportSyntax.WordWrap = false;
             // 
@@ -921,41 +921,10 @@ private TextBox tbSQL;
             this.ReportPreview.Controls.Add(this.rdlViewer1);
             this.ReportPreview.Location = new System.Drawing.Point(4, 22);
             this.ReportPreview.Name = "ReportPreview";
-            this.ReportPreview.Size = new System.Drawing.Size(524, 333);
+            this.ReportPreview.Size = new System.Drawing.Size(520, 300);
             this.ReportPreview.TabIndex = 5;
             this.ReportPreview.Tag = "preview";
             this.ReportPreview.Text = "Report Preview";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.CausesValidation = false;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(446, 10);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 346);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(534, 40);
-            this.panel1.TabIndex = 3;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(350, 10);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // rdlViewer1
             // 
@@ -978,32 +947,61 @@ private TextBox tbSQL;
             this.rdlViewer1.ShowFindPanel = false;
             this.rdlViewer1.ShowParameterPanel = true;
             this.rdlViewer1.ShowWaitDialog = true;
-            this.rdlViewer1.Size = new System.Drawing.Size(524, 333);
+            this.rdlViewer1.Size = new System.Drawing.Size(520, 300);
             this.rdlViewer1.SourceFile = null;
             this.rdlViewer1.SourceRdl = null;
             this.rdlViewer1.TabIndex = 0;
             this.rdlViewer1.UseTrueMargins = true;
-            this.rdlViewer1.Zoom = 0.6231152F;
+            this.rdlViewer1.Zoom = 0.6181992F;
             this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.CausesValidation = false;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(440, 10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 326);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(528, 40);
+            this.panel1.TabIndex = 3;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Location = new System.Drawing.Point(344, 10);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // DialogDatabase
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(534, 386);
+            this.ClientSize = new System.Drawing.Size(528, 366);
             this.Controls.Add(this.tcDialog);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(900, 900);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(550, 420);
             this.Name = "DialogDatabase";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Report from Database";
             this.Closed += new System.EventHandler(this.DialogDatabase_Closed);
+            this.Load += new System.EventHandler(this.DialogDatabase_Load);
             this.tcDialog.ResumeLayout(false);
             this.ReportType.ResumeLayout(false);
             this.ReportType.PerformLayout();

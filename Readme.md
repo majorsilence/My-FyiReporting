@@ -15,7 +15,7 @@ viewer.
 My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
 
-Also check this projects wiki as information will be slowly added.
+Also check this [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki) as information will be slowly added.
 
 My-FyiReporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
 the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
@@ -122,3 +122,4 @@ A big thanks to all of My-FyiReporting contributors:
 * [Geek648](https://github.com/Geek648)
 * [kobruleht](https://github.com/kobruleht)
 * [jzielke](https://github.com/jzielke)
+* [Gankov](https://github.com/Gankov)

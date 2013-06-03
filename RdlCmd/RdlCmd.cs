@@ -335,6 +335,18 @@ namespace fyiReporting.RdlCmd
 			OneFileStreamGen sg=null;
 			try
 			{
+				bool isOldPdf = false;
+				if (System.Environment.OSVersion.Platform == PlatformID.Unix && type=="pdf" ) {
+
+                    if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts")==false)
+                    {
+						isOldPdf = true;
+                    }
+                   
+                }
+
+
+
                 if (ext == "tifb")
                     FileName = FileName.Substring(0, FileName.Length - 1);      // get rid of the 'b'
 				sg = new OneFileStreamGen(FileName, true);	// overwrite with this name
@@ -342,7 +354,17 @@ namespace fyiReporting.RdlCmd
 				{
 					case "pdf":	
 						if (this._StampInfo == null)
-							report.RunRender(sg, OutputPresentationType.PDF);
+						{
+							if (isOldPdf)
+							{
+								report.RunRender(sg, OutputPresentationType.PDFOldStyle);
+							}
+							else
+							{
+								report.RunRender(sg, OutputPresentationType.PDF);
+							}
+								
+						}
 						else
 							SaveAsPdf(report, sg);
 						break;

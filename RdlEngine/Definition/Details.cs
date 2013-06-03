@@ -131,15 +131,14 @@ namespace fyiReporting.RDL
 				float hrows = HeightOfRows(pgs, row);	// height of all the rows in the details
 				float height = p.YOffset + hrows;
 
-                // dst, add the footerheight if end is reached or the footer must be on every page
-                if ((OwnerTable.Footer != null && OwnerTable.Footer.RepeatOnNewPage) || r == end)
-                    height += footerHeight;
-                 
-				//if (r == end) 
-				//	height += footerHeight;		// on last row; may need additional room for footer
+                // add the footerheight that must be on every page
+                height += OwnerTable.GetPageFooterHeight(pgs, row);
+
+				if (r == end) 
+					height += footerHeight;		// on last row; may need additional room for footer
 				if (height > pgs.BottomOfPage)
 				{
-                    OwnerTable.RunPageFooter(pgs, row, r == end);
+                    OwnerTable.RunPageFooter(pgs, row, false);
 					p = OwnerTable.RunPageNew(pgs, p);
 					OwnerTable.RunPageHeader(pgs, row, false, null);
                     _TableRows.RunPage(pgs, row, true);   // force checking since header + hrows might be > BottomOfPage

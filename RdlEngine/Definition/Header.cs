@@ -87,9 +87,11 @@ namespace fyiReporting.RDL
 			Page p = pgs.CurrentPage;
 
 			float height = p.YOffset + HeightOfRows(pgs, row);
+            height += OwnerTable.GetPageFooterHeight(pgs, row);
 			if (height > pgs.BottomOfPage)
 			{
 				Table t = OwnerTable;
+                t.RunPageFooter(pgs, row, false);
 				p = t.RunPageNew(pgs, p);
 				t.RunPageHeader(pgs, row, false, null);
 				if (this.RepeatOnNewPage)
