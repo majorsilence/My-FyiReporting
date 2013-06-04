@@ -35,30 +35,12 @@ namespace fyiReporting.RdlDesign
 	/// <summary>
 	/// Summary description for StyleCtl.
 	/// </summary>
-	internal class DataSetsCtl : System.Windows.Forms.UserControl, IProperty
+	internal partial class DataSetsCtl : System.Windows.Forms.UserControl, IProperty
 	{
 		private bool _UseTypenameQualified=false;
 		private DesignXmlDraw _Draw;
 		private XmlNode _dsNode;
-		private DataSetValues _dsv;
-		private System.Windows.Forms.ComboBox cbDataSource;
-		private System.Windows.Forms.TextBox tbDSName;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox tbSQL;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.DataGridTableStyle dataGridTableStyle1;
-		private System.Windows.Forms.Button bDeleteField;
-		private System.Windows.Forms.Button bEditSQL;
-		private System.Windows.Forms.Label lDataSource;
-		private System.Windows.Forms.Label lDataSetName;
-		private System.Windows.Forms.DataGrid dgFields;
-		private System.Windows.Forms.Button bRefresh;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown tbTimeout;
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private DataSetValues _dsv;        		
 
 		internal DataSetsCtl(DesignXmlDraw dxDraw, XmlNode dsNode)
 		{
@@ -78,48 +60,8 @@ namespace fyiReporting.RdlDesign
 
 		private void InitValues()
 		{
-			// Initialize the DataGrid columns
-			DataGridTextBoxColumn dgtbName = new DataGridTextBoxColumn();
-			DataGridTextBoxColumn dgtbQueryName = new DataGridTextBoxColumn();
-			DataGridTextBoxColumn dgtbValue = new DataGridTextBoxColumn();
-			DataGridTextBoxColumn dgtbTypeName = new DataGridTextBoxColumn();
-
-			this.dataGridTableStyle1.GridColumnStyles.AddRange(new DataGridColumnStyle[] {
-																					  dgtbName,
-																					  dgtbQueryName,
-																					  dgtbValue,
-																					  dgtbTypeName});
-			// dgtbName
-			dgtbName.Format = "";
-			dgtbName.FormatInfo = null;
-			dgtbName.HeaderText = "Name";
-			dgtbName.MappingName = "Name";
-			dgtbName.Width = 75;
-
-			// dgtbQueryName
-			dgtbQueryName.Format = "";
-			dgtbQueryName.FormatInfo = null;
-			dgtbQueryName.HeaderText = "Query Column Name";
-			dgtbQueryName.MappingName = "QueryName";
-			dgtbQueryName.Width = 80;
-
-			// dgtbValue
-			// 
-			dgtbValue.Format = "";
-			dgtbValue.FormatInfo = null;
-			dgtbValue.HeaderText = "Value";
-			dgtbValue.MappingName = "Value";
-			dgtbValue.Width = 175;
-
-			// dgtbTypeName
-			dgtbTypeName.Format = "";
-			dgtbTypeName.FormatInfo = null;
-			dgtbTypeName.HeaderText = "TypeName";
-			dgtbTypeName.MappingName = "TypeName";
-			dgtbTypeName.Width = 150;
-
-			// cbDataSource
-			cbDataSource.Items.AddRange(_Draw.DataSourceNames);
+            //// cbDataSource
+            cbDataSource.Items.AddRange(_Draw.DataSourceNames);
 
 			//
 			// Obtain the existing DataSet info
@@ -169,10 +111,10 @@ namespace fyiReporting.RdlDesign
 
 			// Get Fields
 			_dsv.Fields = new DataTable();
-			_dsv.Fields.Columns.Add(new DataColumn("Name", typeof(string)));
-			_dsv.Fields.Columns.Add(new DataColumn("QueryName", typeof(string)));
-			_dsv.Fields.Columns.Add(new DataColumn("Value", typeof(string)));
-			_dsv.Fields.Columns.Add(new DataColumn("TypeName", typeof(string)));
+            _dsv.Fields.Columns.Add(new DataColumn("Name", typeof(string)));
+            _dsv.Fields.Columns.Add(new DataColumn("QueryName", typeof(string)));
+            _dsv.Fields.Columns.Add(new DataColumn("Value", typeof(string)));
+            _dsv.Fields.Columns.Add(new DataColumn("TypeName", typeof(string)));
 
 			XmlNode fsNode = _Draw.GetNamedChildNode(dNode, "Fields");
 			if (fsNode != null)
@@ -206,201 +148,6 @@ namespace fyiReporting.RdlDesign
 			this.cbDataSource.Text = _dsv.DataSourceName;
 			dgFields.DataSource = _dsv.Fields;
 		}
-
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            this.cbDataSource = new System.Windows.Forms.ComboBox();
-            this.lDataSource = new System.Windows.Forms.Label();
-            this.tbDSName = new System.Windows.Forms.TextBox();
-            this.lDataSetName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbSQL = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dgFields = new System.Windows.Forms.DataGrid();
-            this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
-            this.bDeleteField = new System.Windows.Forms.Button();
-            this.bEditSQL = new System.Windows.Forms.Button();
-            this.bRefresh = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbTimeout = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFields)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTimeout)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // cbDataSource
-            // 
-            this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDataSource.Location = new System.Drawing.Point(296, 8);
-            this.cbDataSource.Name = "cbDataSource";
-            this.cbDataSource.Size = new System.Drawing.Size(144, 21);
-            this.cbDataSource.TabIndex = 1;
-            this.cbDataSource.SelectedIndexChanged += new System.EventHandler(this.cbDataSource_SelectedIndexChanged);
-            // 
-            // lDataSource
-            // 
-            this.lDataSource.Location = new System.Drawing.Point(224, 8);
-            this.lDataSource.Name = "lDataSource";
-            this.lDataSource.Size = new System.Drawing.Size(72, 23);
-            this.lDataSource.TabIndex = 21;
-            this.lDataSource.Text = "Data Source";
-            this.lDataSource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tbDSName
-            // 
-            this.tbDSName.Location = new System.Drawing.Point(64, 8);
-            this.tbDSName.Name = "tbDSName";
-            this.tbDSName.Size = new System.Drawing.Size(144, 20);
-            this.tbDSName.TabIndex = 0;
-            this.tbDSName.TextChanged += new System.EventHandler(this.tbDSName_TextChanged);
-            // 
-            // lDataSetName
-            // 
-            this.lDataSetName.Location = new System.Drawing.Point(8, 8);
-            this.lDataSetName.Name = "lDataSetName";
-            this.lDataSetName.Size = new System.Drawing.Size(48, 16);
-            this.lDataSetName.TabIndex = 19;
-            this.lDataSetName.Text = "Name";
-            this.lDataSetName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(8, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 16);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "SQL Select";
-            // 
-            // tbSQL
-            // 
-            this.tbSQL.AcceptsReturn = true;
-            this.tbSQL.AcceptsTab = true;
-            this.tbSQL.Location = new System.Drawing.Point(8, 56);
-            this.tbSQL.Multiline = true;
-            this.tbSQL.Name = "tbSQL";
-            this.tbSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbSQL.Size = new System.Drawing.Size(376, 80);
-            this.tbSQL.TabIndex = 5;
-            this.tbSQL.Text = "textBox1";
-            this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(8, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 16);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Fields";
-            // 
-            // dgFields
-            // 
-            this.dgFields.CaptionVisible = false;
-            this.dgFields.DataMember = "";
-            this.dgFields.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            this.dgFields.Location = new System.Drawing.Point(8, 152);
-            this.dgFields.Name = "dgFields";
-            this.dgFields.Size = new System.Drawing.Size(376, 104);
-            this.dgFields.TabIndex = 8;
-            this.dgFields.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dataGridTableStyle1});
-            // 
-            // dataGridTableStyle1
-            // 
-            this.dataGridTableStyle1.DataGrid = this.dgFields;
-            this.dataGridTableStyle1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            // 
-            // bDeleteField
-            // 
-            this.bDeleteField.Location = new System.Drawing.Point(392, 168);
-            this.bDeleteField.Name = "bDeleteField";
-            this.bDeleteField.Size = new System.Drawing.Size(48, 23);
-            this.bDeleteField.TabIndex = 9;
-            this.bDeleteField.Text = "Delete";
-            this.bDeleteField.Click += new System.EventHandler(this.bDeleteField_Click);
-            // 
-            // bEditSQL
-            // 
-            this.bEditSQL.Location = new System.Drawing.Point(392, 64);
-            this.bEditSQL.Name = "bEditSQL";
-            this.bEditSQL.Size = new System.Drawing.Size(48, 23);
-            this.bEditSQL.TabIndex = 6;
-            this.bEditSQL.Text = "SQL...";
-            this.bEditSQL.Click += new System.EventHandler(this.bEditSQL_Click);
-            // 
-            // bRefresh
-            // 
-            this.bRefresh.Location = new System.Drawing.Point(392, 96);
-            this.bRefresh.Name = "bRefresh";
-            this.bRefresh.Size = new System.Drawing.Size(52, 32);
-            this.bRefresh.TabIndex = 7;
-            this.bRefresh.Text = "Refresh Fields";
-            this.bRefresh.Click += new System.EventHandler(this.bRefresh_Click);
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(224, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 16);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Timeout";
-            // 
-            // tbTimeout
-            // 
-            this.tbTimeout.Location = new System.Drawing.Point(296, 32);
-            this.tbTimeout.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.tbTimeout.Name = "tbTimeout";
-            this.tbTimeout.Size = new System.Drawing.Size(104, 20);
-            this.tbTimeout.TabIndex = 2;
-            this.tbTimeout.ThousandsSeparator = true;
-            this.tbTimeout.ValueChanged += new System.EventHandler(this.tbTimeout_ValueChanged);
-            // 
-            // DataSetsCtl
-            // 
-            this.Controls.Add(this.tbTimeout);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.bRefresh);
-            this.Controls.Add(this.bEditSQL);
-            this.Controls.Add(this.bDeleteField);
-            this.Controls.Add(this.dgFields);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbSQL);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbDataSource);
-            this.Controls.Add(this.lDataSource);
-            this.Controls.Add(this.tbDSName);
-            this.Controls.Add(this.lDataSetName);
-            this.Name = "DataSetsCtl";
-            this.Size = new System.Drawing.Size(448, 304);
-            ((System.ComponentModel.ISupportInitialize)(this.dgFields)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTimeout)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
-		}
-		#endregion
 
 		public bool IsValid()
 		{
@@ -496,9 +243,9 @@ namespace fyiReporting.RdlDesign
 
 		private void bDeleteField_Click(object sender, System.EventArgs e)
 		{
-            if (this.dgFields.CurrentRowIndex < 0)
+            if (this.dgFields.CurrentRow.Index < 0)
                 return; 
-			_dsv.Fields.Rows.RemoveAt(this.dgFields.CurrentRowIndex);
+			_dsv.Fields.Rows.RemoveAt(this.dgFields.CurrentRow.Index);
 		}
 
 		private void bRefresh_Click(object sender, System.EventArgs e)
