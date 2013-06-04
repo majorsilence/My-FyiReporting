@@ -467,6 +467,9 @@
     <Compile Include="QueryParametersCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+	<Compile Include="QueryParametersCtl.Designer.cs">
+      <DependentUpon>QueryParametersCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RdlDesigner.cs">
       <SubType>Form</SubType>
     </Compile>
