@@ -1,67 +1,25 @@
-using System;
-using System.Windows.Forms;
-using System.Drawing;
-using System.ComponentModel;
-using System.Collections;
-
 namespace fyiReporting.RdlDesign
 {
     public partial class DialogDatabase : System.Windows.Forms.Form
 	{
-		#region Windows Form Designer generated code
-		
-private System.Windows.Forms.Button btnCancel;
-private System.Windows.Forms.Panel panel1;
-private System.Windows.Forms.Button btnOK;
-private System.Windows.Forms.TabPage DBConnection;
-private System.Windows.Forms.TabPage DBSql;
-private System.Windows.Forms.TabPage ReportType;
-private System.ComponentModel.Container components = null;
-private System.Windows.Forms.GroupBox groupBox1;
-private System.Windows.Forms.RadioButton rbTable;
-private System.Windows.Forms.RadioButton rbList;
-private System.Windows.Forms.RadioButton rbMatrix;
-private System.Windows.Forms.RadioButton rbChart;
-private System.Windows.Forms.TextBox tbConnection;
-private System.Windows.Forms.TabPage ReportSyntax;
-private System.Windows.Forms.TextBox tbReportSyntax;
-private System.Windows.Forms.TabPage ReportPreview;
-private System.Windows.Forms.Label label1;
-private System.Windows.Forms.Label label2;
-private System.Windows.Forms.Label label3;
-private System.Windows.Forms.TextBox tbReportName;
-private System.Windows.Forms.TextBox tbReportDescription;
-private System.Windows.Forms.TextBox tbReportAuthor;
-private System.Windows.Forms.Panel panel2;
-private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
-private System.Windows.Forms.TabPage ReportParameters;
-private System.Windows.Forms.TabControl tcDialog;
-private System.Windows.Forms.TabPage TabularGroup;
-private System.Windows.Forms.ComboBox cbColumnList;
-private System.Windows.Forms.Label label4;
-private System.Windows.Forms.Label label5;
-private System.Windows.Forms.CheckBox ckbGrandTotal;
-private System.Windows.Forms.CheckedListBox clbSubtotal;
-private System.Windows.Forms.Label label6;
-private System.Windows.Forms.ComboBox cbOrientation;
-private System.Windows.Forms.Label label7;
-private System.Windows.Forms.ComboBox cbConnectionTypes;
-private System.Windows.Forms.Label lODBC;
-private System.Windows.Forms.ComboBox cbOdbcNames;
-private System.Windows.Forms.Button bTestConnection;
-private System.Windows.Forms.Label lConnection;
-private System.Windows.Forms.Button bShared;
-private System.Windows.Forms.GroupBox groupBox2;
-private System.Windows.Forms.RadioButton rbSchemaNo;
-private System.Windows.Forms.RadioButton rbSchema2003;
-private System.Windows.Forms.RadioButton rbSchema2005;
-private SplitContainer splitContainer1;
-private TreeView tvTablesColumns;
-private Button bMove;
-private TextBox tbSQL;
+				
 
-		private void InitializeComponent()
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+        private void InitializeComponent()
 		{
+            this.reportParameterCtl1 = new fyiReporting.RdlDesign.ReportParameterCtl();
             this.tcDialog = new System.Windows.Forms.TabControl();
             this.ReportType = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -140,6 +98,14 @@ private TextBox tbSQL;
             this.ReportPreview.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // reportParameterCtl1
+            // 
+            this.reportParameterCtl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportParameterCtl1.Location = new System.Drawing.Point(0, 0);
+            this.reportParameterCtl1.Name = "reportParameterCtl1";
+            this.reportParameterCtl1.Size = new System.Drawing.Size(612, 300);
+            this.reportParameterCtl1.TabIndex = 0;
             // 
             // tcDialog
             // 
@@ -771,15 +737,7 @@ private TextBox tbSQL;
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // reportParameterCtl1
-            // 
-            this.reportParameterCtl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportParameterCtl1.Location = new System.Drawing.Point(0, 0);
-            this.reportParameterCtl1.Name = "reportParameterCtl1";
-            this.reportParameterCtl1.Size = new System.Drawing.Size(612, 300);
-            this.reportParameterCtl1.TabIndex = 0;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);            
             // 
             // DialogDatabase
             // 
@@ -821,32 +779,70 @@ private TextBox tbSQL;
             this.ResumeLayout(false);
 
 		}
-		#endregion
+		#endregion		
 
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
 
-        private Button buttonSqliteSelectDatabase;
-        internal Button buttonSearchSqlServers;
-        internal ComboBox comboServerList;
-        internal Label label8;
-        internal Button buttonDatabaseSearch;
-        internal Label label9;
-        internal ComboBox comboDatabaseList;
-        private GroupBox groupBoxSqlServer;
-        private Label label10;
-        private TextBox textBoxSqlPassword;
-        private Label label11;
-        private TextBox textBoxSqlUser;
-        private ReportParameterCtl reportParameterCtl1;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TabPage DBConnection;
+        private System.Windows.Forms.TabPage DBSql;
+        private System.Windows.Forms.TabPage ReportType;
+        private System.ComponentModel.Container components = null;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbTable;
+        private System.Windows.Forms.RadioButton rbList;
+        private System.Windows.Forms.RadioButton rbMatrix;
+        private System.Windows.Forms.RadioButton rbChart;
+        private System.Windows.Forms.TextBox tbConnection;
+        private System.Windows.Forms.TabPage ReportSyntax;
+        private System.Windows.Forms.TextBox tbReportSyntax;
+        private System.Windows.Forms.TabPage ReportPreview;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbReportName;
+        private System.Windows.Forms.TextBox tbReportDescription;
+        private System.Windows.Forms.TextBox tbReportAuthor;
+        private System.Windows.Forms.Panel panel2;
+        private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
+        private System.Windows.Forms.TabPage ReportParameters;
+        private System.Windows.Forms.TabControl tcDialog;
+        private System.Windows.Forms.TabPage TabularGroup;
+        private System.Windows.Forms.ComboBox cbColumnList;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox ckbGrandTotal;
+        private System.Windows.Forms.CheckedListBox clbSubtotal;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbOrientation;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbConnectionTypes;
+        private System.Windows.Forms.Label lODBC;
+        private System.Windows.Forms.ComboBox cbOdbcNames;
+        private System.Windows.Forms.Button bTestConnection;
+        private System.Windows.Forms.Label lConnection;
+        private System.Windows.Forms.Button bShared;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbSchemaNo;
+        private System.Windows.Forms.RadioButton rbSchema2003;
+        private System.Windows.Forms.RadioButton rbSchema2005;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView tvTablesColumns;
+        private System.Windows.Forms.Button bMove;
+        private System.Windows.Forms.TextBox tbSQL;
+        private System.Windows.Forms.Button buttonSqliteSelectDatabase;
+        internal System.Windows.Forms.Button buttonSearchSqlServers;
+        internal System.Windows.Forms.ComboBox comboServerList;
+        internal System.Windows.Forms.Label label8;
+        internal System.Windows.Forms.Button buttonDatabaseSearch;
+        internal System.Windows.Forms.Label label9;
+        internal System.Windows.Forms.ComboBox comboDatabaseList;
+        private System.Windows.Forms.GroupBox groupBoxSqlServer;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxSqlPassword;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxSqlUser;
+        private fyiReporting.RdlDesign.ReportParameterCtl reportParameterCtl1;
 	}
 }

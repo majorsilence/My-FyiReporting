@@ -47,7 +47,7 @@ namespace fyiReporting.RdlDesign
 
 		internal ReportParameterCtl(DesignXmlDraw dxDraw):this()
 		{
-            SetDraw(dxDraw);	
+            SetDraw(dxDraw);	          
 		}
 
         internal void SetDraw(DesignXmlDraw dxDraw)
@@ -55,10 +55,54 @@ namespace fyiReporting.RdlDesign
             _Draw = dxDraw;
 
             // Initialize form using the style node values
-            InitValues();	
+            InitValues();
+
+            rbDefaultDataSetName.Visible = cbDefaultDataSets.Visible = lDefaultValueFields.Visible =
+                cbDefaultValueField.Visible = rbDataSet.Visible = cbValidDataSets.Visible = lValidValuesField.Visible =
+                cbValidFields.Visible = lDisplayField.Visible = lDisplayField.Visible = cbValidDisplayField.Visible = true;
         }
 
-		private void InitValues()
+        #region IProperty Members
+        public bool IsValid()
+        {
+            return true;
+        }
+
+        public void Apply()
+        {
+            if (_Draw == null) 
+                return;
+
+            XmlNode rNode = _Draw.GetReportNode();
+            _Draw.RemoveElement(rNode, "ReportParameters");	// remove old ReportParameters
+            if (this.lbParameters.Items.Count <= 0)
+                return;			// nothing in list?  all done
+
+            XmlNode rpsNode = _Draw.SetElement(rNode, "ReportParameters", null);
+            foreach (ReportParm repParm in lbParameters.Items)
+            {
+                if (repParm.Name == null || repParm.Name.Length <= 0)
+                    continue;	// shouldn't really happen
+                XmlNode repNode = _Draw.CreateElement(rpsNode, "ReportParameter", null);
+                // Create the name attribute
+                _Draw.SetElementAttribute(repNode, "Name", repParm.Name);
+
+                _Draw.SetElement(repNode, "DataType", repParm.DataType);
+                // Handle default values
+                ApplyDefaultValues(repNode, repParm);
+
+                _Draw.SetElement(repNode, "Nullable", repParm.AllowNull ? "true" : "false");
+                _Draw.SetElement(repNode, "AllowBlank", repParm.AllowBlank ? "true" : "false");
+                _Draw.SetElement(repNode, "MultiValue", repParm.MultiValue ? "true" : "false");
+                _Draw.SetElement(repNode, "Prompt", repParm.Prompt);
+
+                // Handle ValidValues
+                ApplyValidValues(repNode, repParm);
+            }
+        }
+        #endregion IProperty Members
+
+        private void InitValues()
 		{
 			// Populate datasets combos
 			object[] datasets = _Draw.DataSetNames;
@@ -95,7 +139,7 @@ namespace fyiReporting.RdlDesign
 				lbParameters.SelectedIndex = 0;
 		}
 
-		void InitDefaultValues(XmlNode reportParameterNode, ReportParm repParm)
+		private void InitDefaultValues(XmlNode reportParameterNode, ReportParm repParm)
 		{
 			repParm.Default = true;
 			XmlNode dfNode = _Draw.GetNamedChildNode(reportParameterNode, "DefaultValue");
@@ -124,7 +168,7 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 
-		void InitValidValues(XmlNode reportParameterNode, ReportParm repParm)
+		private void InitValidValues(XmlNode reportParameterNode, ReportParm repParm)
 		{
 			repParm.Valid = true;
 			XmlNode vvsNode = _Draw.GetNamedChildNode(reportParameterNode, "ValidValues");
@@ -162,42 +206,7 @@ namespace fyiReporting.RdlDesign
 				repParm.ValidValuesDSRValueField = _Draw.GetElementValue(dsNodes, "ValueField", "");
 				repParm.ValidValuesDSRLabelField = _Draw.GetElementValue(dsNodes, "LabelField", "");
 			}
-		}		
- 
-		public bool IsValid()
-		{
-			return true;
-		}
-
-		public void Apply()
-		{
-			XmlNode rNode = _Draw.GetReportNode();
-			_Draw.RemoveElement(rNode, "ReportParameters");	// remove old ReportParameters
-			if (this.lbParameters.Items.Count <= 0)
-				return;			// nothing in list?  all done
-
-			XmlNode rpsNode = _Draw.SetElement(rNode, "ReportParameters", null);
-			foreach (ReportParm repParm in lbParameters.Items)
-			{
-				if (repParm.Name == null || repParm.Name.Length <= 0)
-					continue;	// shouldn't really happen
-				XmlNode repNode = _Draw.CreateElement(rpsNode, "ReportParameter", null);
-				// Create the name attribute
-				_Draw.SetElementAttribute(repNode, "Name", repParm.Name);
-
-				_Draw.SetElement(repNode, "DataType", repParm.DataType);
-				// Handle default values
-				ApplyDefaultValues(repNode, repParm);
-				
-				_Draw.SetElement(repNode, "Nullable", repParm.AllowNull? "true": "false");
-				_Draw.SetElement(repNode, "AllowBlank", repParm.AllowBlank? "true": "false");
-                _Draw.SetElement(repNode, "MultiValue", repParm.MultiValue ? "true" : "false");
-                _Draw.SetElement(repNode, "Prompt", repParm.Prompt);
-
-				// Handle ValidValues
-				ApplyValidValues(repNode, repParm);
-			}
-		}
+		}				
 
 		private void ApplyDefaultValues(XmlNode repNode, ReportParm repParm)
 		{
@@ -259,7 +268,8 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 
-		private void bAdd_Click(object sender, System.EventArgs e)
+        #region Event Handlers
+        private void bAdd_Click(object sender, System.EventArgs e)
 		{
 			ReportParm rp = new ReportParm("newparm");
 			int cur = this.lbParameters.Items.Add(rp);
@@ -283,6 +293,7 @@ namespace fyiReporting.RdlDesign
 
 		private void lbParameters_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
+            gbPropertyEdit.Enabled = false;
 			int cur = lbParameters.SelectedIndex;
 			if (cur < 0)
 				return;
@@ -290,6 +301,8 @@ namespace fyiReporting.RdlDesign
 			ReportParm rp = lbParameters.Items[cur] as ReportParm;
 			if (rp == null)
 				return;
+
+            gbPropertyEdit.Enabled = true;
 
 			tbParmName.Text = rp.Name;
 			cbParmType.Text = rp.DataType;
@@ -652,6 +665,6 @@ namespace fyiReporting.RdlDesign
             rp.MultiValue = ckbParmMultiValue.Checked;
 
         }
-
-	}
+        #endregion Event Handlers
+    }
 }
