@@ -35,24 +35,7 @@ private System.Windows.Forms.TextBox tbReportAuthor;
 private System.Windows.Forms.Panel panel2;
 private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
 private System.Windows.Forms.TabPage ReportParameters;
-private System.Windows.Forms.ListBox lbParameters;
-private System.Windows.Forms.Button bAdd;
-private System.Windows.Forms.Button bRemove;
-private System.Windows.Forms.Label lParmName;
-private System.Windows.Forms.TextBox tbParmName;
-private System.Windows.Forms.Label lParmType;
-private System.Windows.Forms.ComboBox cbParmType;
-private System.Windows.Forms.Label lParmPrompt;
-private System.Windows.Forms.TextBox tbParmPrompt;
-private System.Windows.Forms.CheckBox ckbParmAllowBlank;
-private System.Windows.Forms.Label lbParmValidValues;
-private System.Windows.Forms.TextBox tbParmValidValues;
-private System.Windows.Forms.Button bParmUp;
-private System.Windows.Forms.Button bParmDown;
-private System.Windows.Forms.CheckBox ckbParmAllowNull;
 private System.Windows.Forms.TabControl tcDialog;
-private System.Windows.Forms.Label lDefaultValue;
-private System.Windows.Forms.TextBox tbParmDefaultValue;
 private System.Windows.Forms.TabPage TabularGroup;
 private System.Windows.Forms.ComboBox cbColumnList;
 private System.Windows.Forms.Label label4;
@@ -61,7 +44,6 @@ private System.Windows.Forms.CheckBox ckbGrandTotal;
 private System.Windows.Forms.CheckedListBox clbSubtotal;
 private System.Windows.Forms.Label label6;
 private System.Windows.Forms.ComboBox cbOrientation;
-private System.Windows.Forms.Button bValidValues;
 private System.Windows.Forms.Label label7;
 private System.Windows.Forms.ComboBox cbConnectionTypes;
 private System.Windows.Forms.Label lODBC;
@@ -121,24 +103,6 @@ private TextBox tbSQL;
             this.label7 = new System.Windows.Forms.Label();
             this.tbConnection = new System.Windows.Forms.TextBox();
             this.ReportParameters = new System.Windows.Forms.TabPage();
-            this.bValidValues = new System.Windows.Forms.Button();
-            this.tbParmDefaultValue = new System.Windows.Forms.TextBox();
-            this.lDefaultValue = new System.Windows.Forms.Label();
-            this.bParmDown = new System.Windows.Forms.Button();
-            this.bParmUp = new System.Windows.Forms.Button();
-            this.tbParmValidValues = new System.Windows.Forms.TextBox();
-            this.lbParmValidValues = new System.Windows.Forms.Label();
-            this.ckbParmAllowBlank = new System.Windows.Forms.CheckBox();
-            this.ckbParmAllowNull = new System.Windows.Forms.CheckBox();
-            this.tbParmPrompt = new System.Windows.Forms.TextBox();
-            this.lParmPrompt = new System.Windows.Forms.Label();
-            this.cbParmType = new System.Windows.Forms.ComboBox();
-            this.lParmType = new System.Windows.Forms.Label();
-            this.tbParmName = new System.Windows.Forms.TextBox();
-            this.lParmName = new System.Windows.Forms.Label();
-            this.bRemove = new System.Windows.Forms.Button();
-            this.bAdd = new System.Windows.Forms.Button();
-            this.lbParameters = new System.Windows.Forms.ListBox();
             this.DBSql = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -190,7 +154,7 @@ private TextBox tbSQL;
             this.tcDialog.Location = new System.Drawing.Point(0, 0);
             this.tcDialog.Name = "tcDialog";
             this.tcDialog.SelectedIndex = 0;
-            this.tcDialog.Size = new System.Drawing.Size(528, 326);
+            this.tcDialog.Size = new System.Drawing.Size(620, 326);
             this.tcDialog.TabIndex = 0;
             this.tcDialog.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -208,7 +172,7 @@ private TextBox tbSQL;
             this.ReportType.Controls.Add(this.groupBox1);
             this.ReportType.Location = new System.Drawing.Point(4, 22);
             this.ReportType.Name = "ReportType";
-            this.ReportType.Size = new System.Drawing.Size(520, 300);
+            this.ReportType.Size = new System.Drawing.Size(612, 300);
             this.ReportType.TabIndex = 3;
             this.ReportType.Tag = "type";
             this.ReportType.Text = "Report Info";
@@ -387,7 +351,7 @@ private TextBox tbSQL;
             this.DBConnection.Controls.Add(this.tbConnection);
             this.DBConnection.Location = new System.Drawing.Point(4, 22);
             this.DBConnection.Name = "DBConnection";
-            this.DBConnection.Size = new System.Drawing.Size(520, 300);
+            this.DBConnection.Size = new System.Drawing.Size(612, 300);
             this.DBConnection.TabIndex = 0;
             this.DBConnection.Tag = "connect";
             this.DBConnection.Text = "Connection";
@@ -582,197 +546,20 @@ private TextBox tbSQL;
             // 
             // ReportParameters
             // 
-            this.ReportParameters.Controls.Add(this.bValidValues);
-            this.ReportParameters.Controls.Add(this.tbParmDefaultValue);
-            this.ReportParameters.Controls.Add(this.lDefaultValue);
-            this.ReportParameters.Controls.Add(this.bParmDown);
-            this.ReportParameters.Controls.Add(this.bParmUp);
-            this.ReportParameters.Controls.Add(this.tbParmValidValues);
-            this.ReportParameters.Controls.Add(this.lbParmValidValues);
-            this.ReportParameters.Controls.Add(this.ckbParmAllowBlank);
-            this.ReportParameters.Controls.Add(this.ckbParmAllowNull);
-            this.ReportParameters.Controls.Add(this.tbParmPrompt);
-            this.ReportParameters.Controls.Add(this.lParmPrompt);
-            this.ReportParameters.Controls.Add(this.cbParmType);
-            this.ReportParameters.Controls.Add(this.lParmType);
-            this.ReportParameters.Controls.Add(this.tbParmName);
-            this.ReportParameters.Controls.Add(this.lParmName);
-            this.ReportParameters.Controls.Add(this.bRemove);
-            this.ReportParameters.Controls.Add(this.bAdd);
-            this.ReportParameters.Controls.Add(this.lbParameters);
+            this.ReportParameters.Controls.Add(this.reportParameterCtl1);
             this.ReportParameters.Location = new System.Drawing.Point(4, 22);
             this.ReportParameters.Name = "ReportParameters";
-            this.ReportParameters.Size = new System.Drawing.Size(520, 300);
+            this.ReportParameters.Size = new System.Drawing.Size(612, 300);
             this.ReportParameters.TabIndex = 6;
             this.ReportParameters.Tag = "parameters";
             this.ReportParameters.Text = "Parameters";
-            // 
-            // bValidValues
-            // 
-            this.bValidValues.Location = new System.Drawing.Point(432, 152);
-            this.bValidValues.Name = "bValidValues";
-            this.bValidValues.Size = new System.Drawing.Size(24, 23);
-            this.bValidValues.TabIndex = 16;
-            this.bValidValues.Text = "...";
-            this.bValidValues.Click += new System.EventHandler(this.bValidValues_Click);
-            // 
-            // tbParmDefaultValue
-            // 
-            this.tbParmDefaultValue.Location = new System.Drawing.Point(208, 200);
-            this.tbParmDefaultValue.Name = "tbParmDefaultValue";
-            this.tbParmDefaultValue.Size = new System.Drawing.Size(216, 20);
-            this.tbParmDefaultValue.TabIndex = 10;
-            this.tbParmDefaultValue.TextChanged += new System.EventHandler(this.tbParmDefaultValue_TextChanged);
-            // 
-            // lDefaultValue
-            // 
-            this.lDefaultValue.Location = new System.Drawing.Point(208, 184);
-            this.lDefaultValue.Name = "lDefaultValue";
-            this.lDefaultValue.Size = new System.Drawing.Size(100, 16);
-            this.lDefaultValue.TabIndex = 15;
-            this.lDefaultValue.Text = "Default Value";
-            // 
-            // bParmDown
-            // 
-            this.bParmDown.Font = new System.Drawing.Font("Wingdings", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bParmDown.Location = new System.Drawing.Point(168, 64);
-            this.bParmDown.Name = "bParmDown";
-            this.bParmDown.Size = new System.Drawing.Size(24, 24);
-            this.bParmDown.TabIndex = 14;
-            this.bParmDown.Text = "";
-            this.bParmDown.Click += new System.EventHandler(this.bParmDown_Click);
-            // 
-            // bParmUp
-            // 
-            this.bParmUp.Font = new System.Drawing.Font("Wingdings", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bParmUp.Location = new System.Drawing.Point(168, 24);
-            this.bParmUp.Name = "bParmUp";
-            this.bParmUp.Size = new System.Drawing.Size(24, 24);
-            this.bParmUp.TabIndex = 13;
-            this.bParmUp.Text = "";
-            this.bParmUp.Click += new System.EventHandler(this.bParmUp_Click);
-            // 
-            // tbParmValidValues
-            // 
-            this.tbParmValidValues.Location = new System.Drawing.Point(208, 152);
-            this.tbParmValidValues.Name = "tbParmValidValues";
-            this.tbParmValidValues.ReadOnly = true;
-            this.tbParmValidValues.Size = new System.Drawing.Size(216, 20);
-            this.tbParmValidValues.TabIndex = 9;
-            // 
-            // lbParmValidValues
-            // 
-            this.lbParmValidValues.Location = new System.Drawing.Point(208, 136);
-            this.lbParmValidValues.Name = "lbParmValidValues";
-            this.lbParmValidValues.Size = new System.Drawing.Size(100, 16);
-            this.lbParmValidValues.TabIndex = 11;
-            this.lbParmValidValues.Text = "Valid Values";
-            // 
-            // ckbParmAllowBlank
-            // 
-            this.ckbParmAllowBlank.Location = new System.Drawing.Point(288, 232);
-            this.ckbParmAllowBlank.Name = "ckbParmAllowBlank";
-            this.ckbParmAllowBlank.Size = new System.Drawing.Size(152, 24);
-            this.ckbParmAllowBlank.TabIndex = 12;
-            this.ckbParmAllowBlank.Text = "Allow blank (strings only)";
-            this.ckbParmAllowBlank.CheckedChanged += new System.EventHandler(this.ckbParmAllowBlank_CheckedChanged);
-            // 
-            // ckbParmAllowNull
-            // 
-            this.ckbParmAllowNull.Location = new System.Drawing.Point(208, 232);
-            this.ckbParmAllowNull.Name = "ckbParmAllowNull";
-            this.ckbParmAllowNull.Size = new System.Drawing.Size(72, 24);
-            this.ckbParmAllowNull.TabIndex = 11;
-            this.ckbParmAllowNull.Text = "Allow null";
-            this.ckbParmAllowNull.CheckedChanged += new System.EventHandler(this.ckbParmAllowNull_CheckedChanged);
-            // 
-            // tbParmPrompt
-            // 
-            this.tbParmPrompt.Location = new System.Drawing.Point(208, 104);
-            this.tbParmPrompt.Name = "tbParmPrompt";
-            this.tbParmPrompt.Size = new System.Drawing.Size(216, 20);
-            this.tbParmPrompt.TabIndex = 8;
-            this.tbParmPrompt.TextChanged += new System.EventHandler(this.tbParmPrompt_TextChanged);
-            // 
-            // lParmPrompt
-            // 
-            this.lParmPrompt.Location = new System.Drawing.Point(208, 88);
-            this.lParmPrompt.Name = "lParmPrompt";
-            this.lParmPrompt.Size = new System.Drawing.Size(48, 16);
-            this.lParmPrompt.TabIndex = 7;
-            this.lParmPrompt.Text = "Prompt";
-            // 
-            // cbParmType
-            // 
-            this.cbParmType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbParmType.Items.AddRange(new object[] {
-            "Boolean",
-            "DateTime",
-            "Integer",
-            "Float",
-            "String"});
-            this.cbParmType.Location = new System.Drawing.Point(288, 56);
-            this.cbParmType.Name = "cbParmType";
-            this.cbParmType.Size = new System.Drawing.Size(80, 21);
-            this.cbParmType.TabIndex = 6;
-            this.cbParmType.SelectedIndexChanged += new System.EventHandler(this.cbParmType_SelectedIndexChanged);
-            // 
-            // lParmType
-            // 
-            this.lParmType.Location = new System.Drawing.Point(208, 56);
-            this.lParmType.Name = "lParmType";
-            this.lParmType.Size = new System.Drawing.Size(56, 23);
-            this.lParmType.TabIndex = 5;
-            this.lParmType.Text = "Datatype";
-            // 
-            // tbParmName
-            // 
-            this.tbParmName.Location = new System.Drawing.Point(288, 24);
-            this.tbParmName.Name = "tbParmName";
-            this.tbParmName.Size = new System.Drawing.Size(136, 20);
-            this.tbParmName.TabIndex = 4;
-            this.tbParmName.TextChanged += new System.EventHandler(this.tbParmName_TextChanged);
-            // 
-            // lParmName
-            // 
-            this.lParmName.Location = new System.Drawing.Point(208, 24);
-            this.lParmName.Name = "lParmName";
-            this.lParmName.Size = new System.Drawing.Size(48, 16);
-            this.lParmName.TabIndex = 3;
-            this.lParmName.Text = "Name";
-            // 
-            // bRemove
-            // 
-            this.bRemove.Location = new System.Drawing.Point(104, 264);
-            this.bRemove.Name = "bRemove";
-            this.bRemove.Size = new System.Drawing.Size(56, 23);
-            this.bRemove.TabIndex = 2;
-            this.bRemove.Text = "Remove";
-            this.bRemove.Click += new System.EventHandler(this.bRemove_Click);
-            // 
-            // bAdd
-            // 
-            this.bAdd.Location = new System.Drawing.Point(16, 264);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(56, 23);
-            this.bAdd.TabIndex = 1;
-            this.bAdd.Text = "Add";
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
-            // 
-            // lbParameters
-            // 
-            this.lbParameters.Location = new System.Drawing.Point(16, 16);
-            this.lbParameters.Name = "lbParameters";
-            this.lbParameters.Size = new System.Drawing.Size(144, 238);
-            this.lbParameters.TabIndex = 0;
-            this.lbParameters.SelectedIndexChanged += new System.EventHandler(this.lbParameters_SelectedIndexChanged);
             // 
             // DBSql
             // 
             this.DBSql.Controls.Add(this.panel2);
             this.DBSql.Location = new System.Drawing.Point(4, 22);
             this.DBSql.Name = "DBSql";
-            this.DBSql.Size = new System.Drawing.Size(520, 300);
+            this.DBSql.Size = new System.Drawing.Size(612, 300);
             this.DBSql.TabIndex = 1;
             this.DBSql.Tag = "sql";
             this.DBSql.Text = "SQL";
@@ -783,7 +570,7 @@ private TextBox tbSQL;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(520, 300);
+            this.panel2.Size = new System.Drawing.Size(612, 300);
             this.panel2.TabIndex = 1;
             // 
             // splitContainer1
@@ -800,8 +587,8 @@ private TextBox tbSQL;
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbSQL);
             this.splitContainer1.Panel2.Controls.Add(this.bMove);
-            this.splitContainer1.Size = new System.Drawing.Size(520, 300);
-            this.splitContainer1.SplitterDistance = 173;
+            this.splitContainer1.Size = new System.Drawing.Size(612, 300);
+            this.splitContainer1.SplitterDistance = 203;
             this.splitContainer1.TabIndex = 5;
             // 
             // tvTablesColumns
@@ -810,7 +597,7 @@ private TextBox tbSQL;
             this.tvTablesColumns.FullRowSelect = true;
             this.tvTablesColumns.Location = new System.Drawing.Point(0, 0);
             this.tvTablesColumns.Name = "tvTablesColumns";
-            this.tvTablesColumns.Size = new System.Drawing.Size(173, 300);
+            this.tvTablesColumns.Size = new System.Drawing.Size(203, 300);
             this.tvTablesColumns.TabIndex = 2;
             this.tvTablesColumns.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvTablesColumns_BeforeExpand);
             // 
@@ -823,7 +610,7 @@ private TextBox tbSQL;
             this.tbSQL.Location = new System.Drawing.Point(41, 3);
             this.tbSQL.Multiline = true;
             this.tbSQL.Name = "tbSQL";
-            this.tbSQL.Size = new System.Drawing.Size(299, 294);
+            this.tbSQL.Size = new System.Drawing.Size(361, 294);
             this.tbSQL.TabIndex = 6;
             this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
             this.tbSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSQL_KeyDown);
@@ -846,7 +633,7 @@ private TextBox tbSQL;
             this.TabularGroup.Controls.Add(this.cbColumnList);
             this.TabularGroup.Location = new System.Drawing.Point(4, 22);
             this.TabularGroup.Name = "TabularGroup";
-            this.TabularGroup.Size = new System.Drawing.Size(520, 300);
+            this.TabularGroup.Size = new System.Drawing.Size(612, 300);
             this.TabularGroup.TabIndex = 7;
             this.TabularGroup.Tag = "group";
             this.TabularGroup.Text = "Grouping";
@@ -899,7 +686,7 @@ private TextBox tbSQL;
             this.ReportSyntax.Controls.Add(this.tbReportSyntax);
             this.ReportSyntax.Location = new System.Drawing.Point(4, 22);
             this.ReportSyntax.Name = "ReportSyntax";
-            this.ReportSyntax.Size = new System.Drawing.Size(520, 300);
+            this.ReportSyntax.Size = new System.Drawing.Size(612, 300);
             this.ReportSyntax.TabIndex = 4;
             this.ReportSyntax.Tag = "syntax";
             this.ReportSyntax.Text = "Report Syntax";
@@ -912,7 +699,7 @@ private TextBox tbSQL;
             this.tbReportSyntax.Name = "tbReportSyntax";
             this.tbReportSyntax.ReadOnly = true;
             this.tbReportSyntax.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbReportSyntax.Size = new System.Drawing.Size(520, 300);
+            this.tbReportSyntax.Size = new System.Drawing.Size(612, 300);
             this.tbReportSyntax.TabIndex = 0;
             this.tbReportSyntax.WordWrap = false;
             // 
@@ -960,7 +747,7 @@ private TextBox tbSQL;
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.CausesValidation = false;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(440, 10);
+            this.btnCancel.Location = new System.Drawing.Point(532, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
@@ -973,25 +760,33 @@ private TextBox tbSQL;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 326);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(528, 40);
+            this.panel1.Size = new System.Drawing.Size(620, 40);
             this.panel1.TabIndex = 3;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(344, 10);
+            this.btnOK.Location = new System.Drawing.Point(436, 10);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // reportParameterCtl1
+            // 
+            this.reportParameterCtl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportParameterCtl1.Location = new System.Drawing.Point(0, 0);
+            this.reportParameterCtl1.Name = "reportParameterCtl1";
+            this.reportParameterCtl1.Size = new System.Drawing.Size(612, 300);
+            this.reportParameterCtl1.TabIndex = 0;
+            // 
             // DialogDatabase
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(528, 366);
+            this.ClientSize = new System.Drawing.Size(620, 366);
             this.Controls.Add(this.tcDialog);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
@@ -1001,7 +796,6 @@ private TextBox tbSQL;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Report from Database";
             this.Closed += new System.EventHandler(this.DialogDatabase_Closed);
-            this.Load += new System.EventHandler(this.DialogDatabase_Load);
             this.tcDialog.ResumeLayout(false);
             this.ReportType.ResumeLayout(false);
             this.ReportType.PerformLayout();
@@ -1012,7 +806,6 @@ private TextBox tbSQL;
             this.groupBoxSqlServer.ResumeLayout(false);
             this.groupBoxSqlServer.PerformLayout();
             this.ReportParameters.ResumeLayout(false);
-            this.ReportParameters.PerformLayout();
             this.DBSql.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1054,5 +847,6 @@ private TextBox tbSQL;
         private TextBox textBoxSqlPassword;
         private Label label11;
         private TextBox textBoxSqlUser;
+        private ReportParameterCtl reportParameterCtl1;
 	}
 }

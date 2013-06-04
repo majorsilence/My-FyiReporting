@@ -328,6 +328,9 @@
     <Compile Include="ReportCtl.Designer.cs">
       <DependentUpon>ReportCtl.cs</DependentUpon>
     </Compile>
+	<Compile Include="ReportParameterCtl.Designer.cs">
+      <DependentUpon>ReportParameterCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingleCtlDialog.Designer.cs">
       <DependentUpon>SingleCtlDialog.cs</DependentUpon>
     </Compile>
