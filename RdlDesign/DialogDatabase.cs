@@ -253,6 +253,7 @@ namespace fyiReporting.RdlDesign
             InitializeComponent();
 
             string[] items = RdlEngineConfig.GetProviders();
+            Array.Sort(items);
             cbConnectionTypes.Items.Add(SHARED_CONNECTION);
             cbConnectionTypes.Items.AddRange(items);
             cbConnectionTypes.SelectedIndex = 1;
