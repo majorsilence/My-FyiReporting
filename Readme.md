@@ -123,3 +123,4 @@ A big thanks to all of My-FyiReporting contributors:
 * [kobruleht](https://github.com/kobruleht)
 * [jzielke](https://github.com/jzielke)
 * [Gankov](https://github.com/Gankov)
+* [gam6itko](https://github.com/gam6itko)
