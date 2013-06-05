@@ -124,7 +124,7 @@ namespace fyiReporting.RdlDesign
 				InitDefaultValues(repNode, repParm);
 
 				string nullable  = _Draw.GetElementValue(repNode, "Nullable", "false");
-				repParm.AllowNull = (nullable.ToLower() == "true");
+				repParm.AllowNull = (nullable.ToLower() == "true"); // fyiReporting.RDL.XmlUtil can do it
 				string allowBlank  = _Draw.GetElementValue(repNode, "AllowBlank", "false");
 				repParm.AllowBlank = (allowBlank.ToLower() == "true");
                 string mvalue = _Draw.GetElementValue(repNode, "MultiValue", "false");
