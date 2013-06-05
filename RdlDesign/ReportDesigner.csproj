@@ -328,6 +328,9 @@
     <Compile Include="ReportCtl.Designer.cs">
       <DependentUpon>ReportCtl.cs</DependentUpon>
     </Compile>
+	<Compile Include="ReportParameterCtl.Designer.cs">
+      <DependentUpon>ReportParameterCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingleCtlDialog.Designer.cs">
       <DependentUpon>SingleCtlDialog.cs</DependentUpon>
     </Compile>
@@ -466,6 +469,9 @@
     <Compile Include="PropertyReportItem.cs" />
     <Compile Include="QueryParametersCtl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+	<Compile Include="QueryParametersCtl.Designer.cs">
+      <DependentUpon>QueryParametersCtl.cs</DependentUpon>
     </Compile>
     <Compile Include="RdlDesigner.cs">
       <SubType>Form</SubType>

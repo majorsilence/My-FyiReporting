@@ -49,42 +49,93 @@ namespace fyiReporting.RdlViewer
         public NeedPassword GetDataSourceReferencePassword = null;
         bool _InPaint = false;
         bool _InLoading = false;
-        private Uri _SourceFileName;		// file name to use
-        private string _SourceRdl;			// source Rdl; if provided overrides filename
-        private string _Parameters;			// parameters to run the report
-        private Report _Report;				// the report
-        private string _Folder;				// folder for DataSourceReference (if file name not provided)
-        private Pages _pgs;					// the pages of the report to view
-        //private PageDrawing _pd;			// draws the pages of a report
-        private bool _loadFailed;			// last load of report failed
-        private float _leftMargin;			// left margin; calculated based on size of window & scroll style
-        // report information
-        private float _PageWidth;			// width of page
-        private float _PageHeight;			// height of page
+        /// <summary>
+        /// File name to use
+        /// </summary>
+        private Uri _SourceFileName;
+        /// <summary>
+        /// Source Rdl; if provided overrides filename
+        /// </summary>
+        private string _SourceRdl;
+        /// <summary>
+        /// Parameters to run the report
+        /// </summary>
+        private ListDictionary _Parameters = new ListDictionary();
+        /// <summary>
+        /// The Report
+        /// </summary>
+        private Report _Report;
+        /// <summary>
+        /// Folder for DataSourceReference (if file name not provided)
+        /// </summary>
+        private string _Folder;
+        /// <summary>
+        /// The pages of the report to view
+        /// </summary>
+        private Pages _pgs;        
+        /// <summary>
+        /// Last load of report failed
+        /// </summary>
+        private bool _loadFailed;
+        /// <summary>
+        /// Left margin; calculated based on size of window & scroll style
+        /// </summary>
+        private float _leftMargin;
+        #region report information
+        /// <summary>
+        /// Width of page
+        /// </summary>
+        private float _PageWidth;
+        /// <summary>
+        /// Height of page
+        /// </summary>
+        private float _PageHeight;
         private string _ReportDescription;
         private string _ReportAuthor;
         private string _ReportName;
         private IList _errorMsgs;
+        #endregion report information
+        //private PageDrawing _pd;			// draws the pages of a report
 
-        // Zoom
-        private float _zoom;				// zoom factor
+        #region Zoom
+        /// <summary>
+        /// Zoom factor
+        /// </summary>
+        private float _zoom;
         private float DpiX;
         private float DpiY;
         private ZoomEnum _zoomMode = ZoomEnum.FitWidth;
-        private float _leftGap = 10;			// right margin: 10 points
-        private float _rightGap = 10;			// left margin: 10 points
-        private float _pageGap = 10;			// gap between pages: 10 points
+        /// <summary>
+        /// Right margin: 10 points
+        /// </summary>
+        private float _leftGap = 10;
+        /// <summary>
+        /// Left margin: 10 points
+        /// </summary>
+        private float _rightGap = 10;
+        /// <summary>
+        /// gap between pages: 10 points
+        /// </summary>
+        private float _pageGap = 10;	 
+        #endregion
 
-        // printing 
-        private bool _UseTrueMargins = true;    // compensate for non-printable region
-        private int printEndPage;			// end page
-        private int printCurrentPage;		// current page to print
+        #region Printing
+        /// <summary>
+        /// Compensate for non-printable region
+        /// </summary>
+        private bool _UseTrueMargins = true;
+        /// <summary>
+        /// End page
+        /// </summary>
+        private int printEndPage;
+        /// <summary>
+        /// Current page to print
+        /// </summary>
+        private int printCurrentPage;
+        #endregion Printing
 
         // Scrollbars
         private ScrollModeEnum _ScrollMode;
-
-
-
 
         // the main drawing panel
 
@@ -531,8 +582,32 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         public string Parameters
         {
-            get { return _Parameters; }
-            set { _Parameters = value; }
+            get 
+            {
+                string result = "";
+                foreach (KeyValuePair<String, String> kvp in _Parameters)
+                {
+                    result += String.Format("{0:s}={1:s};", kvp.Key, kvp.Value);
+                }
+                return result.TrimEnd(';');
+            }
+            set 
+            {
+                _Parameters = new ListDictionary();
+                if (String.IsNullOrEmpty(value))
+                    return;
+                String[] prms = value.TrimEnd(';').Split('&');
+                foreach(String p in prms)
+                {
+                    int iEq = p.IndexOf("=");
+                    if (iEq > 0)
+                    {
+                        string name = p.Substring(0, iEq);
+                        string val = p.Substring(iEq + 1);
+                        _Parameters.Add(name, val);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -1302,27 +1377,15 @@ namespace fyiReporting.RdlViewer
 
         private ListDictionary GetParameters()
         {
-            ListDictionary ld = new ListDictionary();
-            if (_Parameters == null)
-            {
-                return ld;				// dictionary will be empty in this case
-            }
+            return _Parameters;
+        }
 
-            // parms are separated by &
-            char[] breakChars = new char[] { '&' };
-            string parm = _Parameters.Replace("&amp;", '\ufffe'.ToString());    // handle &amp; as user wanted '&'
-            string[] ps = parm.Split(breakChars);
-            foreach (string p in ps)
-            {
-                int iEq = p.IndexOf("=");
-                if (iEq > 0)
-                {
-                    string name = p.Substring(0, iEq);
-                    string val = p.Substring(iEq + 1);
-                    ld.Add(name, val.Replace('\ufffe', '&'));
-                }
-            }
-            return ld;
+        private void SetParameterValue(String key, String value)
+        {
+            if (_Parameters.Contains(key))
+                _Parameters[key] = value;
+            else
+                _Parameters.Add(key, value);
         }
 
         private string GetRdlSource()
