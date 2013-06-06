@@ -253,6 +253,7 @@ namespace fyiReporting.RdlDesign
             InitializeComponent();
 
             string[] items = RdlEngineConfig.GetProviders();
+            Array.Sort(items);
             cbConnectionTypes.Items.Add(SHARED_CONNECTION);
             cbConnectionTypes.Items.AddRange(items);
             cbConnectionTypes.SelectedIndex = 1;
@@ -407,25 +408,25 @@ namespace fyiReporting.RdlDesign
             }
 
             // Now do parameters
-            if (lbParameters.Items.Count > 0)
-            {
-                ndRoot = new TreeNode("Parameters");
-                tvTablesColumns.Nodes.Add(ndRoot);
-                foreach (ReportParm rp in lbParameters.Items)
-                {
-                    string paramName;
+            //if (lbParameters.Items.Count > 0)
+            //{
+            //    ndRoot = new TreeNode("Parameters");
+            //    tvTablesColumns.Nodes.Add(ndRoot);
+            //    foreach (ReportParm rp in lbParameters.Items)
+            //    {
+            //        string paramName;
 
-                    // force the name to start with @
-                    if (rp.Name[0] == '@')
-                        paramName = rp.Name;
-                    else
-                        paramName = "@" + rp.Name;
+            //        // force the name to start with @
+            //        if (rp.Name[0] == '@')
+            //            paramName = rp.Name;
+            //        else
+            //            paramName = "@" + rp.Name;
 
-                    // Add the node to the tree
-                    TreeNode aRoot = new TreeNode(paramName);
-                    ndRoot.Nodes.Add(aRoot);
-                }
-            }
+            //        // Add the node to the tree
+            //        TreeNode aRoot = new TreeNode(paramName);
+            //        ndRoot.Nodes.Add(aRoot);
+            //    }
+            //}
 
             tvTablesColumns.EndUpdate();
         }
@@ -436,7 +437,7 @@ namespace fyiReporting.RdlDesign
                 return;
 
             if (_ColumnList == null)
-                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, this.lbParameters.Items);
+                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
 
             foreach (SqlColumn sq in _ColumnList)
             {
@@ -466,7 +467,7 @@ namespace fyiReporting.RdlDesign
                 template = _TemplateTable;	// default to table- should never reach
 
             if (_ColumnList == null)
-                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, this.lbParameters.Items);
+                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
 
             if (_ColumnList.Count == 0)		// can only happen by an error
                 return false;
@@ -828,11 +829,11 @@ namespace fyiReporting.RdlDesign
 
         private void DoReportSyntaxParameters(CultureInfo cinfo, StringBuilder sb)
         {
-            if (this.lbParameters.Items.Count <= 0)
+            if (reportParameterCtl1.lbParameters.Items.Count <= 0)
                 return;
 
             sb.Append("<ReportParameters>");
-            foreach (ReportParm rp in lbParameters.Items)
+            foreach (ReportParm rp in reportParameterCtl1.lbParameters.Items)
             {
                 sb.AppendFormat(cinfo, "<ReportParameter Name=\"{0}\">", rp.Name);
                 sb.AppendFormat(cinfo, "<DataType>{0}</DataType>", rp.DataType);
@@ -869,11 +870,11 @@ namespace fyiReporting.RdlDesign
 
         private void DoReportSyntaxQParameters(CultureInfo cinfo, StringBuilder sb, string sql)
         {
-            if (this.lbParameters.Items.Count <= 0)
+            if (reportParameterCtl1.lbParameters.Items.Count <= 0)
                 return;
 
             bool bFirst = true;
-            foreach (ReportParm rp in lbParameters.Items)
+            foreach (ReportParm rp in reportParameterCtl1.lbParameters.Items)
             {
                 // force the name to start with @
                 string paramName;
@@ -1087,170 +1088,170 @@ namespace fyiReporting.RdlDesign
             tbReportSyntax.Text = "";	// when SQL changes get rid of report syntax
         }
 
-        private void bAdd_Click(object sender, System.EventArgs e)
-        {
-            ReportParm rp = new ReportParm("newparm");
-            int cur = this.lbParameters.Items.Add(rp);
-            lbParameters.SelectedIndex = cur;
-            this.tbParmName.Focus();
-        }
+        //private void bAdd_Click(object sender, System.EventArgs e)
+        //{
+        //    ReportParm rp = new ReportParm("newparm");
+        //    int cur = reportParameterCtl1.lbParameters.Items.Add(rp);
+        //    reportParameterCtl1.lbParameters.SelectedIndex = cur;
+        //    this.tbParmName.Focus();
+        //}
 
-        private void bRemove_Click(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
-            lbParameters.Items.RemoveAt(cur);
-            if (lbParameters.Items.Count <= 0)
-                return;
-            cur--;
-            if (cur < 0)
-                cur = 0;
-            lbParameters.SelectedIndex = cur;
-        }
+        //private void bRemove_Click(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
+        //    lbParameters.Items.RemoveAt(cur);
+        //    if (lbParameters.Items.Count <= 0)
+        //        return;
+        //    cur--;
+        //    if (cur < 0)
+        //        cur = 0;
+        //    lbParameters.SelectedIndex = cur;
+        //}
 
-        private void lbParameters_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void lbParameters_SelectedIndexChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            tbParmName.Text = rp.Name;
-            cbParmType.Text = rp.DataType;
-            tbParmPrompt.Text = rp.Prompt;
-            tbParmDefaultValue.Text = rp.DefaultValueDisplay;
-            ckbParmAllowBlank.Checked = rp.AllowBlank;
-            tbParmValidValues.Text = rp.ValidValuesDisplay;
-            ckbParmAllowNull.Checked = rp.AllowNull;
-        }
+        //    tbParmName.Text = rp.Name;
+        //    cbParmType.Text = rp.DataType;
+        //    tbParmPrompt.Text = rp.Prompt;
+        //    tbParmDefaultValue.Text = rp.DefaultValueDisplay;
+        //    ckbParmAllowBlank.Checked = rp.AllowBlank;
+        //    tbParmValidValues.Text = rp.ValidValuesDisplay;
+        //    ckbParmAllowNull.Checked = rp.AllowNull;
+        //}
 
-        private void lbParameters_MoveItem(int curloc, int newloc)
-        {
-            ReportParm rp = lbParameters.Items[curloc] as ReportParm;
-            if (rp == null)
-                return;
+        //private void lbParameters_MoveItem(int curloc, int newloc)
+        //{
+        //    ReportParm rp = lbParameters.Items[curloc] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            lbParameters.BeginUpdate();
-            lbParameters.Items.RemoveAt(curloc);
-            lbParameters.Items.Insert(newloc, rp);
-            lbParameters.SelectedIndex = newloc;
-            lbParameters.EndUpdate();
-        }
+        //    lbParameters.BeginUpdate();
+        //    lbParameters.Items.RemoveAt(curloc);
+        //    lbParameters.Items.Insert(newloc, rp);
+        //    lbParameters.SelectedIndex = newloc;
+        //    lbParameters.EndUpdate();
+        //}
 
-        private void tbParmName_TextChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void tbParmName_TextChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            if (rp.Name == tbParmName.Text)
-                return;
+        //    if (rp.Name == tbParmName.Text)
+        //        return;
 
-            rp.Name = tbParmName.Text;
-            // text doesn't change in listbox; force change by removing and re-adding item
-            lbParameters_MoveItem(cur, cur);
-        }
+        //    rp.Name = tbParmName.Text;
+        //    // text doesn't change in listbox; force change by removing and re-adding item
+        //    lbParameters_MoveItem(cur, cur);
+        //}
 
-        private void cbParmType_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void cbParmType_SelectedIndexChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            rp.DataType = cbParmType.Text;
-        }
+        //    rp.DataType = cbParmType.Text;
+        //}
 
-        private void tbParmPrompt_TextChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void tbParmPrompt_TextChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            rp.Prompt = tbParmPrompt.Text;
-        }
+        //    rp.Prompt = tbParmPrompt.Text;
+        //}
 
-        private void ckbParmAllowNull_CheckedChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void ckbParmAllowNull_CheckedChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            rp.AllowNull = ckbParmAllowNull.Checked;
-        }
+        //    rp.AllowNull = ckbParmAllowNull.Checked;
+        //}
 
-        private void ckbParmAllowBlank_CheckedChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void ckbParmAllowBlank_CheckedChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            rp.AllowBlank = ckbParmAllowBlank.Checked;
-        }
+        //    rp.AllowBlank = ckbParmAllowBlank.Checked;
+        //}
 
-        private void bParmUp_Click(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur <= 0)
-                return;
+        //private void bParmUp_Click(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur <= 0)
+        //        return;
 
-            lbParameters_MoveItem(cur, cur - 1);
-        }
+        //    lbParameters_MoveItem(cur, cur - 1);
+        //}
 
-        private void bParmDown_Click(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur + 1 >= lbParameters.Items.Count)
-                return;
+        //private void bParmDown_Click(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur + 1 >= lbParameters.Items.Count)
+        //        return;
 
-            lbParameters_MoveItem(cur, cur + 1);
-        }
+        //    lbParameters_MoveItem(cur, cur + 1);
+        //}
 
-        private void tbParmDefaultValue_TextChanged(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void tbParmDefaultValue_TextChanged(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            if (tbParmDefaultValue.Text.Length > 0)
-            {
-                if (rp.DefaultValue == null)
-                    rp.DefaultValue = new List<string>();
-                else
-                    rp.DefaultValue.Clear();
-                rp.DefaultValue.Add(tbParmDefaultValue.Text);
-            }
-            else
-                rp.DefaultValue = null;
+        //    if (tbParmDefaultValue.Text.Length > 0)
+        //    {
+        //        if (rp.DefaultValue == null)
+        //            rp.DefaultValue = new List<string>();
+        //        else
+        //            rp.DefaultValue.Clear();
+        //        rp.DefaultValue.Add(tbParmDefaultValue.Text);
+        //    }
+        //    else
+        //        rp.DefaultValue = null;
 
-        }
+        //}
 
         private void tbConnection_TextChanged(object sender, System.EventArgs e)
         {
@@ -1299,29 +1300,29 @@ namespace fyiReporting.RdlDesign
             tbSQL.SelectedText = t;
         }
 
-        private void bValidValues_Click(object sender, System.EventArgs e)
-        {
-            int cur = lbParameters.SelectedIndex;
-            if (cur < 0)
-                return;
+        //private void bValidValues_Click(object sender, System.EventArgs e)
+        //{
+        //    int cur = lbParameters.SelectedIndex;
+        //    if (cur < 0)
+        //        return;
 
-            ReportParm rp = lbParameters.Items[cur] as ReportParm;
-            if (rp == null)
-                return;
+        //    ReportParm rp = lbParameters.Items[cur] as ReportParm;
+        //    if (rp == null)
+        //        return;
 
-            DialogValidValues dvv = new DialogValidValues(rp.ValidValues);
-            try
-            {
-                if (dvv.ShowDialog() != DialogResult.OK)
-                    return;
-                rp.ValidValues = dvv.ValidValues;
-                this.tbParmValidValues.Text = rp.ValidValuesDisplay;
-            }
-            finally
-            {
-                dvv.Dispose();
-            }
-        }
+        //    DialogValidValues dvv = new DialogValidValues(rp.ValidValues);
+        //    try
+        //    {
+        //        if (dvv.ShowDialog() != DialogResult.OK)
+        //            return;
+        //        rp.ValidValues = dvv.ValidValues;
+        //        this.tbParmValidValues.Text = rp.ValidValuesDisplay;
+        //    }
+        //    finally
+        //    {
+        //        dvv.Dispose();
+        //    }
+        //}
 
         private void cbConnectionTypes_SelectedIndexChanged(object sender, System.EventArgs e)
         {
@@ -1580,12 +1581,5 @@ namespace fyiReporting.RdlDesign
              }
 
         }
-
-        private void DialogDatabase_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }
