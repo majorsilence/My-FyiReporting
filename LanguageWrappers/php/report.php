@@ -28,7 +28,7 @@ class Report {
 	* @param string $export_type - path on server to export file
 	*/
 	public function export($type, $export_path){
-		if ($type != "pdf" && $type != "csv" && $type != "xslx" && type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
+		if ($type != "pdf" && $type != "csv" && $type != "xslx" && $type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
 			$type = "pdf";
 		}
 		
@@ -39,16 +39,19 @@ class Report {
 		$cmd = "";
 		if($self_hosting_rdlcmd == true || $is_running_on_windows == true){
 			// if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
-			$cmd = $path_to_rdlcmd . ' ';
+			$cmd = '"' . $path_to_rdlcmd . '" ';
 		}
 		else{
 			// mono is required to run rdlcmd
 			$cmd = '"' . $path_to_mono . '" "' . $path_to_rdlcmd . '" ';
 		}
 		
+		$temp_folder = sys_get_temp_dir();
+		$temp_name = tempnam($temp_folder, "majorsilencereporting");
+		copy($this->report_path, $temp_name);
 		
 		// add path to rdl file
-		$cmd = $cmd . '"/f' . $this->report_path . ' ';
+		$cmd = $cmd . '"/f' . $temp_name . '';
 		
 		// Add all parameters to report
 		$count=0;
@@ -62,22 +65,24 @@ class Report {
 		
 			$count = $count + 1;
 		}
-		if($count>0){
-			$cmd = $cmd . '"';
-		}
+		$cmd = $cmd . '" ';
+	
 		
 		// set the export type
 		$cmd = $cmd . '"/t' . $type . '" ';
 		
 		//set the folder that the file will be exported
-		$cmd = $cmd . '"/o' . $export_path . '" ';
+		$cmd = $cmd . '"/o' . $temp_folder . '" ';
 		
 		
-		
-		
-		//shell_exec();
-		
-		
+		$shell_output = shell_exec($cmd);
+
+		$temp_pdf = $temp_folder . "/" . basename($temp_name, ".tmp") . "." . $type;
+		$final_pdf = $export_path;
+		//echo($cmd);
+		copy($temp_pdf, $final_pdf);
+		unlink($temp_name);
+		unlink($temp_pdf);
 	}
 
 	/**
@@ -85,12 +90,19 @@ class Report {
 	* @param string $type - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
 	*/
 	public function export_to_memory($type){
-		if ($type != "pdf" && $type != "csv" && $type != "xslx" && type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
+		if ($type != "pdf" && $type != "csv" && $type != "xslx" && $type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
 			$type = "pdf";
 		}
 	
+		$temp_folder = sys_get_temp_dir();
+		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 	
-		//shell_exec();
+		$this->export($type, $temp_name);
+		$data = file_get_contents($temp_name);
+	
+		unlink($temp_name);
+	
+		return $data;
 	}
 	
 	
