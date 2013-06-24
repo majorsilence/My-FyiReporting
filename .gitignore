@@ -2717,3 +2717,6 @@ My-FyiReporting.4.5.2.x86.nupkg
 /RdlViewer/bin/x86/Debug
 
 /RdlViewer/RdlReader/bin/x86/Debug
+
+/LanguageWrappers/python/config.pyc
+/LanguageWrappers/python/report.pyc
