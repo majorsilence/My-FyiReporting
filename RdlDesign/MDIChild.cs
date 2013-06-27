@@ -193,26 +193,23 @@ namespace fyiReporting.RdlDesign
 
         private bool FileSave(Uri file, string rdl)
         {
-            StreamWriter writer = null;
             bool bOK = true;
             try
             {
-                writer = new StreamWriter(file.LocalPath);
-                writer.Write(rdl);
-                //				editRDL.ClearUndo();
-                //				editRDL.Modified = false;
-                //				SetTitle();
-                //				statusBar.Text = "Saved " + curFileName;
+                using (StreamWriter writer = new StreamWriter(file.LocalPath))
+                {
+                    writer.Write(rdl);
+                    //				editRDL.ClearUndo();
+                    //				editRDL.Modified = false;
+                    //				SetTitle();
+                    //				statusBar.Text = "Saved " + curFileName;
+                }
             }
             catch (Exception ae)
             {
                 bOK = false;
                 MessageBox.Show(ae.Message + "\r\n" + ae.StackTrace);
                 //				statusBar.Text = "Save of file '" + curFileName + "' failed";
-            }
-            finally
-            {
-                writer.Close();
             }
             if (bOK)
                 this.Modified = false;
