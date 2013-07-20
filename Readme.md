@@ -1,3 +1,5 @@
+# Majorsilence Reporting (formerly My-FyiReporting)
+
 If you have any question about My-FyiReporting or do you want to contribute a discussion group for My-FyiReporting is available here:
 
 https://groups.google.com/d/forum/myfyireporting
@@ -12,17 +14,18 @@ Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#,
 other .NET language.  The winform viewer also works in linux using mono.  There is also a basic Gtk# (gtk-sharp) 
 viewer. 
 
-My-FyiReporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
-The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
+Majorsilence Reporting started as My-FyiReporting which was a fork of fyiReporting after it died. It has been rebranded as Majorsilence Reporting to make it clearer that it is a separate forked project.  Majorsilence Reporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
+The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.  I am leaving the
+github project named My-FyiReporting so links are not broken.  All branding will eventually be replaced with Majorsilence Reporting.
 
 Also check this [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki) as information will be slowly added.
 
-My-FyiReporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
+Majorsilence Reporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
 the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
 
 # Download
 
-If you have [NuGet](http://nuget.org) installed, the easiest way to get started is to install My-FyiReporting via NuGet:
+If you have [NuGet](http://nuget.org) installed, the easiest way to get started is to install Majorsilence Reporting via NuGet:
 
 This will setup My-FyiReporting in your project ready to use the viewers or designer.
 * PM> Install-Package My-FyiReporting.x86 
@@ -116,7 +119,7 @@ UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) -
 
 # Contributors
 
-A big thanks to all of My-FyiReporting contributors:
+A big thanks to all of Majorsilence Reporting contributors:
 
 * [ausadmin](https://github.com/ausadmin)
 * [Geek648](https://github.com/Geek648)
