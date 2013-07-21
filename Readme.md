@@ -1,6 +1,6 @@
 # Majorsilence Reporting (formerly My-FyiReporting)
 
-If you have any question about My-FyiReporting or do you want to contribute a discussion group for My-FyiReporting is available here:
+If you have any question about Majorsilence Reporting or do you want to contribute a discussion group for Majorsilence Reporting is available here:
 
 https://groups.google.com/d/forum/myfyireporting
 
