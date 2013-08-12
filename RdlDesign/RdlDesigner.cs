@@ -2165,7 +2165,12 @@ namespace fyiReporting.RdlDesign
 
         private void menuTools_Popup(object sender, EventArgs e)
         {
+            if (_ServerProcess != null && _ServerProcess.HasExited)
+                _ServerProcess = null;
+            startDesktopServerToolStripMenuItem.Text = this._ServerProcess == null ? "Start Desktop" : "Stop Desktop";
 
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            this.validateRDLToolStripMenuItem.Enabled = (mc != null && mc.DesignTab == "edit");
         }
 
         private void menuToolsProcess_Click(object sender, EventArgs e)
