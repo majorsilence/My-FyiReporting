@@ -86,7 +86,7 @@ A big thanks to all of Majorsilence Reporting contributors:
 	* Command line tools
 	* References RdlEngine
 * RdlCri\RdlCri.sln
-	* I am currently not sure what this is
+	* Custom Report Controls
 	* References RdlEngine
 * RdlDesign\RdlDesign.sln
 	* Is the main graphical drag and drop designer used to create reports.
@@ -102,7 +102,7 @@ A big thanks to all of Majorsilence Reporting contributors:
 	* References RdlEngine
 	* Disabled COM interop
 * RdlMapFile\RdlMapFile.sln
-	 *Something to do about maps
+	 * Map viewer
 * RdlTest\RdlTests.sln
 	 * Tests
 * ReportSever\
