@@ -39,6 +39,39 @@ Alternatively if you want keep up with the latest version you can always use Git
 
     git clone https://github.com/majorsilence/My-FyiReporting.git
 
+# Development
+Majorsilence Reporting is developed with the following workflow:
+
+* Nothing happens for weeks
+* Someone needs it to do something it doesn't already do
+* That person implements that something and submits a pull request
+* Repeat
+If it doesn't have a feature that you want it to have, add it.  If it has a bug you need fixed, fix it.
+
+## Contribute:
+All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few 
+days at the most.  Small pull requests are best as they are easier to review.
+
+See the wiki page [https://github.com/majorsilence/My-FyiReporting/wiki/Contribute](https://github.com/majorsilence/My-FyiReporting/wiki/Contribute)
+
+### Core Team
+
+* [majorsilence](https://github.com/majorsilence) (Peter Gill)
+
+
+### Contributors
+
+A big thanks to all of Majorsilence Reporting contributors:
+
+* [ausadmin](https://github.com/ausadmin)
+* [Geek648](https://github.com/Geek648)
+* [kobruleht](https://github.com/kobruleht)
+* [jzielke](https://github.com/jzielke)
+* [Gankov](https://github.com/Gankov)
+* [gam6itko](https://github.com/gam6itko)
+* [tsliang](https://github.com/tsliang)
+* [mohsenalikhani](https://github.com/mohsenalikhani)
+
 
 # Layout:
 
@@ -75,23 +108,7 @@ Alternatively if you want keep up with the latest version you can always use Git
 * ReportSever\
 
 
-
-#Contribute:
-All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few 
-days at the most.
-
-See the wiki page [https://github.com/majorsilence/My-FyiReporting/wiki/Contribute](https://github.com/majorsilence/My-FyiReporting/wiki/Contribute)
-
-
-#Open Positions:
-* Every project and every feature, for example
-* DataProviders Maintainer
-* RdlEngine Maintainer
-* RdlDesigner Maintainer
-* RdlViewer Maintainer
-* RdlMapFile Maintainer
-
-#RDL Compliance
+ RDL Compliance
 Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly 
 compatiable with RDL 2005.  If you want to add more features see the specfications.
 
@@ -112,19 +129,3 @@ project.
 UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) is alive?  
 UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) - Looks dead.
 
-# Core Team
-
-* [majorsilence](https://github.com/majorsilence) (Peter Gill)
-
-
-# Contributors
-
-A big thanks to all of Majorsilence Reporting contributors:
-
-* [ausadmin](https://github.com/ausadmin)
-* [Geek648](https://github.com/Geek648)
-* [kobruleht](https://github.com/kobruleht)
-* [jzielke](https://github.com/jzielke)
-* [Gankov](https://github.com/Gankov)
-* [gam6itko](https://github.com/gam6itko)
-* [tsliang](https://github.com/tsliang)
