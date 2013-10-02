@@ -56,8 +56,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-For additional information, email info@fyireporting.com or visit
-the website www.fyiReporting.com.";
+For additional information, visit
+the website https://github.com/majorsilence/My-FyiReporting.";
 
             lVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.lVMVersion.Text = ".NET " + Environment.Version.ToString();
@@ -69,6 +69,11 @@ the website www.fyiReporting.com.";
             LinkLabel lnk = (LinkLabel)sender;
             lnk.Links[lnk.Links.IndexOf(ea.Link)].Visited = true;
             System.Diagnostics.Process.Start(lnk.Tag.ToString());
+        }
+
+        private void DialogAbout_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
