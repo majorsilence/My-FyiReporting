@@ -1581,5 +1581,53 @@ namespace fyiReporting.RdlDesign
              }
 
         }
+
+        private void DialogDatabase_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboServerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (comboServerList.Items.Count == 0)
+            {
+                return;
+            }
+
+            string[] sections = tbConnection.Text.Split(';');
+
+            foreach (string section in sections)
+            {
+                if (section.ToLower().Contains("server="))
+                {
+                    string dataSource = string.Format("server={0}", comboServerList.SelectedValue.ToString());
+                    tbConnection.Text = tbConnection.Text.Replace(section, dataSource);
+                    break;
+                }
+            }
+
+        }
+
+        private void comboDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboDatabaseList.Items.Count == 0)
+            {
+                return;
+            }
+
+            string[] sections = tbConnection.Text.Split(';');
+
+            foreach (string section in sections)
+            {
+                if (section.ToLower().Contains("database="))
+                {
+                    string dataSource = string.Format("database={0}", comboDatabaseList.SelectedValue.ToString());
+                    tbConnection.Text = tbConnection.Text.Replace(section, dataSource);
+                    break;
+                }
+            }
+
+        }
     }
 }
