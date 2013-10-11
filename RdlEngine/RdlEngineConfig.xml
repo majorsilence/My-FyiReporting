@@ -6,6 +6,11 @@
 			<TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
 			<Interface>SQL</Interface>
 		</DataSource>
+    <DataSource>
+      <DataProvider>SQLce</DataProvider>
+      <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME, TABLE_TYPE</TableSelect>
+      <Interface>SQL</Interface>
+    </DataSource>
 		<DataSource>
 			<DataProvider>ODBC</DataProvider>
 			<TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
