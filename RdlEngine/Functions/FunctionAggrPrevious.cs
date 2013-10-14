@@ -72,7 +72,7 @@ namespace fyiReporting.RDL
 			Row crow=null;
 			foreach (Row r in re)
 			{
-				if (r == row)
+				if (r.RowNumber == row.RowNumber)
 					break;
 				crow = r;
 			}

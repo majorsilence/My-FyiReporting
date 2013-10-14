@@ -78,7 +78,7 @@ namespace fyiReporting.RDL
 					crow = r;
 					break;
 				}
-				if (r == row)
+				if (r.RowNumber == row.RowNumber)
 					bNext = true;
 			}
 			if (crow != null)
