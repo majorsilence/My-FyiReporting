@@ -566,8 +566,13 @@ namespace fyiReporting.RdlDesign
 
 			if (fDataElementStyle)
 				_Draw.SetElement(node, "DataElementStyle", this.cbDataElementStyle.Text);
-			if (fHideDuplicates)
-				_Draw.SetElement(node, "HideDuplicates", this.cbHideDuplicates.Text);
+            if (fHideDuplicates)
+            {
+                if(this.cbHideDuplicates.Text == "")
+                    _Draw.RemoveElement(node, "HideDuplicates");
+                else
+                    _Draw.SetElement(node, "HideDuplicates", this.cbHideDuplicates.Text);
+            }
 			if (fCanGrow)
 				_Draw.SetElement(node, "CanGrow", this.chkCanGrow.Checked? "true": "false");
 			if (fCanShrink)

@@ -85,7 +85,10 @@ namespace fyiReporting.RdlDesign
             get { return this.GetValue("HideDuplicates", ""); }
             set
             {
-                this.SetValue("HideDuplicates", value);
+                if (value == "")
+                    this.RemoveValue("HideDuplicates");
+                else
+                    this.SetValue("HideDuplicates", value);
             }
         }
         [CategoryAttribute("XML"),
