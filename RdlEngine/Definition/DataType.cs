@@ -63,7 +63,14 @@ namespace fyiReporting.RDL
 					break;   
 				case "Int64":
 					rs = TypeCode.Int64;
-					break;   
+					break;
+                case "UInt16":
+                case "UInt32":
+                    rs = TypeCode.UInt32;
+                    break;
+                case "UInt64":
+                    rs = TypeCode.UInt64;
+                    break;   
 				case "Float":
 				case "Single":
 				case "Double":
@@ -89,9 +96,10 @@ namespace fyiReporting.RDL
 		{
 			switch (tc)
 			{
-		        case TypeCode.Byte:
 				case TypeCode.Int64:
 				case TypeCode.Int32:
+                case TypeCode.UInt64:
+                case TypeCode.UInt32:
 				case TypeCode.Double:
 				case TypeCode.Decimal:
 					return true;

@@ -618,6 +618,9 @@ namespace fyiReporting.RDL
 						case TypeCode.Decimal:
 						case TypeCode.Int16:
 						case TypeCode.Int64:
+                        case TypeCode.UInt16:
+                        case TypeCode.UInt32:
+                        case TypeCode.UInt64:
 							break;
 						default:
 							throw new ParserException("First argument to Choose function must be numeric." + "  At column " + Convert.ToString(curToken.StartCol));

@@ -669,6 +669,9 @@ namespace fyiReporting.RdlAsp
                         case TypeCode.Int32:
                         case TypeCode.Int16:
                         case TypeCode.Int64:
+                        case TypeCode.UInt32:
+                        case TypeCode.UInt16:
+                        case TypeCode.UInt64:
                             pHtml.AppendFormat("<input type=text name=\"{0}\" value=\"{1}\" tabindex=\"{2}\" size=32 onKeyPress=\"javascript:return limitinput(event, '0123456789', true);\"/></td>",
                             rp.Name,		// name
                             pv == null ? defaultValue : pv,		// provide actual value if passed as parm otherwise default
