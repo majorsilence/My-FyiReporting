@@ -293,6 +293,9 @@ namespace fyiReporting.RdlDesign
 
 		private void lbParameters_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
+            if (tbParmName.Focused)
+                return;
+
             gbPropertyEdit.Enabled = false;
 			int cur = lbParameters.SelectedIndex;
 			if (cur < 0)
