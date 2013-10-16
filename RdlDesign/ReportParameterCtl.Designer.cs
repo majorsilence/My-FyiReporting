@@ -142,6 +142,7 @@ namespace fyiReporting.RdlDesign
             this.ckbParmMultiValue.Size = new System.Drawing.Size(79, 24);
             this.ckbParmMultiValue.TabIndex = 57;
             this.ckbParmMultiValue.Text = "MultiValue";
+            this.ckbParmMultiValue.CheckedChanged += new System.EventHandler(this.ckbParmMultiValue_CheckedChanged);
             // 
             // gbValidValues
             // 

@@ -32,7 +32,7 @@ namespace fyiReporting.RdlDesign
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tbTimeout = new System.Windows.Forms.NumericUpDown();
@@ -108,6 +108,7 @@ namespace fyiReporting.RdlDesign
             this.tbTimeout.Size = new System.Drawing.Size(88, 20);
             this.tbTimeout.TabIndex = 30;
             this.tbTimeout.ThousandsSeparator = true;
+            this.tbTimeout.Click += new System.EventHandler(this.tbTimeout_ValueChanged);
             // 
             // label3
             // 
@@ -126,6 +127,7 @@ namespace fyiReporting.RdlDesign
             this.bRefresh.Size = new System.Drawing.Size(62, 34);
             this.bRefresh.TabIndex = 33;
             this.bRefresh.Text = "Refresh Fields";
+            this.bRefresh.Click += new System.EventHandler(this.bRefresh_Click);
             // 
             // bEditSQL
             // 
@@ -135,6 +137,7 @@ namespace fyiReporting.RdlDesign
             this.bEditSQL.Size = new System.Drawing.Size(62, 23);
             this.bEditSQL.TabIndex = 32;
             this.bEditSQL.Text = "SQL...";
+            this.bEditSQL.Click += new System.EventHandler(this.bEditSQL_Click);
             // 
             // tbSQL
             // 
@@ -150,6 +153,7 @@ namespace fyiReporting.RdlDesign
             this.tbSQL.Size = new System.Drawing.Size(376, 69);
             this.tbSQL.TabIndex = 31;
             this.tbSQL.Text = "textBox1";
+            this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
             // 
             // label1
             // 
@@ -167,6 +171,7 @@ namespace fyiReporting.RdlDesign
             this.cbDataSource.Name = "cbDataSource";
             this.cbDataSource.Size = new System.Drawing.Size(156, 21);
             this.cbDataSource.TabIndex = 29;
+            this.cbDataSource.SelectedIndexChanged += new System.EventHandler(this.cbDataSource_SelectedIndexChanged);
             // 
             // lDataSource
             // 
@@ -184,6 +189,7 @@ namespace fyiReporting.RdlDesign
             this.tbDSName.Name = "tbDSName";
             this.tbDSName.Size = new System.Drawing.Size(144, 20);
             this.tbDSName.TabIndex = 28;
+            this.tbDSName.TextChanged += new System.EventHandler(this.tbDSName_TextChanged);
             // 
             // lDataSetName
             // 
@@ -202,6 +208,7 @@ namespace fyiReporting.RdlDesign
             this.bDeleteField.Size = new System.Drawing.Size(62, 23);
             this.bDeleteField.TabIndex = 27;
             this.bDeleteField.Text = "Delete";
+            this.bDeleteField.Click += new System.EventHandler(this.bDeleteField_Click);
             // 
             // dgFields
             // 
@@ -209,14 +216,14 @@ namespace fyiReporting.RdlDesign
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgFields.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgtbName,
             this.dgtbQueryName,
