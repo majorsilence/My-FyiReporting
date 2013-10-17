@@ -389,9 +389,6 @@ namespace fyiReporting.RDL
                     if (cstring.Length > 0)
                         cn = new SqlConnection(cstring);
                     break;
-                case "sqlce":
-                    cn = new System.Data.SqlServerCe.SqlCeConnection(cstring);
-                    break;
                 case "odbc":
                     cn = new OdbcConnection(cstring);
                     break;

@@ -8,6 +8,8 @@
 		</DataSource>
     <DataSource>
       <DataProvider>SQLce</DataProvider>
+      <CodeModule>C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</CodeModule>
+      <ClassName>System.Data.SqlServerCe.SqlCeConnection</ClassName>
       <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME, TABLE_TYPE</TableSelect>
       <Interface>SQL</Interface>
     </DataSource>
