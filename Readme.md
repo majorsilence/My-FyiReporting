@@ -122,7 +122,7 @@ ReportingCloud (another fork) has made some tutorials for using the designer and
 [http://sourceforge.net/projects/reportingcloud/files/](http://sourceforge.net/projects/reportingcloud/files/)
 
 I know there are other forks but last I checked they also seemed to be dead.  The main fyiReporting site is 
-found at http://www.fyireporting.com/ and it has exmpales found at [http://www.fyireporting.com/helpv4/index.php](http://www.fyireporting.com/helpv4/index.php) and 
+found at http://www.fyireporting.com/ and it has examples found at [http://www.fyireporting.com/helpv4/index.php](http://www.fyireporting.com/helpv4/index.php) and 
 the forum is [http://www.fyireporting.com/forum/index.php](http://www.fyireporting.com/forum/index.php).  However has I said above for the most part it is a dead 
 project.
 
