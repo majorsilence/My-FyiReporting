@@ -18,6 +18,6 @@ $path_to_mono = "mono";
 $is_running_on_windows = true;
 
 // If you want to specify the temp folder that should used set it here
-$override_tmp_folder = 'C:\xampp\htdocs\temp';
+$override_tmp_folder = '';
 
 ?>
