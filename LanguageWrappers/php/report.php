@@ -86,8 +86,8 @@ class Report {
 		
 		$shell_output = shell_exec($cmd);
 
-		$temp_pdf = $temp_folder 
-		if (endsWith(temp_pdf, DIRECTORY_SEPARATOR) == false)
+		$temp_pdf = $temp_folder;
+		if ($this->endsWith($temp_pdf, DIRECTORY_SEPARATOR) == false)
 		{
 			$temp_pdf = $temp_pdf . DIRECTORY_SEPARATOR;
 		}
