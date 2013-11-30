@@ -7,9 +7,19 @@ class Report {
 
 	private $report_path="";
 	private $parameters = array();
+	private $rdlcmd_dir = "";
 	
 	public function __construct($report_path){
 		$this->report_path = $report_path;
+		
+		global $path_to_rdlcmd;
+		
+		if (file_exists($path_to_rdlcmd) == false)
+		{
+			throw new \Exception("RdlCmd.exe not found.  Set path to RdlCmd.exe in config.php");
+		}
+		
+		$this->rdlcmd_dir = dirname($path_to_rdlcmd);
 	}
 
 	/**
@@ -83,10 +93,13 @@ class Report {
 		//set the folder that the file will be exported
 		$cmd = $cmd . '"/o' . $temp_folder . '" ';
 		
-		
+		$cdir = getcwd();
+		chdir ($this->rdlcmd_dir);
 		$shell_output = shell_exec($cmd);
+		chdir ($cdir);
 
 		$temp_pdf = $temp_folder;
+		
 		if ($this->endsWith($temp_pdf, DIRECTORY_SEPARATOR) == false)
 		{
 			$temp_pdf = $temp_pdf . DIRECTORY_SEPARATOR;
