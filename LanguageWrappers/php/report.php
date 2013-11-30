@@ -33,7 +33,7 @@ class Report {
 		}
 		
 	
-		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows;
+		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows, $override_tmp_folder;
 		
 		
 		$cmd = "";
@@ -46,7 +46,16 @@ class Report {
 			$cmd = '"' . $path_to_mono . '" "' . $path_to_rdlcmd . '" ';
 		}
 		
-		$temp_folder = sys_get_temp_dir();
+		$temp_folder = "";
+		if ($override_tmp_folder == "")
+		{
+			$temp_folder = sys_get_temp_dir();
+		}
+		else
+		{
+			$temp_folder = $override_tmp_folder;
+		}
+			
 		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 		copy($this->report_path, $temp_name);
 		
@@ -77,7 +86,12 @@ class Report {
 		
 		$shell_output = shell_exec($cmd);
 
-		$temp_pdf = $temp_folder . "/" . basename($temp_name, ".tmp") . "." . $type;
+		$temp_pdf = $temp_folder 
+		if (endsWith(temp_pdf, DIRECTORY_SEPARATOR) == false)
+		{
+			$temp_pdf = $temp_pdf . DIRECTORY_SEPARATOR;
+		}
+		$temp_pdf = $temp_pdf . basename($temp_name, ".tmp") . "." . $type;
 		$final_pdf = $export_path;
 		//echo($cmd);
 		copy($temp_pdf, $final_pdf);
@@ -94,7 +108,15 @@ class Report {
 			$type = "pdf";
 		}
 	
-		$temp_folder = sys_get_temp_dir();
+		$temp_folder = "";
+		if ($override_tmp_folder == "")
+		{
+			$temp_folder = sys_get_temp_dir();
+		}
+		else
+		{
+			$temp_folder = $override_tmp_folder;
+		}
 		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 	
 		$this->export($type, $temp_name);
@@ -105,6 +127,10 @@ class Report {
 		return $data;
 	}
 	
+	private function endsWith($haystack, $needle)
+	{
+		return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+	}
 	
 }
 

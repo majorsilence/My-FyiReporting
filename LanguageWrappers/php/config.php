@@ -17,6 +17,7 @@ $path_to_mono = "mono";
 // If this is true $path_to_mono is not used
 $is_running_on_windows = false;
 
-
+// If you want to specify the temp folder that should used set it here
+$override_tmp_folder = "";
 
 ?>
