@@ -111,82 +111,65 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.grpBoxVisibility = new System.Windows.Forms.GroupBox();
-            this.bHidden = new System.Windows.Forms.Button();
-            this.cbToggle = new System.Windows.Forms.ComboBox();
-            this.tbHidden = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.grpBoxVisibility.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // grpBoxVisibility
-            // 
-            this.grpBoxVisibility.Controls.Add(this.bHidden);
-            this.grpBoxVisibility.Controls.Add(this.cbToggle);
-            this.grpBoxVisibility.Controls.Add(this.tbHidden);
-            this.grpBoxVisibility.Controls.Add(this.label3);
-            this.grpBoxVisibility.Controls.Add(this.label2);
-            this.grpBoxVisibility.Location = new System.Drawing.Point(3, 3);
-            this.grpBoxVisibility.Name = "grpBoxVisibility";
-            this.grpBoxVisibility.Size = new System.Drawing.Size(432, 80);
-            this.grpBoxVisibility.TabIndex = 1;
-            this.grpBoxVisibility.TabStop = false;
-            this.grpBoxVisibility.Text = "Visibility";
-            // 
-            // bHidden
-            // 
-            this.bHidden.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bHidden.Location = new System.Drawing.Point(400, 26);
-            this.bHidden.Name = "bHidden";
-            this.bHidden.Size = new System.Drawing.Size(22, 16);
-            this.bHidden.TabIndex = 1;
-            this.bHidden.Tag = "visibility";
-            this.bHidden.Text = "fx";
-            this.bHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bHidden.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // cbToggle
-            // 
-            this.cbToggle.Location = new System.Drawing.Point(168, 48);
-            this.cbToggle.Name = "cbToggle";
-            this.cbToggle.Size = new System.Drawing.Size(224, 21);
-            this.cbToggle.TabIndex = 2;
-            this.cbToggle.SelectedIndexChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
-            this.cbToggle.TextChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
-            // 
-            // tbHidden
-            // 
-            this.tbHidden.Location = new System.Drawing.Point(168, 24);
-            this.tbHidden.Name = "tbHidden";
-            this.tbHidden.Size = new System.Drawing.Size(224, 20);
-            this.tbHidden.TabIndex = 0;
-            this.tbHidden.TextChanged += new System.EventHandler(this.tbHidden_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(16, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Toggle Item (Textbox name)";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(16, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Hidden (initial visibility)";
-            // 
-            // VisibilityCtl
-            // 
-            this.Controls.Add(this.grpBoxVisibility);
-            this.Name = "VisibilityCtl";
-            this.Size = new System.Drawing.Size(454, 104);
-            this.grpBoxVisibility.ResumeLayout(false);
-            this.grpBoxVisibility.PerformLayout();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisibilityCtl));
+			this.grpBoxVisibility = new System.Windows.Forms.GroupBox();
+			this.bHidden = new System.Windows.Forms.Button();
+			this.cbToggle = new System.Windows.Forms.ComboBox();
+			this.tbHidden = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.grpBoxVisibility.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// grpBoxVisibility
+			// 
+			resources.ApplyResources(this.grpBoxVisibility, "grpBoxVisibility");
+			this.grpBoxVisibility.Controls.Add(this.bHidden);
+			this.grpBoxVisibility.Controls.Add(this.cbToggle);
+			this.grpBoxVisibility.Controls.Add(this.tbHidden);
+			this.grpBoxVisibility.Controls.Add(this.label3);
+			this.grpBoxVisibility.Controls.Add(this.label2);
+			this.grpBoxVisibility.Name = "grpBoxVisibility";
+			this.grpBoxVisibility.TabStop = false;
+			// 
+			// bHidden
+			// 
+			resources.ApplyResources(this.bHidden, "bHidden");
+			this.bHidden.Name = "bHidden";
+			this.bHidden.Tag = "visibility";
+			this.bHidden.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// cbToggle
+			// 
+			resources.ApplyResources(this.cbToggle, "cbToggle");
+			this.cbToggle.Name = "cbToggle";
+			this.cbToggle.SelectedIndexChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
+			this.cbToggle.TextChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
+			// 
+			// tbHidden
+			// 
+			resources.ApplyResources(this.tbHidden, "tbHidden");
+			this.tbHidden.Name = "tbHidden";
+			this.tbHidden.TextChanged += new System.EventHandler(this.tbHidden_TextChanged);
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// VisibilityCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.grpBoxVisibility);
+			this.Name = "VisibilityCtl";
+			this.grpBoxVisibility.ResumeLayout(false);
+			this.grpBoxVisibility.PerformLayout();
+			this.ResumeLayout(false);
 
 		}
 		#endregion

@@ -387,6 +387,7 @@ namespace fyiReporting.RdlDesign
                 _HelpUrl = value.Length > 0 ? value : DefaultHelpUrl;
             }
         }
+
         static internal string[] MapSubtypes
         {
             get

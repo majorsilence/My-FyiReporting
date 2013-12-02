@@ -177,6 +177,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulesClassesCtl));
 			this.label1 = new System.Windows.Forms.Label();
 			this.bDeleteCM = new System.Windows.Forms.Button();
 			this.dgCodeModules = new System.Windows.Forms.DataGrid();
@@ -191,76 +192,61 @@ namespace fyiReporting.RdlDesign
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 8);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(448, 23);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Enter the names of the code module for use in expressions (e.g. MyRoutines.dll)";
 			// 
 			// bDeleteCM
 			// 
-			this.bDeleteCM.Location = new System.Drawing.Point(400, 32);
+			resources.ApplyResources(this.bDeleteCM, "bDeleteCM");
 			this.bDeleteCM.Name = "bDeleteCM";
-			this.bDeleteCM.Size = new System.Drawing.Size(48, 20);
-			this.bDeleteCM.TabIndex = 4;
-			this.bDeleteCM.Text = "Delete";
 			this.bDeleteCM.Click += new System.EventHandler(this.bDeleteCM_Click);
 			// 
 			// dgCodeModules
 			// 
+			resources.ApplyResources(this.dgCodeModules, "dgCodeModules");
 			this.dgCodeModules.CaptionVisible = false;
 			this.dgCodeModules.DataMember = "";
 			this.dgCodeModules.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgCodeModules.Location = new System.Drawing.Point(16, 32);
 			this.dgCodeModules.Name = "dgCodeModules";
-			this.dgCodeModules.Size = new System.Drawing.Size(376, 88);
-			this.dgCodeModules.TabIndex = 3;
 			this.dgCodeModules.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																									  this.dgTableStyleCM});
+            this.dgTableStyleCM});
 			// 
 			// dgTableStyleCM
 			// 
 			this.dgTableStyleCM.DataGrid = this.dgCodeModules;
+			resources.ApplyResources(this.dgTableStyleCM, "dgTableStyleCM");
 			this.dgTableStyleCM.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyleCM.MappingName = "";
 			// 
 			// bDeleteClass
 			// 
-			this.bDeleteClass.Location = new System.Drawing.Point(400, 160);
+			resources.ApplyResources(this.bDeleteClass, "bDeleteClass");
 			this.bDeleteClass.Name = "bDeleteClass";
-			this.bDeleteClass.Size = new System.Drawing.Size(48, 20);
-			this.bDeleteClass.TabIndex = 7;
-			this.bDeleteClass.Text = "Delete";
 			this.bDeleteClass.Click += new System.EventHandler(this.bDeleteClass_Click);
 			// 
 			// dgClasses
 			// 
+			resources.ApplyResources(this.dgClasses, "dgClasses");
 			this.dgClasses.CaptionVisible = false;
 			this.dgClasses.DataMember = "";
 			this.dgClasses.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgClasses.Location = new System.Drawing.Point(16, 160);
 			this.dgClasses.Name = "dgClasses";
-			this.dgClasses.Size = new System.Drawing.Size(376, 88);
-			this.dgClasses.TabIndex = 6;
 			this.dgClasses.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																								  this.dgTableStyleCL});
+            this.dgTableStyleCL});
 			// 
 			// dgTableStyleCL
 			// 
 			this.dgTableStyleCL.DataGrid = this.dgClasses;
+			resources.ApplyResources(this.dgTableStyleCL, "dgTableStyleCL");
 			this.dgTableStyleCL.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyleCL.MappingName = "";
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(8, 136);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(448, 23);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "Enter the classes with names that will be instantiated for use in expressions";
 			// 
 			// ModulesClassesCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.bDeleteClass);
 			this.Controls.Add(this.dgClasses);
 			this.Controls.Add(this.label2);
@@ -268,7 +254,6 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.dgCodeModules);
 			this.Controls.Add(this.label1);
 			this.Name = "ModulesClassesCtl";
-			this.Size = new System.Drawing.Size(472, 288);
 			((System.ComponentModel.ISupportInitialize)(this.dgCodeModules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgClasses)).EndInit();
 			this.ResumeLayout(false);

@@ -117,4 +117,154 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 99</value>
+  </data>
+  <data name="&gt;&gt;bValueExpr.Name" xml:space="preserve">
+    <value>bValueExpr</value>
+  </data>
+  <data name="&gt;&gt;dgFilters.Name" xml:space="preserve">
+    <value>dgFilters</value>
+  </data>
+  <data name="&gt;&gt;bValueExpr.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="dgFilters.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bValueExpr.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="bDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 37</value>
+  </data>
+  <data name="&gt;&gt;bDelete.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FiltersCtl</value>
+  </data>
+  <data name="&gt;&gt;bDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="bValueExpr.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;bDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bDown.Name" xml:space="preserve">
+    <value>bDown</value>
+  </data>
+  <data name="bValueExpr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 8</value>
+  </data>
+  <data name="&gt;&gt;bValueExpr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 23</value>
+  </data>
+  <data name="dgFilters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="bUp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="bValueExpr.Text" xml:space="preserve">
+    <value>fx</value>
+  </data>
+  <data name="&gt;&gt;bDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bDelete.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="bDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;dgFilters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bUp.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="bDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 23</value>
+  </data>
+  <data name="&gt;&gt;bUp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dgFilters.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bDelete.Name" xml:space="preserve">
+    <value>bDelete</value>
+  </data>
+  <data name="bUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 68</value>
+  </data>
+  <data name="&gt;&gt;bValueExpr.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="bUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 23</value>
+  </data>
+  <data name="bDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="bUp.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="bDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="dgFilters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>423, 264</value>
+  </data>
+  <data name="bValueExpr.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt, style=Bold, Italic</value>
+  </data>
+  <data name="&gt;&gt;bUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bValueExpr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 23</value>
+  </data>
+  <data name="bUp.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="bDown.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="bDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;dgFilters.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dgFilters.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bUp.Name" xml:space="preserve">
+    <value>bUp</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 304</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

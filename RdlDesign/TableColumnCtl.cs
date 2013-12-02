@@ -116,6 +116,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableColumnCtl));
 			this.grpBoxVisibility = new System.Windows.Forms.GroupBox();
 			this.bHidden = new System.Windows.Forms.Button();
 			this.cbToggle = new System.Windows.Forms.ComboBox();
@@ -131,109 +132,80 @@ namespace fyiReporting.RdlDesign
 			// 
 			// grpBoxVisibility
 			// 
+			resources.ApplyResources(this.grpBoxVisibility, "grpBoxVisibility");
 			this.grpBoxVisibility.Controls.Add(this.bHidden);
 			this.grpBoxVisibility.Controls.Add(this.cbToggle);
 			this.grpBoxVisibility.Controls.Add(this.tbHidden);
 			this.grpBoxVisibility.Controls.Add(this.label3);
 			this.grpBoxVisibility.Controls.Add(this.label2);
-			this.grpBoxVisibility.Location = new System.Drawing.Point(8, 8);
 			this.grpBoxVisibility.Name = "grpBoxVisibility";
-			this.grpBoxVisibility.Size = new System.Drawing.Size(432, 80);
-			this.grpBoxVisibility.TabIndex = 1;
 			this.grpBoxVisibility.TabStop = false;
-			this.grpBoxVisibility.Text = "Visibility";
 			// 
 			// bHidden
 			// 
-			this.bHidden.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.bHidden.Location = new System.Drawing.Point(400, 26);
+			resources.ApplyResources(this.bHidden, "bHidden");
 			this.bHidden.Name = "bHidden";
-			this.bHidden.Size = new System.Drawing.Size(22, 16);
-			this.bHidden.TabIndex = 1;
 			this.bHidden.Tag = "visibility";
-			this.bHidden.Text = "fx";
-			this.bHidden.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.bHidden.Click += new System.EventHandler(this.bExpr_Click);
 			// 
 			// cbToggle
 			// 
-			this.cbToggle.Location = new System.Drawing.Point(168, 48);
+			resources.ApplyResources(this.cbToggle, "cbToggle");
 			this.cbToggle.Name = "cbToggle";
-			this.cbToggle.Size = new System.Drawing.Size(152, 21);
-			this.cbToggle.TabIndex = 2;
-			this.cbToggle.TextChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
 			this.cbToggle.SelectedIndexChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
+			this.cbToggle.TextChanged += new System.EventHandler(this.cbToggle_SelectedIndexChanged);
 			// 
 			// tbHidden
 			// 
-			this.tbHidden.Location = new System.Drawing.Point(168, 24);
+			resources.ApplyResources(this.tbHidden, "tbHidden");
 			this.tbHidden.Name = "tbHidden";
-			this.tbHidden.Size = new System.Drawing.Size(224, 20);
-			this.tbHidden.TabIndex = 0;
-			this.tbHidden.Text = "";
 			this.tbHidden.TextChanged += new System.EventHandler(this.tbHidden_TextChanged);
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(16, 48);
+			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(152, 23);
-			this.label3.TabIndex = 1;
-			this.label3.Text = "Toggle Item (Textbox name)";
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(16, 24);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(120, 23);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "Hidden (initial visibility)";
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 104);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(80, 16);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Column Width";
 			// 
 			// tbColumnWidth
 			// 
-			this.tbColumnWidth.Location = new System.Drawing.Point(88, 104);
+			resources.ApplyResources(this.tbColumnWidth, "tbColumnWidth");
 			this.tbColumnWidth.Name = "tbColumnWidth";
-			this.tbColumnWidth.TabIndex = 3;
-			this.tbColumnWidth.Text = "";
 			this.tbColumnWidth.TextChanged += new System.EventHandler(this.tbWidth_TextChanged);
 			// 
 			// chkFixedHeader
 			// 
-			this.chkFixedHeader.Location = new System.Drawing.Point(8, 136);
+			resources.ApplyResources(this.chkFixedHeader, "chkFixedHeader");
 			this.chkFixedHeader.Name = "chkFixedHeader";
-			this.chkFixedHeader.Size = new System.Drawing.Size(96, 24);
-			this.chkFixedHeader.TabIndex = 4;
-			this.chkFixedHeader.Text = "Fixed Header";
 			this.chkFixedHeader.CheckedChanged += new System.EventHandler(this.cbFixedHeader_CheckedChanged);
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(112, 136);
+			resources.ApplyResources(this.label4, "label4");
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(336, 24);
-			this.label4.TabIndex = 5;
-			this.label4.Text = "Note: Fixed headers must be contiguous and start at either the left or the right " +
-				"of the table.  Current renderers ignore this parameter.";
 			// 
 			// TableColumnCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.chkFixedHeader);
 			this.Controls.Add(this.tbColumnWidth);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.grpBoxVisibility);
 			this.Name = "TableColumnCtl";
-			this.Size = new System.Drawing.Size(472, 288);
 			this.grpBoxVisibility.ResumeLayout(false);
+			this.grpBoxVisibility.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

@@ -17,6 +17,7 @@ private System.ComponentModel.Container components = null;
 
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSourcePassword));
 			this.label1 = new System.Windows.Forms.Label();
 			this.bOK = new System.Windows.Forms.Button();
 			this.bCancel = new System.Windows.Forms.Button();
@@ -25,43 +26,31 @@ private System.ComponentModel.Container components = null;
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(16, 16);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(280, 23);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Please enter the pass phrase for shared data sources";
 			// 
 			// bOK
 			// 
+			resources.ApplyResources(this.bOK, "bOK");
 			this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.bOK.Location = new System.Drawing.Point(112, 80);
 			this.bOK.Name = "bOK";
-			this.bOK.TabIndex = 2;
-			this.bOK.Text = "OK";
 			// 
 			// bCancel
 			// 
+			resources.ApplyResources(this.bCancel, "bCancel");
 			this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.bCancel.Location = new System.Drawing.Point(208, 80);
 			this.bCancel.Name = "bCancel";
-			this.bCancel.TabIndex = 3;
-			this.bCancel.Text = "Cancel";
 			// 
 			// tbPassPhrase
 			// 
-			this.tbPassPhrase.Location = new System.Drawing.Point(16, 40);
+			resources.ApplyResources(this.tbPassPhrase, "tbPassPhrase");
 			this.tbPassPhrase.Name = "tbPassPhrase";
-			this.tbPassPhrase.PasswordChar = '*';
-			this.tbPassPhrase.Size = new System.Drawing.Size(272, 20);
-			this.tbPassPhrase.TabIndex = 1;
-			this.tbPassPhrase.Text = "";
 			// 
 			// DataSourcePassword
 			// 
 			this.AcceptButton = this.bOK;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			resources.ApplyResources(this, "$this");
 			this.CancelButton = this.bCancel;
-			this.ClientSize = new System.Drawing.Size(306, 112);
 			this.Controls.Add(this.tbPassPhrase);
 			this.Controls.Add(this.bCancel);
 			this.Controls.Add(this.bOK);
@@ -71,9 +60,8 @@ private System.ComponentModel.Container components = null;
 			this.MinimizeBox = false;
 			this.Name = "DataSourcePassword";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Shared Data Sources";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

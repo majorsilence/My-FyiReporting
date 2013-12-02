@@ -186,510 +186,383 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbMajorTickMarks = new System.Windows.Forms.ComboBox();
-            this.cbMinorTickMarks = new System.Windows.Forms.ComboBox();
-            this.chkVisible = new System.Windows.Forms.CheckBox();
-            this.chkMargin = new System.Windows.Forms.CheckBox();
-            this.chkReverse = new System.Windows.Forms.CheckBox();
-            this.chkInterlaced = new System.Windows.Forms.CheckBox();
-            this.chkScalar = new System.Windows.Forms.CheckBox();
-            this.chkLogScale = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkMajorGLShow = new System.Windows.Forms.CheckBox();
-            this.tbMajorGLWidth = new System.Windows.Forms.TextBox();
-            this.bMajorGLColor = new System.Windows.Forms.Button();
-            this.cbMajorGLColor = new System.Windows.Forms.ComboBox();
-            this.cbMajorGLStyle = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkMinorGLShow = new System.Windows.Forms.CheckBox();
-            this.tbMinorGLWidth = new System.Windows.Forms.TextBox();
-            this.bMinorGLColor = new System.Windows.Forms.Button();
-            this.cbMinorGLColor = new System.Windows.Forms.ComboBox();
-            this.cbMinorGLStyle = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tbMajorInterval = new System.Windows.Forms.TextBox();
-            this.tbMinorInterval = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbMax = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbMin = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.bMinorIntervalExpr = new System.Windows.Forms.Button();
-            this.bMajorIntervalExpr = new System.Windows.Forms.Button();
-            this.bMinExpr = new System.Windows.Forms.Button();
-            this.bMaxExpr = new System.Windows.Forms.Button();
-            this.chkCanOmit = new System.Windows.Forms.CheckBox();
-            this.chkMonth = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(16, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Major Tick Marks";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(224, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Minor Tick Marks";
-            // 
-            // cbMajorTickMarks
-            // 
-            this.cbMajorTickMarks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMajorTickMarks.Items.AddRange(new object[] {
-            "None",
-            "Inside",
-            "Outside",
-            "Cross"});
-            this.cbMajorTickMarks.Location = new System.Drawing.Point(128, 8);
-            this.cbMajorTickMarks.Name = "cbMajorTickMarks";
-            this.cbMajorTickMarks.Size = new System.Drawing.Size(80, 21);
-            this.cbMajorTickMarks.TabIndex = 2;
-            this.cbMajorTickMarks.SelectedIndexChanged += new System.EventHandler(this.cbMajorTickMarks_SelectedIndexChanged);
-            // 
-            // cbMinorTickMarks
-            // 
-            this.cbMinorTickMarks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMinorTickMarks.Items.AddRange(new object[] {
-            "None",
-            "Inside",
-            "Outside",
-            "Cross"});
-            this.cbMinorTickMarks.Location = new System.Drawing.Point(336, 8);
-            this.cbMinorTickMarks.Name = "cbMinorTickMarks";
-            this.cbMinorTickMarks.Size = new System.Drawing.Size(80, 21);
-            this.cbMinorTickMarks.TabIndex = 4;
-            this.cbMinorTickMarks.SelectedIndexChanged += new System.EventHandler(this.cbMinorTickMarks_SelectedIndexChanged);
-            // 
-            // chkVisible
-            // 
-            this.chkVisible.Location = new System.Drawing.Point(24, 224);
-            this.chkVisible.Name = "chkVisible";
-            this.chkVisible.Size = new System.Drawing.Size(88, 24);
-            this.chkVisible.TabIndex = 19;
-            this.chkVisible.Text = "Visible";
-            this.chkVisible.CheckedChanged += new System.EventHandler(this.chkVisible_CheckedChanged);
-            // 
-            // chkMargin
-            // 
-            this.chkMargin.Location = new System.Drawing.Point(240, 224);
-            this.chkMargin.Name = "chkMargin";
-            this.chkMargin.Size = new System.Drawing.Size(60, 24);
-            this.chkMargin.TabIndex = 21;
-            this.chkMargin.Text = "Margin";
-            this.chkMargin.CheckedChanged += new System.EventHandler(this.chkMargin_CheckedChanged);
-            // 
-            // chkReverse
-            // 
-            this.chkReverse.Location = new System.Drawing.Point(108, 248);
-            this.chkReverse.Name = "chkReverse";
-            this.chkReverse.Size = new System.Drawing.Size(120, 24);
-            this.chkReverse.TabIndex = 23;
-            this.chkReverse.Text = "Reverse Direction";
-            this.chkReverse.CheckedChanged += new System.EventHandler(this.chkReverse_CheckedChanged);
-            // 
-            // chkInterlaced
-            // 
-            this.chkInterlaced.Location = new System.Drawing.Point(240, 248);
-            this.chkInterlaced.Name = "chkInterlaced";
-            this.chkInterlaced.Size = new System.Drawing.Size(88, 24);
-            this.chkInterlaced.TabIndex = 23;
-            this.chkInterlaced.Text = "Interlaced";
-            this.chkInterlaced.CheckedChanged += new System.EventHandler(this.chkInterlaced_CheckedChanged);
-            // 
-            // chkScalar
-            // 
-            this.chkScalar.Location = new System.Drawing.Point(24, 248);
-            this.chkScalar.Name = "chkScalar";
-            this.chkScalar.Size = new System.Drawing.Size(72, 24);
-            this.chkScalar.TabIndex = 22;
-            this.chkScalar.Text = "Scalar";
-            this.chkScalar.CheckedChanged += new System.EventHandler(this.chkScalar_CheckedChanged);
-            // 
-            // chkLogScale
-            // 
-            this.chkLogScale.Location = new System.Drawing.Point(108, 224);
-            this.chkLogScale.Name = "chkLogScale";
-            this.chkLogScale.Size = new System.Drawing.Size(120, 24);
-            this.chkLogScale.TabIndex = 20;
-            this.chkLogScale.Text = "Log Scale";
-            this.chkLogScale.CheckedChanged += new System.EventHandler(this.chkLogScale_CheckedChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkMajorGLShow);
-            this.groupBox1.Controls.Add(this.tbMajorGLWidth);
-            this.groupBox1.Controls.Add(this.bMajorGLColor);
-            this.groupBox1.Controls.Add(this.cbMajorGLColor);
-            this.groupBox1.Controls.Add(this.cbMajorGLStyle);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(16, 32);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 48);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Major Grid Lines";
-            // 
-            // chkMajorGLShow
-            // 
-            this.chkMajorGLShow.Location = new System.Drawing.Point(8, 14);
-            this.chkMajorGLShow.Name = "chkMajorGLShow";
-            this.chkMajorGLShow.Size = new System.Drawing.Size(56, 24);
-            this.chkMajorGLShow.TabIndex = 0;
-            this.chkMajorGLShow.Text = "Show";
-            this.chkMajorGLShow.CheckedChanged += new System.EventHandler(this.chkMajorGLShow_CheckedChanged);
-            // 
-            // tbMajorGLWidth
-            // 
-            this.tbMajorGLWidth.Location = new System.Drawing.Point(352, 16);
-            this.tbMajorGLWidth.Name = "tbMajorGLWidth";
-            this.tbMajorGLWidth.Size = new System.Drawing.Size(40, 20);
-            this.tbMajorGLWidth.TabIndex = 7;
-            this.tbMajorGLWidth.TextChanged += new System.EventHandler(this.tbMajorGLWidth_TextChanged);
-            // 
-            // bMajorGLColor
-            // 
-            this.bMajorGLColor.Location = new System.Drawing.Point(288, 14);
-            this.bMajorGLColor.Name = "bMajorGLColor";
-            this.bMajorGLColor.Size = new System.Drawing.Size(24, 24);
-            this.bMajorGLColor.TabIndex = 5;
-            this.bMajorGLColor.Text = "...";
-            this.bMajorGLColor.Click += new System.EventHandler(this.bMajorGLColor_Click);
-            // 
-            // cbMajorGLColor
-            // 
-            this.cbMajorGLColor.Location = new System.Drawing.Point(208, 16);
-            this.cbMajorGLColor.Name = "cbMajorGLColor";
-            this.cbMajorGLColor.Size = new System.Drawing.Size(72, 21);
-            this.cbMajorGLColor.TabIndex = 4;
-            this.cbMajorGLColor.SelectedIndexChanged += new System.EventHandler(this.cbMajorGLColor_SelectedIndexChanged);
-            // 
-            // cbMajorGLStyle
-            // 
-            this.cbMajorGLStyle.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbMajorGLStyle.Location = new System.Drawing.Point(96, 16);
-            this.cbMajorGLStyle.Name = "cbMajorGLStyle";
-            this.cbMajorGLStyle.Size = new System.Drawing.Size(72, 21);
-            this.cbMajorGLStyle.TabIndex = 2;
-            this.cbMajorGLStyle.SelectedIndexChanged += new System.EventHandler(this.cbMajorGLStyle_SelectedIndexChanged);
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(176, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 16);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Color";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(320, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Width";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(64, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Style";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.chkMinorGLShow);
-            this.groupBox2.Controls.Add(this.tbMinorGLWidth);
-            this.groupBox2.Controls.Add(this.bMinorGLColor);
-            this.groupBox2.Controls.Add(this.cbMinorGLColor);
-            this.groupBox2.Controls.Add(this.cbMinorGLStyle);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(16, 88);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 48);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Minor Grid Lines";
-            // 
-            // chkMinorGLShow
-            // 
-            this.chkMinorGLShow.Location = new System.Drawing.Point(8, 14);
-            this.chkMinorGLShow.Name = "chkMinorGLShow";
-            this.chkMinorGLShow.Size = new System.Drawing.Size(56, 24);
-            this.chkMinorGLShow.TabIndex = 0;
-            this.chkMinorGLShow.Text = "Show";
-            this.chkMinorGLShow.CheckedChanged += new System.EventHandler(this.chkMinorGLShow_CheckedChanged);
-            // 
-            // tbMinorGLWidth
-            // 
-            this.tbMinorGLWidth.Location = new System.Drawing.Point(352, 16);
-            this.tbMinorGLWidth.Name = "tbMinorGLWidth";
-            this.tbMinorGLWidth.Size = new System.Drawing.Size(40, 20);
-            this.tbMinorGLWidth.TabIndex = 7;
-            this.tbMinorGLWidth.TextChanged += new System.EventHandler(this.tbMinorGLWidth_TextChanged);
-            // 
-            // bMinorGLColor
-            // 
-            this.bMinorGLColor.Location = new System.Drawing.Point(288, 14);
-            this.bMinorGLColor.Name = "bMinorGLColor";
-            this.bMinorGLColor.Size = new System.Drawing.Size(24, 24);
-            this.bMinorGLColor.TabIndex = 5;
-            this.bMinorGLColor.Text = "...";
-            this.bMinorGLColor.Click += new System.EventHandler(this.bMinorGLColor_Click);
-            // 
-            // cbMinorGLColor
-            // 
-            this.cbMinorGLColor.Location = new System.Drawing.Point(208, 16);
-            this.cbMinorGLColor.Name = "cbMinorGLColor";
-            this.cbMinorGLColor.Size = new System.Drawing.Size(72, 21);
-            this.cbMinorGLColor.TabIndex = 4;
-            this.cbMinorGLColor.SelectedIndexChanged += new System.EventHandler(this.cbMinorGLColor_SelectedIndexChanged);
-            // 
-            // cbMinorGLStyle
-            // 
-            this.cbMinorGLStyle.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbMinorGLStyle.Location = new System.Drawing.Point(96, 16);
-            this.cbMinorGLStyle.Name = "cbMinorGLStyle";
-            this.cbMinorGLStyle.Size = new System.Drawing.Size(72, 21);
-            this.cbMinorGLStyle.TabIndex = 2;
-            this.cbMinorGLStyle.SelectedIndexChanged += new System.EventHandler(this.cbMinorGLStyle_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(176, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Color";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(320, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 16);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Width";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(64, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 16);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Style";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(16, 154);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 16);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Major Interval";
-            // 
-            // tbMajorInterval
-            // 
-            this.tbMajorInterval.Location = new System.Drawing.Point(104, 152);
-            this.tbMajorInterval.Name = "tbMajorInterval";
-            this.tbMajorInterval.Size = new System.Drawing.Size(65, 20);
-            this.tbMajorInterval.TabIndex = 8;
-            this.tbMajorInterval.TextChanged += new System.EventHandler(this.tbMajorInterval_TextChanged);
-            // 
-            // tbMinorInterval
-            // 
-            this.tbMinorInterval.Location = new System.Drawing.Point(302, 152);
-            this.tbMinorInterval.Name = "tbMinorInterval";
-            this.tbMinorInterval.Size = new System.Drawing.Size(65, 20);
-            this.tbMinorInterval.TabIndex = 11;
-            this.tbMinorInterval.TextChanged += new System.EventHandler(this.tbMinorInterval_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(217, 154);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 16);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Minor Interval";
-            // 
-            // tbMax
-            // 
-            this.tbMax.Location = new System.Drawing.Point(302, 182);
-            this.tbMax.Name = "tbMax";
-            this.tbMax.Size = new System.Drawing.Size(65, 20);
-            this.tbMax.TabIndex = 17;
-            this.tbMax.TextChanged += new System.EventHandler(this.tbMax_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(216, 184);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 16);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Maximum Value";
-            // 
-            // tbMin
-            // 
-            this.tbMin.Location = new System.Drawing.Point(104, 182);
-            this.tbMin.Name = "tbMin";
-            this.tbMin.Size = new System.Drawing.Size(65, 20);
-            this.tbMin.TabIndex = 14;
-            this.tbMin.TextChanged += new System.EventHandler(this.tbMin_TextChanged);
-            // 
-            // label12
-            // 
-            this.label12.Location = new System.Drawing.Point(16, 184);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 16);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Minimum Value";
-            // 
-            // bMinorIntervalExpr
-            // 
-            this.bMinorIntervalExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bMinorIntervalExpr.Location = new System.Drawing.Point(375, 154);
-            this.bMinorIntervalExpr.Name = "bMinorIntervalExpr";
-            this.bMinorIntervalExpr.Size = new System.Drawing.Size(22, 16);
-            this.bMinorIntervalExpr.TabIndex = 12;
-            this.bMinorIntervalExpr.Tag = "minorinterval";
-            this.bMinorIntervalExpr.Text = "fx";
-            this.bMinorIntervalExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMinorIntervalExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bMajorIntervalExpr
-            // 
-            this.bMajorIntervalExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bMajorIntervalExpr.Location = new System.Drawing.Point(177, 154);
-            this.bMajorIntervalExpr.Name = "bMajorIntervalExpr";
-            this.bMajorIntervalExpr.Size = new System.Drawing.Size(22, 16);
-            this.bMajorIntervalExpr.TabIndex = 9;
-            this.bMajorIntervalExpr.Tag = "majorinterval";
-            this.bMajorIntervalExpr.Text = "fx";
-            this.bMajorIntervalExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMajorIntervalExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bMinExpr
-            // 
-            this.bMinExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bMinExpr.Location = new System.Drawing.Point(177, 184);
-            this.bMinExpr.Name = "bMinExpr";
-            this.bMinExpr.Size = new System.Drawing.Size(22, 16);
-            this.bMinExpr.TabIndex = 15;
-            this.bMinExpr.Tag = "min";
-            this.bMinExpr.Text = "fx";
-            this.bMinExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMinExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bMaxExpr
-            // 
-            this.bMaxExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bMaxExpr.Location = new System.Drawing.Point(376, 184);
-            this.bMaxExpr.Name = "bMaxExpr";
-            this.bMaxExpr.Size = new System.Drawing.Size(22, 16);
-            this.bMaxExpr.TabIndex = 18;
-            this.bMaxExpr.Tag = "max";
-            this.bMaxExpr.Text = "fx";
-            this.bMaxExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bMaxExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // chkCanOmit
-            // 
-            this.chkCanOmit.Location = new System.Drawing.Point(334, 224);
-            this.chkCanOmit.Name = "chkCanOmit";
-            this.chkCanOmit.Size = new System.Drawing.Size(93, 48);
-            this.chkCanOmit.TabIndex = 24;
-            this.chkCanOmit.Text = "Can Omit Values on Truncation";
-            this.chkCanOmit.CheckedChanged += new System.EventHandler(this.chkCanOmit_CheckedChanged);
-            // 
-            // chkMonth
-            // 
-            this.chkMonth.Location = new System.Drawing.Point(24, 272);
-            this.chkMonth.Name = "chkMonth";
-            this.chkMonth.Size = new System.Drawing.Size(145, 24);
-            this.chkMonth.TabIndex = 25;
-            this.chkMonth.Text = "Month Category Scale";
-            this.chkMonth.CheckedChanged += new System.EventHandler(this.chkMonth_CheckedChanged);
-            // 
-            // ChartAxisCtl
-            // 
-            this.Controls.Add(this.chkMonth);
-            this.Controls.Add(this.chkCanOmit);
-            this.Controls.Add(this.bMaxExpr);
-            this.Controls.Add(this.bMinExpr);
-            this.Controls.Add(this.bMajorIntervalExpr);
-            this.Controls.Add(this.bMinorIntervalExpr);
-            this.Controls.Add(this.tbMax);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.tbMin);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.tbMinorInterval);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.chkLogScale);
-            this.Controls.Add(this.chkScalar);
-            this.Controls.Add(this.chkInterlaced);
-            this.Controls.Add(this.chkReverse);
-            this.Controls.Add(this.chkMargin);
-            this.Controls.Add(this.chkVisible);
-            this.Controls.Add(this.cbMinorTickMarks);
-            this.Controls.Add(this.cbMajorTickMarks);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbMajorInterval);
-            this.Controls.Add(this.label9);
-            this.Name = "ChartAxisCtl";
-            this.Size = new System.Drawing.Size(440, 303);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartAxisCtl));
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.cbMajorTickMarks = new System.Windows.Forms.ComboBox();
+			this.cbMinorTickMarks = new System.Windows.Forms.ComboBox();
+			this.chkVisible = new System.Windows.Forms.CheckBox();
+			this.chkMargin = new System.Windows.Forms.CheckBox();
+			this.chkReverse = new System.Windows.Forms.CheckBox();
+			this.chkInterlaced = new System.Windows.Forms.CheckBox();
+			this.chkScalar = new System.Windows.Forms.CheckBox();
+			this.chkLogScale = new System.Windows.Forms.CheckBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.chkMajorGLShow = new System.Windows.Forms.CheckBox();
+			this.tbMajorGLWidth = new System.Windows.Forms.TextBox();
+			this.bMajorGLColor = new System.Windows.Forms.Button();
+			this.cbMajorGLColor = new System.Windows.Forms.ComboBox();
+			this.cbMajorGLStyle = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.chkMinorGLShow = new System.Windows.Forms.CheckBox();
+			this.tbMinorGLWidth = new System.Windows.Forms.TextBox();
+			this.bMinorGLColor = new System.Windows.Forms.Button();
+			this.cbMinorGLColor = new System.Windows.Forms.ComboBox();
+			this.cbMinorGLStyle = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.tbMajorInterval = new System.Windows.Forms.TextBox();
+			this.tbMinorInterval = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.tbMax = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.tbMin = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.bMinorIntervalExpr = new System.Windows.Forms.Button();
+			this.bMajorIntervalExpr = new System.Windows.Forms.Button();
+			this.bMinExpr = new System.Windows.Forms.Button();
+			this.bMaxExpr = new System.Windows.Forms.Button();
+			this.chkCanOmit = new System.Windows.Forms.CheckBox();
+			this.chkMonth = new System.Windows.Forms.CheckBox();
+			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// cbMajorTickMarks
+			// 
+			resources.ApplyResources(this.cbMajorTickMarks, "cbMajorTickMarks");
+			this.cbMajorTickMarks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbMajorTickMarks.Items.AddRange(new object[] {
+            resources.GetString("cbMajorTickMarks.Items"),
+            resources.GetString("cbMajorTickMarks.Items1"),
+            resources.GetString("cbMajorTickMarks.Items2"),
+            resources.GetString("cbMajorTickMarks.Items3")});
+			this.cbMajorTickMarks.Name = "cbMajorTickMarks";
+			this.cbMajorTickMarks.SelectedIndexChanged += new System.EventHandler(this.cbMajorTickMarks_SelectedIndexChanged);
+			// 
+			// cbMinorTickMarks
+			// 
+			resources.ApplyResources(this.cbMinorTickMarks, "cbMinorTickMarks");
+			this.cbMinorTickMarks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbMinorTickMarks.Items.AddRange(new object[] {
+            resources.GetString("cbMinorTickMarks.Items"),
+            resources.GetString("cbMinorTickMarks.Items1"),
+            resources.GetString("cbMinorTickMarks.Items2"),
+            resources.GetString("cbMinorTickMarks.Items3")});
+			this.cbMinorTickMarks.Name = "cbMinorTickMarks";
+			this.cbMinorTickMarks.SelectedIndexChanged += new System.EventHandler(this.cbMinorTickMarks_SelectedIndexChanged);
+			// 
+			// chkVisible
+			// 
+			resources.ApplyResources(this.chkVisible, "chkVisible");
+			this.chkVisible.Name = "chkVisible";
+			this.chkVisible.CheckedChanged += new System.EventHandler(this.chkVisible_CheckedChanged);
+			// 
+			// chkMargin
+			// 
+			resources.ApplyResources(this.chkMargin, "chkMargin");
+			this.chkMargin.Name = "chkMargin";
+			this.chkMargin.CheckedChanged += new System.EventHandler(this.chkMargin_CheckedChanged);
+			// 
+			// chkReverse
+			// 
+			resources.ApplyResources(this.chkReverse, "chkReverse");
+			this.chkReverse.Name = "chkReverse";
+			this.chkReverse.CheckedChanged += new System.EventHandler(this.chkReverse_CheckedChanged);
+			// 
+			// chkInterlaced
+			// 
+			resources.ApplyResources(this.chkInterlaced, "chkInterlaced");
+			this.chkInterlaced.Name = "chkInterlaced";
+			this.chkInterlaced.CheckedChanged += new System.EventHandler(this.chkInterlaced_CheckedChanged);
+			// 
+			// chkScalar
+			// 
+			resources.ApplyResources(this.chkScalar, "chkScalar");
+			this.chkScalar.Name = "chkScalar";
+			this.chkScalar.CheckedChanged += new System.EventHandler(this.chkScalar_CheckedChanged);
+			// 
+			// chkLogScale
+			// 
+			resources.ApplyResources(this.chkLogScale, "chkLogScale");
+			this.chkLogScale.Name = "chkLogScale";
+			this.chkLogScale.CheckedChanged += new System.EventHandler(this.chkLogScale_CheckedChanged);
+			// 
+			// groupBox1
+			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Controls.Add(this.cbMajorGLStyle);
+			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Controls.Add(this.chkMajorGLShow);
+			this.groupBox1.Controls.Add(this.tbMajorGLWidth);
+			this.groupBox1.Controls.Add(this.bMajorGLColor);
+			this.groupBox1.Controls.Add(this.cbMajorGLColor);
+			this.groupBox1.Controls.Add(this.label7);
+			this.groupBox1.Controls.Add(this.label6);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
+			// chkMajorGLShow
+			// 
+			resources.ApplyResources(this.chkMajorGLShow, "chkMajorGLShow");
+			this.chkMajorGLShow.Name = "chkMajorGLShow";
+			this.chkMajorGLShow.CheckedChanged += new System.EventHandler(this.chkMajorGLShow_CheckedChanged);
+			// 
+			// tbMajorGLWidth
+			// 
+			resources.ApplyResources(this.tbMajorGLWidth, "tbMajorGLWidth");
+			this.tbMajorGLWidth.Name = "tbMajorGLWidth";
+			this.tbMajorGLWidth.TextChanged += new System.EventHandler(this.tbMajorGLWidth_TextChanged);
+			// 
+			// bMajorGLColor
+			// 
+			resources.ApplyResources(this.bMajorGLColor, "bMajorGLColor");
+			this.bMajorGLColor.Name = "bMajorGLColor";
+			this.bMajorGLColor.Click += new System.EventHandler(this.bMajorGLColor_Click);
+			// 
+			// cbMajorGLColor
+			// 
+			resources.ApplyResources(this.cbMajorGLColor, "cbMajorGLColor");
+			this.cbMajorGLColor.Name = "cbMajorGLColor";
+			this.cbMajorGLColor.SelectedIndexChanged += new System.EventHandler(this.cbMajorGLColor_SelectedIndexChanged);
+			// 
+			// cbMajorGLStyle
+			// 
+			resources.ApplyResources(this.cbMajorGLStyle, "cbMajorGLStyle");
+			this.cbMajorGLStyle.Items.AddRange(new object[] {
+            resources.GetString("cbMajorGLStyle.Items"),
+            resources.GetString("cbMajorGLStyle.Items1"),
+            resources.GetString("cbMajorGLStyle.Items2"),
+            resources.GetString("cbMajorGLStyle.Items3"),
+            resources.GetString("cbMajorGLStyle.Items4"),
+            resources.GetString("cbMajorGLStyle.Items5"),
+            resources.GetString("cbMajorGLStyle.Items6"),
+            resources.GetString("cbMajorGLStyle.Items7"),
+            resources.GetString("cbMajorGLStyle.Items8"),
+            resources.GetString("cbMajorGLStyle.Items9")});
+			this.cbMajorGLStyle.Name = "cbMajorGLStyle";
+			this.cbMajorGLStyle.SelectedIndexChanged += new System.EventHandler(this.cbMajorGLStyle_SelectedIndexChanged);
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// groupBox2
+			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.Controls.Add(this.cbMinorGLStyle);
+			this.groupBox2.Controls.Add(this.label8);
+			this.groupBox2.Controls.Add(this.chkMinorGLShow);
+			this.groupBox2.Controls.Add(this.tbMinorGLWidth);
+			this.groupBox2.Controls.Add(this.bMinorGLColor);
+			this.groupBox2.Controls.Add(this.cbMinorGLColor);
+			this.groupBox2.Controls.Add(this.label4);
+			this.groupBox2.Controls.Add(this.label5);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.TabStop = false;
+			// 
+			// chkMinorGLShow
+			// 
+			resources.ApplyResources(this.chkMinorGLShow, "chkMinorGLShow");
+			this.chkMinorGLShow.Name = "chkMinorGLShow";
+			this.chkMinorGLShow.CheckedChanged += new System.EventHandler(this.chkMinorGLShow_CheckedChanged);
+			// 
+			// tbMinorGLWidth
+			// 
+			resources.ApplyResources(this.tbMinorGLWidth, "tbMinorGLWidth");
+			this.tbMinorGLWidth.Name = "tbMinorGLWidth";
+			this.tbMinorGLWidth.TextChanged += new System.EventHandler(this.tbMinorGLWidth_TextChanged);
+			// 
+			// bMinorGLColor
+			// 
+			resources.ApplyResources(this.bMinorGLColor, "bMinorGLColor");
+			this.bMinorGLColor.Name = "bMinorGLColor";
+			this.bMinorGLColor.Click += new System.EventHandler(this.bMinorGLColor_Click);
+			// 
+			// cbMinorGLColor
+			// 
+			resources.ApplyResources(this.cbMinorGLColor, "cbMinorGLColor");
+			this.cbMinorGLColor.Name = "cbMinorGLColor";
+			this.cbMinorGLColor.SelectedIndexChanged += new System.EventHandler(this.cbMinorGLColor_SelectedIndexChanged);
+			// 
+			// cbMinorGLStyle
+			// 
+			resources.ApplyResources(this.cbMinorGLStyle, "cbMinorGLStyle");
+			this.cbMinorGLStyle.Items.AddRange(new object[] {
+            resources.GetString("cbMinorGLStyle.Items"),
+            resources.GetString("cbMinorGLStyle.Items1"),
+            resources.GetString("cbMinorGLStyle.Items2"),
+            resources.GetString("cbMinorGLStyle.Items3"),
+            resources.GetString("cbMinorGLStyle.Items4"),
+            resources.GetString("cbMinorGLStyle.Items5"),
+            resources.GetString("cbMinorGLStyle.Items6"),
+            resources.GetString("cbMinorGLStyle.Items7"),
+            resources.GetString("cbMinorGLStyle.Items8"),
+            resources.GetString("cbMinorGLStyle.Items9")});
+			this.cbMinorGLStyle.Name = "cbMinorGLStyle";
+			this.cbMinorGLStyle.SelectedIndexChanged += new System.EventHandler(this.cbMinorGLStyle_SelectedIndexChanged);
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// label9
+			// 
+			resources.ApplyResources(this.label9, "label9");
+			this.label9.Name = "label9";
+			// 
+			// tbMajorInterval
+			// 
+			resources.ApplyResources(this.tbMajorInterval, "tbMajorInterval");
+			this.tbMajorInterval.Name = "tbMajorInterval";
+			this.tbMajorInterval.TextChanged += new System.EventHandler(this.tbMajorInterval_TextChanged);
+			// 
+			// tbMinorInterval
+			// 
+			resources.ApplyResources(this.tbMinorInterval, "tbMinorInterval");
+			this.tbMinorInterval.Name = "tbMinorInterval";
+			this.tbMinorInterval.TextChanged += new System.EventHandler(this.tbMinorInterval_TextChanged);
+			// 
+			// label10
+			// 
+			resources.ApplyResources(this.label10, "label10");
+			this.label10.Name = "label10";
+			// 
+			// tbMax
+			// 
+			resources.ApplyResources(this.tbMax, "tbMax");
+			this.tbMax.Name = "tbMax";
+			this.tbMax.TextChanged += new System.EventHandler(this.tbMax_TextChanged);
+			// 
+			// label11
+			// 
+			resources.ApplyResources(this.label11, "label11");
+			this.label11.Name = "label11";
+			// 
+			// tbMin
+			// 
+			resources.ApplyResources(this.tbMin, "tbMin");
+			this.tbMin.Name = "tbMin";
+			this.tbMin.TextChanged += new System.EventHandler(this.tbMin_TextChanged);
+			// 
+			// label12
+			// 
+			resources.ApplyResources(this.label12, "label12");
+			this.label12.Name = "label12";
+			// 
+			// bMinorIntervalExpr
+			// 
+			resources.ApplyResources(this.bMinorIntervalExpr, "bMinorIntervalExpr");
+			this.bMinorIntervalExpr.Name = "bMinorIntervalExpr";
+			this.bMinorIntervalExpr.Tag = "minorinterval";
+			this.bMinorIntervalExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bMajorIntervalExpr
+			// 
+			resources.ApplyResources(this.bMajorIntervalExpr, "bMajorIntervalExpr");
+			this.bMajorIntervalExpr.Name = "bMajorIntervalExpr";
+			this.bMajorIntervalExpr.Tag = "majorinterval";
+			this.bMajorIntervalExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bMinExpr
+			// 
+			resources.ApplyResources(this.bMinExpr, "bMinExpr");
+			this.bMinExpr.Name = "bMinExpr";
+			this.bMinExpr.Tag = "min";
+			this.bMinExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bMaxExpr
+			// 
+			resources.ApplyResources(this.bMaxExpr, "bMaxExpr");
+			this.bMaxExpr.Name = "bMaxExpr";
+			this.bMaxExpr.Tag = "max";
+			this.bMaxExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// chkCanOmit
+			// 
+			resources.ApplyResources(this.chkCanOmit, "chkCanOmit");
+			this.chkCanOmit.Name = "chkCanOmit";
+			this.chkCanOmit.CheckedChanged += new System.EventHandler(this.chkCanOmit_CheckedChanged);
+			// 
+			// chkMonth
+			// 
+			resources.ApplyResources(this.chkMonth, "chkMonth");
+			this.chkMonth.Name = "chkMonth";
+			this.chkMonth.CheckedChanged += new System.EventHandler(this.chkMonth_CheckedChanged);
+			// 
+			// ChartAxisCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.chkReverse);
+			this.Controls.Add(this.chkMonth);
+			this.Controls.Add(this.chkCanOmit);
+			this.Controls.Add(this.bMaxExpr);
+			this.Controls.Add(this.bMinExpr);
+			this.Controls.Add(this.bMajorIntervalExpr);
+			this.Controls.Add(this.bMinorIntervalExpr);
+			this.Controls.Add(this.tbMax);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.tbMin);
+			this.Controls.Add(this.label12);
+			this.Controls.Add(this.tbMinorInterval);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.chkLogScale);
+			this.Controls.Add(this.chkScalar);
+			this.Controls.Add(this.chkInterlaced);
+			this.Controls.Add(this.chkMargin);
+			this.Controls.Add(this.chkVisible);
+			this.Controls.Add(this.cbMinorTickMarks);
+			this.Controls.Add(this.cbMajorTickMarks);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.tbMajorInterval);
+			this.Controls.Add(this.label9);
+			this.Name = "ChartAxisCtl";
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

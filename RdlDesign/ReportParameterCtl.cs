@@ -21,25 +21,20 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
 using System.Xml;
-using System.Text;
 
 namespace fyiReporting.RdlDesign
 {
 	/// <summary>
 	/// Summary description for StyleCtl.
 	/// </summary>
-	internal partial class ReportParameterCtl : System.Windows.Forms.UserControl, IProperty
+	public partial class ReportParameterCtl : UserControl, IProperty
 	{
 		private DesignXmlDraw _Draw;
 
-        internal ReportParameterCtl()
+        public ReportParameterCtl()
         {
             // This call is required by the Windows.Forms Form Designer.
             InitializeComponent();

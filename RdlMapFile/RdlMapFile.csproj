@@ -124,6 +124,9 @@
     <Compile Include="PropertyText.cs" />
     <Compile Include="RdlMapFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DialogAbout.ru-RU.resx">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogFindByKey.resx">
       <DependentUpon>DialogFindByKey.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -136,8 +139,14 @@
       <DependentUpon>DialogAbout.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="DialogFindByKey.ru-RU.resx">
+      <DependentUpon>DialogFindByKey.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapFile.resx">
       <SubType>Designer</SubType>
+      <DependentUpon>MapFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapFile.ru-RU.resx">
       <DependentUpon>MapFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

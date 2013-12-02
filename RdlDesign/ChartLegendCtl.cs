@@ -95,6 +95,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartLegendCtl));
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cbPosition = new System.Windows.Forms.ComboBox();
@@ -105,75 +106,60 @@ namespace fyiReporting.RdlDesign
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(16, 18);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(104, 16);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Position in Chart";
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(16, 50);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(112, 16);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "Layout within Legend";
 			// 
 			// cbPosition
 			// 
+			resources.ApplyResources(this.cbPosition, "cbPosition");
 			this.cbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbPosition.Items.AddRange(new object[] {
-															"TopLeft",
-															"TopCenter",
-															"TopRight",
-															"LeftTop",
-															"LeftCenter",
-															"LeftBottom",
-															"RightTop",
-															"RightCenter",
-															"RightBottom",
-															"BottomRight",
-															"BottomCenter",
-															"BottomLeft"});
-			this.cbPosition.Location = new System.Drawing.Point(144, 16);
+            resources.GetString("cbPosition.Items"),
+            resources.GetString("cbPosition.Items1"),
+            resources.GetString("cbPosition.Items2"),
+            resources.GetString("cbPosition.Items3"),
+            resources.GetString("cbPosition.Items4"),
+            resources.GetString("cbPosition.Items5"),
+            resources.GetString("cbPosition.Items6"),
+            resources.GetString("cbPosition.Items7"),
+            resources.GetString("cbPosition.Items8"),
+            resources.GetString("cbPosition.Items9"),
+            resources.GetString("cbPosition.Items10"),
+            resources.GetString("cbPosition.Items11")});
 			this.cbPosition.Name = "cbPosition";
-			this.cbPosition.Size = new System.Drawing.Size(121, 21);
-			this.cbPosition.TabIndex = 4;
 			this.cbPosition.SelectedIndexChanged += new System.EventHandler(this.cbPosition_SelectedIndexChanged);
 			// 
 			// cbLayout
 			// 
+			resources.ApplyResources(this.cbLayout, "cbLayout");
 			this.cbLayout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbLayout.Items.AddRange(new object[] {
-														  "Column",
-														  "Row",
-														  "Table"});
-			this.cbLayout.Location = new System.Drawing.Point(144, 48);
+            resources.GetString("cbLayout.Items"),
+            resources.GetString("cbLayout.Items1"),
+            resources.GetString("cbLayout.Items2")});
 			this.cbLayout.Name = "cbLayout";
-			this.cbLayout.Size = new System.Drawing.Size(121, 21);
-			this.cbLayout.TabIndex = 6;
 			this.cbLayout.SelectedIndexChanged += new System.EventHandler(this.cbLayout_SelectedIndexChanged);
 			// 
 			// chkVisible
 			// 
-			this.chkVisible.Location = new System.Drawing.Point(16, 80);
+			resources.ApplyResources(this.chkVisible, "chkVisible");
 			this.chkVisible.Name = "chkVisible";
-			this.chkVisible.Size = new System.Drawing.Size(136, 24);
-			this.chkVisible.TabIndex = 14;
-			this.chkVisible.Text = "Visible";
 			this.chkVisible.CheckedChanged += new System.EventHandler(this.chkVisible_CheckedChanged);
 			// 
 			// chkInsidePlotArea
 			// 
-			this.chkInsidePlotArea.Location = new System.Drawing.Point(16, 112);
+			resources.ApplyResources(this.chkInsidePlotArea, "chkInsidePlotArea");
 			this.chkInsidePlotArea.Name = "chkInsidePlotArea";
-			this.chkInsidePlotArea.Size = new System.Drawing.Size(136, 24);
-			this.chkInsidePlotArea.TabIndex = 15;
-			this.chkInsidePlotArea.Text = "Draw Inside Plot Area";
 			this.chkInsidePlotArea.CheckedChanged += new System.EventHandler(this.chkInsidePlotArea_CheckedChanged);
 			// 
 			// ChartLegendCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.chkInsidePlotArea);
 			this.Controls.Add(this.chkVisible);
 			this.Controls.Add(this.cbLayout);
@@ -181,7 +167,6 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Name = "ChartLegendCtl";
-			this.Size = new System.Drawing.Size(440, 288);
 			this.ResumeLayout(false);
 
 		}

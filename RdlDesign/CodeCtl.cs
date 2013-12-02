@@ -49,8 +49,7 @@ namespace fyiReporting.RdlDesign
         private System.Windows.Forms.Button bCheckSyntax;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox tbCode;
-        private System.Windows.Forms.ListBox lbErrors;
-        private System.Windows.Forms.Splitter splitter1;
+		private System.Windows.Forms.ListBox lbErrors;
         private System.Windows.Forms.Label label2;
         /// <summary> 
         /// Required designer variable.
@@ -110,102 +109,64 @@ namespace fyiReporting.RdlDesign
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.bCheckSyntax = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tbCode = new System.Windows.Forms.TextBox();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.lbErrors = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(98, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Visual Basic Function Code";
-            // 
-            // bCheckSyntax
-            // 
-            this.bCheckSyntax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bCheckSyntax.Location = new System.Drawing.Point(365, 3);
-            this.bCheckSyntax.Name = "bCheckSyntax";
-            this.bCheckSyntax.Size = new System.Drawing.Size(82, 23);
-            this.bCheckSyntax.TabIndex = 2;
-            this.bCheckSyntax.Text = "Check Syntax";
-            this.bCheckSyntax.Click += new System.EventHandler(this.bCheckSyntax_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.tbCode);
-            this.panel1.Controls.Add(this.splitter1);
-            this.panel1.Controls.Add(this.lbErrors);
-            this.panel1.Location = new System.Drawing.Point(13, 31);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(439, 252);
-            this.panel1.TabIndex = 4;
-            // 
-            // tbCode
-            // 
-            this.tbCode.AcceptsReturn = true;
-            this.tbCode.AcceptsTab = true;
-            this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCode.HideSelection = false;
-            this.tbCode.Location = new System.Drawing.Point(87, 0);
-            this.tbCode.Multiline = true;
-            this.tbCode.Name = "tbCode";
-            this.tbCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbCode.Size = new System.Drawing.Size(352, 252);
-            this.tbCode.TabIndex = 2;
-            this.tbCode.WordWrap = false;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(5, 252);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
-            // 
-            // lbErrors
-            // 
-            this.lbErrors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbErrors.HorizontalScrollbar = true;
-            this.lbErrors.IntegralHeight = false;
-            this.lbErrors.Location = new System.Drawing.Point(0, 0);
-            this.lbErrors.Name = "lbErrors";
-            this.lbErrors.Size = new System.Drawing.Size(82, 252);
-            this.lbErrors.TabIndex = 0;
-            this.lbErrors.SelectedIndexChanged += new System.EventHandler(this.lbErrors_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(15, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Msgs";
-            // 
-            // CodeCtl
-            // 
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.bCheckSyntax);
-            this.Controls.Add(this.label1);
-            this.Name = "CodeCtl";
-            this.Size = new System.Drawing.Size(472, 288);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeCtl));
+			this.label1 = new System.Windows.Forms.Label();
+			this.bCheckSyntax = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.tbCode = new System.Windows.Forms.TextBox();
+			this.lbErrors = new System.Windows.Forms.ListBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.panel1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// bCheckSyntax
+			// 
+			resources.ApplyResources(this.bCheckSyntax, "bCheckSyntax");
+			this.bCheckSyntax.Name = "bCheckSyntax";
+			this.bCheckSyntax.Click += new System.EventHandler(this.bCheckSyntax_Click);
+			// 
+			// panel1
+			// 
+			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.Controls.Add(this.tbCode);
+			this.panel1.Controls.Add(this.lbErrors);
+			this.panel1.Name = "panel1";
+			// 
+			// tbCode
+			// 
+			this.tbCode.AcceptsReturn = true;
+			this.tbCode.AcceptsTab = true;
+			resources.ApplyResources(this.tbCode, "tbCode");
+			this.tbCode.HideSelection = false;
+			this.tbCode.Name = "tbCode";
+			// 
+			// lbErrors
+			// 
+			resources.ApplyResources(this.lbErrors, "lbErrors");
+			this.lbErrors.Name = "lbErrors";
+			this.lbErrors.SelectedIndexChanged += new System.EventHandler(this.lbErrors_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// CodeCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.bCheckSyntax);
+			this.Controls.Add(this.label1);
+			this.Name = "CodeCtl";
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.ResumeLayout(false);
 
         }
         #endregion

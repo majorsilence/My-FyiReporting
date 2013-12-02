@@ -197,569 +197,421 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.lLeft = new System.Windows.Forms.Label();
-            this.lBottom = new System.Windows.Forms.Label();
-            this.lTop = new System.Windows.Forms.Label();
-            this.lRight = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbStyleLeft = new System.Windows.Forms.ComboBox();
-            this.cbStyleBottom = new System.Windows.Forms.ComboBox();
-            this.cbStyleTop = new System.Windows.Forms.ComboBox();
-            this.cbStyleRight = new System.Windows.Forms.ComboBox();
-            this.bColorLeft = new System.Windows.Forms.Button();
-            this.cbColorLeft = new System.Windows.Forms.ComboBox();
-            this.bColorRight = new System.Windows.Forms.Button();
-            this.cbColorRight = new System.Windows.Forms.ComboBox();
-            this.bColorTop = new System.Windows.Forms.Button();
-            this.cbColorTop = new System.Windows.Forms.ComboBox();
-            this.bColorBottom = new System.Windows.Forms.Button();
-            this.cbColorBottom = new System.Windows.Forms.ComboBox();
-            this.tbWidthLeft = new System.Windows.Forms.TextBox();
-            this.tbWidthRight = new System.Windows.Forms.TextBox();
-            this.tbWidthTop = new System.Windows.Forms.TextBox();
-            this.tbWidthBottom = new System.Windows.Forms.TextBox();
-            this.tbWidthDefault = new System.Windows.Forms.TextBox();
-            this.bColorDefault = new System.Windows.Forms.Button();
-            this.cbColorDefault = new System.Windows.Forms.ComboBox();
-            this.cbStyleDefault = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.bSD = new System.Windows.Forms.Button();
-            this.bSL = new System.Windows.Forms.Button();
-            this.bSR = new System.Windows.Forms.Button();
-            this.bST = new System.Windows.Forms.Button();
-            this.bSB = new System.Windows.Forms.Button();
-            this.bCD = new System.Windows.Forms.Button();
-            this.bCT = new System.Windows.Forms.Button();
-            this.bCB = new System.Windows.Forms.Button();
-            this.bWB = new System.Windows.Forms.Button();
-            this.bWT = new System.Windows.Forms.Button();
-            this.bWR = new System.Windows.Forms.Button();
-            this.bCR = new System.Windows.Forms.Button();
-            this.bWL = new System.Windows.Forms.Button();
-            this.bWD = new System.Windows.Forms.Button();
-            this.bCL = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // lLeft
-            // 
-            this.lLeft.Location = new System.Drawing.Point(16, 74);
-            this.lLeft.Name = "lLeft";
-            this.lLeft.Size = new System.Drawing.Size(40, 16);
-            this.lLeft.TabIndex = 0;
-            this.lLeft.Text = "Left";
-            this.lLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lBottom
-            // 
-            this.lBottom.Location = new System.Drawing.Point(16, 170);
-            this.lBottom.Name = "lBottom";
-            this.lBottom.Size = new System.Drawing.Size(40, 16);
-            this.lBottom.TabIndex = 2;
-            this.lBottom.Text = "Bottom";
-            this.lBottom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lTop
-            // 
-            this.lTop.Location = new System.Drawing.Point(16, 138);
-            this.lTop.Name = "lTop";
-            this.lTop.Size = new System.Drawing.Size(40, 16);
-            this.lTop.TabIndex = 3;
-            this.lTop.Text = "Top";
-            this.lTop.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lRight
-            // 
-            this.lRight.Location = new System.Drawing.Point(16, 106);
-            this.lRight.Name = "lRight";
-            this.lRight.Size = new System.Drawing.Size(40, 16);
-            this.lRight.TabIndex = 4;
-            this.lRight.Text = "Right";
-            this.lRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(72, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Style";
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(343, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Width";
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(192, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 16);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Color";
-            // 
-            // cbStyleLeft
-            // 
-            this.cbStyleLeft.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbStyleLeft.Location = new System.Drawing.Point(56, 72);
-            this.cbStyleLeft.Name = "cbStyleLeft";
-            this.cbStyleLeft.Size = new System.Drawing.Size(88, 21);
-            this.cbStyleLeft.TabIndex = 7;
-            this.cbStyleLeft.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
-            // 
-            // cbStyleBottom
-            // 
-            this.cbStyleBottom.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbStyleBottom.Location = new System.Drawing.Point(56, 168);
-            this.cbStyleBottom.Name = "cbStyleBottom";
-            this.cbStyleBottom.Size = new System.Drawing.Size(88, 21);
-            this.cbStyleBottom.TabIndex = 28;
-            this.cbStyleBottom.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
-            // 
-            // cbStyleTop
-            // 
-            this.cbStyleTop.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbStyleTop.Location = new System.Drawing.Point(56, 136);
-            this.cbStyleTop.Name = "cbStyleTop";
-            this.cbStyleTop.Size = new System.Drawing.Size(88, 21);
-            this.cbStyleTop.TabIndex = 21;
-            this.cbStyleTop.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
-            // 
-            // cbStyleRight
-            // 
-            this.cbStyleRight.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbStyleRight.Location = new System.Drawing.Point(56, 104);
-            this.cbStyleRight.Name = "cbStyleRight";
-            this.cbStyleRight.Size = new System.Drawing.Size(88, 21);
-            this.cbStyleRight.TabIndex = 14;
-            this.cbStyleRight.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
-            // 
-            // bColorLeft
-            // 
-            this.bColorLeft.Location = new System.Drawing.Point(306, 74);
-            this.bColorLeft.Name = "bColorLeft";
-            this.bColorLeft.Size = new System.Drawing.Size(22, 16);
-            this.bColorLeft.TabIndex = 11;
-            this.bColorLeft.Text = "...";
-            this.bColorLeft.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbColorLeft
-            // 
-            this.cbColorLeft.Location = new System.Drawing.Point(176, 72);
-            this.cbColorLeft.Name = "cbColorLeft";
-            this.cbColorLeft.Size = new System.Drawing.Size(96, 21);
-            this.cbColorLeft.TabIndex = 9;
-            this.cbColorLeft.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
-            // 
-            // bColorRight
-            // 
-            this.bColorRight.Location = new System.Drawing.Point(306, 106);
-            this.bColorRight.Name = "bColorRight";
-            this.bColorRight.Size = new System.Drawing.Size(22, 16);
-            this.bColorRight.TabIndex = 18;
-            this.bColorRight.Text = "...";
-            this.bColorRight.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbColorRight
-            // 
-            this.cbColorRight.Location = new System.Drawing.Point(176, 104);
-            this.cbColorRight.Name = "cbColorRight";
-            this.cbColorRight.Size = new System.Drawing.Size(96, 21);
-            this.cbColorRight.TabIndex = 16;
-            this.cbColorRight.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
-            // 
-            // bColorTop
-            // 
-            this.bColorTop.Location = new System.Drawing.Point(306, 138);
-            this.bColorTop.Name = "bColorTop";
-            this.bColorTop.Size = new System.Drawing.Size(22, 16);
-            this.bColorTop.TabIndex = 25;
-            this.bColorTop.Text = "...";
-            this.bColorTop.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbColorTop
-            // 
-            this.cbColorTop.Location = new System.Drawing.Point(176, 136);
-            this.cbColorTop.Name = "cbColorTop";
-            this.cbColorTop.Size = new System.Drawing.Size(96, 21);
-            this.cbColorTop.TabIndex = 23;
-            this.cbColorTop.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
-            // 
-            // bColorBottom
-            // 
-            this.bColorBottom.Location = new System.Drawing.Point(306, 170);
-            this.bColorBottom.Name = "bColorBottom";
-            this.bColorBottom.Size = new System.Drawing.Size(22, 16);
-            this.bColorBottom.TabIndex = 32;
-            this.bColorBottom.Text = "...";
-            this.bColorBottom.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbColorBottom
-            // 
-            this.cbColorBottom.Location = new System.Drawing.Point(176, 168);
-            this.cbColorBottom.Name = "cbColorBottom";
-            this.cbColorBottom.Size = new System.Drawing.Size(96, 21);
-            this.cbColorBottom.TabIndex = 30;
-            this.cbColorBottom.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
-            // 
-            // tbWidthLeft
-            // 
-            this.tbWidthLeft.Location = new System.Drawing.Point(334, 72);
-            this.tbWidthLeft.Name = "tbWidthLeft";
-            this.tbWidthLeft.Size = new System.Drawing.Size(64, 20);
-            this.tbWidthLeft.TabIndex = 12;
-            this.tbWidthLeft.TextChanged += new System.EventHandler(this.tbWidth_Changed);
-            // 
-            // tbWidthRight
-            // 
-            this.tbWidthRight.Location = new System.Drawing.Point(334, 104);
-            this.tbWidthRight.Name = "tbWidthRight";
-            this.tbWidthRight.Size = new System.Drawing.Size(64, 20);
-            this.tbWidthRight.TabIndex = 19;
-            this.tbWidthRight.TextChanged += new System.EventHandler(this.tbWidth_Changed);
-            // 
-            // tbWidthTop
-            // 
-            this.tbWidthTop.Location = new System.Drawing.Point(334, 136);
-            this.tbWidthTop.Name = "tbWidthTop";
-            this.tbWidthTop.Size = new System.Drawing.Size(64, 20);
-            this.tbWidthTop.TabIndex = 26;
-            this.tbWidthTop.TextChanged += new System.EventHandler(this.tbWidth_Changed);
-            // 
-            // tbWidthBottom
-            // 
-            this.tbWidthBottom.Location = new System.Drawing.Point(334, 168);
-            this.tbWidthBottom.Name = "tbWidthBottom";
-            this.tbWidthBottom.Size = new System.Drawing.Size(64, 20);
-            this.tbWidthBottom.TabIndex = 33;
-            this.tbWidthBottom.TextChanged += new System.EventHandler(this.tbWidth_Changed);
-            // 
-            // tbWidthDefault
-            // 
-            this.tbWidthDefault.Location = new System.Drawing.Point(334, 40);
-            this.tbWidthDefault.Name = "tbWidthDefault";
-            this.tbWidthDefault.Size = new System.Drawing.Size(64, 20);
-            this.tbWidthDefault.TabIndex = 5;
-            this.tbWidthDefault.TextChanged += new System.EventHandler(this.tbWidthDefault_TextChanged);
-            // 
-            // bColorDefault
-            // 
-            this.bColorDefault.Location = new System.Drawing.Point(306, 42);
-            this.bColorDefault.Name = "bColorDefault";
-            this.bColorDefault.Size = new System.Drawing.Size(22, 16);
-            this.bColorDefault.TabIndex = 4;
-            this.bColorDefault.Text = "...";
-            this.bColorDefault.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbColorDefault
-            // 
-            this.cbColorDefault.Location = new System.Drawing.Point(176, 40);
-            this.cbColorDefault.Name = "cbColorDefault";
-            this.cbColorDefault.Size = new System.Drawing.Size(96, 21);
-            this.cbColorDefault.TabIndex = 2;
-            this.cbColorDefault.SelectedIndexChanged += new System.EventHandler(this.cbColorDefault_SelectedIndexChanged);
-            // 
-            // cbStyleDefault
-            // 
-            this.cbStyleDefault.Items.AddRange(new object[] {
-            "None",
-            "Dotted",
-            "Dashed",
-            "Solid",
-            "Double",
-            "Groove",
-            "Ridge",
-            "Inset",
-            "WindowInset",
-            "Outset"});
-            this.cbStyleDefault.Location = new System.Drawing.Point(56, 40);
-            this.cbStyleDefault.Name = "cbStyleDefault";
-            this.cbStyleDefault.Size = new System.Drawing.Size(88, 21);
-            this.cbStyleDefault.TabIndex = 0;
-            this.cbStyleDefault.SelectedIndexChanged += new System.EventHandler(this.cbStyleDefault_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(16, 42);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 16);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "Default";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // bSD
-            // 
-            this.bSD.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSD.Location = new System.Drawing.Point(148, 42);
-            this.bSD.Name = "bSD";
-            this.bSD.Size = new System.Drawing.Size(22, 16);
-            this.bSD.TabIndex = 1;
-            this.bSD.Tag = "sd";
-            this.bSD.Text = "fx";
-            this.bSD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSD.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bSL
-            // 
-            this.bSL.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSL.Location = new System.Drawing.Point(148, 75);
-            this.bSL.Name = "bSL";
-            this.bSL.Size = new System.Drawing.Size(22, 16);
-            this.bSL.TabIndex = 8;
-            this.bSL.Tag = "sl";
-            this.bSL.Text = "fx";
-            this.bSL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSL.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bSR
-            // 
-            this.bSR.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSR.Location = new System.Drawing.Point(148, 108);
-            this.bSR.Name = "bSR";
-            this.bSR.Size = new System.Drawing.Size(22, 16);
-            this.bSR.TabIndex = 15;
-            this.bSR.Tag = "sr";
-            this.bSR.Text = "fx";
-            this.bSR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSR.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bST
-            // 
-            this.bST.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bST.Location = new System.Drawing.Point(148, 139);
-            this.bST.Name = "bST";
-            this.bST.Size = new System.Drawing.Size(22, 16);
-            this.bST.TabIndex = 22;
-            this.bST.Tag = "st";
-            this.bST.Text = "fx";
-            this.bST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bST.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bSB
-            // 
-            this.bSB.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSB.Location = new System.Drawing.Point(148, 171);
-            this.bSB.Name = "bSB";
-            this.bSB.Size = new System.Drawing.Size(22, 16);
-            this.bSB.TabIndex = 29;
-            this.bSB.Tag = "sb";
-            this.bSB.Text = "fx";
-            this.bSB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bSB.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bCD
-            // 
-            this.bCD.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bCD.Location = new System.Drawing.Point(276, 42);
-            this.bCD.Name = "bCD";
-            this.bCD.Size = new System.Drawing.Size(22, 16);
-            this.bCD.TabIndex = 3;
-            this.bCD.Tag = "cd";
-            this.bCD.Text = "fx";
-            this.bCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCD.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bCT
-            // 
-            this.bCT.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bCT.Location = new System.Drawing.Point(276, 140);
-            this.bCT.Name = "bCT";
-            this.bCT.Size = new System.Drawing.Size(22, 16);
-            this.bCT.TabIndex = 24;
-            this.bCT.Tag = "ct";
-            this.bCT.Text = "fx";
-            this.bCT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCT.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bCB
-            // 
-            this.bCB.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bCB.Location = new System.Drawing.Point(276, 171);
-            this.bCB.Name = "bCB";
-            this.bCB.Size = new System.Drawing.Size(22, 16);
-            this.bCB.TabIndex = 31;
-            this.bCB.Tag = "cb";
-            this.bCB.Text = "fx";
-            this.bCB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCB.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bWB
-            // 
-            this.bWB.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bWB.Location = new System.Drawing.Point(403, 170);
-            this.bWB.Name = "bWB";
-            this.bWB.Size = new System.Drawing.Size(22, 16);
-            this.bWB.TabIndex = 34;
-            this.bWB.Tag = "wb";
-            this.bWB.Text = "fx";
-            this.bWB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bWB.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bWT
-            // 
-            this.bWT.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bWT.Location = new System.Drawing.Point(403, 138);
-            this.bWT.Name = "bWT";
-            this.bWT.Size = new System.Drawing.Size(22, 16);
-            this.bWT.TabIndex = 27;
-            this.bWT.Tag = "wt";
-            this.bWT.Text = "fx";
-            this.bWT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bWT.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bWR
-            // 
-            this.bWR.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bWR.Location = new System.Drawing.Point(403, 107);
-            this.bWR.Name = "bWR";
-            this.bWR.Size = new System.Drawing.Size(22, 16);
-            this.bWR.TabIndex = 20;
-            this.bWR.Tag = "wr";
-            this.bWR.Text = "fx";
-            this.bWR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bWR.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bCR
-            // 
-            this.bCR.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bCR.Location = new System.Drawing.Point(276, 108);
-            this.bCR.Name = "bCR";
-            this.bCR.Size = new System.Drawing.Size(22, 16);
-            this.bCR.TabIndex = 17;
-            this.bCR.Tag = "cr";
-            this.bCR.Text = "fx";
-            this.bCR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCR.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bWL
-            // 
-            this.bWL.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bWL.Location = new System.Drawing.Point(403, 73);
-            this.bWL.Name = "bWL";
-            this.bWL.Size = new System.Drawing.Size(22, 16);
-            this.bWL.TabIndex = 13;
-            this.bWL.Tag = "wl";
-            this.bWL.Text = "fx";
-            this.bWL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bWL.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bWD
-            // 
-            this.bWD.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bWD.Location = new System.Drawing.Point(403, 42);
-            this.bWD.Name = "bWD";
-            this.bWD.Size = new System.Drawing.Size(22, 16);
-            this.bWD.TabIndex = 6;
-            this.bWD.Tag = "wd";
-            this.bWD.Text = "fx";
-            this.bWD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bWD.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bCL
-            // 
-            this.bCL.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bCL.Location = new System.Drawing.Point(276, 75);
-            this.bCL.Name = "bCL";
-            this.bCL.Size = new System.Drawing.Size(22, 16);
-            this.bCL.TabIndex = 10;
-            this.bCL.Tag = "cl";
-            this.bCL.Text = "fx";
-            this.bCL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bCL.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // StyleBorderCtl
-            // 
-            this.Controls.Add(this.bCL);
-            this.Controls.Add(this.bWD);
-            this.Controls.Add(this.bWL);
-            this.Controls.Add(this.bCR);
-            this.Controls.Add(this.bWR);
-            this.Controls.Add(this.bWT);
-            this.Controls.Add(this.bWB);
-            this.Controls.Add(this.bCB);
-            this.Controls.Add(this.bCT);
-            this.Controls.Add(this.bCD);
-            this.Controls.Add(this.bSB);
-            this.Controls.Add(this.bST);
-            this.Controls.Add(this.bSR);
-            this.Controls.Add(this.bSL);
-            this.Controls.Add(this.bSD);
-            this.Controls.Add(this.tbWidthDefault);
-            this.Controls.Add(this.bColorDefault);
-            this.Controls.Add(this.cbColorDefault);
-            this.Controls.Add(this.cbStyleDefault);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.tbWidthBottom);
-            this.Controls.Add(this.tbWidthTop);
-            this.Controls.Add(this.tbWidthRight);
-            this.Controls.Add(this.tbWidthLeft);
-            this.Controls.Add(this.bColorBottom);
-            this.Controls.Add(this.cbColorBottom);
-            this.Controls.Add(this.bColorTop);
-            this.Controls.Add(this.cbColorTop);
-            this.Controls.Add(this.bColorRight);
-            this.Controls.Add(this.cbColorRight);
-            this.Controls.Add(this.bColorLeft);
-            this.Controls.Add(this.cbColorLeft);
-            this.Controls.Add(this.cbStyleRight);
-            this.Controls.Add(this.cbStyleTop);
-            this.Controls.Add(this.cbStyleBottom);
-            this.Controls.Add(this.cbStyleLeft);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lRight);
-            this.Controls.Add(this.lTop);
-            this.Controls.Add(this.lBottom);
-            this.Controls.Add(this.lLeft);
-            this.Name = "StyleBorderCtl";
-            this.Size = new System.Drawing.Size(472, 312);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleBorderCtl));
+			this.lLeft = new System.Windows.Forms.Label();
+			this.lBottom = new System.Windows.Forms.Label();
+			this.lTop = new System.Windows.Forms.Label();
+			this.lRight = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.cbStyleLeft = new System.Windows.Forms.ComboBox();
+			this.cbStyleBottom = new System.Windows.Forms.ComboBox();
+			this.cbStyleTop = new System.Windows.Forms.ComboBox();
+			this.cbStyleRight = new System.Windows.Forms.ComboBox();
+			this.bColorLeft = new System.Windows.Forms.Button();
+			this.cbColorLeft = new System.Windows.Forms.ComboBox();
+			this.bColorRight = new System.Windows.Forms.Button();
+			this.cbColorRight = new System.Windows.Forms.ComboBox();
+			this.bColorTop = new System.Windows.Forms.Button();
+			this.cbColorTop = new System.Windows.Forms.ComboBox();
+			this.bColorBottom = new System.Windows.Forms.Button();
+			this.cbColorBottom = new System.Windows.Forms.ComboBox();
+			this.tbWidthLeft = new System.Windows.Forms.TextBox();
+			this.tbWidthRight = new System.Windows.Forms.TextBox();
+			this.tbWidthTop = new System.Windows.Forms.TextBox();
+			this.tbWidthBottom = new System.Windows.Forms.TextBox();
+			this.tbWidthDefault = new System.Windows.Forms.TextBox();
+			this.bColorDefault = new System.Windows.Forms.Button();
+			this.cbColorDefault = new System.Windows.Forms.ComboBox();
+			this.cbStyleDefault = new System.Windows.Forms.ComboBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.bSD = new System.Windows.Forms.Button();
+			this.bSL = new System.Windows.Forms.Button();
+			this.bSR = new System.Windows.Forms.Button();
+			this.bST = new System.Windows.Forms.Button();
+			this.bSB = new System.Windows.Forms.Button();
+			this.bCD = new System.Windows.Forms.Button();
+			this.bCT = new System.Windows.Forms.Button();
+			this.bCB = new System.Windows.Forms.Button();
+			this.bWB = new System.Windows.Forms.Button();
+			this.bWT = new System.Windows.Forms.Button();
+			this.bWR = new System.Windows.Forms.Button();
+			this.bCR = new System.Windows.Forms.Button();
+			this.bWL = new System.Windows.Forms.Button();
+			this.bWD = new System.Windows.Forms.Button();
+			this.bCL = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// lLeft
+			// 
+			resources.ApplyResources(this.lLeft, "lLeft");
+			this.lLeft.Name = "lLeft";
+			// 
+			// lBottom
+			// 
+			resources.ApplyResources(this.lBottom, "lBottom");
+			this.lBottom.Name = "lBottom";
+			// 
+			// lTop
+			// 
+			resources.ApplyResources(this.lTop, "lTop");
+			this.lTop.Name = "lTop";
+			// 
+			// lRight
+			// 
+			resources.ApplyResources(this.lRight, "lRight");
+			this.lRight.Name = "lRight";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// cbStyleLeft
+			// 
+			resources.ApplyResources(this.cbStyleLeft, "cbStyleLeft");
+			this.cbStyleLeft.Items.AddRange(new object[] {
+            resources.GetString("cbStyleLeft.Items"),
+            resources.GetString("cbStyleLeft.Items1"),
+            resources.GetString("cbStyleLeft.Items2"),
+            resources.GetString("cbStyleLeft.Items3"),
+            resources.GetString("cbStyleLeft.Items4"),
+            resources.GetString("cbStyleLeft.Items5"),
+            resources.GetString("cbStyleLeft.Items6"),
+            resources.GetString("cbStyleLeft.Items7"),
+            resources.GetString("cbStyleLeft.Items8"),
+            resources.GetString("cbStyleLeft.Items9")});
+			this.cbStyleLeft.Name = "cbStyleLeft";
+			this.cbStyleLeft.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
+			// 
+			// cbStyleBottom
+			// 
+			resources.ApplyResources(this.cbStyleBottom, "cbStyleBottom");
+			this.cbStyleBottom.Items.AddRange(new object[] {
+            resources.GetString("cbStyleBottom.Items"),
+            resources.GetString("cbStyleBottom.Items1"),
+            resources.GetString("cbStyleBottom.Items2"),
+            resources.GetString("cbStyleBottom.Items3"),
+            resources.GetString("cbStyleBottom.Items4"),
+            resources.GetString("cbStyleBottom.Items5"),
+            resources.GetString("cbStyleBottom.Items6"),
+            resources.GetString("cbStyleBottom.Items7"),
+            resources.GetString("cbStyleBottom.Items8"),
+            resources.GetString("cbStyleBottom.Items9")});
+			this.cbStyleBottom.Name = "cbStyleBottom";
+			this.cbStyleBottom.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
+			// 
+			// cbStyleTop
+			// 
+			resources.ApplyResources(this.cbStyleTop, "cbStyleTop");
+			this.cbStyleTop.Items.AddRange(new object[] {
+            resources.GetString("cbStyleTop.Items"),
+            resources.GetString("cbStyleTop.Items1"),
+            resources.GetString("cbStyleTop.Items2"),
+            resources.GetString("cbStyleTop.Items3"),
+            resources.GetString("cbStyleTop.Items4"),
+            resources.GetString("cbStyleTop.Items5"),
+            resources.GetString("cbStyleTop.Items6"),
+            resources.GetString("cbStyleTop.Items7"),
+            resources.GetString("cbStyleTop.Items8"),
+            resources.GetString("cbStyleTop.Items9")});
+			this.cbStyleTop.Name = "cbStyleTop";
+			this.cbStyleTop.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
+			// 
+			// cbStyleRight
+			// 
+			resources.ApplyResources(this.cbStyleRight, "cbStyleRight");
+			this.cbStyleRight.Items.AddRange(new object[] {
+            resources.GetString("cbStyleRight.Items"),
+            resources.GetString("cbStyleRight.Items1"),
+            resources.GetString("cbStyleRight.Items2"),
+            resources.GetString("cbStyleRight.Items3"),
+            resources.GetString("cbStyleRight.Items4"),
+            resources.GetString("cbStyleRight.Items5"),
+            resources.GetString("cbStyleRight.Items6"),
+            resources.GetString("cbStyleRight.Items7"),
+            resources.GetString("cbStyleRight.Items8"),
+            resources.GetString("cbStyleRight.Items9")});
+			this.cbStyleRight.Name = "cbStyleRight";
+			this.cbStyleRight.SelectedIndexChanged += new System.EventHandler(this.cbStyle_SelectedIndexChanged);
+			// 
+			// bColorLeft
+			// 
+			resources.ApplyResources(this.bColorLeft, "bColorLeft");
+			this.bColorLeft.Name = "bColorLeft";
+			this.bColorLeft.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbColorLeft
+			// 
+			resources.ApplyResources(this.cbColorLeft, "cbColorLeft");
+			this.cbColorLeft.Name = "cbColorLeft";
+			this.cbColorLeft.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
+			// 
+			// bColorRight
+			// 
+			resources.ApplyResources(this.bColorRight, "bColorRight");
+			this.bColorRight.Name = "bColorRight";
+			this.bColorRight.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbColorRight
+			// 
+			resources.ApplyResources(this.cbColorRight, "cbColorRight");
+			this.cbColorRight.Name = "cbColorRight";
+			this.cbColorRight.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
+			// 
+			// bColorTop
+			// 
+			resources.ApplyResources(this.bColorTop, "bColorTop");
+			this.bColorTop.Name = "bColorTop";
+			this.bColorTop.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbColorTop
+			// 
+			resources.ApplyResources(this.cbColorTop, "cbColorTop");
+			this.cbColorTop.Name = "cbColorTop";
+			this.cbColorTop.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
+			// 
+			// bColorBottom
+			// 
+			resources.ApplyResources(this.bColorBottom, "bColorBottom");
+			this.bColorBottom.Name = "bColorBottom";
+			this.bColorBottom.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbColorBottom
+			// 
+			resources.ApplyResources(this.cbColorBottom, "cbColorBottom");
+			this.cbColorBottom.Name = "cbColorBottom";
+			this.cbColorBottom.SelectedIndexChanged += new System.EventHandler(this.cbColor_SelectedIndexChanged);
+			// 
+			// tbWidthLeft
+			// 
+			resources.ApplyResources(this.tbWidthLeft, "tbWidthLeft");
+			this.tbWidthLeft.Name = "tbWidthLeft";
+			this.tbWidthLeft.TextChanged += new System.EventHandler(this.tbWidth_Changed);
+			// 
+			// tbWidthRight
+			// 
+			resources.ApplyResources(this.tbWidthRight, "tbWidthRight");
+			this.tbWidthRight.Name = "tbWidthRight";
+			this.tbWidthRight.TextChanged += new System.EventHandler(this.tbWidth_Changed);
+			// 
+			// tbWidthTop
+			// 
+			resources.ApplyResources(this.tbWidthTop, "tbWidthTop");
+			this.tbWidthTop.Name = "tbWidthTop";
+			this.tbWidthTop.TextChanged += new System.EventHandler(this.tbWidth_Changed);
+			// 
+			// tbWidthBottom
+			// 
+			resources.ApplyResources(this.tbWidthBottom, "tbWidthBottom");
+			this.tbWidthBottom.Name = "tbWidthBottom";
+			this.tbWidthBottom.TextChanged += new System.EventHandler(this.tbWidth_Changed);
+			// 
+			// tbWidthDefault
+			// 
+			resources.ApplyResources(this.tbWidthDefault, "tbWidthDefault");
+			this.tbWidthDefault.Name = "tbWidthDefault";
+			this.tbWidthDefault.TextChanged += new System.EventHandler(this.tbWidthDefault_TextChanged);
+			// 
+			// bColorDefault
+			// 
+			resources.ApplyResources(this.bColorDefault, "bColorDefault");
+			this.bColorDefault.Name = "bColorDefault";
+			this.bColorDefault.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbColorDefault
+			// 
+			resources.ApplyResources(this.cbColorDefault, "cbColorDefault");
+			this.cbColorDefault.Name = "cbColorDefault";
+			this.cbColorDefault.SelectedIndexChanged += new System.EventHandler(this.cbColorDefault_SelectedIndexChanged);
+			// 
+			// cbStyleDefault
+			// 
+			resources.ApplyResources(this.cbStyleDefault, "cbStyleDefault");
+			this.cbStyleDefault.Items.AddRange(new object[] {
+            resources.GetString("cbStyleDefault.Items"),
+            resources.GetString("cbStyleDefault.Items1"),
+            resources.GetString("cbStyleDefault.Items2"),
+            resources.GetString("cbStyleDefault.Items3"),
+            resources.GetString("cbStyleDefault.Items4"),
+            resources.GetString("cbStyleDefault.Items5"),
+            resources.GetString("cbStyleDefault.Items6"),
+            resources.GetString("cbStyleDefault.Items7"),
+            resources.GetString("cbStyleDefault.Items8"),
+            resources.GetString("cbStyleDefault.Items9")});
+			this.cbStyleDefault.Name = "cbStyleDefault";
+			this.cbStyleDefault.SelectedIndexChanged += new System.EventHandler(this.cbStyleDefault_SelectedIndexChanged);
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// bSD
+			// 
+			resources.ApplyResources(this.bSD, "bSD");
+			this.bSD.Name = "bSD";
+			this.bSD.Tag = "sd";
+			this.bSD.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bSL
+			// 
+			resources.ApplyResources(this.bSL, "bSL");
+			this.bSL.Name = "bSL";
+			this.bSL.Tag = "sl";
+			this.bSL.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bSR
+			// 
+			resources.ApplyResources(this.bSR, "bSR");
+			this.bSR.Name = "bSR";
+			this.bSR.Tag = "sr";
+			this.bSR.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bST
+			// 
+			resources.ApplyResources(this.bST, "bST");
+			this.bST.Name = "bST";
+			this.bST.Tag = "st";
+			this.bST.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bSB
+			// 
+			resources.ApplyResources(this.bSB, "bSB");
+			this.bSB.Name = "bSB";
+			this.bSB.Tag = "sb";
+			this.bSB.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bCD
+			// 
+			resources.ApplyResources(this.bCD, "bCD");
+			this.bCD.Name = "bCD";
+			this.bCD.Tag = "cd";
+			this.bCD.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bCT
+			// 
+			resources.ApplyResources(this.bCT, "bCT");
+			this.bCT.Name = "bCT";
+			this.bCT.Tag = "ct";
+			this.bCT.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bCB
+			// 
+			resources.ApplyResources(this.bCB, "bCB");
+			this.bCB.Name = "bCB";
+			this.bCB.Tag = "cb";
+			this.bCB.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bWB
+			// 
+			resources.ApplyResources(this.bWB, "bWB");
+			this.bWB.Name = "bWB";
+			this.bWB.Tag = "wb";
+			this.bWB.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bWT
+			// 
+			resources.ApplyResources(this.bWT, "bWT");
+			this.bWT.Name = "bWT";
+			this.bWT.Tag = "wt";
+			this.bWT.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bWR
+			// 
+			resources.ApplyResources(this.bWR, "bWR");
+			this.bWR.Name = "bWR";
+			this.bWR.Tag = "wr";
+			this.bWR.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bCR
+			// 
+			resources.ApplyResources(this.bCR, "bCR");
+			this.bCR.Name = "bCR";
+			this.bCR.Tag = "cr";
+			this.bCR.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bWL
+			// 
+			resources.ApplyResources(this.bWL, "bWL");
+			this.bWL.Name = "bWL";
+			this.bWL.Tag = "wl";
+			this.bWL.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bWD
+			// 
+			resources.ApplyResources(this.bWD, "bWD");
+			this.bWD.Name = "bWD";
+			this.bWD.Tag = "wd";
+			this.bWD.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bCL
+			// 
+			resources.ApplyResources(this.bCL, "bCL");
+			this.bCL.Name = "bCL";
+			this.bCL.Tag = "cl";
+			this.bCL.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// StyleBorderCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.bCL);
+			this.Controls.Add(this.bWD);
+			this.Controls.Add(this.bWL);
+			this.Controls.Add(this.bCR);
+			this.Controls.Add(this.bWR);
+			this.Controls.Add(this.bWT);
+			this.Controls.Add(this.bWB);
+			this.Controls.Add(this.bCB);
+			this.Controls.Add(this.bCT);
+			this.Controls.Add(this.bCD);
+			this.Controls.Add(this.bSB);
+			this.Controls.Add(this.bST);
+			this.Controls.Add(this.bSR);
+			this.Controls.Add(this.bSL);
+			this.Controls.Add(this.bSD);
+			this.Controls.Add(this.tbWidthDefault);
+			this.Controls.Add(this.bColorDefault);
+			this.Controls.Add(this.cbColorDefault);
+			this.Controls.Add(this.cbStyleDefault);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.tbWidthBottom);
+			this.Controls.Add(this.tbWidthTop);
+			this.Controls.Add(this.tbWidthRight);
+			this.Controls.Add(this.tbWidthLeft);
+			this.Controls.Add(this.bColorBottom);
+			this.Controls.Add(this.cbColorBottom);
+			this.Controls.Add(this.bColorTop);
+			this.Controls.Add(this.cbColorTop);
+			this.Controls.Add(this.bColorRight);
+			this.Controls.Add(this.cbColorRight);
+			this.Controls.Add(this.bColorLeft);
+			this.Controls.Add(this.cbColorLeft);
+			this.Controls.Add(this.cbStyleRight);
+			this.Controls.Add(this.cbStyleTop);
+			this.Controls.Add(this.cbStyleBottom);
+			this.Controls.Add(this.cbStyleLeft);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.lRight);
+			this.Controls.Add(this.lTop);
+			this.Controls.Add(this.lBottom);
+			this.Controls.Add(this.lLeft);
+			this.Name = "StyleBorderCtl";
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

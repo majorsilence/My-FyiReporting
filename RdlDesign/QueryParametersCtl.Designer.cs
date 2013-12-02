@@ -29,58 +29,55 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.dgParms = new System.Windows.Forms.DataGridView();
-            this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
-            this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dgParms
-            // 
-            this.dgParms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgParms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgParms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryParametersCtl));
+			this.dgParms = new System.Windows.Forms.DataGridView();
+			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+			this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dgParms
+			// 
+			resources.ApplyResources(this.dgParms, "dgParms");
+			this.dgParms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgParms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgtbName,
             this.dgtbValue});
-            this.dgParms.Location = new System.Drawing.Point(8, 8);
-            this.dgParms.Name = "dgParms";
-            this.dgParms.Size = new System.Drawing.Size(384, 168);
-            this.dgParms.TabIndex = 2;
-            // 
-            // dgTableStyle
-            // 
-            this.dgTableStyle.DataGrid = null;
-            this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            // 
-            // dgtbName
-            // 
-            this.dgtbName.DataPropertyName = "Name";
-            this.dgtbName.HeaderText = "Parameter Name";
-            this.dgtbName.Name = "dgtbName";
-            // 
-            // dgtbValue
-            // 
-            this.dgtbValue.DataPropertyName = "Value";
-            this.dgtbValue.HeaderText = "Value";
-            this.dgtbValue.Name = "dgtbValue";
-            // 
-            // QueryParametersCtl
-            // 
-            this.Controls.Add(this.dgParms);
-            this.Name = "QueryParametersCtl";
-            this.Size = new System.Drawing.Size(464, 304);
-            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
-            this.ResumeLayout(false);
+			this.dgParms.Name = "dgParms";
+			// 
+			// dgTableStyle
+			// 
+			this.dgTableStyle.DataGrid = null;
+			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
+			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+			// 
+			// dgtbName
+			// 
+			this.dgtbName.DataPropertyName = "Name";
+			resources.ApplyResources(this.dgtbName, "dgtbName");
+			this.dgtbName.Name = "dgtbName";
+			// 
+			// dgtbValue
+			// 
+			this.dgtbValue.DataPropertyName = "Value";
+			resources.ApplyResources(this.dgtbValue, "dgtbValue");
+			this.dgtbValue.Name = "dgtbValue";
+			// 
+			// QueryParametersCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.dgParms);
+			this.Name = "QueryParametersCtl";
+			((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 		#endregion
 				
 		private System.Windows.Forms.DataGridTableStyle dgTableStyle;
 		private System.Windows.Forms.DataGridView dgParms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgtbName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgtbValue;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbValue;
 	}
 }

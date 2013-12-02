@@ -93,6 +93,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportXmlCtl));
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbDataTransform = new System.Windows.Forms.TextBox();
 			this.tbDataSchema = new System.Windows.Forms.TextBox();
@@ -106,82 +107,57 @@ namespace fyiReporting.RdlDesign
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(16, 32);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(112, 23);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "XSL Data Transform";
 			// 
 			// tbDataTransform
 			// 
-			this.tbDataTransform.Location = new System.Drawing.Point(136, 32);
+			resources.ApplyResources(this.tbDataTransform, "tbDataTransform");
 			this.tbDataTransform.Name = "tbDataTransform";
-			this.tbDataTransform.Size = new System.Drawing.Size(248, 20);
-			this.tbDataTransform.TabIndex = 1;
-			this.tbDataTransform.Text = "textBox1";
 			// 
 			// tbDataSchema
 			// 
-			this.tbDataSchema.Location = new System.Drawing.Point(136, 72);
+			resources.ApplyResources(this.tbDataSchema, "tbDataSchema");
 			this.tbDataSchema.Name = "tbDataSchema";
-			this.tbDataSchema.Size = new System.Drawing.Size(248, 20);
-			this.tbDataSchema.TabIndex = 3;
-			this.tbDataSchema.Text = "textBox1";
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(16, 72);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(88, 23);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Data Schema";
 			// 
 			// tbDataElementName
 			// 
-			this.tbDataElementName.Location = new System.Drawing.Point(136, 112);
+			resources.ApplyResources(this.tbDataElementName, "tbDataElementName");
 			this.tbDataElementName.Name = "tbDataElementName";
-			this.tbDataElementName.Size = new System.Drawing.Size(248, 20);
-			this.tbDataElementName.TabIndex = 5;
-			this.tbDataElementName.Text = "textBox1";
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(16, 112);
+			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(104, 23);
-			this.label3.TabIndex = 4;
-			this.label3.Text = "Top Element Name";
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(16, 152);
+			resources.ApplyResources(this.label4, "label4");
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(88, 23);
-			this.label4.TabIndex = 6;
-			this.label4.Text = "Element Style";
 			// 
 			// cbElementStyle
 			// 
+			resources.ApplyResources(this.cbElementStyle, "cbElementStyle");
 			this.cbElementStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbElementStyle.Items.AddRange(new object[] {
-																"AttributeNormal",
-																"ElementNormal"});
-			this.cbElementStyle.Location = new System.Drawing.Point(136, 152);
+            resources.GetString("cbElementStyle.Items"),
+            resources.GetString("cbElementStyle.Items1")});
 			this.cbElementStyle.Name = "cbElementStyle";
-			this.cbElementStyle.Size = new System.Drawing.Size(144, 21);
-			this.cbElementStyle.TabIndex = 7;
 			// 
 			// bOpenXsl
 			// 
-			this.bOpenXsl.Location = new System.Drawing.Point(400, 32);
+			resources.ApplyResources(this.bOpenXsl, "bOpenXsl");
 			this.bOpenXsl.Name = "bOpenXsl";
-			this.bOpenXsl.Size = new System.Drawing.Size(24, 23);
-			this.bOpenXsl.TabIndex = 8;
-			this.bOpenXsl.Text = "...";
 			this.bOpenXsl.Click += new System.EventHandler(this.bOpenXsl_Click);
 			// 
 			// ReportXmlCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.bOpenXsl);
 			this.Controls.Add(this.cbElementStyle);
 			this.Controls.Add(this.label4);
@@ -192,8 +168,8 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.tbDataTransform);
 			this.Controls.Add(this.label1);
 			this.Name = "ReportXmlCtl";
-			this.Size = new System.Drawing.Size(472, 288);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

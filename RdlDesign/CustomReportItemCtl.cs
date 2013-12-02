@@ -106,36 +106,30 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.pgProps = new System.Windows.Forms.PropertyGrid();
-            this.bExpr = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // pgProps
-            // 
-            this.pgProps.Location = new System.Drawing.Point(13, 17);
-            this.pgProps.Name = "pgProps";
-            this.pgProps.Size = new System.Drawing.Size(406, 260);
-            this.pgProps.TabIndex = 3;
-            // 
-            // bExpr
-            // 
-            this.bExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bExpr.Location = new System.Drawing.Point(422, 57);
-            this.bExpr.Name = "bExpr";
-            this.bExpr.Size = new System.Drawing.Size(22, 16);
-            this.bExpr.TabIndex = 4;
-            this.bExpr.Tag = "sd";
-            this.bExpr.Text = "fx";
-            this.bExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // CustomReportItemCtl
-            // 
-            this.Controls.Add(this.bExpr);
-            this.Controls.Add(this.pgProps);
-            this.Name = "CustomReportItemCtl";
-            this.Size = new System.Drawing.Size(464, 304);
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomReportItemCtl));
+			this.pgProps = new System.Windows.Forms.PropertyGrid();
+			this.bExpr = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// pgProps
+			// 
+			resources.ApplyResources(this.pgProps, "pgProps");
+			this.pgProps.Name = "pgProps";
+			// 
+			// bExpr
+			// 
+			resources.ApplyResources(this.bExpr, "bExpr");
+			this.bExpr.Name = "bExpr";
+			this.bExpr.Tag = "sd";
+			this.bExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// CustomReportItemCtl
+			// 
+			this.Controls.Add(this.bExpr);
+			this.Controls.Add(this.pgProps);
+			this.Name = "CustomReportItemCtl";
+			resources.ApplyResources(this, "$this");
+			this.ResumeLayout(false);
 
 		}
 		#endregion

@@ -185,9 +185,21 @@
       <DependentUpon>DataSourcePassword.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataSourcePassword.ru-RU.resx">
+      <DependentUpon>DataSourcePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogMessages.resx">
       <DependentUpon>DialogMessages.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogMessages.ru-RU.resx">
+      <DependentUpon>DialogMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogWait.resx">
+      <DependentUpon>DialogWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogWait.ru-RU.resx">
+      <DependentUpon>DialogWait.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PageDrawing.resx">
       <DependentUpon>PageDrawing.cs</DependentUpon>
@@ -197,8 +209,14 @@
       <DependentUpon>RdlViewer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="RdlViewer.ru-RU.resx">
+      <DependentUpon>RdlViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RdlViewerFind.resx">
       <SubType>Designer</SubType>
+      <DependentUpon>RdlViewerFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlViewerFind.ru-RU.resx">
       <DependentUpon>RdlViewerFind.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

@@ -35,13 +35,13 @@ namespace fyiReporting.RdlDesign
 	/// <summary>
 	/// Control for providing a designer image of RDL.   Works directly off the RDL XML.
 	/// </summary>
-    internal class DesignEditLines : UserControl, System.ComponentModel.ISupportInitialize
+    public class DesignEditLines : UserControl, System.ComponentModel.ISupportInitialize
     {
         System.Windows.Forms.RichTextBox editor=null;
         int saveTbEditorLines = -1;
         int _LineHeight = -1;
 
-        internal DesignEditLines()
+        public DesignEditLines()
             : base()
         {
             // force to double buffering for smoother drawing

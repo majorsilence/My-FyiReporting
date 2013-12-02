@@ -138,226 +138,172 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbDataSet = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkPBAfter = new System.Windows.Forms.CheckBox();
-            this.chkPBBefore = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbNoRows = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tbDetailCollectionName = new System.Windows.Forms.TextBox();
-            this.tbDetailElementName = new System.Windows.Forms.TextBox();
-            this.chkRenderDetails = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chkFooterRows = new System.Windows.Forms.CheckBox();
-            this.chkHeaderRows = new System.Windows.Forms.CheckBox();
-            this.chkDetails = new System.Windows.Forms.CheckBox();
-            this.chkHeaderRepeat = new System.Windows.Forms.CheckBox();
-            this.chkFooterRepeat = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(24, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 23);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "DataSet Name";
-            // 
-            // cbDataSet
-            // 
-            this.cbDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDataSet.Location = new System.Drawing.Point(120, 16);
-            this.cbDataSet.Name = "cbDataSet";
-            this.cbDataSet.Size = new System.Drawing.Size(304, 21);
-            this.cbDataSet.TabIndex = 0;
-            this.cbDataSet.SelectedIndexChanged += new System.EventHandler(this.cbDataSet_SelectedIndexChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkPBAfter);
-            this.groupBox1.Controls.Add(this.chkPBBefore);
-            this.groupBox1.Location = new System.Drawing.Point(24, 64);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 48);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Page Breaks";
-            // 
-            // chkPBAfter
-            // 
-            this.chkPBAfter.Location = new System.Drawing.Point(192, 16);
-            this.chkPBAfter.Name = "chkPBAfter";
-            this.chkPBAfter.Size = new System.Drawing.Size(128, 24);
-            this.chkPBAfter.TabIndex = 1;
-            this.chkPBAfter.Text = "Insert after Table";
-            this.chkPBAfter.CheckedChanged += new System.EventHandler(this.chkPBAfter_CheckedChanged);
-            // 
-            // chkPBBefore
-            // 
-            this.chkPBBefore.Location = new System.Drawing.Point(16, 16);
-            this.chkPBBefore.Name = "chkPBBefore";
-            this.chkPBBefore.Size = new System.Drawing.Size(128, 24);
-            this.chkPBBefore.TabIndex = 0;
-            this.chkPBBefore.Text = "Insert before Table";
-            this.chkPBBefore.CheckedChanged += new System.EventHandler(this.chkPBBefore_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(24, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 23);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "No rows message";
-            // 
-            // tbNoRows
-            // 
-            this.tbNoRows.Location = new System.Drawing.Point(120, 40);
-            this.tbNoRows.Name = "tbNoRows";
-            this.tbNoRows.Size = new System.Drawing.Size(304, 20);
-            this.tbNoRows.TabIndex = 1;
-            this.tbNoRows.Text = "textBox1";
-            this.tbNoRows.TextChanged += new System.EventHandler(this.tbNoRows_TextChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tbDetailCollectionName);
-            this.groupBox2.Controls.Add(this.tbDetailElementName);
-            this.groupBox2.Controls.Add(this.chkRenderDetails);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(24, 190);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 92);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "XML";
-            // 
-            // tbDetailCollectionName
-            // 
-            this.tbDetailCollectionName.Location = new System.Drawing.Point(160, 62);
-            this.tbDetailCollectionName.Name = "tbDetailCollectionName";
-            this.tbDetailCollectionName.Size = new System.Drawing.Size(224, 20);
-            this.tbDetailCollectionName.TabIndex = 3;
-            this.tbDetailCollectionName.Text = "textBox1";
-            this.tbDetailCollectionName.TextChanged += new System.EventHandler(this.tbDetailCollectionName_TextChanged);
-            // 
-            // tbDetailElementName
-            // 
-            this.tbDetailElementName.Location = new System.Drawing.Point(160, 36);
-            this.tbDetailElementName.Name = "tbDetailElementName";
-            this.tbDetailElementName.Size = new System.Drawing.Size(224, 20);
-            this.tbDetailElementName.TabIndex = 2;
-            this.tbDetailElementName.Text = "textBox1";
-            this.tbDetailElementName.TextChanged += new System.EventHandler(this.tbDetailElementName_TextChanged);
-            // 
-            // chkRenderDetails
-            // 
-            this.chkRenderDetails.Location = new System.Drawing.Point(16, 12);
-            this.chkRenderDetails.Name = "chkRenderDetails";
-            this.chkRenderDetails.Size = new System.Drawing.Size(160, 24);
-            this.chkRenderDetails.TabIndex = 0;
-            this.chkRenderDetails.Text = "Render Details in Output";
-            this.chkRenderDetails.CheckedChanged += new System.EventHandler(this.chkRenderDetails_CheckedChanged);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(16, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 16);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Detail Collection Name";
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(16, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Detail Element Name";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.chkFooterRepeat);
-            this.groupBox3.Controls.Add(this.chkHeaderRepeat);
-            this.groupBox3.Controls.Add(this.chkFooterRows);
-            this.groupBox3.Controls.Add(this.chkHeaderRows);
-            this.groupBox3.Controls.Add(this.chkDetails);
-            this.groupBox3.Location = new System.Drawing.Point(24, 120);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(400, 64);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Include Table Rows";
-            // 
-            // chkFooterRows
-            // 
-            this.chkFooterRows.Location = new System.Drawing.Point(272, 13);
-            this.chkFooterRows.Name = "chkFooterRows";
-            this.chkFooterRows.Size = new System.Drawing.Size(104, 24);
-            this.chkFooterRows.TabIndex = 2;
-            this.chkFooterRows.Text = "Footer Rows";
-            this.chkFooterRows.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
-            // 
-            // chkHeaderRows
-            // 
-            this.chkHeaderRows.Location = new System.Drawing.Point(144, 13);
-            this.chkHeaderRows.Name = "chkHeaderRows";
-            this.chkHeaderRows.Size = new System.Drawing.Size(104, 24);
-            this.chkHeaderRows.TabIndex = 1;
-            this.chkHeaderRows.Text = "Header Rows";
-            this.chkHeaderRows.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
-            // 
-            // chkDetails
-            // 
-            this.chkDetails.Location = new System.Drawing.Point(16, 13);
-            this.chkDetails.Name = "chkDetails";
-            this.chkDetails.Size = new System.Drawing.Size(104, 24);
-            this.chkDetails.TabIndex = 1;
-            this.chkDetails.Text = "Detail Rows";
-            this.chkDetails.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
-            // 
-            // chkHeaderRepeat
-            // 
-            this.chkHeaderRepeat.Location = new System.Drawing.Point(144, 34);
-            this.chkHeaderRepeat.Name = "chkHeaderRepeat";
-            this.chkHeaderRepeat.Size = new System.Drawing.Size(122, 30);
-            this.chkHeaderRepeat.TabIndex = 3;
-            this.chkHeaderRepeat.Text = "Repeat header on new page";
-            this.chkHeaderRepeat.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
-            // 
-            // chkFooterRepeat
-            // 
-            this.chkFooterRepeat.Location = new System.Drawing.Point(272, 34);
-            this.chkFooterRepeat.Name = "chkFooterRepeat";
-            this.chkFooterRepeat.Size = new System.Drawing.Size(122, 30);
-            this.chkFooterRepeat.TabIndex = 4;
-            this.chkFooterRepeat.Text = "Repeat footer on new page";
-            this.chkFooterRepeat.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
-            // 
-            // TableCtl
-            // 
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tbNoRows);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cbDataSet);
-            this.Controls.Add(this.label2);
-            this.Name = "TableCtl";
-            this.Size = new System.Drawing.Size(472, 288);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableCtl));
+			this.label2 = new System.Windows.Forms.Label();
+			this.cbDataSet = new System.Windows.Forms.ComboBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.chkPBAfter = new System.Windows.Forms.CheckBox();
+			this.chkPBBefore = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tbNoRows = new System.Windows.Forms.TextBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.tbDetailCollectionName = new System.Windows.Forms.TextBox();
+			this.tbDetailElementName = new System.Windows.Forms.TextBox();
+			this.chkRenderDetails = new System.Windows.Forms.CheckBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.chkFooterRepeat = new System.Windows.Forms.CheckBox();
+			this.chkHeaderRepeat = new System.Windows.Forms.CheckBox();
+			this.chkFooterRows = new System.Windows.Forms.CheckBox();
+			this.chkHeaderRows = new System.Windows.Forms.CheckBox();
+			this.chkDetails = new System.Windows.Forms.CheckBox();
+			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// cbDataSet
+			// 
+			resources.ApplyResources(this.cbDataSet, "cbDataSet");
+			this.cbDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbDataSet.Name = "cbDataSet";
+			this.cbDataSet.SelectedIndexChanged += new System.EventHandler(this.cbDataSet_SelectedIndexChanged);
+			// 
+			// groupBox1
+			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Controls.Add(this.chkPBAfter);
+			this.groupBox1.Controls.Add(this.chkPBBefore);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
+			// chkPBAfter
+			// 
+			resources.ApplyResources(this.chkPBAfter, "chkPBAfter");
+			this.chkPBAfter.Name = "chkPBAfter";
+			this.chkPBAfter.CheckedChanged += new System.EventHandler(this.chkPBAfter_CheckedChanged);
+			// 
+			// chkPBBefore
+			// 
+			resources.ApplyResources(this.chkPBBefore, "chkPBBefore");
+			this.chkPBBefore.Name = "chkPBBefore";
+			this.chkPBBefore.CheckedChanged += new System.EventHandler(this.chkPBBefore_CheckedChanged);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// tbNoRows
+			// 
+			resources.ApplyResources(this.tbNoRows, "tbNoRows");
+			this.tbNoRows.Name = "tbNoRows";
+			this.tbNoRows.TextChanged += new System.EventHandler(this.tbNoRows_TextChanged);
+			// 
+			// groupBox2
+			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.Controls.Add(this.tbDetailCollectionName);
+			this.groupBox2.Controls.Add(this.tbDetailElementName);
+			this.groupBox2.Controls.Add(this.chkRenderDetails);
+			this.groupBox2.Controls.Add(this.label4);
+			this.groupBox2.Controls.Add(this.label3);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.TabStop = false;
+			// 
+			// tbDetailCollectionName
+			// 
+			resources.ApplyResources(this.tbDetailCollectionName, "tbDetailCollectionName");
+			this.tbDetailCollectionName.Name = "tbDetailCollectionName";
+			this.tbDetailCollectionName.TextChanged += new System.EventHandler(this.tbDetailCollectionName_TextChanged);
+			// 
+			// tbDetailElementName
+			// 
+			resources.ApplyResources(this.tbDetailElementName, "tbDetailElementName");
+			this.tbDetailElementName.Name = "tbDetailElementName";
+			this.tbDetailElementName.TextChanged += new System.EventHandler(this.tbDetailElementName_TextChanged);
+			// 
+			// chkRenderDetails
+			// 
+			resources.ApplyResources(this.chkRenderDetails, "chkRenderDetails");
+			this.chkRenderDetails.Name = "chkRenderDetails";
+			this.chkRenderDetails.CheckedChanged += new System.EventHandler(this.chkRenderDetails_CheckedChanged);
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// groupBox3
+			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
+			this.groupBox3.Controls.Add(this.chkFooterRepeat);
+			this.groupBox3.Controls.Add(this.chkHeaderRepeat);
+			this.groupBox3.Controls.Add(this.chkFooterRows);
+			this.groupBox3.Controls.Add(this.chkHeaderRows);
+			this.groupBox3.Controls.Add(this.chkDetails);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.TabStop = false;
+			// 
+			// chkFooterRepeat
+			// 
+			resources.ApplyResources(this.chkFooterRepeat, "chkFooterRepeat");
+			this.chkFooterRepeat.Name = "chkFooterRepeat";
+			this.chkFooterRepeat.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
+			// 
+			// chkHeaderRepeat
+			// 
+			resources.ApplyResources(this.chkHeaderRepeat, "chkHeaderRepeat");
+			this.chkHeaderRepeat.Name = "chkHeaderRepeat";
+			this.chkHeaderRepeat.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
+			// 
+			// chkFooterRows
+			// 
+			resources.ApplyResources(this.chkFooterRows, "chkFooterRows");
+			this.chkFooterRows.Name = "chkFooterRows";
+			this.chkFooterRows.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
+			// 
+			// chkHeaderRows
+			// 
+			resources.ApplyResources(this.chkHeaderRows, "chkHeaderRows");
+			this.chkHeaderRows.Name = "chkHeaderRows";
+			this.chkHeaderRows.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
+			// 
+			// chkDetails
+			// 
+			resources.ApplyResources(this.chkDetails, "chkDetails");
+			this.chkDetails.Name = "chkDetails";
+			this.chkDetails.CheckedChanged += new System.EventHandler(this.chkRows_CheckedChanged);
+			// 
+			// TableCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.tbNoRows);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.cbDataSet);
+			this.Controls.Add(this.label2);
+			this.Name = "TableCtl";
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion
