@@ -71,6 +71,8 @@ A big thanks to all of Majorsilence Reporting contributors:
 * [gam6itko](https://github.com/gam6itko)
 * [tsliang](https://github.com/tsliang)
 * [mohsenalikhani](https://github.com/mohsenalikhani)
+* [mgroves](https://github.com/mgroves)
+* [sobolev88](https://github.com/sobolev88)
 
 
 # Layout:
