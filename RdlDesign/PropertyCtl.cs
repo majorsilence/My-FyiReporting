@@ -225,70 +225,51 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label1 = new System.Windows.Forms.Label();
-            this.pgSelected = new System.Windows.Forms.PropertyGrid();
-            this.bClose = new System.Windows.Forms.Button();
-            this.cbReportItems = new System.Windows.Forms.ComboBox();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Properties";
-            // 
-            // pgSelected
-            // 
-            this.pgSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pgSelected.Location = new System.Drawing.Point(0, 40);
-            this.pgSelected.Name = "pgSelected";
-            this.pgSelected.Size = new System.Drawing.Size(240, 240);
-            this.pgSelected.TabIndex = 2;
-            // 
-            // bClose
-            // 
-            this.bClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bClose.CausesValidation = false;
-            this.bClose.FlatAppearance.BorderSize = 0;
-            this.bClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClose.Location = new System.Drawing.Point(223, -2);
-            this.bClose.Name = "bClose";
-            this.bClose.Size = new System.Drawing.Size(15, 20);
-            this.bClose.TabIndex = 3;
-            this.bClose.Text = "x";
-            this.bClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bClose.UseVisualStyleBackColor = true;
-            this.bClose.Click += new System.EventHandler(this.bClose_Click);
-            // 
-            // cbReportItems
-            // 
-            this.cbReportItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbReportItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbReportItems.FormattingEnabled = true;
-            this.cbReportItems.Location = new System.Drawing.Point(0, 18);
-            this.cbReportItems.Name = "cbReportItems";
-            this.cbReportItems.Size = new System.Drawing.Size(240, 21);
-            this.cbReportItems.TabIndex = 4;
-            this.cbReportItems.SelectedIndexChanged += new System.EventHandler(this.cbReportItems_SelectedIndexChanged);
-            // 
-            // PropertyCtl
-            // 
-            this.Controls.Add(this.cbReportItems);
-            this.Controls.Add(this.bClose);
-            this.Controls.Add(this.pgSelected);
-            this.Controls.Add(this.label1);
-            this.Name = "PropertyCtl";
-            this.Size = new System.Drawing.Size(240, 280);
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertyCtl));
+			this.label1 = new System.Windows.Forms.Label();
+			this.pgSelected = new System.Windows.Forms.PropertyGrid();
+			this.bClose = new System.Windows.Forms.Button();
+			this.cbReportItems = new System.Windows.Forms.ComboBox();
+			this.SuspendLayout();
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.BackColor = System.Drawing.SystemColors.Control;
+			this.label1.ForeColor = System.Drawing.SystemColors.InfoText;
+			this.label1.Name = "label1";
+			// 
+			// pgSelected
+			// 
+			resources.ApplyResources(this.pgSelected, "pgSelected");
+			this.pgSelected.Name = "pgSelected";
+			// 
+			// bClose
+			// 
+			resources.ApplyResources(this.bClose, "bClose");
+			this.bClose.CausesValidation = false;
+			this.bClose.FlatAppearance.BorderSize = 0;
+			this.bClose.Name = "bClose";
+			this.bClose.UseVisualStyleBackColor = true;
+			this.bClose.Click += new System.EventHandler(this.bClose_Click);
+			// 
+			// cbReportItems
+			// 
+			resources.ApplyResources(this.cbReportItems, "cbReportItems");
+			this.cbReportItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbReportItems.FormattingEnabled = true;
+			this.cbReportItems.Name = "cbReportItems";
+			this.cbReportItems.SelectedIndexChanged += new System.EventHandler(this.cbReportItems_SelectedIndexChanged);
+			// 
+			// PropertyCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.cbReportItems);
+			this.Controls.Add(this.bClose);
+			this.Controls.Add(this.pgSelected);
+			this.Controls.Add(this.label1);
+			this.Name = "PropertyCtl";
+			this.ResumeLayout(false);
 
 		}
 		#endregion

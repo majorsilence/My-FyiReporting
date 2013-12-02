@@ -166,304 +166,239 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.gbPosition = new System.Windows.Forms.GroupBox();
-            this.tbHeight = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbWidth = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbTop = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbLeft = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tbZIndex = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbName = new System.Windows.Forms.TextBox();
-            this.lblColSpan = new System.Windows.Forms.Label();
-            this.tbColSpan = new System.Windows.Forms.NumericUpDown();
-            this.gbText = new System.Windows.Forms.GroupBox();
-            this.cbToggleImage = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbDataElementStyle = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbHideDuplicates = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkCanShrink = new System.Windows.Forms.CheckBox();
-            this.chkCanGrow = new System.Windows.Forms.CheckBox();
-            this.gbPosition.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbZIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbColSpan)).BeginInit();
-            this.gbText.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // gbPosition
-            // 
-            this.gbPosition.Controls.Add(this.tbHeight);
-            this.gbPosition.Controls.Add(this.label7);
-            this.gbPosition.Controls.Add(this.tbWidth);
-            this.gbPosition.Controls.Add(this.label8);
-            this.gbPosition.Controls.Add(this.tbTop);
-            this.gbPosition.Controls.Add(this.label6);
-            this.gbPosition.Controls.Add(this.tbLeft);
-            this.gbPosition.Controls.Add(this.label5);
-            this.gbPosition.Controls.Add(this.label9);
-            this.gbPosition.Controls.Add(this.tbZIndex);
-            this.gbPosition.Location = new System.Drawing.Point(24, 48);
-            this.gbPosition.Name = "gbPosition";
-            this.gbPosition.Size = new System.Drawing.Size(384, 112);
-            this.gbPosition.TabIndex = 14;
-            this.gbPosition.TabStop = false;
-            this.gbPosition.Text = "Position";
-            // 
-            // tbHeight
-            // 
-            this.tbHeight.Location = new System.Drawing.Point(224, 48);
-            this.tbHeight.Name = "tbHeight";
-            this.tbHeight.Size = new System.Drawing.Size(72, 20);
-            this.tbHeight.TabIndex = 5;
-            this.tbHeight.TextChanged += new System.EventHandler(this.tbHeight_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(168, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 16);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Height";
-            // 
-            // tbWidth
-            // 
-            this.tbWidth.Location = new System.Drawing.Point(72, 48);
-            this.tbWidth.Name = "tbWidth";
-            this.tbWidth.Size = new System.Drawing.Size(72, 20);
-            this.tbWidth.TabIndex = 3;
-            this.tbWidth.TextChanged += new System.EventHandler(this.tbWidth_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(16, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 16);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Width";
-            // 
-            // tbTop
-            // 
-            this.tbTop.Location = new System.Drawing.Point(224, 16);
-            this.tbTop.Name = "tbTop";
-            this.tbTop.Size = new System.Drawing.Size(72, 20);
-            this.tbTop.TabIndex = 2;
-            this.tbTop.TextChanged += new System.EventHandler(this.tbTop_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(168, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 16);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Top";
-            // 
-            // tbLeft
-            // 
-            this.tbLeft.Location = new System.Drawing.Point(72, 16);
-            this.tbLeft.Name = "tbLeft";
-            this.tbLeft.Size = new System.Drawing.Size(72, 20);
-            this.tbLeft.TabIndex = 0;
-            this.tbLeft.TextChanged += new System.EventHandler(this.tbLeft_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(16, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Left";
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(16, 80);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 23);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Z Index";
-            // 
-            // tbZIndex
-            // 
-            this.tbZIndex.Location = new System.Drawing.Point(72, 80);
-            this.tbZIndex.Maximum = new decimal(new int[] {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionCtl));
+			this.gbPosition = new System.Windows.Forms.GroupBox();
+			this.tbHeight = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.tbWidth = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.tbTop = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.tbLeft = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.tbZIndex = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tbName = new System.Windows.Forms.TextBox();
+			this.lblColSpan = new System.Windows.Forms.Label();
+			this.tbColSpan = new System.Windows.Forms.NumericUpDown();
+			this.gbText = new System.Windows.Forms.GroupBox();
+			this.cbToggleImage = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbDataElementStyle = new System.Windows.Forms.ComboBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.cbHideDuplicates = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.chkCanShrink = new System.Windows.Forms.CheckBox();
+			this.chkCanGrow = new System.Windows.Forms.CheckBox();
+			this.gbPosition.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbZIndex)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tbColSpan)).BeginInit();
+			this.gbText.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// gbPosition
+			// 
+			resources.ApplyResources(this.gbPosition, "gbPosition");
+			this.gbPosition.Controls.Add(this.tbHeight);
+			this.gbPosition.Controls.Add(this.label7);
+			this.gbPosition.Controls.Add(this.tbWidth);
+			this.gbPosition.Controls.Add(this.label8);
+			this.gbPosition.Controls.Add(this.tbTop);
+			this.gbPosition.Controls.Add(this.label6);
+			this.gbPosition.Controls.Add(this.tbLeft);
+			this.gbPosition.Controls.Add(this.label5);
+			this.gbPosition.Controls.Add(this.label9);
+			this.gbPosition.Controls.Add(this.tbZIndex);
+			this.gbPosition.Name = "gbPosition";
+			this.gbPosition.TabStop = false;
+			// 
+			// tbHeight
+			// 
+			resources.ApplyResources(this.tbHeight, "tbHeight");
+			this.tbHeight.Name = "tbHeight";
+			this.tbHeight.TextChanged += new System.EventHandler(this.tbHeight_TextChanged);
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// tbWidth
+			// 
+			resources.ApplyResources(this.tbWidth, "tbWidth");
+			this.tbWidth.Name = "tbWidth";
+			this.tbWidth.TextChanged += new System.EventHandler(this.tbWidth_TextChanged);
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// tbTop
+			// 
+			resources.ApplyResources(this.tbTop, "tbTop");
+			this.tbTop.Name = "tbTop";
+			this.tbTop.TextChanged += new System.EventHandler(this.tbTop_TextChanged);
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// tbLeft
+			// 
+			resources.ApplyResources(this.tbLeft, "tbLeft");
+			this.tbLeft.Name = "tbLeft";
+			this.tbLeft.TextChanged += new System.EventHandler(this.tbLeft_TextChanged);
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// label9
+			// 
+			resources.ApplyResources(this.label9, "label9");
+			this.label9.Name = "label9";
+			// 
+			// tbZIndex
+			// 
+			resources.ApplyResources(this.tbZIndex, "tbZIndex");
+			this.tbZIndex.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.tbZIndex.Name = "tbZIndex";
-            this.tbZIndex.Size = new System.Drawing.Size(72, 20);
-            this.tbZIndex.TabIndex = 6;
-            this.tbZIndex.ValueChanged += new System.EventHandler(this.tbZIndex_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(24, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 23);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Name";
-            // 
-            // tbName
-            // 
-            this.tbName.Location = new System.Drawing.Point(80, 16);
-            this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(128, 20);
-            this.tbName.TabIndex = 0;
-            this.tbName.Text = "textBox1";
-            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
-            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
-            // 
-            // lblColSpan
-            // 
-            this.lblColSpan.Location = new System.Drawing.Point(232, 16);
-            this.lblColSpan.Name = "lblColSpan";
-            this.lblColSpan.Size = new System.Drawing.Size(112, 23);
-            this.lblColSpan.TabIndex = 16;
-            this.lblColSpan.Text = "Span Table Columns";
-            // 
-            // tbColSpan
-            // 
-            this.tbColSpan.Location = new System.Drawing.Point(360, 16);
-            this.tbColSpan.Maximum = new decimal(new int[] {
+			this.tbZIndex.Name = "tbZIndex";
+			this.tbZIndex.ValueChanged += new System.EventHandler(this.tbZIndex_ValueChanged);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// tbName
+			// 
+			resources.ApplyResources(this.tbName, "tbName");
+			this.tbName.Name = "tbName";
+			this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
+			this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
+			// 
+			// lblColSpan
+			// 
+			resources.ApplyResources(this.lblColSpan, "lblColSpan");
+			this.lblColSpan.Name = "lblColSpan";
+			// 
+			// tbColSpan
+			// 
+			resources.ApplyResources(this.tbColSpan, "tbColSpan");
+			this.tbColSpan.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.tbColSpan.Minimum = new decimal(new int[] {
+			this.tbColSpan.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.tbColSpan.Name = "tbColSpan";
-            this.tbColSpan.Size = new System.Drawing.Size(48, 20);
-            this.tbColSpan.TabIndex = 1;
-            this.tbColSpan.Value = new decimal(new int[] {
+			this.tbColSpan.Name = "tbColSpan";
+			this.tbColSpan.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.tbColSpan.ValueChanged += new System.EventHandler(this.tbColSpan_ValueChanged);
-            // 
-            // gbText
-            // 
-            this.gbText.Controls.Add(this.cbToggleImage);
-            this.gbText.Controls.Add(this.label4);
-            this.gbText.Controls.Add(this.cbDataElementStyle);
-            this.gbText.Controls.Add(this.label3);
-            this.gbText.Controls.Add(this.cbHideDuplicates);
-            this.gbText.Controls.Add(this.label2);
-            this.gbText.Controls.Add(this.chkCanShrink);
-            this.gbText.Controls.Add(this.chkCanGrow);
-            this.gbText.Location = new System.Drawing.Point(24, 168);
-            this.gbText.Name = "gbText";
-            this.gbText.Size = new System.Drawing.Size(384, 112);
-            this.gbText.TabIndex = 18;
-            this.gbText.TabStop = false;
-            this.gbText.Text = "Text Processing";
-            // 
-            // cbToggleImage
-            // 
-            this.cbToggleImage.Items.AddRange(new object[] {
-            "",
-            "true",
-            "false"});
-            this.cbToggleImage.Location = new System.Drawing.Point(120, 80);
-            this.cbToggleImage.Name = "cbToggleImage";
-            this.cbToggleImage.Size = new System.Drawing.Size(256, 21);
-            this.cbToggleImage.TabIndex = 7;
-            this.cbToggleImage.SelectedIndexChanged += new System.EventHandler(this.cbToggleImage_Changed);
-            this.cbToggleImage.TextChanged += new System.EventHandler(this.cbToggleImage_Changed);
-            // 
-            // label4
-            // 
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(16, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 23);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Toggle Image";
-            // 
-            // cbDataElementStyle
-            // 
-            this.cbDataElementStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDataElementStyle.Items.AddRange(new object[] {
-            "Auto",
-            "AttributeNormal",
-            "ElementNormal"});
-            this.cbDataElementStyle.Location = new System.Drawing.Point(120, 48);
-            this.cbDataElementStyle.Name = "cbDataElementStyle";
-            this.cbDataElementStyle.Size = new System.Drawing.Size(120, 21);
-            this.cbDataElementStyle.TabIndex = 5;
-            this.cbDataElementStyle.SelectedIndexChanged += new System.EventHandler(this.cbDataElementStyle_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(16, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 23);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "XML Element Style";
-            // 
-            // cbHideDuplicates
-            // 
-            this.cbHideDuplicates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbHideDuplicates.Location = new System.Drawing.Point(264, 16);
-            this.cbHideDuplicates.Name = "cbHideDuplicates";
-            this.cbHideDuplicates.Size = new System.Drawing.Size(112, 21);
-            this.cbHideDuplicates.TabIndex = 3;
-            this.cbHideDuplicates.SelectedIndexChanged += new System.EventHandler(this.cbHideDuplicates_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label2.Location = new System.Drawing.Point(184, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 22);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Hide Duplicates";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chkCanShrink
-            // 
-            this.chkCanShrink.Location = new System.Drawing.Point(96, 16);
-            this.chkCanShrink.Name = "chkCanShrink";
-            this.chkCanShrink.Size = new System.Drawing.Size(104, 24);
-            this.chkCanShrink.TabIndex = 1;
-            this.chkCanShrink.Text = "Can Shrink";
-            this.chkCanShrink.CheckedChanged += new System.EventHandler(this.chkCanShrink_CheckedChanged);
-            // 
-            // chkCanGrow
-            // 
-            this.chkCanGrow.Location = new System.Drawing.Point(16, 16);
-            this.chkCanGrow.Name = "chkCanGrow";
-            this.chkCanGrow.Size = new System.Drawing.Size(80, 24);
-            this.chkCanGrow.TabIndex = 0;
-            this.chkCanGrow.Text = "Can Grow";
-            this.chkCanGrow.CheckedChanged += new System.EventHandler(this.chkCanGrow_CheckedChanged);
-            // 
-            // PositionCtl
-            // 
-            this.Controls.Add(this.gbText);
-            this.Controls.Add(this.tbColSpan);
-            this.Controls.Add(this.lblColSpan);
-            this.Controls.Add(this.tbName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.gbPosition);
-            this.Name = "PositionCtl";
-            this.Size = new System.Drawing.Size(472, 288);
-            this.gbPosition.ResumeLayout(false);
-            this.gbPosition.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbZIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbColSpan)).EndInit();
-            this.gbText.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.tbColSpan.ValueChanged += new System.EventHandler(this.tbColSpan_ValueChanged);
+			// 
+			// gbText
+			// 
+			resources.ApplyResources(this.gbText, "gbText");
+			this.gbText.Controls.Add(this.cbToggleImage);
+			this.gbText.Controls.Add(this.label4);
+			this.gbText.Controls.Add(this.cbDataElementStyle);
+			this.gbText.Controls.Add(this.label3);
+			this.gbText.Controls.Add(this.cbHideDuplicates);
+			this.gbText.Controls.Add(this.label2);
+			this.gbText.Controls.Add(this.chkCanShrink);
+			this.gbText.Controls.Add(this.chkCanGrow);
+			this.gbText.Name = "gbText";
+			this.gbText.TabStop = false;
+			// 
+			// cbToggleImage
+			// 
+			resources.ApplyResources(this.cbToggleImage, "cbToggleImage");
+			this.cbToggleImage.Items.AddRange(new object[] {
+            resources.GetString("cbToggleImage.Items"),
+            resources.GetString("cbToggleImage.Items1"),
+            resources.GetString("cbToggleImage.Items2")});
+			this.cbToggleImage.Name = "cbToggleImage";
+			this.cbToggleImage.SelectedIndexChanged += new System.EventHandler(this.cbToggleImage_Changed);
+			this.cbToggleImage.TextChanged += new System.EventHandler(this.cbToggleImage_Changed);
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// cbDataElementStyle
+			// 
+			resources.ApplyResources(this.cbDataElementStyle, "cbDataElementStyle");
+			this.cbDataElementStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbDataElementStyle.Items.AddRange(new object[] {
+            resources.GetString("cbDataElementStyle.Items"),
+            resources.GetString("cbDataElementStyle.Items1"),
+            resources.GetString("cbDataElementStyle.Items2")});
+			this.cbDataElementStyle.Name = "cbDataElementStyle";
+			this.cbDataElementStyle.SelectedIndexChanged += new System.EventHandler(this.cbDataElementStyle_SelectedIndexChanged);
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// cbHideDuplicates
+			// 
+			resources.ApplyResources(this.cbHideDuplicates, "cbHideDuplicates");
+			this.cbHideDuplicates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbHideDuplicates.Name = "cbHideDuplicates";
+			this.cbHideDuplicates.SelectedIndexChanged += new System.EventHandler(this.cbHideDuplicates_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// chkCanShrink
+			// 
+			resources.ApplyResources(this.chkCanShrink, "chkCanShrink");
+			this.chkCanShrink.Name = "chkCanShrink";
+			this.chkCanShrink.CheckedChanged += new System.EventHandler(this.chkCanShrink_CheckedChanged);
+			// 
+			// chkCanGrow
+			// 
+			resources.ApplyResources(this.chkCanGrow, "chkCanGrow");
+			this.chkCanGrow.Name = "chkCanGrow";
+			this.chkCanGrow.CheckedChanged += new System.EventHandler(this.chkCanGrow_CheckedChanged);
+			// 
+			// PositionCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.gbText);
+			this.Controls.Add(this.tbColSpan);
+			this.Controls.Add(this.lblColSpan);
+			this.Controls.Add(this.tbName);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.gbPosition);
+			this.Name = "PositionCtl";
+			this.gbPosition.ResumeLayout(false);
+			this.gbPosition.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbZIndex)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tbColSpan)).EndInit();
+			this.gbText.ResumeLayout(false);
+			this.gbText.PerformLayout();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

@@ -95,5 +95,18 @@ namespace fyiReporting.RdlReader
         {
             get { return this.rdlViewer1; }
         }
+
+		private void InitializeComponent()
+		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIChild));
+			this.SuspendLayout();
+			// 
+			// MDIChild
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Name = "MDIChild";
+			this.ResumeLayout(false);
+
+		}
     }
 }

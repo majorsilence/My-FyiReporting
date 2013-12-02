@@ -144,373 +144,279 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbPadLeft = new System.Windows.Forms.TextBox();
-            this.tbPadRight = new System.Windows.Forms.TextBox();
-            this.tbPadTop = new System.Windows.Forms.TextBox();
-            this.tbPadBottom = new System.Windows.Forms.TextBox();
-            this.grpBoxPadding = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.bValueExpr = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bGradient = new System.Windows.Forms.Button();
-            this.bExprBackColor = new System.Windows.Forms.Button();
-            this.bExprEndColor = new System.Windows.Forms.Button();
-            this.bEndColor = new System.Windows.Forms.Button();
-            this.cbBackColor = new System.Windows.Forms.ComboBox();
-            this.cbEndColor = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cbGradient = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.bBackColor = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.gbXML = new System.Windows.Forms.GroupBox();
-            this.cbDEOutput = new System.Windows.Forms.ComboBox();
-            this.tbDEName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.grpBoxPadding.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.gbXML.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(8, 24);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(32, 16);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Left";
-            // 
-            // label12
-            // 
-            this.label12.Location = new System.Drawing.Point(224, 24);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 16);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Right";
-            // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(8, 56);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(32, 16);
-            this.label13.TabIndex = 22;
-            this.label13.Text = "Top";
-            // 
-            // label14
-            // 
-            this.label14.Location = new System.Drawing.Point(216, 56);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 16);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "Bottom";
-            // 
-            // tbPadLeft
-            // 
-            this.tbPadLeft.Location = new System.Drawing.Point(48, 24);
-            this.tbPadLeft.Name = "tbPadLeft";
-            this.tbPadLeft.Size = new System.Drawing.Size(128, 20);
-            this.tbPadLeft.TabIndex = 0;
-            this.tbPadLeft.TextChanged += new System.EventHandler(this.tbPadLeft_TextChanged);
-            // 
-            // tbPadRight
-            // 
-            this.tbPadRight.Location = new System.Drawing.Point(264, 24);
-            this.tbPadRight.Name = "tbPadRight";
-            this.tbPadRight.Size = new System.Drawing.Size(128, 20);
-            this.tbPadRight.TabIndex = 2;
-            this.tbPadRight.TextChanged += new System.EventHandler(this.tbPadRight_TextChanged);
-            // 
-            // tbPadTop
-            // 
-            this.tbPadTop.Location = new System.Drawing.Point(48, 56);
-            this.tbPadTop.Name = "tbPadTop";
-            this.tbPadTop.Size = new System.Drawing.Size(128, 20);
-            this.tbPadTop.TabIndex = 4;
-            this.tbPadTop.TextChanged += new System.EventHandler(this.tbPadTop_TextChanged);
-            // 
-            // tbPadBottom
-            // 
-            this.tbPadBottom.Location = new System.Drawing.Point(264, 56);
-            this.tbPadBottom.Name = "tbPadBottom";
-            this.tbPadBottom.Size = new System.Drawing.Size(128, 20);
-            this.tbPadBottom.TabIndex = 6;
-            this.tbPadBottom.TextChanged += new System.EventHandler(this.tbPadBottom_TextChanged);
-            // 
-            // grpBoxPadding
-            // 
-            this.grpBoxPadding.Controls.Add(this.button3);
-            this.grpBoxPadding.Controls.Add(this.button2);
-            this.grpBoxPadding.Controls.Add(this.button1);
-            this.grpBoxPadding.Controls.Add(this.bValueExpr);
-            this.grpBoxPadding.Controls.Add(this.label13);
-            this.grpBoxPadding.Controls.Add(this.tbPadRight);
-            this.grpBoxPadding.Controls.Add(this.label14);
-            this.grpBoxPadding.Controls.Add(this.label11);
-            this.grpBoxPadding.Controls.Add(this.tbPadBottom);
-            this.grpBoxPadding.Controls.Add(this.label12);
-            this.grpBoxPadding.Controls.Add(this.tbPadTop);
-            this.grpBoxPadding.Controls.Add(this.tbPadLeft);
-            this.grpBoxPadding.Location = new System.Drawing.Point(16, 96);
-            this.grpBoxPadding.Name = "grpBoxPadding";
-            this.grpBoxPadding.Size = new System.Drawing.Size(432, 88);
-            this.grpBoxPadding.TabIndex = 1;
-            this.grpBoxPadding.TabStop = false;
-            this.grpBoxPadding.Text = "Padding";
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(400, 26);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(22, 16);
-            this.button3.TabIndex = 3;
-            this.button3.Tag = "pright";
-            this.button3.Text = "fx";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(400, 58);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 16);
-            this.button2.TabIndex = 7;
-            this.button2.Tag = "pbottom";
-            this.button2.Text = "fx";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(184, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 16);
-            this.button1.TabIndex = 5;
-            this.button1.Tag = "ptop";
-            this.button1.Text = "fx";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bValueExpr
-            // 
-            this.bValueExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bValueExpr.Location = new System.Drawing.Point(184, 26);
-            this.bValueExpr.Name = "bValueExpr";
-            this.bValueExpr.Size = new System.Drawing.Size(22, 16);
-            this.bValueExpr.TabIndex = 1;
-            this.bValueExpr.Tag = "pleft";
-            this.bValueExpr.Text = "fx";
-            this.bValueExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bValueExpr.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.bGradient);
-            this.groupBox1.Controls.Add(this.bExprBackColor);
-            this.groupBox1.Controls.Add(this.bExprEndColor);
-            this.groupBox1.Controls.Add(this.bEndColor);
-            this.groupBox1.Controls.Add(this.cbBackColor);
-            this.groupBox1.Controls.Add(this.cbEndColor);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.cbGradient);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.bBackColor);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(16, 8);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(432, 80);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Background";
-            // 
-            // bGradient
-            // 
-            this.bGradient.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bGradient.Location = new System.Drawing.Point(253, 42);
-            this.bGradient.Name = "bGradient";
-            this.bGradient.Size = new System.Drawing.Size(22, 16);
-            this.bGradient.TabIndex = 4;
-            this.bGradient.Tag = "bgradient";
-            this.bGradient.Text = "fx";
-            this.bGradient.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bGradient.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bExprBackColor
-            // 
-            this.bExprBackColor.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bExprBackColor.Location = new System.Drawing.Point(102, 42);
-            this.bExprBackColor.Name = "bExprBackColor";
-            this.bExprBackColor.Size = new System.Drawing.Size(22, 16);
-            this.bExprBackColor.TabIndex = 1;
-            this.bExprBackColor.Tag = "bcolor";
-            this.bExprBackColor.Text = "fx";
-            this.bExprBackColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bExprBackColor.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bExprEndColor
-            // 
-            this.bExprEndColor.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bExprEndColor.Location = new System.Drawing.Point(377, 42);
-            this.bExprEndColor.Name = "bExprEndColor";
-            this.bExprEndColor.Size = new System.Drawing.Size(22, 16);
-            this.bExprEndColor.TabIndex = 6;
-            this.bExprEndColor.Tag = "bendcolor";
-            this.bExprEndColor.Text = "fx";
-            this.bExprEndColor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bExprEndColor.Click += new System.EventHandler(this.bExpr_Click);
-            // 
-            // bEndColor
-            // 
-            this.bEndColor.Location = new System.Drawing.Point(404, 42);
-            this.bEndColor.Name = "bEndColor";
-            this.bEndColor.Size = new System.Drawing.Size(22, 16);
-            this.bEndColor.TabIndex = 7;
-            this.bEndColor.Text = "...";
-            this.bEndColor.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // cbBackColor
-            // 
-            this.cbBackColor.Location = new System.Drawing.Point(8, 40);
-            this.cbBackColor.Name = "cbBackColor";
-            this.cbBackColor.Size = new System.Drawing.Size(88, 21);
-            this.cbBackColor.TabIndex = 0;
-            this.cbBackColor.SelectedIndexChanged += new System.EventHandler(this.cbBackColor_SelectedIndexChanged);
-            this.cbBackColor.TextChanged += new System.EventHandler(this.cbBackColor_SelectedIndexChanged);
-            // 
-            // cbEndColor
-            // 
-            this.cbEndColor.Location = new System.Drawing.Point(286, 40);
-            this.cbEndColor.Name = "cbEndColor";
-            this.cbEndColor.Size = new System.Drawing.Size(88, 21);
-            this.cbEndColor.TabIndex = 5;
-            this.cbEndColor.SelectedIndexChanged += new System.EventHandler(this.cbEndColor_SelectedIndexChanged);
-            this.cbEndColor.TextChanged += new System.EventHandler(this.cbEndColor_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.Location = new System.Drawing.Point(286, 24);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(56, 16);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "End Color";
-            // 
-            // cbGradient
-            // 
-            this.cbGradient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGradient.Items.AddRange(new object[] {
-            "None",
-            "LeftRight",
-            "TopBottom",
-            "Center",
-            "DiagonalLeft",
-            "DiagonalRight",
-            "HorizontalCenter",
-            "VerticalCenter"});
-            this.cbGradient.Location = new System.Drawing.Point(161, 40);
-            this.cbGradient.Name = "cbGradient";
-            this.cbGradient.Size = new System.Drawing.Size(88, 21);
-            this.cbGradient.TabIndex = 3;
-            this.cbGradient.SelectedIndexChanged += new System.EventHandler(this.cbGradient_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(161, 24);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 16);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Gradient";
-            // 
-            // bBackColor
-            // 
-            this.bBackColor.Location = new System.Drawing.Point(128, 42);
-            this.bBackColor.Name = "bBackColor";
-            this.bBackColor.Size = new System.Drawing.Size(22, 16);
-            this.bBackColor.TabIndex = 2;
-            this.bBackColor.Text = "...";
-            this.bBackColor.Click += new System.EventHandler(this.bColor_Click);
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(8, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Color";
-            // 
-            // gbXML
-            // 
-            this.gbXML.Controls.Add(this.cbDEOutput);
-            this.gbXML.Controls.Add(this.tbDEName);
-            this.gbXML.Controls.Add(this.label2);
-            this.gbXML.Controls.Add(this.label1);
-            this.gbXML.Location = new System.Drawing.Point(16, 200);
-            this.gbXML.Name = "gbXML";
-            this.gbXML.Size = new System.Drawing.Size(432, 80);
-            this.gbXML.TabIndex = 24;
-            this.gbXML.TabStop = false;
-            this.gbXML.Text = "XML";
-            // 
-            // cbDEOutput
-            // 
-            this.cbDEOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDEOutput.Items.AddRange(new object[] {
-            "Output",
-            "NoOutput",
-            "ContentsOnly",
-            "Auto"});
-            this.cbDEOutput.Location = new System.Drawing.Point(138, 48);
-            this.cbDEOutput.Name = "cbDEOutput";
-            this.cbDEOutput.Size = new System.Drawing.Size(117, 21);
-            this.cbDEOutput.TabIndex = 3;
-            this.cbDEOutput.SelectedIndexChanged += new System.EventHandler(this.cbDEOutput_SelectedIndexChanged);
-            // 
-            // tbDEName
-            // 
-            this.tbDEName.Location = new System.Drawing.Point(137, 20);
-            this.tbDEName.Name = "tbDEName";
-            this.tbDEName.Size = new System.Drawing.Size(279, 20);
-            this.tbDEName.TabIndex = 2;
-            this.tbDEName.Text = "textBox1";
-            this.tbDEName.TextChanged += new System.EventHandler(this.tbDEName_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(11, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "DataElementOutput";
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(10, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "DataElementName";
-            // 
-            // StyleCtl
-            // 
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.grpBoxPadding);
-            this.Controls.Add(this.gbXML);
-            this.Name = "StyleCtl";
-            this.Size = new System.Drawing.Size(472, 312);
-            this.grpBoxPadding.ResumeLayout(false);
-            this.grpBoxPadding.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.gbXML.ResumeLayout(false);
-            this.gbXML.PerformLayout();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleCtl));
+			this.label11 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.tbPadLeft = new System.Windows.Forms.TextBox();
+			this.tbPadRight = new System.Windows.Forms.TextBox();
+			this.tbPadTop = new System.Windows.Forms.TextBox();
+			this.tbPadBottom = new System.Windows.Forms.TextBox();
+			this.grpBoxPadding = new System.Windows.Forms.GroupBox();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.bValueExpr = new System.Windows.Forms.Button();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.bGradient = new System.Windows.Forms.Button();
+			this.bExprBackColor = new System.Windows.Forms.Button();
+			this.bExprEndColor = new System.Windows.Forms.Button();
+			this.bEndColor = new System.Windows.Forms.Button();
+			this.cbBackColor = new System.Windows.Forms.ComboBox();
+			this.cbEndColor = new System.Windows.Forms.ComboBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.cbGradient = new System.Windows.Forms.ComboBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.bBackColor = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.gbXML = new System.Windows.Forms.GroupBox();
+			this.cbDEOutput = new System.Windows.Forms.ComboBox();
+			this.tbDEName = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.grpBoxPadding.SuspendLayout();
+			this.groupBox1.SuspendLayout();
+			this.gbXML.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// label11
+			// 
+			resources.ApplyResources(this.label11, "label11");
+			this.label11.Name = "label11";
+			// 
+			// label12
+			// 
+			resources.ApplyResources(this.label12, "label12");
+			this.label12.Name = "label12";
+			// 
+			// label13
+			// 
+			resources.ApplyResources(this.label13, "label13");
+			this.label13.Name = "label13";
+			// 
+			// label14
+			// 
+			resources.ApplyResources(this.label14, "label14");
+			this.label14.Name = "label14";
+			// 
+			// tbPadLeft
+			// 
+			resources.ApplyResources(this.tbPadLeft, "tbPadLeft");
+			this.tbPadLeft.Name = "tbPadLeft";
+			this.tbPadLeft.TextChanged += new System.EventHandler(this.tbPadLeft_TextChanged);
+			// 
+			// tbPadRight
+			// 
+			resources.ApplyResources(this.tbPadRight, "tbPadRight");
+			this.tbPadRight.Name = "tbPadRight";
+			this.tbPadRight.TextChanged += new System.EventHandler(this.tbPadRight_TextChanged);
+			// 
+			// tbPadTop
+			// 
+			resources.ApplyResources(this.tbPadTop, "tbPadTop");
+			this.tbPadTop.Name = "tbPadTop";
+			this.tbPadTop.TextChanged += new System.EventHandler(this.tbPadTop_TextChanged);
+			// 
+			// tbPadBottom
+			// 
+			resources.ApplyResources(this.tbPadBottom, "tbPadBottom");
+			this.tbPadBottom.Name = "tbPadBottom";
+			this.tbPadBottom.TextChanged += new System.EventHandler(this.tbPadBottom_TextChanged);
+			// 
+			// grpBoxPadding
+			// 
+			resources.ApplyResources(this.grpBoxPadding, "grpBoxPadding");
+			this.grpBoxPadding.Controls.Add(this.button3);
+			this.grpBoxPadding.Controls.Add(this.button2);
+			this.grpBoxPadding.Controls.Add(this.button1);
+			this.grpBoxPadding.Controls.Add(this.bValueExpr);
+			this.grpBoxPadding.Controls.Add(this.label13);
+			this.grpBoxPadding.Controls.Add(this.tbPadRight);
+			this.grpBoxPadding.Controls.Add(this.label14);
+			this.grpBoxPadding.Controls.Add(this.label11);
+			this.grpBoxPadding.Controls.Add(this.tbPadBottom);
+			this.grpBoxPadding.Controls.Add(this.label12);
+			this.grpBoxPadding.Controls.Add(this.tbPadTop);
+			this.grpBoxPadding.Controls.Add(this.tbPadLeft);
+			this.grpBoxPadding.Name = "grpBoxPadding";
+			this.grpBoxPadding.TabStop = false;
+			// 
+			// button3
+			// 
+			resources.ApplyResources(this.button3, "button3");
+			this.button3.Name = "button3";
+			this.button3.Tag = "pright";
+			this.button3.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// button2
+			// 
+			resources.ApplyResources(this.button2, "button2");
+			this.button2.Name = "button2";
+			this.button2.Tag = "pbottom";
+			this.button2.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// button1
+			// 
+			resources.ApplyResources(this.button1, "button1");
+			this.button1.Name = "button1";
+			this.button1.Tag = "ptop";
+			this.button1.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bValueExpr
+			// 
+			resources.ApplyResources(this.bValueExpr, "bValueExpr");
+			this.bValueExpr.Name = "bValueExpr";
+			this.bValueExpr.Tag = "pleft";
+			this.bValueExpr.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// groupBox1
+			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Controls.Add(this.bGradient);
+			this.groupBox1.Controls.Add(this.bExprBackColor);
+			this.groupBox1.Controls.Add(this.bExprEndColor);
+			this.groupBox1.Controls.Add(this.bEndColor);
+			this.groupBox1.Controls.Add(this.cbBackColor);
+			this.groupBox1.Controls.Add(this.cbEndColor);
+			this.groupBox1.Controls.Add(this.label15);
+			this.groupBox1.Controls.Add(this.cbGradient);
+			this.groupBox1.Controls.Add(this.label10);
+			this.groupBox1.Controls.Add(this.bBackColor);
+			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
+			// bGradient
+			// 
+			resources.ApplyResources(this.bGradient, "bGradient");
+			this.bGradient.Name = "bGradient";
+			this.bGradient.Tag = "bgradient";
+			this.bGradient.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bExprBackColor
+			// 
+			resources.ApplyResources(this.bExprBackColor, "bExprBackColor");
+			this.bExprBackColor.Name = "bExprBackColor";
+			this.bExprBackColor.Tag = "bcolor";
+			this.bExprBackColor.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bExprEndColor
+			// 
+			resources.ApplyResources(this.bExprEndColor, "bExprEndColor");
+			this.bExprEndColor.Name = "bExprEndColor";
+			this.bExprEndColor.Tag = "bendcolor";
+			this.bExprEndColor.Click += new System.EventHandler(this.bExpr_Click);
+			// 
+			// bEndColor
+			// 
+			resources.ApplyResources(this.bEndColor, "bEndColor");
+			this.bEndColor.Name = "bEndColor";
+			this.bEndColor.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// cbBackColor
+			// 
+			resources.ApplyResources(this.cbBackColor, "cbBackColor");
+			this.cbBackColor.Name = "cbBackColor";
+			this.cbBackColor.SelectedIndexChanged += new System.EventHandler(this.cbBackColor_SelectedIndexChanged);
+			this.cbBackColor.TextChanged += new System.EventHandler(this.cbBackColor_SelectedIndexChanged);
+			// 
+			// cbEndColor
+			// 
+			resources.ApplyResources(this.cbEndColor, "cbEndColor");
+			this.cbEndColor.Name = "cbEndColor";
+			this.cbEndColor.SelectedIndexChanged += new System.EventHandler(this.cbEndColor_SelectedIndexChanged);
+			this.cbEndColor.TextChanged += new System.EventHandler(this.cbEndColor_SelectedIndexChanged);
+			// 
+			// label15
+			// 
+			resources.ApplyResources(this.label15, "label15");
+			this.label15.Name = "label15";
+			// 
+			// cbGradient
+			// 
+			resources.ApplyResources(this.cbGradient, "cbGradient");
+			this.cbGradient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbGradient.Items.AddRange(new object[] {
+            resources.GetString("cbGradient.Items"),
+            resources.GetString("cbGradient.Items1"),
+            resources.GetString("cbGradient.Items2"),
+            resources.GetString("cbGradient.Items3"),
+            resources.GetString("cbGradient.Items4"),
+            resources.GetString("cbGradient.Items5"),
+            resources.GetString("cbGradient.Items6"),
+            resources.GetString("cbGradient.Items7")});
+			this.cbGradient.Name = "cbGradient";
+			this.cbGradient.SelectedIndexChanged += new System.EventHandler(this.cbGradient_SelectedIndexChanged);
+			// 
+			// label10
+			// 
+			resources.ApplyResources(this.label10, "label10");
+			this.label10.Name = "label10";
+			// 
+			// bBackColor
+			// 
+			resources.ApplyResources(this.bBackColor, "bBackColor");
+			this.bBackColor.Name = "bBackColor";
+			this.bBackColor.Click += new System.EventHandler(this.bColor_Click);
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// gbXML
+			// 
+			resources.ApplyResources(this.gbXML, "gbXML");
+			this.gbXML.Controls.Add(this.cbDEOutput);
+			this.gbXML.Controls.Add(this.tbDEName);
+			this.gbXML.Controls.Add(this.label2);
+			this.gbXML.Controls.Add(this.label1);
+			this.gbXML.Name = "gbXML";
+			this.gbXML.TabStop = false;
+			// 
+			// cbDEOutput
+			// 
+			resources.ApplyResources(this.cbDEOutput, "cbDEOutput");
+			this.cbDEOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbDEOutput.Items.AddRange(new object[] {
+            resources.GetString("cbDEOutput.Items"),
+            resources.GetString("cbDEOutput.Items1"),
+            resources.GetString("cbDEOutput.Items2"),
+            resources.GetString("cbDEOutput.Items3")});
+			this.cbDEOutput.Name = "cbDEOutput";
+			this.cbDEOutput.SelectedIndexChanged += new System.EventHandler(this.cbDEOutput_SelectedIndexChanged);
+			// 
+			// tbDEName
+			// 
+			resources.ApplyResources(this.tbDEName, "tbDEName");
+			this.tbDEName.Name = "tbDEName";
+			this.tbDEName.TextChanged += new System.EventHandler(this.tbDEName_TextChanged);
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// StyleCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.grpBoxPadding);
+			this.Controls.Add(this.gbXML);
+			this.Name = "StyleCtl";
+			this.grpBoxPadding.ResumeLayout(false);
+			this.grpBoxPadding.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.gbXML.ResumeLayout(false);
+			this.gbXML.PerformLayout();
+			this.ResumeLayout(false);
 
 		}
 		#endregion

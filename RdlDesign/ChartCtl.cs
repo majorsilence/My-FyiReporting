@@ -251,491 +251,365 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbChartType = new System.Windows.Forms.ComboBox();
-            this.cbSubType = new System.Windows.Forms.ComboBox();
-            this.cbPalette = new System.Windows.Forms.ComboBox();
-            this.cbRenderElement = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbPercentWidth = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbNoRows = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbDataSet = new System.Windows.Forms.ComboBox();
-            this.chkPageBreakStart = new System.Windows.Forms.CheckBox();
-            this.chkPageBreakEnd = new System.Windows.Forms.CheckBox();
-            this.cbChartData = new System.Windows.Forms.ComboBox();
-            this.cbDataLabel = new System.Windows.Forms.ComboBox();
-            this.chkDataLabel = new System.Windows.Forms.CheckBox();
-            this.bDataLabelExpr = new System.Windows.Forms.Button();
-            this.lData1 = new System.Windows.Forms.Label();
-            this.cbChartData2 = new System.Windows.Forms.ComboBox();
-            this.lData2 = new System.Windows.Forms.Label();
-            this.cbChartData3 = new System.Windows.Forms.ComboBox();
-            this.lData3 = new System.Windows.Forms.Label();
-            this.bDataExpr = new System.Windows.Forms.Button();
-            this.bDataExpr3 = new System.Windows.Forms.Button();
-            this.bDataExpr2 = new System.Windows.Forms.Button();
-            this.cbVector = new System.Windows.Forms.ComboBox();
-            this.btnVectorExp = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.chkToolTip = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.txtYToolFormat = new System.Windows.Forms.TextBox();
-            this.txtXToolFormat = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tbPercentWidth)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(16, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chart Type";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(16, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Palette";
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(16, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Render XML Element";
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(16, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(340, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Percent width for Bars/Columns (>100% causes column overlap)";
-            // 
-            // cbChartType
-            // 
-            this.cbChartType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbChartType.Items.AddRange(new object[] {
-            "Area",
-            "Bar",
-            "Column",
-            "Doughnut",
-            "Line",
-            "Map",
-            "Pie",
-            "Bubble",
-            "Scatter"});
-            this.cbChartType.Location = new System.Drawing.Point(126, 9);
-            this.cbChartType.Name = "cbChartType";
-            this.cbChartType.Size = new System.Drawing.Size(121, 21);
-            this.cbChartType.TabIndex = 0;
-            this.cbChartType.SelectedIndexChanged += new System.EventHandler(this.cbChartType_SelectedIndexChanged);
-            // 
-            // cbSubType
-            // 
-            this.cbSubType.Location = new System.Drawing.Point(331, 9);
-            this.cbSubType.Name = "cbSubType";
-            this.cbSubType.Size = new System.Drawing.Size(80, 21);
-            this.cbSubType.TabIndex = 1;
-            this.cbSubType.SelectedIndexChanged += new System.EventHandler(this.cbSubType_SelectedIndexChanged);
-            // 
-            // cbPalette
-            // 
-            this.cbPalette.Items.AddRange(new object[] {
-            "Default",
-            "EarthTones",
-            "Excel",
-            "GrayScale",
-            "Light",
-            "Pastel",
-            "SemiTransparent",
-            "Patterned",
-            "PatternedBlack",
-            "Custom"});
-            this.cbPalette.Location = new System.Drawing.Point(126, 34);
-            this.cbPalette.Name = "cbPalette";
-            this.cbPalette.Size = new System.Drawing.Size(121, 21);
-            this.cbPalette.TabIndex = 2;
-            this.cbPalette.SelectedIndexChanged += new System.EventHandler(this.cbPalette_SelectedIndexChanged);
-            // 
-            // cbRenderElement
-            // 
-            this.cbRenderElement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRenderElement.Items.AddRange(new object[] {
-            "Output",
-            "NoOutput"});
-            this.cbRenderElement.Location = new System.Drawing.Point(126, 59);
-            this.cbRenderElement.Name = "cbRenderElement";
-            this.cbRenderElement.Size = new System.Drawing.Size(121, 21);
-            this.cbRenderElement.TabIndex = 3;
-            this.cbRenderElement.SelectedIndexChanged += new System.EventHandler(this.cbRenderElement_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(275, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 23);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Sub-type";
-            // 
-            // tbPercentWidth
-            // 
-            this.tbPercentWidth.Location = new System.Drawing.Point(363, 80);
-            this.tbPercentWidth.Name = "tbPercentWidth";
-            this.tbPercentWidth.Size = new System.Drawing.Size(48, 20);
-            this.tbPercentWidth.TabIndex = 4;
-            this.tbPercentWidth.ValueChanged += new System.EventHandler(this.tbPercentWidth_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(16, 104);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 23);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "No Rows Message";
-            // 
-            // tbNoRows
-            // 
-            this.tbNoRows.Location = new System.Drawing.Point(156, 104);
-            this.tbNoRows.Name = "tbNoRows";
-            this.tbNoRows.Size = new System.Drawing.Size(255, 20);
-            this.tbNoRows.TabIndex = 5;
-            this.tbNoRows.TextChanged += new System.EventHandler(this.tbNoRows_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(16, 130);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 23);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Data Set Name";
-            // 
-            // cbDataSet
-            // 
-            this.cbDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDataSet.Location = new System.Drawing.Point(156, 128);
-            this.cbDataSet.Name = "cbDataSet";
-            this.cbDataSet.Size = new System.Drawing.Size(255, 21);
-            this.cbDataSet.TabIndex = 6;
-            this.cbDataSet.SelectedIndexChanged += new System.EventHandler(this.cbDataSet_SelectedIndexChanged);
-            // 
-            // chkPageBreakStart
-            // 
-            this.chkPageBreakStart.Location = new System.Drawing.Point(19, 249);
-            this.chkPageBreakStart.Name = "chkPageBreakStart";
-            this.chkPageBreakStart.Size = new System.Drawing.Size(134, 24);
-            this.chkPageBreakStart.TabIndex = 13;
-            this.chkPageBreakStart.Text = "Page Break at Start";
-            this.chkPageBreakStart.CheckedChanged += new System.EventHandler(this.chkPageBreakStart_CheckedChanged);
-            // 
-            // chkPageBreakEnd
-            // 
-            this.chkPageBreakEnd.Location = new System.Drawing.Point(19, 272);
-            this.chkPageBreakEnd.Name = "chkPageBreakEnd";
-            this.chkPageBreakEnd.Size = new System.Drawing.Size(134, 24);
-            this.chkPageBreakEnd.TabIndex = 14;
-            this.chkPageBreakEnd.Text = "Page Break at End";
-            this.chkPageBreakEnd.CheckedChanged += new System.EventHandler(this.chkPageBreakEnd_CheckedChanged);
-            // 
-            // cbChartData
-            // 
-            this.cbChartData.Location = new System.Drawing.Point(156, 153);
-            this.cbChartData.Name = "cbChartData";
-            this.cbChartData.Size = new System.Drawing.Size(255, 21);
-            this.cbChartData.TabIndex = 7;
-            this.cbChartData.TextChanged += new System.EventHandler(this.cbChartData_Changed);
-            // 
-            // cbDataLabel
-            // 
-            this.cbDataLabel.Enabled = false;
-            this.cbDataLabel.Location = new System.Drawing.Point(156, 228);
-            this.cbDataLabel.Name = "cbDataLabel";
-            this.cbDataLabel.Size = new System.Drawing.Size(254, 21);
-            this.cbDataLabel.TabIndex = 17;
-            this.cbDataLabel.TextChanged += new System.EventHandler(this.cbChartData_Changed);
-            // 
-            // chkDataLabel
-            // 
-            this.chkDataLabel.AutoSize = true;
-            this.chkDataLabel.Location = new System.Drawing.Point(19, 231);
-            this.chkDataLabel.Name = "chkDataLabel";
-            this.chkDataLabel.Size = new System.Drawing.Size(75, 17);
-            this.chkDataLabel.TabIndex = 19;
-            this.chkDataLabel.Text = "DataLabel";
-            this.chkDataLabel.UseVisualStyleBackColor = true;
-            this.chkDataLabel.CheckedChanged += new System.EventHandler(this.chkDataLabel_CheckedChanged);
-            // 
-            // bDataLabelExpr
-            // 
-            this.bDataLabelExpr.Enabled = false;
-            this.bDataLabelExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.bDataLabelExpr.Location = new System.Drawing.Point(415, 228);
-            this.bDataLabelExpr.Name = "bDataLabelExpr";
-            this.bDataLabelExpr.Size = new System.Drawing.Size(22, 21);
-            this.bDataLabelExpr.TabIndex = 20;
-            this.bDataLabelExpr.Text = "fx";
-            this.bDataLabelExpr.UseVisualStyleBackColor = true;
-            this.bDataLabelExpr.Click += new System.EventHandler(this.bDataLabelExpr_Click);
-            // 
-            // lData1
-            // 
-            this.lData1.Location = new System.Drawing.Point(16, 157);
-            this.lData1.Name = "lData1";
-            this.lData1.Size = new System.Drawing.Size(137, 23);
-            this.lData1.TabIndex = 16;
-            this.lData1.Text = "Chart Data (X Coordinate)";
-            // 
-            // cbChartData2
-            // 
-            this.cbChartData2.Location = new System.Drawing.Point(156, 178);
-            this.cbChartData2.Name = "cbChartData2";
-            this.cbChartData2.Size = new System.Drawing.Size(255, 21);
-            this.cbChartData2.TabIndex = 9;
-            this.cbChartData2.TextChanged += new System.EventHandler(this.cbChartData_Changed);
-            // 
-            // lData2
-            // 
-            this.lData2.Location = new System.Drawing.Point(16, 182);
-            this.lData2.Name = "lData2";
-            this.lData2.Size = new System.Drawing.Size(100, 23);
-            this.lData2.TabIndex = 18;
-            this.lData2.Text = "Y Coordinate";
-            // 
-            // cbChartData3
-            // 
-            this.cbChartData3.Location = new System.Drawing.Point(156, 203);
-            this.cbChartData3.Name = "cbChartData3";
-            this.cbChartData3.Size = new System.Drawing.Size(255, 21);
-            this.cbChartData3.TabIndex = 11;
-            this.cbChartData3.TextChanged += new System.EventHandler(this.cbChartData_Changed);
-            // 
-            // lData3
-            // 
-            this.lData3.Location = new System.Drawing.Point(16, 207);
-            this.lData3.Name = "lData3";
-            this.lData3.Size = new System.Drawing.Size(100, 23);
-            this.lData3.TabIndex = 20;
-            this.lData3.Text = "Bubble Size";
-            // 
-            // bDataExpr
-            // 
-            this.bDataExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bDataExpr.Location = new System.Drawing.Point(415, 153);
-            this.bDataExpr.Name = "bDataExpr";
-            this.bDataExpr.Size = new System.Drawing.Size(22, 21);
-            this.bDataExpr.TabIndex = 8;
-            this.bDataExpr.Tag = "d1";
-            this.bDataExpr.Text = "fx";
-            this.bDataExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bDataExpr.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // bDataExpr3
-            // 
-            this.bDataExpr3.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bDataExpr3.Location = new System.Drawing.Point(415, 203);
-            this.bDataExpr3.Name = "bDataExpr3";
-            this.bDataExpr3.Size = new System.Drawing.Size(22, 21);
-            this.bDataExpr3.TabIndex = 12;
-            this.bDataExpr3.Tag = "d3";
-            this.bDataExpr3.Text = "fx";
-            this.bDataExpr3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bDataExpr3.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // bDataExpr2
-            // 
-            this.bDataExpr2.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bDataExpr2.Location = new System.Drawing.Point(415, 178);
-            this.bDataExpr2.Name = "bDataExpr2";
-            this.bDataExpr2.Size = new System.Drawing.Size(22, 21);
-            this.bDataExpr2.TabIndex = 10;
-            this.bDataExpr2.Tag = "d2";
-            this.bDataExpr2.Text = "fx";
-            this.bDataExpr2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bDataExpr2.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // cbVector
-            // 
-            this.cbVector.Items.AddRange(new object[] {
-            "False",
-            "True"});
-            this.cbVector.Location = new System.Drawing.Point(330, 34);
-            this.cbVector.Name = "cbVector";
-            this.cbVector.Size = new System.Drawing.Size(80, 21);
-            this.cbVector.TabIndex = 21;
-            this.cbVector.SelectedIndexChanged += new System.EventHandler(this.cbVector_SelectedIndexChanged);
-            // 
-            // btnVectorExp
-            // 
-            this.btnVectorExp.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVectorExp.Location = new System.Drawing.Point(415, 33);
-            this.btnVectorExp.Name = "btnVectorExp";
-            this.btnVectorExp.Size = new System.Drawing.Size(22, 21);
-            this.btnVectorExp.TabIndex = 22;
-            this.btnVectorExp.Tag = "d4";
-            this.btnVectorExp.Text = "fx";
-            this.btnVectorExp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVectorExp.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(275, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 27);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "Render As Vector";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(415, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 21);
-            this.button1.TabIndex = 24;
-            this.button1.Tag = "d7";
-            this.button1.Text = "fx";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(251, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 21);
-            this.button2.TabIndex = 25;
-            this.button2.Tag = "d5";
-            this.button2.Text = "fx";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(251, 34);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(22, 21);
-            this.button3.TabIndex = 26;
-            this.button3.Tag = "d6";
-            this.button3.Text = "fx";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Click += new System.EventHandler(this.bDataExpr_Click);
-            // 
-            // chkToolTip
-            // 
-            this.chkToolTip.AutoSize = true;
-            this.chkToolTip.Location = new System.Drawing.Point(201, 255);
-            this.chkToolTip.Name = "chkToolTip";
-            this.chkToolTip.Size = new System.Drawing.Size(79, 17);
-            this.chkToolTip.TabIndex = 27;
-            this.chkToolTip.Text = "Y Tooltips?";
-            this.chkToolTip.UseVisualStyleBackColor = true;
-            this.chkToolTip.CheckedChanged += new System.EventHandler(this.chkToolTip_CheckedChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(201, 274);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(79, 17);
-            this.checkBox1.TabIndex = 28;
-            this.checkBox1.Text = "X Tooltips?";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // txtYToolFormat
-            // 
-            this.txtYToolFormat.Location = new System.Drawing.Point(331, 253);
-            this.txtYToolFormat.Name = "txtYToolFormat";
-            this.txtYToolFormat.Size = new System.Drawing.Size(78, 20);
-            this.txtYToolFormat.TabIndex = 29;
-            this.txtYToolFormat.TextChanged += new System.EventHandler(this.txtYToolFormat_TextChanged);
-            // 
-            // txtXToolFormat
-            // 
-            this.txtXToolFormat.Location = new System.Drawing.Point(331, 273);
-            this.txtXToolFormat.Name = "txtXToolFormat";
-            this.txtXToolFormat.Size = new System.Drawing.Size(78, 20);
-            this.txtXToolFormat.TabIndex = 30;
-            this.txtXToolFormat.TextChanged += new System.EventHandler(this.txtXToolFormat_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(286, 256);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 19);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "Format";
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(286, 276);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 19);
-            this.label10.TabIndex = 32;
-            this.label10.Text = "Format";
-            // 
-            // ChartCtl
-            // 
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtXToolFormat);
-            this.Controls.Add(this.txtYToolFormat);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.chkToolTip);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnVectorExp);
-            this.Controls.Add(this.cbVector);
-            this.Controls.Add(this.bDataExpr2);
-            this.Controls.Add(this.bDataExpr3);
-            this.Controls.Add(this.bDataExpr);
-            this.Controls.Add(this.cbChartData3);
-            this.Controls.Add(this.lData3);
-            this.Controls.Add(this.cbChartData2);
-            this.Controls.Add(this.lData2);
-            this.Controls.Add(this.bDataLabelExpr);
-            this.Controls.Add(this.chkDataLabel);
-            this.Controls.Add(this.cbDataLabel);
-            this.Controls.Add(this.cbChartData);
-            this.Controls.Add(this.lData1);
-            this.Controls.Add(this.chkPageBreakEnd);
-            this.Controls.Add(this.chkPageBreakStart);
-            this.Controls.Add(this.cbDataSet);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.tbNoRows);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.tbPercentWidth);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cbRenderElement);
-            this.Controls.Add(this.cbPalette);
-            this.Controls.Add(this.cbSubType);
-            this.Controls.Add(this.cbChartType);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "ChartCtl";
-            this.Size = new System.Drawing.Size(440, 303);
-            ((System.ComponentModel.ISupportInitialize)(this.tbPercentWidth)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartCtl));
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbChartType = new System.Windows.Forms.ComboBox();
+			this.cbSubType = new System.Windows.Forms.ComboBox();
+			this.cbPalette = new System.Windows.Forms.ComboBox();
+			this.cbRenderElement = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.tbPercentWidth = new System.Windows.Forms.NumericUpDown();
+			this.label6 = new System.Windows.Forms.Label();
+			this.tbNoRows = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.cbDataSet = new System.Windows.Forms.ComboBox();
+			this.chkPageBreakStart = new System.Windows.Forms.CheckBox();
+			this.chkPageBreakEnd = new System.Windows.Forms.CheckBox();
+			this.cbChartData = new System.Windows.Forms.ComboBox();
+			this.cbDataLabel = new System.Windows.Forms.ComboBox();
+			this.chkDataLabel = new System.Windows.Forms.CheckBox();
+			this.bDataLabelExpr = new System.Windows.Forms.Button();
+			this.lData1 = new System.Windows.Forms.Label();
+			this.cbChartData2 = new System.Windows.Forms.ComboBox();
+			this.lData2 = new System.Windows.Forms.Label();
+			this.cbChartData3 = new System.Windows.Forms.ComboBox();
+			this.lData3 = new System.Windows.Forms.Label();
+			this.bDataExpr = new System.Windows.Forms.Button();
+			this.bDataExpr3 = new System.Windows.Forms.Button();
+			this.bDataExpr2 = new System.Windows.Forms.Button();
+			this.cbVector = new System.Windows.Forms.ComboBox();
+			this.btnVectorExp = new System.Windows.Forms.Button();
+			this.label8 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.chkToolTip = new System.Windows.Forms.CheckBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.txtYToolFormat = new System.Windows.Forms.TextBox();
+			this.txtXToolFormat = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.tbPercentWidth)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// cbChartType
+			// 
+			resources.ApplyResources(this.cbChartType, "cbChartType");
+			this.cbChartType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbChartType.Items.AddRange(new object[] {
+            resources.GetString("cbChartType.Items"),
+            resources.GetString("cbChartType.Items1"),
+            resources.GetString("cbChartType.Items2"),
+            resources.GetString("cbChartType.Items3"),
+            resources.GetString("cbChartType.Items4"),
+            resources.GetString("cbChartType.Items5"),
+            resources.GetString("cbChartType.Items6"),
+            resources.GetString("cbChartType.Items7"),
+            resources.GetString("cbChartType.Items8")});
+			this.cbChartType.Name = "cbChartType";
+			this.cbChartType.SelectedIndexChanged += new System.EventHandler(this.cbChartType_SelectedIndexChanged);
+			// 
+			// cbSubType
+			// 
+			resources.ApplyResources(this.cbSubType, "cbSubType");
+			this.cbSubType.Name = "cbSubType";
+			this.cbSubType.SelectedIndexChanged += new System.EventHandler(this.cbSubType_SelectedIndexChanged);
+			// 
+			// cbPalette
+			// 
+			resources.ApplyResources(this.cbPalette, "cbPalette");
+			this.cbPalette.Items.AddRange(new object[] {
+            resources.GetString("cbPalette.Items"),
+            resources.GetString("cbPalette.Items1"),
+            resources.GetString("cbPalette.Items2"),
+            resources.GetString("cbPalette.Items3"),
+            resources.GetString("cbPalette.Items4"),
+            resources.GetString("cbPalette.Items5"),
+            resources.GetString("cbPalette.Items6"),
+            resources.GetString("cbPalette.Items7"),
+            resources.GetString("cbPalette.Items8"),
+            resources.GetString("cbPalette.Items9")});
+			this.cbPalette.Name = "cbPalette";
+			this.cbPalette.SelectedIndexChanged += new System.EventHandler(this.cbPalette_SelectedIndexChanged);
+			// 
+			// cbRenderElement
+			// 
+			resources.ApplyResources(this.cbRenderElement, "cbRenderElement");
+			this.cbRenderElement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbRenderElement.Items.AddRange(new object[] {
+            resources.GetString("cbRenderElement.Items"),
+            resources.GetString("cbRenderElement.Items1")});
+			this.cbRenderElement.Name = "cbRenderElement";
+			this.cbRenderElement.SelectedIndexChanged += new System.EventHandler(this.cbRenderElement_SelectedIndexChanged);
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// tbPercentWidth
+			// 
+			resources.ApplyResources(this.tbPercentWidth, "tbPercentWidth");
+			this.tbPercentWidth.Name = "tbPercentWidth";
+			this.tbPercentWidth.ValueChanged += new System.EventHandler(this.tbPercentWidth_ValueChanged);
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// tbNoRows
+			// 
+			resources.ApplyResources(this.tbNoRows, "tbNoRows");
+			this.tbNoRows.Name = "tbNoRows";
+			this.tbNoRows.TextChanged += new System.EventHandler(this.tbNoRows_TextChanged);
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// cbDataSet
+			// 
+			resources.ApplyResources(this.cbDataSet, "cbDataSet");
+			this.cbDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbDataSet.Name = "cbDataSet";
+			this.cbDataSet.SelectedIndexChanged += new System.EventHandler(this.cbDataSet_SelectedIndexChanged);
+			// 
+			// chkPageBreakStart
+			// 
+			resources.ApplyResources(this.chkPageBreakStart, "chkPageBreakStart");
+			this.chkPageBreakStart.Name = "chkPageBreakStart";
+			this.chkPageBreakStart.CheckedChanged += new System.EventHandler(this.chkPageBreakStart_CheckedChanged);
+			// 
+			// chkPageBreakEnd
+			// 
+			resources.ApplyResources(this.chkPageBreakEnd, "chkPageBreakEnd");
+			this.chkPageBreakEnd.Name = "chkPageBreakEnd";
+			this.chkPageBreakEnd.CheckedChanged += new System.EventHandler(this.chkPageBreakEnd_CheckedChanged);
+			// 
+			// cbChartData
+			// 
+			resources.ApplyResources(this.cbChartData, "cbChartData");
+			this.cbChartData.Name = "cbChartData";
+			this.cbChartData.TextChanged += new System.EventHandler(this.cbChartData_Changed);
+			// 
+			// cbDataLabel
+			// 
+			resources.ApplyResources(this.cbDataLabel, "cbDataLabel");
+			this.cbDataLabel.Name = "cbDataLabel";
+			this.cbDataLabel.TextChanged += new System.EventHandler(this.cbChartData_Changed);
+			// 
+			// chkDataLabel
+			// 
+			resources.ApplyResources(this.chkDataLabel, "chkDataLabel");
+			this.chkDataLabel.Name = "chkDataLabel";
+			this.chkDataLabel.UseVisualStyleBackColor = true;
+			this.chkDataLabel.CheckedChanged += new System.EventHandler(this.chkDataLabel_CheckedChanged);
+			// 
+			// bDataLabelExpr
+			// 
+			resources.ApplyResources(this.bDataLabelExpr, "bDataLabelExpr");
+			this.bDataLabelExpr.Name = "bDataLabelExpr";
+			this.bDataLabelExpr.UseVisualStyleBackColor = true;
+			this.bDataLabelExpr.Click += new System.EventHandler(this.bDataLabelExpr_Click);
+			// 
+			// lData1
+			// 
+			resources.ApplyResources(this.lData1, "lData1");
+			this.lData1.Name = "lData1";
+			// 
+			// cbChartData2
+			// 
+			resources.ApplyResources(this.cbChartData2, "cbChartData2");
+			this.cbChartData2.Name = "cbChartData2";
+			this.cbChartData2.TextChanged += new System.EventHandler(this.cbChartData_Changed);
+			// 
+			// lData2
+			// 
+			resources.ApplyResources(this.lData2, "lData2");
+			this.lData2.Name = "lData2";
+			// 
+			// cbChartData3
+			// 
+			resources.ApplyResources(this.cbChartData3, "cbChartData3");
+			this.cbChartData3.Name = "cbChartData3";
+			this.cbChartData3.TextChanged += new System.EventHandler(this.cbChartData_Changed);
+			// 
+			// lData3
+			// 
+			resources.ApplyResources(this.lData3, "lData3");
+			this.lData3.Name = "lData3";
+			// 
+			// bDataExpr
+			// 
+			resources.ApplyResources(this.bDataExpr, "bDataExpr");
+			this.bDataExpr.Name = "bDataExpr";
+			this.bDataExpr.Tag = "d1";
+			this.bDataExpr.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// bDataExpr3
+			// 
+			resources.ApplyResources(this.bDataExpr3, "bDataExpr3");
+			this.bDataExpr3.Name = "bDataExpr3";
+			this.bDataExpr3.Tag = "d3";
+			this.bDataExpr3.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// bDataExpr2
+			// 
+			resources.ApplyResources(this.bDataExpr2, "bDataExpr2");
+			this.bDataExpr2.Name = "bDataExpr2";
+			this.bDataExpr2.Tag = "d2";
+			this.bDataExpr2.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// cbVector
+			// 
+			resources.ApplyResources(this.cbVector, "cbVector");
+			this.cbVector.Items.AddRange(new object[] {
+            resources.GetString("cbVector.Items"),
+            resources.GetString("cbVector.Items1")});
+			this.cbVector.Name = "cbVector";
+			this.cbVector.SelectedIndexChanged += new System.EventHandler(this.cbVector_SelectedIndexChanged);
+			// 
+			// btnVectorExp
+			// 
+			resources.ApplyResources(this.btnVectorExp, "btnVectorExp");
+			this.btnVectorExp.Name = "btnVectorExp";
+			this.btnVectorExp.Tag = "d4";
+			this.btnVectorExp.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// button1
+			// 
+			resources.ApplyResources(this.button1, "button1");
+			this.button1.Name = "button1";
+			this.button1.Tag = "d7";
+			this.button1.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// button2
+			// 
+			resources.ApplyResources(this.button2, "button2");
+			this.button2.Name = "button2";
+			this.button2.Tag = "d5";
+			this.button2.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// button3
+			// 
+			resources.ApplyResources(this.button3, "button3");
+			this.button3.Name = "button3";
+			this.button3.Tag = "d6";
+			this.button3.Click += new System.EventHandler(this.bDataExpr_Click);
+			// 
+			// chkToolTip
+			// 
+			resources.ApplyResources(this.chkToolTip, "chkToolTip");
+			this.chkToolTip.Name = "chkToolTip";
+			this.chkToolTip.UseVisualStyleBackColor = true;
+			this.chkToolTip.CheckedChanged += new System.EventHandler(this.chkToolTip_CheckedChanged);
+			// 
+			// checkBox1
+			// 
+			resources.ApplyResources(this.checkBox1, "checkBox1");
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
+			// txtYToolFormat
+			// 
+			resources.ApplyResources(this.txtYToolFormat, "txtYToolFormat");
+			this.txtYToolFormat.Name = "txtYToolFormat";
+			this.txtYToolFormat.TextChanged += new System.EventHandler(this.txtYToolFormat_TextChanged);
+			// 
+			// txtXToolFormat
+			// 
+			resources.ApplyResources(this.txtXToolFormat, "txtXToolFormat");
+			this.txtXToolFormat.Name = "txtXToolFormat";
+			this.txtXToolFormat.TextChanged += new System.EventHandler(this.txtXToolFormat_TextChanged);
+			// 
+			// label9
+			// 
+			resources.ApplyResources(this.label9, "label9");
+			this.label9.Name = "label9";
+			// 
+			// label10
+			// 
+			resources.ApplyResources(this.label10, "label10");
+			this.label10.Name = "label10";
+			// 
+			// ChartCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.cbDataLabel);
+			this.Controls.Add(this.chkPageBreakStart);
+			this.Controls.Add(this.chkDataLabel);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.label9);
+			this.Controls.Add(this.txtXToolFormat);
+			this.Controls.Add(this.txtYToolFormat);
+			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.chkToolTip);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button2);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.btnVectorExp);
+			this.Controls.Add(this.cbVector);
+			this.Controls.Add(this.bDataExpr2);
+			this.Controls.Add(this.bDataExpr3);
+			this.Controls.Add(this.bDataExpr);
+			this.Controls.Add(this.cbChartData3);
+			this.Controls.Add(this.lData3);
+			this.Controls.Add(this.cbChartData2);
+			this.Controls.Add(this.lData2);
+			this.Controls.Add(this.bDataLabelExpr);
+			this.Controls.Add(this.cbChartData);
+			this.Controls.Add(this.lData1);
+			this.Controls.Add(this.chkPageBreakEnd);
+			this.Controls.Add(this.cbDataSet);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.tbNoRows);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.tbPercentWidth);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.cbRenderElement);
+			this.Controls.Add(this.cbPalette);
+			this.Controls.Add(this.cbSubType);
+			this.Controls.Add(this.cbChartType);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
+			this.Name = "ChartCtl";
+			((System.ComponentModel.ISupportInitialize)(this.tbPercentWidth)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

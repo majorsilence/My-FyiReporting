@@ -155,6 +155,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubreportCtl));
 			this.dgParms = new System.Windows.Forms.DataGrid();
 			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
 			this.label1 = new System.Windows.Forms.Label();
@@ -169,83 +170,61 @@ namespace fyiReporting.RdlDesign
 			// 
 			// dgParms
 			// 
+			resources.ApplyResources(this.dgParms, "dgParms");
 			this.dgParms.CaptionVisible = false;
 			this.dgParms.DataMember = "";
 			this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgParms.Location = new System.Drawing.Point(8, 112);
 			this.dgParms.Name = "dgParms";
-			this.dgParms.Size = new System.Drawing.Size(384, 168);
-			this.dgParms.TabIndex = 2;
 			this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																								this.dgTableStyle});
+            this.dgTableStyle});
 			// 
 			// dgTableStyle
 			// 
 			this.dgTableStyle.AllowSorting = false;
 			this.dgTableStyle.DataGrid = this.dgParms;
+			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
 			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyle.MappingName = "";
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 8);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(88, 23);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Subreport name";
 			// 
 			// tbReportFile
 			// 
-			this.tbReportFile.Location = new System.Drawing.Point(104, 8);
+			resources.ApplyResources(this.tbReportFile, "tbReportFile");
 			this.tbReportFile.Name = "tbReportFile";
-			this.tbReportFile.Size = new System.Drawing.Size(312, 20);
-			this.tbReportFile.TabIndex = 4;
-			this.tbReportFile.Text = "";
 			// 
 			// bFile
 			// 
-			this.bFile.Location = new System.Drawing.Point(424, 8);
+			resources.ApplyResources(this.bFile, "bFile");
 			this.bFile.Name = "bFile";
-			this.bFile.Size = new System.Drawing.Size(24, 23);
-			this.bFile.TabIndex = 5;
-			this.bFile.Text = "...";
 			this.bFile.Click += new System.EventHandler(this.bFile_Click);
 			// 
 			// tbNoRows
 			// 
-			this.tbNoRows.Location = new System.Drawing.Point(104, 40);
+			resources.ApplyResources(this.tbNoRows, "tbNoRows");
 			this.tbNoRows.Name = "tbNoRows";
-			this.tbNoRows.Size = new System.Drawing.Size(312, 20);
-			this.tbNoRows.TabIndex = 7;
-			this.tbNoRows.Text = "";
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(8, 40);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 23);
-			this.label2.TabIndex = 8;
-			this.label2.Text = "No rows message";
 			// 
 			// chkMergeTrans
 			// 
-			this.chkMergeTrans.Location = new System.Drawing.Point(8, 72);
+			resources.ApplyResources(this.chkMergeTrans, "chkMergeTrans");
 			this.chkMergeTrans.Name = "chkMergeTrans";
-			this.chkMergeTrans.Size = new System.Drawing.Size(376, 24);
-			this.chkMergeTrans.TabIndex = 9;
-			this.chkMergeTrans.Text = "Use same Data Source connections as parent report when possible";
 			// 
 			// bRefreshParms
 			// 
-			this.bRefreshParms.Location = new System.Drawing.Point(392, 120);
+			resources.ApplyResources(this.bRefreshParms, "bRefreshParms");
 			this.bRefreshParms.Name = "bRefreshParms";
-			this.bRefreshParms.Size = new System.Drawing.Size(56, 23);
-			this.bRefreshParms.TabIndex = 10;
-			this.bRefreshParms.Text = "Refresh";
 			this.bRefreshParms.Click += new System.EventHandler(this.bRefreshParms_Click);
 			// 
 			// SubreportCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.bRefreshParms);
 			this.Controls.Add(this.chkMergeTrans);
 			this.Controls.Add(this.tbNoRows);
@@ -255,9 +234,9 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.dgParms);
 			this.Name = "SubreportCtl";
-			this.Size = new System.Drawing.Size(464, 304);
 			((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

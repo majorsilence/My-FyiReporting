@@ -23,141 +23,103 @@ private System.ComponentModel.Container components = null;
 
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogAbout));
-            this.bOK = new System.Windows.Forms.Button();
-            this.tbLicense = new System.Windows.Forms.TextBox();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lVersion = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lVMVersion = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // bOK
-            // 
-            this.bOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bOK.Location = new System.Drawing.Point(213, 272);
-            this.bOK.Name = "bOK";
-            this.bOK.Size = new System.Drawing.Size(75, 23);
-            this.bOK.TabIndex = 0;
-            this.bOK.Text = "OK";
-            // 
-            // tbLicense
-            // 
-            this.tbLicense.Location = new System.Drawing.Point(8, 120);
-            this.tbLicense.Multiline = true;
-            this.tbLicense.Name = "tbLicense";
-            this.tbLicense.ReadOnly = true;
-            this.tbLicense.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbLicense.Size = new System.Drawing.Size(478, 136);
-            this.tbLicense.TabIndex = 9;
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.Location = new System.Drawing.Point(280, 88);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(152, 16);
-            this.linkLabel3.TabIndex = 15;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Tag = "mailto:comments@fyireporting.com";
-            this.linkLabel3.Text = "comments@fyireporting.com";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_LinkClicked);
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.Location = new System.Drawing.Point(72, 88);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(144, 16);
-            this.linkLabel4.TabIndex = 14;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Tag = "http://www.fyireporting.com";
-            this.linkLabel4.Text = "http://www.fyireporting.com";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_LinkClicked);
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(240, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 23);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "E-mail:";
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(16, 88);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 23);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Website:";
-            // 
-            // lVersion
-            // 
-            this.lVersion.Location = new System.Drawing.Point(269, 40);
-            this.lVersion.Name = "lVersion";
-            this.lVersion.Size = new System.Drawing.Size(136, 16);
-            this.lVersion.TabIndex = 11;
-            this.lVersion.Text = "Version x.x.x";
-            this.lVersion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(220, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(272, 24);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "fyiReporting MapFile Designer";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(8, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(212, 72);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 16;
-            this.pictureBox2.TabStop = false;
-            // 
-            // lVMVersion
-            // 
-            this.lVMVersion.Location = new System.Drawing.Point(259, 64);
-            this.lVMVersion.Name = "lVMVersion";
-            this.lVMVersion.Size = new System.Drawing.Size(144, 16);
-            this.lVMVersion.TabIndex = 17;
-            this.lVMVersion.Text = ".NET x.x.xxxx.xxxx";
-            this.lVMVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DialogAbout
-            // 
-            this.AcceptButton = this.bOK;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.CancelButton = this.bOK;
-            this.ClientSize = new System.Drawing.Size(498, 304);
-            this.Controls.Add(this.lVMVersion);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.lVersion);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.tbLicense);
-            this.Controls.Add(this.bOK);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "DialogAbout";
-            this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogAbout));
+			this.bOK = new System.Windows.Forms.Button();
+			this.tbLicense = new System.Windows.Forms.TextBox();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.lVersion = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.lVMVersion = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// bOK
+			// 
+			resources.ApplyResources(this.bOK, "bOK");
+			this.bOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.bOK.Name = "bOK";
+			// 
+			// tbLicense
+			// 
+			resources.ApplyResources(this.tbLicense, "tbLicense");
+			this.tbLicense.Name = "tbLicense";
+			this.tbLicense.ReadOnly = true;
+			// 
+			// linkLabel3
+			// 
+			resources.ApplyResources(this.linkLabel3, "linkLabel3");
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Tag = "mailto:comments@fyireporting.com";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_LinkClicked);
+			// 
+			// linkLabel4
+			// 
+			resources.ApplyResources(this.linkLabel4, "linkLabel4");
+			this.linkLabel4.Name = "linkLabel4";
+			this.linkLabel4.TabStop = true;
+			this.linkLabel4.Tag = "http://www.fyireporting.com";
+			this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_LinkClicked);
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// lVersion
+			// 
+			resources.ApplyResources(this.lVersion, "lVersion");
+			this.lVersion.Name = "lVersion";
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// lVMVersion
+			// 
+			resources.ApplyResources(this.lVMVersion, "lVMVersion");
+			this.lVMVersion.Name = "lVMVersion";
+			// 
+			// pictureBox2
+			// 
+			resources.ApplyResources(this.pictureBox2, "pictureBox2");
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.TabStop = false;
+			// 
+			// DialogAbout
+			// 
+			this.AcceptButton = this.bOK;
+			resources.ApplyResources(this, "$this");
+			this.CancelButton = this.bOK;
+			this.Controls.Add(this.lVMVersion);
+			this.Controls.Add(this.linkLabel3);
+			this.Controls.Add(this.linkLabel4);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.lVersion);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.pictureBox2);
+			this.Controls.Add(this.tbLicense);
+			this.Controls.Add(this.bOK);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "DialogAbout";
+			this.ShowInTaskbar = false;
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

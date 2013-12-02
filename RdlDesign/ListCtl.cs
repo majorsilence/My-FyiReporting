@@ -106,6 +106,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListCtl));
 			this.label2 = new System.Windows.Forms.Label();
 			this.cbDataSet = new System.Windows.Forms.ComboBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -124,116 +125,82 @@ namespace fyiReporting.RdlDesign
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(24, 16);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 23);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "DataSet Name";
 			// 
 			// cbDataSet
 			// 
+			resources.ApplyResources(this.cbDataSet, "cbDataSet");
 			this.cbDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbDataSet.Location = new System.Drawing.Point(120, 16);
 			this.cbDataSet.Name = "cbDataSet";
-			this.cbDataSet.Size = new System.Drawing.Size(304, 21);
-			this.cbDataSet.TabIndex = 1;
 			this.cbDataSet.SelectedIndexChanged += new System.EventHandler(this.cbDataSet_SelectedIndexChanged);
 			// 
 			// groupBox1
 			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.chkPBAfter);
 			this.groupBox1.Controls.Add(this.chkPBBefore);
-			this.groupBox1.Location = new System.Drawing.Point(24, 88);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(400, 48);
-			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Page Breaks";
 			// 
 			// chkPBAfter
 			// 
-			this.chkPBAfter.Location = new System.Drawing.Point(192, 16);
+			resources.ApplyResources(this.chkPBAfter, "chkPBAfter");
 			this.chkPBAfter.Name = "chkPBAfter";
-			this.chkPBAfter.Size = new System.Drawing.Size(128, 24);
-			this.chkPBAfter.TabIndex = 1;
-			this.chkPBAfter.Text = "Insert after List";
 			this.chkPBAfter.CheckedChanged += new System.EventHandler(this.chkPBAfter_CheckedChanged);
 			// 
 			// chkPBBefore
 			// 
-			this.chkPBBefore.Location = new System.Drawing.Point(16, 16);
+			resources.ApplyResources(this.chkPBBefore, "chkPBBefore");
 			this.chkPBBefore.Name = "chkPBBefore";
-			this.chkPBBefore.Size = new System.Drawing.Size(128, 24);
-			this.chkPBBefore.TabIndex = 0;
-			this.chkPBBefore.Text = "Insert before List";
 			this.chkPBBefore.CheckedChanged += new System.EventHandler(this.chkPBBefore_CheckedChanged);
 			// 
 			// bGroups
 			// 
-			this.bGroups.Location = new System.Drawing.Point(24, 240);
+			resources.ApplyResources(this.bGroups, "bGroups");
 			this.bGroups.Name = "bGroups";
-			this.bGroups.Size = new System.Drawing.Size(120, 23);
-			this.bGroups.TabIndex = 6;
-			this.bGroups.Text = "Group Expressions...";
 			this.bGroups.Click += new System.EventHandler(this.bGroups_Click);
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(24, 48);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(96, 23);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "No rows message";
 			// 
 			// tbNoRows
 			// 
-			this.tbNoRows.Location = new System.Drawing.Point(120, 48);
+			resources.ApplyResources(this.tbNoRows, "tbNoRows");
 			this.tbNoRows.Name = "tbNoRows";
-			this.tbNoRows.Size = new System.Drawing.Size(304, 20);
-			this.tbNoRows.TabIndex = 3;
-			this.tbNoRows.Text = "textBox1";
 			this.tbNoRows.TextChanged += new System.EventHandler(this.tbNoRows_TextChanged);
 			// 
 			// tbDataInstanceName
 			// 
-			this.tbDataInstanceName.Location = new System.Drawing.Point(146, 44);
+			resources.ApplyResources(this.tbDataInstanceName, "tbDataInstanceName");
 			this.tbDataInstanceName.Name = "tbDataInstanceName";
-			this.tbDataInstanceName.Size = new System.Drawing.Size(238, 20);
-			this.tbDataInstanceName.TabIndex = 2;
-			this.tbDataInstanceName.Text = "textBox1";
 			this.tbDataInstanceName.TextChanged += new System.EventHandler(this.tbDataInstanceName_TextChanged);
 			// 
 			// chkXmlInstances
 			// 
-			this.chkXmlInstances.Location = new System.Drawing.Point(16, 16);
+			resources.ApplyResources(this.chkXmlInstances, "chkXmlInstances");
 			this.chkXmlInstances.Name = "chkXmlInstances";
-			this.chkXmlInstances.Size = new System.Drawing.Size(160, 24);
-			this.chkXmlInstances.TabIndex = 0;
-			this.chkXmlInstances.Text = "Render list instances";
 			this.chkXmlInstances.CheckedChanged += new System.EventHandler(this.chkXmlInstances_CheckedChanged);
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(16, 48);
+			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(112, 16);
-			this.label3.TabIndex = 1;
-			this.label3.Text = "Data Instance Name";
 			// 
 			// groupBox2
 			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Controls.Add(this.tbDataInstanceName);
 			this.groupBox2.Controls.Add(this.chkXmlInstances);
 			this.groupBox2.Controls.Add(this.label3);
-			this.groupBox2.Location = new System.Drawing.Point(24, 152);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(400, 72);
-			this.groupBox2.TabIndex = 5;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "XML";
 			// 
 			// ListCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.tbNoRows);
 			this.Controls.Add(this.label1);
@@ -242,10 +209,11 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.cbDataSet);
 			this.Controls.Add(this.label2);
 			this.Name = "ListCtl";
-			this.Size = new System.Drawing.Size(472, 288);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

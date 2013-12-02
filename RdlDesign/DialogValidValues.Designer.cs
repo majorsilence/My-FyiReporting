@@ -20,6 +20,7 @@ private System.ComponentModel.Container components = null;
 
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogValidValues));
 			this.dgParms = new System.Windows.Forms.DataGrid();
 			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
 			this.bOK = new System.Windows.Forms.Button();
@@ -30,54 +31,44 @@ private System.ComponentModel.Container components = null;
 			// 
 			// dgParms
 			// 
+			resources.ApplyResources(this.dgParms, "dgParms");
 			this.dgParms.CaptionVisible = false;
 			this.dgParms.DataMember = "";
 			this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgParms.Location = new System.Drawing.Point(8, 8);
 			this.dgParms.Name = "dgParms";
-			this.dgParms.Size = new System.Drawing.Size(320, 168);
-			this.dgParms.TabIndex = 2;
 			this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																								this.dgTableStyle});
+            this.dgTableStyle});
 			// 
 			// dgTableStyle
 			// 
 			this.dgTableStyle.AllowSorting = false;
 			this.dgTableStyle.DataGrid = this.dgParms;
+			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
 			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyle.MappingName = "";
 			// 
 			// bOK
 			// 
+			resources.ApplyResources(this.bOK, "bOK");
 			this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.bOK.Location = new System.Drawing.Point(216, 192);
 			this.bOK.Name = "bOK";
-			this.bOK.TabIndex = 3;
-			this.bOK.Text = "OK";
 			// 
 			// bCancel
 			// 
+			resources.ApplyResources(this.bCancel, "bCancel");
 			this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.bCancel.Location = new System.Drawing.Point(312, 192);
 			this.bCancel.Name = "bCancel";
-			this.bCancel.TabIndex = 4;
-			this.bCancel.Text = "Cancel";
 			// 
 			// bDelete
 			// 
-			this.bDelete.Location = new System.Drawing.Point(336, 16);
+			resources.ApplyResources(this.bDelete, "bDelete");
 			this.bDelete.Name = "bDelete";
-			this.bDelete.Size = new System.Drawing.Size(48, 23);
-			this.bDelete.TabIndex = 5;
-			this.bDelete.Text = "Delete";
 			this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
 			// 
 			// DialogValidValues
 			// 
 			this.AcceptButton = this.bOK;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			resources.ApplyResources(this, "$this");
 			this.CancelButton = this.bCancel;
-			this.ClientSize = new System.Drawing.Size(392, 222);
 			this.ControlBox = false;
 			this.Controls.Add(this.bDelete);
 			this.Controls.Add(this.bCancel);
@@ -88,7 +79,6 @@ private System.ComponentModel.Container components = null;
 			this.Name = "DialogValidValues";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.Text = "Valid Values";
 			((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
 			this.ResumeLayout(false);
 

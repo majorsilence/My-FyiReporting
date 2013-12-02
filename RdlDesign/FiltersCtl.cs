@@ -156,77 +156,56 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.dgFilters = new System.Windows.Forms.DataGridView();
-            this.bDelete = new System.Windows.Forms.Button();
-            this.bUp = new System.Windows.Forms.Button();
-            this.bDown = new System.Windows.Forms.Button();
-            this.bValueExpr = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFilters)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dgFilters
-            // 
-            this.dgFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgFilters.Location = new System.Drawing.Point(8, 8);
-            this.dgFilters.Name = "dgFilters";
-            this.dgFilters.Size = new System.Drawing.Size(423, 264);
-            this.dgFilters.TabIndex = 2;
-            // 
-            // bDelete
-            // 
-            this.bDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bDelete.Location = new System.Drawing.Point(437, 37);
-            this.bDelete.Name = "bDelete";
-            this.bDelete.Size = new System.Drawing.Size(48, 23);
-            this.bDelete.TabIndex = 1;
-            this.bDelete.Text = "Delete";
-            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
-            // 
-            // bUp
-            // 
-            this.bUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bUp.Location = new System.Drawing.Point(437, 68);
-            this.bUp.Name = "bUp";
-            this.bUp.Size = new System.Drawing.Size(48, 23);
-            this.bUp.TabIndex = 3;
-            this.bUp.Text = "Up";
-            this.bUp.Click += new System.EventHandler(this.bUp_Click);
-            // 
-            // bDown
-            // 
-            this.bDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bDown.Location = new System.Drawing.Point(437, 99);
-            this.bDown.Name = "bDown";
-            this.bDown.Size = new System.Drawing.Size(48, 23);
-            this.bDown.TabIndex = 4;
-            this.bDown.Text = "Down";
-            this.bDown.Click += new System.EventHandler(this.bDown_Click);
-            // 
-            // bValueExpr
-            // 
-            this.bValueExpr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bValueExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bValueExpr.Location = new System.Drawing.Point(437, 8);
-            this.bValueExpr.Name = "bValueExpr";
-            this.bValueExpr.Size = new System.Drawing.Size(48, 23);
-            this.bValueExpr.TabIndex = 5;
-            this.bValueExpr.Tag = "value";
-            this.bValueExpr.Text = "fx";
-            this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
-            // 
-            // FiltersCtl
-            // 
-            this.Controls.Add(this.bValueExpr);
-            this.Controls.Add(this.bDown);
-            this.Controls.Add(this.bUp);
-            this.Controls.Add(this.bDelete);
-            this.Controls.Add(this.dgFilters);
-            this.Name = "FiltersCtl";
-            this.Size = new System.Drawing.Size(488, 304);
-            ((System.ComponentModel.ISupportInitialize)(this.dgFilters)).EndInit();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FiltersCtl));
+			this.dgFilters = new System.Windows.Forms.DataGridView();
+			this.bDelete = new System.Windows.Forms.Button();
+			this.bUp = new System.Windows.Forms.Button();
+			this.bDown = new System.Windows.Forms.Button();
+			this.bValueExpr = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.dgFilters)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dgFilters
+			// 
+			resources.ApplyResources(this.dgFilters, "dgFilters");
+			this.dgFilters.Name = "dgFilters";
+			// 
+			// bDelete
+			// 
+			resources.ApplyResources(this.bDelete, "bDelete");
+			this.bDelete.Name = "bDelete";
+			this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+			// 
+			// bUp
+			// 
+			resources.ApplyResources(this.bUp, "bUp");
+			this.bUp.Name = "bUp";
+			this.bUp.Click += new System.EventHandler(this.bUp_Click);
+			// 
+			// bDown
+			// 
+			resources.ApplyResources(this.bDown, "bDown");
+			this.bDown.Name = "bDown";
+			this.bDown.Click += new System.EventHandler(this.bDown_Click);
+			// 
+			// bValueExpr
+			// 
+			resources.ApplyResources(this.bValueExpr, "bValueExpr");
+			this.bValueExpr.Name = "bValueExpr";
+			this.bValueExpr.Tag = "value";
+			this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
+			// 
+			// FiltersCtl
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.bValueExpr);
+			this.Controls.Add(this.bDown);
+			this.Controls.Add(this.bUp);
+			this.Controls.Add(this.bDelete);
+			this.Controls.Add(this.dgFilters);
+			this.Name = "FiltersCtl";
+			((System.ComponentModel.ISupportInitialize)(this.dgFilters)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 		#endregion

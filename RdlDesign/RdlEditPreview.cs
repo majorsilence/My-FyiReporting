@@ -712,118 +712,102 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.tcEHP = new System.Windows.Forms.TabControl();
-            this.tpDesign = new System.Windows.Forms.TabPage();
-            this.tpEditor = new System.Windows.Forms.TabPage();
-            this.tbEditor = new System.Windows.Forms.RichTextBox();
-            this.pbLines = new DesignEditLines();
-            this.tpBrowser = new System.Windows.Forms.TabPage();
-            this.rdlPreview = new fyiReporting.RdlViewer.RdlViewer();
-            this.tcEHP.SuspendLayout();
-            this.tpEditor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLines)).BeginInit();
-            this.tpBrowser.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // tcEHP
-            // 
-            this.tcEHP.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tcEHP.Controls.Add(this.tpDesign);
-            this.tcEHP.Controls.Add(this.tpEditor);
-            this.tcEHP.Controls.Add(this.tpBrowser);
-            this.tcEHP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcEHP.Location = new System.Drawing.Point(0, 0);
-            this.tcEHP.Name = "tcEHP";
-            this.tcEHP.SelectedIndex = 0;
-            this.tcEHP.ShowToolTips = true;
-            this.tcEHP.Size = new System.Drawing.Size(488, 376);
-            this.tcEHP.TabIndex = 0;
-            this.tcEHP.SelectedIndexChanged += new System.EventHandler(this.tcEHP_SelectedIndexChanged);
-            // 
-            // tpDesign
-            // 
-            this.tpDesign.Location = new System.Drawing.Point(4, 4);
-            this.tpDesign.Name = "tpDesign";
-            this.tpDesign.Size = new System.Drawing.Size(480, 350);
-            this.tpDesign.TabIndex = 3;
-            this.tpDesign.Tag = "design";
-            this.tpDesign.Text = "Designer";
-            // 
-            // tpEditor
-            // 
-            this.tpEditor.Controls.Add(this.tbEditor);
-            this.tpEditor.Controls.Add(this.pbLines);
-            this.tpEditor.Location = new System.Drawing.Point(4, 4);
-            this.tpEditor.Name = "tpEditor";
-            this.tpEditor.Size = new System.Drawing.Size(480, 350);
-            this.tpEditor.TabIndex = 0;
-            this.tpEditor.Tag = "edit";
-            this.tpEditor.Text = "RDL Text";
-            this.tpEditor.ToolTipText = "Edit Report Syntax";
-            // 
-            // tbEditor
-            // 
-            this.tbEditor.AcceptsTab = true;
-            this.tbEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbEditor.HideSelection = false;
-            this.tbEditor.Location = new System.Drawing.Point(32, 0);
-            this.tbEditor.Name = "tbEditor";
-            this.tbEditor.Size = new System.Drawing.Size(448, 350);
-            this.tbEditor.TabIndex = 0;
-            this.tbEditor.Text = "";
-            this.tbEditor.WordWrap = false;
-            this.tbEditor.TextChanged += new System.EventHandler(this.tbEditor_TextChanged);
-            // 
-            // pbLines
-            // 
-            this.pbLines.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pbLines.Location = new System.Drawing.Point(0, 0);
-            this.pbLines.Name = "pbLines";
-            this.pbLines.Size = new System.Drawing.Size(32, 350);
-            this.pbLines.TabIndex = 1;
-            this.pbLines.TabStop = false;
-            // 
-            // tpBrowser
-            // 
-            this.tpBrowser.Controls.Add(this.rdlPreview);
-            this.tpBrowser.Location = new System.Drawing.Point(4, 4);
-            this.tpBrowser.Name = "tpBrowser";
-            this.tpBrowser.Size = new System.Drawing.Size(480, 350);
-            this.tpBrowser.TabIndex = 2;
-            this.tpBrowser.Tag = "preview";
-            this.tpBrowser.Text = "Preview";
-            // 
-            // rdlPreview
-            // 
-            this.rdlPreview.Cursor = System.Windows.Forms.Cursors.Default;
-            this.rdlPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdlPreview.Folder = null;
-            this.rdlPreview.Location = new System.Drawing.Point(0, 0);
-            this.rdlPreview.Name = "rdlPreview";
-            this.rdlPreview.PageCurrent = 1;
-            this.rdlPreview.Parameters = null;
-            this.rdlPreview.ReportName = null;
-            this.rdlPreview.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
-            this.rdlPreview.ShowParameterPanel = true;
-            this.rdlPreview.Size = new System.Drawing.Size(480, 350);
-            this.rdlPreview.SourceFile = null;
-            this.rdlPreview.SourceRdl = null;
-            this.rdlPreview.TabIndex = 0;
-            this.rdlPreview.Text = "rdlViewer1";
-            this.rdlPreview.Zoom = 0.5474582F;
-            this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
-            // 
-            // RdlEditPreview
-            // 
-            this.Controls.Add(this.tcEHP);
-            this.Name = "RdlEditPreview";
-            this.Size = new System.Drawing.Size(488, 376);
-            this.tcEHP.ResumeLayout(false);
-            this.tpEditor.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLines)).EndInit();
-            this.tpBrowser.ResumeLayout(false);
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlEditPreview));
+			this.tcEHP = new System.Windows.Forms.TabControl();
+			this.tpDesign = new System.Windows.Forms.TabPage();
+			this.tpEditor = new System.Windows.Forms.TabPage();
+			this.tbEditor = new System.Windows.Forms.RichTextBox();
+			this.pbLines = new fyiReporting.RdlDesign.DesignEditLines();
+			this.tpBrowser = new System.Windows.Forms.TabPage();
+			this.rdlPreview = new fyiReporting.RdlViewer.RdlViewer();
+			this.tcEHP.SuspendLayout();
+			this.tpEditor.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbLines)).BeginInit();
+			this.tpBrowser.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// tcEHP
+			// 
+			resources.ApplyResources(this.tcEHP, "tcEHP");
+			this.tcEHP.Controls.Add(this.tpDesign);
+			this.tcEHP.Controls.Add(this.tpEditor);
+			this.tcEHP.Controls.Add(this.tpBrowser);
+			this.tcEHP.Name = "tcEHP";
+			this.tcEHP.SelectedIndex = 0;
+			this.tcEHP.SelectedIndexChanged += new System.EventHandler(this.tcEHP_SelectedIndexChanged);
+			// 
+			// tpDesign
+			// 
+			resources.ApplyResources(this.tpDesign, "tpDesign");
+			this.tpDesign.Name = "tpDesign";
+			this.tpDesign.Tag = "design";
+			// 
+			// tpEditor
+			// 
+			resources.ApplyResources(this.tpEditor, "tpEditor");
+			this.tpEditor.Controls.Add(this.tbEditor);
+			this.tpEditor.Controls.Add(this.pbLines);
+			this.tpEditor.Name = "tpEditor";
+			this.tpEditor.Tag = "edit";
+			// 
+			// tbEditor
+			// 
+			this.tbEditor.AcceptsTab = true;
+			resources.ApplyResources(this.tbEditor, "tbEditor");
+			this.tbEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tbEditor.HideSelection = false;
+			this.tbEditor.Name = "tbEditor";
+			this.tbEditor.TextChanged += new System.EventHandler(this.tbEditor_TextChanged);
+			// 
+			// pbLines
+			// 
+			resources.ApplyResources(this.pbLines, "pbLines");
+			this.pbLines.Name = "pbLines";
+			this.pbLines.TabStop = false;
+			// 
+			// tpBrowser
+			// 
+			resources.ApplyResources(this.tpBrowser, "tpBrowser");
+			this.tpBrowser.Controls.Add(this.rdlPreview);
+			this.tpBrowser.Name = "tpBrowser";
+			this.tpBrowser.Tag = "preview";
+			// 
+			// rdlPreview
+			// 
+			resources.ApplyResources(this.rdlPreview, "rdlPreview");
+			this.rdlPreview.Cursor = System.Windows.Forms.Cursors.Default;
+			this.rdlPreview.Folder = null;
+			this.rdlPreview.HighlightAll = false;
+			this.rdlPreview.HighlightAllColor = System.Drawing.Color.Fuchsia;
+			this.rdlPreview.HighlightCaseSensitive = false;
+			this.rdlPreview.HighlightItemColor = System.Drawing.Color.Aqua;
+			this.rdlPreview.HighlightPageItem = null;
+			this.rdlPreview.HighlightText = null;
+			this.rdlPreview.Name = "rdlPreview";
+			this.rdlPreview.PageCurrent = 1;
+			this.rdlPreview.Parameters = "";
+			this.rdlPreview.ReportName = null;
+			this.rdlPreview.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
+			this.rdlPreview.SelectTool = false;
+			this.rdlPreview.ShowFindPanel = false;
+			this.rdlPreview.ShowParameterPanel = true;
+			this.rdlPreview.ShowWaitDialog = true;
+			this.rdlPreview.SourceFile = null;
+			this.rdlPreview.SourceRdl = null;
+			this.rdlPreview.UseTrueMargins = true;
+			this.rdlPreview.Zoom = 0.5690382F;
+			this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
+			// 
+			// RdlEditPreview
+			// 
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.tcEHP);
+			this.Name = "RdlEditPreview";
+			this.tcEHP.ResumeLayout(false);
+			this.tpEditor.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbLines)).EndInit();
+			this.tpBrowser.ResumeLayout(false);
+			this.ResumeLayout(false);
 
 		}
 		#endregion

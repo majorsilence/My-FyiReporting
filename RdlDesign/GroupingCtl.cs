@@ -210,6 +210,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupingCtl));
 			this.dgGroup = new System.Windows.Forms.DataGrid();
 			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
 			this.bDelete = new System.Windows.Forms.Button();
@@ -236,193 +237,129 @@ namespace fyiReporting.RdlDesign
 			// 
 			// dgGroup
 			// 
+			resources.ApplyResources(this.dgGroup, "dgGroup");
 			this.dgGroup.CaptionVisible = false;
 			this.dgGroup.DataMember = "";
 			this.dgGroup.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgGroup.Location = new System.Drawing.Point(8, 48);
 			this.dgGroup.Name = "dgGroup";
-			this.dgGroup.Size = new System.Drawing.Size(376, 88);
-			this.dgGroup.TabIndex = 1;
 			this.dgGroup.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																								this.dgTableStyle});
+            this.dgTableStyle});
 			// 
 			// dgTableStyle
 			// 
 			this.dgTableStyle.AllowSorting = false;
 			this.dgTableStyle.DataGrid = this.dgGroup;
+			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
 			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dgTableStyle.MappingName = "";
 			// 
 			// bDelete
 			// 
-			this.bDelete.Location = new System.Drawing.Point(392, 69);
+			resources.ApplyResources(this.bDelete, "bDelete");
 			this.bDelete.Name = "bDelete";
-			this.bDelete.Size = new System.Drawing.Size(48, 20);
-			this.bDelete.TabIndex = 2;
-			this.bDelete.Text = "Delete";
 			this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
 			// 
 			// bUp
 			// 
-			this.bUp.Location = new System.Drawing.Point(392, 94);
+			resources.ApplyResources(this.bUp, "bUp");
 			this.bUp.Name = "bUp";
-			this.bUp.Size = new System.Drawing.Size(48, 20);
-			this.bUp.TabIndex = 3;
-			this.bUp.Text = "Up";
 			this.bUp.Click += new System.EventHandler(this.bUp_Click);
 			// 
 			// bDown
 			// 
-			this.bDown.Location = new System.Drawing.Point(392, 119);
+			resources.ApplyResources(this.bDown, "bDown");
 			this.bDown.Name = "bDown";
-			this.bDown.Size = new System.Drawing.Size(48, 20);
-			this.bDown.TabIndex = 4;
-			this.bDown.Text = "Down";
 			this.bDown.Click += new System.EventHandler(this.bDown_Click);
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 8);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(48, 23);
-			this.label1.TabIndex = 5;
-			this.label1.Text = "Name";
 			// 
 			// tbName
 			// 
-			this.tbName.Location = new System.Drawing.Point(56, 8);
+			resources.ApplyResources(this.tbName, "tbName");
 			this.tbName.Name = "tbName";
-			this.tbName.Size = new System.Drawing.Size(328, 20);
-			this.tbName.TabIndex = 0;
-			this.tbName.Text = "textBox1";
 			this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(8, 144);
+			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(40, 23);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "Label";
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(8, 32);
+			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(56, 16);
-			this.label3.TabIndex = 9;
-			this.label3.Text = "Group By";
 			// 
 			// cbLabelExpr
 			// 
-			this.cbLabelExpr.Location = new System.Drawing.Point(48, 144);
+			resources.ApplyResources(this.cbLabelExpr, "cbLabelExpr");
 			this.cbLabelExpr.Name = "cbLabelExpr";
-			this.cbLabelExpr.Size = new System.Drawing.Size(336, 21);
-			this.cbLabelExpr.TabIndex = 5;
-			this.cbLabelExpr.Text = "comboBox1";
 			// 
 			// cbParentExpr
 			// 
-			this.cbParentExpr.Location = new System.Drawing.Point(48, 176);
+			resources.ApplyResources(this.cbParentExpr, "cbParentExpr");
 			this.cbParentExpr.Name = "cbParentExpr";
-			this.cbParentExpr.Size = new System.Drawing.Size(336, 21);
-			this.cbParentExpr.TabIndex = 6;
-			this.cbParentExpr.Text = "comboBox1";
 			// 
 			// lParent
 			// 
-			this.lParent.Location = new System.Drawing.Point(8, 176);
+			resources.ApplyResources(this.lParent, "lParent");
 			this.lParent.Name = "lParent";
-			this.lParent.Size = new System.Drawing.Size(40, 23);
-			this.lParent.TabIndex = 11;
-			this.lParent.Text = "Parent";
 			// 
 			// chkPBS
 			// 
-			this.chkPBS.Location = new System.Drawing.Point(8, 208);
+			resources.ApplyResources(this.chkPBS, "chkPBS");
 			this.chkPBS.Name = "chkPBS";
-			this.chkPBS.Size = new System.Drawing.Size(136, 24);
-			this.chkPBS.TabIndex = 7;
-			this.chkPBS.Text = "Page Break at Start";
 			// 
 			// chkPBE
 			// 
-			this.chkPBE.Location = new System.Drawing.Point(232, 208);
+			resources.ApplyResources(this.chkPBE, "chkPBE");
 			this.chkPBE.Name = "chkPBE";
-			this.chkPBE.Size = new System.Drawing.Size(136, 24);
-			this.chkPBE.TabIndex = 8;
-			this.chkPBE.Text = "Page Break at End";
 			// 
 			// chkRepeatHeader
 			// 
-			this.chkRepeatHeader.Location = new System.Drawing.Point(232, 232);
+			resources.ApplyResources(this.chkRepeatHeader, "chkRepeatHeader");
 			this.chkRepeatHeader.Name = "chkRepeatHeader";
-			this.chkRepeatHeader.Size = new System.Drawing.Size(136, 24);
-			this.chkRepeatHeader.TabIndex = 13;
-			this.chkRepeatHeader.Text = "Repeat group header";
 			// 
 			// chkGrpHeader
 			// 
-			this.chkGrpHeader.Location = new System.Drawing.Point(8, 232);
+			resources.ApplyResources(this.chkGrpHeader, "chkGrpHeader");
 			this.chkGrpHeader.Name = "chkGrpHeader";
-			this.chkGrpHeader.Size = new System.Drawing.Size(136, 24);
-			this.chkGrpHeader.TabIndex = 12;
-			this.chkGrpHeader.Text = "Include group header";
 			// 
 			// chkRepeatFooter
 			// 
-			this.chkRepeatFooter.Location = new System.Drawing.Point(232, 256);
+			resources.ApplyResources(this.chkRepeatFooter, "chkRepeatFooter");
 			this.chkRepeatFooter.Name = "chkRepeatFooter";
-			this.chkRepeatFooter.Size = new System.Drawing.Size(136, 24);
-			this.chkRepeatFooter.TabIndex = 15;
-			this.chkRepeatFooter.Text = "Repeat group footer";
 			// 
 			// chkGrpFooter
 			// 
-			this.chkGrpFooter.Location = new System.Drawing.Point(8, 256);
+			resources.ApplyResources(this.chkGrpFooter, "chkGrpFooter");
 			this.chkGrpFooter.Name = "chkGrpFooter";
-			this.chkGrpFooter.Size = new System.Drawing.Size(136, 24);
-			this.chkGrpFooter.TabIndex = 14;
-			this.chkGrpFooter.Text = "Include group footer";
 			// 
 			// bValueExpr
 			// 
-			this.bValueExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.bValueExpr.Location = new System.Drawing.Point(392, 48);
+			resources.ApplyResources(this.bValueExpr, "bValueExpr");
 			this.bValueExpr.Name = "bValueExpr";
-			this.bValueExpr.Size = new System.Drawing.Size(22, 16);
-			this.bValueExpr.TabIndex = 16;
 			this.bValueExpr.Tag = "value";
-			this.bValueExpr.Text = "fx";
-			this.bValueExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
 			// 
 			// bLabelExpr
 			// 
-			this.bLabelExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.bLabelExpr.Location = new System.Drawing.Point(392, 147);
+			resources.ApplyResources(this.bLabelExpr, "bLabelExpr");
 			this.bLabelExpr.Name = "bLabelExpr";
-			this.bLabelExpr.Size = new System.Drawing.Size(22, 16);
-			this.bLabelExpr.TabIndex = 17;
 			this.bLabelExpr.Tag = "label";
-			this.bLabelExpr.Text = "fx";
-			this.bLabelExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.bLabelExpr.Click += new System.EventHandler(this.bExpr_Click);
 			// 
 			// bParentExpr
 			// 
-			this.bParentExpr.Font = new System.Drawing.Font("Arial", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.bParentExpr.Location = new System.Drawing.Point(392, 180);
+			resources.ApplyResources(this.bParentExpr, "bParentExpr");
 			this.bParentExpr.Name = "bParentExpr";
-			this.bParentExpr.Size = new System.Drawing.Size(22, 16);
-			this.bParentExpr.TabIndex = 18;
 			this.bParentExpr.Tag = "parent";
-			this.bParentExpr.Text = "fx";
-			this.bParentExpr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.bParentExpr.Click += new System.EventHandler(this.bExpr_Click);
 			// 
 			// GroupingCtl
 			// 
+			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.bParentExpr);
 			this.Controls.Add(this.bLabelExpr);
 			this.Controls.Add(this.bValueExpr);
@@ -444,9 +381,9 @@ namespace fyiReporting.RdlDesign
 			this.Controls.Add(this.bDelete);
 			this.Controls.Add(this.dgGroup);
 			this.Name = "GroupingCtl";
-			this.Size = new System.Drawing.Size(488, 304);
 			((System.ComponentModel.ISupportInitialize)(this.dgGroup)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

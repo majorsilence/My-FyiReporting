@@ -17,6 +17,7 @@ private System.ComponentModel.Container components = null;
 
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogFilterOperator));
 			this.bOK = new System.Windows.Forms.Button();
 			this.bCancel = new System.Windows.Forms.Button();
 			this.lOp = new System.Windows.Forms.Label();
@@ -25,61 +26,48 @@ private System.ComponentModel.Container components = null;
 			// 
 			// bOK
 			// 
-			this.bOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.bOK, "bOK");
 			this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.bOK.Location = new System.Drawing.Point(88, 168);
 			this.bOK.Name = "bOK";
-			this.bOK.TabIndex = 3;
-			this.bOK.Text = "OK";
 			// 
 			// bCancel
 			// 
-			this.bCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.bCancel, "bCancel");
 			this.bCancel.CausesValidation = false;
 			this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.bCancel.Location = new System.Drawing.Point(176, 168);
 			this.bCancel.Name = "bCancel";
-			this.bCancel.TabIndex = 4;
-			this.bCancel.Text = "Cancel";
 			// 
 			// lOp
 			// 
-			this.lOp.Location = new System.Drawing.Point(8, 8);
+			resources.ApplyResources(this.lOp, "lOp");
 			this.lOp.Name = "lOp";
-			this.lOp.Size = new System.Drawing.Size(112, 16);
-			this.lOp.TabIndex = 13;
-			this.lOp.Text = "Select Filter Operator";
 			// 
 			// cbOperator
 			// 
+			resources.ApplyResources(this.cbOperator, "cbOperator");
 			this.cbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
 			this.cbOperator.Items.AddRange(new object[] {
-															"Equal",
-															"Like",
-															"NotEqual",
-															"GreaterThan",
-															"GreaterThanOrEqual",
-															"LessThan",
-															"LessThanOrEqual",
-															"TopN",
-															"BottomN",
-															"TopPercent",
-															"BottomPercent",
-															"In",
-															"Between"});
-			this.cbOperator.Location = new System.Drawing.Point(120, 8);
+            resources.GetString("cbOperator.Items"),
+            resources.GetString("cbOperator.Items1"),
+            resources.GetString("cbOperator.Items2"),
+            resources.GetString("cbOperator.Items3"),
+            resources.GetString("cbOperator.Items4"),
+            resources.GetString("cbOperator.Items5"),
+            resources.GetString("cbOperator.Items6"),
+            resources.GetString("cbOperator.Items7"),
+            resources.GetString("cbOperator.Items8"),
+            resources.GetString("cbOperator.Items9"),
+            resources.GetString("cbOperator.Items10"),
+            resources.GetString("cbOperator.Items11"),
+            resources.GetString("cbOperator.Items12")});
 			this.cbOperator.Name = "cbOperator";
-			this.cbOperator.Size = new System.Drawing.Size(128, 150);
-			this.cbOperator.TabIndex = 14;
-			this.cbOperator.Text = "Equal";
 			this.cbOperator.Validating += new System.ComponentModel.CancelEventHandler(this.DialogFilterOperator_Validating);
 			// 
 			// DialogFilterOperator
 			// 
 			this.AcceptButton = this.bOK;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			resources.ApplyResources(this, "$this");
 			this.CancelButton = this.bCancel;
-			this.ClientSize = new System.Drawing.Size(256, 198);
 			this.Controls.Add(this.cbOperator);
 			this.Controls.Add(this.lOp);
 			this.Controls.Add(this.bCancel);
@@ -90,8 +78,6 @@ private System.ComponentModel.Container components = null;
 			this.Name = "DialogFilterOperator";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Pick Filter Operator";
 			this.Validating += new System.ComponentModel.CancelEventHandler(this.DialogFilterOperator_Validating);
 			this.ResumeLayout(false);
 

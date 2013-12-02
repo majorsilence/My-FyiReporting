@@ -585,11 +585,17 @@ namespace fyiReporting.RdlViewer
             get 
             {
                 string result = "";
-                foreach (KeyValuePair<String, String> kvp in _Parameters)
-                {
-                    result += String.Format("{0:s}={1:s};", kvp.Key, kvp.Value);
-                }
-                return result.TrimEnd(';');
+
+				// Check for zero to working form designer
+	            if (_Parameters != null)
+	            {
+		            foreach (KeyValuePair<String, String> kvp in _Parameters)
+		            {
+			            result += String.Format("{0:s}={1:s};", kvp.Key, kvp.Value);
+		            }
+	            }
+
+	            return result.TrimEnd(';');
             }
             set 
             {

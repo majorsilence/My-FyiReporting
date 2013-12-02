@@ -143,9 +143,84 @@
     <Content Include="App.ico" />
     <Content Include="calign.gif" />
     <Content Include="chart.gif" />
+    <EmbeddedResource Include="BackgroundCtl.ru-RU.resx">
+      <DependentUpon>BackgroundCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BodyCtl.ru-RU.resx">
+      <DependentUpon>BodyCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartAxisCtl.ru-RU.resx">
+      <DependentUpon>ChartAxisCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartCtl.ru-RU.resx">
+      <DependentUpon>ChartCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartLegendCtl.ru-RU.resx">
+      <DependentUpon>ChartLegendCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeCtl.ru-RU.resx">
+      <DependentUpon>CodeCtl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ColorPickerPopup.resx">
       <DependentUpon>ColorPickerPopup.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSetRowsCtl.ru-RU.resx">
+      <DependentUpon>DataSetRowsCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSetsCtl.ru-RU.resx">
+      <DependentUpon>DataSetsCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogAbout.ru-RU.resx">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogDatabase.ru-RU.resx">
+      <DependentUpon>DialogDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogDataSourceRef.ru-RU.resx">
+      <DependentUpon>DialogDataSourceRef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogDataSources.ru-RU.resx">
+      <DependentUpon>DialogDataSources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogEmbeddedImages.ru-RU.resx">
+      <DependentUpon>DialogEmbeddedImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogExprEditor.ru-RU.resx">
+      <DependentUpon>DialogExprEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogFilterOperator.ru-RU.resx">
+      <DependentUpon>DialogFilterOperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogNewChart.ru-RU.resx">
+      <DependentUpon>DialogNewChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogNewMatrix.ru-RU.resx">
+      <DependentUpon>DialogNewMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogNewTable.ru-RU.resx">
+      <DependentUpon>DialogNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogToolOptions.ru-RU.resx">
+      <DependentUpon>DialogToolOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogValidateRdl.ru-RU.resx">
+      <DependentUpon>DialogValidateRdl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogValidValues.ru-RU.resx">
+      <DependentUpon>DialogValidValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrillParametersDialog.ru-RU.resx">
+      <DependentUpon>DrillParametersDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FiltersCtl.ru-RU.resx">
+      <DependentUpon>FiltersCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindTab.ru-RU.resx">
+      <DependentUpon>FindTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FontCtl.ru-RU.resx">
+      <DependentUpon>FontCtl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GridCtl.resx">
       <DependentUpon>GridCtl.cs</DependentUpon>
@@ -157,10 +232,100 @@
     </EmbeddedResource>
     <EmbeddedResource Include="csv.gif" />
     <EmbeddedResource Include="excel.gif" />
+    <EmbeddedResource Include="GridCtl.ru-RU.resx">
+      <DependentUpon>GridCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupingCtl.ru-RU.resx">
+      <DependentUpon>GroupingCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageCtl.ru-RU.resx">
+      <DependentUpon>ImageCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InteractivityCtl.ru-RU.resx">
+      <DependentUpon>InteractivityCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListCtl.ru-RU.resx">
+      <DependentUpon>ListCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatrixCtl.ru-RU.resx">
+      <DependentUpon>MatrixCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIChild.ru-RU.resx">
+      <DependentUpon>MDIChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModulesClassesCtl.ru-RU.resx">
+      <DependentUpon>ModulesClassesCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PositionCtl.ru-RU.resx">
+      <DependentUpon>PositionCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyCtl.ru-RU.resx">
+      <DependentUpon>PropertyCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyDialog.ru-RU.resx">
+      <DependentUpon>PropertyDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryParametersCtl.ru-RU.resx">
+      <DependentUpon>QueryParametersCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlDesigner.ru-RU.resx">
+      <DependentUpon>RdlDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlEditPreview.ru-RU.resx">
+      <DependentUpon>RdlEditPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RdlUserControl.resx">
       <DependentUpon>RdlUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RdlUserControl.ru-RU.resx">
+      <DependentUpon>RdlUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCtl.ru-RU.resx">
+      <DependentUpon>ReportCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportParameterCtl.ru-RU.resx">
+      <DependentUpon>ReportParameterCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportXmlCtl.ru-RU.resx">
+      <DependentUpon>ReportXmlCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleCtlDialog.ru-RU.resx">
+      <DependentUpon>SingleCtlDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SortingCtl.ru-RU.resx">
+      <DependentUpon>SortingCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQLCtl.ru-RU.resx">
+      <DependentUpon>SQLCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaticSeriesCtl.ru-RU.resx">
+      <DependentUpon>StaticSeriesCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StyleBorderCtl.ru-RU.resx">
+      <DependentUpon>StyleBorderCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StyleCtl.ru-RU.resx">
+      <DependentUpon>StyleCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StyleTextCtl.ru-RU.resx">
+      <DependentUpon>StyleTextCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubreportCtl.ru-RU.resx">
+      <DependentUpon>SubreportCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableColumnCtl.ru-RU.resx">
+      <DependentUpon>TableColumnCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableCtl.ru-RU.resx">
+      <DependentUpon>TableCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableRowCtl.ru-RU.resx">
+      <DependentUpon>TableRowCtl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="tif.gif" />
+    <EmbeddedResource Include="VisibilityCtl.ru-RU.resx">
+      <DependentUpon>VisibilityCtl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Images\document-open.png" />
     <None Include="Images\document-print.png" />
     <None Include="Images\document-save.png" />
@@ -221,10 +386,10 @@
     <Compile Include="ColorPickerPopup.Designer.cs">
       <DependentUpon>ColorPickerPopup.cs</DependentUpon>
     </Compile>
-	<Compile Include="DataSetsCtl.Designer.cs">
+    <Compile Include="DataSetsCtl.Designer.cs">
       <DependentUpon>DataSetsCtl.cs</DependentUpon>
     </Compile>
-	<Compile Include="DataSetRowsCtl.Designer.cs">
+    <Compile Include="DataSetRowsCtl.Designer.cs">
       <DependentUpon>DataSetRowsCtl.cs</DependentUpon>
     </Compile>
     <Compile Include="DialogAbout.Designer.cs">
@@ -250,9 +415,6 @@
     </Compile>
     <Compile Include="DialogListOfStrings.Designer.cs">
       <DependentUpon>DialogListOfStrings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DialogNew.Designer.cs">
-      <DependentUpon>DialogNew.cs</DependentUpon>
     </Compile>
     <Compile Include="DialogNewChart.Designer.cs">
       <DependentUpon>DialogNewChart.cs</DependentUpon>
@@ -328,7 +490,7 @@
     <Compile Include="ReportCtl.Designer.cs">
       <DependentUpon>ReportCtl.cs</DependentUpon>
     </Compile>
-	<Compile Include="ReportParameterCtl.Designer.cs">
+    <Compile Include="ReportParameterCtl.Designer.cs">
       <DependentUpon>ReportParameterCtl.cs</DependentUpon>
     </Compile>
     <Compile Include="SingleCtlDialog.Designer.cs">
@@ -406,9 +568,6 @@
     <Compile Include="DialogListOfStrings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DialogNew.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="DialogNewChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -470,7 +629,7 @@
     <Compile Include="QueryParametersCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-	<Compile Include="QueryParametersCtl.Designer.cs">
+    <Compile Include="QueryParametersCtl.Designer.cs">
       <DependentUpon>QueryParametersCtl.cs</DependentUpon>
     </Compile>
     <Compile Include="RdlDesigner.cs">
@@ -629,10 +788,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DialogListOfStrings.resx">
       <DependentUpon>DialogListOfStrings.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DialogNew.resx">
-      <DependentUpon>DialogNew.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DialogNewChart.resx">

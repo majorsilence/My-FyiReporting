@@ -21,14 +21,16 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Drawing;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.Reflection;
-using System.Xml;
+using System.Globalization;
 using System.IO;
+using System.Reflection;
+using System.Resources;
+using System.Threading;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -43,10 +45,12 @@ namespace fyiReporting.RdlDesign
         bool bMaps = false;
 
         // Desktop server configuration
-        XmlDocument _DesktopDocument;
-        XmlNode _DesktopPort;
-        XmlNode _DesktopDirectory;
-        XmlNode _DesktopLocal;
+	    private XmlDocument _DesktopDocument;
+	    private XmlNode _DesktopConfig;
+	    private XmlNode _DesktopPort;
+	    private XmlNode _DesktopDirectory;
+	    private XmlNode _DesktopLocal;
+	    private XmlNode _DesktopLanguage;
 
         public DialogToolOptions(RdlDesigner rdl)
         {
@@ -96,14 +100,26 @@ namespace fyiReporting.RdlDesign
                     break;
             }
 
+			InitLanguages();
 
             InitOperations();
 
             InitDesktop();
 
             InitMaps();
+
             bDesktop = bToolbar = bMaps = false;			// start with no changes
         }
+
+		private void InitLanguages()
+		{
+			foreach (var cult in GetAvailableCultures())
+			{
+				tbLanguage.Items.Add(cult);
+			}
+
+			tbLanguage.SelectedItem = Thread.CurrentThread.CurrentCulture;
+		}
 
         private void InitDesktop()
         {
@@ -114,11 +130,10 @@ namespace fyiReporting.RdlDesign
                 XmlDocument xDoc = _DesktopDocument = new XmlDocument();
                 xDoc.PreserveWhitespace = true;
                 xDoc.Load(optFileName);
-                XmlNode xNode;
-                xNode = xDoc.SelectSingleNode("//config");
+                _DesktopConfig = xDoc.SelectSingleNode("//config");
 
                 // Loop thru all the child nodes
-                foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+				foreach (XmlNode xNodeLoop in _DesktopConfig.ChildNodes)
                 {
                     if (xNodeLoop.NodeType != XmlNodeType.Element)
                         continue;
@@ -137,6 +152,17 @@ namespace fyiReporting.RdlDesign
                             this.tbDirectory.Text = xNodeLoop.InnerText;
                             _DesktopDirectory = xNodeLoop;
                             break;
+						case "language":
+		                    try
+		                    {
+								tbLanguage.SelectedItem = CultureInfo.GetCultureInfo(xNodeLoop.InnerText);
+							}
+		                    catch (CultureNotFoundException)
+		                    {
+			                    tbLanguage.SelectedItem = CultureInfo.InvariantCulture;
+		                    }
+		                    _DesktopLanguage = xNodeLoop;
+		                    break;
                         case "cachedirectory":
                             // wd = xNodeLoop.InnerText;
                             break;
@@ -260,24 +286,38 @@ namespace fyiReporting.RdlDesign
                 _DesktopDocument.AppendChild(xPI);
             }
 
+			if (_DesktopConfig == null)
+			{
+				_DesktopConfig = _DesktopDocument.CreateElement("config");
+				_DesktopDocument.AppendChild(_DesktopConfig);
+			}
+
             if (_DesktopPort == null)
             {
                 _DesktopPort = _DesktopDocument.CreateElement("port");
-                _DesktopDocument.AppendChild(_DesktopPort);
+				_DesktopConfig.AppendChild(_DesktopPort);
             }
             _DesktopPort.InnerText = this.tbPort.Text;
 
             if (_DesktopDirectory == null)
             {
                 _DesktopDirectory = _DesktopDocument.CreateElement("serverroot");
-                _DesktopDocument.AppendChild(_DesktopDirectory);
+				_DesktopConfig.AppendChild(_DesktopDirectory);
             }
             _DesktopDirectory.InnerText = this.tbDirectory.Text;
 
-            if (_DesktopLocal == null)
+			if (_DesktopLanguage== null)
+			{
+				_DesktopLanguage = _DesktopDocument.CreateElement("language");
+				_DesktopConfig.AppendChild(_DesktopLanguage);
+			}
+
+	        _DesktopLanguage.InnerText = ((CultureInfo)tbLanguage.SelectedItem).Name;
+
+			if (_DesktopLocal == null)
             {
                 _DesktopLocal = _DesktopDocument.CreateElement("localhostonly");
-                _DesktopDocument.AppendChild(_DesktopLocal);
+				_DesktopConfig.AppendChild(_DesktopLocal);
             }
             _DesktopLocal.InnerText = this.ckLocal.Checked ? "true" : "false";
 
@@ -491,6 +531,9 @@ namespace fyiReporting.RdlDesign
                             case "port":
                                 dc.Port = xNodeLoop.InnerText;
                                 break;
+							case "language":
+		                        dc.Language = xNodeLoop.InnerText;
+		                        break;
                         }
                     }
                     return dc;
@@ -546,11 +589,63 @@ namespace fyiReporting.RdlDesign
             bMaps = true;
             return;
         }
+
+		private static IEnumerable<CultureInfo> GetAvailableCultures()
+		{
+			var list = new List<CultureInfo>();
+
+			var startupDir = Application.StartupPath;
+			var asm = Assembly.GetEntryAssembly();
+
+			var neutralCulture = CultureInfo.InvariantCulture;
+
+			if (asm != null)
+			{
+				var attr = Attribute.GetCustomAttribute(asm, typeof(NeutralResourcesLanguageAttribute)) as NeutralResourcesLanguageAttribute;
+
+				if (attr != null)
+				{
+					neutralCulture = CultureInfo.GetCultureInfo(attr.CultureName);
+				}
+			}
+
+			list.Add(neutralCulture);
+
+			if (asm != null)
+			{
+				var baseName = asm.GetName().Name;
+				foreach (var dir in Directory.GetDirectories(startupDir))
+				{
+					// Check that the directory name is a valid culture
+					var dirinfo = new DirectoryInfo(dir);
+					CultureInfo tCulture;
+
+					try
+					{
+						tCulture = CultureInfo.GetCultureInfo(dirinfo.Name);
+					}
+					// Not a valid culture : skip that directory
+					catch (ArgumentException)
+					{
+						continue;
+					}
+
+					// Check that the directory contains satellite assemblies
+					if (dirinfo.GetFiles(baseName + ".resources.dll").Length > 0)
+					{
+						list.Add(tCulture);
+					}
+
+				}
+			}
+			return list.AsReadOnly();
+		}
     }
 
     internal class DesktopConfig
     {
         internal string Directory;
         internal string Port;
+	    internal string Language;
     }
 }
