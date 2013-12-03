@@ -7,9 +7,19 @@ class Report {
 
 	private $report_path="";
 	private $parameters = array();
+	private $rdlcmd_dir = "";
 	
 	public function __construct($report_path){
 		$this->report_path = $report_path;
+		
+		global $path_to_rdlcmd;
+		
+		if (file_exists($path_to_rdlcmd) == false)
+		{
+			throw new \Exception("RdlCmd.exe not found.  Set path to RdlCmd.exe in config.php");
+		}
+		
+		$this->rdlcmd_dir = dirname($path_to_rdlcmd);
 	}
 
 	/**
@@ -33,7 +43,7 @@ class Report {
 		}
 		
 	
-		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows;
+		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows, $override_tmp_folder;
 		
 		
 		$cmd = "";
@@ -46,7 +56,16 @@ class Report {
 			$cmd = '"' . $path_to_mono . '" "' . $path_to_rdlcmd . '" ';
 		}
 		
-		$temp_folder = sys_get_temp_dir();
+		$temp_folder = "";
+		if ($override_tmp_folder == "")
+		{
+			$temp_folder = sys_get_temp_dir();
+		}
+		else
+		{
+			$temp_folder = $override_tmp_folder;
+		}
+			
 		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 		copy($this->report_path, $temp_name);
 		
@@ -74,10 +93,18 @@ class Report {
 		//set the folder that the file will be exported
 		$cmd = $cmd . '"/o' . $temp_folder . '" ';
 		
-		
+		$cdir = getcwd();
+		chdir ($this->rdlcmd_dir);
 		$shell_output = shell_exec($cmd);
+		chdir ($cdir);
 
-		$temp_pdf = $temp_folder . "/" . basename($temp_name, ".tmp") . "." . $type;
+		$temp_pdf = $temp_folder;
+		
+		if ($this->endsWith($temp_pdf, DIRECTORY_SEPARATOR) == false)
+		{
+			$temp_pdf = $temp_pdf . DIRECTORY_SEPARATOR;
+		}
+		$temp_pdf = $temp_pdf . basename($temp_name, ".tmp") . "." . $type;
 		$final_pdf = $export_path;
 		//echo($cmd);
 		copy($temp_pdf, $final_pdf);
@@ -94,7 +121,15 @@ class Report {
 			$type = "pdf";
 		}
 	
-		$temp_folder = sys_get_temp_dir();
+		$temp_folder = "";
+		if ($override_tmp_folder == "")
+		{
+			$temp_folder = sys_get_temp_dir();
+		}
+		else
+		{
+			$temp_folder = $override_tmp_folder;
+		}
 		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 	
 		$this->export($type, $temp_name);
@@ -105,6 +140,10 @@ class Report {
 		return $data;
 	}
 	
+	private function endsWith($haystack, $needle)
+	{
+		return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+	}
 	
 }
 
