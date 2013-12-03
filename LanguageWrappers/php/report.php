@@ -121,6 +121,7 @@ class Report {
 			$type = "pdf";
 		}
 	
+		global $override_tmp_folder;
 		$temp_folder = "";
 		if ($override_tmp_folder == "")
 		{
