@@ -41,7 +41,7 @@ namespace fyiReporting.RdlDesign
         internal PropertyTextbox(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [RdlCategory("Textbox"),
+        [LocalizedCategory("Textbox"),
            Description("The value of the textbox.")]
         public PropertyExpr Value
         {
@@ -51,13 +51,13 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Value", value.Expression);
             }
         }
-        [RdlCategory("Style"),
+        [LocalizedCategory("Style"),
                    Description("Font, color, alignment, ... of text.")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(this); }
         }
-        [RdlCategory("Textbox"),
+        [LocalizedCategory("Textbox"),
            Description("CanGrow indicates the height of the Textbox can increase depending on its contents.")]
         public bool CanGrow
         {
@@ -67,7 +67,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("CanGrow", value? "true": "false");
             }
         }
-        [RdlCategory("Textbox"),
+        [LocalizedCategory("Textbox"),
            Description("CanShrink indicates the height of the Textbox can decrease depending on its contents.")]
         public bool CanShrink
         {
@@ -77,7 +77,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("CanShrink", value ? "true" : "false");
             }
         }
-        [RdlCategory("Textbox"),
+        [LocalizedCategory("Textbox"),
             TypeConverter(typeof(HideDuplicatesConverter)),
             Description("To HideDuplicate values provide the scope (dataset or group) over which you want to hide the Textbox.")]
         public string HideDuplicates
@@ -91,7 +91,7 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("HideDuplicates", value);
             }
         }
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("Specifies whether Textbox renders as an Attribute or an Element.")]
         public DataElementStyleEnum DataElementStyle
         {

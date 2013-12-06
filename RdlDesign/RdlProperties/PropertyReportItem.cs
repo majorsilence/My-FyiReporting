@@ -96,7 +96,7 @@ namespace fyiReporting.RdlDesign
         }
  
         #region Design
-        [RdlCategory("Design"),
+        [LocalizedCategory("Design"),
            ParenthesizePropertyName(true),
            Description("The unique name of the report item.")]
         public string Name
@@ -113,7 +113,7 @@ namespace fyiReporting.RdlDesign
 #endregion
         
         #region Style
-        [RdlCategory("Style"), 
+        [LocalizedCategory("Style"), 
           Description("Defines the border of the report item.")]
         public PropertyBorder Border
         {
@@ -122,7 +122,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertyBorder(this);
             }
         }
-        [RdlCategory("Style"),
+        [LocalizedCategory("Style"),
            Description("Controls the padding expressions")]
         public PropertyPadding Padding
         {
@@ -131,7 +131,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertyPadding(this);
             }
         }
-        [RdlCategory("Style"),
+        [LocalizedCategory("Style"),
            Description("Controls the background expressions")]
         public PropertyBackground Background
         {
@@ -142,7 +142,7 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
         #region Behavior
-        [RdlCategory("Behavior"),
+        [LocalizedCategory("Behavior"),
            Description("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
         public PropertyAction Action
         {
@@ -151,7 +151,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertyAction(this);
             }
         }
-        [RdlCategory("Behavior"),
+        [LocalizedCategory("Behavior"),
            Description("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
         public PropertyExpr Bookmark
         {
@@ -166,7 +166,7 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [RdlCategory("Behavior"),
+        [LocalizedCategory("Behavior"),
            Description("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
         public PropertyExpr ToolTip
         {
@@ -181,7 +181,7 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [RdlCategory("Behavior"),
+        [LocalizedCategory("Behavior"),
           Description("Defines the visibility of the item.")]
         public PropertyVisibility Visibility
         {
@@ -193,7 +193,7 @@ namespace fyiReporting.RdlDesign
         #endregion
          
         #region XML
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("The name to use for the element or attribute when exporting to XML.")]
         public string DataElementName
         {
@@ -206,7 +206,7 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataElementName", value);
             }
         }
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("When rendering XML determines how or whether the item appears in the XML.")]
         public DataElementOutputEnum DataElementOutput
         {
@@ -221,7 +221,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Layout"),
+        [LocalizedCategory("Layout"),
    Description("Drawing order of the report item.")]
         public int ZIndex
         {
@@ -246,7 +246,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Layout"),
+        [LocalizedCategory("Layout"),
    Description("Report item can span multiple columns.")]
         public int ColumnSpan
         {
@@ -275,7 +275,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Layout"),
+        [LocalizedCategory("Layout"),
    Description("Height and width of the report item.")]
         public PropertySize Size
         {
@@ -286,7 +286,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertySize(this, h, w);
             }
         }
-        [RdlCategory("Layout"),
+        [LocalizedCategory("Layout"),
    Description("Location of the report item.")]
         public PropertyLocation Location
         {
@@ -301,7 +301,7 @@ namespace fyiReporting.RdlDesign
         #endregion
 
         #region Table
-        [RdlCategory("Table"), 
+        [LocalizedCategory("Table"), 
             Description("Table report item properties.")]
         public PropertyTable Table
         {
@@ -318,7 +318,7 @@ namespace fyiReporting.RdlDesign
         #endregion
 
 #region Matrix
-        [RdlCategory("Matrix"),
+        [LocalizedCategory("Matrix"),
             Description("Matrix report item properties.")]
         public PropertyMatrix Matrix
         {

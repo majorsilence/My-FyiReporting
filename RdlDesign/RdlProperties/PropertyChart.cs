@@ -43,7 +43,7 @@ namespace fyiReporting.RdlDesign
         internal PropertyChart(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [RdlCategory("Chart"), 
+        [LocalizedCategory("Chart"), 
         TypeConverter(typeof(ChartTypeConverter)),
        Description("Type of the chart.")]
         public string Type
@@ -54,7 +54,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Type", value);
             }
         }
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
         TypeConverter(typeof(PaletteTypeConverter)),
        Description("Color palette for the chart.")]
         public string Palette
@@ -65,7 +65,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Palette", value);
             }
         }
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
        Description("Percentage width for bars and columns.")]
         public int PointWidth
         {
@@ -88,35 +88,35 @@ namespace fyiReporting.RdlDesign
             }
         }
  
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
       Description("Properties controlling the display of the chart data.")]
         public PropertyChartData ChartData
         {
             get { return new PropertyChartData(this);}
         }
 
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
       TypeConverter(typeof(ChartTitleTypeConverter)),
       Description("Chart Title.")]
         public PropertyChartTitle Title
         {
             get { return new PropertyChartTitle(this); }
         }
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
       TypeConverter(typeof(ChartLegendTypeConverter)),
       Description("Chart Legend.")]
         public PropertyChartLegend Legend
         {
             get { return new PropertyChartLegend(this); }
         }
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
       TypeConverter(typeof(ChartAxisTypeConverter)),
       Description("CategoryAxis defines the category (X) axis.")]
         public PropertyChartAxis CategoryAxis
         {
             get { return new PropertyChartAxis(this, "CategoryAxis"); }
         }
-        [RdlCategory("Chart"),
+        [LocalizedCategory("Chart"),
       TypeConverter(typeof(ChartAxisTypeConverter)),
       Description("ValueAxis defines the data (Y) axis.")]
         public PropertyChartAxis ValueAxis
@@ -402,7 +402,7 @@ namespace fyiReporting.RdlDesign
     #endregion
 
     #region ChartData
-    [RdlCategory("ChartData"),
+    [LocalizedCategory("ChartData"),
        TypeConverter(typeof(ChartDataTypeConverter)),
      Description("Properties controlling the display of the chart data.")]
     [ReadOnly(true)]//Doesn't work with static rows so we have disabled it... 05122007 AJM & GJL
@@ -811,7 +811,7 @@ namespace fyiReporting.RdlDesign
     #endregion
 
     #region ChartLegend
-    [RdlCategory("ChartLegend"),
+    [LocalizedCategory("ChartLegend"),
        TypeConverter(typeof(ChartLegendTypeConverter)),
       Description("Properties controlling the display of the chart legend.")]
     internal class PropertyChartLegend : IReportItem
@@ -953,7 +953,7 @@ namespace fyiReporting.RdlDesign
 
 #endregion
     #region ChartTitle
-    [RdlCategory("ChartTitle"),
+    [LocalizedCategory("ChartTitle"),
        TypeConverter(typeof(ChartTitleTypeConverter)),
       Description("Properties controlling the display of the chart title.")]
     internal class PropertyChartTitle : IReportItem

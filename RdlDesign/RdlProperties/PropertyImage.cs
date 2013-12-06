@@ -47,7 +47,7 @@ namespace fyiReporting.RdlDesign
 
         }
 
-        [RdlCategory("Image"),
+        [LocalizedCategory("Image"),
                 Description("The image properties.")]
         public PropertyImageI Image
         {

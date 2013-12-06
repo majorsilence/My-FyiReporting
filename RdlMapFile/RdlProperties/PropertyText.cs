@@ -46,7 +46,7 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [RdlCategory("Text"),
+        [LocalizedCategory("Text"),
            Description("The value of the text")]
         public string Value
         {
@@ -55,7 +55,7 @@ namespace fyiReporting.RdlMapFile
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-		RdlCategory("Text"),
+		LocalizedCategory("Text"),
            Description("The Location of the text")]
         public Point Location
         {
@@ -70,7 +70,7 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Location", l); 
             }
         }
-		[RdlCategory("Text"),
+		[LocalizedCategory("Text"),
            Description("The Color of the text")]
         public Color Color
         {
@@ -86,7 +86,7 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Color", sc);
             }
         }
-		[RdlCategory("Text"),
+		[LocalizedCategory("Text"),
            Description("The font of the text.  Only the family, size, bold, italic, underline, and strikethrough options are honored.")]
         public Font Font
         {

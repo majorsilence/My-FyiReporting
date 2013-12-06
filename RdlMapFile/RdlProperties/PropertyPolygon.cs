@@ -44,7 +44,7 @@ namespace fyiReporting.RdlMapFile
         internal PropertyPolygon(DesignXmlDraw d):base(d)
         {
         }
-        [RdlCategory("Polygon"),
+        [LocalizedCategory("Polygon"),
            Description("The fill color for the polygon")]
         public Color FillColor
         {
@@ -71,7 +71,7 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-		[RdlCategory("Polygon"),
+		[LocalizedCategory("Polygon"),
            Description("The keys associated with this polygon")]
         public string[] Keys
         {
@@ -94,7 +94,7 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-			[RdlCategory("Polygon"),
+			[LocalizedCategory("Polygon"),
                Description("The Points of the polygon")]
         public Point[] Points
         {

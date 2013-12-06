@@ -1,12 +1,12 @@
-﻿using fyiReporting.RdlDesign.RdlProperties;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading;
+using RdlMapFile.RdlProperties;
 
-namespace fyiReporting.RdlDesign
+namespace fyiReporting.RdlMapFile
 {
-	internal class RdlCategoryAttribute : CategoryAttribute
+	internal class LocalizedCategoryAttribute : CategoryAttribute
 	{
-		internal RdlCategoryAttribute(string category)
+		internal LocalizedCategoryAttribute(string category)
 			: base(category)
 		{
 		}

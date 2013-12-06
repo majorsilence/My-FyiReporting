@@ -44,7 +44,7 @@ namespace fyiReporting.RdlDesign
         internal PropertySubreport(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [RdlCategory("Subreport"),
+        [LocalizedCategory("Subreport"),
         Editor(typeof(PropertySubreportUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
            Description("The name of the subreport either a full path or a relative path.")]
         public string ReportName
@@ -55,7 +55,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("ReportName", value);
             }
         }
-        [RdlCategory("Subreport"),
+        [LocalizedCategory("Subreport"),
         Editor(typeof(PropertySubreportParametersUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
            Description("The subreport parameter expressions.")]
         public string Parameters
@@ -69,7 +69,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Subreport"),
+        [LocalizedCategory("Subreport"),
            Description("The name of the subreport either a full path or a relative path.")]
         public PropertyExpr NoRows
         {
@@ -83,7 +83,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Subreport"),
+        [LocalizedCategory("Subreport"),
            Description("When true DataSource connections in subreport will reuse parent report connections when possible.")]
         public bool MergeTransactions
         {

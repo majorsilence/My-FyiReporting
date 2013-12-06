@@ -465,7 +465,7 @@
     <Compile Include="DesignRuler.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RdlProperties\RdlCategoryAttribute.cs" />
+    <Compile Include="RdlProperties\LocalizedCategoryAttribute.cs" />
     <Compile Include="RdlProperties\Categories.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

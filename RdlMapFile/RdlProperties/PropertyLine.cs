@@ -45,7 +45,7 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [RdlCategory("Line"),
+        [LocalizedCategory("Line"),
            Description("One end of the line")]
         public Point P1
         {
@@ -64,7 +64,7 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-		[RdlCategory("Line"),
+		[LocalizedCategory("Line"),
            Description("Other end of the line")]
         public Point P2
         {

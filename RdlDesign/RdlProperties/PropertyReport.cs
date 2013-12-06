@@ -65,21 +65,21 @@ namespace fyiReporting.RdlDesign
             get { return _Draw.GetReportNode(); }
         }
 
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("The author of the report")]
         public string Author
         {
             get {return GetReportValue("Author"); }
             set{SetReportValue("Author", value); }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("The description of the report")]
         public string Description
         {
             get { return GetReportValue("Description"); }
             set { SetReportValue("Description", value); }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("The width of the report.")]
         public string Width
         {
@@ -91,26 +91,26 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("Parameters defined in the report.")]
         public PropertyReportParameters Parameters
         {
             get { return new PropertyReportParameters(this); }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("Basic functions defined for use in the report.")]
         public PropertyReportCode Code
         {
             get { return new PropertyReportCode(this); }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("Modules and instances of classes for use in the report.")]
         public PropertyReportModulesClasses ModulesClasses
         {
             get { return new PropertyReportModulesClasses(this); }
         }
 
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("The width of the page.")]
         public string PageWidth
         {
@@ -123,7 +123,7 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
            Description("The height of the page.")]
         public string PageHeight
         {
@@ -134,7 +134,7 @@ namespace fyiReporting.RdlDesign
                 SetReportValue("PageHeight", value);
             }
         }
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
         DisplayName("Page Margins"),
    Description("Page margins for the report.")]
         public PropertyMargin Margins
@@ -145,7 +145,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
    Description("PageHeader options for the report.")]
         public PropertyPrintFirstLast PageHeader
         {
@@ -156,7 +156,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Report"),
+        [LocalizedCategory("Report"),
    Description("PageFooter options for the report.")]
         public PropertyPrintFirstLast PageFooter
         {
@@ -167,7 +167,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Body"),
+        [LocalizedCategory("Body"),
    Description("Height of the body region.")]
         public string BodyHeight
         {
@@ -183,7 +183,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Body"),
+        [LocalizedCategory("Body"),
    Description("Number of columns in the body region.")]
         public int BodyColumns
         {
@@ -207,7 +207,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("Body"),
+        [LocalizedCategory("Body"),
    Description("Spacing between columns.")]
         public string BodyColumnSpacing
         {
@@ -229,7 +229,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("XSL file to use to transform XML after rendering."),
         Editor(typeof(FileUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string DataTransform
@@ -238,7 +238,7 @@ namespace fyiReporting.RdlDesign
             set { SetReportValue("DataTransform", value); }
         }
 
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("The schema or namespace to specify when rendering XML.")]
         public string DataSchema
         {
@@ -246,7 +246,7 @@ namespace fyiReporting.RdlDesign
             set { SetReportValue("DataSchema", value); }
         }
 
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
    Description("The top level element name used when rendering XML.")]
         public string DataElementName
         {
@@ -254,7 +254,7 @@ namespace fyiReporting.RdlDesign
             set { SetReportValue("DataElementName", value); }
         }
 
-        [RdlCategory("XML"),
+        [LocalizedCategory("XML"),
        TypeConverter(typeof(ElementStyleConverter)),
    Description("Element style is either Attribute or Element.")]
         public string DataElementStyle

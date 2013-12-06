@@ -114,7 +114,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="RdlProperties\RdlCategoryAttribute.cs" />
+    <Compile Include="RdlProperties\LocalizedCategoryAttribute.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

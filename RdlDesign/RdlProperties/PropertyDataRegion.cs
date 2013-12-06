@@ -40,7 +40,7 @@ namespace fyiReporting.RdlDesign
         internal PropertyDataRegion(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [RdlCategory("DataRegion"), 
+        [LocalizedCategory("DataRegion"), 
         Description("Message to display if no rows available.")]
         public PropertyExpr NoRows
         {
@@ -53,7 +53,7 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("NoRows", value.Expression);
             }
         }
-        [RdlCategory("DataRegion"),
+        [LocalizedCategory("DataRegion"),
         Description("Keep data region on one page if possible.")]
         public bool KeepTogether
         {
@@ -63,7 +63,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("KeepTogether", value);
             }
         }
-        [RdlCategory("DataRegion"), TypeConverter(typeof(DataSetsConverter)),
+        [LocalizedCategory("DataRegion"), TypeConverter(typeof(DataSetsConverter)),
         Description("Specifies which data set to use.")]
         public string DataSetName
         {
@@ -76,7 +76,7 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("DataSetName", value);
             }
         }
-        [RdlCategory("DataRegion"),
+        [LocalizedCategory("DataRegion"),
         Description("Cause a page break before rendering.")]
         public bool PageBreakAtStart
         {
@@ -86,7 +86,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtStart", value);
             }
         }
-        [RdlCategory("DataRegion"),
+        [LocalizedCategory("DataRegion"),
         Description("Cause a page break after rendering.")]
         public bool PageBreakAtEnd
         {
@@ -96,7 +96,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtEnd", value);
             }
         }
-        [RdlCategory("DataRegion"),
+        [LocalizedCategory("DataRegion"),
                    Description("Filters to apply to each row of data in data region.")]
         public PropertyFilters Filters
         {
@@ -105,7 +105,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertyFilters(this);
             }
         }
-        [RdlCategory("Style"),
+        [LocalizedCategory("Style"),
                    Description("Font, color, alignment, ... of NoRows text.")]
         public PropertyAppearance Appearance
         {

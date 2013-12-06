@@ -41,7 +41,7 @@ namespace fyiReporting.RdlDesign
         internal PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [RdlCategory("Rectangle"),
+        [LocalizedCategory("Rectangle"),
            Description("Determines if report will start a new page at the top of the rectangle.")]
         public bool PageBreakAtStart
         {
@@ -51,7 +51,7 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtStart", value ? "true" : "false");
             }
         }
-        [RdlCategory("Rectangle"),
+        [LocalizedCategory("Rectangle"),
            Description("Determines if report will start a new page after the bottom of the rectangle.")]
         public bool PageBreakAtEnd
         {
