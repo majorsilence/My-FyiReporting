@@ -89,7 +89,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, Strings.DialogDataSourceRef_bOK_Click_Unable—reateDSR);
+				MessageBox.Show(ex.Message, Strings.DialogDataSourceRef_bOK_Click_UnableCreateDSR);
 				return;
 			}
 

@@ -447,7 +447,7 @@
   <data name="SingleCtlDialog_Undo_ImageChange" xml:space="preserve">
     <value>изменение изображения</value>
   </data>
-  <data name="SingleCtlDialog_Undo_InteractivityСhange" xml:space="preserve">
+  <data name="SingleCtlDialog_Undo_InteractivityChange" xml:space="preserve">
     <value>изменение интерактивности</value>
   </data>
   <data name="SingleCtlDialog_Undo_ReportCodeChange" xml:space="preserve">
@@ -546,7 +546,7 @@
   <data name="DesignCtl_Show_TablesInBody" xml:space="preserve">
     <value>Таблицы могут быть вставлены только в тело отчёта</value>
   </data>
-  <data name="DesignCtl_Show_UnableСreateRDL" xml:space="preserve">
+  <data name="DesignCtl_Show_UnableCreateRDL" xml:space="preserve">
     <value>Не удалось создать RDL-код</value>
   </data>
   <data name="DesignerUtility_Show_ConnectDataProviderError" xml:space="preserve">
@@ -582,7 +582,7 @@
   <data name="DialogDatabase_Show_InternalError" xml:space="preserve">
     <value>Внутренняя ошибка</value>
   </data>
-  <data name="DialogDataSourceRef_bOK_Click_UnableСreateDSR" xml:space="preserve">
+  <data name="DialogDataSourceRef_bOK_Click_UnableCreateDSR" xml:space="preserve">
     <value>Не удалось создать общий источник данных</value>
   </data>
   <data name="DialogDataSources_ShowE_DataSourceMustUniqueN" xml:space="preserve">

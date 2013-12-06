@@ -145,7 +145,7 @@ namespace fyiReporting.RdlDesign
             switch (_Type)
             {
                 case SingleCtlTypeEnum.InteractivityCtl:
-                    c = Strings.SingleCtlDialog_Undo_Interactivity—hange;
+                    c = Strings.SingleCtlDialog_Undo_InteractivityChange;
                     break;
                 case SingleCtlTypeEnum.VisibilityCtl:
                     c = Strings.SingleCtlDialog_Undo_VisibilityChange;

@@ -224,7 +224,7 @@ namespace fyiReporting.RdlDesign
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message, Strings.DesignCtl_Show_Unable—reateRDL);
+					MessageBox.Show(ex.Message, Strings.DesignCtl_Show_UnableCreateRDL);
 				}
 				return result;
 			}

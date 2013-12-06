@@ -273,9 +273,9 @@ namespace fyiReporting.RdlDesign.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unable to create RDL syntax.
         /// </summary>
-        internal static string DesignCtl_Show_UnableСreateRDL {
+        internal static string DesignCtl_Show_UnableCreateRDL {
             get {
-                return ResourceManager.GetString("DesignCtl_Show_UnableСreateRDL", resourceCulture);
+                return ResourceManager.GetString("DesignCtl_Show_UnableCreateRDL", resourceCulture);
             }
         }
         
@@ -887,9 +887,9 @@ namespace fyiReporting.RdlDesign.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unable to create data source reference file.
         /// </summary>
-        internal static string DialogDataSourceRef_bOK_Click_UnableСreateDSR {
+        internal static string DialogDataSourceRef_bOK_Click_UnableCreateDSR {
             get {
-                return ResourceManager.GetString("DialogDataSourceRef_bOK_Click_UnableСreateDSR", resourceCulture);
+                return ResourceManager.GetString("DialogDataSourceRef_bOK_Click_UnableCreateDSR", resourceCulture);
             }
         }
         
@@ -2258,9 +2258,9 @@ namespace fyiReporting.RdlDesign.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Interactivity change.
         /// </summary>
-        internal static string SingleCtlDialog_Undo_InteractivityСhange {
+        internal static string SingleCtlDialog_Undo_InteractivityChange {
             get {
-                return ResourceManager.GetString("SingleCtlDialog_Undo_InteractivityСhange", resourceCulture);
+                return ResourceManager.GetString("SingleCtlDialog_Undo_InteractivityChange", resourceCulture);
             }
         }
         
