@@ -27,6 +27,7 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -257,7 +258,7 @@ namespace fyiReporting.RDL
 			{
 				ival = (int) val;
 				if (ival != val)
-					throw new Exception(string.Format("Filter operators TopN and BottomN require an integer value got {0}.", val));
+					throw new Exception(string.Format(Strings.Filter_Error_TopNAndBottomNRequireInt, val));
 				if (ival >= data.Data.Count)		// includes all the data?
 					return;
 				ival--;					// make zero based

@@ -30,6 +30,7 @@ using System.Xml;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -97,7 +98,7 @@ namespace fyiReporting.RdlDesign
 
         void SetProp(string l, string v)
         {
-            _pr.DesignCtl.StartUndoGroup(l + " change");
+            _pr.DesignCtl.StartUndoGroup(l + " " + Strings.PropertyPrintFirstLast_SetProp_change);
             _pr.Draw.SetElement(_parent, l, v);
             _pr.DesignCtl.EndUndoGroup(true);
             _pr.DesignCtl.SignalReportChanged();

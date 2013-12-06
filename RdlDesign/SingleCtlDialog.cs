@@ -27,15 +27,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
-    internal enum SingleCtlTypeEnum
-    {
-        InteractivityCtl, VisibilityCtl, BorderCtl, FontCtl, BackgroundCtl, BackgroundImage,
-        ReportParameterCtl, ReportCodeCtl, ReportModulesClassesCtl, ImageCtl, SubreportCtl,
-        FiltersCtl, SortingCtl, GroupingCtl
-    }
+	internal enum SingleCtlTypeEnum
+	{
+		InteractivityCtl, VisibilityCtl, BorderCtl, FontCtl, BackgroundCtl, BackgroundImage,
+		ReportParameterCtl, ReportCodeCtl, ReportModulesClassesCtl, ImageCtl, SubreportCtl,
+		FiltersCtl, SortingCtl, GroupingCtl
+	}
 
     /// <summary>
     /// Summary description for PropertyDialog.
@@ -69,61 +70,61 @@ namespace fyiReporting.RdlDesign
             switch (type)
             {
                 case SingleCtlTypeEnum.InteractivityCtl:
-                    title = " - Interactivty";
+                    title = Strings.Tabs_Interactivity;
                     uc = new InteractivityCtl(dxDraw, sNodes);
                     break;
                 case SingleCtlTypeEnum.VisibilityCtl:
-                    title = " - Visibility";
+                    title = Strings.Tabs_Visibility;
                     uc = new VisibilityCtl(dxDraw, sNodes);
                     break;
                 case SingleCtlTypeEnum.BorderCtl:
-                    title = " - Borders";
+                    title = Strings.Tabs_Borders;
                     uc = new StyleBorderCtl(dxDraw, names, sNodes);
                     break;
                 case SingleCtlTypeEnum.FontCtl:
-                    title = " - Font";
+                    title = Strings.Tabs_Font;
                     uc = new FontCtl(dxDraw, names, sNodes);
                     break;
                 case SingleCtlTypeEnum.BackgroundCtl:
-                    title = " - Background";
+                    title = Strings.Tabs_Background;
                     uc = new BackgroundCtl(dxDraw, names, sNodes);
                     break;
                 case SingleCtlTypeEnum.ImageCtl:
-                    title = " - Image";
+                    title = Strings.Tabs_Image;
                     uc = new ImageCtl(dxDraw, sNodes);
                     break;
                 case SingleCtlTypeEnum.SubreportCtl:
-                    title = " - Subreport";
+                    title = Strings.Tabs_Subreport;
                     uc = new SubreportCtl(dxDraw, sNodes[0]);
                     break;
                 case SingleCtlTypeEnum.FiltersCtl:
-                    title = " - Filter";
+                    title = Strings.Tabs_Filter;
                     uc = new FiltersCtl(dxDraw, sNodes[0]);
                     break;
                 case SingleCtlTypeEnum.SortingCtl:
-                    title = " - Sorting";
+                    title = Strings.Tabs_Sorting;
                     uc = new SortingCtl(dxDraw, sNodes[0]);
                     break;
                 case SingleCtlTypeEnum.GroupingCtl:
-                    title = " - Grouping";
+                    title = Strings.Tabs_Grouping;
                     uc = new GroupingCtl(dxDraw, sNodes[0]);
                     break;
                 case SingleCtlTypeEnum.ReportParameterCtl:
-                    title = " - Report Parameters";
+                    title = Strings.Tabs_ReportParameters;
                     uc = new ReportParameterCtl(dxDraw);
                     break;
                 case SingleCtlTypeEnum.ReportCodeCtl:
-                    title = " - Code";
+                    title = Strings.Tabs_Code;
                     uc = new CodeCtl(dxDraw);
                     break;
                 case SingleCtlTypeEnum.ReportModulesClassesCtl:
-                    title = " - Modules and Classes";
+                    title = Strings.Tabs_ModulesAndClasses;
                     uc = new ModulesClassesCtl(dxDraw);
                     break;
             }
             _Ctl = uc as IProperty;
             if (title != null)
-                this.Text = this.Text + title;
+                Text = Text + " - " + title;
 
             if (uc == null)
                 return;
@@ -144,41 +145,41 @@ namespace fyiReporting.RdlDesign
             switch (_Type)
             {
                 case SingleCtlTypeEnum.InteractivityCtl:
-                    c = "Interactivity change";
+                    c = Strings.SingleCtlDialog_Undo_InteractivityChange;
                     break;
                 case SingleCtlTypeEnum.VisibilityCtl:
-                    c = "Visibility change";
+                    c = Strings.SingleCtlDialog_Undo_VisibilityChange;
                     break;
                 case SingleCtlTypeEnum.BorderCtl:
-                    c = "Border change";
+                    c = Strings.SingleCtlDialog_Undo_BorderChange;
                     break;
                 case SingleCtlTypeEnum.FontCtl:
-                    c = "Appearance change";
+                    c = Strings.SingleCtlDialog_Undo_AppearanceChange;
                     break;
                 case SingleCtlTypeEnum.BackgroundCtl:
                 case SingleCtlTypeEnum.BackgroundImage:
-                    c = "Background change";
+                    c = Strings.SingleCtlDialog_Undo_BackgroundChange;
                     break;
                 case SingleCtlTypeEnum.FiltersCtl:
-                    c = "Filters change";
+                    c = Strings.SingleCtlDialog_Undo_FiltersChange;
                     break;
                 case SingleCtlTypeEnum.SortingCtl:
-                    c = "Sort change";
+                    c = Strings.SingleCtlDialog_Undo_SortChange;
                     break;
                 case SingleCtlTypeEnum.GroupingCtl:
-                    c = "Grouping change";
+                    c = Strings.SingleCtlDialog_Undo_GroupingChange;
                     break;
                 case SingleCtlTypeEnum.ReportCodeCtl:
-                    c = "Report code change";
+                    c = Strings.SingleCtlDialog_Undo_ReportCodeChange;
                     break;
                 case SingleCtlTypeEnum.ImageCtl:
-                    c = "Image change";
+                    c = Strings.SingleCtlDialog_Undo_ImageChange;
                     break;
                 case SingleCtlTypeEnum.SubreportCtl:
-                    c = "Subreport change";
+                    c = Strings.SingleCtlDialog_Undo_SubreportChange;
                     break;
                 case SingleCtlTypeEnum.ReportModulesClassesCtl:
-                    c = "Report Modules/Classes change";
+                    c = Strings.SingleCtlDialog_Undo_ReportModules_ClassesChange;
                     break;
             }
             this._DesignCtl.StartUndoGroup(c);

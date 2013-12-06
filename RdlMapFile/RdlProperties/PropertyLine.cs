@@ -37,7 +37,7 @@ namespace fyiReporting.RdlMapFile
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    [DefaultPropertyAttribute("Line")]
+    [DefaultProperty("Line")]
     internal class PropertyLine : PropertyBase
     {
 
@@ -45,8 +45,8 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [CategoryAttribute("Line"),
-           DescriptionAttribute("One end of the line")]
+        [LocalizedCategory("Line"),
+           Description("One end of the line")]
         public Point P1
         {
             get 
@@ -64,8 +64,8 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-        [CategoryAttribute("Line"),
-           DescriptionAttribute("Other end of the line")]
+		[LocalizedCategory("Line"),
+           Description("Other end of the line")]
         public Point P2
         {
             get

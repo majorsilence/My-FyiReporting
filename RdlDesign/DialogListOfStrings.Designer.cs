@@ -17,6 +17,7 @@ private System.ComponentModel.Container components = null;
 
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogListOfStrings));
 			this.bOK = new System.Windows.Forms.Button();
 			this.tbStrings = new System.Windows.Forms.TextBox();
 			this.bCancel = new System.Windows.Forms.Button();
@@ -25,43 +26,30 @@ private System.ComponentModel.Container components = null;
 			// 
 			// bOK
 			// 
+			resources.ApplyResources(this.bOK, "bOK");
 			this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.bOK.Location = new System.Drawing.Point(96, 192);
 			this.bOK.Name = "bOK";
-			this.bOK.TabIndex = 0;
-			this.bOK.Text = "OK";
 			// 
 			// tbStrings
 			// 
-			this.tbStrings.Location = new System.Drawing.Point(8, 40);
-			this.tbStrings.Multiline = true;
+			resources.ApplyResources(this.tbStrings, "tbStrings");
 			this.tbStrings.Name = "tbStrings";
-			this.tbStrings.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.tbStrings.Size = new System.Drawing.Size(256, 144);
-			this.tbStrings.TabIndex = 9;
-			this.tbStrings.Text = "";
 			// 
 			// bCancel
 			// 
+			resources.ApplyResources(this.bCancel, "bCancel");
 			this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.bCancel.Location = new System.Drawing.Point(192, 192);
 			this.bCancel.Name = "bCancel";
-			this.bCancel.TabIndex = 10;
-			this.bCancel.Text = "Cancel";
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(8, 8);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(240, 23);
-			this.label1.TabIndex = 11;
-			this.label1.Text = "Enter separate values on multiple lines below";
 			// 
 			// DialogListOfStrings
 			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			resources.ApplyResources(this, "$this");
 			this.CancelButton = this.bCancel;
-			this.ClientSize = new System.Drawing.Size(282, 224);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.bCancel);
 			this.Controls.Add(this.tbStrings);
@@ -72,8 +60,8 @@ private System.ComponentModel.Container components = null;
 			this.Name = "DialogListOfStrings";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion

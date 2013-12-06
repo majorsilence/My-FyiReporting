@@ -107,7 +107,6 @@ private System.ComponentModel.Container components = null;
             this.Name = "DialogAbout";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Load += new System.EventHandler(this.DialogAbout_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

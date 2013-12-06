@@ -77,7 +77,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ColorConverter)),
-       DescriptionAttribute("Background color.")]
+       Description("Background color.")]
         public string Color
         {
             get 
@@ -92,7 +92,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ColorConverter)),
-       DescriptionAttribute("End color when gradient type is not None.")]
+       Description("End color when gradient type is not None.")]
         public string EndColor
         {
             get
@@ -108,7 +108,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(GradientTypeConverter)),
-       DescriptionAttribute("Type of background gradient.")]
+       Description("Type of background gradient.")]
         public string GradientType
         {
             get
@@ -121,7 +121,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [DescriptionAttribute("Image to place in the background of the report item")]
+        [Description("Image to place in the background of the report item")]
         public PropertyBackgroundImage Image
         {
             get
@@ -307,7 +307,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ImageSourceConverter)),
-     DescriptionAttribute("Background Image Source: None, External, Embedded, Database.")]
+     Description("Background Image Source: None, External, Embedded, Database.")]
         public string Source
         {
             get
@@ -332,7 +332,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-     DescriptionAttribute("Value depends upon the source of the image.")]
+     Description("Value depends upon the source of the image.")]
         public PropertyExpr Value
         {
             get
@@ -351,7 +351,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ImageMIMETypeConverter)),
-     DescriptionAttribute("When Source is Database MIMEType describes the type of image.")]
+     Description("When Source is Database MIMEType describes the type of image.")]
         public string MIMEType
         {
             get
@@ -370,7 +370,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ImageRepeatConverter)),
-     DescriptionAttribute("Controls repeating of the background image to fill space.")]
+     Description("Controls repeating of the background image to fill space.")]
         public string Repeat
         {
             get

@@ -29,6 +29,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -344,12 +345,12 @@ namespace fyiReporting.RDL
 		void DownloadHtmlFile(string url)
 		{
 			if (url != "")
-				this.Url = url;
+				Url = url;
             
 			_HtmlFile.WasAppended = false;
 			_HtmlFile.Download();
 			if (!_HtmlFile.WasDownloaded)
-				throw new Exception("unable to download '" + this.Url + "': " + _HtmlFile.DownloadException.Message, _HtmlFile.DownloadException);
+				throw new Exception(string.Format(Strings.MhtBuilder_Error_UnableDownload, Url, _HtmlFile.DownloadException.Message), _HtmlFile.DownloadException);
 		}
 
 		/// <summary>
@@ -387,20 +388,17 @@ namespace fyiReporting.RDL
 		/// </summary>
 		void ValidateFilename(string FilePath, string fileExtensions)
 		{
-			if (this.IsDirectory(FilePath))
+			if (IsDirectory(FilePath))
 				return;
 			
 			string ext = Path.GetExtension(FilePath);
 			if (ext == "")
 			{
-				throw new Exception("The filename provided, '" + Path.GetFileName(FilePath) + 
-					"', has no extension. If are specifying a folder, make sure it ends in a trailing slash. The expected file extension(s) are '" +
-					fileExtensions + "'");
+				throw new Exception(string.Format(Strings.MhtBuilder_Error_FilenameNoExtension, Path.GetFileName(FilePath), fileExtensions));
 			}
 			if (!Regex.IsMatch(fileExtensions, ext + "(;|$)", RegexOptions.IgnoreCase))
 			{
-				throw new Exception("The extension of the filename provided + '" + Path.GetFileName(FilePath) +
-					"', does not have the expected extension(s) '" + fileExtensions + "'");
+				throw new Exception(string.Format(Strings.MhtBuilder_Error_Extension, Path.GetFileName(FilePath), fileExtensions));
 			}
 		}
 

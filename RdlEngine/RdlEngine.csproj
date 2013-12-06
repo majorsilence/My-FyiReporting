@@ -682,6 +682,11 @@
     <Compile Include="Functions\FunctionMinusInt32.cs" />
     <Compile Include="Functions\FunctionAggrArray.cs" />
     <Compile Include="GraphicsExtended.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Render\ExcelValet.cs" />
     <Compile Include="Render\PdfPattern.cs" />
     <Compile Include="Render\RenderExcel.cs" />
@@ -1141,6 +1146,13 @@
     <None Include="RdlEngineConfig.Linux.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Text;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -88,7 +89,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "Unable to create data source reference file");
+				MessageBox.Show(ex.Message, Strings.DialogDataSourceRef_bOK_Click_UnableCreateDSR);
 				return;
 			}
 
@@ -98,7 +99,7 @@ namespace fyiReporting.RdlDesign
 		private void bTestConnection_Click(object sender, System.EventArgs e)
 		{
 			if (DesignerUtility.TestConnection(this.cbDataProvider.Text, tbConnection.Text))
-				MessageBox.Show("Connection succeeded!", "Test Connection");
+				MessageBox.Show(Strings.DialogDatabase_Show_ConnectionSuccessful, Strings.DesignerUtility_Show_TestConnection);
 
 		}
 

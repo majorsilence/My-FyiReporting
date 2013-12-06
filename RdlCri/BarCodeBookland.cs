@@ -243,8 +243,8 @@ namespace fyiReporting.CRI
                 _ISBN = isbn;
             }
 
-            [CategoryAttribute("BarCode"),
-               DescriptionAttribute("ISBN is the book's ISBN number.")]
+            [Category("BarCode"),
+               Description("ISBN is the book's ISBN number.")]
             public string ISBN
             {
                 get { return _ISBN; }

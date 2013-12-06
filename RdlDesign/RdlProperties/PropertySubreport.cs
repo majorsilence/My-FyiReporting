@@ -44,9 +44,9 @@ namespace fyiReporting.RdlDesign
         internal PropertySubreport(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [CategoryAttribute("Subreport"),
+        [LocalizedCategory("Subreport"),
         Editor(typeof(PropertySubreportUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
-           DescriptionAttribute("The name of the subreport either a full path or a relative path.")]
+           Description("The name of the subreport either a full path or a relative path.")]
         public string ReportName
         {
             get { return this.Draw.GetElementValue(this.Node, "ReportName", ""); }
@@ -55,9 +55,9 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("ReportName", value);
             }
         }
-        [CategoryAttribute("Subreport"),
+        [LocalizedCategory("Subreport"),
         Editor(typeof(PropertySubreportParametersUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
-           DescriptionAttribute("The subreport parameter expressions.")]
+           Description("The subreport parameter expressions.")]
         public string Parameters
         {
             get 
@@ -69,8 +69,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Subreport"),
-           DescriptionAttribute("The name of the subreport either a full path or a relative path.")]
+        [LocalizedCategory("Subreport"),
+           Description("The name of the subreport either a full path or a relative path.")]
         public PropertyExpr NoRows
         {
             get { return new PropertyExpr(this.Draw.GetElementValue(this.Node, "NoRows", "")); }
@@ -83,8 +83,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Subreport"),
-           DescriptionAttribute("When true DataSource connections in subreport will reuse parent report connections when possible.")]
+        [LocalizedCategory("Subreport"),
+           Description("When true DataSource connections in subreport will reuse parent report connections when possible.")]
         public bool MergeTransactions
         {
             get { return string.Compare(this.Draw.GetElementValue(this.Node, "MergeTransactions", "true"), "true", true)==0; }

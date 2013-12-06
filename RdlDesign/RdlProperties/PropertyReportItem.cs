@@ -28,6 +28,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -36,7 +37,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     //[PropertyTab(typeof(PropertyTableTab), PropertyTabScope.Component),
     //  DefaultPropertyAttribute("Name")]
-    [DefaultPropertyAttribute("Name")]
+    [DefaultProperty("Name")]
     internal class PropertyReportItem : ICustomTypeDescriptor, IReportItem 
     {
    		private DesignXmlDraw _Draw;
@@ -95,9 +96,9 @@ namespace fyiReporting.RdlDesign
         }
  
         #region Design
-        [CategoryAttribute("Design"),
+        [LocalizedCategory("Design"),
            ParenthesizePropertyName(true),
-           DescriptionAttribute("The unique name of the report item.")]
+           Description("The unique name of the report item.")]
         public string Name
         {
             get
@@ -112,8 +113,8 @@ namespace fyiReporting.RdlDesign
 #endregion
         
         #region Style
-        [CategoryAttribute("Style"), 
-          DescriptionAttribute("Defines the border of the report item.")]
+        [LocalizedCategory("Style"), 
+          Description("Defines the border of the report item.")]
         public PropertyBorder Border
         {
             get
@@ -121,8 +122,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyBorder(this);
             }
         }
-        [CategoryAttribute("Style"),
-           DescriptionAttribute("Controls the padding expressions")]
+        [LocalizedCategory("Style"),
+           Description("Controls the padding expressions")]
         public PropertyPadding Padding
         {
             get
@@ -130,8 +131,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyPadding(this);
             }
         }
-        [CategoryAttribute("Style"),
-           DescriptionAttribute("Controls the background expressions")]
+        [LocalizedCategory("Style"),
+           Description("Controls the background expressions")]
         public PropertyBackground Background
         {
             get
@@ -141,8 +142,8 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
         #region Behavior
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
+        [LocalizedCategory("Behavior"),
+           Description("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
         public PropertyAction Action
         {
             get
@@ -150,8 +151,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyAction(this);
             }
         }
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
+        [LocalizedCategory("Behavior"),
+           Description("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
         public PropertyExpr Bookmark
         {
             get
@@ -165,8 +166,8 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
+        [LocalizedCategory("Behavior"),
+           Description("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
         public PropertyExpr ToolTip
         {
             get 
@@ -180,8 +181,8 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [CategoryAttribute("Behavior"),
-          DescriptionAttribute("Defines the visibility of the item.")]
+        [LocalizedCategory("Behavior"),
+          Description("Defines the visibility of the item.")]
         public PropertyVisibility Visibility
         {
             get
@@ -192,8 +193,8 @@ namespace fyiReporting.RdlDesign
         #endregion
          
         #region XML
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The name to use for the element or attribute when exporting to XML.")]
+        [LocalizedCategory("XML"),
+   Description("The name to use for the element or attribute when exporting to XML.")]
         public string DataElementName
         {
             get
@@ -205,8 +206,8 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataElementName", value);
             }
         }
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("When rendering XML determines how or whether the item appears in the XML.")]
+        [LocalizedCategory("XML"),
+   Description("When rendering XML determines how or whether the item appears in the XML.")]
         public DataElementOutputEnum DataElementOutput
         {
             get
@@ -220,8 +221,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Drawing order of the report item.")]
+        [LocalizedCategory("Layout"),
+   Description("Drawing order of the report item.")]
         public int ZIndex
         {
             get
@@ -245,8 +246,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Report item can span multiple columns.")]
+        [LocalizedCategory("Layout"),
+   Description("Report item can span multiple columns.")]
         public int ColumnSpan
         {
             get
@@ -265,7 +266,7 @@ namespace fyiReporting.RdlDesign
                 if (tcell != null && tcell.Name == "TableCell")
                 {	// SetTableCellColSpan does all the heavy lifting; 
                     //    ie making sure the # of columns continue to match
-                    _DesignCtl.StartUndoGroup("Column Span change");
+                    _DesignCtl.StartUndoGroup(Strings.PropertyReportItem_Undo_ColumnSpanchange);
                     _Draw.SetTableCellColSpan(tcell, value.ToString());
                     _DesignCtl.EndUndoGroup(true);
                     _DesignCtl.SignalReportChanged();
@@ -274,8 +275,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Height and width of the report item.")]
+        [LocalizedCategory("Layout"),
+   Description("Height and width of the report item.")]
         public PropertySize Size
         {
             get
@@ -285,8 +286,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertySize(this, h, w);
             }
         }
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Location of the report item.")]
+        [LocalizedCategory("Layout"),
+   Description("Location of the report item.")]
         public PropertyLocation Location
         {
             get
@@ -300,8 +301,8 @@ namespace fyiReporting.RdlDesign
         #endregion
 
         #region Table
-        [CategoryAttribute("Table"), 
-            DescriptionAttribute("Table report item properties.")]
+        [LocalizedCategory("Table"), 
+            Description("Table report item properties.")]
         public PropertyTable Table
         {
             get
@@ -317,8 +318,8 @@ namespace fyiReporting.RdlDesign
         #endregion
 
 #region Matrix
-        [CategoryAttribute("Matrix"),
-            DescriptionAttribute("Matrix report item properties.")]
+        [LocalizedCategory("Matrix"),
+            Description("Matrix report item properties.")]
         public PropertyMatrix Matrix
         {
             get
@@ -365,7 +366,7 @@ namespace fyiReporting.RdlDesign
                 throw new ApplicationException(nerr);
             }
 
-            _DesignCtl.StartUndoGroup("Name change");
+            _DesignCtl.StartUndoGroup(Strings.PropertyReportItem_Undo_NameChange);
             _Draw.SetName(node, n);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -397,7 +398,7 @@ namespace fyiReporting.RdlDesign
                 sb.Append(s);
                 sb.Append(' ');
             }
-            sb.Append("change");
+            sb.Append(Strings.PropertyReport_Undo_change);
             _DesignCtl.StartUndoGroup(sb.ToString());
 
             // loop thru all the selected nodes to make the change
@@ -431,7 +432,7 @@ namespace fyiReporting.RdlDesign
                 sb.Append(s);
                 sb.Append(' ');
             }
-            sb.Append("change");
+            sb.Append(Strings.PropertyReport_Undo_change);
             _DesignCtl.StartUndoGroup(sb.ToString());
 
             // loop thru all the selected nodes to make the change
@@ -483,7 +484,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l, string v)
         {
-            _DesignCtl.StartUndoGroup(l+ " change");
+            _DesignCtl.StartUndoGroup(l+ " " + Strings.PropertyReport_Undo_change);
             foreach (XmlNode n in _RIs)
             {
                 _Draw.SetElement(n, l, v);
@@ -495,7 +496,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l1, string l2, string v)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode lNode = _Draw.GetCreateNamedChildNode(n, l1);
@@ -508,7 +509,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l1, string l2, string l3, string v)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode aNode = _Draw.GetCreateNamedChildNode(n, l1);
@@ -522,7 +523,7 @@ namespace fyiReporting.RdlDesign
 
         internal void RemoveValue(string l1)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} change", l1));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1}", l1, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                _Draw.RemoveElement(n, l1);
@@ -534,7 +535,7 @@ namespace fyiReporting.RdlDesign
 
         internal void RemoveValue(string l1, string l2)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode lNode = _Draw.GetNamedChildNode(n, l1);

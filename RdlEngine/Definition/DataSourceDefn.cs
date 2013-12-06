@@ -28,6 +28,7 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -176,7 +177,7 @@ namespace fyiReporting.RDL
 				SetSysConnection(rpt, cn);
 			else
 			{
-				string err = string.Format("Unable to connect to datasource '{0}'.", this._Name.Nm);
+				string err = string.Format("Unable to connect to datasource '{0}'.", _Name.Nm);
 				if (rpt == null)
 					OwnerReport.rl.LogError(4, err);	// error occurred during parse phase
 				else
@@ -209,7 +210,7 @@ namespace fyiReporting.RDL
 				string pswd = OwnerReport.GetDataSourceReferencePassword == null? 
 									null: OwnerReport.GetDataSourceReferencePassword();
 				if (pswd == null)
-					throw new Exception("No password provided for shared DataSource reference");
+					throw new Exception(Strings.DataSourceDefn_Error_NoPasswordForDSR);
 
 				string xml = RDL.DataSourceReference.Retrieve(file, pswd);
 				XmlDocument xDoc = new XmlDocument();

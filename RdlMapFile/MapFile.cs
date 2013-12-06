@@ -31,6 +31,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Xml;
 using System.IO;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -204,8 +205,8 @@ namespace fyiReporting.RdlMapFile
             if (!map.Modified)
                 return true;
 
-            DialogResult mb = MessageBox.Show(string.Format("Do you want to save changes you made to '{0}'?", map.File == null ? "untitled" : Path.GetFileName(map.File)),
-                "RdlMapFile designer", MessageBoxButtons.YesNoCancel) ;
+            DialogResult mb = MessageBox.Show(string.Format(Strings.MapFile_ShowB_WantSave, map.File == null ? Strings.MapFile_ShowB_Untitled : Path.GetFileName(map.File)),
+                Strings.MapFile_ShowB_RdlMapFileDesigner, MessageBoxButtons.YesNoCancel) ;
             if (mb == DialogResult.Cancel)
                 return false;
 
@@ -246,7 +247,7 @@ namespace fyiReporting.RdlMapFile
                 writer.Close();
             }
             if (bOK)
-                this.map.Modified = false;
+                map.Modified = false;
             return bOK;
                    
         }
@@ -280,13 +281,11 @@ namespace fyiReporting.RdlMapFile
 
         private void SetTitle(bool bModified)
         {
-            string title = "fyiReporting MapFile Designer - " +
-                (map.File == null? "untitled" : map.File) +
+            var title = Strings.MapFile_SetTitle_fyiReporting_MapFile_Designer + " - " +
+                (map.File ?? Strings.MapFile_SetTitle_untitled) +
                 (bModified ? "*" : "");
 
-            if (this.Text == title)
-                return;
-            this.Text = title;
+            Text = title;
         }
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -321,7 +320,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+                MessageBox.Show(ex.Message, string.Format("{1} {0}", ofd.FileName, Strings.MapFile_openToolStripMenuItem_Click_ErrorOpening));
             }
             finally
             {
@@ -351,7 +350,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+                MessageBox.Show(ex.Message, string.Format("{1} {0}", ofd.FileName, Strings.MapFile_openToolStripMenuItem_Click_ErrorOpening));
             }
             finally
             {
@@ -387,7 +386,7 @@ namespace fyiReporting.RdlMapFile
         private void editToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             undoToolStripMenuItem.Enabled = map.CanUndo;
-            undoToolStripMenuItem.Text = map.CanUndo ? "Undo " + map.UndoText : "Undo";
+			undoToolStripMenuItem.Text = map.CanUndo ? Strings.MapFile_editToolStripMenuItem_DropDownOpening_Undo + " " + map.UndoText : Strings.MapFile_editToolStripMenuItem_DropDownOpening_Undo;
 
             deleteToolStripMenuItem.Enabled = reducePolygonPointsToolStripMenuItem.Enabled = (map.SelectedItem != null);
             
@@ -476,7 +475,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Help URL Invalid");
+                MessageBox.Show(ex.Message, Strings.MapFile_helpHelpToolStripMenuItem_Click_Help_URL_Invalid);
             }
 
         }
@@ -489,7 +488,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Support URL Invalid");
+                MessageBox.Show(ex.Message, Strings.MapFile_supportToolStripMenuItem_Click_Support_URL_Invalid);
             }
 
         }
@@ -529,7 +528,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, string.Format("Error opening {0}", ofd.FileName));
+                MessageBox.Show(ex.Message, string.Format("{1} {0}", ofd.FileName, Strings.MapFile_openToolStripMenuItem_Click_ErrorOpening));
             }
             finally
             {
@@ -632,7 +631,7 @@ namespace fyiReporting.RdlMapFile
         {
             int count = map.ReducePointCount();
 
-            MessageBox.Show(string.Format("Polygon point count reduced by {0}.", count), "Reduce Polygon Count");
+			MessageBox.Show(string.Format("{1} {0}.", count, Strings.MapFile_reducePolygonPointsToolStripMenuItem_ReducePolygon), Strings.MapFile_reducePolygonPointsToolStripMenuItem_Click_Reduce_Polygon_Count);
         }
 
         private void sizePolygonPoints_Click(object sender, EventArgs e)

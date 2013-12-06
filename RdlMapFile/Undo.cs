@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -87,7 +88,7 @@ namespace fyiReporting.RdlMapFile
 
 		private void NodeChanging(object sender, XmlNodeChangedEventArgs e)
 		{
-			if (this._Undoing)
+			if (_Undoing)
 				return;
 
 			switch (e.Action)
@@ -102,13 +103,13 @@ namespace fyiReporting.RdlMapFile
 					_pState = NodeChangedUndo.PreviousState(e);
 					break;
 				default:
-					throw new Exception("Unknown Action");
+					throw new Exception(Strings.Undo_Error_UnknownAction);
 			}
 		}
 
 		private void NodeChanged(object sender, XmlNodeChangedEventArgs e)
 		{
-			if (this._Undoing)
+			if (_Undoing)
 			{
 				// if we're undoing ignore the event since it is the result of an undo
 				_pState = null;
@@ -129,7 +130,7 @@ namespace fyiReporting.RdlMapFile
 					undo = new NodeChangedUndo(e, _pState);
 					break;
 				default:
-					throw new Exception("Unknown Action");
+					throw new Exception(Strings.Undo_Error_UnknownAction);
 			}
 			_pState = null;
 			if (_currentUndoGroup != null)
@@ -182,7 +183,7 @@ namespace fyiReporting.RdlMapFile
 			{
 				UndoGroup ug = _actions.Pop() as UndoGroup;	// get rid of the empty group
 				if (ug != _currentUndoGroup)		
-					throw new Exception("Internal logic error: EndGroup doesn't match StartGroup");
+					throw new Exception(Strings.Undo_Error_EndGroupNotMatchStartGroup);
 			}
 			_currentUndoGroup = null;
 		}
@@ -215,7 +216,7 @@ namespace fyiReporting.RdlMapFile
 
         public String GetDescription()
         {
-			return "insert";	// could be more explicit using XmlNodeType but ...
+			return Strings.NodeInsertedUndo_Undo_insert;	// could be more explicit using XmlNodeType but ...
         }
 	
 		static internal object PreviousState(XmlNodeChangedEventArgs e)
@@ -244,7 +245,7 @@ namespace fyiReporting.RdlMapFile
 
         public String GetDescription()
         {
-			return "remove";		// could be more specific using NodeType
+			return Strings.NodeRemovedUndo_Undo_remove;		// could be more specific using NodeType
         }
 
 		static internal object PreviousState(XmlNodeChangedEventArgs e)
@@ -275,7 +276,7 @@ namespace fyiReporting.RdlMapFile
 
         public String GetDescription()
         {
-			return "change";
+			return Strings.NodeChangedUndo_Undo_change;
         }
 	
 		static internal object PreviousState(XmlNodeChangedEventArgs e)

@@ -26,6 +26,7 @@ using System.IO;
 using System.Globalization;
 using System.Xml;
 using fyiReporting.RDL;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -56,7 +57,7 @@ namespace fyiReporting.RDL
 			}
 			catch (XmlException ex)
 			{
-				throw new ParserException("Error: XML failed " + ex.Message);
+				throw new ParserException(Strings.RDLParser_ErrorP_XMLFailed + ex.Message);
 			}
 		}
 
@@ -118,7 +119,7 @@ namespace fyiReporting.RDL
 			xNode = _RdlDocument.LastChild;
 			if (xNode == null || xNode.Name != "Report")
 			{
-				throw new ParserException("Error: RDL doesn't contain a report element. ");
+				throw new ParserException(Strings.RDLParser_ErrorP__NoReport);
 			}
 			
 			ReportLog rl = new ReportLog();		// create a report log

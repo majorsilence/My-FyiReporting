@@ -32,6 +32,7 @@ using System.Xml;
 using System.Globalization;
 using System.Net;
 using System.Text;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -395,7 +396,7 @@ namespace fyiReporting.RdlMapFile
             //   the main document it is removed from the fragment.   Thus you
             //   must continually grab the first child until all the children have
             //   been removed.
-            _Undo.StartUndoGroup("Paste");
+            _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_Paste);
             _SelectedList.Clear();		// the new nodes end up selected
             XmlNode root = GetRoot();
             for (XmlNode mi = mNode.FirstChild; mi != null; mi = mNode.FirstChild)
@@ -428,7 +429,7 @@ namespace fyiReporting.RdlMapFile
                     continue;
                 if (bFirst)
                 {
-                    _Undo.StartUndoGroup("Reduce Point Count");    // we have at least one change
+                    _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_ReducePointCount);    // we have at least one change
                     bFirst = false;
                 }
                 rcount += (pts.Length - res.Length);
@@ -471,7 +472,7 @@ namespace fyiReporting.RdlMapFile
                 }
                 if (bFirst)
                 {
-                    _Undo.StartUndoGroup("Resize");    // we have at least one change
+                    _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_Resize);    // we have at least one change
                     bFirst = false;
                 }
                 if (ptsl.Count > 2)
@@ -531,7 +532,7 @@ namespace fyiReporting.RdlMapFile
                 doc.Load(file);
                 XmlNode xNode = doc.LastChild;
                 if (xNode == null || xNode.Name != "MapData")
-                    throw new Exception("The MapData XML file doesn't contain the 'MapData' element");
+                    throw new Exception(Strings.DesignXmlDraw_Error_XMLNotMapData);
                 
                 _File = file;                           // ok we opened it
                 _MapDoc = doc;                          // don't set new one until we know we've loaded the file
@@ -544,7 +545,7 @@ namespace fyiReporting.RdlMapFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("Unable to open file {0}\n\n{1}", file, ex.Message), "Error Opening File");
+                MessageBox.Show(String.Format("{2} {0}\n\n{1}", file, ex.Message, Strings.DesignXmlDraw_SetMapFile_Unable_to_open_file), Strings.DesignXmlDraw_SetMapFile_ErrorOpeningFile);
             }
             hScrollBar.Value = 0;
             vScrollBar.Value = 0;
@@ -681,7 +682,7 @@ namespace fyiReporting.RdlMapFile
             if (incX == 0 && incY == 0)
                 return;
 
-            _Undo.StartUndoGroup("Move");
+            _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_Move);
             foreach (XmlNode n in _SelectedList)
             {
                 MoveItem(n, incX, incY);
@@ -867,7 +868,7 @@ namespace fyiReporting.RdlMapFile
 
         private void MouseDownILine(MouseEventArgs e)
         {
-            _Undo.StartUndoGroup("Insert Line Point");
+            _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_InsertLinePoint);
             Point np = new Point((int)(e.Location.X / Zoom + hScrollBar.Value), (int)(e.Location.Y / Zoom + vScrollBar.Value));
             if (_SelectedList.Count == 0)
             {
@@ -892,7 +893,7 @@ namespace fyiReporting.RdlMapFile
 
         private void MouseDownIText(MouseEventArgs e)
         {
-            _Undo.StartUndoGroup("Insert Text");
+            _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_InsertText);
             _SelectedList.Clear();
             Point np = new Point((int)(e.Location.X / Zoom + hScrollBar.Value), (int)(e.Location.Y / Zoom + vScrollBar.Value));
             string loc = string.Format("{0},{1}", np.X, np.Y);
@@ -911,7 +912,7 @@ namespace fyiReporting.RdlMapFile
 
         private void MouseDownIPolygon(MouseEventArgs e)
         {
-            _Undo.StartUndoGroup("Insert Polygon Point");
+            _Undo.StartUndoGroup(Strings.DesignXmlDraw_Undo_InsertPolygonPoint);
             Point np = new Point((int) (e.Location.X / Zoom + hScrollBar.Value), (int)(e.Location.Y / Zoom + vScrollBar.Value));
             if (_SelectedList.Count == 0)
             {
@@ -1752,7 +1753,7 @@ namespace fyiReporting.RdlMapFile
             if (_SelectedList.Count == 0)       // Nothing to do
                 return;
 
-            StartUndoGroup("Delete");
+            StartUndoGroup(Strings.DesignXmlDraw_Undo_Delete);
             foreach (XmlNode d in _SelectedList)
                 Remove(d);
             EndUndoGroup();

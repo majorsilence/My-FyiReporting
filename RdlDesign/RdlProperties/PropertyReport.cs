@@ -31,13 +31,14 @@ using System.Drawing.Design;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    [DefaultPropertyAttribute("Author")]
+    [DefaultProperty("Author")]
     internal class PropertyReport
     {
    		private DesignXmlDraw _Draw;
@@ -64,22 +65,22 @@ namespace fyiReporting.RdlDesign
             get { return _Draw.GetReportNode(); }
         }
 
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The author of the report")]
+        [LocalizedCategory("Report"),
+           Description("The author of the report")]
         public string Author
         {
             get {return GetReportValue("Author"); }
             set{SetReportValue("Author", value); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The description of the report")]
+        [LocalizedCategory("Report"),
+           Description("The description of the report")]
         public string Description
         {
             get { return GetReportValue("Description"); }
             set { SetReportValue("Description", value); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The width of the report.")]
+        [LocalizedCategory("Report"),
+           Description("The width of the report.")]
         public string Width
         {
             get { return GetReportValue("Width"); }
@@ -90,27 +91,27 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Parameters defined in the report.")]
+        [LocalizedCategory("Report"),
+           Description("Parameters defined in the report.")]
         public PropertyReportParameters Parameters
         {
             get { return new PropertyReportParameters(this); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Basic functions defined for use in the report.")]
+        [LocalizedCategory("Report"),
+           Description("Basic functions defined for use in the report.")]
         public PropertyReportCode Code
         {
             get { return new PropertyReportCode(this); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Modules and instances of classes for use in the report.")]
+        [LocalizedCategory("Report"),
+           Description("Modules and instances of classes for use in the report.")]
         public PropertyReportModulesClasses ModulesClasses
         {
             get { return new PropertyReportModulesClasses(this); }
         }
 
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The width of the page.")]
+        [LocalizedCategory("Report"),
+           Description("The width of the page.")]
         public string PageWidth
         {
             get { return GetReportValue("PageWidth"); }
@@ -122,8 +123,8 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The height of the page.")]
+        [LocalizedCategory("Report"),
+           Description("The height of the page.")]
         public string PageHeight
         {
             get { return GetReportValue("PageHeight"); }
@@ -133,9 +134,9 @@ namespace fyiReporting.RdlDesign
                 SetReportValue("PageHeight", value);
             }
         }
-        [CategoryAttribute("Report"),
+        [LocalizedCategory("Report"),
         DisplayName("Page Margins"),
-   DescriptionAttribute("Page margins for the report.")]
+   Description("Page margins for the report.")]
         public PropertyMargin Margins
         {
             get
@@ -144,8 +145,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Report"),
-   DescriptionAttribute("PageHeader options for the report.")]
+        [LocalizedCategory("Report"),
+   Description("PageHeader options for the report.")]
         public PropertyPrintFirstLast PageHeader
         {
             get
@@ -155,8 +156,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Report"),
-   DescriptionAttribute("PageFooter options for the report.")]
+        [LocalizedCategory("Report"),
+   Description("PageFooter options for the report.")]
         public PropertyPrintFirstLast PageFooter
         {
             get
@@ -166,8 +167,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Height of the body region.")]
+        [LocalizedCategory("Body"),
+   Description("Height of the body region.")]
         public string BodyHeight
         {
             get
@@ -182,8 +183,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Number of columns in the body region.")]
+        [LocalizedCategory("Body"),
+   Description("Number of columns in the body region.")]
         public int BodyColumns
         {
             get
@@ -206,8 +207,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Spacing between columns.")]
+        [LocalizedCategory("Body"),
+   Description("Spacing between columns.")]
         public string BodyColumnSpacing
         {
             get
@@ -228,8 +229,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("XSL file to use to transform XML after rendering."),
+        [LocalizedCategory("XML"),
+   Description("XSL file to use to transform XML after rendering."),
         Editor(typeof(FileUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string DataTransform
         {
@@ -237,25 +238,25 @@ namespace fyiReporting.RdlDesign
             set { SetReportValue("DataTransform", value); }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The schema or namespace to specify when rendering XML.")]
+        [LocalizedCategory("XML"),
+   Description("The schema or namespace to specify when rendering XML.")]
         public string DataSchema
         {
             get { return GetReportValue("DataSchema"); }
             set { SetReportValue("DataSchema", value); }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The top level element name used when rendering XML.")]
+        [LocalizedCategory("XML"),
+   Description("The top level element name used when rendering XML.")]
         public string DataElementName
         {
             get { return GetReportValue("DataElementName"); }
             set { SetReportValue("DataElementName", value); }
         }
 
-        [CategoryAttribute("XML"),
+        [LocalizedCategory("XML"),
        TypeConverter(typeof(ElementStyleConverter)),
-   DescriptionAttribute("Element style is either Attribute or Element.")]
+   Description("Element style is either Attribute or Element.")]
         public string DataElementStyle
         {
             get { return GetReportValue("DataElementStyle", "AttributeNormal"); }
@@ -274,7 +275,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             XmlNode bNode = _Draw.GetNamedChildNode(rNode, "Body");
-            _DesignCtl.StartUndoGroup("Body " + l + " change");
+            _DesignCtl.StartUndoGroup(Strings.PropertyReport_Undo_Body + " " + l + " " + Strings.PropertyReport_Undo_change);
             _Draw.SetElement(bNode, l, v);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -285,7 +286,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             XmlNode bNode = _Draw.GetNamedChildNode(rNode, "Body");
-            _DesignCtl.StartUndoGroup("Body " + l + " change");
+			_DesignCtl.StartUndoGroup(Strings.PropertyReport_Undo_Body + " " + l + " " + Strings.PropertyReport_Undo_change);
             _Draw.RemoveElement(bNode, l);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -307,7 +308,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             
-            _DesignCtl.StartUndoGroup(l + " change");
+            _DesignCtl.StartUndoGroup(l + " " + Strings.PropertyReport_Undo_change);
             _Draw.SetElement(rNode, l, v);
             _DesignCtl.EndUndoGroup(true);
 

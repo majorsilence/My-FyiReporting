@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -152,7 +151,7 @@ namespace fyiReporting.RDL
                     int i = Convert.ToInt32(va);
                     return ar[i];
                 default:
-                    throw new Exception("Internal error: unknown Report Parameter method");
+                    throw new Exception(Strings.FunctionReportParameter_Error_UnknownReporParameterMethod);
             }
         }
 		

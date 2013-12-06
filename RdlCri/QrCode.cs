@@ -179,8 +179,8 @@ namespace fyiReporting.CRI
             {
                 _QrCode = ns;
             }
-            [CategoryAttribute("QrCode"),
-               DescriptionAttribute("The text string to be encoded as a QR Code.")]
+            [Category("QrCode"),
+               Description("The text string to be encoded as a QR Code.")]
             public string QrCode
             {
                 get { return _QrCode; }

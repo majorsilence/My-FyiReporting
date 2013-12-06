@@ -29,6 +29,7 @@ using System.Drawing.Imaging;
 using System.Text;
 using System.IO;
 using System.Net;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -58,7 +59,7 @@ namespace fyiReporting.RDL
 			get 
 			{
 				if (_items == null)
-					throw new Exception("Build method must be called prior to referencing TotalHeight.");
+					throw new Exception(Strings.PageTextHtml_Error_BuildMethodMustCalledPriorTotalHeight);
 				return _TotalHeight;
 			}
 		}

@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using RdlReader.Resources;
 using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
 
@@ -83,7 +84,7 @@ namespace fyiReporting.RdlReader
                     }
                     catch
                     {
-                        MessageBox.Show(this, "Magnification level is an invalid number.");
+                        MessageBox.Show(this, Strings.ZoomTo_ShowI_MagnificationLevelInvalid);
                         return;
                     }
                     break;

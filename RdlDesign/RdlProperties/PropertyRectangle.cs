@@ -21,61 +21,45 @@
    the website www.fyiReporting.com.
 */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
-using System.Drawing.Design;
-using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
+using fyiReporting.RDL;
 
-namespace fyiReporting.RdlMapFile
+namespace fyiReporting.RdlDesign
 {
     /// <summary>
-    /// PropertyReportItem - The ReportItem Properties
+    /// PropertyRectangle - The Rectangle specific Properties
     /// </summary>
-    [DefaultPropertyAttribute("Text")]
-    internal class PropertyBase
+    
+    internal class PropertyRectangle : PropertyReportItem
     {
-   		private DesignXmlDraw _Draw;
-
-        internal PropertyBase(DesignXmlDraw d)
+        internal PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
-            _Draw = d;
         }
-
-        internal DesignXmlDraw Draw
+        [LocalizedCategory("Rectangle"),
+           Description("Determines if report will start a new page at the top of the rectangle.")]
+        public bool PageBreakAtStart
         {
-            get { return _Draw; }
-        }
-
-        internal string GetTextValue(string l)
-        {
-            XmlNode v = Draw.SelectedItem;
-            return Draw.GetElementValue(v, l, "");
-        }
-
-        internal void SetTextValue(string l, string v)
-        {
-            Draw.StartUndoGroup(l + " change");
-            XmlNode xn = Draw.SelectedItem;
-            foreach (XmlNode n in Draw.SelectedList)
+            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtStart", "false").ToLower() == "true" ? true : false; }
+            set
             {
-                if (xn.Name == n.Name)
-                    Draw.SetElement(n, l, v);
+                this.SetValue("PageBreakAtStart", value ? "true" : "false");
             }
-            Draw.EndUndoGroup();
-
-            Draw.SignalXmlChanged();
-            Draw.Invalidate();
         }
-        internal void SetTextValue(string l, float f)
+        [LocalizedCategory("Rectangle"),
+           Description("Determines if report will start a new page after the bottom of the rectangle.")]
+        public bool PageBreakAtEnd
         {
-            string fs = string.Format(NumberFormatInfo.InvariantInfo, "{0}", f);
-            SetTextValue(l, fs);
+            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtEnd", "false").ToLower() == "true" ? true : false; }
+            set
+            {
+                this.SetValue("PageBreakAtEnd", value ? "true" : "false");
+            }
         }
 
     }

@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -130,7 +131,7 @@ namespace fyiReporting.RDL
 						return rl as Table;
 				}
 
-				throw new Exception("Internal error.  TableRows must be owned eventually by a table.");
+				throw new Exception(Strings.TableRows_Error_TableRowsMustOwnedTable);
 			}
 		}
 

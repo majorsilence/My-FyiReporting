@@ -29,6 +29,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using RdlViewer.Resources;
 
 namespace fyiReporting.RdlViewer
 {
@@ -53,13 +54,15 @@ namespace fyiReporting.RdlViewer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            TimeSpan time = DateTime.Now - Started;
-            lblTimeTaken.Text = (((time.Days * 24 + time.Hours) * 60) + time.Minutes) + " Minutes " + time.Seconds + " Seconds";
+            var time = DateTime.Now - Started;
+	        lblTimeTaken.Text = string.Format("{0} {1} {2} {3}", (int) time.TotalMinutes, Strings.DialogWait_Minutes,
+	                                          time.Seconds, Strings.DialogWait_Seconds);
            
             if (_checkStopFunction())
             {
                 Close();
             } 
+
             Application.DoEvents();
         }
     }

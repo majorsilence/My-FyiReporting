@@ -25,7 +25,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -67,10 +67,10 @@ namespace fyiReporting.RDL
 			{
 				string o = _ArgExpr.EvaluateString(null, null);
 				if (o == null)
-					throw new Exception("Parameter collection argument is null"); 
+					throw new Exception(Strings.FunctionParameterCollection_Error_ParameterCollectionNull); 
 				ReportParameter rp = _Parameters[o] as ReportParameter;
 				if (rp == null)
-					throw new Exception(string.Format("Parameter collection argument {0} is invalid", o)); 
+					throw new Exception(string.Format(Strings.FunctionParameterCollection_Error_ParameterCollectionInvalid, o)); 
 				return new FunctionReportParameter(rp);
 			}
 

@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Text;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -154,7 +155,7 @@ namespace fyiReporting.RdlDesign
 			string nerr = _Draw.NameError(this._dsNode, this.tbDSName.Text);
 			if (nerr != null)
 			{
-				MessageBox.Show(nerr, "Name");
+				MessageBox.Show(nerr, Strings.DataSetsCtl_Show_Name);
 				return false;
 			}
 			return true;

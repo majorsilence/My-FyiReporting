@@ -25,8 +25,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -117,7 +116,7 @@ namespace fyiReporting.RDL
             MethodInfo mInfo = XmlUtil.GetMethod(theClassType, _Func, argTypes);
             if (mInfo == null)
             {
-                throw new Exception(string.Format("{0} method not found in code", _Func));
+                throw new Exception(string.Format(Strings.FunctionCode_Error_MethodNotFound, _Func));
             }
             returnVal = mInfo.Invoke(inst, argResults);
 

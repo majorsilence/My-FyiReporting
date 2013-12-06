@@ -25,7 +25,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -67,10 +67,10 @@ namespace fyiReporting.RDL
 			{
 				string o = _ArgExpr.EvaluateString(null, null);
 				if (o == null)
-					throw new Exception("Field collection argument is null"); 
+					throw new Exception(Strings.FunctionFieldCollection_Error_FieldCollectionNull); 
 				Field f = _Fields[o] as Field;
 				if (f == null)
-					throw new Exception(string.Format("Field collection argument {0} is invalid", o)); 
+					throw new Exception(string.Format(Strings.FunctionFieldCollection_Error_FieldCollectionInvalid, o)); 
 				return new FunctionField(f);
 			}
 

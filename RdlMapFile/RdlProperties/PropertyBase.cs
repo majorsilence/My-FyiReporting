@@ -21,45 +21,62 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
-using fyiReporting.RDL;
+using System.Drawing.Design;
+using System.Globalization;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
+using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace fyiReporting.RdlMapFile
 {
     /// <summary>
-    /// PropertyRectangle - The Rectangle specific Properties
+    /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    
-    internal class PropertyRectangle : PropertyReportItem
+    [DefaultProperty("Text")]
+    internal class PropertyBase
     {
-        internal PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+   		private DesignXmlDraw _Draw;
+
+        internal PropertyBase(DesignXmlDraw d)
         {
+            _Draw = d;
         }
-        [CategoryAttribute("Rectangle"),
-           DescriptionAttribute("Determines if report will start a new page at the top of the rectangle.")]
-        public bool PageBreakAtStart
+
+        internal DesignXmlDraw Draw
         {
-            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtStart", "false").ToLower() == "true" ? true : false; }
-            set
-            {
-                this.SetValue("PageBreakAtStart", value ? "true" : "false");
-            }
+            get { return _Draw; }
         }
-        [CategoryAttribute("Rectangle"),
-           DescriptionAttribute("Determines if report will start a new page after the bottom of the rectangle.")]
-        public bool PageBreakAtEnd
+
+        internal string GetTextValue(string l)
         {
-            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtEnd", "false").ToLower() == "true" ? true : false; }
-            set
+            XmlNode v = Draw.SelectedItem;
+            return Draw.GetElementValue(v, l, "");
+        }
+
+        internal void SetTextValue(string l, string v)
+        {
+            Draw.StartUndoGroup(l + " " + Strings.PropertyBase_Undo_change);
+            XmlNode xn = Draw.SelectedItem;
+            foreach (XmlNode n in Draw.SelectedList)
             {
-                this.SetValue("PageBreakAtEnd", value ? "true" : "false");
+                if (xn.Name == n.Name)
+                    Draw.SetElement(n, l, v);
             }
+            Draw.EndUndoGroup();
+
+            Draw.SignalXmlChanged();
+            Draw.Invalidate();
+        }
+        internal void SetTextValue(string l, float f)
+        {
+            string fs = string.Format(NumberFormatInfo.InvariantInfo, "{0}", f);
+            SetTextValue(l, fs);
         }
 
     }

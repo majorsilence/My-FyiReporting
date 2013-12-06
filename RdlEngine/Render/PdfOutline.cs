@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Text;
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RDL
@@ -74,7 +75,7 @@ namespace fyiReporting.RDL
 //endobj
 
             if (_pom == null)
-                throw new Exception("GetObjectNumber must be called before GetOutlineDict");
+                throw new Exception(Strings.PdfOutline_Error_GetObjectNumberMustBeforeGetOutlineDict);
 
 			string content=string.Format("\r\n{0} 0 obj<</Type /Outlines /First {1} 0 R\r/Last {2} 0 R\r/Count {3}>>\rendobj\r",
 					_pom.objectNum,

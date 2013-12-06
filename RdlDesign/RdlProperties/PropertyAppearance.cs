@@ -76,7 +76,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-       DescriptionAttribute("FontFamily is the name of the font family.  Not all renderers support all fonts.")]
+       Description("FontFamily is the name of the font family.  Not all renderers support all fonts.")]
         public PropertyExpr FontFamily
         {
             get 
@@ -90,7 +90,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-       DescriptionAttribute("Font size controls the text size.")]
+       Description("Font size controls the text size.")]
         public PropertyExpr FontSize
         {
             get
@@ -106,7 +106,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(FontStyleConverter)),
-       DescriptionAttribute("FontStyle determines if font is italicized.")]
+       Description("FontStyle determines if font is italicized.")]
         public string FontStyle
         {
             get
@@ -120,7 +120,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(FontWeightConverter)),
-       DescriptionAttribute("FontWeight controls the boldness of the font.")]
+       Description("FontWeight controls the boldness of the font.")]
         public string FontWeight
         {
             get
@@ -134,7 +134,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(ColorConverter)),
-       DescriptionAttribute("Text color")]
+       Description("Text color")]
         public string Color
         {
             get
@@ -148,7 +148,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(TextDecorationConverter)),
-       DescriptionAttribute("TextDecoration controls underline, overline, and linethrough.  Not all renderers support all options.")]
+       Description("TextDecoration controls underline, overline, and linethrough.  Not all renderers support all options.")]
         public string TextDecoration
         {
             get
@@ -162,7 +162,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(TextAlignConverter)),
-       DescriptionAttribute("Horizontal alignment")]
+       Description("Horizontal alignment")]
         public string TextAlign
         {
             get
@@ -176,7 +176,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(VerticalAlignConverter)),
-       DescriptionAttribute("Vertical alignment")]
+       Description("Vertical alignment")]
         public string VerticalAlign
         {
             get
@@ -190,7 +190,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(DirectionConverter)),
-       DescriptionAttribute("Text is either written left-to-right (LTR) or right-to-left (RTL).")]
+       Description("Text is either written left-to-right (LTR) or right-to-left (RTL).")]
         public string Direction
         {
             get
@@ -204,7 +204,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(WritingModeConverter)),
-       DescriptionAttribute("Text is either written horizontally (lr-tb) or vertically (tb-rl).")]
+       Description("Text is either written horizontally (lr-tb) or vertically (tb-rl).")]
         public string WritingMode
         {
             get
@@ -218,7 +218,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [TypeConverter(typeof(FormatConverter)),
-       DescriptionAttribute("Depending on type the value can be formatted.")]
+       Description("Depending on type the value can be formatted.")]
         public string Format
         {
             get

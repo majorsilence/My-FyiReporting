@@ -33,6 +33,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -113,7 +114,7 @@ namespace fyiReporting.RdlDesign
 
             List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
             ar.Add(table);
-            dc.UndoObject.StartUndoGroup("Table Dialog");
+            dc.UndoObject.StartUndoGroup(Strings.PropertyTableUIEditor_EditValue_TableDialog);
             using (PropertyDialog pd = new PropertyDialog(dp, ar, PropertyTypeEnum.ReportItems, tc, tr))
             {
                 // Display the UI editor dialog

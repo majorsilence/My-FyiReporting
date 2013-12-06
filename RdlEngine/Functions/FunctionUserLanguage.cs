@@ -23,7 +23,7 @@
 using System;
 using System.IO;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -65,17 +65,17 @@ namespace fyiReporting.RDL
 		
 		public double EvaluateDouble(Report rpt, Row row)
 		{	
-			throw new Exception("Invalid conversion from Language to double.");
+			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDouble);
 		}
 		
 		public decimal EvaluateDecimal(Report rpt, Row row)
 		{
-			throw new Exception("Invalid conversion from Language to Decimal.");
+			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDecimal);
 		}
 
         public int EvaluateInt32(Report rpt, Row row)
         {
-            throw new Exception("Invalid conversion from Language to Int32.");
+            throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToInt32);
         }
 		public string EvaluateString(Report rpt, Row row)
 		{
@@ -87,12 +87,12 @@ namespace fyiReporting.RDL
 
 		public DateTime EvaluateDateTime(Report rpt, Row row)
 		{
-			throw new Exception("Invalid conversion from Language to DateTime.");
+			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDateTime);
 		}
 
 		public bool EvaluateBoolean(Report rpt, Row row)
 		{
-			throw new Exception("Invalid conversion from Language to boolean.");
+			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToBoolean);
 		}
 	}
 }

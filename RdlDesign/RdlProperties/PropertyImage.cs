@@ -47,8 +47,8 @@ namespace fyiReporting.RdlDesign
 
         }
 
-        [CategoryAttribute("Image"),
-                DescriptionAttribute("The image properties.")]
+        [LocalizedCategory("Image"),
+                Description("The image properties.")]
         public PropertyImageI Image
         {
             get { return new PropertyImageI(this); }
@@ -68,7 +68,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ImageSourceConverter)),
-     DescriptionAttribute("Image Source:External, Embedded, Database.")]
+     Description("Image Source:External, Embedded, Database.")]
         public string Source
         {
             get
@@ -82,7 +82,7 @@ namespace fyiReporting.RdlDesign
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-     DescriptionAttribute("Value depends upon the source of the image.")]
+     Description("Value depends upon the source of the image.")]
         public PropertyExpr Value
         {
             get
@@ -97,7 +97,7 @@ namespace fyiReporting.RdlDesign
 
         [RefreshProperties(RefreshProperties.Repaint),
        TypeConverter(typeof(ImageMIMETypeConverter)),
-     DescriptionAttribute("When Source is Database MIMEType describes the type of image.")]
+     Description("When Source is Database MIMEType describes the type of image.")]
         public string MIMEType
         {
             get
@@ -112,7 +112,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [DescriptionAttribute("Defines how image is sized when image doesn't match specified size.")]
+        [Description("Defines how image is sized when image doesn't match specified size.")]
         public ImageSizingEnum Sizing
         {
             get

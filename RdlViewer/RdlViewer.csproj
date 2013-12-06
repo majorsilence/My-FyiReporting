@@ -169,6 +169,11 @@
     <Compile Include="DialogWait.Designer.cs">
       <DependentUpon>DialogWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="PageDrawing.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +206,11 @@
     <EmbeddedResource Include="DialogWait.ru-RU.resx">
       <DependentUpon>DialogWait.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
     <EmbeddedResource Include="PageDrawing.resx">
       <DependentUpon>PageDrawing.cs</DependentUpon>
       <SubType>Designer</SubType>

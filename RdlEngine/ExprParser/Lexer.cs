@@ -24,6 +24,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Text;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -187,9 +188,10 @@ namespace fyiReporting.RDL
 		// Reads a decimal number with optional exponentiation 
 		private Token ReadNumber(char ch)
 		{
+			const char separator = '.'; // maybe CurrentCulture.NumberFormat.NumberDecimalSeparator ??? TODO
 			int startLine = reader.Line;
 			int startCol = reader.Column;
-			bool bDecimal = ch == '.'? true: false;
+			bool bDecimal = ch == separator ? true : false;
 			bool bDecimalType=false;	// found d or D in number
 			bool bFloat=false;			// found e or E in number
 			char cPeek;
@@ -220,9 +222,9 @@ namespace fyiReporting.RDL
                     if (Char.IsDigit(reader.Peek()))
 						continue;
 					
-                    throw new ParserException("Invalid number constant.");
+                    throw new ParserException(Strings.Lexer_ErrorP_InvalidNumberConstant);
 				}
-				else if (!bDecimal && !bFloat && cPeek == '.')	// can't already be decimal or float
+				else if (!bDecimal && !bFloat && cPeek == separator)	// can't already be decimal or float
 				{
 					bDecimal = true;
 					number += reader.GetNext();
@@ -231,8 +233,8 @@ namespace fyiReporting.RDL
 					break;	// another character
 			}
 
-			if (number.CompareTo(".") == 0)
-				throw new ParserException("'.' should be followed by a number");
+			if (number.CompareTo(separator) == 0)
+				throw new ParserException(string.Format(Strings.Lexer_Error_SeparatorMustFollowedNumber, separator));
 
 			TokenTypes t;
 			if (bDecimalType)
@@ -391,7 +393,7 @@ namespace fyiReporting.RDL
                 }
     			quoted.Append(ch);
 			}
-			throw new ParserException("Unterminated string!");
+			throw new ParserException(Strings.Lexer_ErrorP_UnterminatedString);
 		}
 
 		// Comment string like /* this is a comment */
@@ -408,7 +410,7 @@ namespace fyiReporting.RDL
 					return;
 				}
 			}
-			throw new ParserException("Unterminated comment!");
+			throw new ParserException(Strings.Lexer_Error_UnterminatedComment);
 		}
 
         // fields, parameters, and globals

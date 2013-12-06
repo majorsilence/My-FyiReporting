@@ -31,6 +31,7 @@ using System.Resources;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -181,7 +182,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {		// Didn't sucessfully get the startup state: use defaults
-                MessageBox.Show(string.Format("Error processing Desktop Configuration; using defaults.\n{0}", ex.Message), "Options");
+                MessageBox.Show(string.Format(Strings.DialogToolOptions_Show_ConfigError, ex.Message), Strings.DialogToolOptions_Show_Options);
                 this.tbPort.Text = "8080";
                 this.ckLocal.Checked = true;
                 this.tbDirectory.Text = "Examples";
@@ -219,7 +220,7 @@ namespace fyiReporting.RdlDesign
             }
             catch
             {
-                MessageBox.Show("Recent files maximum must be an integer between 1 and 50", "Options");
+                MessageBox.Show(Strings.DialogToolOptions_Show_RecentFilesMax, Strings.DialogToolOptions_Show_Options);
                 return false;
             }
         }
@@ -256,7 +257,7 @@ namespace fyiReporting.RdlDesign
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Options");
+                    MessageBox.Show(ex.Message, Strings.DialogToolOptions_Show_Options);
                     return false;
                 }
             }
@@ -342,7 +343,7 @@ namespace fyiReporting.RdlDesign
             // Handle the RecentFilesMax
             int i = Convert.ToInt32(this.tbRecentFilesMax.Text);
             if (i < 1 || i > 50)
-                throw new Exception("Recent files maximum must be an integer between 1 and 50");
+                throw new Exception(Strings.DialogToolOptions_Error_RecentFilesMax);
             if (this._RdlDesigner.RecentFilesMax == i)	// if not different we don't need to do anything
                 return;
 
@@ -540,7 +541,7 @@ namespace fyiReporting.RdlDesign
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(string.Format("Unable to obtain Desktop config information.\n{0}", ex.Message));
+                    throw new Exception(string.Format(Strings.DialogToolOptions_Error_UnableConfig, ex.Message));
                 }
             }
         }

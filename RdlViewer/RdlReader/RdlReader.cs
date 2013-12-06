@@ -28,6 +28,7 @@ using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Xml;
 using System.IO;
+using RdlReader.Resources;
 using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
 using System.Runtime.InteropServices;
@@ -220,7 +221,7 @@ namespace fyiReporting.RdlReader
                 }
                 else
                 {
-                    MessageBox.Show("The specified report [ " + reportFile + " ] could not be loaded.", "My-FyiReporting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Strings.RdlReader_ShowD_ReportNotLoaded, reportFile), Strings.RdlReader_Show_MyFyiReporting, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -347,7 +348,7 @@ namespace fyiReporting.RdlReader
                 return;
             if (printChild != null)			// already printing
             {
-                MessageBox.Show("Can only print one file at a time.");
+                MessageBox.Show(Strings.RdlReader_ShowC_PrintOneFile);
                 return;
             }
 
@@ -380,7 +381,7 @@ namespace fyiReporting.RdlReader
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Print error: " + ex.Message);
+                    MessageBox.Show(Strings.RdlReader_ShowC_PrintError + ex.Message);
                 }
             }
             printChild = null;
@@ -467,14 +468,14 @@ namespace fyiReporting.RdlReader
                     break;
                 default:
                     MessageBox.Show(this,
-                        String.Format("{0} is not a valid file type.  File extension must be PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.", sfd.FileName), "Save As Error",
+                        String.Format(Strings.RdlReader_SaveG_NotValidFileType, sfd.FileName), Strings.RdlReader_SaveG_SaveAsError,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
 
             if (type == OutputPresentationType.TIF )
             {
-                DialogResult dr = MessageBox.Show(this, "Do you want to save colors in TIF file?", "Export", MessageBoxButtons.YesNoCancel);
+                DialogResult dr = MessageBox.Show(this, Strings.RdlReader_ShowF_WantSaveColorsInTIF, Strings.RdlReader_ShowF_Export, MessageBoxButtons.YesNoCancel);
                 if (dr == DialogResult.No)
                     type = OutputPresentationType.TIFBW;
                 else if (dr == DialogResult.Cancel)
@@ -487,7 +488,7 @@ namespace fyiReporting.RdlReader
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
-                        ex.Message, "Save As Error",
+                        ex.Message, Strings.RdlReader_SaveG_SaveAsError,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

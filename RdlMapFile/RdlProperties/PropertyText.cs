@@ -31,13 +31,14 @@ using System.Drawing.Design;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    [DefaultPropertyAttribute("Text")]
+    [DefaultProperty("Text")]
     internal class PropertyText : PropertyBase
     {
 
@@ -45,8 +46,8 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [CategoryAttribute("Text"),
-           DescriptionAttribute("The value of the text")]
+        [LocalizedCategory("Text"),
+           Description("The value of the text")]
         public string Value
         {
             get {return GetTextValue("Value"); }
@@ -54,8 +55,8 @@ namespace fyiReporting.RdlMapFile
         }
 
         [RefreshProperties(RefreshProperties.Repaint),
-        CategoryAttribute("Text"),
-           DescriptionAttribute("The Location of the text")]
+		LocalizedCategory("Text"),
+           Description("The Location of the text")]
         public Point Location
         {
             get 
@@ -69,8 +70,8 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Location", l); 
             }
         }
-        [CategoryAttribute("Text"),
-           DescriptionAttribute("The Color of the text")]
+		[LocalizedCategory("Text"),
+           Description("The Color of the text")]
         public Color Color
         {
             get
@@ -85,8 +86,8 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Color", sc);
             }
         }
-        [CategoryAttribute("Text"),
-           DescriptionAttribute("The font of the text.  Only the family, size, bold, italic, underline, and strikethrough options are honored.")]
+		[LocalizedCategory("Text"),
+           Description("The font of the text.  Only the family, size, bold, italic, underline, and strikethrough options are honored.")]
         public Font Font
         {
             get
@@ -99,7 +100,7 @@ namespace fyiReporting.RdlMapFile
                 string family = value.FontFamily.GetName(0);
                 string fs = string.Format(NumberFormatInfo.InvariantInfo, "{0}", value.SizeInPoints);
 
-                Draw.StartUndoGroup("Font change");
+                Draw.StartUndoGroup(Strings.PropertyText_Undo_FontChange);
                 XmlNode xn = Draw.SelectedItem;
                 foreach (XmlNode n in Draw.SelectedList)
                 {

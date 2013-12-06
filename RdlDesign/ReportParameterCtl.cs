@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -623,7 +624,7 @@ namespace fyiReporting.RdlDesign
 
             using (DialogListOfStrings dlos = new DialogListOfStrings(rp.DefaultValue))
             {
-                dlos.Text = "Default Values";
+                dlos.Text = Strings.ReportParameterCtl_bDefaultValues_Click_Default_Values;
                 if (dlos.ShowDialog() != DialogResult.OK)
                     return;
                 rp.DefaultValue = dlos.ListOfStrings;

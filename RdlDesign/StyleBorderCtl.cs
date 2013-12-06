@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -621,35 +622,35 @@ namespace fyiReporting.RdlDesign
 			string name="";
 			try
 			{
-				if (fWidthDefault && !this.tbWidthDefault.Text.StartsWith("="))
+				if (fWidthDefault && !tbWidthDefault.Text.StartsWith("="))
 				{
-					name = "Default Width";
-					DesignerUtility.ValidateSize(this.tbWidthDefault.Text, true, false);
+					name = Strings.StyleBorderCtl_Show_DefaultWidth;
+					DesignerUtility.ValidateSize(tbWidthDefault.Text, true, false);
 				}
-				if (fWidthLeft && !this.tbWidthLeft.Text.StartsWith("="))
+				if (fWidthLeft && !tbWidthLeft.Text.StartsWith("="))
 				{
-					name = "Left Width";
-					DesignerUtility.ValidateSize(this.tbWidthLeft.Text, true, false);
+					name = Strings.StyleBorderCtl_Show_LeftWidth;
+					DesignerUtility.ValidateSize(tbWidthLeft.Text, true, false);
 				}
-				if (fWidthTop && !this.tbWidthTop.Text.StartsWith("="))
+				if (fWidthTop && !tbWidthTop.Text.StartsWith("="))
 				{
-					name = "Top Width";
-					DesignerUtility.ValidateSize(this.tbWidthTop.Text, true, false);
+					name = Strings.StyleBorderCtl_Show_TopWidth;
+					DesignerUtility.ValidateSize(tbWidthTop.Text, true, false);
 				}
-				if (fWidthBottom && !this.tbWidthBottom.Text.StartsWith("="))
+				if (fWidthBottom && !tbWidthBottom.Text.StartsWith("="))
 				{
-					name = "Bottom Width";
-					DesignerUtility.ValidateSize(this.tbWidthBottom.Text, true, false);
+					name = Strings.StyleBorderCtl_Show_BottomWidth;
+					DesignerUtility.ValidateSize(tbWidthBottom.Text, true, false);
 				}
-				if (fWidthRight && !this.tbWidthRight.Text.StartsWith("="))
+				if (fWidthRight && !tbWidthRight.Text.StartsWith("="))
 				{
-					name = "Right Width";
-					DesignerUtility.ValidateSize(this.tbWidthRight.Text, true, false);
+					name = Strings.StyleBorderCtl_Show_RightWidth;
+					DesignerUtility.ValidateSize(tbWidthRight.Text, true, false);
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, name + " Size Invalid");
+				MessageBox.Show(ex.Message, name + " " + Strings.StyleBorderCtl_Show_SizeInvalid);
 				return false;
 			}
 

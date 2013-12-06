@@ -29,6 +29,7 @@ using System.Xml;
 using System.Text;
 using System.Reflection;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -63,7 +64,7 @@ namespace fyiReporting.RdlDesign
                 if (op == cbOperator.Text)
                     return;
             }
-            MessageBox.Show(string.Format("Operator '{0}' must be in the operator list", cbOperator.Text), "Pick Filter Operator");
+            MessageBox.Show(string.Format(Strings.DialogFilterOperator_Show_OperatorInList, cbOperator.Text), Strings.DialogFilterOperator_Show_PickFilterOperator);
             e.Cancel = true;
         }
 

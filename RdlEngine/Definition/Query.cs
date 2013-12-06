@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using System.Reflection;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -310,7 +311,7 @@ namespace fyiReporting.RDL
 			xNode = doc.LastChild;
 			if (xNode == null || !(xNode.Name == "Rows" || xNode.Name == "fyi:Rows"))
 			{
-				throw new Exception("Error: XML Data must contain top level rows.");
+				throw new Exception(Strings.Query_Error_XMLMustContainTopLevelRows);
 			}
 
 			Rows _Data = new Rows(rpt, null,null,null);
@@ -542,7 +543,7 @@ namespace fyiReporting.RDL
 			xNode = xmlDoc.LastChild;
 			if (xNode == null || !(xNode.Name == "Rows" || xNode.Name == "fyi:Rows"))
 			{
-				throw new Exception("XML Data must contain top level element Rows.");
+				throw new Exception(Strings.Query_Error_XMLMustContainTopLevelRows);
 			}
 
             List<Row> ar = new List<Row>();

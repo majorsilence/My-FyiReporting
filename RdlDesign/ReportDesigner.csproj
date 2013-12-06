@@ -171,6 +171,9 @@
     <EmbeddedResource Include="DataSetsCtl.ru-RU.resx">
       <DependentUpon>DataSetsCtl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DesignCtl.ru-RU.resx">
+      <DependentUpon>DesignCtl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogAbout.ru-RU.resx">
       <DependentUpon>DialogAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DialogFilterOperator.ru-RU.resx">
       <DependentUpon>DialogFilterOperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogListOfStrings.ru-RU.resx">
+      <DependentUpon>DialogListOfStrings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DialogNewChart.ru-RU.resx">
       <DependentUpon>DialogNewChart.cs</DependentUpon>
@@ -244,6 +250,16 @@
     <EmbeddedResource Include="InteractivityCtl.ru-RU.resx">
       <DependentUpon>InteractivityCtl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Categories.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGeneratorEx</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
     <EmbeddedResource Include="ListCtl.ru-RU.resx">
       <DependentUpon>ListCtl.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,6 +408,9 @@
     <Compile Include="DataSetRowsCtl.Designer.cs">
       <DependentUpon>DataSetRowsCtl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesignCtl.Designer.cs">
+      <DependentUpon>DesignCtl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogAbout.Designer.cs">
       <DependentUpon>DialogAbout.cs</DependentUpon>
     </Compile>
@@ -446,6 +465,17 @@
     <Compile Include="DesignRuler.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="RdlProperties\LocalizedCategoryAttribute.cs" />
+    <Compile Include="RdlProperties\Categories.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Categories.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="MDIChild.Designer.cs">
       <DependentUpon>MDIChild.cs</DependentUpon>
     </Compile>
@@ -458,25 +488,25 @@
     <Compile Include="PropertyDialog.Designer.cs">
       <DependentUpon>PropertyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertySubreport.cs" />
-    <Compile Include="PropertyGrouping.cs" />
-    <Compile Include="PropertySorting.cs" />
-    <Compile Include="PropertyList.cs" />
-    <Compile Include="PropertyImage.cs" />
-    <Compile Include="PropertyMatrix.cs" />
-    <Compile Include="PropertyFilters.cs" />
-    <Compile Include="PropertyTable.cs" />
-    <Compile Include="PropertyTableTab.cs" />
-    <Compile Include="PropertyDataRegion.cs" />
-    <Compile Include="PropertyChart.cs" />
-    <Compile Include="PropertyBackground.cs" />
+    <Compile Include="RdlProperties\PropertySubreport.cs" />
+    <Compile Include="RdlProperties\PropertyGrouping.cs" />
+    <Compile Include="RdlProperties\PropertySorting.cs" />
+    <Compile Include="RdlProperties\PropertyList.cs" />
+    <Compile Include="RdlProperties\PropertyImage.cs" />
+    <Compile Include="RdlProperties\PropertyMatrix.cs" />
+    <Compile Include="RdlProperties\PropertyFilters.cs" />
+    <Compile Include="RdlProperties\PropertyTable.cs" />
+    <Compile Include="RdlProperties\PropertyTableTab.cs" />
+    <Compile Include="RdlProperties\PropertyDataRegion.cs" />
+    <Compile Include="RdlProperties\PropertyChart.cs" />
+    <Compile Include="RdlProperties\PropertyBackground.cs" />
     <Compile Include="FontCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PropertyAppearance.cs" />
-    <Compile Include="PropertyBorder.cs" />
-    <Compile Include="PropertyRectangle.cs" />
-    <Compile Include="PropertyVisibility.cs" />
+    <Compile Include="RdlProperties\PropertyAppearance.cs" />
+    <Compile Include="RdlProperties\PropertyBorder.cs" />
+    <Compile Include="RdlProperties\PropertyRectangle.cs" />
+    <Compile Include="RdlProperties\PropertyVisibility.cs" />
     <Compile Include="RdlDesigner.Designer.cs">
       <DependentUpon>RdlDesigner.cs</DependentUpon>
     </Compile>
@@ -508,15 +538,15 @@
     <Compile Include="VisibilityCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PropertyAction.cs" />
-    <Compile Include="PropertyPrintFirstLast.cs" />
-    <Compile Include="PropertyMargin.cs" />
-    <Compile Include="PropertyPadding.cs" />
-    <Compile Include="PropertyLocation.cs" />
-    <Compile Include="PropertySize.cs" />
-    <Compile Include="PropertyExpr.cs" />
-    <Compile Include="PropertyTextbox.cs" />
-    <Compile Include="PropertyReport.cs" />
+    <Compile Include="RdlProperties\PropertyAction.cs" />
+    <Compile Include="RdlProperties\PropertyPrintFirstLast.cs" />
+    <Compile Include="RdlProperties\PropertyMargin.cs" />
+    <Compile Include="RdlProperties\PropertyPadding.cs" />
+    <Compile Include="RdlProperties\PropertyLocation.cs" />
+    <Compile Include="RdlProperties\PropertySize.cs" />
+    <Compile Include="RdlProperties\PropertyExpr.cs" />
+    <Compile Include="RdlProperties\PropertyTextbox.cs" />
+    <Compile Include="RdlProperties\PropertyReport.cs" />
     <Compile Include="PropertyCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -533,7 +563,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DesignCtl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DesignerUtility.cs">
       <SubType>Code</SubType>
@@ -625,7 +655,7 @@
     <Compile Include="PropertyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PropertyReportItem.cs" />
+    <Compile Include="RdlProperties\PropertyReportItem.cs" />
     <Compile Include="QueryParametersCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -988,6 +1018,7 @@
       <Name>RdlViewer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

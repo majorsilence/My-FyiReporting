@@ -29,6 +29,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Text;
+using RdlViewer.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer
@@ -159,7 +160,7 @@ namespace fyiReporting.RdlViewer
         public void FindNext()
         {
             if (_Viewer == null)
-                throw new ApplicationException("Viewer property must be set prior to issuing FindNext.");
+                throw new ApplicationException(Strings.RdlViewerFind_ErrorA_PropertyMustSetPriorFindNext);
 
             if (tbFind.Text.Length == 0)    // must have something to find
                 return;
@@ -177,7 +178,7 @@ namespace fyiReporting.RdlViewer
                     position = _Viewer.Find(tbFind.Text, position, findOptions);
 
                 lStatus.Text = position == null ? 
-                    "Phrase not found" : "Reached end of report, continued from top";
+                    Strings.RdlViewerFind_FindNext_Phrase_not_found : Strings.RdlViewerFind_FindNext_Reached_end_of_report;
 
                 _Viewer.HighlightPageItem = position;
                 if (position != null)
@@ -199,7 +200,7 @@ namespace fyiReporting.RdlViewer
         public void FindPrevious()
         {
             if (_Viewer == null)
-                throw new ApplicationException("Viewer property must be set prior to issuing FindPrevious.");
+                throw new ApplicationException(Strings.RdlViewerFind_ErrorA_PropertyMustSetPriorFindPrevious);
 
             if (tbFind.Text.Length == 0)    // must have something to find
                 return;
@@ -215,7 +216,7 @@ namespace fyiReporting.RdlViewer
                     position = _Viewer.Find(tbFind.Text, position, findOptions);
 
                 lStatus.Text = position == null ?
-                    "Phrase not found" : "Reached top of report, continued from end";
+					Strings.RdlViewerFind_FindNext_Phrase_not_found : Strings.RdlViewerFind_FindPrevious_Reached_top_of_report;
 
                 _Viewer.HighlightPageItem = position;
                 if (position != null)

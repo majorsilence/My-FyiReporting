@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Text;
 using System.Xml;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -266,18 +267,18 @@ namespace fyiReporting.RdlDesign
             string ctype = cbChartType.Text.ToLowerInvariant();
             if (cbChartData.Text.Length == 0 && lbChartSeries.Items.Count == 0) //Added second condition 05122007GJL
             {
-                MessageBox.Show("Please fill out the chart data expression, or include a series.");
+                MessageBox.Show(Strings.DialogNewChart_ShowC_FillExpression);
                 bFail = true;
             }
             else if (ctype == "scatter" && cbChartData2.Text.Length == 0 && lbChartSeries.Items.Count == 0)
             {
-                MessageBox.Show("Please fill out the chart Y coordinate data expression.");
+                MessageBox.Show(Strings.DialogNewChart_ShowC_FillYExpression);
                 bFail = true;
 
             }
             else if (ctype == "bubble" && (cbChartData2.Text.Length == 0 || cbChartData3.Text.Length == 0))
             {
-                MessageBox.Show("Please fill out the chart Y coordinate and Bubble width expressions.");
+                MessageBox.Show(Strings.DialogNewChart_ShowC_FillYAndBubbleExpressions);
                 bFail = true;
             }
             if (bFail)

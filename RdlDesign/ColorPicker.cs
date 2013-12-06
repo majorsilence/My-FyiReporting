@@ -1,3 +1,4 @@
+using System.Drawing;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -20,32 +21,35 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
 using System.Windows.Forms;
-using System.Drawing;
-using System.ComponentModel;
 
 namespace fyiReporting.RdlDesign
 {
+	/// <summary>
+	/// It's very crazy control. Need replace it. TODO
+	/// </summary>
     public class ColorPicker : ComboBox
     { 
         private const int RECTCOLOR_LEFT = 4;
         private const int RECTCOLOR_TOP = 2;
         private const int RECTCOLOR_WIDTH = 10;
-        private const int RECTTEXT_MARGIN = 5;
-        private const int RECTTEXT_LEFT = RECTCOLOR_LEFT + RECTCOLOR_WIDTH + RECTTEXT_MARGIN;
         ColorPickerPopup _DropListBox;
 
         public ColorPicker()
         {
-            this.DrawMode = DrawMode.OwnerDrawFixed;
-            this.DropDownStyle = ComboBoxStyle.DropDownList; // DropDownList
-            this.DropDownHeight = 1;
-            this.Items.AddRange(StaticLists.ColorList);
+            DrawMode = DrawMode.OwnerDrawFixed;
+            DropDownStyle = ComboBoxStyle.DropDownList; // DropDownList
+            DropDownHeight = 1;
             Font = new Font("Arial", 8, FontStyle.Bold | FontStyle.Italic);
 
             _DropListBox = new ColorPickerPopup(this);
+
+			if (!DesignMode)
+			{
+				Items.AddRange(StaticLists.ColorList);
+			}
         }
+
         public override string Text
         {
             get
