@@ -114,8 +114,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="PropertyLine.cs" />
-    <Compile Include="PropertyPolygon.cs" />
+    <Compile Include="RdlProperties\PropertyLine.cs" />
+    <Compile Include="RdlProperties\PropertyPolygon.cs" />
     <Compile Include="DesignXmlDraw.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,8 +125,8 @@
     <Compile Include="MapFile.Designer.cs">
       <DependentUpon>MapFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyBase.cs" />
-    <Compile Include="PropertyText.cs" />
+    <Compile Include="RdlProperties\PropertyBase.cs" />
+    <Compile Include="RdlProperties\PropertyText.cs" />
     <Compile Include="RdlMapFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DialogAbout.ru-RU.resx">

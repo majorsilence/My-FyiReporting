@@ -38,7 +38,7 @@ namespace fyiReporting.RdlMapFile
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    [DefaultPropertyAttribute("Text")]
+    [DefaultProperty("Text")]
     internal class PropertyBase
     {
    		private DesignXmlDraw _Draw;
