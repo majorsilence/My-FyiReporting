@@ -109,6 +109,12 @@
     <Compile Include="DialogAbout.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RdlProperties\Categories.Designer.cs">
+      <DependentUpon>Categories.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RdlProperties\RdlCategoryAttribute.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +153,11 @@
     <EmbeddedResource Include="DialogFindByKey.ru-RU.resx">
       <DependentUpon>DialogFindByKey.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Categories.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.ru-RU.resx" />
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>

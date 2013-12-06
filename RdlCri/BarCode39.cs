@@ -174,8 +174,8 @@ namespace fyiReporting.CRI
             {
                 _code39 = ns;
             }
-            [CategoryAttribute("Code"),
-               DescriptionAttribute("The text string to be encoded as a BarCode39 Code.")]
+            [Category("Code"),
+               Description("The text string to be encoded as a BarCode39 Code.")]
             public string Code
             {
                 get { return _code39; }

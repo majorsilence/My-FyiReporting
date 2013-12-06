@@ -173,8 +173,8 @@ namespace fyiReporting.CRI
             {
                 _codeEan8 = ns;
             }
-            [CategoryAttribute("Code"),
-               DescriptionAttribute("The text string to be encoded as a BarCodeEAN8 Code.")]
+            [Category("Code"),
+               Description("The text string to be encoded as a BarCodeEAN8 Code.")]
             public string Code
             {
                 get { return _codeEan8; }

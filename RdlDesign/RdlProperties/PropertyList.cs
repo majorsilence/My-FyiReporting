@@ -45,8 +45,8 @@ namespace fyiReporting.RdlDesign
             : base(d, dc, ris)
         {
         }
-        [CategoryAttribute("List"),
-            DescriptionAttribute("Grouping data allows each repeated list region to represent a summarization of the rows in the group.")]
+        [RdlCategory("List"),
+            Description("Grouping data allows each repeated list region to represent a summarization of the rows in the group.")]
         public PropertyGrouping Grouping
         {
             get
@@ -54,8 +54,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyGrouping(this);
             }
         }
-        [CategoryAttribute("List"),
-            DescriptionAttribute("Sorting controls the order of the repeated list regions.")]
+		[RdlCategory("List"),
+            Description("Sorting controls the order of the repeated list regions.")]
         public PropertySorting Sorting
         {
             get
@@ -64,8 +64,8 @@ namespace fyiReporting.RdlDesign
             }
         }
         #region XML
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The name to use for the data element for each instance of this list when exporting to XML.")]
+        [RdlCategory("XML"),
+   Description("The name to use for the data element for each instance of this list when exporting to XML.")]
         public string DataInstanceName
         {
             get
@@ -77,8 +77,8 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataInstanceName", value);
             }
         }
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("Determines whether list instances appear in the XML.")]
+        [RdlCategory("XML"),
+   Description("Determines whether list instances appear in the XML.")]
         public DataInstanceElementOutputEnum DataInstanceElementOutput
         {
             get

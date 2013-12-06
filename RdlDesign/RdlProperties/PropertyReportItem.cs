@@ -37,7 +37,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     //[PropertyTab(typeof(PropertyTableTab), PropertyTabScope.Component),
     //  DefaultPropertyAttribute("Name")]
-    [DefaultPropertyAttribute("Name")]
+    [DefaultProperty("Name")]
     internal class PropertyReportItem : ICustomTypeDescriptor, IReportItem 
     {
    		private DesignXmlDraw _Draw;
@@ -96,9 +96,9 @@ namespace fyiReporting.RdlDesign
         }
  
         #region Design
-        [CategoryAttribute("Design"),
+        [RdlCategory("Design"),
            ParenthesizePropertyName(true),
-           DescriptionAttribute("The unique name of the report item.")]
+           Description("The unique name of the report item.")]
         public string Name
         {
             get
@@ -113,8 +113,8 @@ namespace fyiReporting.RdlDesign
 #endregion
         
         #region Style
-        [CategoryAttribute("Style"), 
-          DescriptionAttribute("Defines the border of the report item.")]
+        [RdlCategory("Style"), 
+          Description("Defines the border of the report item.")]
         public PropertyBorder Border
         {
             get
@@ -122,8 +122,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyBorder(this);
             }
         }
-        [CategoryAttribute("Style"),
-           DescriptionAttribute("Controls the padding expressions")]
+        [RdlCategory("Style"),
+           Description("Controls the padding expressions")]
         public PropertyPadding Padding
         {
             get
@@ -131,8 +131,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyPadding(this);
             }
         }
-        [CategoryAttribute("Style"),
-           DescriptionAttribute("Controls the background expressions")]
+        [RdlCategory("Style"),
+           Description("Controls the background expressions")]
         public PropertyBackground Background
         {
             get
@@ -142,8 +142,8 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
         #region Behavior
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
+        [RdlCategory("Behavior"),
+           Description("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
         public PropertyAction Action
         {
             get
@@ -151,8 +151,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyAction(this);
             }
         }
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
+        [RdlCategory("Behavior"),
+           Description("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
         public PropertyExpr Bookmark
         {
             get
@@ -166,8 +166,8 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [CategoryAttribute("Behavior"),
-           DescriptionAttribute("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
+        [RdlCategory("Behavior"),
+           Description("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
         public PropertyExpr ToolTip
         {
             get 
@@ -181,8 +181,8 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [CategoryAttribute("Behavior"),
-          DescriptionAttribute("Defines the visibility of the item.")]
+        [RdlCategory("Behavior"),
+          Description("Defines the visibility of the item.")]
         public PropertyVisibility Visibility
         {
             get
@@ -193,8 +193,8 @@ namespace fyiReporting.RdlDesign
         #endregion
          
         #region XML
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The name to use for the element or attribute when exporting to XML.")]
+        [RdlCategory("XML"),
+   Description("The name to use for the element or attribute when exporting to XML.")]
         public string DataElementName
         {
             get
@@ -206,8 +206,8 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataElementName", value);
             }
         }
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("When rendering XML determines how or whether the item appears in the XML.")]
+        [RdlCategory("XML"),
+   Description("When rendering XML determines how or whether the item appears in the XML.")]
         public DataElementOutputEnum DataElementOutput
         {
             get
@@ -221,8 +221,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Drawing order of the report item.")]
+        [RdlCategory("Layout"),
+   Description("Drawing order of the report item.")]
         public int ZIndex
         {
             get
@@ -246,8 +246,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Report item can span multiple columns.")]
+        [RdlCategory("Layout"),
+   Description("Report item can span multiple columns.")]
         public int ColumnSpan
         {
             get
@@ -275,8 +275,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Height and width of the report item.")]
+        [RdlCategory("Layout"),
+   Description("Height and width of the report item.")]
         public PropertySize Size
         {
             get
@@ -286,8 +286,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertySize(this, h, w);
             }
         }
-        [CategoryAttribute("Layout"),
-   DescriptionAttribute("Location of the report item.")]
+        [RdlCategory("Layout"),
+   Description("Location of the report item.")]
         public PropertyLocation Location
         {
             get
@@ -301,8 +301,8 @@ namespace fyiReporting.RdlDesign
         #endregion
 
         #region Table
-        [CategoryAttribute("Table"), 
-            DescriptionAttribute("Table report item properties.")]
+        [RdlCategory("Table"), 
+            Description("Table report item properties.")]
         public PropertyTable Table
         {
             get
@@ -318,8 +318,8 @@ namespace fyiReporting.RdlDesign
         #endregion
 
 #region Matrix
-        [CategoryAttribute("Matrix"),
-            DescriptionAttribute("Matrix report item properties.")]
+        [RdlCategory("Matrix"),
+            Description("Matrix report item properties.")]
         public PropertyMatrix Matrix
         {
             get

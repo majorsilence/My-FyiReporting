@@ -481,8 +481,8 @@ namespace fyiReporting.CRI
             {
                 _NumberSystem = ns;
             }
-            [CategoryAttribute("BarCode"),
-               DescriptionAttribute("The Number System consists of two (sometimes three) digits which identifies the country or region numbering authority which assigned the manufacturer code.")]
+            [Category("BarCode"),
+               Description("The Number System consists of two (sometimes three) digits which identifies the country or region numbering authority which assigned the manufacturer code.")]
             public string NumberSystem
             {
                 get { return _NumberSystem; }
@@ -493,8 +493,8 @@ namespace fyiReporting.CRI
             {
                 _ManufacturerCode = mc;
             }
-            [CategoryAttribute("BarCode"),
-              DescriptionAttribute("Manufacturer Code is a unique 5 digit code assiged by numbering authority indicated by the number system code.")]
+            [Category("BarCode"),
+              Description("Manufacturer Code is a unique 5 digit code assiged by numbering authority indicated by the number system code.")]
             public string ManufacturerCode
             {
                 get { return _ManufacturerCode; }
@@ -505,8 +505,8 @@ namespace fyiReporting.CRI
             {
                 _ProductCode = pc;
             }
-            [CategoryAttribute("BarCode"),
-              DescriptionAttribute("Product Code is a unique 5 digit code assigned by the manufacturer.")]
+            [Category("BarCode"),
+              Description("Product Code is a unique 5 digit code assigned by the manufacturer.")]
             public string ProductCode
             {
                 get { return _ProductCode; }

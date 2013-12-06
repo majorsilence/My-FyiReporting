@@ -38,7 +38,7 @@ namespace fyiReporting.RdlDesign
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
     /// </summary>
-    [DefaultPropertyAttribute("Author")]
+    [DefaultProperty("Author")]
     internal class PropertyReport
     {
    		private DesignXmlDraw _Draw;
@@ -65,22 +65,22 @@ namespace fyiReporting.RdlDesign
             get { return _Draw.GetReportNode(); }
         }
 
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The author of the report")]
+        [RdlCategory("Report"),
+           Description("The author of the report")]
         public string Author
         {
             get {return GetReportValue("Author"); }
             set{SetReportValue("Author", value); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The description of the report")]
+        [RdlCategory("Report"),
+           Description("The description of the report")]
         public string Description
         {
             get { return GetReportValue("Description"); }
             set { SetReportValue("Description", value); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The width of the report.")]
+        [RdlCategory("Report"),
+           Description("The width of the report.")]
         public string Width
         {
             get { return GetReportValue("Width"); }
@@ -91,27 +91,27 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Parameters defined in the report.")]
+        [RdlCategory("Report"),
+           Description("Parameters defined in the report.")]
         public PropertyReportParameters Parameters
         {
             get { return new PropertyReportParameters(this); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Basic functions defined for use in the report.")]
+        [RdlCategory("Report"),
+           Description("Basic functions defined for use in the report.")]
         public PropertyReportCode Code
         {
             get { return new PropertyReportCode(this); }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("Modules and instances of classes for use in the report.")]
+        [RdlCategory("Report"),
+           Description("Modules and instances of classes for use in the report.")]
         public PropertyReportModulesClasses ModulesClasses
         {
             get { return new PropertyReportModulesClasses(this); }
         }
 
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The width of the page.")]
+        [RdlCategory("Report"),
+           Description("The width of the page.")]
         public string PageWidth
         {
             get { return GetReportValue("PageWidth"); }
@@ -123,8 +123,8 @@ namespace fyiReporting.RdlDesign
                 DesignCtl.SetScrollControls();          // this will force ruler and scroll bars to be updated
             }
         }
-        [CategoryAttribute("Report"),
-           DescriptionAttribute("The height of the page.")]
+        [RdlCategory("Report"),
+           Description("The height of the page.")]
         public string PageHeight
         {
             get { return GetReportValue("PageHeight"); }
@@ -134,9 +134,9 @@ namespace fyiReporting.RdlDesign
                 SetReportValue("PageHeight", value);
             }
         }
-        [CategoryAttribute("Report"),
+        [RdlCategory("Report"),
         DisplayName("Page Margins"),
-   DescriptionAttribute("Page margins for the report.")]
+   Description("Page margins for the report.")]
         public PropertyMargin Margins
         {
             get
@@ -145,8 +145,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Report"),
-   DescriptionAttribute("PageHeader options for the report.")]
+        [RdlCategory("Report"),
+   Description("PageHeader options for the report.")]
         public PropertyPrintFirstLast PageHeader
         {
             get
@@ -156,8 +156,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Report"),
-   DescriptionAttribute("PageFooter options for the report.")]
+        [RdlCategory("Report"),
+   Description("PageFooter options for the report.")]
         public PropertyPrintFirstLast PageFooter
         {
             get
@@ -167,8 +167,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Height of the body region.")]
+        [RdlCategory("Body"),
+   Description("Height of the body region.")]
         public string BodyHeight
         {
             get
@@ -183,8 +183,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Number of columns in the body region.")]
+        [RdlCategory("Body"),
+   Description("Number of columns in the body region.")]
         public int BodyColumns
         {
             get
@@ -207,8 +207,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("Body"),
-   DescriptionAttribute("Spacing between columns.")]
+        [RdlCategory("Body"),
+   Description("Spacing between columns.")]
         public string BodyColumnSpacing
         {
             get
@@ -229,8 +229,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("XSL file to use to transform XML after rendering."),
+        [RdlCategory("XML"),
+   Description("XSL file to use to transform XML after rendering."),
         Editor(typeof(FileUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string DataTransform
         {
@@ -238,25 +238,25 @@ namespace fyiReporting.RdlDesign
             set { SetReportValue("DataTransform", value); }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The schema or namespace to specify when rendering XML.")]
+        [RdlCategory("XML"),
+   Description("The schema or namespace to specify when rendering XML.")]
         public string DataSchema
         {
             get { return GetReportValue("DataSchema"); }
             set { SetReportValue("DataSchema", value); }
         }
 
-        [CategoryAttribute("XML"),
-   DescriptionAttribute("The top level element name used when rendering XML.")]
+        [RdlCategory("XML"),
+   Description("The top level element name used when rendering XML.")]
         public string DataElementName
         {
             get { return GetReportValue("DataElementName"); }
             set { SetReportValue("DataElementName", value); }
         }
 
-        [CategoryAttribute("XML"),
+        [RdlCategory("XML"),
        TypeConverter(typeof(ElementStyleConverter)),
-   DescriptionAttribute("Element style is either Attribute or Element.")]
+   Description("Element style is either Attribute or Element.")]
         public string DataElementStyle
         {
             get { return GetReportValue("DataElementStyle", "AttributeNormal"); }

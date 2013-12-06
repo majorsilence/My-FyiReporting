@@ -40,8 +40,8 @@ namespace fyiReporting.RdlDesign
         internal PropertyDataRegion(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [CategoryAttribute("DataRegion"), 
-        DescriptionAttribute("Message to display if no rows available.")]
+        [RdlCategory("DataRegion"), 
+        Description("Message to display if no rows available.")]
         public PropertyExpr NoRows
         {
             get { return new PropertyExpr(this.GetValue("NoRows", "")); }
@@ -53,8 +53,8 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("NoRows", value.Expression);
             }
         }
-        [CategoryAttribute("DataRegion"),
-        DescriptionAttribute("Keep data region on one page if possible.")]
+        [RdlCategory("DataRegion"),
+        Description("Keep data region on one page if possible.")]
         public bool KeepTogether
         {
             get { return this.GetValue("KeepTogether", "True").ToLower().Trim() == "true"; }
@@ -63,8 +63,8 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("KeepTogether", value);
             }
         }
-        [CategoryAttribute("DataRegion"), TypeConverter(typeof(DataSetsConverter)),
-        DescriptionAttribute("Specifies which data set to use.")]
+        [RdlCategory("DataRegion"), TypeConverter(typeof(DataSetsConverter)),
+        Description("Specifies which data set to use.")]
         public string DataSetName
         {
             get { return this.GetValue("DataSetName", ""); }
@@ -76,8 +76,8 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("DataSetName", value);
             }
         }
-        [CategoryAttribute("DataRegion"),
-        DescriptionAttribute("Cause a page break before rendering.")]
+        [RdlCategory("DataRegion"),
+        Description("Cause a page break before rendering.")]
         public bool PageBreakAtStart
         {
             get { return this.GetValue("PageBreakAtStart", "True").ToLower().Trim() == "true"; }
@@ -86,8 +86,8 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtStart", value);
             }
         }
-        [CategoryAttribute("DataRegion"),
-        DescriptionAttribute("Cause a page break after rendering.")]
+        [RdlCategory("DataRegion"),
+        Description("Cause a page break after rendering.")]
         public bool PageBreakAtEnd
         {
             get { return this.GetValue("PageBreakAtEnd", "True").ToLower().Trim() == "true"; }
@@ -96,8 +96,8 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtEnd", value);
             }
         }
-        [CategoryAttribute("DataRegion"),
-                   DescriptionAttribute("Filters to apply to each row of data in data region.")]
+        [RdlCategory("DataRegion"),
+                   Description("Filters to apply to each row of data in data region.")]
         public PropertyFilters Filters
         {
             get
@@ -105,8 +105,8 @@ namespace fyiReporting.RdlDesign
                 return new PropertyFilters(this);
             }
         }
-        [CategoryAttribute("Style"),
-                   DescriptionAttribute("Font, color, alignment, ... of NoRows text.")]
+        [RdlCategory("Style"),
+                   Description("Font, color, alignment, ... of NoRows text.")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(this); }
