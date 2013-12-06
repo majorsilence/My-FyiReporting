@@ -23,6 +23,7 @@
 
 using System;
 using System.Drawing;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -83,10 +84,10 @@ namespace fyiReporting.RDL
 				{
 					int w = _Width - _LeftMargin - _RightMargin;
 					if (w <= 0)
-						throw new Exception("Plot area width is less than or equal to 0");
+						throw new Exception(Strings.ChartLayout_Error_PlotAreaWidthIs0);
 					int h =_Height - _TopMargin - _BottomMargin;
 					if (h <= 0)
-						throw new Exception("Plot area height is less than or equal to 0");
+						throw new Exception(Strings.ChartLayout_Error_PlotAreaHeightIs0);
 				
 					_PlotArea = new System.Drawing.Rectangle(_LeftMargin, _TopMargin, w, h); 
 				}

@@ -28,6 +28,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
+using RdlViewer.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer
@@ -419,8 +420,8 @@ namespace fyiReporting.RdlViewer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format("Unable to link to {0}{1}{2}",
-                        hle.pi.HyperLink, Environment.NewLine, ex.Message), "HyperLink Error");
+                    MessageBox.Show(string.Format("{3} {0}{1}{2}",
+                        hle.pi.HyperLink, Environment.NewLine, ex.Message, Strings.PageDrawing_OnMouseDown_UnableLink), Strings.PageDrawing_OnMouseDown_HyperLinkError);
                 }
             }
         }

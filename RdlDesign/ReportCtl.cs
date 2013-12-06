@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Drawing.Printing;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -184,7 +185,7 @@ namespace fyiReporting.RdlDesign
             catch (Exception ex)
             {
                 e.Cancel = true;
-                MessageBox.Show(string.Format("Size value of {0} is invalid.\r\n", tb.Text, ex.Message), tb.Tag + " Field Invalid");
+                MessageBox.Show(string.Format(Strings.ReportCtl_Show_SizeInvalid, tb.Text, ex.Message), tb.Tag + " " + Strings.ReportCtl_Show_Field_Invalid);
             }
         }
 

@@ -25,7 +25,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -67,7 +67,7 @@ namespace fyiReporting.RDL
 			{
 				string o = _ArgExpr.EvaluateString(null, null);
 				if (o == null)
-					throw new Exception("Globals collection argument is null"); 
+					throw new Exception(Strings.FunctionGlobalCollection_Error_GlobalsNull); 
 				switch (o.ToLower())
 				{
 					case "pagenumber":
@@ -81,7 +81,7 @@ namespace fyiReporting.RDL
 					case "reportname":
 						return new FunctionReportName();
 					default:
-						throw new Exception(string.Format("Globals collection argument '{0}' is unknown.", o)); 
+						throw new Exception(string.Format(Strings.FunctionGlobalCollection_Error_GlobalsUnknown, o)); 
 				}
 			}
 

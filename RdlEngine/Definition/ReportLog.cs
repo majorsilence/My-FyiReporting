@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using RdlEngine.Resources;
 
 
 namespace fyiReporting.RDL
@@ -66,14 +67,12 @@ namespace fyiReporting.RDL
 			if (severity > _MaxSeverity)
 				_MaxSeverity = severity;
 
-			string msg = "Severity: " + Convert.ToString(severity) + " - " + item;
+			var msg = Strings.ReportLog_Error_Severity + ": " + Convert.ToString(severity) + " - " + item;
 
 			_ErrorItems.Add(msg);
 
 			if (severity >= 12)		
 				throw new Exception(msg);		// terminate the processing
-
-			return;
 		}
 
 		internal void LogError(int severity, List<string> list)
@@ -85,8 +84,6 @@ namespace fyiReporting.RDL
 				_MaxSeverity = severity;
 
 			_ErrorItems.AddRange(list);
-
-			return;
 		}
 
 		internal void Reset()

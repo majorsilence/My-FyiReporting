@@ -31,6 +31,7 @@ using System.Drawing.Design;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -99,7 +100,7 @@ namespace fyiReporting.RdlMapFile
                 string family = value.FontFamily.GetName(0);
                 string fs = string.Format(NumberFormatInfo.InvariantInfo, "{0}", value.SizeInPoints);
 
-                Draw.StartUndoGroup("Font change");
+                Draw.StartUndoGroup(Strings.PropertyText_Undo_FontChange);
                 XmlNode xn = Draw.SelectedItem;
                 foreach (XmlNode n in Draw.SelectedList)
                 {

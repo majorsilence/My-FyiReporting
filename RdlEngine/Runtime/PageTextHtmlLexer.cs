@@ -25,6 +25,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -415,7 +416,7 @@ namespace fyiReporting.RDL
 			{
 				--ptr;
 				if (ptr < 0) 
-					throw new Exception("error : ungetted first char");
+					throw new Exception(Strings.CharReader_Error_FileReaderUnGetFirstChar);
 			
 				char ch = file[ptr];
 			}

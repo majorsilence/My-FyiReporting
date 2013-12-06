@@ -29,6 +29,7 @@ using System.Threading;
 using System.Xml;
 using System.Collections;
 using System.Reflection;
+using fyiReporting.RdlDesktop.Resources;
 
 
 namespace fyiReporting.RdlDesktop
@@ -250,7 +251,7 @@ namespace fyiReporting.RdlDesktop
 					}
 				}
 				if (sr == null)			// no server root specified?
-					throw new Exception("'serverroot' must be specified in the config.xml file.");
+					throw new Exception(Strings.RdlDesktop_Error_ServerrootMustSpecified);
 			}
 			catch (Exception ex)
 			{		// Didn't sucessfully get the startup state don't use

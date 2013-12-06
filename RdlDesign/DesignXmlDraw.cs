@@ -32,6 +32,7 @@ using System.Xml;
 using System.Globalization;
 using System.Net;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -317,9 +318,9 @@ namespace fyiReporting.RdlDesign
 						rir = GetRectMatrix(xNodeLoop, r);
 						break;
 				}
-				if (xNodeLoop == this._RectNode)
+				if (xNodeLoop == _RectNode)
 				{
-					this._GetRect = rir;
+					_GetRect = rir;
 					throw new Exception("found it!");
 				}
 			}
@@ -936,7 +937,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode xNode = rDoc.LastChild;
 			if (xNode == null || xNode.Name != "Report")
 			{
-				throw new Exception("RDL doesn't contain a report element.");
+				throw new Exception(Strings.DesignXmlDraw_Error_NoReport);
 			}
 
 			ProcessReport(xNode);
@@ -945,9 +946,10 @@ namespace fyiReporting.RdlDesign
             DrawMargins(_clip); 
 
 			float yLoc=0;
-			yLoc += DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, "Page Header \x2191");
-			yLoc += DrawReportPrimaryRegions(bodyNode, LEFTGAP, yLoc, "Body \x2191");
-			yLoc += DrawReportPrimaryRegions(pfNode, LEFTGAP, yLoc, "Page Footer \x2191");
+			
+			yLoc += DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageHeaderRegion_Title);
+			yLoc += DrawReportPrimaryRegions(bodyNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_BodyRegion_Title);
+			yLoc += DrawReportPrimaryRegions(pfNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageFooterRegion_Title);
 
 		}
 
@@ -3145,9 +3147,9 @@ namespace fyiReporting.RdlDesign
 			foreach (XmlNode item in pitems.ChildNodes)
 			{
 				if (this.IsDataRegion(item))
-					throw new Exception("You can't paste a DataRegion into a page header or footer");
+					throw new Exception(Strings.DesignXmlDraw_Error_DataRegionIntoHeaderFooter);
 				if (item.Name == "Subreport")
-					throw new Exception("You can't paste a Subreport into a page header or footer");
+					throw new Exception(Strings.DesignXmlDraw_Error_SubreportIntoHeaderFooter);
 				XmlNode ritems = this.GetNamedChildNode(item, "ReportItems");
 				if (ritems != null)
 					PasteValidateRecurse(ritems);
@@ -3187,7 +3189,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(e.Message, "XML is Invalid");
+				MessageBox.Show(e.Message, Strings.DesignXmlDraw_Show_XMLInvalid);
 				return null;
 			}
 

@@ -28,6 +28,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -200,7 +201,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "Height is Invalid");
+				MessageBox.Show(ex.Message, Strings.TableRowCtl_Show_HeightInvalid);
 				return false;
 			}
 
@@ -220,7 +221,7 @@ namespace fyiReporting.RdlDesign
 							case "false":
 								break;
 							default:
-								MessageBox.Show(String.Format("{0} must be an expression or 'true' or 'false'", tbHidden.Text), "Hidden is Invalid");
+								MessageBox.Show(String.Format(Strings.TableRowCtl_Show_ExpressionTrueFalse, tbHidden.Text), Strings.TableRowCtl_Show_HiddenInvalid);
 								return false;
 						}
 					}

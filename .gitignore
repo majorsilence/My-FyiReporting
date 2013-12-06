@@ -1,3 +1,8 @@
+*/bin/
+*/obj/
+*/*/bin/
+*/*/obj/
+*.user
 /RdlViewer/RdlViewer.userprefs
 /RdlViewer/RdlReader/bin/Debug/RdlEngineConfig.Linux.xml
 /Examples/SampleCrossPlatformViewer/SampleCrossPlatformViewer.userprefs

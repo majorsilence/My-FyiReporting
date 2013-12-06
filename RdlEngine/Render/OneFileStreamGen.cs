@@ -24,6 +24,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 using System.IO;
 
@@ -120,7 +121,7 @@ namespace fyiReporting.RDL
 				if (_Overwrite)
 					fi.Delete();
 				else
-					throw new Exception(string.Format("File {0} already exists.", filename));
+					throw new Exception(string.Format(Strings.OneFileStreamGen_Error_FileAlreadyExists, filename));
 			}
 
 			relativeName = Path.GetFileName(filename);

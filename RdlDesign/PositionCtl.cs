@@ -28,6 +28,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -87,7 +88,7 @@ namespace fyiReporting.RdlDesign
 
 			if (_ReportItems.Count > 1)
 			{
-				tbName.Text = "Group Selected";
+				tbName.Text = Strings.PositionCtl_InitValues_GroupSelected;
 				tbName.Enabled = false;
 				lblColSpan.Visible = tbColSpan.Visible = false;
 			}
@@ -411,7 +412,7 @@ namespace fyiReporting.RdlDesign
 				string nerr = _Draw.NameError(ri, this.tbName.Text);
 				if (nerr != null)
 				{
-					MessageBox.Show(nerr, "Name");
+					MessageBox.Show(nerr, Strings.PositionCtl_Show_Name);
 					return false;
 				}
 			}
@@ -421,28 +422,28 @@ namespace fyiReporting.RdlDesign
 				bool bMinus= ri.Name == "Line" && tbName.Enabled? true: false;
 				if (fLeft)
 				{
-					name = "Left";
+					name = Strings.PositionCtl_Show_Left;
 					DesignerUtility.ValidateSize(this.tbLeft.Text, true, false);
 				}
 				if (fTop)
 				{
-					name = "Top";
+					name = Strings.PositionCtl_Show_Top;
 					DesignerUtility.ValidateSize(this.tbTop.Text, true, false);
 				}
 				if (fWidth)
 				{
-					name = "Width";
+					name = Strings.PositionCtl_Show_Width;
 					DesignerUtility.ValidateSize(this.tbWidth.Text, true, bMinus);
 				}
 				if (fHeight)
 				{
-					name = "Height";
+					name = Strings.PositionCtl_Show_Height;
 					DesignerUtility.ValidateSize(this.tbHeight.Text, true, bMinus);
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, name + " Size is Invalid");
+				MessageBox.Show(ex.Message, name + " " + Strings.PositionCtl_Show_SizeInvalid);
 				return false;
 			}
 
@@ -566,7 +567,7 @@ namespace fyiReporting.RdlDesign
 			if (err != null)
 			{
 				e.Cancel = true;
-				MessageBox.Show(string.Format("{0} is invalid.  {1}", tbName.Text, err), "Name");
+				MessageBox.Show(string.Format(Strings.PositionCtl_Show_Invalid, tbName.Text, err), Strings.PositionCtl_Show_Name);
 				return;
 			}
 		}

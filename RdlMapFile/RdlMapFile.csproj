@@ -109,6 +109,11 @@
     <Compile Include="DialogAbout.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="PropertyLine.cs" />
     <Compile Include="PropertyPolygon.cs" />
     <Compile Include="DesignXmlDraw.cs">
@@ -142,6 +147,11 @@
     <EmbeddedResource Include="DialogFindByKey.ru-RU.resx">
       <DependentUpon>DialogFindByKey.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
     <EmbeddedResource Include="MapFile.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MapFile.cs</DependentUpon>
@@ -205,6 +215,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

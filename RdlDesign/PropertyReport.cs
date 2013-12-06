@@ -31,6 +31,7 @@ using System.Drawing.Design;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -274,7 +275,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             XmlNode bNode = _Draw.GetNamedChildNode(rNode, "Body");
-            _DesignCtl.StartUndoGroup("Body " + l + " change");
+            _DesignCtl.StartUndoGroup(Strings.PropertyReport_Undo_Body + " " + l + " " + Strings.PropertyReport_Undo_change);
             _Draw.SetElement(bNode, l, v);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -285,7 +286,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             XmlNode bNode = _Draw.GetNamedChildNode(rNode, "Body");
-            _DesignCtl.StartUndoGroup("Body " + l + " change");
+			_DesignCtl.StartUndoGroup(Strings.PropertyReport_Undo_Body + " " + l + " " + Strings.PropertyReport_Undo_change);
             _Draw.RemoveElement(bNode, l);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -307,7 +308,7 @@ namespace fyiReporting.RdlDesign
         {
             XmlNode rNode = _Draw.GetReportNode();
             
-            _DesignCtl.StartUndoGroup(l + " change");
+            _DesignCtl.StartUndoGroup(l + " " + Strings.PropertyReport_Undo_change);
             _Draw.SetElement(rNode, l, v);
             _DesignCtl.EndUndoGroup(true);
 

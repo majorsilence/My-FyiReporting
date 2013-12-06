@@ -28,6 +28,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -310,10 +311,10 @@ namespace fyiReporting.RdlDesign
   
 		public bool IsValid()
 		{
-			if (this.chkDetails.Checked || this.chkFooterRows.Checked || this.chkHeaderRows.Checked)
+			if (chkDetails.Checked || chkFooterRows.Checked || chkHeaderRows.Checked)
 				return true;
 
-			MessageBox.Show("Table must have at least one Header, Details or Footer row defined.", "Table");
+			MessageBox.Show(Strings.TableCtl_Show_TableMustHaveRegions, Strings.TableCtl_Show_Table);
 
 			return false;
 		}

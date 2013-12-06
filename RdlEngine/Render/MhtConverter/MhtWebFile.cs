@@ -32,6 +32,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -395,8 +396,8 @@ namespace fyiReporting.RDL
 		/// </summary>
 		public void ConvertReferencesToLocal()
 		{
-			if (!this.IsHtml && !this.IsCss)
-				throw new Exception("Converting references only makes sense for HTML or CSS files; this file is of type '" + this.ContentType + "'");
+			if (!IsHtml && !IsCss)
+				throw new Exception(string.Format(Strings.MhtWebFile_Error_ConvertOnlyHTMLOrCSS, ContentType));
 			
 			// get a list of all external references
 			string html = this.ToString();
@@ -633,7 +634,7 @@ namespace fyiReporting.RDL
 			{
 				string htmlTitle = this.HtmlTitle;
 				if (htmlTitle == "")
-					throw new Exception("No filename was provided, and the HTML title tag was not found, so a filename could not be automatically generated. You'll need to provide a filename and not a folder.");
+					throw new Exception(Strings.MhtWebFile_Error_NoFilename);
 				
 				return Path.Combine(Path.GetDirectoryName(FilePath), MakeValidFilename(htmlTitle, false) + fileExtension);
 			}

@@ -27,6 +27,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Diagnostics;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -523,7 +524,7 @@ namespace fyiReporting.RDL
 			if (wc.RecursiveGroup != null)
 			{
 				if (gea.Count != 1)		// Limitiation of implementation
-					throw new Exception("Error: Recursive groups must be the only group definition.");
+					throw new Exception(Strings.Table_Error_RecursiveGroupsMustOnlyGroupDefinition);
 
 				PrepRecursiveGroup(rpt, wc);	// only one group and it's recursive: optimization 
 				return;

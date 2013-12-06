@@ -36,6 +36,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -160,7 +161,7 @@ namespace fyiReporting.RdlDesign
             }
             catch
             {
-                MessageBox.Show("Unable to open shared connection, password or file is invalid.", "Test Connection");
+                MessageBox.Show(Strings.DesignerUtility_Show_SharedConnectionError, Strings.DesignerUtility_Show_TestConnection);
                 dsr.ResetPassword();			// make sure to prompt again for the password
                 return false;
             }
@@ -204,7 +205,7 @@ namespace fyiReporting.RdlDesign
             }
             catch
             {
-                MessageBox.Show("Unable to open shared connection, password or file is invalid.", "Test Connection");
+                MessageBox.Show(Strings.DesignerUtility_Show_SharedConnectionError, Strings.DesignerUtility_Show_TestConnection);
                 dsr.ResetPassword();			// make sure to prompt again for the password
                 return false;
             }
@@ -304,7 +305,7 @@ namespace fyiReporting.RdlDesign
                 }
                 if (p == null || mc == null || mc.SourceFile == null)
                 {
-                    MessageBox.Show("Unable to locate DataSource Shared file.  Try saving report first");
+                    MessageBox.Show(Strings.DataSetRowsCtl_ShowC_UnableLocateDSR);
                     return false;
                 }
                 Uri filename = new Uri(Path.GetDirectoryName(mc.SourceFile.LocalPath) + Path.DirectorySeparatorChar + dataSourceReference);
@@ -370,11 +371,11 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (SqlException sqle)
 			{
-				MessageBox.Show(sqle.Message, "SQL Error");
+				MessageBox.Show(sqle.Message, Strings.DesignerUtility_Show_SQLError);
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(e.InnerException == null? e.Message:e.InnerException.Message, "Error");
+				MessageBox.Show(e.InnerException == null? e.Message:e.InnerException.Message, Strings.DesignerUtility_Show_Error);
 			}
 			finally
 			{
@@ -424,7 +425,7 @@ namespace fyiReporting.RdlDesign
 				cnSQL = RdlEngineConfig.GetConnection(dataProvider, connection);
 				if (cnSQL == null)
 				{
-					MessageBox.Show(string.Format("Unable to connect using dataProvider '{0}'",dataProvider), "SQL Error");
+					MessageBox.Show(string.Format(Strings.DesignerUtility_Show_ConnectDataProviderError,dataProvider), Strings.DesignerUtility_Show_SQLError);
 					return schemaList;
 				}
 				cnSQL.Open();
@@ -464,11 +465,11 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (SqlException sqle)
 			{
-				MessageBox.Show(sqle.Message, "SQL Error");
+				MessageBox.Show(sqle.Message, Strings.DesignerUtility_Show_SQLError);
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(e.InnerException == null? e.Message: e.InnerException.Message, "Error");
+				MessageBox.Show(e.InnerException == null? e.Message: e.InnerException.Message, Strings.DesignerUtility_Show_Error);
 			}
 			finally
 			{
@@ -630,7 +631,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(e.InnerException == null? e.Message: e.InnerException.Message, "Unable to open connection");
+				MessageBox.Show(e.InnerException == null? e.Message: e.InnerException.Message, Strings.DesignerUtility_Show_OpenConnectionError);
 			}
 			finally
 			{
@@ -667,59 +668,52 @@ namespace fyiReporting.RdlDesign
 		/// <param name="bZero">true if 0 is valid size</param>
 		/// <param name="bMinus">true if minus is allowed</param>
 		/// <returns>Throws exception with the invalid message</returns>
-		static internal void ValidateSize(string t, bool bZero, bool bMinus)
+		internal static void ValidateSize(string t, bool bZero, bool bMinus)
 		{
 			t = t.Trim();
-			if (t.Length == 0)		// not specified is ok?
+			if (t.Length == 0) // not specified is ok?
 				return;
 
 			// Ensure we have valid units
 			if (t.IndexOf("in") < 0 &&
-				t.IndexOf("cm") < 0 &&
-				t.IndexOf("mm") < 0 &&
-				t.IndexOf("pt") < 0 &&
-				t.IndexOf("pc") < 0)
+			    t.IndexOf("cm") < 0 &&
+			    t.IndexOf("mm") < 0 &&
+			    t.IndexOf("pt") < 0 &&
+			    t.IndexOf("pc") < 0)
 			{
-				throw new Exception("Size unit is not valid.  Must be in, cm, mm, pt, or pc.");
+				throw new Exception(Strings.DesignerUtility_Error_SizeUnitInvalid);
 			}
 
-			int space = t.LastIndexOf(' '); 
-			
-			string n="";					// number string
-			string u;						// unit string
-			try		// Convert.ToDecimal can be very picky
+			int space = t.LastIndexOf(' ');
+
+			string n = ""; // number string
+			string u; // unit string
+
+			if (space != -1) // any spaces
 			{
-				if (space != -1)	// any spaces
-				{
-					n = t.Substring(0,space).Trim();	// number string
-					u = t.Substring(space).Trim();	// unit string
-				}
-				else if (t.Length >= 3)
-				{
-					n = t.Substring(0, t.Length-2).Trim();
-					u = t.Substring(t.Length-2).Trim();
-				}
+				n = t.Substring(0, space).Trim(); // number string
+				u = t.Substring(space).Trim(); // unit string
 			}
-			catch (Exception ex)
+			else if (t.Length >= 3)
 			{
-				throw new Exception(ex.Message);
+				n = t.Substring(0, t.Length - 2).Trim();
+				u = t.Substring(t.Length - 2).Trim();
 			}
+
 
 			if (n.Length == 0 || !Regex.IsMatch(n, @"\A[ ]*[-]?[0-9]*[.]?[0-9]*[ ]*\Z"))
 			{
-				throw new Exception("Number format is invalid.  ###.## is the proper form.");
+				throw new Exception(Strings.DesignerUtility_Error_NumberFormatinvalid);
 			}
 
 			float v = DesignXmlDraw.GetSize(t);
 			if (!bZero)
 			{
 				if (v < .1)
-					throw new Exception("Size can't be zero.");
+					throw new Exception(Strings.DesignerUtility_Error_SizeZero);
 			}
 			else if (v < 0 && !bMinus)
-				throw new Exception("Size can't be less than zero.");
-
-			return;
+				throw new Exception(Strings.DesignerUtility_Error_SizeLessZero);
 		}
 
 		static internal string MakeValidSize(string t, bool bZero)

@@ -156,6 +156,11 @@
     <Compile Include="DialogAbout.Designer.cs">
       <DependentUpon>DialogAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="MDIChild.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +184,11 @@
     <Compile Include="ZoomTo.Designer.cs">
       <DependentUpon>ZoomTo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
     <EmbeddedResource Include="ZoomTo.ru-RU.resx">
       <DependentUpon>ZoomTo.cs</DependentUpon>
     </EmbeddedResource>

@@ -118,3278 +118,752 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnX.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="colorPicker1.Items839" xml:space="preserve">
-    <value>Yellowgreen</value>
-  </data>
-  <data name="colorPicker1.Items838" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="colorPicker1.Items480" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="colorPicker1.Items483" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="colorPicker1.Items835" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items834" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="colorPicker1.Items837" xml:space="preserve">
-    <value>Whitesmoke</value>
-  </data>
-  <data name="colorPicker1.Items836" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="colorPicker1.Items831" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items830" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items833" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="colorPicker1.Items832" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items517" xml:space="preserve">
-    <value>Olive</value>
-  </data>
-  <data name="colorPicker1.Items516" xml:space="preserve">
-    <value>Oldlace</value>
-  </data>
-  <data name="colorPicker1.Items511" xml:space="preserve">
-    <value>Mintcream</value>
-  </data>
-  <data name="colorPicker1.Items510" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="colorPicker1.Items513" xml:space="preserve">
-    <value>Moccasin</value>
-  </data>
-  <data name="colorPicker1.Items512" xml:space="preserve">
-    <value>Mistyrose</value>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnDataValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 21</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 12</value>
   </data>
-  <data name="colorPicker1.Items646" xml:space="preserve">
-    <value>Mediumslateblue</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
   </data>
-  <data name="colorPicker1.Items725" xml:space="preserve">
-    <value>Darkgreen</value>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="colorPicker1.Items633" xml:space="preserve">
-    <value>Lightslategrey</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Data Series</value>
   </data>
-  <data name="&gt;&gt;cbPlotType.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="colorPicker1.Items325" xml:space="preserve">
-    <value>Fuchsia</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items667" xml:space="preserve">
-    <value>Peachpuff</value>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="btnDataValue.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt, style=Bold, Italic</value>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>27</value>
   </data>
-  <data name="&gt;&gt;chkShowLabels.Name" xml:space="preserve">
-    <value>chkShowLabels</value>
+  <data name="lbDataSeries.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 28</value>
   </data>
-  <data name="colorPicker1.Items44" xml:space="preserve">
-    <value>Forestgreen</value>
+  <data name="lbDataSeries.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 134</value>
   </data>
-  <data name="colorPicker1.Items665" xml:space="preserve">
-    <value>Palevioletred</value>
+  <data name="lbDataSeries.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="colorPicker1.Items4" xml:space="preserve">
-    <value>Azure</value>
+  <data name="&gt;&gt;lbDataSeries.Name" xml:space="preserve">
+    <value>lbDataSeries</value>
   </data>
-  <data name="btnDown.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+  <data name="&gt;&gt;lbDataSeries.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items292" xml:space="preserve">
-    <value>Burlywood</value>
+  <data name="&gt;&gt;lbDataSeries.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>X Value(Scatter only)</value>
+  <data name="&gt;&gt;lbDataSeries.ZOrder" xml:space="preserve">
+    <value>26</value>
   </data>
-  <data name="colorPicker1.Items102" xml:space="preserve">
-    <value>Palegoldenrod</value>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items592" xml:space="preserve">
-    <value>Darksalmon</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>139, 12</value>
   </data>
-  <data name="colorPicker1.Items287" xml:space="preserve">
-    <value>Black</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
   </data>
-  <data name="btnDataValue.Text" xml:space="preserve">
-    <value>fx</value>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="colorPicker1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 21</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Series Name</value>
   </data>
-  <data name="&gt;&gt;chkRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
   </data>
-  <data name="&gt;&gt;cbLine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnSeriesName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt, style=Bold, Italic</value>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 51</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Data Value</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="chkShowLabels.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkShowLabels.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 132</value>
+  </data>
+  <data name="chkShowLabels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 17</value>
   </data>
   <data name="chkShowLabels.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;colorPicker1.Name" xml:space="preserve">
-    <value>colorPicker1</value>
+  <data name="chkShowLabels.Text" xml:space="preserve">
+    <value>Show Labels?</value>
   </data>
-  <data name="colorPicker1.Items561" xml:space="preserve">
-    <value>Antiquewhite</value>
+  <data name="&gt;&gt;chkShowLabels.Name" xml:space="preserve">
+    <value>chkShowLabels</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Y Axis</value>
+  <data name="&gt;&gt;chkShowLabels.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Line Width</value>
+  <data name="&gt;&gt;chkShowLabels.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;chkShowLabels.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="txtSeriesName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 28</value>
+  </data>
+  <data name="txtSeriesName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 20</value>
+  </data>
+  <data name="txtSeriesName.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtSeriesName.Name" xml:space="preserve">
+    <value>txtSeriesName</value>
+  </data>
+  <data name="&gt;&gt;txtSeriesName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSeriesName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtSeriesName.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="txtLabelValue.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtLabelValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 152</value>
+  </data>
+  <data name="txtLabelValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 20</value>
+  </data>
+  <data name="txtLabelValue.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;txtLabelValue.Name" xml:space="preserve">
+    <value>txtLabelValue</value>
+  </data>
+  <data name="&gt;&gt;txtLabelValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLabelValue.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtLabelValue.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 168</value>
+  </data>
+  <data name="btnAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 31</value>
+  </data>
+  <data name="btnAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnAdd.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="&gt;&gt;btnAdd.Name" xml:space="preserve">
+    <value>btnAdd</value>
+  </data>
+  <data name="&gt;&gt;btnAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAdd.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAdd.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnDel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 168</value>
   </data>
-  <data name="colorPicker1.Items338" xml:space="preserve">
-    <value>Khaki</value>
+  <data name="btnDel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 31</value>
   </data>
-  <data name="colorPicker1.Items559" xml:space="preserve">
-    <value>Yellowgreen</value>
+  <data name="btnDel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
-  <data name="&gt;&gt;btnDown.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="btnDel.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="colorPicker1.Items467" xml:space="preserve">
-    <value>Ghostwhite</value>
+  <data name="&gt;&gt;btnDel.Name" xml:space="preserve">
+    <value>btnDel</value>
   </data>
-  <data name="colorPicker1.Items641" xml:space="preserve">
-    <value>Mediumaquamarine</value>
-  </data>
-  <data name="colorPicker1.Items644" xml:space="preserve">
-    <value>Mediumpurple</value>
-  </data>
-  <data name="colorPicker1.Items430" xml:space="preserve">
-    <value>Blueviolet</value>
-  </data>
-  <data name="&gt;&gt;txtLabelValue.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="colorPicker1.Items277" xml:space="preserve">
-    <value>Whitesmoke</value>
-  </data>
-  <data name="colorPicker1.Items550" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items290" xml:space="preserve">
-    <value>Blueviolet</value>
-  </data>
-  <data name="colorPicker1.Items124" xml:space="preserve">
-    <value>Slateblue</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="colorPicker1.Items55" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
-  </data>
-  <data name="lbDataSeries.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="colorPicker1.Items664" xml:space="preserve">
-    <value>Paleturquoise</value>
-  </data>
-  <data name="colorPicker1.Items157" xml:space="preserve">
-    <value>Cornflowerblue</value>
-  </data>
-  <data name="&gt;&gt;btnAdd.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnDel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items401" xml:space="preserve">
-    <value>Sienna</value>
+  <data name="&gt;&gt;btnDel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="cbPlotType.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="&gt;&gt;btnDel.ZOrder" xml:space="preserve">
+    <value>19</value>
   </data>
-  <data name="&gt;&gt;chkLeft.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="btnLabelValue.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="colorPicker1.Items10" xml:space="preserve">
-    <value>Blueviolet</value>
+  <data name="btnLabelValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt, style=Bold, Italic</value>
   </data>
-  <data name="colorPicker1.Items75" xml:space="preserve">
-    <value>Lightyellow</value>
+  <data name="btnLabelValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 152</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Series Colour</value>
-  </data>
-  <data name="colorPicker1.Items68" xml:space="preserve">
-    <value>Lightgrey</value>
-  </data>
-  <data name="colorPicker1.Items9" xml:space="preserve">
-    <value>Blue</value>
-  </data>
-  <data name="colorPicker1.Items36" xml:space="preserve">
-    <value>Darkturquoise</value>
-  </data>
-  <data name="colorPicker1.Items133" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="colorPicker1.Items88" xml:space="preserve">
-    <value>Mediumturquoise</value>
-  </data>
-  <data name="colorPicker1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 236</value>
-  </data>
-  <data name="colorPicker1.Items373" xml:space="preserve">
-    <value>Moccasin</value>
-  </data>
-  <data name="txtSeriesName.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="colorPicker1.Items56" xml:space="preserve">
-    <value>Indigo</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Series Name</value>
-  </data>
-  <data name="colorPicker1.Items313" xml:space="preserve">
-    <value>Darkseagreen</value>
+  <data name="btnLabelValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 21</value>
   </data>
   <data name="btnLabelValue.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="colorPicker1.Items162" xml:space="preserve">
-    <value>Darkcyan</value>
+  <data name="btnLabelValue.Text" xml:space="preserve">
+    <value>fx</value>
   </data>
-  <data name="colorPicker1.Items64" xml:space="preserve">
-    <value>Lightcoral</value>
+  <data name="&gt;&gt;btnLabelValue.Name" xml:space="preserve">
+    <value>btnLabelValue</value>
   </data>
-  <data name="colorPicker1.Items91" xml:space="preserve">
-    <value>Mintcream</value>
+  <data name="&gt;&gt;btnLabelValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items433" xml:space="preserve">
-    <value>Cadetblue</value>
+  <data name="&gt;&gt;btnLabelValue.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items269" xml:space="preserve">
-    <value>Tan</value>
+  <data name="&gt;&gt;btnLabelValue.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
-  <data name="colorPicker1.Items268" xml:space="preserve">
-    <value>Steelblue</value>
+  <data name="btnDataValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt, style=Bold, Italic</value>
   </data>
-  <data name="colorPicker1.Items265" xml:space="preserve">
-    <value>Slategray</value>
+  <data name="btnDataValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 67</value>
   </data>
-  <data name="colorPicker1.Items264" xml:space="preserve">
-    <value>Slateblue</value>
+  <data name="btnDataValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 21</value>
   </data>
-  <data name="colorPicker1.Items267" xml:space="preserve">
-    <value>Springgreen</value>
+  <data name="btnDataValue.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
-  <data name="colorPicker1.Items266" xml:space="preserve">
-    <value>Snow</value>
+  <data name="btnDataValue.Text" xml:space="preserve">
+    <value>fx</value>
   </data>
-  <data name="colorPicker1.Items261" xml:space="preserve">
-    <value>Sienna</value>
+  <data name="&gt;&gt;btnDataValue.Name" xml:space="preserve">
+    <value>btnDataValue</value>
   </data>
-  <data name="colorPicker1.Items260" xml:space="preserve">
-    <value>Seashell</value>
+  <data name="&gt;&gt;btnDataValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items263" xml:space="preserve">
-    <value>Skyblue</value>
+  <data name="&gt;&gt;btnDataValue.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items262" xml:space="preserve">
-    <value>Silver</value>
+  <data name="&gt;&gt;btnDataValue.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
-  <data name="colorPicker1.Items52" xml:space="preserve">
-    <value>Greenyellow</value>
+  <data name="btnSeriesName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt, style=Bold, Italic</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 215</value>
+  <data name="btnSeriesName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 27</value>
   </data>
-  <data name="colorPicker1.Items149" xml:space="preserve">
-    <value>Blue</value>
+  <data name="btnSeriesName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 21</value>
   </data>
-  <data name="colorPicker1.Items148" xml:space="preserve">
-    <value>Blanchedalmond</value>
+  <data name="btnSeriesName.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="colorPicker1.Items799" xml:space="preserve">
-    <value>Orange</value>
+  <data name="btnSeriesName.Text" xml:space="preserve">
+    <value>fx</value>
   </data>
-  <data name="colorPicker1.Items798" xml:space="preserve">
-    <value>Olivedrab</value>
+  <data name="&gt;&gt;btnSeriesName.Name" xml:space="preserve">
+    <value>btnSeriesName</value>
   </data>
-  <data name="colorPicker1.Items145" xml:space="preserve">
-    <value>Beige</value>
+  <data name="&gt;&gt;btnSeriesName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items144" xml:space="preserve">
-    <value>Azure</value>
+  <data name="&gt;&gt;btnSeriesName.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items229" xml:space="preserve">
-    <value>Mediumvioletred</value>
+  <data name="&gt;&gt;btnSeriesName.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
-  <data name="colorPicker1.Items228" xml:space="preserve">
-    <value>Mediumturquoise</value>
+  <data name="txtDataValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 67</value>
   </data>
-  <data name="colorPicker1.Items797" xml:space="preserve">
-    <value>Olive</value>
+  <data name="txtDataValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 20</value>
   </data>
-  <data name="colorPicker1.Items796" xml:space="preserve">
-    <value>Oldlace</value>
+  <data name="txtDataValue.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="colorPicker1.Items791" xml:space="preserve">
-    <value>Mintcream</value>
+  <data name="&gt;&gt;txtDataValue.Name" xml:space="preserve">
+    <value>txtDataValue</value>
   </data>
-  <data name="colorPicker1.Items224" xml:space="preserve">
-    <value>Mediumpurple</value>
+  <data name="&gt;&gt;txtDataValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items793" xml:space="preserve">
-    <value>Moccasin</value>
+  <data name="&gt;&gt;txtDataValue.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items226" xml:space="preserve">
-    <value>Mediumslateblue</value>
+  <data name="&gt;&gt;txtDataValue.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
-  <data name="colorPicker1.Items221" xml:space="preserve">
-    <value>Mediumaquamarine</value>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items220" xml:space="preserve">
-    <value>Maroon</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 175</value>
   </data>
-  <data name="colorPicker1.Items223" xml:space="preserve">
-    <value>Mediumorchid</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
   </data>
-  <data name="colorPicker1.Items222" xml:space="preserve">
-    <value>Mediumblue</value>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 215</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Series Plot Type</value>
   </data>
-  <data name="colorPicker1.Items425" xml:space="preserve">
-    <value>Beige</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
-  <data name="colorPicker1.Items424" xml:space="preserve">
-    <value>Azure</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items109" xml:space="preserve">
-    <value>Pink</value>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items108" xml:space="preserve">
-    <value>Peru</value>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
-  <data name="colorPicker1.Items421" xml:space="preserve">
-    <value>Antiquewhite</value>
+  <data name="cbPlotType.Items" xml:space="preserve">
+    <value>Auto</value>
   </data>
-  <data name="colorPicker1.Items758" xml:space="preserve">
-    <value>Khaki</value>
+  <data name="cbPlotType.Items1" xml:space="preserve">
+    <value>Line</value>
   </data>
-  <data name="colorPicker1.Items105" xml:space="preserve">
-    <value>Palevioletred</value>
+  <data name="cbPlotType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 191</value>
+  </data>
+  <data name="cbPlotType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 21</value>
+  </data>
+  <data name="cbPlotType.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
   <data name="&gt;&gt;cbPlotType.Name" xml:space="preserve">
     <value>cbPlotType</value>
   </data>
-  <data name="colorPicker1.Items107" xml:space="preserve">
-    <value>Peachpuff</value>
+  <data name="&gt;&gt;cbPlotType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items106" xml:space="preserve">
-    <value>Papayawhip</value>
+  <data name="&gt;&gt;cbPlotType.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items101" xml:space="preserve">
-    <value>Orchid</value>
+  <data name="&gt;&gt;cbPlotType.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="colorPicker1.Items756" xml:space="preserve">
-    <value>Indigo</value>
+  <data name="chkLeft.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items751" xml:space="preserve">
-    <value>Green</value>
+  <data name="chkLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 229</value>
   </data>
-  <data name="colorPicker1.Items750" xml:space="preserve">
-    <value>Gray</value>
+  <data name="chkLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 17</value>
   </data>
-  <data name="colorPicker1.Items753" xml:space="preserve">
-    <value>Honeydew</value>
+  <data name="chkLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
-  <data name="colorPicker1.Items752" xml:space="preserve">
-    <value>Greenyellow</value>
+  <data name="chkLeft.Text" xml:space="preserve">
+    <value>Left</value>
   </data>
-  <data name="chkShowLabels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 132</value>
+  <data name="&gt;&gt;chkLeft.Name" xml:space="preserve">
+    <value>chkLeft</value>
   </data>
-  <data name="colorPicker1.Items243" xml:space="preserve">
-    <value>Palegreen</value>
+  <data name="&gt;&gt;chkLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items774" xml:space="preserve">
-    <value>Lightsteelblue</value>
+  <data name="&gt;&gt;chkLeft.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items156" xml:space="preserve">
-    <value>Coral</value>
+  <data name="&gt;&gt;chkLeft.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
-  <data name="colorPicker1.Items670" xml:space="preserve">
-    <value>Plum</value>
-  </data>
-  <data name="chkShowLabels.AutoSize" type="System.Boolean, mscorlib">
+  <data name="chkRight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="chkRight.Location" type="System.Drawing.Point, System.Drawing">
     <value>309, 229</value>
   </data>
-  <data name="colorPicker1.Items400" xml:space="preserve">
-    <value>Seashell</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnX.Text" xml:space="preserve">
-    <value>fx</value>
-  </data>
-  <data name="colorPicker1.Items521" xml:space="preserve">
-    <value>Orchid</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Data Series</value>
-  </data>
-  <data name="colorPicker1.Items235" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items495" xml:space="preserve">
-    <value>Lightyellow</value>
-  </data>
-  <data name="btnUp.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>StaticSeriesCtl</value>
-  </data>
-  <data name="&gt;&gt;chkMarker.Name" xml:space="preserve">
-    <value>chkMarker</value>
-  </data>
-  <data name="colorPicker1.Items175" xml:space="preserve">
-    <value>Darkslategray</value>
-  </data>
-  <data name="colorPicker1.Items651" xml:space="preserve">
-    <value>Mintcream</value>
-  </data>
-  <data name="colorPicker1.Items427" xml:space="preserve">
-    <value>Black</value>
-  </data>
-  <data name="colorPicker1.Items125" xml:space="preserve">
-    <value>Slategray</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Series Plot Type</value>
-  </data>
-  <data name="colorPicker1.Items593" xml:space="preserve">
-    <value>Darkseagreen</value>
-  </data>
-  <data name="&gt;&gt;btnUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items768" xml:space="preserve">
-    <value>Lightgrey</value>
-  </data>
-  <data name="txtDataValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 20</value>
-  </data>
-  <data name="colorPicker1.Items280" xml:space="preserve">
-    <value>Aliceblue</value>
-  </data>
-  <data name="colorPicker1.Items461" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="colorPicker1.Items132" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items166" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="colorPicker1.Items129" xml:space="preserve">
-    <value>Tan</value>
-  </data>
-  <data name="colorPicker1.Items637" xml:space="preserve">
-    <value>Limegreen</value>
-  </data>
-  <data name="&gt;&gt;btnDataValue.Name" xml:space="preserve">
-    <value>btnDataValue</value>
-  </data>
-  <data name="txtLabelValue.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnSeriesName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 21</value>
-  </data>
-  <data name="btnDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 139</value>
-  </data>
-  <data name="txtLabelValue.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="colorPicker1.Items666" xml:space="preserve">
-    <value>Papayawhip</value>
-  </data>
-  <data name="colorPicker1.Items151" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="colorPicker1.Items761" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items12" xml:space="preserve">
-    <value>Burlywood</value>
-  </data>
-  <data name="colorPicker1.Items636" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="colorPicker1.Items234" xml:space="preserve">
-    <value>Navajowhite</value>
-  </data>
-  <data name="&gt;&gt;btnLabelValue.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnSeriesName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 27</value>
-  </data>
-  <data name="colorPicker1.Items316" xml:space="preserve">
-    <value>Darkturquoise</value>
-  </data>
-  <data name="colorPicker1.Items744" xml:space="preserve">
-    <value>Forestgreen</value>
-  </data>
-  <data name="colorPicker1.Items93" xml:space="preserve">
-    <value>Moccasin</value>
-  </data>
-  <data name="colorPicker1.Items176" xml:space="preserve">
-    <value>Darkturquoise</value>
-  </data>
-  <data name="colorPicker1.Items537" xml:space="preserve">
-    <value>Salmon</value>
-  </data>
-  <data name="colorPicker1.Items426" xml:space="preserve">
-    <value>Bisque</value>
-  </data>
-  <data name="&gt;&gt;chkLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items34" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="btnX.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt, style=Bold, Italic</value>
-  </data>
-  <data name="colorPicker1.Items19" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="colorPicker1.Items676" xml:space="preserve">
-    <value>Saddlebrown</value>
-  </data>
-  <data name="colorPicker1.Items27" xml:space="preserve">
-    <value>Darkmagenta</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 51</value>
-  </data>
-  <data name="colorPicker1.Items359" xml:space="preserve">
-    <value>Magenta</value>
-  </data>
-  <data name="&gt;&gt;btnX.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items62" xml:space="preserve">
-    <value>Lemonchiffon</value>
-  </data>
-  <data name="colorPicker1.Items47" xml:space="preserve">
-    <value>Ghostwhite</value>
-  </data>
-  <data name="btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 168</value>
-  </data>
-  <data name="colorPicker1.Items30" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items15" xml:space="preserve">
-    <value>Chocolate</value>
-  </data>
-  <data name="colorPicker1.Items530" xml:space="preserve">
-    <value>Plum</value>
-  </data>
-  <data name="colorPicker1.Items23" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items50" xml:space="preserve">
-    <value>Gray</value>
-  </data>
-  <data name="colorPicker1.Items238" xml:space="preserve">
-    <value>Olivedrab</value>
-  </data>
-  <data name="colorPicker1.Items642" xml:space="preserve">
-    <value>Mediumblue</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="colorPicker1.Items43" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;btnDown.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items128" xml:space="preserve">
-    <value>Steelblue</value>
-  </data>
-  <data name="txtX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 106</value>
-  </data>
-  <data name="colorPicker1.Items11" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="colorPicker1.Items472" xml:space="preserve">
-    <value>Greenyellow</value>
-  </data>
-  <data name="colorPicker1.Items389" xml:space="preserve">
-    <value>Pink</value>
-  </data>
-  <data name="colorPicker1.Items210" xml:space="preserve">
-    <value>Lightsalmon</value>
-  </data>
-  <data name="colorPicker1.Items127" xml:space="preserve">
-    <value>Springgreen</value>
-  </data>
-  <data name="colorPicker1.Items579" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="colorPicker1.Items385" xml:space="preserve">
-    <value>Palevioletred</value>
-  </data>
-  <data name="colorPicker1.Items384" xml:space="preserve">
-    <value>Paleturquoise</value>
-  </data>
-  <data name="colorPicker1.Items96" xml:space="preserve">
-    <value>Oldlace</value>
-  </data>
-  <data name="colorPicker1.Items386" xml:space="preserve">
-    <value>Papayawhip</value>
-  </data>
-  <data name="colorPicker1.Items381" xml:space="preserve">
-    <value>Orchid</value>
-  </data>
-  <data name="colorPicker1.Items589" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items588" xml:space="preserve">
-    <value>Darkolivegreen</value>
-  </data>
-  <data name="colorPicker1.Items382" xml:space="preserve">
-    <value>Palegoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items661" xml:space="preserve">
-    <value>Orchid</value>
-  </data>
-  <data name="colorPicker1.Items585" xml:space="preserve">
-    <value>Darkgreen</value>
-  </data>
-  <data name="colorPicker1.Items584" xml:space="preserve">
-    <value>Darkgray</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items586" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="colorPicker1.Items581" xml:space="preserve">
-    <value>Darkblue</value>
-  </data>
-  <data name="colorPicker1.Items580" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items583" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items582" xml:space="preserve">
-    <value>Darkcyan</value>
-  </data>
-  <data name="colorPicker1.Items349" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="colorPicker1.Items348" xml:space="preserve">
-    <value>Lightgrey</value>
-  </data>
-  <data name="colorPicker1.Items199" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="colorPicker1.Items198" xml:space="preserve">
-    <value>Khaki</value>
-  </data>
-  <data name="colorPicker1.Items345" xml:space="preserve">
-    <value>Lightcyan</value>
-  </data>
-  <data name="colorPicker1.Items344" xml:space="preserve">
-    <value>Lightcoral</value>
-  </data>
-  <data name="colorPicker1.Items195" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="colorPicker1.Items194" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items341" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items340" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="colorPicker1.Items191" xml:space="preserve">
-    <value>Green</value>
-  </data>
-  <data name="colorPicker1.Items190" xml:space="preserve">
-    <value>Gray</value>
-  </data>
-  <data name="colorPicker1.Items193" xml:space="preserve">
-    <value>Honeydew</value>
-  </data>
-  <data name="colorPicker1.Items192" xml:space="preserve">
-    <value>Greenyellow</value>
-  </data>
-  <data name="colorPicker1.Items544" xml:space="preserve">
-    <value>Slateblue</value>
-  </data>
-  <data name="colorPicker1.Items629" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="colorPicker1.Items628" xml:space="preserve">
-    <value>Lightgrey</value>
-  </data>
-  <data name="colorPicker1.Items479" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="colorPicker1.Items478" xml:space="preserve">
-    <value>Khaki</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="colorPicker1.Items624" xml:space="preserve">
-    <value>Lightcoral</value>
-  </data>
-  <data name="colorPicker1.Items475" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="&gt;&gt;btnLabelValue.Name" xml:space="preserve">
-    <value>btnLabelValue</value>
-  </data>
-  <data name="colorPicker1.Items477" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="colorPicker1.Items829" xml:space="preserve">
-    <value>Tan</value>
-  </data>
-  <data name="colorPicker1.Items828" xml:space="preserve">
-    <value>Steelblue</value>
-  </data>
-  <data name="colorPicker1.Items622" xml:space="preserve">
-    <value>Lemonchiffon</value>
-  </data>
-  <data name="colorPicker1.Items473" xml:space="preserve">
-    <value>Honeydew</value>
-  </data>
-  <data name="colorPicker1.Items825" xml:space="preserve">
-    <value>Slategray</value>
-  </data>
-  <data name="colorPicker1.Items824" xml:space="preserve">
-    <value>Slateblue</value>
-  </data>
-  <data name="colorPicker1.Items827" xml:space="preserve">
-    <value>Springgreen</value>
-  </data>
-  <data name="colorPicker1.Items826" xml:space="preserve">
-    <value>Snow</value>
-  </data>
-  <data name="colorPicker1.Items821" xml:space="preserve">
-    <value>Sienna</value>
-  </data>
-  <data name="colorPicker1.Items820" xml:space="preserve">
-    <value>Seashell</value>
-  </data>
-  <data name="colorPicker1.Items823" xml:space="preserve">
-    <value>Skyblue</value>
-  </data>
-  <data name="colorPicker1.Items822" xml:space="preserve">
-    <value>Silver</value>
-  </data>
-  <data name="colorPicker1.Items507" xml:space="preserve">
-    <value>Mediumspringgreen</value>
-  </data>
-  <data name="&gt;&gt;chkShowLabels.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items501" xml:space="preserve">
-    <value>Mediumaquamarine</value>
-  </data>
-  <data name="&gt;&gt;txtX.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items503" xml:space="preserve">
-    <value>Mediumorchid</value>
-  </data>
-  <data name="colorPicker1.Items502" xml:space="preserve">
-    <value>Mediumblue</value>
-  </data>
-  <data name="&gt;&gt;btnDataValue.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="btnLabelValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 21</value>
-  </data>
-  <data name="colorPicker1.Items668" xml:space="preserve">
-    <value>Peru</value>
-  </data>
-  <data name="colorPicker1.Items104" xml:space="preserve">
-    <value>Paleturquoise</value>
+  <data name="chkRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 17</value>
   </data>
   <data name="chkRight.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="chkLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 17</value>
-  </data>
-  <data name="colorPicker1.Items555" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items393" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="colorPicker1.Items399" xml:space="preserve">
-    <value>Seagreen</value>
-  </data>
-  <data name="colorPicker1.Items279" xml:space="preserve">
-    <value>Yellowgreen</value>
-  </data>
-  <data name="colorPicker1.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtDataValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 67</value>
-  </data>
-  <data name="colorPicker1.Items789" xml:space="preserve">
-    <value>Mediumvioletred</value>
-  </data>
-  <data name="colorPicker1.Items213" xml:space="preserve">
-    <value>Lightslategrey</value>
-  </data>
-  <data name="txtLabelValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 20</value>
-  </data>
-  <data name="colorPicker1.Items486" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="colorPicker1.Items660" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="colorPicker1.Items760" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="colorPicker1.Items114" xml:space="preserve">
-    <value>Rosybrown</value>
-  </data>
-  <data name="colorPicker1.Items683" xml:space="preserve">
-    <value>Skyblue</value>
-  </data>
-  <data name="colorPicker1.Items509" xml:space="preserve">
-    <value>Mediumvioletred</value>
-  </data>
-  <data name="colorPicker1.Items347" xml:space="preserve">
-    <value>Lightgreen</value>
-  </data>
-  <data name="txtSeriesName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 28</value>
-  </data>
-  <data name="chkMarker.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items549" xml:space="preserve">
-    <value>Tan</value>
-  </data>
-  <data name="&gt;&gt;cbLine.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lbDataSeries.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 134</value>
-  </data>
-  <data name="colorPicker1.Items794" xml:space="preserve">
-    <value>Navajowhite</value>
-  </data>
-  <data name="&gt;&gt;lbDataSeries.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="colorPicker1.Items420" xml:space="preserve">
-    <value>Aliceblue</value>
+  <data name="chkRight.Text" xml:space="preserve">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;chkRight.Name" xml:space="preserve">
     <value>chkRight</value>
   </data>
-  <data name="colorPicker1.Items671" xml:space="preserve">
-    <value>Powderblue</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="colorPicker1.Items89" xml:space="preserve">
-    <value>Mediumvioletred</value>
-  </data>
-  <data name="colorPicker1.Items84" xml:space="preserve">
-    <value>Mediumpurple</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items620" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="colorPicker1.Items554" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="&gt;&gt;btnUp.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items462" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="btnDataValue.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="txtLabelValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 152</value>
-  </data>
-  <data name="colorPicker1.Items303" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items21" xml:space="preserve">
-    <value>Darkblue</value>
-  </data>
-  <data name="colorPicker1.Items103" xml:space="preserve">
-    <value>Palegreen</value>
-  </data>
-  <data name="colorPicker1.Items788" xml:space="preserve">
-    <value>Mediumturquoise</value>
-  </data>
-  <data name="colorPicker1.Items39" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="colorPicker1.Items212" xml:space="preserve">
-    <value>Lightskyblue</value>
-  </data>
-  <data name="colorPicker1.Items134" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="colorPicker1.Items206" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="colorPicker1.Items74" xml:space="preserve">
-    <value>Lightsteelblue</value>
-  </data>
-  <data name="colorPicker1.Items59" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="colorPicker1.Items481" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items663" xml:space="preserve">
-    <value>Palegreen</value>
-  </data>
-  <data name="colorPicker1.Items249" xml:space="preserve">
-    <value>Pink</value>
-  </data>
-  <data name="colorPicker1.Items67" xml:space="preserve">
-    <value>Lightgreen</value>
-  </data>
-  <data name="lbDataSeries.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 28</value>
-  </data>
-  <data name="colorPicker1.Items299" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="colorPicker1.Items298" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="colorPicker1.Items295" xml:space="preserve">
-    <value>Chocolate</value>
-  </data>
-  <data name="colorPicker1.Items294" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items87" xml:space="preserve">
-    <value>Mediumspringgreen</value>
-  </data>
-  <data name="colorPicker1.Items296" xml:space="preserve">
-    <value>Coral</value>
-  </data>
-  <data name="colorPicker1.Items291" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Data Value</value>
-  </data>
-  <data name="colorPicker1.Items508" xml:space="preserve">
-    <value>Mediumturquoise</value>
-  </data>
-  <data name="chkLeft.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items346" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="colorPicker1.Items179" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="colorPicker1.Items178" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="colorPicker1.Items90" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="colorPicker1.Items174" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="colorPicker1.Items177" xml:space="preserve">
-    <value>Darkviolet</value>
-  </data>
-  <data name="colorPicker1.Items258" xml:space="preserve">
-    <value>Sandybrown</value>
-  </data>
-  <data name="colorPicker1.Items171" xml:space="preserve">
-    <value>Darkred</value>
-  </data>
-  <data name="colorPicker1.Items170" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items255" xml:space="preserve">
-    <value>Royalblue</value>
-  </data>
-  <data name="colorPicker1.Items254" xml:space="preserve">
-    <value>Rosybrown</value>
-  </data>
-  <data name="colorPicker1.Items83" xml:space="preserve">
-    <value>Mediumorchid</value>
-  </data>
-  <data name="colorPicker1.Items256" xml:space="preserve">
-    <value>Saddlebrown</value>
-  </data>
-  <data name="colorPicker1.Items251" xml:space="preserve">
-    <value>Powderblue</value>
-  </data>
-  <data name="colorPicker1.Items459" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="colorPicker1.Items423" xml:space="preserve">
-    <value>Aquamarine</value>
-  </data>
-  <data name="colorPicker1.Items252" xml:space="preserve">
-    <value>Purple</value>
-  </data>
-  <data name="colorPicker1.Items455" xml:space="preserve">
-    <value>Darkslategray</value>
-  </data>
-  <data name="colorPicker1.Items454" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="colorPicker1.Items457" xml:space="preserve">
-    <value>Darkviolet</value>
-  </data>
-  <data name="colorPicker1.Items138" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="colorPicker1.Items451" xml:space="preserve">
-    <value>Darkred</value>
-  </data>
-  <data name="colorPicker1.Items450" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items453" xml:space="preserve">
-    <value>Darkseagreen</value>
-  </data>
-  <data name="colorPicker1.Items452" xml:space="preserve">
-    <value>Darksalmon</value>
-  </data>
-  <data name="colorPicker1.Items785" xml:space="preserve">
-    <value>Mediumseagreen</value>
-  </data>
-  <data name="colorPicker1.Items784" xml:space="preserve">
-    <value>Mediumpurple</value>
-  </data>
-  <data name="colorPicker1.Items787" xml:space="preserve">
-    <value>Mediumspringgreen</value>
-  </data>
-  <data name="colorPicker1.Items130" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items215" xml:space="preserve">
-    <value>Lightyellow</value>
-  </data>
-  <data name="colorPicker1.Items214" xml:space="preserve">
-    <value>Lightsteelblue</value>
-  </data>
-  <data name="colorPicker1.Items217" xml:space="preserve">
-    <value>Limegreen</value>
-  </data>
-  <data name="colorPicker1.Items216" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="colorPicker1.Items211" xml:space="preserve">
-    <value>Lightseagreen</value>
-  </data>
-  <data name="colorPicker1.Items8" xml:space="preserve">
-    <value>Blanchedalmond</value>
-  </data>
-  <data name="colorPicker1.Items95" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
-  </data>
-  <data name="colorPicker1.Items415" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items414" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="chkRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 17</value>
-  </data>
-  <data name="colorPicker1.Items416" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="colorPicker1.Items411" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items410" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items413" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="colorPicker1.Items412" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items745" xml:space="preserve">
-    <value>Fuchsia</value>
-  </data>
-  <data name="chkLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="colorPicker1.Items747" xml:space="preserve">
-    <value>Ghostwhite</value>
-  </data>
-  <data name="colorPicker1.Items746" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="colorPicker1.Items741" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="colorPicker1.Items740" xml:space="preserve">
-    <value>Dimgray</value>
-  </data>
-  <data name="colorPicker1.Items591" xml:space="preserve">
-    <value>Darkred</value>
-  </data>
-  <data name="colorPicker1.Items590" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items70" xml:space="preserve">
-    <value>Lightsalmon</value>
-  </data>
-  <data name="&gt;&gt;btnX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkRight.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnDel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 168</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items81" xml:space="preserve">
-    <value>Mediumaquamarine</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="colorPicker1.Items322" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items773" xml:space="preserve">
-    <value>Lightslategrey</value>
-  </data>
-  <data name="colorPicker1.Items662" xml:space="preserve">
-    <value>Palegoldenrod</value>
-  </data>
-  <data name="btnSeriesName.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="colorPicker1.Items763" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="colorPicker1.Items682" xml:space="preserve">
-    <value>Silver</value>
-  </data>
-  <data name="colorPicker1.Items230" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="&gt;&gt;btnDel.Name" xml:space="preserve">
-    <value>btnDel</value>
-  </data>
-  <data name="chkShowLabels.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
-  </data>
-  <data name="colorPicker1.Items543" xml:space="preserve">
-    <value>Skyblue</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="&gt;&gt;txtDataValue.Name" xml:space="preserve">
-    <value>txtDataValue</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 90</value>
-  </data>
-  <data name="cbLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="cbLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>283, 191</value>
-  </data>
-  <data name="colorPicker1.Items533" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="colorPicker1.Items422" xml:space="preserve">
-    <value>Aqua</value>
-  </data>
-  <data name="colorPicker1.Items119" xml:space="preserve">
-    <value>Seagreen</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 175</value>
-  </data>
-  <data name="colorPicker1.Items428" xml:space="preserve">
-    <value>Blanchedalmond</value>
-  </data>
-  <data name="colorPicker1.Items419" xml:space="preserve">
-    <value>Yellowgreen</value>
-  </data>
-  <data name="colorPicker1.Items257" xml:space="preserve">
-    <value>Salmon</value>
-  </data>
-  <data name="colorPicker1.Items616" xml:space="preserve">
-    <value>Indigo</value>
-  </data>
-  <data name="colorPicker1.Items474" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items532" xml:space="preserve">
-    <value>Purple</value>
-  </data>
-  <data name="&gt;&gt;chkShowLabels.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="colorPicker1.Items748" xml:space="preserve">
-    <value>Gold</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items635" xml:space="preserve">
-    <value>Lightyellow</value>
-  </data>
-  <data name="colorPicker1.Items306" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="colorPicker1.Items253" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="colorPicker1.Items704" xml:space="preserve">
-    <value>Azure</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items687" xml:space="preserve">
-    <value>Springgreen</value>
-  </data>
-  <data name="&gt;&gt;txtSeriesName.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="colorPicker1.Items575" xml:space="preserve">
-    <value>Chocolate</value>
-  </data>
-  <data name="colorPicker1.Items527" xml:space="preserve">
-    <value>Peachpuff</value>
-  </data>
-  <data name="btnLabelValue.Text" xml:space="preserve">
-    <value>fx</value>
-  </data>
-  <data name="&gt;&gt;btnDataValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items658" xml:space="preserve">
-    <value>Olivedrab</value>
-  </data>
-  <data name="colorPicker1.Items233" xml:space="preserve">
-    <value>Moccasin</value>
-  </data>
-  <data name="colorPicker1.Items33" xml:space="preserve">
-    <value>Darkseagreen</value>
-  </data>
-  <data name="&gt;&gt;colorPicker1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items18" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="txtDataValue.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="cbLine.Items" xml:space="preserve">
-    <value>Small</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 13</value>
-  </data>
-  <data name="colorPicker1.Items26" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="colorPicker1.Items680" xml:space="preserve">
-    <value>Seashell</value>
-  </data>
-  <data name="colorPicker1.Items743" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="colorPicker1.Items652" xml:space="preserve">
-    <value>Mistyrose</value>
-  </data>
-  <data name="colorPicker1.Items61" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items46" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items118" xml:space="preserve">
-    <value>Sandybrown</value>
-  </data>
-  <data name="chkRight.Text" xml:space="preserve">
-    <value>Right</value>
-  </data>
-  <data name="colorPicker1.Items14" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items79" xml:space="preserve">
-    <value>Magenta</value>
-  </data>
-  <data name="colorPicker1.Items418" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="btnUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 23</value>
-  </data>
-  <data name="colorPicker1.Items487" xml:space="preserve">
-    <value>Lightgreen</value>
-  </data>
-  <data name="colorPicker1.Items569" xml:space="preserve">
-    <value>Blue</value>
-  </data>
-  <data name="colorPicker1.Items99" xml:space="preserve">
-    <value>Orange</value>
-  </data>
-  <data name="colorPicker1.Items100" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="colorPicker1.Items42" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
-  </data>
-  <data name="colorPicker1.Items699" xml:space="preserve">
-    <value>Yellowgreen</value>
-  </data>
-  <data name="colorPicker1.Items698" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="&gt;&gt;btnDown.Name" xml:space="preserve">
-    <value>btnDown</value>
-  </data>
-  <data name="colorPicker1.Items551" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items695" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items694" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="colorPicker1.Items379" xml:space="preserve">
-    <value>Orange</value>
-  </data>
-  <data name="colorPicker1.Items696" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="&gt;&gt;txtDataValue.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items690" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items375" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="colorPicker1.Items692" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items377" xml:space="preserve">
-    <value>Olive</value>
-  </data>
-  <data name="colorPicker1.Items729" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items728" xml:space="preserve">
-    <value>Darkolivegreen</value>
-  </data>
-  <data name="colorPicker1.Items370" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="colorPicker1.Items578" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="colorPicker1.Items372" xml:space="preserve">
-    <value>Mistyrose</value>
-  </data>
-  <data name="colorPicker1.Items724" xml:space="preserve">
-    <value>Darkgray</value>
-  </data>
-  <data name="btnSeriesName.Text" xml:space="preserve">
-    <value>fx</value>
-  </data>
-  <data name="colorPicker1.Items574" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items659" xml:space="preserve">
-    <value>Orange</value>
-  </data>
-  <data name="colorPicker1.Items720" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items723" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items722" xml:space="preserve">
-    <value>Darkcyan</value>
-  </data>
-  <data name="colorPicker1.Items573" xml:space="preserve">
-    <value>Cadetblue</value>
-  </data>
-  <data name="colorPicker1.Items654" xml:space="preserve">
-    <value>Navajowhite</value>
-  </data>
-  <data name="colorPicker1.Items339" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="colorPicker1.Items656" xml:space="preserve">
-    <value>Oldlace</value>
-  </data>
-  <data name="colorPicker1.Items189" xml:space="preserve">
-    <value>Goldenrod</value>
-  </data>
-  <data name="colorPicker1.Items650" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="colorPicker1.Items335" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="colorPicker1.Items334" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items185" xml:space="preserve">
-    <value>Fuchsia</value>
-  </data>
-  <data name="colorPicker1.Items184" xml:space="preserve">
-    <value>Forestgreen</value>
-  </data>
-  <data name="colorPicker1.Items187" xml:space="preserve">
-    <value>Ghostwhite</value>
-  </data>
-  <data name="colorPicker1.Items186" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="colorPicker1.Items181" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="colorPicker1.Items180" xml:space="preserve">
-    <value>Dimgray</value>
-  </data>
-  <data name="colorPicker1.Items183" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="colorPicker1.Items182" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="colorPicker1.Items534" xml:space="preserve">
-    <value>Rosybrown</value>
-  </data>
-  <data name="colorPicker1.Items619" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="colorPicker1.Items536" xml:space="preserve">
-    <value>Saddlebrown</value>
-  </data>
-  <data name="colorPicker1.Items531" xml:space="preserve">
-    <value>Powderblue</value>
-  </data>
-  <data name="colorPicker1.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="colorPicker1.Items615" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="colorPicker1.Items614" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items465" xml:space="preserve">
-    <value>Fuchsia</value>
-  </data>
-  <data name="colorPicker1.Items464" xml:space="preserve">
-    <value>Forestgreen</value>
-  </data>
-  <data name="colorPicker1.Items611" xml:space="preserve">
-    <value>Green</value>
-  </data>
-  <data name="colorPicker1.Items819" xml:space="preserve">
-    <value>Seagreen</value>
-  </data>
-  <data name="colorPicker1.Items818" xml:space="preserve">
-    <value>Sandybrown</value>
-  </data>
-  <data name="colorPicker1.Items460" xml:space="preserve">
-    <value>Dimgray</value>
-  </data>
-  <data name="colorPicker1.Items463" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="colorPicker1.Items815" xml:space="preserve">
-    <value>Royalblue</value>
-  </data>
-  <data name="colorPicker1.Items505" xml:space="preserve">
-    <value>Mediumseagreen</value>
-  </data>
-  <data name="colorPicker1.Items817" xml:space="preserve">
-    <value>Salmon</value>
-  </data>
-  <data name="colorPicker1.Items816" xml:space="preserve">
-    <value>Saddlebrown</value>
-  </data>
-  <data name="colorPicker1.Items811" xml:space="preserve">
-    <value>Powderblue</value>
-  </data>
-  <data name="colorPicker1.Items810" xml:space="preserve">
-    <value>Plum</value>
-  </data>
-  <data name="colorPicker1.Items813" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items499" xml:space="preserve">
-    <value>Magenta</value>
-  </data>
-  <data name="colorPicker1.Items557" xml:space="preserve">
-    <value>Whitesmoke</value>
-  </data>
-  <data name="colorPicker1.Items790" xml:space="preserve">
-    <value>Midnightblue</value>
-  </data>
-  <data name="colorPicker1.Items172" xml:space="preserve">
-    <value>Darksalmon</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="colorPicker1.Items146" xml:space="preserve">
-    <value>Bisque</value>
-  </data>
-  <data name="txtSeriesName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 20</value>
-  </data>
-  <data name="colorPicker1.Items673" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="colorPicker1.Items518" xml:space="preserve">
-    <value>Olivedrab</value>
-  </data>
-  <data name="cbLine.Items1" xml:space="preserve">
-    <value>Regular</value>
-  </data>
-  <data name="colorPicker1.Items795" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="cbLine.Items3" xml:space="preserve">
-    <value>Extra Large</value>
-  </data>
-  <data name="colorPicker1.Items610" xml:space="preserve">
-    <value>Gray</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items311" xml:space="preserve">
-    <value>Darkred</value>
-  </data>
-  <data name="colorPicker1.Items388" xml:space="preserve">
-    <value>Peru</value>
-  </data>
-  <data name="colorPicker1.Items780" xml:space="preserve">
-    <value>Maroon</value>
-  </data>
-  <data name="colorPicker1.Items625" xml:space="preserve">
-    <value>Lightcyan</value>
-  </data>
-  <data name="cbPlotType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 21</value>
-  </data>
-  <data name="chkRight.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="colorPicker1.Items356" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="colorPicker1.Items337" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items126" xml:space="preserve">
-    <value>Snow</value>
-  </data>
-  <data name="chkMarker.Text" xml:space="preserve">
-    <value>Show Markers?</value>
-  </data>
-  <data name="colorPicker1.Items97" xml:space="preserve">
-    <value>Olive</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="colorPicker1.Items577" xml:space="preserve">
-    <value>Cornflowerblue</value>
-  </data>
-  <data name="colorPicker1.Items142" xml:space="preserve">
-    <value>Aqua</value>
-  </data>
-  <data name="btnDel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="colorPicker1.Items245" xml:space="preserve">
-    <value>Palevioletred</value>
-  </data>
-  <data name="btnUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 28</value>
-  </data>
-  <data name="&gt;&gt;chkMarker.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items638" xml:space="preserve">
-    <value>Linen</value>
-  </data>
-  <data name="colorPicker1.Items504" xml:space="preserve">
-    <value>Mediumpurple</value>
-  </data>
-  <data name="colorPicker1.Items342" xml:space="preserve">
-    <value>Lemonchiffon</value>
-  </data>
-  <data name="&gt;&gt;chkShowLabels.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items548" xml:space="preserve">
-    <value>Steelblue</value>
-  </data>
-  <data name="colorPicker1.Items173" xml:space="preserve">
-    <value>Darkseagreen</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbDataSeries.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items705" xml:space="preserve">
-    <value>Beige</value>
-  </data>
-  <data name="colorPicker1.Items250" xml:space="preserve">
-    <value>Plum</value>
-  </data>
-  <data name="colorPicker1.Items613" xml:space="preserve">
-    <value>Honeydew</value>
-  </data>
-  <data name="colorPicker1.Items20" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items37" xml:space="preserve">
-    <value>Darkviolet</value>
-  </data>
-  <data name="colorPicker1.Items553" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items" xml:space="preserve">
-    <value>Aliceblue</value>
-  </data>
-  <data name="colorPicker1.Items38" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="&gt;&gt;txtSeriesName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items73" xml:space="preserve">
-    <value>Lightslategrey</value>
-  </data>
-  <data name="colorPicker1.Items336" xml:space="preserve">
-    <value>Indigo</value>
-  </data>
-  <data name="colorPicker1.Items58" xml:space="preserve">
-    <value>Khaki</value>
-  </data>
-  <data name="&gt;&gt;btnLabelValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items121" xml:space="preserve">
-    <value>Sienna</value>
-  </data>
-  <data name="btnLabelValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 152</value>
-  </data>
-  <data name="colorPicker1.Items289" xml:space="preserve">
-    <value>Blue</value>
-  </data>
-  <data name="colorPicker1.Items288" xml:space="preserve">
-    <value>Blanchedalmond</value>
-  </data>
-  <data name="colorPicker1.Items686" xml:space="preserve">
-    <value>Snow</value>
-  </data>
-  <data name="colorPicker1.Items285" xml:space="preserve">
-    <value>Beige</value>
-  </data>
-  <data name="colorPicker1.Items284" xml:space="preserve">
-    <value>Azure</value>
-  </data>
-  <data name="colorPicker1.Items86" xml:space="preserve">
-    <value>Mediumslateblue</value>
-  </data>
-  <data name="colorPicker1.Items286" xml:space="preserve">
-    <value>Bisque</value>
-  </data>
-  <data name="colorPicker1.Items281" xml:space="preserve">
-    <value>Antiquewhite</value>
-  </data>
-  <data name="&gt;&gt;cbPlotType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items283" xml:space="preserve">
-    <value>Aquamarine</value>
-  </data>
-  <data name="colorPicker1.Items282" xml:space="preserve">
-    <value>Aqua</value>
-  </data>
-  <data name="colorPicker1.Items54" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items7" xml:space="preserve">
-    <value>Black</value>
-  </data>
-  <data name="colorPicker1.Items318" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="colorPicker1.Items169" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items168" xml:space="preserve">
-    <value>Darkolivegreen</value>
-  </data>
-  <data name="colorPicker1.Items315" xml:space="preserve">
-    <value>Darkslategray</value>
-  </data>
-  <data name="colorPicker1.Items314" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="colorPicker1.Items165" xml:space="preserve">
-    <value>Darkgreen</value>
-  </data>
-  <data name="colorPicker1.Items164" xml:space="preserve">
-    <value>Darkgray</value>
-  </data>
-  <data name="colorPicker1.Items167" xml:space="preserve">
-    <value>Darkmagenta</value>
-  </data>
-  <data name="colorPicker1.Items310" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items161" xml:space="preserve">
-    <value>Darkblue</value>
-  </data>
-  <data name="colorPicker1.Items160" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items163" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items244" xml:space="preserve">
-    <value>Paleturquoise</value>
-  </data>
-  <data name="colorPicker1.Items82" xml:space="preserve">
-    <value>Mediumblue</value>
-  </data>
-  <data name="colorPicker1.Items246" xml:space="preserve">
-    <value>Papayawhip</value>
-  </data>
-  <data name="colorPicker1.Items241" xml:space="preserve">
-    <value>Orchid</value>
-  </data>
-  <data name="colorPicker1.Items449" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items448" xml:space="preserve">
-    <value>Darkolivegreen</value>
-  </data>
-  <data name="colorPicker1.Items242" xml:space="preserve">
-    <value>Palegoldenrod</value>
-  </data>
-  <data name="&gt;&gt;btnDataValue.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items445" xml:space="preserve">
-    <value>Darkgreen</value>
-  </data>
-  <data name="colorPicker1.Items444" xml:space="preserve">
-    <value>Darkgray</value>
-  </data>
-  <data name="colorPicker1.Items447" xml:space="preserve">
-    <value>Darkmagenta</value>
-  </data>
-  <data name="colorPicker1.Items446" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="colorPicker1.Items441" xml:space="preserve">
-    <value>Darkblue</value>
-  </data>
-  <data name="colorPicker1.Items440" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items443" xml:space="preserve">
-    <value>Darkgoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items442" xml:space="preserve">
-    <value>Darkcyan</value>
-  </data>
-  <data name="colorPicker1.Items775" xml:space="preserve">
-    <value>Lightyellow</value>
-  </data>
-  <data name="colorPicker1.Items208" xml:space="preserve">
-    <value>Lightgrey</value>
-  </data>
-  <data name="colorPicker1.Items777" xml:space="preserve">
-    <value>Limegreen</value>
-  </data>
-  <data name="colorPicker1.Items792" xml:space="preserve">
-    <value>Mistyrose</value>
-  </data>
-  <data name="colorPicker1.Items205" xml:space="preserve">
-    <value>Lightcyan</value>
-  </data>
-  <data name="colorPicker1.Items770" xml:space="preserve">
-    <value>Lightsalmon</value>
-  </data>
-  <data name="colorPicker1.Items207" xml:space="preserve">
-    <value>Lightgreen</value>
-  </data>
-  <data name="colorPicker1.Items772" xml:space="preserve">
-    <value>Lightskyblue</value>
-  </data>
-  <data name="colorPicker1.Items201" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items200" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="colorPicker1.Items203" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="colorPicker1.Items202" xml:space="preserve">
-    <value>Lemonchiffon</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="colorPicker1.Items404" xml:space="preserve">
-    <value>Slateblue</value>
-  </data>
-  <data name="colorPicker1.Items407" xml:space="preserve">
-    <value>Springgreen</value>
-  </data>
-  <data name="colorPicker1.Items406" xml:space="preserve">
-    <value>Snow</value>
-  </data>
-  <data name="colorPicker1.Items739" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="colorPicker1.Items738" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="colorPicker1.Items403" xml:space="preserve">
-    <value>Skyblue</value>
-  </data>
-  <data name="colorPicker1.Items402" xml:space="preserve">
-    <value>Silver</value>
-  </data>
-  <data name="colorPicker1.Items735" xml:space="preserve">
-    <value>Darkslategray</value>
-  </data>
-  <data name="colorPicker1.Items734" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="colorPicker1.Items737" xml:space="preserve">
-    <value>Darkviolet</value>
-  </data>
-  <data name="colorPicker1.Items736" xml:space="preserve">
-    <value>Darkturquoise</value>
-  </data>
-  <data name="colorPicker1.Items731" xml:space="preserve">
-    <value>Darkred</value>
-  </data>
-  <data name="colorPicker1.Items730" xml:space="preserve">
-    <value>Darkorchid</value>
-  </data>
-  <data name="colorPicker1.Items733" xml:space="preserve">
-    <value>Darkseagreen</value>
-  </data>
-  <data name="colorPicker1.Items732" xml:space="preserve">
-    <value>Darksalmon</value>
-  </data>
-  <data name="colorPicker1.Items814" xml:space="preserve">
-    <value>Rosybrown</value>
-  </data>
-  <data name="colorPicker1.Items470" xml:space="preserve">
-    <value>Gray</value>
-  </data>
-  <data name="&gt;&gt;txtX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 12</value>
-  </data>
-  <data name="colorPicker1.Items552" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items649" xml:space="preserve">
-    <value>Mediumvioletred</value>
-  </data>
-  <data name="chkMarker.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="colorPicker1.Items438" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="colorPicker1.Items387" xml:space="preserve">
-    <value>Peachpuff</value>
-  </data>
-  <data name="colorPicker1.Items331" xml:space="preserve">
-    <value>Green</value>
-  </data>
-  <data name="colorPicker1.Items225" xml:space="preserve">
-    <value>Mediumseagreen</value>
-  </data>
-  <data name="colorPicker1.Items631" xml:space="preserve">
-    <value>Lightseagreen</value>
-  </data>
-  <data name="colorPicker1.Items120" xml:space="preserve">
-    <value>Seashell</value>
-  </data>
-  <data name="colorPicker1.Items742" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="colorPicker1.Items786" xml:space="preserve">
-    <value>Mediumslateblue</value>
-  </data>
-  <data name="colorPicker1.Items2" xml:space="preserve">
-    <value>Aqua</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items131" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items571" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="cbLine.Items2" xml:space="preserve">
-    <value>Large</value>
-  </data>
-  <data name="&gt;&gt;txtX.Name" xml:space="preserve">
-    <value>txtX</value>
-  </data>
-  <data name="colorPicker1.Items522" xml:space="preserve">
-    <value>Palegoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items496" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="colorPicker1.Items409" xml:space="preserve">
-    <value>Tan</value>
-  </data>
-  <data name="colorPicker1.Items354" xml:space="preserve">
-    <value>Lightsteelblue</value>
-  </data>
-  <data name="colorPicker1.Items247" xml:space="preserve">
-    <value>Peachpuff</value>
-  </data>
-  <data name="colorPicker1.Items147" xml:space="preserve">
-    <value>Black</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
-  <data name="colorPicker1.Items506" xml:space="preserve">
-    <value>Mediumslateblue</value>
-  </data>
-  <data name="btnDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 23</value>
-  </data>
-  <data name="colorPicker1.Items546" xml:space="preserve">
-    <value>Snow</value>
-  </data>
-  <data name="&gt;&gt;btnDel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="colorPicker1.Items456" xml:space="preserve">
-    <value>Darkturquoise</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtSeriesName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLabelValue.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items317" xml:space="preserve">
-    <value>Darkviolet</value>
-  </data>
-  <data name="colorPicker1.Items598" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="colorPicker1.Items363" xml:space="preserve">
-    <value>Mediumorchid</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 260</value>
-  </data>
-  <data name="colorPicker1.Items80" xml:space="preserve">
-    <value>Maroon</value>
-  </data>
-  <data name="colorPicker1.Items565" xml:space="preserve">
-    <value>Beige</value>
+  <data name="&gt;&gt;chkRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkRight.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="colorPicker1.Items587" xml:space="preserve">
-    <value>Darkmagenta</value>
+  <data name="&gt;&gt;chkRight.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="btnX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 21</value>
-  </data>
-  <data name="colorPicker1.Items535" xml:space="preserve">
-    <value>Royalblue</value>
-  </data>
-  <data name="colorPicker1.Items759" xml:space="preserve">
-    <value>Lavender</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="colorPicker1.Items116" xml:space="preserve">
-    <value>Saddlebrown</value>
-  </data>
-  <data name="colorPicker1.Items3" xml:space="preserve">
-    <value>Aquamarine</value>
-  </data>
-  <data name="colorPicker1.Items330" xml:space="preserve">
-    <value>Gray</value>
-  </data>
-  <data name="colorPicker1.Items273" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="colorPicker1.Items305" xml:space="preserve">
-    <value>Darkgreen</value>
-  </data>
-  <data name="colorPicker1.Items630" xml:space="preserve">
-    <value>Lightsalmon</value>
-  </data>
-  <data name="colorPicker1.Items123" xml:space="preserve">
-    <value>Skyblue</value>
-  </data>
-  <data name="&gt;&gt;txtLabelValue.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items29" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items781" xml:space="preserve">
-    <value>Mediumaquamarine</value>
-  </data>
-  <data name="btnUp.Text" xml:space="preserve">
-    <value>^</value>
-  </data>
-  <data name="&gt;&gt;btnX.Name" xml:space="preserve">
-    <value>btnX</value>
-  </data>
-  <data name="btnAdd.Text" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="colorPicker1.Items570" xml:space="preserve">
-    <value>Blueviolet</value>
-  </data>
-  <data name="colorPicker1.Items49" xml:space="preserve">
-    <value>Goldenrod</value>
-  </data>
-  <data name="colorPicker1.Items618" xml:space="preserve">
-    <value>Khaki</value>
-  </data>
-  <data name="colorPicker1.Items32" xml:space="preserve">
-    <value>Darksalmon</value>
-  </data>
-  <data name="colorPicker1.Items17" xml:space="preserve">
-    <value>Cornflowerblue</value>
-  </data>
-  <data name="colorPicker1.Items519" xml:space="preserve">
-    <value>Orange</value>
-  </data>
-  <data name="colorPicker1.Items408" xml:space="preserve">
-    <value>Steelblue</value>
-  </data>
-  <data name="colorPicker1.Items576" xml:space="preserve">
-    <value>Coral</value>
-  </data>
-  <data name="&gt;&gt;btnAdd.Name" xml:space="preserve">
-    <value>btnAdd</value>
-  </data>
-  <data name="btnLabelValue.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt, style=Bold, Italic</value>
-  </data>
-  <data name="colorPicker1.Items25" xml:space="preserve">
-    <value>Darkgreen</value>
-  </data>
-  <data name="&gt;&gt;chkLeft.Name" xml:space="preserve">
-    <value>chkLeft</value>
-  </data>
-  <data name="colorPicker1.Items153" xml:space="preserve">
-    <value>Cadetblue</value>
-  </data>
-  <data name="colorPicker1.Items657" xml:space="preserve">
-    <value>Olive</value>
-  </data>
-  <data name="colorPicker1.Items60" xml:space="preserve">
-    <value>Lavenderblush</value>
-  </data>
-  <data name="&gt;&gt;txtDataValue.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="colorPicker1.Items526" xml:space="preserve">
-    <value>Papayawhip</value>
-  </data>
-  <data name="colorPicker1.Items547" xml:space="preserve">
-    <value>Springgreen</value>
-  </data>
-  <data name="colorPicker1.Items13" xml:space="preserve">
-    <value>Cadetblue</value>
-  </data>
-  <data name="colorPicker1.Items541" xml:space="preserve">
-    <value>Sienna</value>
-  </data>
-  <data name="colorPicker1.Items78" xml:space="preserve">
-    <value>Linen</value>
-  </data>
-  <data name="colorPicker1.Items466" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="colorPicker1.Items98" xml:space="preserve">
-    <value>Olivedrab</value>
-  </data>
-  <data name="&gt;&gt;btnSeriesName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items655" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="colorPicker1.Items41" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="&gt;&gt;cbLine.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items117" xml:space="preserve">
-    <value>Salmon</value>
-  </data>
-  <data name="colorPicker1.Items689" xml:space="preserve">
-    <value>Tan</value>
-  </data>
-  <data name="colorPicker1.Items688" xml:space="preserve">
-    <value>Steelblue</value>
-  </data>
-  <data name="colorPicker1.Items685" xml:space="preserve">
-    <value>Slategray</value>
-  </data>
-  <data name="colorPicker1.Items417" xml:space="preserve">
-    <value>Whitesmoke</value>
-  </data>
-  <data name="colorPicker1.Items369" xml:space="preserve">
-    <value>Mediumvioletred</value>
-  </data>
-  <data name="colorPicker1.Items368" xml:space="preserve">
-    <value>Mediumturquoise</value>
-  </data>
-  <data name="colorPicker1.Items681" xml:space="preserve">
-    <value>Sienna</value>
-  </data>
-  <data name="colorPicker1.Items623" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="colorPicker1.Items197" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="colorPicker1.Items364" xml:space="preserve">
-    <value>Mediumpurple</value>
-  </data>
-  <data name="colorPicker1.Items367" xml:space="preserve">
-    <value>Mediumspringgreen</value>
-  </data>
-  <data name="colorPicker1.Items366" xml:space="preserve">
-    <value>Mediumslateblue</value>
-  </data>
-  <data name="colorPicker1.Items361" xml:space="preserve">
-    <value>Mediumaquamarine</value>
-  </data>
-  <data name="colorPicker1.Items360" xml:space="preserve">
-    <value>Maroon</value>
-  </data>
-  <data name="colorPicker1.Items568" xml:space="preserve">
-    <value>Blanchedalmond</value>
-  </data>
-  <data name="colorPicker1.Items362" xml:space="preserve">
-    <value>Mediumblue</value>
-  </data>
-  <data name="colorPicker1.Items714" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items717" xml:space="preserve">
-    <value>Cornflowerblue</value>
-  </data>
-  <data name="colorPicker1.Items564" xml:space="preserve">
-    <value>Azure</value>
-  </data>
-  <data name="colorPicker1.Items711" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="colorPicker1.Items648" xml:space="preserve">
-    <value>Mediumturquoise</value>
-  </data>
-  <data name="colorPicker1.Items713" xml:space="preserve">
-    <value>Cadetblue</value>
-  </data>
-  <data name="colorPicker1.Items498" xml:space="preserve">
-    <value>Linen</value>
-  </data>
-  <data name="colorPicker1.Items563" xml:space="preserve">
-    <value>Aquamarine</value>
-  </data>
-  <data name="colorPicker1.Items562" xml:space="preserve">
-    <value>Aqua</value>
-  </data>
-  <data name="colorPicker1.Items647" xml:space="preserve">
-    <value>Mediumspringgreen</value>
-  </data>
-  <data name="colorPicker1.Items494" xml:space="preserve">
-    <value>Lightsteelblue</value>
-  </data>
-  <data name="colorPicker1.Items497" xml:space="preserve">
-    <value>Limegreen</value>
-  </data>
-  <data name="colorPicker1.Items640" xml:space="preserve">
-    <value>Maroon</value>
-  </data>
-  <data name="colorPicker1.Items643" xml:space="preserve">
-    <value>Mediumorchid</value>
-  </data>
-  <data name="colorPicker1.Items324" xml:space="preserve">
-    <value>Forestgreen</value>
-  </data>
-  <data name="colorPicker1.Items327" xml:space="preserve">
-    <value>Ghostwhite</value>
-  </data>
-  <data name="colorPicker1.Items326" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="colorPicker1.Items321" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="colorPicker1.Items529" xml:space="preserve">
-    <value>Pink</value>
-  </data>
-  <data name="colorPicker1.Items528" xml:space="preserve">
-    <value>Peru</value>
-  </data>
-  <data name="colorPicker1.Items841" xml:space="preserve">
-    <value />
-  </data>
-  <data name="colorPicker1.Items840" xml:space="preserve">
-    <value>colorPicker1</value>
-  </data>
-  <data name="colorPicker1.Items525" xml:space="preserve">
-    <value>Palevioletred</value>
-  </data>
-  <data name="colorPicker1.Items524" xml:space="preserve">
-    <value>Paleturquoise</value>
-  </data>
-  <data name="colorPicker1.Items609" xml:space="preserve">
-    <value>Goldenrod</value>
-  </data>
-  <data name="colorPicker1.Items608" xml:space="preserve">
-    <value>Gold</value>
-  </data>
-  <data name="colorPicker1.Items219" xml:space="preserve">
-    <value>Magenta</value>
-  </data>
-  <data name="colorPicker1.Items520" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="colorPicker1.Items523" xml:space="preserve">
-    <value>Palegreen</value>
-  </data>
-  <data name="colorPicker1.Items604" xml:space="preserve">
-    <value>Forestgreen</value>
-  </data>
-  <data name="colorPicker1.Items607" xml:space="preserve">
-    <value>Ghostwhite</value>
-  </data>
-  <data name="colorPicker1.Items606" xml:space="preserve">
-    <value>Gainsboro</value>
-  </data>
-  <data name="colorPicker1.Items601" xml:space="preserve">
-    <value>Dodgerblue</value>
-  </data>
-  <data name="colorPicker1.Items809" xml:space="preserve">
-    <value>Pink</value>
-  </data>
-  <data name="colorPicker1.Items808" xml:space="preserve">
-    <value>Peru</value>
-  </data>
-  <data name="colorPicker1.Items333" xml:space="preserve">
-    <value>Honeydew</value>
-  </data>
-  <data name="btnAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 31</value>
-  </data>
-  <data name="colorPicker1.Items805" xml:space="preserve">
-    <value>Palevioletred</value>
-  </data>
-  <data name="colorPicker1.Items804" xml:space="preserve">
-    <value>Paleturquoise</value>
-  </data>
-  <data name="colorPicker1.Items807" xml:space="preserve">
-    <value>Peachpuff</value>
-  </data>
-  <data name="colorPicker1.Items806" xml:space="preserve">
-    <value>Papayawhip</value>
-  </data>
-  <data name="colorPicker1.Items801" xml:space="preserve">
-    <value>Orchid</value>
-  </data>
-  <data name="colorPicker1.Items800" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="colorPicker1.Items803" xml:space="preserve">
-    <value>Palegreen</value>
-  </data>
-  <data name="colorPicker1.Items802" xml:space="preserve">
-    <value>Palegoldenrod</value>
-  </data>
-  <data name="colorPicker1.Items491" xml:space="preserve">
-    <value>Lightseagreen</value>
-  </data>
-  <data name="colorPicker1.Items297" xml:space="preserve">
-    <value>Cornflowerblue</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="colorPicker1.Items710" xml:space="preserve">
-    <value>Blueviolet</value>
-  </data>
-  <data name="colorPicker1.Items684" xml:space="preserve">
-    <value>Slateblue</value>
-  </data>
-  <data name="colorPicker1.Items141" xml:space="preserve">
-    <value>Antiquewhite</value>
-  </data>
-  <data name="colorPicker1.Items600" xml:space="preserve">
-    <value>Dimgray</value>
-  </data>
-  <data name="btnX.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="&gt;&gt;btnSeriesName.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="colorPicker1.Items500" xml:space="preserve">
-    <value>Maroon</value>
-  </data>
-  <data name="colorPicker1.Items343" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbLine.Items4" xml:space="preserve">
-    <value>Super Size</value>
-  </data>
-  <data name="colorPicker1.Items545" xml:space="preserve">
-    <value>Slategray</value>
-  </data>
-  <data name="colorPicker1.Items540" xml:space="preserve">
-    <value>Seashell</value>
-  </data>
-  <data name="colorPicker1.Items716" xml:space="preserve">
-    <value>Coral</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;colorPicker1.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.5.5081.33559, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="colorPicker1.Items719" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="&gt;&gt;txtLabelValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="colorPicker1.Items627" xml:space="preserve">
-    <value>Lightgreen</value>
-  </data>
-  <data name="colorPicker1.Items353" xml:space="preserve">
-    <value>Lightslategrey</value>
-  </data>
-  <data name="&gt;&gt;btnUp.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="colorPicker1.Items701" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items77" xml:space="preserve">
-    <value>Limegreen</value>
-  </data>
-  <data name="&gt;&gt;txtLabelValue.Name" xml:space="preserve">
-    <value>txtLabelValue</value>
-  </data>
-  <data name="colorPicker1.Items567" xml:space="preserve">
-    <value>Black</value>
-  </data>
-  <data name="&gt;&gt;cbLine.Name" xml:space="preserve">
-    <value>cbLine</value>
-  </data>
-  <data name="colorPicker1.Items71" xml:space="preserve">
-    <value>Lightseagreen</value>
-  </data>
-  <data name="&gt;&gt;txtDataValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items468" xml:space="preserve">
-    <value>Gold</value>
-  </data>
-  <data name="colorPicker1.Items135" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items312" xml:space="preserve">
-    <value>Darksalmon</value>
-  </data>
-  <data name="&gt;&gt;txtSeriesName.Name" xml:space="preserve">
-    <value>txtSeriesName</value>
-  </data>
-  <data name="colorPicker1.Items332" xml:space="preserve">
-    <value>Greenyellow</value>
-  </data>
-  <data name="cbPlotType.Items" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="colorPicker1.Items632" xml:space="preserve">
-    <value>Lightskyblue</value>
-  </data>
-  <data name="colorPicker1.Items476" xml:space="preserve">
-    <value>Indigo</value>
-  </data>
-  <data name="colorPicker1.Items218" xml:space="preserve">
-    <value>Linen</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 12</value>
-  </data>
-  <data name="colorPicker1.Items783" xml:space="preserve">
-    <value>Mediumorchid</value>
-  </data>
-  <data name="colorPicker1.Items139" xml:space="preserve">
-    <value>Yellowgreen</value>
-  </data>
-  <data name="colorPicker1.Items572" xml:space="preserve">
-    <value>Burlywood</value>
-  </data>
-  <data name="colorPicker1.Items669" xml:space="preserve">
-    <value>Pink</value>
-  </data>
-  <data name="colorPicker1.Items320" xml:space="preserve">
-    <value>Dimgray</value>
-  </data>
-  <data name="colorPicker1.Items458" xml:space="preserve">
-    <value>Deeppink</value>
-  </data>
-  <data name="colorPicker1.Items240" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="colorPicker1.Items769" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="colorPicker1.Items140" xml:space="preserve">
-    <value>Aliceblue</value>
-  </data>
-  <data name="&gt;&gt;btnDel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnDel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items319" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="btnAdd.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="cbPlotType.Items1" xml:space="preserve">
-    <value>Line</value>
-  </data>
-  <data name="colorPicker1.Items617" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="btnDel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 31</value>
-  </data>
-  <data name="colorPicker1.Items66" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="btnDataValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 67</value>
-  </data>
-  <data name="colorPicker1.Items429" xml:space="preserve">
-    <value>Blue</value>
-  </data>
-  <data name="colorPicker1.Items718" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="colorPicker1.Items374" xml:space="preserve">
-    <value>Navajowhite</value>
-  </data>
-  <data name="colorPicker1.Items76" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items626" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="colorPicker1.Items69" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="colorPicker1.Items595" xml:space="preserve">
-    <value>Darkslategray</value>
-  </data>
-  <data name="colorPicker1.Items700" xml:space="preserve">
-    <value>colorPicker1</value>
-  </data>
-  <data name="chkMarker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
-  </data>
-  <data name="colorPicker1.Items196" xml:space="preserve">
-    <value>Indigo</value>
-  </data>
-  <data name="colorPicker1.Items45" xml:space="preserve">
-    <value>Fuchsia</value>
-  </data>
-  <data name="colorPicker1.Items708" xml:space="preserve">
-    <value>Blanchedalmond</value>
-  </data>
-  <data name="colorPicker1.Items112" xml:space="preserve">
-    <value>Purple</value>
-  </data>
-  <data name="colorPicker1.Items72" xml:space="preserve">
-    <value>Lightskyblue</value>
-  </data>
-  <data name="colorPicker1.Items57" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="colorPicker1.Items691" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items259" xml:space="preserve">
-    <value>Seagreen</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="colorPicker1.Items405" xml:space="preserve">
-    <value>Slategray</value>
-  </data>
-  <data name="colorPicker1.Items65" xml:space="preserve">
-    <value>Lightcyan</value>
-  </data>
-  <data name="colorPicker1.Items92" xml:space="preserve">
-    <value>Mistyrose</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="colorPicker1.Items278" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="colorPicker1.Items776" xml:space="preserve">
-    <value>Lime</value>
-  </data>
-  <data name="colorPicker1.Items645" xml:space="preserve">
-    <value>Mediumseagreen</value>
-  </data>
-  <data name="colorPicker1.Items275" xml:space="preserve">
-    <value>Wheat</value>
-  </data>
-  <data name="colorPicker1.Items274" xml:space="preserve">
-    <value>Violet</value>
-  </data>
-  <data name="colorPicker1.Items85" xml:space="preserve">
-    <value>Mediumseagreen</value>
-  </data>
-  <data name="colorPicker1.Items276" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="colorPicker1.Items271" xml:space="preserve">
-    <value>Thistle</value>
-  </data>
-  <data name="colorPicker1.Items270" xml:space="preserve">
-    <value>Teal</value>
-  </data>
-  <data name="colorPicker1.Items727" xml:space="preserve">
-    <value>Darkmagenta</value>
-  </data>
-  <data name="colorPicker1.Items383" xml:space="preserve">
-    <value>Palegreen</value>
-  </data>
-  <data name="colorPicker1.Items53" xml:space="preserve">
-    <value>Honeydew</value>
-  </data>
-  <data name="colorPicker1.Items309" xml:space="preserve">
-    <value>Darkorange</value>
-  </data>
-  <data name="colorPicker1.Items308" xml:space="preserve">
-    <value>Darkolivegreen</value>
-  </data>
-  <data name="colorPicker1.Items159" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="colorPicker1.Items158" xml:space="preserve">
-    <value>Cornsilk</value>
-  </data>
-  <data name="colorPicker1.Items272" xml:space="preserve">
-    <value>Tomato</value>
-  </data>
-  <data name="colorPicker1.Items304" xml:space="preserve">
-    <value>Darkgray</value>
-  </data>
-  <data name="colorPicker1.Items307" xml:space="preserve">
-    <value>Darkmagenta</value>
-  </data>
-  <data name="colorPicker1.Items154" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items301" xml:space="preserve">
-    <value>Darkblue</value>
-  </data>
-  <data name="colorPicker1.Items300" xml:space="preserve">
-    <value>Cyan</value>
-  </data>
-  <data name="colorPicker1.Items782" xml:space="preserve">
-    <value>Mediumblue</value>
-  </data>
-  <data name="colorPicker1.Items302" xml:space="preserve">
-    <value>Darkcyan</value>
-  </data>
-  <data name="txtX.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="colorPicker1.Items152" xml:space="preserve">
-    <value>Burlywood</value>
-  </data>
-  <data name="colorPicker1.Items237" xml:space="preserve">
-    <value>Olive</value>
-  </data>
-  <data name="colorPicker1.Items236" xml:space="preserve">
-    <value>Oldlace</value>
-  </data>
-  <data name="colorPicker1.Items231" xml:space="preserve">
-    <value>Mintcream</value>
-  </data>
-  <data name="colorPicker1.Items439" xml:space="preserve">
-    <value>Crimson</value>
-  </data>
-  <data name="colorPicker1.Items779" xml:space="preserve">
-    <value>Magenta</value>
-  </data>
-  <data name="colorPicker1.Items232" xml:space="preserve">
-    <value>Mistyrose</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="colorPicker1.Items435" xml:space="preserve">
-    <value>Chocolate</value>
-  </data>
-  <data name="colorPicker1.Items434" xml:space="preserve">
-    <value>Chartreuse</value>
-  </data>
-  <data name="colorPicker1.Items5" xml:space="preserve">
-    <value>Beige</value>
-  </data>
-  <data name="colorPicker1.Items436" xml:space="preserve">
-    <value>Coral</value>
-  </data>
-  <data name="colorPicker1.Items431" xml:space="preserve">
-    <value>Brown</value>
-  </data>
-  <data name="btnLabelValue.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="colorPicker1.Items115" xml:space="preserve">
-    <value>Royalblue</value>
-  </data>
-  <data name="colorPicker1.Items432" xml:space="preserve">
-    <value>Burlywood</value>
-  </data>
-  <data name="colorPicker1.Items765" xml:space="preserve">
-    <value>Lightcyan</value>
-  </data>
-  <data name="colorPicker1.Items764" xml:space="preserve">
-    <value>Lightcoral</value>
-  </data>
-  <data name="colorPicker1.Items111" xml:space="preserve">
-    <value>Powderblue</value>
-  </data>
-  <data name="colorPicker1.Items766" xml:space="preserve">
-    <value>Lightgoldenrodyellow</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 13</value>
-  </data>
-  <data name="colorPicker1.Items143" xml:space="preserve">
-    <value>Aquamarine</value>
-  </data>
-  <data name="colorPicker1.Items602" xml:space="preserve">
-    <value>Firebrick</value>
-  </data>
-  <data name="colorPicker1.Items762" xml:space="preserve">
-    <value>Lemonchiffon</value>
-  </data>
-  <data name="&gt;&gt;btnSeriesName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="chkLeft.Text" xml:space="preserve">
-    <value>Left</value>
-  </data>
-  <data name="&gt;&gt;btnX.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="colorPicker1.Items599" xml:space="preserve">
-    <value>Deepskyblue</value>
-  </data>
-  <data name="colorPicker1.Items542" xml:space="preserve">
-    <value>Silver</value>
-  </data>
-  <data name="colorPicker1.Items209" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="colorPicker1.Items539" xml:space="preserve">
-    <value>Seagreen</value>
-  </data>
-  <data name="colorPicker1.Items603" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="colorPicker1.Items122" xml:space="preserve">
-    <value>Silver</value>
-  </data>
-  <data name="colorPicker1.Items612" xml:space="preserve">
-    <value>Greenyellow</value>
-  </data>
-  <data name="&gt;&gt;lbDataSeries.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colorPicker1.Items621" xml:space="preserve">
-    <value>Lawngreen</value>
-  </data>
-  <data name="colorPicker1.Items110" xml:space="preserve">
-    <value>Plum</value>
-  </data>
-  <data name="colorPicker1.Items594" xml:space="preserve">
-    <value>Darkslateblue</value>
-  </data>
-  <data name="colorPicker1.Items757" xml:space="preserve">
-    <value>Ivory</value>
-  </data>
-  <data name="&gt;&gt;chkMarker.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnUp.Name" xml:space="preserve">
-    <value>btnUp</value>
-  </data>
-  <data name="&gt;&gt;btnSeriesName.Name" xml:space="preserve">
-    <value>btnSeriesName</value>
-  </data>
-  <data name="colorPicker1.Items204" xml:space="preserve">
-    <value>Lightcoral</value>
-  </data>
-  <data name="colorPicker1.Items378" xml:space="preserve">
-    <value>Olivedrab</value>
-  </data>
-  <data name="colorPicker1.Items6" xml:space="preserve">
-    <value>Bisque</value>
-  </data>
-  <data name="chkMarker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 132</value>
-  </data>
-  <data name="colorPicker1.Items755" xml:space="preserve">
-    <value>Indianred</value>
-  </data>
-  <data name="colorPicker1.Items137" xml:space="preserve">
-    <value>Whitesmoke</value>
-  </data>
-  <data name="&gt;&gt;lbDataSeries.Name" xml:space="preserve">
-    <value>lbDataSeries</value>
-  </data>
-  <data name="colorPicker1.Items726" xml:space="preserve">
-    <value>Darkkhaki</value>
-  </data>
-  <data name="&gt;&gt;cbPlotType.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items471" xml:space="preserve">
-    <value>Green</value>
-  </data>
-  <data name="colorPicker1.Items492" xml:space="preserve">
-    <value>Lightskyblue</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="colorPicker1.Items489" xml:space="preserve">
-    <value>Lightpink</value>
-  </data>
-  <data name="colorPicker1.Items778" xml:space="preserve">
-    <value>Linen</value>
-  </data>
-  <data name="&gt;&gt;chkMarker.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="colorPicker1.Items323" xml:space="preserve">
-    <value>Floralwhite</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 175</value>
-  </data>
-  <data name="colorPicker1.Items515" xml:space="preserve">
-    <value>Navy</value>
-  </data>
-  <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 103</value>
-  </data>
-  <data name="colorPicker1.Items653" xml:space="preserve">
-    <value>Moccasin</value>
-  </data>
-  <data name="colorPicker1.Items239" xml:space="preserve">
-    <value>Orange</value>
-  </data>
-  <data name="btnDel.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="&gt;&gt;colorPicker1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="colorPicker1.Items693" xml:space="preserve">
-    <value>Turquoise</value>
-  </data>
-  <data name="colorPicker1.Items490" xml:space="preserve">
-    <value>Lightsalmon</value>
-  </data>
-  <data name="colorPicker1.Items329" xml:space="preserve">
-    <value>Goldenrod</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="colorPicker1.Items749" xml:space="preserve">
-    <value>Goldenrod</value>
-  </data>
-  <data name="&gt;&gt;txtX.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="colorPicker1.Items538" xml:space="preserve">
-    <value>Sandybrown</value>
-  </data>
-  <data name="colorPicker1.Items376" xml:space="preserve">
-    <value>Oldlace</value>
-  </data>
-  <data name="colorPicker1.Items380" xml:space="preserve">
-    <value>Orangered</value>
-  </data>
-  <data name="colorPicker1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8pt, style=Bold, Italic</value>
-  </data>
-  <data name="&gt;&gt;btnAdd.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="colorPicker1.Items566" xml:space="preserve">
-    <value>Bisque</value>
-  </data>
-  <data name="colorPicker1.Items113" xml:space="preserve">
-    <value>Red</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 215</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
   </data>
-  <data name="cbLine.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Y Axis</value>
   </data>
-  <data name="colorPicker1.Items597" xml:space="preserve">
-    <value>Darkviolet</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
-  <data name="colorPicker1.Items702" xml:space="preserve">
-    <value>Aqua</value>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items1" xml:space="preserve">
-    <value>Antiquewhite</value>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items437" xml:space="preserve">
-    <value>Cornflowerblue</value>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
-  <data name="colorPicker1.Items560" xml:space="preserve">
-    <value>Aliceblue</value>
+  <data name="btnUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 28</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
+  <data name="btnUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 23</value>
   </data>
-  <data name="colorPicker1.Items35" xml:space="preserve">
-    <value>Darkslategray</value>
+  <data name="btnUp.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
-  <data name="colorPicker1.Items812" xml:space="preserve">
-    <value>Purple</value>
+  <data name="btnUp.Text" xml:space="preserve">
+    <value>^</value>
   </data>
-  <data name="cbPlotType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 191</value>
+  <data name="&gt;&gt;btnUp.Name" xml:space="preserve">
+    <value>btnUp</value>
   </data>
-  <data name="&gt;&gt;btnDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnUp.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 20</value>
+  <data name="&gt;&gt;btnUp.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items697" xml:space="preserve">
-    <value>Whitesmoke</value>
+  <data name="&gt;&gt;btnUp.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="colorPicker1.Items28" xml:space="preserve">
-    <value>Darkolivegreen</value>
+  <data name="btnDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 139</value>
   </data>
-  <data name="colorPicker1.Items771" xml:space="preserve">
-    <value>Lightseagreen</value>
+  <data name="btnDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 23</value>
   </data>
-  <data name="colorPicker1.Items754" xml:space="preserve">
-    <value>Hotpink</value>
-  </data>
-  <data name="colorPicker1.Items136" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="colorPicker1.Items63" xml:space="preserve">
-    <value>Lightblue</value>
-  </data>
-  <data name="colorPicker1.Items48" xml:space="preserve">
-    <value>Gold</value>
-  </data>
-  <data name="colorPicker1.Items721" xml:space="preserve">
-    <value>Darkblue</value>
+  <data name="btnDown.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
   <data name="btnDown.Text" xml:space="preserve">
     <value>v</value>
   </data>
-  <data name="colorPicker1.Items31" xml:space="preserve">
-    <value>Darkred</value>
+  <data name="&gt;&gt;btnDown.Name" xml:space="preserve">
+    <value>btnDown</value>
   </data>
-  <data name="colorPicker1.Items22" xml:space="preserve">
-    <value>Darkcyan</value>
+  <data name="&gt;&gt;btnDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items16" xml:space="preserve">
-    <value>Coral</value>
+  <data name="&gt;&gt;btnDown.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="chkShowLabels.Text" xml:space="preserve">
-    <value>Show Labels?</value>
+  <data name="&gt;&gt;btnDown.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="colorPicker1.Items227" xml:space="preserve">
-    <value>Mediumspringgreen</value>
+  <data name="txtX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 106</value>
   </data>
-  <data name="colorPicker1.Items24" xml:space="preserve">
-    <value>Darkgray</value>
+  <data name="txtX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 20</value>
   </data>
-  <data name="colorPicker1.Items51" xml:space="preserve">
-    <value>Green</value>
+  <data name="txtX.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
   </data>
-  <data name="chkLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 229</value>
+  <data name="&gt;&gt;txtX.Name" xml:space="preserve">
+    <value>txtX</value>
   </data>
-  <data name="colorPicker1.Items188" xml:space="preserve">
-    <value>Gold</value>
+  <data name="&gt;&gt;txtX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items248" xml:space="preserve">
-    <value>Peru</value>
+  <data name="&gt;&gt;txtX.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items488" xml:space="preserve">
-    <value>Lightgrey</value>
+  <data name="&gt;&gt;txtX.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="colorPicker1.Items155" xml:space="preserve">
-    <value>Chocolate</value>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items328" xml:space="preserve">
-    <value>Gold</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 90</value>
   </data>
-  <data name="colorPicker1.Items493" xml:space="preserve">
-    <value>Lightslategrey</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
   </data>
-  <data name="colorPicker1.Items514" xml:space="preserve">
-    <value>Navajowhite</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
   </data>
-  <data name="colorPicker1.Items767" xml:space="preserve">
-    <value>Lightgreen</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>X Value(Scatter only)</value>
   </data>
-  <data name="colorPicker1.Items352" xml:space="preserve">
-    <value>Lightskyblue</value>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
   </data>
-  <data name="colorPicker1.Items712" xml:space="preserve">
-    <value>Burlywood</value>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items398" xml:space="preserve">
-    <value>Sandybrown</value>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items709" xml:space="preserve">
-    <value>Blue</value>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="colorPicker1.Items395" xml:space="preserve">
-    <value>Royalblue</value>
+  <data name="btnX.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="colorPicker1.Items394" xml:space="preserve">
-    <value>Rosybrown</value>
+  <data name="btnX.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8.25pt, style=Bold, Italic</value>
   </data>
-  <data name="colorPicker1.Items397" xml:space="preserve">
-    <value>Salmon</value>
+  <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 103</value>
   </data>
-  <data name="colorPicker1.Items396" xml:space="preserve">
-    <value>Saddlebrown</value>
+  <data name="btnX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 21</value>
   </data>
-  <data name="colorPicker1.Items391" xml:space="preserve">
-    <value>Powderblue</value>
+  <data name="btnX.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
   </data>
-  <data name="colorPicker1.Items390" xml:space="preserve">
-    <value>Plum</value>
+  <data name="btnX.Text" xml:space="preserve">
+    <value>fx</value>
   </data>
-  <data name="colorPicker1.Items40" xml:space="preserve">
-    <value>Dimgray</value>
+  <data name="&gt;&gt;btnX.Name" xml:space="preserve">
+    <value>btnX</value>
   </data>
-  <data name="colorPicker1.Items392" xml:space="preserve">
-    <value>Purple</value>
+  <data name="&gt;&gt;btnX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items605" xml:space="preserve">
-    <value>Fuchsia</value>
+  <data name="&gt;&gt;btnX.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items150" xml:space="preserve">
-    <value>Blueviolet</value>
+  <data name="&gt;&gt;btnX.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="colorPicker1.Items679" xml:space="preserve">
-    <value>Seagreen</value>
+  <data name="chkMarker.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items678" xml:space="preserve">
-    <value>Sandybrown</value>
+  <data name="chkMarker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 132</value>
   </data>
-  <data name="colorPicker1.Items94" xml:space="preserve">
-    <value>Navajowhite</value>
+  <data name="chkMarker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
   </data>
-  <data name="colorPicker1.Items675" xml:space="preserve">
-    <value>Royalblue</value>
+  <data name="chkMarker.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
   </data>
-  <data name="colorPicker1.Items674" xml:space="preserve">
-    <value>Rosybrown</value>
+  <data name="chkMarker.Text" xml:space="preserve">
+    <value>Show Markers?</value>
   </data>
-  <data name="colorPicker1.Items677" xml:space="preserve">
-    <value>Salmon</value>
+  <data name="&gt;&gt;chkMarker.Name" xml:space="preserve">
+    <value>chkMarker</value>
   </data>
-  <data name="colorPicker1.Items358" xml:space="preserve">
-    <value>Linen</value>
+  <data name="&gt;&gt;chkMarker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items469" xml:space="preserve">
-    <value>Goldenrod</value>
+  <data name="&gt;&gt;chkMarker.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items293" xml:space="preserve">
-    <value>Cadetblue</value>
+  <data name="&gt;&gt;chkMarker.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="colorPicker1.Items355" xml:space="preserve">
-    <value>Lightyellow</value>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="colorPicker1.Items672" xml:space="preserve">
-    <value>Purple</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 175</value>
   </data>
-  <data name="colorPicker1.Items357" xml:space="preserve">
-    <value>Limegreen</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
   </data>
-  <data name="colorPicker1.Items371" xml:space="preserve">
-    <value>Mintcream</value>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
   </data>
-  <data name="colorPicker1.Items351" xml:space="preserve">
-    <value>Lightseagreen</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Line Width</value>
   </data>
-  <data name="colorPicker1.Items350" xml:space="preserve">
-    <value>Lightsalmon</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
-  <data name="colorPicker1.Items558" xml:space="preserve">
-    <value>Yellow</value>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colorPicker1.Items365" xml:space="preserve">
-    <value>Mediumseagreen</value>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="colorPicker1.Items715" xml:space="preserve">
-    <value>Chocolate</value>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="colorPicker1.Items707" xml:space="preserve">
-    <value>Black</value>
+  <data name="cbLine.Items" xml:space="preserve">
+    <value>Small</value>
   </data>
-  <data name="colorPicker1.Items706" xml:space="preserve">
-    <value>Bisque</value>
+  <data name="cbLine.Items1" xml:space="preserve">
+    <value>Regular</value>
   </data>
-  <data name="colorPicker1.Items639" xml:space="preserve">
-    <value>Magenta</value>
+  <data name="cbLine.Items2" xml:space="preserve">
+    <value>Large</value>
   </data>
-  <data name="colorPicker1.Items556" xml:space="preserve">
-    <value>White</value>
+  <data name="cbLine.Items3" xml:space="preserve">
+    <value>Extra Large</value>
   </data>
-  <data name="colorPicker1.Items703" xml:space="preserve">
-    <value>Aquamarine</value>
+  <data name="cbLine.Items4" xml:space="preserve">
+    <value>Super Size</value>
   </data>
-  <data name="colorPicker1.Items596" xml:space="preserve">
-    <value>Darkturquoise</value>
+  <data name="cbLine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 191</value>
   </data>
-  <data name="colorPicker1.Items482" xml:space="preserve">
-    <value>Lemonchiffon</value>
+  <data name="cbLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
   </data>
-  <data name="colorPicker1.Items634" xml:space="preserve">
-    <value>Lightsteelblue</value>
+  <data name="cbLine.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
   </data>
-  <data name="colorPicker1.Items485" xml:space="preserve">
-    <value>Lightcyan</value>
+  <data name="&gt;&gt;cbLine.Name" xml:space="preserve">
+    <value>cbLine</value>
   </data>
-  <data name="colorPicker1.Items484" xml:space="preserve">
-    <value>Lightcoral</value>
+  <data name="&gt;&gt;cbLine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbLine.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbLine.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 215</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Series Colour</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="colorPicker1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 8pt, style=Bold, Italic</value>
+  </data>
+  <data name="colorPicker1.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="colorPicker1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 236</value>
+  </data>
+  <data name="colorPicker1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 21</value>
+  </data>
+  <data name="colorPicker1.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;colorPicker1.Name" xml:space="preserve">
+    <value>colorPicker1</value>
+  </data>
+  <data name="&gt;&gt;colorPicker1.Type" xml:space="preserve">
+    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.5.5088.20753, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;colorPicker1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;colorPicker1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 260</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>StaticSeriesCtl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

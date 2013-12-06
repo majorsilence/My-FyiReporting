@@ -25,7 +25,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -67,10 +67,10 @@ namespace fyiReporting.RDL
 			{
 				string o = _ArgExpr.EvaluateString(null, null);
 				if (o == null)
-					throw new Exception("ReportItem collection argument is null"); 
+					throw new Exception(Strings.FunctionReportItemCollection_Error_ReportItemCollectionNull); 
 				Textbox ri = _ReportItems[o] as Textbox;
 				if (ri == null)
-					throw new Exception(string.Format("ReportItem collection argument {0} is invalid", o)); 
+					throw new Exception(string.Format(Strings.FunctionReportItemCollection_Error_ReportItemCollectionInvalid, o)); 
 				return new FunctionTextbox(ri, null);	// no access to unique name
 			}
 

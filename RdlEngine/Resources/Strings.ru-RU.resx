@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CharReader_Error_FileReaderUnGetFirstChar" xml:space="preserve">
+    <value>ошибка : не найден первый символ</value>
+  </data>
+  <data name="ChartLayout_Error_PlotAreaHeightIs0" xml:space="preserve">
+    <value>Высота участка меньше или равна 0</value>
+  </data>
+  <data name="ChartLayout_Error_PlotAreaWidthIs0" xml:space="preserve">
+    <value>Ширина участка меньше или равна 0</value>
+  </data>
+  <data name="DataSourceDefn_Error_NoPasswordForDSR" xml:space="preserve">
+    <value>Для общего источника данных не задан пароль</value>
+  </data>
+  <data name="Filter_Error_TopNAndBottomNRequireInt" xml:space="preserve">
+    <value>Операторы фильтра TopN и BottomN требуют целое значение {0}.</value>
+  </data>
+  <data name="Financial_Error_IPmtNotSupportPayments" xml:space="preserve">
+    <value>IPmt не поддерживает выплаты, причитающиеся на начало периода.</value>
+  </data>
+  <data name="FunctionCode_Error_MethodNotFound" xml:space="preserve">
+    <value>Метод "{0}" не найден в коде</value>
+  </data>
+  <data name="FunctionCustomInstance_Error_MethodNotFoundInClass" xml:space="preserve">
+    <value>Метод "{0}" не найден в классе "{1}"</value>
+  </data>
+  <data name="FunctionCustomStatic_Error_MethodNotFoundInClass" xml:space="preserve">
+    <value>Метод "{0}" не найден в классе "{1}"</value>
+  </data>
+  <data name="FunctionFieldCollection_Error_FieldCollectionInvalid" xml:space="preserve">
+    <value>Аргумент "{0}" недопустил для коллекции Field</value>
+  </data>
+  <data name="FunctionFieldCollection_Error_FieldCollectionNull" xml:space="preserve">
+    <value>Аргумент коллекции Field пуст</value>
+  </data>
+  <data name="FunctionGlobalCollection_Error_GlobalsNull" xml:space="preserve">
+    <value>Аргумент коллекции Globals пуст</value>
+  </data>
+  <data name="FunctionGlobalCollection_Error_GlobalsUnknown" xml:space="preserve">
+    <value>Аргумент "{0}" недопустил для коллекции Globals</value>
+  </data>
+  <data name="FunctionParameterCollection_Error_ParameterCollectionInvalid" xml:space="preserve">
+    <value>Аргумент "{0}" недопустил для коллекции Parameter</value>
+  </data>
+  <data name="FunctionParameterCollection_Error_ParameterCollectionNull" xml:space="preserve">
+    <value>Аргумент коллекции Parameter пуст</value>
+  </data>
+  <data name="FunctionReportItemCollection_Error_ReportItemCollectionInvalid" xml:space="preserve">
+    <value>Аргумент "{0}" недопустил для коллекции ReportItem</value>
+  </data>
+  <data name="FunctionReportItemCollection_Error_ReportItemCollectionNull" xml:space="preserve">
+    <value>Аргумент коллекции ReportItem пуст</value>
+  </data>
+  <data name="FunctionReportParameter_Error_UnknownReporParameterMethod" xml:space="preserve">
+    <value>Внутренняя ошибка: неизвестный метод Report Parameter</value>
+  </data>
+  <data name="FunctionSystem_Error_MethodNotFound" xml:space="preserve">
+    <value>Метод "{0}" не найден в классе "{1}"</value>
+  </data>
+  <data name="FunctionUserCollection_Error_UserCollectionInvalid" xml:space="preserve">
+    <value>Аргумент "{0}" недопустил для коллекции User</value>
+  </data>
+  <data name="FunctionUserCollection_Error_UserCollectionNull" xml:space="preserve">
+    <value>Аргумент коллекции User пуст</value>
+  </data>
+  <data name="FunctionUserLanguage_Error_ConvertToBoolean" xml:space="preserve">
+    <value>Недопустимый перевод из языка к Boolean.</value>
+  </data>
+  <data name="FunctionUserLanguage_Error_ConvertToDateTime" xml:space="preserve">
+    <value>Недопустимый перевод из языка к DateTime.</value>
+  </data>
+  <data name="FunctionUserLanguage_Error_ConvertToDecimal" xml:space="preserve">
+    <value>Недопустимый перевод из языка к Decimal.</value>
+  </data>
+  <data name="FunctionUserLanguage_Error_ConvertToDouble" xml:space="preserve">
+    <value>Недопустимый перевод из языка к Double.</value>
+  </data>
+  <data name="FunctionUserLanguage_Error_ConvertToInt32" xml:space="preserve">
+    <value>Недопустимый перевод из языка к Int32.</value>
+  </data>
+  <data name="MhtBuilder_Error_Extension" xml:space="preserve">
+    <value>Расширение имени файла '{0}' не имеет подходящего расширения из '{1}'</value>
+  </data>
+  <data name="MhtBuilder_Error_FilenameNoExtension" xml:space="preserve">
+    <value>Название файла '{0}' не имеет расширения. 
+Если указываете папку, убедитесь, что она заканчивается косой чертой. Ожидаемые расширения файлов являются '{1}'</value>
+  </data>
+  <data name="MhtWebFile_Error_ConvertOnlyHTMLOrCSS" xml:space="preserve">
+    <value>Преобразование ссылок имеет смысл только для HTML или CSS-файлов; этот файл имеет тип '{0}'</value>
+  </data>
+  <data name="MhtWebFile_Error_NoFilename" xml:space="preserve">
+    <value>Имя файла не указано и HTML тег заголовка не найден, поэтому имя файла не может быть вычислено автоматически. Вы должны указать имя файла, а не папки.</value>
+  </data>
+  <data name="OneFileStreamGen_Error_FileAlreadyExists" xml:space="preserve">
+    <value>Файл {0} уже существует.</value>
+  </data>
+  <data name="Pages_Error_CurrentPageMustInList" xml:space="preserve">
+    <value>Текущая страница должна быть в списке страниц.</value>
+  </data>
+  <data name="PageTextHtml_Error_BuildMethodMustCalledPriorTotalHeight" xml:space="preserve">
+    <value>Метод Build должен быть вызван до обращения к свойству TotalHeight.</value>
+  </data>
+  <data name="PdfOutline_Error_GetObjectNumberMustBeforeGetOutlineDict" xml:space="preserve">
+    <value>GetObjectNumber должен вызываться до GetOutlineDict</value>
+  </data>
+  <data name="ProcessReport_Error_ReportHasErrors" xml:space="preserve">
+    <value>Отчёт имеет ошибки и не может быть обработан.</value>
+  </data>
+  <data name="Query_Error_XMLMustContainTopLevelRows" xml:space="preserve">
+    <value>Ошибка: XML-данные должны содержать строки верхнего уровня.</value>
+  </data>
+  <data name="RdlEngineConfig_Error_CashModuleNotFound" xml:space="preserve">
+    <value>Не удалось найти модуль {0}</value>
+  </data>
+  <data name="RdlEngineConfig_Error_CodeModuleNotLoaded" xml:space="preserve">
+    <value>Не удалось загрузить модуль {0}</value>
+  </data>
+  <data name="RdlEngineConfig_Error_NotKnownCustomReportItemType" xml:space="preserve">
+    <value>{0} не известный тип CustomReportItem.</value>
+  </data>
+  <data name="RdlEngineConfig_Error_UnableCreateInstance" xml:space="preserve">
+    <value>Не удалось создать экземпляр '{0}' для поставщика '{1}'</value>
+  </data>
+  <data name="ReportLog_Error_Severity" xml:space="preserve">
+    <value>Важность</value>
+  </data>
+  <data name="Subreport_Error_SubreportNotParameter" xml:space="preserve">
+    <value>В подотчёте {0} не объявлен параметр {1}.</value>
+  </data>
+  <data name="TableRows_Error_TableRowsMustOwnedTable" xml:space="preserve">
+    <value>Внутренняя ошибка: Строки таблицы должны принадлежать таблице.</value>
+  </data>
+  <data name="TableRow_Error_TableRowNotRelatedToTable" xml:space="preserve">
+    <value>Внутренняя ошибка: Строка таблицы не связана с таблицей.</value>
+  </data>
+  <data name="Table_Error_RecursiveGroupsMustOnlyGroupDefinition" xml:space="preserve">
+    <value>Ошибка: Рекурсивная группа должна быть единственным определением группы.</value>
+  </data>
+  <data name="MhtBuilder_Error_UnableDownload" xml:space="preserve">
+    <value>Не удалось загрузить '{0}': {1}</value>
+  </data>
+  <data name="Lexer_ErrorP_InvalidNumberConstant" xml:space="preserve">
+    <value>Некорректная числовая константа</value>
+  </data>
+  <data name="Lexer_ErrorP_UnterminatedString" xml:space="preserve">
+    <value>Незавершённая строка!</value>
+  </data>
+  <data name="Lexer_Error_SeparatorMustFollowedNumber" xml:space="preserve">
+    <value>'{0}' должен следовать после числа</value>
+  </data>
+  <data name="Lexer_Error_UnterminatedComment" xml:space="preserve">
+    <value>Незавершённый комментарий!</value>
+  </data>
+  <data name="Parser_ErrorP_AggregateCannotNestedInAnotherAggregate" xml:space="preserve">
+    <value>Агрегатная функция '{0}' не может быть вложена в другую агрегатную функцию.</value>
+  </data>
+  <data name="Parser_ErrorP_AggregateCannotUsedWithinGrouping" xml:space="preserve">
+    <value>Агрегатная функция '{0}' не может быть использована в выражении группирования.</value>
+  </data>
+  <data name="Parser_ErrorP_AggregateMust1Argument" xml:space="preserve">
+    <value>Aggregate function must have at least one argument.</value>
+  </data>
+  <data name="Parser_ErrorP_AND_OR_RequiresBoolean" xml:space="preserve">
+    <value>AND/OR операции требуют, чтобы с обоих сторон были логические выражения.</value>
+  </data>
+  <data name="Parser_ErrorP_AtColumn" xml:space="preserve">
+    <value>  В столбце {0}</value>
+  </data>
+  <data name="Parser_ErrorP_BracketExpected" xml:space="preserve">
+    <value>')' ожидалась, но не найдена.</value>
+  </data>
+  <data name="Parser_ErrorP_ChooseFirstArgumentMustNumeric" xml:space="preserve">
+    <value>Первый аргумент функции Choose должен быть числовым.</value>
+  </data>
+  <data name="Parser_ErrorP_ChooseRequires2Arguments" xml:space="preserve">
+    <value>Функция Choose требует как минимум 2 аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_ClassUnknown" xml:space="preserve">
+    <value>Неизвестный класс {0}.</value>
+  </data>
+  <data name="Parser_ErrorP_EndExpressionExpected" xml:space="preserve">
+    <value>Ожидался конец выражения.</value>
+  </data>
+  <data name="Parser_ErrorP_ExpectingComma" xml:space="preserve">
+    <value>Ожидается ',' или ')'.</value>
+  </data>
+  <data name="Parser_ErrorP_FieldNotFound" xml:space="preserve">
+    <value>Поле '{0}' не найдено</value>
+  </data>
+  <data name="Parser_ErrorP_FieldNotInDataSet" xml:space="preserve">
+    <value>Поля '{0}' нет в наборе данных {1}.</value>
+  </data>
+  <data name="Parser_ErrorP_FieldsRequires1Argument" xml:space="preserve">
+    <value>Коллекция Fields требует 1 аргумент.</value>
+  </data>
+  <data name="Parser_ErrorP_FieldSupportsValueAndIsMissing" xml:space="preserve">
+    <value>Поле '{0}' поддерживает только свойства 'Value' и 'IsMissing'.</value>
+  </data>
+  <data name="Parser_ErrorP_FormatRequires2Arguments" xml:space="preserve">
+    <value>Функция Format требует 2 аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_FoundValue" xml:space="preserve">
+    <value>  Найдено '{0}'</value>
+  </data>
+  <data name="Parser_ErrorP_FunctionOfClassUnknown" xml:space="preserve">
+    <value>Неизвестная функция '{0}' класса '{1}'.</value>
+  </data>
+  <data name="Parser_ErrorP_FunctionUnknown" xml:space="preserve">
+    <value>Неизвестная функция {0}.</value>
+  </data>
+  <data name="Parser_ErrorP_GlobalsNotFound" xml:space="preserve">
+    <value>Элемент '{0}' коллекции Globals не найден.</value>
+  </data>
+  <data name="Parser_ErrorP_GlobalsRequires1Argument" xml:space="preserve">
+    <value>Коллекция Globals требует 1 аргумент.</value>
+  </data>
+  <data name="Parser_ErrorP_IdentifierExpected" xml:space="preserve">
+    <value>Ожидалась константа или идентификатор.</value>
+  </data>
+  <data name="Parser_ErrorP_iff_function_requires_3_arguments" xml:space="preserve">
+    <value>Функция iff требует 3 аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_Invalid_function_arguments" xml:space="preserve">
+    <value>Некорректные аргументы функции.</value>
+  </data>
+  <data name="Parser_ErrorP_ItemNotFound" xml:space="preserve">
+    <value>Элемент '{0}' коллекции ReportItem не найден.</value>
+  </data>
+  <data name="Parser_ErrorP_ItemSupportsValue" xml:space="preserve">
+    <value>Элемент '{0}' коллекции ReportItem поддерживает только свойство 'Value'.</value>
+  </data>
+  <data name="Parser_ErrorP_MinusNeedNumbers" xml:space="preserve">
+    <value>Оператор '-' работает только с числами.</value>
+  </data>
+  <data name="Parser_ErrorP_NoScope4Aggregate" xml:space="preserve">
+    <value>Нет области предусмотренной для агрегатной функции, но определено более одного набора данных.</value>
+  </data>
+  <data name="Parser_ErrorP_NotCodeMethod" xml:space="preserve">
+    <value>{0} не является известным методом. Проверьте имя метода и его аргументы, которые должны соответствовать существующей функцию.</value>
+  </data>
+  <data name="Parser_ErrorP_NOTRequiresBoolean" xml:space="preserve">
+    <value>Операция NOT требует логического выражения.</value>
+  </data>
+  <data name="Parser_ErrorP_ParameterNotFound" xml:space="preserve">
+    <value>Параметр отчёта '{0}' не найден.</value>
+  </data>
+  <data name="Parser_ErrorP_ParametersRequires1Argument" xml:space="preserve">
+    <value>Коллекция Parameters требует одного аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_ParameterSupportsValueAndLabel" xml:space="preserve">
+    <value>Параметр '{0}' поддерживает только свойства 'Value' и 'Label'.</value>
+  </data>
+  <data name="Parser_ErrorP_ReportItemsRequires1Argument" xml:space="preserve">
+    <value>Коллекция ReportItems требует одного аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_RunningValueArgumentInvalid" xml:space="preserve">
+    <value>Аргумент 'Function' функции RunningValue некорректен.</value>
+  </data>
+  <data name="Parser_ErrorP_RunningValueNotSupported" xml:space="preserve">
+    <value>Функция '{0}' для функции RunningValue не поддерживается.</value>
+  </data>
+  <data name="Parser_ErrorP_RunningValue_takes_2_or_3_arguments" xml:space="preserve">
+    <value>Функция RunningValue требует 2 или 3 аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_ScopeIdentifer" xml:space="preserve">
+    <value>Идентификатор указан в неправильном месте.</value>
+  </data>
+  <data name="Parser_ErrorP_ScopeMustConstant" xml:space="preserve">
+    <value>Выражение функции {0} должно быть постоянным.</value>
+  </data>
+  <data name="Parser_ErrorP_ScopeNotKnownDataSet" xml:space="preserve">
+    <value>Выражение '{0}' не ссылается на известный набор данных.</value>
+  </data>
+  <data name="Parser_ErrorP_ScopeNotKnownGrouping" xml:space="preserve">
+    <value>Выражение '{0}' не является названием группы, набора данных или региона данных.</value>
+  </data>
+  <data name="Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter" xml:space="preserve">
+    <value>Выражение '{0}' не может быть указано в колонтитулах.</value>
+  </data>
+  <data name="Parser_ErrorP_SecondMustString" xml:space="preserve">
+    <value>Второй аргумент функции Format должен быть строкой.</value>
+  </data>
+  <data name="Parser_ErrorP_SwitchMustBoolean" xml:space="preserve">
+    <value>Каждый нечётный аргумент функции Switch должен быть логическим выражением.</value>
+  </data>
+  <data name="Parser_ErrorP_SwitchMustEvenArguments" xml:space="preserve">
+    <value>Функция Switch должна иметь чётное количество аргументов.</value>
+  </data>
+  <data name="Parser_ErrorP_SwitchRequires2Arguments" xml:space="preserve">
+    <value>Функция Switch требует как минимум 2 аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_UnknownIdentifer" xml:space="preserve">
+    <value>Неизвестный идентификатор: '{0}'.</value>
+  </data>
+  <data name="Parser_ErrorP_UnknownProperty" xml:space="preserve">
+    <value>Неизвестное свойство {0} для {1}.</value>
+  </data>
+  <data name="Parser_ErrorP_UserRequires1Argument" xml:space="preserve">
+    <value>Коллекция User требует одного аргумента.</value>
+  </data>
+  <data name="Parser_ErrorP_UserVarNotFound" xml:space="preserve">
+    <value>Элемент коллекции User '{0}' не найден.</value>
+  </data>
+  <data name="RDLParser_ErrorP_XMLFailed" xml:space="preserve">
+    <value>Ошибка загрузки XML: </value>
+  </data>
+  <data name="RDLParser_ErrorP__NoReport" xml:space="preserve">
+    <value>Ошибка: RDL не содержит элемента "Report"</value>
+  </data>
+</root>

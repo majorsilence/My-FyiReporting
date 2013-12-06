@@ -26,6 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -188,7 +189,7 @@ namespace fyiReporting.RDL
                         return p as Table;
                     p = p.Parent;
                 }
-                throw new Exception("Internal error: TableRow not related to a Table");
+                throw new Exception(Strings.TableRow_Error_TableRowNotRelatedToTable);
             }
         }
 

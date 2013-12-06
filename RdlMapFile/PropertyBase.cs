@@ -31,6 +31,7 @@ using System.Drawing.Design;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -60,7 +61,7 @@ namespace fyiReporting.RdlMapFile
 
         internal void SetTextValue(string l, string v)
         {
-            Draw.StartUndoGroup(l + " change");
+            Draw.StartUndoGroup(l + " " + Strings.PropertyBase_Undo_change);
             XmlNode xn = Draw.SelectedItem;
             foreach (XmlNode n in Draw.SelectedList)
             {

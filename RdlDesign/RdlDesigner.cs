@@ -45,6 +45,7 @@ using System.Xml;
 using System.Globalization;
 using System.Diagnostics;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
@@ -309,13 +310,7 @@ namespace fyiReporting.RdlDesign
             if (current != tc.SelectedIndex)
                 return;             // didn't find the tab
 
-            MenuItem mc = new MenuItem("&Close", new EventHandler(this.menuFileClose_Click));
-            MenuItem ms = new MenuItem("&Save", new EventHandler(this.menuFileSave_Click));
-            MenuItem ma = new MenuItem("Close All But This", new EventHandler(menuWndCloseAllButCurrent_Click));
-            ContextMenu cm = new ContextMenu();
-            cm.MenuItems.AddRange(new MenuItem[] { ms, mc, ma });
-            cm.Show(tc, p);
-
+			ContextMenuTB.Show(tc, p);
         }
 
         void mainTB_SizeChanged(object sender, EventArgs e)
@@ -866,7 +861,7 @@ namespace fyiReporting.RdlDesign
                     else
                     {
                         mc.SourceRdl = rdl;
-                        mc.Viewer.ReportName = mc.Text = "Untitled";
+                        mc.Viewer.ReportName = mc.Text = Strings.RdlDesigner_CreateMDIChild_Untitled;
                     }
                     mc.ShowEditLines(this._ShowEditLines);
                     mc.ShowReportItemOutline = this.ShowReportItemOutline;
@@ -1241,7 +1236,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Zoom Value Invalid");
+                        MessageBox.Show(ex.Message, Strings.RdlDesigner_Show_ZoomValueInvalid);
                     }
                     break;
             }
@@ -1331,26 +1326,22 @@ namespace fyiReporting.RdlDesign
         {
             if (e.Height == null)
             {
-                SetProperties(this.ActiveMdiChild as MDIChild);
+                SetProperties(ActiveMdiChild as MDIChild);
 
                 statusPosition.Text = "";
                 return;
             }
 
-            RegionInfo rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
-            float h = DesignXmlDraw.GetSize(e.Height);
-            string sh;
-            if (rinfo.IsMetric)
-            {
-                sh = string.Format("   height={0:0.00}cm        ",
-                        h / (DesignXmlDraw.POINTSIZED / 2.54d));
-            }
-            else
-            {
-                sh = string.Format("   height={0:0.00}\"        ",
-                        h / DesignXmlDraw.POINTSIZED);
-            }
-            statusPosition.Text = sh;
+            var rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
+	        var unit = rinfo.IsMetric ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
+			var h = DesignXmlDraw.GetSize(e.Height) / DesignXmlDraw.POINTSIZED;
+
+			if (rinfo.IsMetric)
+			{
+				h *= 2.54f;
+			}
+			
+			statusPosition.Text = string.Format("   {1}={0:0.00}{2}        ", h, Strings.RdlDesigner_Status_Height, unit);
         }
 
         private void SelectionMoved(object sender, System.EventArgs e)
@@ -1427,7 +1418,7 @@ namespace fyiReporting.RdlDesign
 
             // Run thru all the existing DataSets
             dataSetsToolStripMenuItem.DropDownItems.Clear();
-            dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem("New...", null,
+            dataSetsToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(Strings.RdlDesigner_menuData_Popup_New, null,
                         new EventHandler(this.dataSetsToolStripMenuItem_Click)));
 
             DesignXmlDraw draw = mc.DrawCtl;
@@ -1454,7 +1445,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Editor.StartUndoGroup("DataSources Dialog");
+            mc.Editor.StartUndoGroup(Strings.RdlDesigner_Undo_DataSourcesDialog);
             using (DialogDataSources dlgDS = new DialogDataSources(mc.SourceFile, mc.DrawCtl))
             {
                 dlgDS.StartPosition = FormStartPosition.CenterParent;
@@ -1474,7 +1465,7 @@ namespace fyiReporting.RdlDesign
             ToolStripMenuItem menu = sender as ToolStripMenuItem;
             if (menu == null)
                 return;
-            mc.Editor.StartUndoGroup("DataSet Dialog");
+            mc.Editor.StartUndoGroup(Strings.RdlDesigner_Undo_DataSetDialog);
 
             string dsname = menu.Text;
 
@@ -1577,7 +1568,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Editor.StartUndoGroup("Embedded Images Dialog");
+            mc.Editor.StartUndoGroup(Strings.RdlDesigner_Undo_EmbeddedImagesDialog);
             using (DialogEmbeddedImages dlgEI = new DialogEmbeddedImages(mc.DrawCtl))
             {
                 dlgEI.StartPosition = FormStartPosition.CenterParent;
@@ -1629,7 +1620,7 @@ namespace fyiReporting.RdlDesign
             }
             if (printChild != null)			// already printing
             {
-                MessageBox.Show("Can only print one file at a time.", "RDL Design");
+                MessageBox.Show(Strings.RdlDesigner_Show_PrintOneFile, Strings.RdlDesigner_Show_RDLDesign);
                 return;
             }
 
@@ -1682,7 +1673,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Print error: " + ex.Message, "RDL Design");
+                        MessageBox.Show(Strings.RdlDesigner_Show_PrintError + ex.Message, Strings.RdlDesigner_Show_RDLDesign);
                     }
                 }
                 printChild = null;
@@ -1847,7 +1838,7 @@ namespace fyiReporting.RdlDesign
 
             if (e == null || e.DesignTab != "edit")
             {
-                undoToolStripMenuItem.Text = e == null ? "Undo" : "Undo " + e.UndoDescription;
+				undoToolStripMenuItem.Text = e == null ? Strings.RdlDesigner_menuEdit_Popup_Undo : Strings.RdlDesigner_menuEdit_Popup_Undo + " " + e.UndoDescription;
                 if (e != null && e.DesignTab == "preview")
                 {
                     bNotPreview = false;
@@ -1883,7 +1874,7 @@ namespace fyiReporting.RdlDesign
             }
             else
             {
-                undoToolStripMenuItem.Text = "Undo";
+                undoToolStripMenuItem.Text = Strings.RdlDesigner_menuEdit_Popup_Undo;
                 undoToolStripMenuItem.Enabled = true;
                 redoToolStripMenuItem.Enabled = true;
                 cutToolStripMenuItem.Enabled = true;
@@ -2096,7 +2087,7 @@ namespace fyiReporting.RdlDesign
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Format XML");
+                    MessageBox.Show(ex.Message, Strings.RdlDesigner_Showl_FormatXML);
                 }
             }
         }
@@ -2138,7 +2129,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n\n" + "Resetting Help URL to default.", "Help URL Invalid");
+                MessageBox.Show(ex.Message + "\n\n" + Strings.RdlDesigner_Show_ResettingHelpURL, Strings.RdlDesigner_Show_HelpURLInvalid);
                 _HelpUrl = DefaultHelpUrl;
             }
         }
@@ -2151,7 +2142,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n\n" + "Resetting Support URL to default.", "Support URL Invalid");
+                MessageBox.Show(ex.Message + "\n\n" + Strings.RdlDesigner_Show_ResettingSupportURL, Strings.RdlDesigner_Show_SupportURLInvalid);
                 _SupportUrl = DefaultSupportUrl;
             }
         }
@@ -2168,7 +2159,7 @@ namespace fyiReporting.RdlDesign
         {
             if (_ServerProcess != null && _ServerProcess.HasExited)
                 _ServerProcess = null;
-            startDesktopServerToolStripMenuItem.Text = this._ServerProcess == null ? "Start Desktop" : "Stop Desktop";
+            startDesktopServerToolStripMenuItem.Text = this._ServerProcess == null ? Strings.RdlDesigner_menuTools_Popup_StartDesktop : Strings.RdlDesigner_menuTools_Popup_StopDesktop;
 
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             this.validateRDLToolStripMenuItem.Enabled = (mc != null && mc.DesignTab == "edit");
@@ -2206,7 +2197,7 @@ namespace fyiReporting.RdlDesign
             catch (Exception ex)
             {
                 if (bMsg)
-                    MessageBox.Show(ex.Message, "Unable to start Desktop");
+                    MessageBox.Show(ex.Message, Strings.RdlDesigner_Show_UnableStartDesktop);
             }
 
             return;
@@ -2225,7 +2216,7 @@ namespace fyiReporting.RdlDesign
                 catch (Exception ex)
                 {
                     if (bMsg)
-                        MessageBox.Show(ex.Message, "Error stopping process");
+                        MessageBox.Show(ex.Message, Strings.RdlDesigner_Show_ErrorStopProcess);
                 }
             }
             _ServerProcess = null;
@@ -2723,7 +2714,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Custom Color Save Failed");
+                MessageBox.Show(e.Message, Strings.RdlDesigner_Show_CustomColorSaveFailed);
             }
             return;
         }
@@ -2904,7 +2895,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Zoom Value Invalid");
+                        MessageBox.Show(ex.Message, Strings.RdlDesigner_Show_ZoomValueInvalid);
                     }
                     break;
             }
@@ -2972,55 +2963,61 @@ namespace fyiReporting.RdlDesign
             }
 
             // Handle position
-            PointF pos = mc.SelectionPosition;
-            SizeF sz = mc.SelectionSize;
+            var pos = mc.SelectionPosition;
+            var sz = mc.SelectionSize;
             string spos;
-            if (pos.X == float.MinValue)	// no item selected is probable cause
-                spos = "";
-            else
-            {
-                RegionInfo rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
-                double m72 = DesignXmlDraw.POINTSIZED;
-                if (rinfo.IsMetric)
-                {
-                    if (sz.Width == float.MinValue)	// item is in a table/matrix is probably cause
-                        spos = string.Format("   x={0:0.00}cm, y={1:0.00}cm        ",
-                            pos.X / (m72 / 2.54d), pos.Y / (m72 / 2.54d));
-                    else
-                        spos = string.Format("   x={0:0.00}cm, y={1:0.00}cm, w={2:0.00}cm, h={3:0.00}cm        ",
-                            pos.X / (m72 / 2.54d), pos.Y / (m72 / 2.54d),
-                            sz.Width / (m72 / 2.54d), sz.Height / (m72 / 2.54d));
-                }
-                else
-                {
-                    if (sz.Width == float.MinValue)
-                        spos = string.Format("   x={0:0.00}\", y={1:0.00}\"        ",
-                            pos.X / m72, pos.Y / m72);
-                    else
-                        spos = string.Format("   x={0:0.00}\", y={1:0.00}\", w={2:0.00}\", h={3:0.00}\"        ",
-                            pos.X / m72, pos.Y / m72, sz.Width / m72, sz.Height / m72);
-                }
-            }
-            if (spos != statusPosition.Text)
-                statusPosition.Text = spos;
+
+	        if (pos.X == float.MinValue) // no item selected is probable cause
+	        {
+		        spos = "";
+	        }
+	        else
+	        {
+		        var rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
+		        double m72 = DesignXmlDraw.POINTSIZED;
+
+		        var x = pos.X/m72;
+		        var y = pos.Y/m72;
+		        var unit = rinfo.IsMetric ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
+
+				if (rinfo.IsMetric)
+				{
+					x *= 2.54d;
+					y *= 2.54d;
+				}
+
+		        if (sz.Width == float.MinValue) // item is in a table/matrix is probably cause
+		        {
+			        spos = string.Format("   x={0:0.00}{2}, y={1:0.00}{2}        ",
+			                             x, y, unit);
+		        }
+		        else
+		        {
+			        var w = sz.Width/m72;
+			        var h = sz.Height/m72;
+
+			        if (rinfo.IsMetric)
+			        {
+				        w *= 2.54d;
+				        h *= 2.54d;
+			        }
+
+			        spos = string.Format("   x={0:0.00}{4}, y={1:0.00}{4}, w={2:0.00}{4}, h={3:0.00}{4}        ",
+			                             x, y, w, h, unit);
+		        }
+	        }
+
+            statusPosition.Text = spos;
 
             // Handle text
-            string sname = mc.SelectionName;
-            if (sname != statusSelected.Text)
-                statusSelected.Text = sname;
-            return;
+			statusSelected.Text = mc.SelectionName;
         }
 
         private void SetStatusNameAndPositionEdit(MDIChild mc)
         {
-            string spos = string.Format("Ln {0}  Ch {1}", mc.CurrentLine, mc.CurrentCh);
-            if (spos != statusSelected.Text)
-                statusSelected.Text = spos;
-
-            if (statusPosition.Text != "")
-                statusPosition.Text = "";
-
-            return;
+            var spos = string.Format("{2} {0}  {3} {1}", mc.CurrentLine, mc.CurrentCh, Strings.RdlDesigner_Status_Ln, Strings.RdlDesigner_Status_Ch);
+            statusSelected.Text = spos;
+            statusPosition.Text = "";
         }
 
         private void EditTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -3366,7 +3363,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Unable to Show Report");
+                MessageBox.Show(ex.Message, Strings.RdlDesigner_Show_UnableShowReport);
             }
 
         }
@@ -3702,7 +3699,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Strings.RdlDesigner_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

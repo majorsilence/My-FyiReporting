@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -586,7 +587,7 @@ namespace fyiReporting.RdlDesign
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, "Invalid Font Size");
+					MessageBox.Show(e.Message, Strings.FontCtl_Show_InvalidFontSize);
 					return false;
 				}
 

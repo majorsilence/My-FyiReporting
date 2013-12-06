@@ -37,6 +37,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Windows;
 using System.Drawing;
+using RdlMapFile.Resources;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -609,7 +610,7 @@ namespace fyiReporting.RdlMapFile
             this.fileHeader.FileCode = ShapeFile.ReadInt32_BE(stream);
             if ( this.fileHeader.FileCode != ShapeFile.expectedFileCode )
             {
-                string msg = String.Format(System.Globalization.CultureInfo.InvariantCulture, "Invalid FileCode encountered. Expecting {0}.", ShapeFile.expectedFileCode);
+                string msg = String.Format(System.Globalization.CultureInfo.InvariantCulture, Strings.ShapeFile_ErrorA_InvalidFileCode, ShapeFile.expectedFileCode);
                 throw new ApplicationException(msg);
             }
 
@@ -687,7 +688,7 @@ namespace fyiReporting.RdlMapFile
                     break;
                 default:
                     {
-                        string msg = String.Format(System.Globalization.CultureInfo.InvariantCulture, "ShapeType {0} is not supported.", (int)record.ShapeType);
+                        string msg = String.Format(System.Globalization.CultureInfo.InvariantCulture, Strings.ShapeFile_ErrorA_ShapeTypeNotSupported, (int)record.ShapeType);
                         throw new ApplicationException(msg);
                     }
             }

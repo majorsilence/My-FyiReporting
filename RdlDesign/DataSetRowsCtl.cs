@@ -30,6 +30,7 @@ using System.Xml;
 using System.Text;
 using System.IO;
 using System.Globalization;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -155,9 +156,9 @@ namespace fyiReporting.RdlDesign
                         {
                             if (!bSkipMsg)
                             {
-                                if (MessageBox.Show(string.Format("Unable to convert {1} to {0}: {2}",
-                                        dc.DataType.ToString(), dNode.InnerText, e.Message) + Environment.NewLine + "Do you want to see any more errors?",
-                                        "Error Reading Data Rows", MessageBoxButtons.YesNo) == DialogResult.No)
+                                if (MessageBox.Show(string.Format(Strings.DataSetRowsCtl_ShowB_UnableConvert,
+                                        dc.DataType, dNode.InnerText, e.Message) + Environment.NewLine + Strings.DataSetRowsCtl_ShowB_WantSeeErrors,
+                                        Strings.DataSetRowsCtl_ShowB_ErrorReadingDataRows, MessageBoxButtons.YesNo) == DialogResult.No)
                                     bSkipMsg = true;
                             }
                             rowValues[col] = dNode.InnerText;
@@ -172,9 +173,9 @@ namespace fyiReporting.RdlDesign
 
 		public bool IsValid()
 		{
-			if (this.chkRowsFile.Checked && this.tbRowsFile.Text.Length == 0)
+			if (chkRowsFile.Checked && tbRowsFile.Text.Length == 0)
 			{
-				MessageBox.Show("File name required when 'Use XML file for data checked'");
+				MessageBox.Show(Strings.DataSetRowsCtl_ShowC_FileNameRequired);
 				return false;
 			}
 			return true;
@@ -384,7 +385,7 @@ namespace fyiReporting.RdlDesign
 				}
 				if (datasource == null)
 				{
-					MessageBox.Show(string.Format("Datasource '{0}' not found.", _dsv.DataSourceName), "Load Failed");
+					MessageBox.Show(string.Format(Strings.DataSetRowsCtl_Show_DatasourceNotFound, _dsv.DataSourceName), Strings.DataSetRowsCtl_Show_LoadFailed);
 					return;
 				}
                 // get the connection information
@@ -407,7 +408,7 @@ namespace fyiReporting.RdlDesign
                     }
                     if (p == null || mc == null || mc.SourceFile == null)
                     {
-                        MessageBox.Show("Unable to locate DataSource Shared file.  Try saving report first");
+                        MessageBox.Show(Strings.DataSetRowsCtl_ShowC_UnableLocateDSR);
                         return;
                     }
                     Uri filename = new Uri(Path.GetDirectoryName(mc.SourceFile.LocalPath) + Path.DirectorySeparatorChar + dataSourceReference);
@@ -429,7 +430,7 @@ namespace fyiReporting.RdlDesign
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "Load Failed");
+				MessageBox.Show(ex.Message, Strings.DataSetRowsCtl_Show_LoadFailed);
 			}
 		}
 	}

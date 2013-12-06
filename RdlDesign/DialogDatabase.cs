@@ -35,6 +35,7 @@ using System.IO;
 using System.Globalization;
 using System.Xml;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -521,13 +522,13 @@ namespace fyiReporting.RdlDesign
                                 skip++;
                             break;
                         case "footers":
-                            if (!this.ckbGrandTotal.Checked)
+                            if (!ckbGrandTotal.Checked)
                                 skip++;
-                            else if (this.clbSubtotal.CheckedItems.Count <= 0)
+                            else if (clbSubtotal.CheckedItems.Count <= 0)
                                 skip++;
                             break;
                         default:
-                            throw new Exception(String.Format("Unknown ifdef element {0} specified in template.", args));
+                            throw new Exception(String.Format(Strings.DialogDatabase_Error_UnknownIfdef, args));
                     }
                     continue;
                 }
@@ -782,7 +783,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Internal Error");
+                MessageBox.Show(ex.Message, Strings.DialogDatabase_Show_InternalError);
                 tbReportSyntax.Text = sb.ToString();
             }
             return true;
@@ -1331,12 +1332,12 @@ namespace fyiReporting.RdlDesign
 
             if (cbConnectionTypes.Text == SHARED_CONNECTION)
             {
-                this.lConnection.Text = "Shared Data Source File:";
+                lConnection.Text = Strings.DialogDatabase_cbConnectionTypes_SelectedIndexChanged_Shared_Data_Source_File;
                 bShared.Visible = true;
             }
             else
             {
-                this.lConnection.Text = "Connection:";
+                lConnection.Text = Strings.DialogDatabase_cbConnectionTypes_SelectedIndexChanged_Connection;
                 bShared.Visible = false;
             }
 
@@ -1398,7 +1399,7 @@ namespace fyiReporting.RdlDesign
         {
             if (string.IsNullOrEmpty(tbConnection.Text))
             {
-                MessageBox.Show("Please select a Data Provider before testing.", "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Strings.DialogDatabase_ShowD_SelectDataProvider, Strings.DesignerUtility_Show_TestConnection, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1408,7 +1409,7 @@ namespace fyiReporting.RdlDesign
                 return;
 
             if (DesignerUtility.TestConnection(cType, GetDataConnection()))
-                MessageBox.Show("Connection successful!", "Test Connection");
+                MessageBox.Show(Strings.DialogDatabase_Show_ConnectionSuccessful, Strings.DesignerUtility_Show_TestConnection);
         }
 
         private void DBConnection_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1486,7 +1487,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Strings.DialogDatabase_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1514,7 +1515,7 @@ namespace fyiReporting.RdlDesign
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, Strings.DialogDatabase_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1545,7 +1546,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, Strings.DialogDatabase_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             finally
@@ -1569,7 +1570,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, Strings.DialogDatabase_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

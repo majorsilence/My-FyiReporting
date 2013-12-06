@@ -32,6 +32,7 @@ using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Xml;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
 
 namespace fyiReporting.RdlDesign
@@ -608,7 +609,7 @@ namespace fyiReporting.RdlDesign
                 if (nStart < 0)
                 {
                     if (showEndMsg)
-                        MessageBox.Show(ctl, "Reached End of Document.");
+                        MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
                     filePosition = 0;
                     return;
                 }
@@ -619,7 +620,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Please retry.  Error during find: {0}", ex.Message), "Internal Error");
+                MessageBox.Show(string.Format(Strings.RdlEditPreview_Show_ErrorFind, ex.Message), Strings.RdlEditPreview_Show_InternalError);
                 filePosition = 0;       // restart at 0
             }
 		}
@@ -642,7 +643,7 @@ namespace fyiReporting.RdlDesign
 			catch (Exception e)
 			{
 				e.ToString();
-				MessageBox.Show(ctl, "Reached End of Document.");
+				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
 				filePosition = 0;
 			}
 		}
@@ -665,7 +666,7 @@ namespace fyiReporting.RdlDesign
 			catch (Exception e)
 			{
 				e.ToString();
-				MessageBox.Show(ctl, "Reached End of Document.");
+				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
 				filePosition = 0;
 			}
 		}
@@ -911,7 +912,7 @@ namespace fyiReporting.RdlDesign
 					}
 					catch (Exception ge)
 					{
-						MessageBox.Show(ge.Message, "Report");
+						MessageBox.Show(ge.Message, Strings.RdlEditPreview_Show_Report);
 						tc.SelectedIndex = 1;	// Force current tab to edit syntax
 						return;
 					}
@@ -954,7 +955,7 @@ namespace fyiReporting.RdlDesign
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, "Report");
+					MessageBox.Show(e.Message, Strings.RdlEditPreview_Show_Report);
 					this.tbEditor.Text = text;
 					tcEHP.SelectedIndex = 1;	// Force current tab to edit syntax
 					_DesignChanged = "edit";

@@ -28,6 +28,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Text;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -400,7 +401,7 @@ namespace fyiReporting.RdlDesign
 					_GroupingParent.Name == "List")
 					return true;
 
-				MessageBox.Show("Group must be defined.", "Grouping");
+				MessageBox.Show(Strings.GroupingCtl_Show_GroupMustDefined, Strings.GroupingCtl_Show_Grouping);
 				return false;
 			}
 
@@ -409,13 +410,13 @@ namespace fyiReporting.RdlDesign
 			string nerr = _Draw.GroupingNameCheck(grouping, this.tbName.Text);
 			if (nerr != null)
 			{
-				MessageBox.Show(nerr, "Group Name in Error");
+				MessageBox.Show(nerr, Strings.GroupingCtl_Show_GroupNameError);
 				return false;
 			}
 
 			if (!bRows)
 			{
-				MessageBox.Show("No expressions have been defined for the group.", "Group");
+				MessageBox.Show(Strings.GroupingCtl_Show_NoExpressionsForGroup, Strings.GroupingCtl_Show_Group);
 				return false;
 			}
 
@@ -425,7 +426,7 @@ namespace fyiReporting.RdlDesign
 			if (this.cbLabelExpr.Text.Length > 0)
 				return true;
 
-			MessageBox.Show("Chart series must have label defined for the legend.", "Chart");
+			MessageBox.Show(Strings.GroupingCtl_Show_ChartSeriesMustHaveLabelForLegend, Strings.GroupingCtl_Show_Chart);
 
 			return false;
 		}
@@ -618,7 +619,7 @@ namespace fyiReporting.RdlDesign
 			if (!ReportNames.IsNameValid(tbName.Text))
 			{
 				e.Cancel = true;
-				MessageBox.Show(string.Format("{0} is an invalid name.", tbName.Text), "Name");
+				MessageBox.Show(string.Format(Strings.GroupingCtl_Show_InvalidName, tbName.Text), Strings.GroupingCtl_Show_Name);
 			}
 		}
 

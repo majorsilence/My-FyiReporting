@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -120,7 +119,7 @@ namespace fyiReporting.RDL
 		{
 			// TODO -- routine needs more work.   off when endOfPeriod is false; must be more direct way to solve
 			if (!endOfPeriod)
-				throw new Exception("IPmt doesn't support payments due at beginning of period.");
+				throw new Exception(Strings.Financial_Error_IPmtNotSupportPayments);
 
 			if (period < 0 || period > periods)
 				return double.NaN;

@@ -27,6 +27,7 @@ using System.IO;
 using System.Globalization;
 using System.Xml;
 using System.Reflection;
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -108,6 +109,16 @@ namespace fyiReporting.RDL
 			set {_NoAggregate = value;}
 		}
 
+		private static string GetLocationInfo(Token token)
+		{
+			return string.Format(Strings.Parser_ErrorP_AtColumn, token.StartCol);
+		}
+
+		private static string GetLocationInfoWithValue(Token token)
+		{
+			return string.Format(Strings.Parser_ErrorP_FoundValue, token.Value) + GetLocationInfo(token);
+		}
+
 		/// <summary>
 		/// Returns a parsed DPL instance.
 		/// </summary>
@@ -127,7 +138,7 @@ namespace fyiReporting.RDL
 			}
 
 			if (curToken.Type != TokenTypes.EOF)
-				throw new ParserException("End of expression expected." + "  At column " + Convert.ToString(curToken.StartCol));
+				throw new ParserException(Strings.Parser_ErrorP_EndExpressionExpected + GetLocationInfo(curToken));
 
 			return result;
 		}
@@ -148,7 +159,7 @@ namespace fyiReporting.RDL
 				bool bBool = (rhs.GetTypeCode() == TypeCode.Boolean &&
 					lhs.GetTypeCode() == TypeCode.Boolean);
 				if (!bBool)
-					throw new ParserException("AND/OR operations require both sides to be boolean expressions." + "  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_AND_OR_RequiresBoolean + GetLocationInfo(curToken));
 
 				switch(t)
 				{
@@ -175,7 +186,7 @@ namespace fyiReporting.RDL
 			if (t == TokenTypes.NOT)
 			{
 				if (result.GetTypeCode() != TypeCode.Boolean)
-					throw new ParserException("NOT requires boolean expression." + "  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_NOTRequiresBoolean + GetLocationInfo(curToken));
 				result = new FunctionNot(result);
 			}
 		}
@@ -265,7 +276,7 @@ namespace fyiReporting.RDL
 						if (bDecimal)
 							result = new FunctionMinusDecimal(lhs, rhs);
 						else if (bString)
-							throw new ParserException("'-' operator works only on numbers." + "  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(Strings.Parser_ErrorP_MinusNeedNumbers + GetLocationInfo(curToken));
                         else if (bInt32)
                             result = new FunctionMinusInt32(lhs, rhs);
                         else
@@ -359,7 +370,7 @@ namespace fyiReporting.RDL
 				curToken = tokens.Extract();
 				MatchExprAndOr(out result);
 				if (curToken.Type != TokenTypes.RPAREN)
-					throw new ParserException("')' expected but not found.  Found '" + curToken.Value + "'  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_BracketExpected + GetLocationInfoWithValue(curToken));
 				curToken = tokens.Extract();
 			}
 			else
@@ -390,7 +401,7 @@ namespace fyiReporting.RDL
 					result = new ConstantString(curToken.Value);
 					break;
 				default:
-					throw new ParserException("Constant or Identifier expected but not found.  Found '" + curToken.Value + "'  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_IdentifierExpected + GetLocationInfoWithValue(curToken));
 			}
 			curToken = tokens.Extract();
 
@@ -449,7 +460,7 @@ namespace fyiReporting.RDL
 					Field f = idLookup.LookupField(method);
                     if (f == null && !this._InAggregate)
                     {
-                        throw new ParserException("Field '" + method + "'  not found.");
+                        throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldNotFound, method));
                     }
 					if (thirdPart == null || thirdPart == "Value")
 					{
@@ -474,12 +485,12 @@ namespace fyiReporting.RDL
 							result = new FunctionFieldIsMissing(f);
 					}
 					else
-						throw new ParserException("Field '" + method + "'  only supports 'Value' and 'IsMissing' properties.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldSupportsValueAndIsMissing, method));
 					return true;
                 case "Parameters":  // see ResolveParametersMethod for resolution of MultiValue parameter function reference
 					ReportParameter p = idLookup.LookupParameter(method);
 					if (p == null)
-						throw new ParserException("Report parameter '" + method + "'  not found.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_ParameterNotFound, method));
                     int ci = thirdPart == null? -1: thirdPart.IndexOf(".Count");
                     if (ci > 0)
                         thirdPart = thirdPart.Substring(0, ci);
@@ -489,7 +500,7 @@ namespace fyiReporting.RDL
 					else if (thirdPart == "Label")
 						r = new FunctionReportParameterLabel(p);
 					else
-						throw new ParserException("Parameter '" + method + "'  only supports 'Value' and 'Label' properties.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_ParameterSupportsValueAndLabel, method));
                     if (ci > 0)
                         r.SetParameterMethod("Count", null);
                     
@@ -498,21 +509,21 @@ namespace fyiReporting.RDL
 				case "ReportItems":
 					Textbox t = idLookup.LookupReportItem(method);
 					if (t == null)
-						throw new ParserException("ReportItem '" + method + "'  not found.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_ItemNotFound, method));
 					if (thirdPart != null && thirdPart != "Value")
-						throw new ParserException("ReportItem '" + method + "'  only supports 'Value' property.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_ItemSupportsValue, method));
 					result = new FunctionTextbox(t, idLookup.ExpressionName);	
 					return true;
 				case "Globals":
 					e = idLookup.LookupGlobal(method);
 					if (e == null)
-						throw new ParserException("Globals '" + method + "'  not found.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_GlobalsNotFound, method));
 					result = e;
 					return true;
 				case "User":
 					e = idLookup.LookupUser(method);
 					if (e == null)
-						throw new ParserException("User variable '" + method + "'  not found.");
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_UserVarNotFound, method));
 					result = e;
 					return true;
 				case "Recursive":	// Only valid for some aggregate functions
@@ -523,7 +534,7 @@ namespace fyiReporting.RDL
 					return true;
 				default:
 					if (!bOnePart)
-						throw new ParserException(string.Format("'{0}' is an unknown identifer.", fullname));
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_UnknownIdentifer, fullname));
 
 					switch (method.ToLower())		// lexer should probably mark these
 					{
@@ -547,9 +558,9 @@ namespace fyiReporting.RDL
 			
 			bool isAggregate = IsAggregate(method, bOnePart);
 			if (_NoAggregate && isAggregate)
-				throw new ParserException("Aggregate function '" + method + "' cannot be used within a Grouping expression.");
+				throw new ParserException(string.Format(Strings.Parser_ErrorP_AggregateCannotUsedWithinGrouping, method));
 			if (_InAggregate && isAggregate)
-				throw new ParserException("Aggregate function '" + method + "' cannot be nested in another aggregate function.");
+				throw new ParserException(string.Format(Strings.Parser_ErrorP_AggregateCannotNestedInAnotherAggregate, method));
 			_InAggregate = isAggregate;
 			if (_InAggregate)
 				_FieldResolve = new List<FunctionField>();
@@ -571,11 +582,11 @@ namespace fyiReporting.RDL
 					curToken = tokens.Extract();
 				}
 				else
-					throw new ParserException("Invalid function arguments.  Found '" + curToken.Value + "'  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_Invalid_function_arguments + GetLocationInfoWithValue(curToken));
 				
 				MatchExprAndOr(out e);
 				if (e == null)
-					throw new ParserException("Expecting ',' or ')'.  Found '" + curToken.Value + "'  At column " + Convert.ToString(curToken.StartCol));
+					throw new ParserException(Strings.Parser_ErrorP_ExpectingComma + GetLocationInfoWithValue(curToken));
 
 				largs.Add(e);
 				argCount++;
@@ -601,15 +612,15 @@ namespace fyiReporting.RDL
 			{
 				case "iif":
 					if (args.Length != 3)
-						throw new ParserException("iff function requires 3 arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_iff_function_requires_3_arguments + GetLocationInfo(curToken));
 //  We allow any type for the first argument; it will get converted to boolean at runtime
 //					if (args[0].GetTypeCode() != TypeCode.Boolean)
-//						throw new ParserException("First argument to iif function must be boolean." + "  At column " + Convert.ToString(curToken.StartCol));
+//						throw new ParserException("First argument to iif function must be boolean." + GetLocationInfo(curToken));
 					result = new FunctionIif(args[0], args[1], args[2]);
 					break;
 				case "choose":
 					if (args.Length <= 2)
-						throw new ParserException("Choose function requires at least 2 arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_ChooseRequires2Arguments + GetLocationInfo(curToken));
 					switch (args[0].GetTypeCode())
 					{
 						case TypeCode.Double:
@@ -623,25 +634,25 @@ namespace fyiReporting.RDL
                         case TypeCode.UInt64:
 							break;
 						default:
-							throw new ParserException("First argument to Choose function must be numeric." + "  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(Strings.Parser_ErrorP_ChooseFirstArgumentMustNumeric + GetLocationInfo(curToken));
 					}
 					result = new FunctionChoose(args);
 					break;
 				case "switch":
 					if (args.Length <= 2)
-						throw new ParserException("Switch function requires at least 2 arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_SwitchRequires2Arguments + GetLocationInfo(curToken));
 				    if (args.Length % 2 != 0)
-						throw new ParserException("Switch function must have an even number of arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_SwitchMustEvenArguments + GetLocationInfo(curToken));
 					for (int i=0; i < args.Length; i = i+2)
 					{
 						if (args[i].GetTypeCode() != TypeCode.Boolean)
-							throw new ParserException("Switch function must have a boolean expression every other argument." + "  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(Strings.Parser_ErrorP_SwitchMustBoolean + GetLocationInfo(curToken));
 					}
 					result = new FunctionSwitch(args);
 					break;
 				case "format":
 					if (args.Length > 2 || args.Length < 1)
-						throw new ParserException("Format function requires 2 arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_FormatRequires2Arguments + GetLocationInfo(curToken));
 					if (args.Length == 1)
 					{
 						result = new FunctionFormat(args[0], new ConstantString(""));
@@ -649,14 +660,14 @@ namespace fyiReporting.RDL
 					else
 					{
 						if (args[1].GetTypeCode() != TypeCode.String)
-							throw new ParserException("Second argument to Format function must be a string." + "  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(Strings.Parser_ErrorP_SecondMustString + GetLocationInfo(curToken));
 						result = new FunctionFormat(args[0], args[1]);
 					}
 					break;
 
 				case "fields":
 					if (args.Length != 1)
-						throw new ParserException("Fields collection requires exactly 1 argument." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_FieldsRequires1Argument + GetLocationInfo(curToken));
 					result = new FunctionFieldCollection(idLookup.Fields, args[0]);
                     if (curToken.Type == TokenTypes.DOT)
                     {	// user placed "."                  TODO: generalize this code
@@ -664,12 +675,12 @@ namespace fyiReporting.RDL
                         if (curToken.Type == TokenTypes.IDENTIFIER && curToken.Value.ToLowerInvariant() == "value")
                             curToken = tokens.Extract();            // only support "value" property for now
                         else
-                            throw new ParserException(curToken.Value + " is not a known property for Fields." + "  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(string.Format(Strings.Parser_ErrorP_UnknownProperty, curToken.Value, "Fields") + GetLocationInfo(curToken));
                     }
                     break;
 				case "parameters":
 					if (args.Length != 1)
-						throw new ParserException("Parameters collection requires exactly 1 argument." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_ParametersRequires1Argument + GetLocationInfo(curToken));
 					result = new FunctionParameterCollection(idLookup.Parameters, args[0]);
                     if (curToken.Type == TokenTypes.DOT)
                     {	// user placed "." 
@@ -677,12 +688,12 @@ namespace fyiReporting.RDL
                         if (curToken.Type == TokenTypes.IDENTIFIER && curToken.Value.ToLowerInvariant() == "value")
                             curToken = tokens.Extract();            // only support "value" property for now
                         else
-                            throw new ParserException(curToken.Value + " is not a known property for Fields." + "  At column " + Convert.ToString(curToken.StartCol));
+                            throw new ParserException((string.Format(Strings.Parser_ErrorP_UnknownProperty, curToken.Value, "Parameters") + GetLocationInfo(curToken)));
                     }
                     break;
 				case "reportitems":
 					if (args.Length != 1)
-						throw new ParserException("ReportItems collection requires exactly 1 argument." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_ReportItemsRequires1Argument + GetLocationInfo(curToken));
 					result = new FunctionReportItemCollection(idLookup.ReportItems, args[0]);
                     if (curToken.Type == TokenTypes.DOT)
                     {	// user placed "." 
@@ -690,17 +701,17 @@ namespace fyiReporting.RDL
                         if (curToken.Type == TokenTypes.IDENTIFIER && curToken.Value.ToLowerInvariant() == "value")
                             curToken = tokens.Extract();            // only support "value" property for now
                         else
-                            throw new ParserException(curToken.Value + " is not a known property for Fields." + "  At column " + Convert.ToString(curToken.StartCol));
+                            throw new ParserException((string.Format(Strings.Parser_ErrorP_UnknownProperty, curToken.Value, "ReportItems") + GetLocationInfo(curToken)));
                     }
                     break;
 				case "globals":
 					if (args.Length != 1)
-						throw new ParserException("Globals collection requires exactly 1 argument." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_GlobalsRequires1Argument + GetLocationInfo(curToken));
 					result = new FunctionGlobalCollection(idLookup.Globals, args[0]);
 					break;
 				case "user":
 					if (args.Length != 1)
-						throw new ParserException("User collection requires exactly 1 argument." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_UserRequires1Argument + GetLocationInfo(curToken));
 					result = new FunctionUserCollection(idLookup.User, args[0]);
 					break;
 				case "sum":
@@ -778,10 +789,10 @@ namespace fyiReporting.RDL
 					break;
 				case "runningvalue":
 					if (args.Length < 2 || args.Length > 3)
-						throw new ParserException("RunningValue takes 2 or 3 arguments." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_RunningValue_takes_2_or_3_arguments + GetLocationInfo(curToken));
 					string aggrFunc = args[1].EvaluateString(null, null);
 					if (aggrFunc == null)
-						throw new ParserException("RunningValue 'Function' argument is invalid." + "  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_RunningValueArgumentInvalid + GetLocationInfo(curToken));
 					scope = ResolveAggrScope(args, 3, out bSimple);
 					switch(aggrFunc.ToLower())
 					{
@@ -813,7 +824,7 @@ namespace fyiReporting.RDL
 							result = new FunctionAggrRvVarp(_DataCache, args[0], scope);
 							break;
 						default:
-							throw new ParserException("RunningValue function '" + aggrFunc + "' is not supported.  At column " + Convert.ToString(curToken.StartCol));
+							throw new ParserException(string.Format(Strings.Parser_ErrorP_RunningValueNotSupported, aggrFunc) + GetLocationInfo(curToken));
 					}
 					break;
 				case "stdev":
@@ -898,16 +909,16 @@ namespace fyiReporting.RDL
 					dsname = e.EvaluateString(null, null);
 
 				if (dsname == null)
-					throw new ParserException(string.Format("{0} function's scope must be a constant.", aggr));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_ScopeMustConstant, aggr));
 				ds = this.idLookup.ScopeDataSet(dsname);
 				if (ds == null)
-					throw new ParserException(string.Format("Scope '{0}' does not reference a known DataSet.", dsname));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_ScopeNotKnownDataSet, dsname));
 			}
 			else
 			{
 				ds = this.idLookup.ScopeDataSet(null);
 				if (ds == null)
-					throw new ParserException(string.Format("No scope provided for aggregate function '{0}' but more than one DataSet defined.", aggr));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_NoScope4Aggregate, aggr));
 			}
 
 			foreach (FunctionField f in fargs)
@@ -917,7 +928,7 @@ namespace fyiReporting.RDL
 
                 Field dsf = ds.Fields == null? null: ds.Fields[f.Name];
 				if (dsf == null)
-					throw new ParserException(string.Format("Field '{0}' is not in DataSet {1}.", f.Name, ds.Name.Nm));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldNotInDataSet, f.Name, ds.Name.Nm));
 
 				f.Fld = dsf;
 			}
@@ -931,27 +942,27 @@ namespace fyiReporting.RDL
 			bSimple = true;
 
             if (args.Length == 0 && indexOfScope > 1)
-                throw new ParserException("Aggregate function must have at least one argument.");
+                throw new ParserException(Strings.Parser_ErrorP_AggregateMust1Argument);
 
 			if (args.Length >= indexOfScope)
 			{
 				string n = args[indexOfScope-1].EvaluateString(null, null);
 				if (idLookup.IsPageScope)
-					throw new ParserException(string.Format("Scope '{0}' can't be specified in a Page Header or Footer expression.",n));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter,n));
 
 				scope = idLookup.LookupScope(n);
 				if (scope == null)
 				{
 					Identifier ie = args[indexOfScope-1] as Identifier;
 					if (ie == null || ie.IsNothing == false)	// check for "nothing" identifier
-						throw new ParserException(string.Format("Scope '{0}' is not a known Grouping, DataSet or DataRegion name.",n));
+						throw new ParserException(string.Format(Strings.Parser_ErrorP_ScopeNotKnownGrouping,n));
 				}
 
 				if (args.Length > indexOfScope)	// has recursive/simple been specified
 				{
 					IdentifierKey k = args[indexOfScope] as IdentifierKey;
 					if (k == null)
-						throw new ParserException("Illegal scope identifer specified.  At column " + Convert.ToString(curToken.StartCol));
+						throw new ParserException(Strings.Parser_ErrorP_ScopeIdentifer + GetLocationInfo(curToken));
 					if (k.Value == IdentifierKeyEnum.Recursive)
 						bSimple = false;
 				}
@@ -980,7 +991,7 @@ namespace fyiReporting.RDL
 
             ReportParameter p = idLookup.LookupParameter(pname);
             if (p == null)
-                throw new ParserException("Report parameter '" + pname + "'  not found.");
+                throw new ParserException(string.Format(Strings.Parser_ErrorP_ParameterNotFound, pname));
 
             string arrayMethod;
             int posBreak = vf.IndexOf('.');
@@ -997,7 +1008,7 @@ namespace fyiReporting.RDL
             else if (vf == "Label")
                 result = new FunctionReportParameterLabel(p);
             else
-                throw new ParserException("Parameter '" + pname + "'  only supports 'Value' and 'Label' properties.");
+                throw new ParserException(string.Format(Strings.Parser_ErrorP_ParameterSupportsValueAndLabel, pname));
 
             result.SetParameterMethod(arrayMethod, args);
 
@@ -1039,7 +1050,7 @@ namespace fyiReporting.RDL
 						bCodeFunction = true;
 				}
 				if (cls != "" && !bCodeFunction)
-					throw new ParserException(string.Format("{0} is not a Code method.  Verify the name of the method and its arguments match an existing code function.", method));
+					throw new ParserException(string.Format(Strings.Parser_ErrorP_NotCodeMethod, method));
 			}
 
 			// See if this is a function within the instance classes
@@ -1089,9 +1100,9 @@ namespace fyiReporting.RDL
 			{
 				string err;
 				if (cls == null || cls.Length == 0)
-					err = String.Format("Function {0} is not known.", method);
+					err = String.Format(Strings.Parser_ErrorP_FunctionUnknown, method);
 				else
-					err = String.Format("Class {0} is not known.", cls);
+					err = String.Format(Strings.Parser_ErrorP_ClassUnknown, cls);
 
 				throw new ParserException(err);
 			}
@@ -1103,9 +1114,9 @@ namespace fyiReporting.RDL
             {
                 string err;
                 if (cls == null || cls.Length == 0)
-                    err = String.Format("Function '{0}' is not known.", method);
+					err = String.Format(Strings.Parser_ErrorP_FunctionUnknown, method);
                 else
-                    err = String.Format("Function '{0}' of class '{1}' is not known.", method, cls);
+                    err = String.Format(Strings.Parser_ErrorP_FunctionOfClassUnknown, method, cls);
 
                 throw new ParserException(err);
             }

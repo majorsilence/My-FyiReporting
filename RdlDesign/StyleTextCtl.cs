@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -105,7 +106,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode sNode = _ReportItems[0];
 			if (_ReportItems.Count > 1)
 			{
-				cbValue.Text = "Group Selected";
+				cbValue.Text = Strings.PositionCtl_InitValues_GroupSelected;
 				cbValue.Enabled = false;
 				lblValue.Enabled = false;
 			}
@@ -141,7 +142,7 @@ namespace fyiReporting.RdlDesign
 			}
 			else if (sNode.Name == "Title" || sNode.Name == "fyi:Title2" || sNode.Name == "Title2")// 20022008 AJM GJL
 			{
-				lblValue.Text = "Caption";		// Note: label needs to equal the element name
+				lblValue.Text = Strings.StyleTextCtl_InitTextStyles_Caption;		// Note: label needs to equal the element name
 				XmlNode vNode = _Draw.GetNamedChildNode(sNode, "Caption");
 				if (vNode != null)
 					cbValue.Text = vNode.InnerText;
@@ -677,12 +678,12 @@ namespace fyiReporting.RdlDesign
 			{
 				try 
 				{
-					if (!this.cbFontSize.Text.Trim().StartsWith("="))
-						DesignerUtility.ValidateSize(this.cbFontSize.Text, false, false);
+					if (!cbFontSize.Text.Trim().StartsWith("="))
+						DesignerUtility.ValidateSize(cbFontSize.Text, false, false);
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, "Invalid Font Size");
+					MessageBox.Show(e.Message, Strings.StyleTextCtl_Show_InvalidFontSize);
 					return false;
 				}
 

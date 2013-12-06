@@ -31,6 +31,7 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RDL
@@ -342,7 +343,7 @@ namespace fyiReporting.RDL
 
                     if (System.IO.File.Exists(codemodule) == false)
                     {
-                        sce = new SqlConfigEntry(provider, codemodule , cname, null, tselect, codemodule + " could not be found");
+                        sce = new SqlConfigEntry(provider, codemodule , cname, null, tselect, string.Format(Strings.RdlEngineConfig_Error_CashModuleNotFound, codemodule));
                         dsDir.Add(provider, sce);
                         return;
                     }
@@ -364,7 +365,7 @@ namespace fyiReporting.RDL
 					}
                     if (la == null)
 					{
-                        msg = string.Format("{0} could not be loaded", codemodule);
+                        msg = string.Format(Strings.RdlEngineConfig_Error_CashModuleNotFound, codemodule);
 					}
                 }
                 sce = new SqlConfigEntry(provider, codemodule, cname, la, tselect, msg);
@@ -432,7 +433,7 @@ namespace fyiReporting.RDL
                     object o = asm.CreateInstance(sce.ClassName, false,
                        BindingFlags.CreateInstance, null, args, null, null);
                     if (o == null)
-                        throw new Exception(string.Format("Unable to create instance of '{0}' for provider '{1}'", sce.ClassName, provider));
+                        throw new Exception(string.Format(Strings.RdlEngineConfig_Error_UnableCreateInstance, sce.ClassName, provider));
                     cn = o as IDbConnection;
                     break;
             }
@@ -573,7 +574,7 @@ namespace fyiReporting.RDL
                     if (la == null)     // not previously loaded? 
                         la = XmlUtil.AssemblyLoadFrom(codemodule);
                     if (la == null)
-                        msg = string.Format("{0} could not be loaded", codemodule);
+                        msg = string.Format(Strings.RdlEngineConfig_Error_CodeModuleNotLoaded, codemodule);
                     else
                         dotNetType = la.GetType(classname);
                 }
@@ -592,12 +593,12 @@ namespace fyiReporting.RDL
         {
             CustomReportItemEntry crie = null;
             if (!CustomReportItemEntries.TryGetValue(friendlyTypeName, out crie))
-                throw new Exception(string.Format("{0} is not a known CustomReportItem type", friendlyTypeName));
+                throw new Exception(string.Format(Strings.RdlEngineConfig_Error_NotKnownCustomReportItemType, friendlyTypeName));
             if (crie.Type == null)
                 throw new Exception(crie.ErrorMsg ??
-               string.Format("{0} is not a known CustomReportItem type", friendlyTypeName));
+			   string.Format(Strings.RdlEngineConfig_Error_NotKnownCustomReportItemType, friendlyTypeName));
 
-            ICustomReportItem item = (ICustomReportItem)Activator.CreateInstance(crie.Type);
+            var item = (ICustomReportItem)Activator.CreateInstance(crie.Type);
             return item;
         }
 

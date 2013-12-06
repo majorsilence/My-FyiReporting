@@ -22,6 +22,7 @@
 */
 using System;
 using System.IO;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -89,7 +90,7 @@ namespace fyiReporting.RDL
 		{
 			--ptr;
 			if (ptr < 0) 
-				throw new Exception("error : FileReader.UnGet : ungetted first char");
+				throw new Exception(Strings.CharReader_Error_FileReaderUnGetFirstChar);
 			
 			char ch = file[ptr];
 			if (ch == '\n')				// did we unget a new line?

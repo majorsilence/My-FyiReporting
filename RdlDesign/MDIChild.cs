@@ -30,6 +30,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Xml;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
 
 namespace fyiReporting.RdlDesign
@@ -251,7 +252,7 @@ namespace fyiReporting.RdlDesign
                     sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
                     break;
                 default:
-                    throw new Exception("Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types.");
+                    throw new Exception(Strings.MDIChild_Error_AllowedExportTypes);
             }
             sfd.FilterIndex = 1;
 
@@ -274,7 +275,7 @@ namespace fyiReporting.RdlDesign
                 // tif can be either in color or black and white; ask user what they want
                 if (type == OutputPresentationType.TIF)
                 {
-                    DialogResult dr = MessageBox.Show(this, "Do you want to display colors in TIF?", "Export", MessageBoxButtons.YesNoCancel);
+                    DialogResult dr = MessageBox.Show(this, Strings.MDIChild_ShowF_WantDisplayColorsInTIF, Strings.MDIChild_ShowF_Export, MessageBoxButtons.YesNoCancel);
                     if (dr == DialogResult.No)
                         type = OutputPresentationType.TIFBW;
                     else if (dr == DialogResult.Cancel)
@@ -284,7 +285,7 @@ namespace fyiReporting.RdlDesign
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
-                        ex.Message, "Export Error",
+                        ex.Message, Strings.MDIChild_ShowG_ExportError,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     rc = false;
                 }
@@ -477,13 +478,13 @@ namespace fyiReporting.RdlDesign
 
         public bool OkToClose()
         {
-            if (!this.Modified)
+            if (!Modified)
                 return true;
 
             DialogResult r =
-                    MessageBox.Show(this, String.Format("Do you want to save changes you made to '{0}'?",
-                    _SourceFile == null ? "Untitled" : Path.GetFileName(_SourceFile.LocalPath)),
-                    "fyiReporting Designer",
+                    MessageBox.Show(this, String.Format(Strings.MDIChild_ShowH_WantSaveChanges,
+                    _SourceFile == null ? Strings.MDIChild_ShowH_Untitled : Path.GetFileName(_SourceFile.LocalPath)),
+                    Strings.MDIChild_ShowH_fyiReportingDesigner,
                     MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button3);
 

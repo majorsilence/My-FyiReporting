@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Diagnostics;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -144,7 +145,7 @@ namespace fyiReporting.RDL
                     if (p == value)
                         return;
                 }
-                throw new Exception("CurrentPage must be in the list of pages");
+                throw new Exception(Strings.Pages_Error_CurrentPageMustInList);
 #endif
 			}
 		}

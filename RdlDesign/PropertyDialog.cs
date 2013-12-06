@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -66,9 +67,9 @@ namespace fyiReporting.RdlDesign
 
         internal PropertyDialog(DesignXmlDraw dxDraw, List<XmlNode> sNodes, PropertyTypeEnum type, XmlNode tcNode, XmlNode trNode)
         {
-            this._Draw = dxDraw;
-            this._Nodes = sNodes;
-            this._Type = type;
+            _Draw = dxDraw;
+            _Nodes = sNodes;
+            _Type = type;
             _TableColumn = tcNode;
             _TableRow = trNode;
             //
@@ -101,7 +102,6 @@ namespace fyiReporting.RdlDesign
                 case PropertyTypeEnum.ValueAxis2Title:// 20022008 AJM GJL
                     BuildTitle(type);
                     break;
-                case PropertyTypeEnum.ReportItems:
                 default:
                     BuildReportItemTabs();
                     break;
@@ -120,33 +120,32 @@ namespace fyiReporting.RdlDesign
 
         private void BuildReportTabs()
         {
-            this.Text = "Report Properties";
+            Text = Strings.PropertyDialog_BuildReportTabs_ReportProperties;
 
-            ReportCtl rc = new ReportCtl(_Draw);
-            AddTab("Report", rc);
+            var rc = new ReportCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_Report, rc);
 
-            ReportParameterCtl pc = new ReportParameterCtl(_Draw);
-            AddTab("Parameters", pc);
+            var pc = new ReportParameterCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_Parameters, pc);
 
-            ReportXmlCtl xc = new ReportXmlCtl(_Draw);
-            AddTab("XML Rendering", xc);
+            var xc = new ReportXmlCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_XMLRendering, xc);
 
-            BodyCtl bc = new BodyCtl(_Draw);
-            AddTab("Body", bc);
+            var bc = new BodyCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_Body, bc);
 
-            CodeCtl cc = new CodeCtl(_Draw);
-            AddTab("Code", cc);
+            var cc = new CodeCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_Code, cc);
 
-            ModulesClassesCtl mc = new ModulesClassesCtl(_Draw);
-            AddTab("Modules/Classes", mc);
-            return;
+            var mc = new ModulesClassesCtl(_Draw);
+            AddTab(Strings.PropertyDialog_BuildReportTabs_Modules_Classes, mc);
         }
 
         private void BuildDataSetsTabs()
         {
             bDelete.Visible = true;
 
-            this.Text = "DataSet";
+            Text = Strings.PropertyDialog_BuildDataSetsTabs_DataSet_Header;
 
             XmlNode aNode;
             if (_Nodes != null && _Nodes.Count > 0)
@@ -154,53 +153,47 @@ namespace fyiReporting.RdlDesign
             else
                 aNode = null;
 
-            DataSetsCtl dsc = new DataSetsCtl(_Draw, aNode);
-            AddTab("DataSet", dsc);
+            var dsc = new DataSetsCtl(_Draw, aNode);
+            AddTab(Strings.PropertyDialog_BuildDataSetsTabs_DataSet, dsc);
 
-            QueryParametersCtl qp = new QueryParametersCtl(_Draw, dsc.DSV);
-            AddTab("Query Parameters", qp);
+            var qp = new QueryParametersCtl(_Draw, dsc.DSV);
+            AddTab(Strings.PropertyDialog_BuildDataSetsTabs_QueryParameters, qp);
 
-            FiltersCtl fc = new FiltersCtl(_Draw, aNode);
-            AddTab("Filters", fc);
+            var fc = new FiltersCtl(_Draw, aNode);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fc);
 
-            DataSetRowsCtl dsrc = new DataSetRowsCtl(_Draw, aNode, dsc.DSV);
-            AddTab("Data", dsrc);
-            return;
+            var dsrc = new DataSetRowsCtl(_Draw, aNode, dsc.DSV);
+            AddTab(Strings.PropertyDialog_BuildDataSetsTabs_Data, dsrc);
         }
 
         private void BuildGroupingTabs()
         {
-            XmlNode aNode = _Nodes[0];
+            var aNode = _Nodes[0];
+
             if (aNode.Name == "DynamicSeries")
             {
-                this.Text = "Series Grouping";
+                Text = Strings.PropertyDialog_BuildGroupingTabs_SeriesGrouping;
             }
             else if (aNode.Name == "DynamicCategories")
             {
-                this.Text = "Category Grouping";
+                Text = Strings.PropertyDialog_BuildGroupingTabs_CategoryGrouping;
             }
             else
             {
-                this.Text = "Grouping and Sorting";
+                Text = Strings.PropertyDialog_BuildGroupingTabs_GroupingAndSorting;
             }
 
-            GroupingCtl gc = new GroupingCtl(_Draw, aNode);
-            AddTab("Grouping", gc);
+            var gc = new GroupingCtl(_Draw, aNode);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Grouping, gc);
 
-            SortingCtl sc = new SortingCtl(_Draw, aNode);
-            AddTab("Sorting", sc);
+            var sc = new SortingCtl(_Draw, aNode);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Sorting, sc);
 
             // We have to create a grouping here but will need to kill it if no definition follows it
-            XmlNode gNode = _Draw.GetCreateNamedChildNode(aNode, "Grouping");
+            var gNode = _Draw.GetCreateNamedChildNode(aNode, "Grouping");
 
-            FiltersCtl fc = new FiltersCtl(_Draw, gNode);
-            AddTab("Filters", fc);
-
-
-
-
-
-            return;
+            var fc = new FiltersCtl(_Draw, gNode);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fc);
         }
 
         private void BuildReportItemTabs()
@@ -234,126 +227,138 @@ namespace fyiReporting.RdlDesign
             EnsureStyle();	// Make sure we have Style nodes for all the report items
 
             if (_Nodes.Count > 1)
-                this.Text = "Group Selection Properties";
+                Text = Strings.PropertyDialog_BuildReportItemTabs_GroupSelectionProperties;
             else
             {
-                string name = _Draw.GetElementAttribute(aNode, "Name", "");
-                this.Text = string.Format("{0} {1} Properties", type.Replace("fyi:", ""), name);
+                var name = _Draw.GetElementAttribute(aNode, "Name", "");
+                Text = string.Format("{0} {1} " + Strings.PropertyDialog_BuildReportItemTabs_Properties, type.Replace("fyi:", ""), name);
             }
 
             // Create all the tabs
-            if (type == "Textbox")
-            {
-                StyleTextCtl stc = new StyleTextCtl(_Draw, this._Nodes);
-                AddTab("Text", stc);
-            }
-            else if (type == "List")
-            {
-                ListCtl lc = new ListCtl(_Draw, this._Nodes);
-                AddTab("List", lc);
-                if (_Nodes.Count == 1)
-                {
-                    XmlNode l = _Nodes[0];
-                    FiltersCtl fc = new FiltersCtl(_Draw, l);
-                    AddTab("Filters", fc);
-                    SortingCtl srtc = new SortingCtl(_Draw, l);
-                    AddTab("Sorting", srtc);
-                }
-            }
-            else if (type == "Chart")
-            {
-                ChartCtl cc = new ChartCtl(_Draw, this._Nodes);
-                AddTab("Chart", cc);
+	        switch (type)
+	        {
+		        case "Textbox":
+			        var stc = new StyleTextCtl(_Draw, _Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
+			        break;
 
-                // 05122007 AJM & GJL Create a new StaticSeriesCtl tab
-                StaticSeriesCtl ssc = new StaticSeriesCtl(_Draw, this._Nodes);
-                if (ssc.ShowMe)
-                {
-                    //If the chart has static series, then show the StaticSeriesCtl GJL
-                    AddTab("Static Series", ssc);
-                }
+		        case "List":
+			        var lc = new ListCtl(_Draw, _Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_List, lc);
 
+			        if (_Nodes.Count == 1)
+			        {
+				        var l = _Nodes[0];
+				        var fc = new FiltersCtl(_Draw, l);
+				        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fc);
+				        var srtc = new SortingCtl(_Draw, l);
+				        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Sorting, srtc);
+			        }
+			        break;
 
-                if (_Nodes.Count == 1)
-                {
-                    FiltersCtl fc = new FiltersCtl(_Draw, _Nodes[0]);
-                    AddTab("Filters", fc);
-                }
-            }
-            else if (type == "Image")
-            {
-                ImageCtl imgc = new ImageCtl(_Draw, this._Nodes);
-                AddTab("Image", imgc);
-            }
-            else if (type == "Table")
-            {
-                XmlNode table = _Nodes[0];
-                TableCtl tc = new TableCtl(_Draw, this._Nodes);
-                AddTab("Table", tc);
-                FiltersCtl fc = new FiltersCtl(_Draw, table);
-                AddTab("Filters", fc);
-                XmlNode details = _Draw.GetNamedChildNode(table, "Details");
-                if (details != null)
-                {	// if no details then we don't need details sorting
-                    GroupingCtl grpc = new GroupingCtl(_Draw, details);
-                    AddTab("Grouping", grpc);
-                    SortingCtl srtc = new SortingCtl(_Draw, details);
-                    AddTab("Sorting", srtc);
-                }
-                if (_TableColumn != null)
-                {
-                    TableColumnCtl tcc = new TableColumnCtl(_Draw, _TableColumn);
-                    AddTab("Table Column", tcc);
-                }
-                if (_TableRow != null)
-                {
-                    TableRowCtl trc = new TableRowCtl(_Draw, _TableRow);
-                    AddTab("Table Row", trc);
-                }
-            }
-            else if (type == "fyi:Grid")
-            {
-                GridCtl gc = new GridCtl(_Draw, this._Nodes);
-                AddTab("Grid", gc);
-            }
-            else if (type == "Matrix")
-            {
-                XmlNode matrix = _Nodes[0];
-                MatrixCtl mc = new MatrixCtl(_Draw, this._Nodes);
-                AddTab("Matrix", mc);
-                FiltersCtl fc = new FiltersCtl(_Draw, matrix);
-                AddTab("Filters", fc);
-            }
-            else if (type == "Subreport" && _Nodes.Count == 1)
-            {
-                XmlNode subreport = _Nodes[0];
-                SubreportCtl src = new SubreportCtl(_Draw, subreport);
-                AddTab("Subreport", src);
-            }
-            else if (aNode.Name == "CustomReportItem")
-            {
-                XmlNode cri = _Nodes[0];
-                CustomReportItemCtl cric = new CustomReportItemCtl(_Draw, _Nodes);
-                AddTab(type, cric);
-            }
+		        case "Chart":
+			        var cc = new ChartCtl(_Draw, _Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Chart, cc);
 
-            // Position tab
-            PositionCtl pc = new PositionCtl(_Draw, this._Nodes);
-            AddTab("Name/Position", pc);
+			        // 05122007 AJM & GJL Create a new StaticSeriesCtl tab
+			        var ssc = new StaticSeriesCtl(_Draw, _Nodes);
+
+			        if (ssc.ShowMe)
+			        {
+				        //If the chart has static series, then show the StaticSeriesCtl GJL
+				        AddTab(Strings.PropertyDialog_BuildReportItemTabs_StaticSeries, ssc);
+			        }
+
+			        if (_Nodes.Count == 1)
+			        {
+				        var fc = new FiltersCtl(_Draw, _Nodes[0]);
+						AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fc);
+			        }
+			        break;
+
+		        case "Image":
+			        var imgc = new ImageCtl(_Draw, _Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Image, imgc);
+			        break;
+
+				case "Table":
+					var table = _Nodes[0];
+					var tc = new TableCtl(_Draw, _Nodes);
+					AddTab(Strings.PropertyDialog_BuildReportItemTabs_Table, tc);
+				    var fct = new FiltersCtl(_Draw, table);
+					AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fct);
+			        var details = _Draw.GetNamedChildNode(table, "Details");
+
+					if (details != null)
+					{
+						// if no details then we don't need details sorting
+						var grpc = new GroupingCtl(_Draw, details);
+						AddTab(Strings.PropertyDialog_BuildReportItemTabs_Grouping, grpc);
+						var srtc = new SortingCtl(_Draw, details);
+						AddTab(Strings.PropertyDialog_BuildReportItemTabs_Sorting, srtc);
+					}
+
+					if (_TableColumn != null)
+					{
+						var tcc = new TableColumnCtl(_Draw, _TableColumn);
+						AddTab(Strings.PropertyDialog_BuildReportItemTabs_TableColumn, tcc);
+					}
+
+					if (_TableRow != null)
+					{
+						var trc = new TableRowCtl(_Draw, _TableRow);
+						AddTab(Strings.PropertyDialog_BuildReportItemTabs_TableRow, trc);
+					}
+					break;
+
+		        case "fyi:Grid":
+			        var gc = new GridCtl(_Draw, this._Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Grid, gc);
+			        break;
+
+		        case "Matrix":
+			        var matrix = _Nodes[0];
+			        var mc = new MatrixCtl(_Draw, this._Nodes);
+			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Matrix, mc);
+			        var fcm = new FiltersCtl(_Draw, matrix);
+					AddTab(Strings.PropertyDialog_BuildReportItemTabs_Filters, fcm);
+			        break;
+
+		        case "Subreport":
+			        if (_Nodes.Count == 1)
+			        {
+				        var subreport = _Nodes[0];
+				        var src = new SubreportCtl(_Draw, subreport);
+				        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Subreport, src);
+			        }
+			        break;
+
+				default:
+			        if (aNode.Name == "CustomReportItem")
+			        {
+				        var cric = new CustomReportItemCtl(_Draw, _Nodes);
+				        AddTab(type, cric);
+			        }
+			        break;
+	        }
+
+	        // Position tab
+            var pc = new PositionCtl(_Draw, this._Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Name_Position, pc);
 
             // Border tab
-            StyleBorderCtl bc = new StyleBorderCtl(_Draw, null, this._Nodes);
-            AddTab("Border", bc);
+            var bc = new StyleBorderCtl(_Draw, null, this._Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Border, bc);
 
             if (!(type == "Line" || type == "Subreport"))
             {
                 // Style tab
-                StyleCtl sc = new StyleCtl(_Draw, this._Nodes);
-                AddTab("Style", sc);
+                var sc = new StyleCtl(_Draw, this._Nodes);
+                AddTab(Strings.PropertyDialog_BuildReportItemTabs_Style, sc);
 
                 // Interactivity tab
-                InteractivityCtl ic = new InteractivityCtl(_Draw, this._Nodes);
-                AddTab("Interactivity", ic);
+                var ic = new InteractivityCtl(_Draw, this._Nodes);
+                AddTab(Strings.PropertyDialog_BuildReportItemTabs_Interactivity, ic);
             }
         }
 
@@ -362,12 +367,12 @@ namespace fyiReporting.RdlDesign
             string propName;
             if (type == PropertyTypeEnum.CategoryAxis)
             {
-                this.Text = "Chart Category (X) Axis";
+                Text = Strings.PropertyDialog_BuildChartAxisTabs_ChartCategoryAxis;
                 propName = "CategoryAxis";
             }
             else
             {
-                this.Text = "Chart Value (Y) Axis";
+                Text = Strings.PropertyDialog_BuildChartAxisTabs_ChartValueAxis;
                 propName = "ValueAxis";
             }
 
@@ -382,25 +387,25 @@ namespace fyiReporting.RdlDesign
             EnsureStyle();	// Make sure we have Style nodes
 
             // Chart Axis
-            ChartAxisCtl cac = new ChartAxisCtl(_Draw, this._Nodes);
-            AddTab("Axis", cac);
+            var cac = new ChartAxisCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildChartAxisTabs_Axis, cac);
 
             // Style Text
-            StyleTextCtl stc = new StyleTextCtl(_Draw, this._Nodes);
-            AddTab("Text", stc);
+            var stc = new StyleTextCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab
-            StyleBorderCtl bc = new StyleBorderCtl(_Draw, null, this._Nodes);
-            AddTab("Border", bc);
+            var bc = new StyleBorderCtl(_Draw, null, _Nodes);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Border, bc);
 
             // Style tab
-            StyleCtl sc = new StyleCtl(_Draw, this._Nodes);
-            AddTab("Style", sc);
+            var sc = new StyleCtl(_Draw, _Nodes);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Style, sc);
         }
 
         private void BuildChartLegendTabs()
         {
-            this.Text = "Chart Legend Properties";
+            Text = Strings.PropertyDialog_BuildChartLegendTabs_ChartLegendProperties;
 
             XmlNode cNode = _Nodes[0];
             XmlNode lNode = _Draw.GetCreateNamedChildNode(cNode, "Legend");
@@ -412,20 +417,20 @@ namespace fyiReporting.RdlDesign
             EnsureStyle();	// Make sure we have Style nodes
 
             // Chart Legend
-            ChartLegendCtl clc = new ChartLegendCtl(_Draw, this._Nodes);
-            AddTab("Legend", clc);
+            var clc = new ChartLegendCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildChartLegendTabs_Legend, clc);
 
             // Style Text
-            StyleTextCtl stc = new StyleTextCtl(_Draw, this._Nodes);
-            AddTab("Text", stc);
+            var stc = new StyleTextCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab
-            StyleBorderCtl bc = new StyleBorderCtl(_Draw, null, this._Nodes);
-            AddTab("Border", bc);
+            var bc = new StyleBorderCtl(_Draw, null, _Nodes);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Border, bc);
 
             // Style tab
-            StyleCtl sc = new StyleCtl(_Draw, this._Nodes);
-            AddTab("Style", sc);
+            var sc = new StyleCtl(_Draw, _Nodes);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Style, sc);
         }
 
         private void BuildTitle(PropertyTypeEnum type)
@@ -434,14 +439,14 @@ namespace fyiReporting.RdlDesign
             _Nodes = new List<XmlNode>();		// replace with a new one
             if (type == PropertyTypeEnum.ChartTitle)
             {
-                this.Text = "Chart Title";
+                Text = Strings.PropertyDialog_BuildTitle_ChartTitle;
 
                 XmlNode lNode = _Draw.GetCreateNamedChildNode(cNode, "Title");
                 _Nodes.Add(lNode);		// Working on the title		
             }
             else if (type == PropertyTypeEnum.CategoryAxisTitle)
             {
-                this.Text = "Category (X) Axis Title";
+                Text = Strings.PropertyDialog_BuildTitle_CategoryAxisTitle;
                 XmlNode caNode = _Draw.GetCreateNamedChildNode(cNode, "CategoryAxis");
                 XmlNode aNode = _Draw.GetCreateNamedChildNode(caNode, "Axis");
                 XmlNode tNode = _Draw.GetCreateNamedChildNode(aNode, "Title");
@@ -450,7 +455,7 @@ namespace fyiReporting.RdlDesign
             // 20022008 AJM GJL
             else if (type == PropertyTypeEnum.ValueAxis2Title)
             {
-                this.Text = "Value (Y) Axis (Right) Title";
+                Text = Strings.PropertyDialog_BuildTitle_ValueAxisRightTitle;
                 XmlNode caNode = _Draw.GetCreateNamedChildNode(cNode, "ValueAxis");
                 XmlNode aNode = _Draw.GetCreateNamedChildNode(caNode, "Axis");
                 XmlNode tNode = _Draw.GetCreateNamedChildNode(aNode, "fyi:Title2");
@@ -458,7 +463,7 @@ namespace fyiReporting.RdlDesign
             }
             else
             {
-                this.Text = "Value (Y) Axis Title";
+                Text = Strings.PropertyDialog_BuildTitle_ValueAxisTitle;
                 XmlNode caNode = _Draw.GetCreateNamedChildNode(cNode, "ValueAxis");
                 XmlNode aNode = _Draw.GetCreateNamedChildNode(caNode, "Axis");
                 XmlNode tNode = _Draw.GetCreateNamedChildNode(aNode, "Title");
@@ -468,16 +473,16 @@ namespace fyiReporting.RdlDesign
             EnsureStyle();	// Make sure we have Style nodes
 
             // Style Text
-            StyleTextCtl stc = new StyleTextCtl(_Draw, this._Nodes);
-            AddTab("Text", stc);
+            var stc = new StyleTextCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab
-            StyleBorderCtl bc = new StyleBorderCtl(_Draw, null, this._Nodes);
-            AddTab("Border", bc);
+            var bc = new StyleBorderCtl(_Draw, null, _Nodes);
+			AddTab(Strings.PropertyDialog_BuildReportItemTabs_Border, bc);
 
             // Style tab
-            StyleCtl sc = new StyleCtl(_Draw, this._Nodes);
-            AddTab("Style", sc);
+            var sc = new StyleCtl(_Draw, _Nodes);
+            AddTab(Strings.PropertyDialog_BuildReportItemTabs_Style, sc);
         }
 
         private void EnsureStyle()
@@ -569,12 +574,12 @@ namespace fyiReporting.RdlDesign
         private void bDelete_Click(object sender, System.EventArgs e)
         {
             if (MessageBox.Show(this,
-                    "Are you sure you want to delete this dataset?",
-                    "DataSet",
+                    Strings.PropertyDialog_ShowF_WantDeleteDataset,
+                    Strings.PropertyDialog_ShowF_DataSet,
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 _Delete = true;
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             }
         }
     }

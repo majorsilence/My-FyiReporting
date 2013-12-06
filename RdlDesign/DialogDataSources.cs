@@ -7,6 +7,7 @@ using System.Text;
 using System.Xml;
 using System.IO;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -191,14 +192,14 @@ namespace fyiReporting.RdlDesign
             {
                 if (dsv.Name == null || dsv.Name.Length == 0)
                 {
-                    MessageBox.Show(this, "Name must be specified for all DataSources.", "Data Sources");
+                    MessageBox.Show(this, Strings.DialogDataSources_ShowE_NameMustSpecified, Strings.DialogDataSources_ShowE_DataSources);
                     return;
                 }
 
                 if (!ReportNames.IsNameValid(dsv.Name))
                 {
                     MessageBox.Show(this,
-                        string.Format("Name '{0}' contains invalid characters.", dsv.Name), "Data Sources");
+						string.Format(Strings.DialogDataSources_ShowE_NameInvalid, dsv.Name), Strings.DialogDataSources_ShowE_DataSources);
                     return;
                 }
 
@@ -206,7 +207,7 @@ namespace fyiReporting.RdlDesign
                 if (name != null)
                 {
                     MessageBox.Show(this,
-                        string.Format("Each DataSource must have a unique name. '{0}' is repeated.", dsv.Name), "Data Sources");
+						string.Format(Strings.DialogDataSources_ShowE_DataSourceMustUniqueN, dsv.Name), Strings.DialogDataSources_ShowE_DataSources);
                     return;
                 }
                 ht.Add(dsv.Name, dsv.Name);
@@ -221,12 +222,12 @@ namespace fyiReporting.RdlDesign
         {
             if (string.IsNullOrEmpty(this.cbDataProvider.Text))
             {
-                MessageBox.Show("Please select a Data Provider before testing.", "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Strings.DialogDatabase_ShowD_SelectDataProvider, Strings.DesignerUtility_Show_TestConnection, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (DesignerUtility.TestConnection(this.cbDataProvider.Text, tbConnection.Text))
-                MessageBox.Show("Connection succeeded!", "Test Connection");
+                MessageBox.Show(Strings.DialogDatabase_Show_ConnectionSuccessful, Strings.DesignerUtility_Show_TestConnection);
         }
 
         private void tbDSName_TextChanged(object sender, System.EventArgs e)
@@ -331,7 +332,7 @@ namespace fyiReporting.RdlDesign
             {
                 e.Cancel = true;
                 MessageBox.Show(this,
-                    string.Format("Name '{0}' contains invalid characters.", tbDSName.Text), "Data Sources");
+					string.Format(Strings.DialogDataSources_ShowE_NameInvalid, tbDSName.Text), Strings.DialogDataSources_ShowE_DataSources);
             }
 
         }

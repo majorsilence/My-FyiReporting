@@ -1,3 +1,4 @@
+using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -22,23 +23,21 @@
 */
 using System;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
-using System.Windows.Forms;
-using System.Drawing.Printing;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
-using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
 	/// <summary>
 	/// DesignCtl is a designer view of an RDL report
 	/// </summary>
-	public class DesignCtl : System.Windows.Forms.Control
+	public partial class DesignCtl
 	{ 
 		public delegate void OpenSubreportEventHandler(object source, SubReportEventArgs e);
         public delegate void HeightEventHandler(object source, HeightEventArgs e);
@@ -71,27 +70,9 @@ namespace fyiReporting.RdlDesign
 
 		private DesignXmlDraw _DrawPanel;		// the main drawing panel
 
-		// Context menus
-
-		MenuItem menuCopy;    
-		MenuItem menuPaste;
-		MenuItem menuDelete;
-		MenuItem menuFSep1;
-		MenuItem menuSelectAll;
-		MenuItem menuFSep2;
-		MenuItem menuInsert;
-		MenuItem menuProperties;
-		ContextMenu menuContext;
-		MenuItem menuPropertiesLegend;
-		MenuItem menuPropertiesCategoryAxis;
-		MenuItem menuPropertiesValueAxis;
-		MenuItem menuPropertiesCategoryAxisTitle;
-		MenuItem menuPropertiesValueAxisTitle;
-        MenuItem menuPropertiesValueAxis2Title;
-		MenuItem menuPropertiesChartTitle;
-
 		public DesignCtl()
 		{
+			InitializeComponent();
 			// Get our graphics DPI					   
 			Graphics g = null;			
 			try
@@ -243,7 +224,7 @@ namespace fyiReporting.RdlDesign
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message, "Unable to create RDL syntax");
+					MessageBox.Show(ex.Message, Strings.DesignCtl_Show_Unable—reateRDL);
 				}
 				return result;
 			}
@@ -331,7 +312,7 @@ namespace fyiReporting.RdlDesign
             if (_DrawPanel.SelectedCount < 1)
                 return;
 
-            _Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 
             _Undo.EndUndoGroup();
 
@@ -347,7 +328,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode l = _DrawPanel.GetNamedChildNode(model, "Left");
 			string left = l == null? "0pt": l.InnerText;
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	// we even reset the first one; in case the attribute wasn't specified
 				_DrawPanel.SetElement(xNode, "Left", left);
@@ -370,7 +351,7 @@ namespace fyiReporting.RdlDesign
 
 			float mright = mrect.Left + mrect.Width;	// the right side of the model
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	
 				if (xNode == model)
@@ -403,7 +384,7 @@ namespace fyiReporting.RdlDesign
 
 			float mc = mrect.Left + mrect.Width/2;	// the middle of the model
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	
 				if (xNode == model)
@@ -435,7 +416,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode t = _DrawPanel.GetNamedChildNode(model, "Top");
 			string top = t == null? "0pt": t.InnerText;
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	// we even reset the first one; in case the attribute wasn't specified
 				_DrawPanel.SetElement(xNode, "Top", top);
@@ -458,7 +439,7 @@ namespace fyiReporting.RdlDesign
 
 			float mbottom = mrect.Top + mrect.Height;	// the bottom side of the model
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	
 				if (xNode == model)
@@ -492,7 +473,7 @@ namespace fyiReporting.RdlDesign
 
 			float mc = mrect.Top + mrect.Height/2;	// the middle of the model
 
-			_Undo.StartUndoGroup("Align");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Align);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	
 				if (xNode == model)
@@ -523,7 +504,7 @@ namespace fyiReporting.RdlDesign
 				return;
 			string height = h.InnerText;
 
-			_Undo.StartUndoGroup("Size");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Size);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	// we even reset the first one; in case the attribute wasn't specified
 				_DrawPanel.SetElement(xNode, "Height", height);
@@ -542,7 +523,7 @@ namespace fyiReporting.RdlDesign
 				return;
 			string width = w.InnerText;
 
-			_Undo.StartUndoGroup("Size");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Size);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	// we even reset the first one; in case the attribute wasn't specified
 				_DrawPanel.SetElement(xNode, "Width", width);
@@ -566,7 +547,7 @@ namespace fyiReporting.RdlDesign
 				return;
 			string height = h.InnerText;
 
-			_Undo.StartUndoGroup("Size");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Size);
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{	// we even reset the first one; in case the attribute wasn't specified
 				_DrawPanel.SetElement(xNode, "Height", height);
@@ -585,7 +566,7 @@ namespace fyiReporting.RdlDesign
 			if (rectm.Width == float.MinValue)
 				return;
 
-			_Undo.StartUndoGroup("Spacing");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Spacing);
 			float x = rectm.Left + rectm.Width + diff;
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{
@@ -658,7 +639,7 @@ namespace fyiReporting.RdlDesign
 			if (rectm.Height == float.MinValue)
 				return;
 
-			_Undo.StartUndoGroup("Spacing");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Spacing);
 			float y = rectm.Top + rectm.Height + diff;
 			foreach (XmlNode xNode in _DrawPanel.SelectedList)
 			{
@@ -729,7 +710,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedList.Count < 1)
 				return;
 
-			_Undo.StartUndoGroup("Padding");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Padding);
 			foreach (XmlNode n in _DrawPanel.SelectedList)
 			{
 				XmlNode sNode = this._DrawPanel.GetCreateNamedChildNode(n, "Style");
@@ -756,7 +737,7 @@ namespace fyiReporting.RdlDesign
 				return;
 
 			Clipboard.SetDataObject(GetCopy(), true);
-			_Undo.StartUndoGroup("Cut");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Cut);
 			_DrawPanel.DeleteSelected();
 			_Undo.EndUndoGroup();
 			SelectionChanged(this, new EventArgs());
@@ -776,7 +757,7 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount > 0)
 			{
-				_Undo.StartUndoGroup("Delete");
+				_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Delete);
 				_DrawPanel.DeleteSelected();
 				_Undo.EndUndoGroup();
 
@@ -818,23 +799,27 @@ namespace fyiReporting.RdlDesign
 				if (_DrawPanel.SelectedCount == 0)
 					return "";
 				if (_DrawPanel.SelectedCount > 1)
-					return "Group Selection";
+					return Strings.DesignCtl_SelectionName_GroupSelection;
+
 				XmlNode xNode = _DrawPanel.SelectedList[0];
 				if (xNode.Name == "TableColumn" || xNode.Name == "TableRow")
 					return "";
 
-				XmlAttribute xAttr = xNode.Attributes["Name"];
+				var xAttr = xNode.Attributes != null ? xNode.Attributes["Name"] : null;
+
 				if (xAttr == null)
-					return "*Unnamed*";
+					return Strings.DesignCtl_SelectionName_Unnamed;
 
 				XmlNode cNode = _DrawPanel.GetReportItemContainer(xNode);
 				if (cNode == null)
 					return xAttr.Value;
-				XmlAttribute cAttr = cNode.Attributes["Name"];
-				if (cAttr == null)
-					return xAttr.Value + " in " + cNode.Name;
 
-				string title = xAttr.Value + " in " + cNode.Name.Replace("fyi:", "") + " " + cAttr.Value;
+				var cAttr = cNode.Attributes != null ? cNode.Attributes["Name"] : null;
+
+				if (cAttr == null)
+					return xAttr.Value + " " + Strings.DesignCtl_SelectionName_in + " " + cNode.Name;
+
+				var title = xAttr.Value + " " + Strings.DesignCtl_SelectionName_in + " " + cNode.Name.Replace("fyi:", "") + " " + cAttr.Value;
 				if (!(cNode.Name == "Table" || cNode.Name == "fyi:Grid"))
 					return title;
 
@@ -876,7 +861,7 @@ namespace fyiReporting.RdlDesign
 				if (gAttr == null)
 					return title + " " + rowTitle;
 
-				return title + ", Group " + gAttr.Value + " " + rowTitle;
+				return title + ", " + Strings.DesignCtl_SelectionName_Group + " " + gAttr.Value + " " + rowTitle;
 			}
 		}
 		
@@ -919,7 +904,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount == 0)
 				return;
 
-			_Undo.StartUndoGroup("Style");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Style);
 			_DrawPanel.ApplyStyleToSelected(name, v);
 			_Undo.EndUndoGroup(true);
 			ReportChanged(this, new EventArgs());
@@ -934,7 +919,7 @@ namespace fyiReporting.RdlDesign
 			if (tn == null || tn.Name != "Textbox")
 				return;
 
-			_Undo.StartUndoGroup("Textbox Value");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_TextboxValue);
 			_DrawPanel.SetElement(tn, "Value", v);
 			_Undo.EndUndoGroup(true);
 			_DrawPanel.Invalidate();	// force a repaint
@@ -943,66 +928,47 @@ namespace fyiReporting.RdlDesign
 
 		private void BuildContextMenus()
 		{
-			// EDIT MENU
-			menuCopy = new MenuItem("&Copy", new EventHandler(this.menuCopy_Click));
-			menuPaste = new MenuItem("Paste", new EventHandler(this.menuPaste_Click));
-			menuDelete = new MenuItem("&Delete", new EventHandler(this.menuDelete_Click));
-			menuFSep1 = new MenuItem("-");
-			menuSelectAll = new MenuItem("Select &All", new EventHandler(this.menuSelectAll_Click));
-			menuFSep2 = new MenuItem("-");
-
-            List<MenuItem> insertItems = new List<MenuItem>();
-            insertItems.Add(new MenuItem("&Chart...", new EventHandler(this.menuInsertChart_Click)));
-            insertItems.Add(new MenuItem("&Grid", new EventHandler(this.menuInsertGrid_Click)));
-            insertItems.Add(new MenuItem("&Image", new EventHandler(this.menuInsertImage_Click)));
-            insertItems.Add(new MenuItem("&Line", new EventHandler(this.menuInsertLine_Click)));
-			insertItems.Add(new MenuItem("&List", new EventHandler(this.menuInsertList_Click)));
-			insertItems.Add(new MenuItem("&Matrix...", new EventHandler(this.menuInsertMatrix_Click)));
-            insertItems.Add(new MenuItem("&Rectangle", new EventHandler(this.menuInsertRectangle_Click)));
-            insertItems.Add(new MenuItem("&Subreport", new EventHandler(this.menuInsertSubreport_Click)));
-            insertItems.Add(new MenuItem("Ta&ble...", new EventHandler(this.menuInsertTable_Click)));
-            insertItems.Add(new MenuItem("&Textbox", new EventHandler(this.menuInsertTextbox_Click)));
-            // Now add any CustomReportItems
-            BuildContextMenusCustom(insertItems);
-
-			menuInsert = new MenuItem("&Insert");
-			menuInsert.MenuItems.AddRange(insertItems.ToArray());
-
-			menuProperties = new MenuItem("&Properties...", new EventHandler(this.menuProperties_Click));
-
-			//
-			// Create chart context menu and add array of sub-menu items
-			menuPropertiesLegend = new MenuItem("Legend...", new EventHandler(this.menuPropertiesLegend_Click));
-			menuPropertiesCategoryAxis = new MenuItem("Category (X) Axis...", new EventHandler(this.menuPropertiesCategoryAxis_Click));
-			menuPropertiesValueAxis = new MenuItem("Value (Y) Axis...", new EventHandler(this.menuPropertiesValueAxis_Click));
-			
-			menuPropertiesCategoryAxisTitle = new MenuItem("Category (X) Axis Title...", new EventHandler(this.menuPropertiesCategoryAxisTitle_Click));
-			menuPropertiesValueAxisTitle = new MenuItem("Value (Y) Axis Title...", new EventHandler(this.menuPropertiesValueAxisTitle_Click));
-            menuPropertiesValueAxis2Title = new MenuItem("Value (Y) Axis (Right) Title...", new EventHandler(this.menuPropertiesValueAxis2Title_Click));
-			menuPropertiesChartTitle = new MenuItem("Title...", new EventHandler(this.menuPropertiesChartTitle_Click));
-
+			BuildContextMenusCustom(MenuDefaultInsert);
 		}
         
-        private void BuildContextMenusCustom(List<MenuItem> items)
+        private void BuildContextMenusCustom(ToolStripDropDownItem menuItem)
         {
             try
             {
-                string[] sa = RdlEngineConfig.GetCustomReportTypes();
+                var sa = RdlEngineConfig.GetCustomReportTypes();
                 if (sa == null || sa.Length == 0)
                     return;
 
-                items.Add(new MenuItem("-"));       // put a separator
+
+	            var separator = menuItem.DropDownItems["CustomSeparator"];
+
+				if (separator == null)
+				{
+					separator = new ToolStripSeparator { Name = "CustomSeparator" };
+					menuItem.DropDownItems.Add(separator);       // put a separator
+				}
+				else
+				{
+					var index = menuItem.DropDownItems.IndexOf(separator) + 1;
+
+					while (menuItem.DropDownItems.Count > index)
+					{
+						menuItem.DropDownItems.RemoveAt(index);						
+					}
+				}
+
                 // Add the custom report items to the insert menu
-                foreach (string m in sa)
+                foreach (var m in sa)
                 {
-                    MenuItem mi = new MenuItem(m+"...", new EventHandler(this.menuInsertCustomReportItem_Click));
+	                var mi = new ToolStripMenuItem(m + "...");
+	                mi.Click += menuInsertCustomReportItem_Click;
                     mi.Tag = m;
-                    items.Add(mi);
+					menuItem.DropDownItems.Add(mi);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Error building CustomReportItem menus: {0}", ex.Message), "Insert", MessageBoxButtons.OK);
+                MessageBox.Show(string.Format(Strings.DesignCtl_ShowB_CustomReportItemError, ex.Message), Strings.DesignCtl_Show_Insert, MessageBoxButtons.OK);
             }   
         }
 
@@ -1230,232 +1196,143 @@ namespace fyiReporting.RdlDesign
 
 		private void DrawPanelContextMenuChart(Point p, XmlNode riNode)
 		{
-			menuContext = new ContextMenu();
-			menuContext.Popup +=new EventHandler(this.menuContext_Popup);
-
 			// Get the Category Groupings
-			object[] catGroupNames = _DrawPanel.GetChartCategoryGroupNames(riNode);
+			var catGroupNames = _DrawPanel.GetChartCategoryGroupNames(riNode);
 
-			MenuItem menuChartInsertCategoryGrouping = new MenuItem("Insert Category Grouping...", 
-				new EventHandler(this.menuChartInsertCategoryGrouping_Click));
-			MenuItem menuChartEditCategoryGrouping = new MenuItem("Edit Category Grouping");
-			MenuItem menuChartDeleteCategoryGrouping = new MenuItem("Delete Category Grouping");
+			MenuChartEditCategoryGrouping.DropDownItems.Clear();
+			MenuChartDeleteCategoryGrouping.DropDownItems.Clear();
+			MenuChartEditCategoryGrouping.Enabled = catGroupNames != null;
+			MenuChartDeleteCategoryGrouping.Enabled = catGroupNames != null;
+
 			if (catGroupNames != null)
 			{
-				foreach (string gname in catGroupNames)
+				foreach (var gname in catGroupNames)
 				{
-					menuChartEditCategoryGrouping.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuChartEditGrouping_Click)));
-					menuChartDeleteCategoryGrouping.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuChartDeleteGrouping_Click)));
+					var em = new ToolStripMenuItem(gname);
+					em.Click += menuChartEditGrouping_Click;
+					MenuChartEditCategoryGrouping.DropDownItems.Add(em);
+
+					em = new ToolStripMenuItem(gname);
+					em.Click += menuChartDeleteGrouping_Click;
+					MenuChartDeleteCategoryGrouping.DropDownItems.Add(em);
 				}
-			}
-			else
-			{
-				menuChartEditCategoryGrouping.Enabled = false;
-				menuChartDeleteCategoryGrouping.Enabled = false;
 			}
 
 			// Get the Series Groupings
-			object[] serGroupNames = _DrawPanel.GetChartSeriesGroupNames(riNode);
+			var serGroupNames = _DrawPanel.GetChartSeriesGroupNames(riNode);
 
-			MenuItem menuChartInsertSeriesGrouping = new MenuItem("Insert Series Grouping...", new EventHandler(this.menuChartInsertSeriesGrouping_Click));
-			MenuItem menuChartEditSeriesGrouping = new MenuItem("Edit Series Grouping");
-			MenuItem menuChartDeleteSeriesGrouping = new MenuItem("Delete Series Grouping");
+			MenuChartEditSeriesGrouping.DropDownItems.Clear();
+			MenuChartDeleteSeriesGrouping.DropDownItems.Clear();
+			MenuChartEditSeriesGrouping.Enabled = serGroupNames != null;
+			MenuChartDeleteSeriesGrouping.Enabled = serGroupNames != null;
+
 			if (serGroupNames != null)
 			{
-				foreach (string gname in serGroupNames)
+				foreach (var gname in serGroupNames)
 				{
-					menuChartEditSeriesGrouping.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuChartEditGrouping_Click)));
-					menuChartDeleteSeriesGrouping.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuChartDeleteGrouping_Click)));
+					var em = new ToolStripMenuItem(gname);
+					em.Click += menuChartEditGrouping_Click;
+					MenuChartEditSeriesGrouping.DropDownItems.Add(em);
+
+					em = new ToolStripMenuItem(gname);
+					em.Click += menuChartDeleteGrouping_Click;
+					MenuChartDeleteSeriesGrouping.DropDownItems.Add(em);
 				}
 			}
-			else
-			{
-				menuChartEditSeriesGrouping.Enabled = false;
-				menuChartDeleteSeriesGrouping.Enabled = false;
-			}
 
-			menuContext.MenuItems.AddRange(
-				new MenuItem[] { 
-									menuProperties, menuPropertiesLegend,menuPropertiesChartTitle,new MenuItem("-"),
-								   menuChartInsertCategoryGrouping, menuChartEditCategoryGrouping,menuChartDeleteCategoryGrouping,new MenuItem("-"),
-									menuPropertiesCategoryAxis, menuPropertiesCategoryAxisTitle, new MenuItem("-"),
-								   menuChartInsertSeriesGrouping, menuChartEditSeriesGrouping,menuChartDeleteSeriesGrouping,new MenuItem("-"),
-								   menuPropertiesValueAxis,menuPropertiesValueAxisTitle,menuPropertiesValueAxis2Title,new MenuItem("-"),
-								    menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									menuSelectAll
-									});
-			menuContext.Show(this, p);
+			ContextMenuChart.Show(this, p);
 		}
 
 		private void DrawPanelContextMenuDefault(Point p)
 		{
-			menuContext = new ContextMenu();
-			menuContext.Popup +=new EventHandler(this.menuContext_Popup);
-			menuContext.MenuItems.AddRange(
-				new MenuItem[] {
-						menuProperties,new MenuItem("-"), menuCopy, menuPaste, menuDelete, menuFSep1, 
-						menuSelectAll, menuFSep2,menuInsert});
-			menuContext.Show(this, p);
+			ContextMenuDefault.Show(this, p);
 		}
 
 		private void DrawPanelContextMenuMatrix(Point p, XmlNode riNode)
 		{
-			menuContext = new ContextMenu();
-			menuContext.Popup +=new EventHandler(this.menuContext_Popup);
-			// matrix menus
-			MenuItem menuMatrixDelete = new MenuItem("Delete Matrix", new EventHandler(this.menuMatrixDelete_Click));
-			MenuItem menuMatrixProperties = new MenuItem("Matrix Properties...", new EventHandler(this.menuMatrixProperties_Click));
-			
 			// Get the column groupings
-			MenuItem[] cmenu;			// the ultimate context menu items
-			object[] colGroupNames = _DrawPanel.GetMatrixColumnGroupNames(riNode);
-			object[] rowGroupNames = _DrawPanel.GetMatrixRowGroupNames(riNode);
+			var colGroupNames = _DrawPanel.GetMatrixColumnGroupNames(riNode);
+			var rowGroupNames = _DrawPanel.GetMatrixRowGroupNames(riNode);
 
-			MenuItem menuMatrixInsertColumnGroup = new MenuItem("Insert Column Group...", new EventHandler(this.menuMatrixInsertColumnGroup_Click));
-			MenuItem menuMatrixEditColumnGroup= new MenuItem("Edit Column Group");
-			MenuItem menuMatrixDeleteColumnGroup= new MenuItem("Delete Column Group");
+			MenuMatrixEditColumnGroup.DropDownItems.Clear();
+			MenuMatrixDeleteColumnGroup.DropDownItems.Clear();
+			MenuMatrixEditRowGroup.DropDownItems.Clear();
+			MenuMatrixDeleteRowGroup.DropDownItems.Clear();
+
+			MenuMatrixEditColumnGroup.Enabled = colGroupNames != null;
+			MenuMatrixDeleteColumnGroup.Enabled = colGroupNames != null;
+			MenuMatrixEditRowGroup.Enabled = rowGroupNames != null;
+			MenuMatrixDeleteRowGroup.Enabled = rowGroupNames != null;
+
 			if (colGroupNames != null)
 			{
-				foreach (string gname in colGroupNames)
+				foreach (var gname in colGroupNames)
 				{
-					menuMatrixEditColumnGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuMatrixEditGroup_Click)));
-					menuMatrixDeleteColumnGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuMatrixDeleteGroup_Click)));
+					var em = new ToolStripMenuItem(gname);
+					em.Click += menuMatrixEditGroup_Click;
+					MenuMatrixEditColumnGroup.DropDownItems.Add(em);
+
+					em = new ToolStripMenuItem(gname);
+					em.Click += menuMatrixDeleteGroup_Click;
+					MenuMatrixDeleteColumnGroup.DropDownItems.Add(em);
 				}
 			}
-			else
-			{
-				menuMatrixEditColumnGroup.Enabled = false;
-				menuMatrixDeleteColumnGroup.Enabled = false;
-			}
-			MenuItem menuMatrixInsertRowGroup = new MenuItem("Insert Row Group...", new EventHandler(this.menuMatrixInsertRowGroup_Click));
-			MenuItem menuMatrixEditRowGroup= new MenuItem("Edit Row Group");
-			MenuItem menuMatrixDeleteRowGroup= new MenuItem("Delete Row Group");
+
 			if (rowGroupNames != null)
 			{
-				foreach (string gname in rowGroupNames)
+				foreach (var gname in rowGroupNames)
 				{
-					menuMatrixEditRowGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuMatrixEditGroup_Click)));
-					menuMatrixDeleteRowGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuMatrixDeleteGroup_Click)));
+					var em = new ToolStripMenuItem(gname);
+					em.Click += menuMatrixEditGroup_Click;
+					MenuMatrixEditRowGroup.DropDownItems.Add(em);
+
+					em = new ToolStripMenuItem(gname);
+					em.Click += menuMatrixDeleteGroup_Click;
+					MenuMatrixDeleteRowGroup.DropDownItems.Add(em);
 				}
 			}
-			else
-			{
-				menuMatrixEditRowGroup.Enabled = false;
-				menuMatrixDeleteRowGroup.Enabled = false;
-			}
-			cmenu = new MenuItem[] {   menuProperties, menuMatrixProperties, new MenuItem("-"),
-									   menuMatrixInsertColumnGroup, menuMatrixEditColumnGroup, menuMatrixDeleteColumnGroup, new MenuItem("-"),
-									   menuMatrixInsertRowGroup, menuMatrixEditRowGroup, menuMatrixDeleteRowGroup, new MenuItem("-"),
-									   menuMatrixDelete, new MenuItem("-"), 
-									   menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll };
 
-			menuContext.MenuItems.AddRange(cmenu);
-			menuContext.Show(this, p);
+			ContextMenuMatrix.Show(this, p);
 		}
 
 		private void DrawPanelContextMenuSubreport(Point p, XmlNode sr)
 		{
-			menuContext = new ContextMenu();
-			menuContext.Popup +=new EventHandler(this.menuContext_Popup);
-
-			// get the subreport name
-			string name = _DrawPanel.GetElementValue(sr, "ReportName", "");
-			if (name == null || name.Length == 0)
-			{	// No name; no way to open the subreport
-				menuContext.MenuItems.AddRange(
-					new MenuItem[] {
-									   menuProperties, 
-									   new MenuItem("-"), menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll, menuFSep2,menuInsert});
-			}
-			else
-			{
-				string srmi = "Open " + name;
-
-				menuContext.MenuItems.AddRange(
-					new MenuItem[] {
-									   menuProperties, new MenuItem(srmi, new EventHandler(this.menuOpenSubreport_Click)),
-									   new MenuItem("-"), menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll, menuFSep2,menuInsert});
-			}
-			menuContext.Show(this, p);
+			ContextMenuSubreport.Show(this, p);
 		}
 
 		private void DrawPanelContextMenuTable(Point p, XmlNode riNode)
 		{
-			menuContext = new ContextMenu();
-			menuContext.Popup +=new EventHandler(this.menuContext_Popup);
-			// table menus
-            bool bTable = !_DrawPanel.InGrid(riNode);
-            string stype = bTable ? "Table" : "Grid";
+			var bTable = !_DrawPanel.InGrid(riNode);
+			var tblGroupNames = _DrawPanel.GetTableGroupNames(riNode);
 
-			MenuItem menuTableInsertRowBefore = new MenuItem("Insert Row Before", new EventHandler(this.menuTableInsertRowBefore_Click));
-			MenuItem menuTableInsertRowAfter = new MenuItem("Insert Row After", new EventHandler(this.menuTableInsertRowAfter_Click));
-			MenuItem menuTableDeleteRow = new MenuItem("Delete "+ stype + " Row", new EventHandler(this.menuTableDeleteRow_Click));
-			MenuItem menuTableInsertColumnBefore = new MenuItem("Insert Column Before", new EventHandler(this.menuTableInsertColumnBefore_Click));
-			MenuItem menuTableInsertColumnAfter = new MenuItem("Insert Column After", new EventHandler(this.menuTableInsertColumnAfter_Click));
-			MenuItem menuTableInsertTableGroup = new MenuItem("Insert "+stype+" Group...", new EventHandler(this.menuTableInsertGroup_Click));
-			MenuItem menuTableDeleteColumn = new MenuItem("Delete "+stype+" Column", new EventHandler(this.menuTableDeleteColumn_Click));
-			MenuItem menuTableDelete = new MenuItem("Delete "+stype, new EventHandler(this.menuTableDelete_Click));
-			MenuItem menuTableProperties = new MenuItem(stype+" Properties...", new EventHandler(this.menuTableProperties_Click));
-
-			// the replace items
-			MenuItem menuReplTextbox = new MenuItem("&Textbox", new EventHandler(this.menuInsertTextbox_Click));
-			MenuItem menuReplRectangle = new MenuItem("&Rectangle", new EventHandler(this.menuInsertRectangle_Click));
-			MenuItem menuReplImage = new MenuItem("&Image", new EventHandler(this.menuInsertImage_Click));
-			MenuItem menuReplSubreport = new MenuItem("&Subreport", new EventHandler(this.menuInsertSubreport_Click));
-			MenuItem menuReplList = new MenuItem("&List", new EventHandler(this.menuInsertList_Click));
-			MenuItem menuReplMatrix = new MenuItem("&Matrix...", new EventHandler(this.menuInsertMatrix_Click));
-			MenuItem menuReplTable = new MenuItem("Ta&ble...", new EventHandler(this.menuInsertTable_Click));
-			MenuItem menuReplChart = new MenuItem("&Chart...", new EventHandler(this.menuInsertChart_Click));
-			MenuItem menuRepl = new MenuItem("&Replace Cell with");
-			menuRepl.MenuItems.AddRange(new MenuItem[] { menuReplChart, menuReplImage,
-															 menuReplList, menuReplMatrix, 
-															 menuReplRectangle, menuReplSubreport,
-															 menuReplTable, menuReplTextbox});
-			
-			// If there are any TableGroups then we need menu items to manipulate them
-			MenuItem[] cmenu;			// the ultimate context menu items
-			object[] tblGroupNames = _DrawPanel.GetTableGroupNames(riNode);
-            if (!bTable)
-            {
-				cmenu = new MenuItem[] {   menuProperties, menuTableProperties, menuRepl, new MenuItem("-"),
-									   menuTableInsertColumnBefore, menuTableInsertColumnAfter, new MenuItem("-"),
-									   menuTableInsertRowBefore, menuTableInsertRowAfter, new MenuItem("-"),
-									   menuTableDeleteColumn, menuTableDeleteRow, menuTableDelete, new MenuItem("-"), 
-									   menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll };
-            }
-			else if (tblGroupNames == null)
-			{   // Don't need menus for manipulating existing TableGroups
-				cmenu = new MenuItem[] {   menuProperties, menuTableProperties, menuRepl, new MenuItem("-"),
-									   menuTableInsertColumnBefore, menuTableInsertColumnAfter, new MenuItem("-"),
-									   menuTableInsertRowBefore, menuTableInsertRowAfter, new MenuItem("-"),
-									   menuTableInsertTableGroup, new MenuItem("-"), 
-									   menuTableDeleteColumn, menuTableDeleteRow, menuTableDelete, new MenuItem("-"), 
-									   menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll };
+			if (!bTable)
+			{
+				ContextMenuGrid.Show(this, p);
 			}
 			else
 			{
-				MenuItem menuTableEditGroup= new MenuItem("Edit Group");
-				MenuItem menuTableDeleteGroup= new MenuItem("Delete Group");
-				foreach (string gname in tblGroupNames)
+				MenuTableEditGroup.DropDownItems.Clear();
+				MenuTableDeleteGroup.DropDownItems.Clear();
+
+				MenuTableEditGroup.Enabled = tblGroupNames != null;
+				MenuTableDeleteGroup.Enabled = tblGroupNames != null;
+
+				if (tblGroupNames != null)
 				{
-					menuTableEditGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuTableEditGroup_Click)));
-					menuTableDeleteGroup.MenuItems.Add(new MenuItem(gname, new EventHandler(this.menuTableDeleteGroup_Click)));
+					foreach (var gname in tblGroupNames)
+					{
+						var em = new ToolStripMenuItem(gname);
+						em.Click += menuTableEditGroup_Click;
+						MenuTableEditGroup.DropDownItems.Add(em);
+
+						em = new ToolStripMenuItem(gname);
+						em.Click += menuTableDeleteGroup_Click;
+						MenuTableDeleteGroup.DropDownItems.Add(em);
+					}
 				}
-				cmenu = new MenuItem[] {   menuProperties, menuTableProperties, menuRepl, new MenuItem("-"),
-									   menuTableInsertColumnBefore, menuTableInsertColumnAfter, new MenuItem("-"),
-									   menuTableInsertRowBefore, menuTableInsertRowAfter, new MenuItem("-"),
-									   menuTableInsertTableGroup,menuTableEditGroup,menuTableDeleteGroup, new MenuItem("-"), 
-									   menuTableDeleteColumn, menuTableDeleteRow, menuTableDelete, new MenuItem("-"), 
-									   menuCopy, menuPaste, menuDelete, new MenuItem("-"), 
-									   menuSelectAll };
+
+				ContextMenuTable.Show(this, p);
 			}
-			menuContext.MenuItems.AddRange(cmenu);
-			menuContext.Show(this, p);
 		}
 
 		private void DrawPanelMouseMove(object sender, MouseEventArgs e)
@@ -1626,7 +1503,7 @@ namespace fyiReporting.RdlDesign
 				return;
 
 			if (e.Button == MouseButtons.Left)
-				_Undo.StartUndoGroup("Move/Size");
+				_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Move_Size);
 
 			if (DrawPanelMouseDownRubberBand(sender, e))	// Handle rubber banding
 				return;
@@ -1754,7 +1631,7 @@ namespace fyiReporting.RdlDesign
 						hl.HitContainer == null || (!(hl.HitContainer.Name == "Table" || hl.HitContainer.Name=="fyi:Grid")))
 				   return false;
 				
-				if (MessageBox.Show("Do you want to replace contents of TableCell?", "Insert", MessageBoxButtons.YesNo) != DialogResult.Yes)
+				if (MessageBox.Show(Strings.DesignCtl_ShowB_WantReplaceCell, Strings.DesignCtl_Show_Insert, MessageBoxButtons.YesNo) != DialogResult.Yes)
 					return false;
 			}
 			switch (_CurrentInsert)
@@ -2016,7 +1893,7 @@ namespace fyiReporting.RdlDesign
 				{
 					hle = incX != 0? HitLocationEnum.RightMiddle: HitLocationEnum.BottomMiddle;
 				}
-				_Undo.StartUndoGroup("Move");
+				_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Move);
 				if (_DrawPanel.MoveSelectedItems(incX, incY, hle))
 				{
 					_Undo.EndUndoGroup(true);
@@ -2067,8 +1944,8 @@ namespace fyiReporting.RdlDesign
                 }
                 if (bTorM)
                 {   // all selected items are in the same table or matrix
-                    if (MessageBox.Show(string.Format("Do you want to select the {0}?", tn.Name),
-                        "Copy", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(string.Format(Strings.DesignCtl_ShowB_WantSelect, tn.Name),
+                        Strings.DesignCtl_ShowB_Copy, MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         StringBuilder tb = new StringBuilder();
                         // Build XML representing the selected objects
@@ -2108,7 +1985,7 @@ namespace fyiReporting.RdlDesign
 				if (hl.HitContainer != null && (hl.HitContainer.Name == "Table" || hl.HitContainer.Name == "fyi:Grid"))
 				{
 				//	When table we need to replace the tablecell contents; ask first
-					if (MessageBox.Show("Do you want to replace contents of TableCell?", "Paste", MessageBoxButtons.YesNo) != DialogResult.Yes)
+					if (MessageBox.Show(Strings.DesignCtl_ShowB_WantReplaceCell, Strings.DesignCtl_Show_Paste, MessageBoxButtons.YesNo) != DialogResult.Yes)
 						return;
 
 					XmlNode repItems = lNode.ParentNode;
@@ -2142,7 +2019,7 @@ namespace fyiReporting.RdlDesign
 					return;
 			}
 
-			_Undo.StartUndoGroup("Paste");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Paste);
 			if (iData.GetDataPresent(DataFormats.Text))
 			{
 				// Build the xml string in case it is a straight pasting of text
@@ -2161,7 +2038,7 @@ namespace fyiReporting.RdlDesign
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show(e.Message, "Paste");
+					MessageBox.Show(e.Message, Strings.DesignCtl_Show_Paste);
 				}
 			}
 			else
@@ -2193,11 +2070,11 @@ namespace fyiReporting.RdlDesign
 			// Charts aren't allowed in PageHeader or PageFooter
 			if (_DrawPanel.InPageHeaderOrFooter(hl.HitContainer))
 			{
-				MessageBox.Show("Charts can only be inserted in the body of the report.", "Insert");
+				MessageBox.Show(Strings.DesignCtl_Show_ChartsInsert, Strings.DesignCtl_Show_Insert);
 				return;
 			}
 
-			_Undo.StartUndoGroup("Insert Chart");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertChart);
 			DialogNewChart dnc = new DialogNewChart(this._DrawPanel, hl.HitContainer);
             try
             {
@@ -2255,24 +2132,26 @@ namespace fyiReporting.RdlDesign
             ICustomReportItem cri = null;
             try
             {
-                MenuItem mi = sender as MenuItem;
+				var mi = (ToolStripMenuItem)sender;
 
                 cri = RdlEngineConfig.CreateCustomReportItem((string) mi.Tag);
 
-                string criXml = cri.GetCustomReportItemXml().Trim();
+                var criXml = cri.GetCustomReportItemXml().Trim();
+
                 if (!(criXml.StartsWith("<CustomReportItem>") && criXml.EndsWith("</CustomReportItem>")))
                 {
                     MessageBox.Show(
-                        string.Format("CustomReportItem {0} method GetCustomReportItemXml must return XML enclosed by <CustomReportItem> and </CustomReportItem>\r\n\r\nXML in error:\r\n{1}", mi.Tag.ToString(), criXml), "Insert");
+                        string.Format(Strings.DesignCtl_Show_CustomReportItem, mi.Tag, criXml), Strings.DesignCtl_Show_Insert);
                     return;
                 }
+
                 ri = "<ReportItems>" +
                     string.Format(criXml, mi.Tag) +     // substitute the type of custom report item
                     "</ReportItems>";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string .Format("Exception building CustomReportItem insert: {0}", ex.Message), "Insert");
+                MessageBox.Show(string .Format(Strings.DesignCtl_Show_CustomReportItemException, ex.Message), Strings.DesignCtl_Show_Insert);
                 return;
             }
             finally
@@ -2519,7 +2398,7 @@ namespace fyiReporting.RdlDesign
 				return;
 			if (_DrawPanel.InPageHeaderOrFooter(hl.HitContainer))
 			{
-				MessageBox.Show("Lists can only be inserted in the body of the report.", "Insert");
+				MessageBox.Show(Strings.DesignCtl_Show_ListsInBody, Strings.DesignCtl_Show_Insert);
 				return;
 			}
 			menuInsertReportItem(hl, ri);
@@ -2541,11 +2420,11 @@ namespace fyiReporting.RdlDesign
 			// Matrixs aren't allowed in PageHeader or PageFooter
 			if (_DrawPanel.InPageHeaderOrFooter(hl.HitContainer))
 			{
-				MessageBox.Show("Matrixs can only be inserted in the body of the report.", "Insert");
+				MessageBox.Show(Strings.DesignCtl_Show_MatrixsInBody, Strings.DesignCtl_Show_Insert);
 				return;
 			}
 
-			_Undo.StartUndoGroup("Insert Matrix");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertMatrix);
 			DialogNewMatrix dnm = new DialogNewMatrix(this._DrawPanel, hl.HitContainer);
             try
             {
@@ -2609,7 +2488,7 @@ namespace fyiReporting.RdlDesign
 		
 		private void menuInsertReportItem(HitLocation hl, string reportItem)
 		{
-			_Undo.StartUndoGroup("Insert");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_Insert);
             try
             {
                 if (hl.HitContainer.Name == "Table" || hl.HitContainer.Name == "fyi:Grid")
@@ -2621,7 +2500,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Internal error: illegal insert syntax:" + Environment.NewLine + 
+                MessageBox.Show(Strings.DesignCtl_ShowC_IllegalInsertSyntax + Environment.NewLine + 
                     reportItem + Environment.NewLine + ex.Message);
                 return;
             }
@@ -2647,7 +2526,7 @@ namespace fyiReporting.RdlDesign
 				return;
 			if (_DrawPanel.InPageHeaderOrFooter(hl.HitContainer))
 			{
-				MessageBox.Show("Subreports can only be inserted in the body of the report.", "Insert");
+				MessageBox.Show(Strings.DesignCtl_Show_SubreportsInBody, Strings.DesignCtl_Show_Insert);
 				return;
 			}
 
@@ -2665,11 +2544,11 @@ namespace fyiReporting.RdlDesign
 			// Tables aren't allowed in PageHeader or PageFooter
 			if (_DrawPanel.InPageHeaderOrFooter(hl.HitContainer))
 			{
-				MessageBox.Show("Tables can only be inserted in the body of the report.", "Insert");
+				MessageBox.Show(Strings.DesignCtl_Show_TablesInBody, Strings.DesignCtl_Show_Insert);
 				return;
 			}
 
-			_Undo.StartUndoGroup("Insert Table");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTable);
 			DialogNewTable dnt = new DialogNewTable(this._DrawPanel, hl.HitContainer);
             try
             {
@@ -2785,14 +2664,15 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
-			_Undo.StartUndoGroup("Delete Grouping");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DeleteGrouping);
 			bool bSuccess=false;
 			if (_DrawPanel.DeleteChartGrouping(cNode, gname))
 			{
@@ -2807,17 +2687,18 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 
 			XmlNode group = _DrawPanel.GetChartGrouping(cNode, gname);
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(group.ParentNode);
-			_Undo.StartUndoGroup("Dialog Grouping");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DialogGrouping);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.Grouping);
             try
             {
@@ -2840,7 +2721,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 
-			_Undo.StartUndoGroup("Insert Category Grouping");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertCategoryGrouping);
 
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 			XmlNode colGroup = _DrawPanel.InsertChartCategoryGrouping(cNode);
@@ -2877,7 +2758,7 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			_Undo.StartUndoGroup("Insert Series Grouping");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertSeriesGrouping);
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 			XmlNode colGroup = _DrawPanel.InsertChartSeriesGrouping(cNode);
 			if (colGroup == null)
@@ -2955,7 +2836,7 @@ namespace fyiReporting.RdlDesign
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(table);
-			_Undo.StartUndoGroup("Matrix Dialog");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixDialog);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.ReportItems);
             try
             {
@@ -2977,7 +2858,7 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			_Undo.StartUndoGroup("Matrix Delete");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixDelete);
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
@@ -2995,11 +2876,13 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			_Undo.StartUndoGroup("Matrix Delete Group");
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixDeleteGroup);
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
@@ -3017,17 +2900,18 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 
 			XmlNode group = _DrawPanel.GetMatrixGroup(cNode, gname);
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(group.ParentNode);
-			_Undo.StartUndoGroup("Matrix Edit");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixEdit);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.Grouping);
             try
             {
@@ -3056,7 +2940,7 @@ namespace fyiReporting.RdlDesign
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(colGroup);
-			_Undo.StartUndoGroup("Matrix Insert Column Group");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixInsertColumnGroup);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.Grouping);
             try
             {
@@ -3090,7 +2974,7 @@ namespace fyiReporting.RdlDesign
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(rowGroup);
-			_Undo.StartUndoGroup("Matrix Insert Row Group");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_MatrixInsertRowGroup);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.Grouping);
             try
             {
@@ -3118,7 +3002,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode =  _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Delete Table Column");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DeleteTableColumn);
 
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
@@ -3137,7 +3021,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode =  _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Delete Table");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DeleteTable);
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
 			if (_DrawPanel.DeleteTable(cNode))
@@ -3155,7 +3039,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Delete Table Row");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DeleteTableRow);
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
 			if (_DrawPanel.DeleteTableRow(cNode))
@@ -3172,12 +3056,13 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Delete Table Group");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DeleteTableGroup);
 			_DrawPanel.ClearSelected();
 			this.SelectionChanged(this, new EventArgs());
 			if (_DrawPanel.DeleteTableGroup(cNode, gname))
@@ -3194,13 +3079,14 @@ namespace fyiReporting.RdlDesign
 		{
 			if (_DrawPanel.SelectedCount != 1)
 				return;
-			MenuItem menu = sender as MenuItem;
-			if (menu == null)
-				return;
-			string gname = menu.Text;
+
+			var menu = (ToolStripMenuItem)sender;
+
+			var gname = menu.Text;
+
 			XmlNode cNode = _DrawPanel.SelectedList[0];
 
-			_Undo.StartUndoGroup("Dialog Table Group Edit");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_DialogTableGroupEdit);
 			XmlNode tblGroup = _DrawPanel.GetTableGroup(cNode, gname);
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
@@ -3227,7 +3113,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Insert Table Column");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTableColumn);
 			if (_DrawPanel.InsertTableColumn(cNode, true))
 			{
 				_Undo.EndUndoGroup(true);
@@ -3243,7 +3129,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Insert Table Column");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTableColumn);
 			if (_DrawPanel.InsertTableColumn(cNode, false))
 			{
 				_Undo.EndUndoGroup(true);
@@ -3259,7 +3145,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Insert Table Group");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTableGroup);
 			XmlNode tblGroup = _DrawPanel.InsertTableGroup(cNode);
 			if (tblGroup == null)
 			{
@@ -3296,7 +3182,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode =  _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Insert Table Row");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTableRow);
 
 			if (_DrawPanel.InsertTableRow(cNode, true))
 			{
@@ -3313,7 +3199,7 @@ namespace fyiReporting.RdlDesign
 			if (_DrawPanel.SelectedCount != 1)
 				return;
 			XmlNode cNode = _DrawPanel.SelectedList[0];
-			_Undo.StartUndoGroup("Insert Table Row");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_InsertTableRow);
 			if (_DrawPanel.InsertTableRow(cNode, false))
 			{
 				_Undo.EndUndoGroup(true);
@@ -3337,7 +3223,7 @@ namespace fyiReporting.RdlDesign
 
 			List<XmlNode> ar = new List<XmlNode>();		// need to put this is a list for dialog to handle
 			ar.Add(table);
-			_Undo.StartUndoGroup("Table Dialog");
+			_Undo.StartUndoGroup(Strings.DesignCtl_Undo_TableDialog);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, ar, PropertyTypeEnum.ReportItems, tc, tr);
             try
             {
@@ -3357,7 +3243,7 @@ namespace fyiReporting.RdlDesign
 
 		private void DoPropertyDialog(PropertyTypeEnum type)
 		{
-			this.StartUndoGroup("Dialog");
+			StartUndoGroup(Strings.DesignCtl_Undo_Dialog);
 			PropertyDialog pd = new PropertyDialog(_DrawPanel, _DrawPanel.SelectedList, type);
             try
             {
@@ -3383,13 +3269,15 @@ namespace fyiReporting.RdlDesign
 				
 		private void menuContext_Popup(object sender, EventArgs e)
 		{
-			bool bEnable = _DrawPanel.SelectedCount <= 0? false: true;
+			var bEnable = _DrawPanel.SelectedCount > 0;
 
-			menuCopy.Enabled = bEnable;
-			menuDelete.Enabled = bEnable;
+			MenuDefaultCopy.Enabled = bEnable;
+			MenuDefaultDelete.Enabled = bEnable;
 
-			List<XmlNode> al=new List<XmlNode>();
-			IDataObject iData = Clipboard.GetDataObject();
+			var al = new List<XmlNode>();
+
+			var iData = Clipboard.GetDataObject();
+
 			if (iData == null)
 				bEnable = false;
 			else if (iData.GetDataPresent(al.GetType()))
@@ -3400,9 +3288,13 @@ namespace fyiReporting.RdlDesign
 				bEnable = true;
 			else
 				bEnable = false;
-			menuPaste.Enabled = bEnable;
 
-			return;
+			MenuDefaultPaste.Enabled = bEnable;
+			MenuChartPaste.Enabled = bEnable;
+			MenuGridPaste.Enabled = bEnable;
+			MenuMatrixPaste.Enabled = bEnable;
+			MenuSubreportPaste.Enabled = bEnable;
+			MenuTablePaste.Enabled = bEnable;
 		}
 	}
 

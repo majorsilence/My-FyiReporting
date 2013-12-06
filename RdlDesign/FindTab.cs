@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -114,7 +115,7 @@ namespace fyiReporting.RdlDesign
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(this, ex.Message, "Invalid Line Number");
+                    MessageBox.Show(this, ex.Message, Strings.FindTab_ShowE_InvalidLN);
                 }
 
                 txtLine.Focus();

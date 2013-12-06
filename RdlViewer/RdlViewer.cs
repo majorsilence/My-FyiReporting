@@ -30,6 +30,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Text;
+using RdlViewer.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer
@@ -436,12 +437,12 @@ namespace fyiReporting.RdlViewer
                 LoadPageIfNeeded();
 
                 if (_Report == null)
-                    throw new Exception("Report must be loaded prior to Rebuild being called.");
+                    throw new Exception(Strings.RdlViewer_Error_Report_must_be_loaded_prior_to_Rebuild_being_called);
                 // Aulofee customization - start. Code added (2 lines) to avoid to execute twice GetPages and so the SQL query (custo end). 
             }
             else
             {
-                _pgs = GetPages(this._Report);
+                _pgs = GetPages(_Report);
             }
             _DrawPanel.Pgs = _pgs;
             _vScroll.Value = 0;
@@ -856,7 +857,7 @@ namespace fyiReporting.RdlViewer
                         _Report.RunRender(sg, OutputPresentationType.MHTML);
                         break;
                     default:
-                        throw new Exception("Unsupported file extension for SaveAs");
+                        throw new Exception(Strings.RdlViewer_Error_UnsupportedExtension);
                 }
             }
             finally
@@ -1426,7 +1427,7 @@ namespace fyiReporting.RdlViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Strings.RdlViewer_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1576,7 +1577,7 @@ namespace fyiReporting.RdlViewer
             }
             catch (ArgumentException ae)
             {
-                MessageBox.Show(ae.Message, "Invalid Report Parameter");
+                MessageBox.Show(ae.Message, Strings.RdlViewer_ParametersLeave_InvalidReportParameter);
             }
         }
 
@@ -1596,7 +1597,7 @@ namespace fyiReporting.RdlViewer
             }
             catch (ArgumentException ae)
             {
-                MessageBox.Show(ae.Message, "Invalid Report Parameter");
+                MessageBox.Show(ae.Message, Strings.RdlViewer_ParametersLeave_InvalidReportParameter);
             }
         }
 
@@ -1636,7 +1637,7 @@ namespace fyiReporting.RdlViewer
                         continue;
                     if (rp.Value == null && !rp.Nullable)
                     {
-                        MessageBox.Show(string.Format("Parameter '{0}' is required but not provided.", rp.Prompt), "Report Parameter Missing");
+                        MessageBox.Show(string.Format(Strings.RdlViewer_ParametersViewClick_RequiredParameterNotProvided, rp.Prompt), Strings.RdlViewer_ParametersViewClick_ReportParameterMissing);
                         bFail = true;
                     }
                 }

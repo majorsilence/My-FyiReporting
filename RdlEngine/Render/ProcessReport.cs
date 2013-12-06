@@ -21,6 +21,7 @@
    the website www.fyiReporting.com.
 */
 using System;
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
@@ -58,7 +59,7 @@ namespace fyiReporting.RDL
 		public ProcessReport(Report rep, IStreamGen sg)
 		{
 			if (rep.rl.MaxSeverity > 4)
-				throw new Exception("Report has errors.  Cannot be processed.");
+				throw new Exception(Strings.ProcessReport_Error_ReportHasErrors);
 
 			r = rep;
 			_sg = sg;
@@ -67,7 +68,7 @@ namespace fyiReporting.RDL
 		public ProcessReport(Report rep)
 		{
 			if (rep.rl.MaxSeverity > 4)
-				throw new Exception("Report has errors.  Cannot be processed.");
+				throw new Exception(Strings.ProcessReport_Error_ReportHasErrors);
 
 			r = rep;
 			_sg = null;

@@ -28,6 +28,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -265,7 +266,7 @@ namespace fyiReporting.RdlDesign
                 if (tcell != null && tcell.Name == "TableCell")
                 {	// SetTableCellColSpan does all the heavy lifting; 
                     //    ie making sure the # of columns continue to match
-                    _DesignCtl.StartUndoGroup("Column Span change");
+                    _DesignCtl.StartUndoGroup(Strings.PropertyReportItem_Undo_ColumnSpanchange);
                     _Draw.SetTableCellColSpan(tcell, value.ToString());
                     _DesignCtl.EndUndoGroup(true);
                     _DesignCtl.SignalReportChanged();
@@ -365,7 +366,7 @@ namespace fyiReporting.RdlDesign
                 throw new ApplicationException(nerr);
             }
 
-            _DesignCtl.StartUndoGroup("Name change");
+            _DesignCtl.StartUndoGroup(Strings.PropertyReportItem_Undo_NameChange);
             _Draw.SetName(node, n);
             _DesignCtl.EndUndoGroup(true);
             _DesignCtl.SignalReportChanged();
@@ -397,7 +398,7 @@ namespace fyiReporting.RdlDesign
                 sb.Append(s);
                 sb.Append(' ');
             }
-            sb.Append("change");
+            sb.Append(Strings.PropertyReport_Undo_change);
             _DesignCtl.StartUndoGroup(sb.ToString());
 
             // loop thru all the selected nodes to make the change
@@ -431,7 +432,7 @@ namespace fyiReporting.RdlDesign
                 sb.Append(s);
                 sb.Append(' ');
             }
-            sb.Append("change");
+            sb.Append(Strings.PropertyReport_Undo_change);
             _DesignCtl.StartUndoGroup(sb.ToString());
 
             // loop thru all the selected nodes to make the change
@@ -483,7 +484,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l, string v)
         {
-            _DesignCtl.StartUndoGroup(l+ " change");
+            _DesignCtl.StartUndoGroup(l+ " " + Strings.PropertyReport_Undo_change);
             foreach (XmlNode n in _RIs)
             {
                 _Draw.SetElement(n, l, v);
@@ -495,7 +496,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l1, string l2, string v)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode lNode = _Draw.GetCreateNamedChildNode(n, l1);
@@ -508,7 +509,7 @@ namespace fyiReporting.RdlDesign
 
         internal void SetValue(string l1, string l2, string l3, string v)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode aNode = _Draw.GetCreateNamedChildNode(n, l1);
@@ -522,7 +523,7 @@ namespace fyiReporting.RdlDesign
 
         internal void RemoveValue(string l1)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} change", l1));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1}", l1, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                _Draw.RemoveElement(n, l1);
@@ -534,7 +535,7 @@ namespace fyiReporting.RdlDesign
 
         internal void RemoveValue(string l1, string l2)
         {
-            _DesignCtl.StartUndoGroup(string.Format("{0} {1} change", l1, l2));
+            _DesignCtl.StartUndoGroup(string.Format("{0} {1} {2}", l1, l2, Strings.PropertyReport_Undo_change));
             foreach (XmlNode n in _RIs)
             {
                 XmlNode lNode = _Draw.GetNamedChildNode(n, l1);

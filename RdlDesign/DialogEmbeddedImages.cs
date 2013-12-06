@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -84,7 +85,7 @@ namespace fyiReporting.RdlDesign
             IDataObject iData = Clipboard.GetDataObject();
             if (iData == null || !iData.GetDataPresent(DataFormats.Bitmap))
             {
-                MessageBox.Show(this, "Copy image into clipboard before attempting to paste.", "Image");
+                MessageBox.Show(this, Strings.DialogEmbeddedImages_ShowE_CopyImageBeforePaste, Strings.DialogEmbeddedImages_ShowE_Image);
                 return;
             }
 
@@ -140,7 +141,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(this, ex.Message, "Image");
+						MessageBox.Show(this, ex.Message, Strings.DialogEmbeddedImages_ShowE_Image);
                     }
                     finally
                     {
@@ -242,7 +243,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception e)
             {
-                MessageBox.Show(this, e.Message, "Error converting image data");
+                MessageBox.Show(this, e.Message, Strings.DialogEmbeddedImages_ShowE_ErrorConvertingImage);
             }
             finally
             {
@@ -266,7 +267,7 @@ namespace fyiReporting.RdlDesign
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Image");
+				MessageBox.Show(this, ex.Message, Strings.DialogEmbeddedImages_ShowE_Image);
                 imagedata = null;
             }
             return imagedata;
@@ -303,14 +304,14 @@ namespace fyiReporting.RdlDesign
             {
                 if (eiv.Name == null || eiv.Name.Length == 0)
                 {
-                    MessageBox.Show(this, "Name must be specified for all embedded images.", "Image");
+					MessageBox.Show(this, Strings.DialogEmbeddedImages_ShowE_NameMustSpecified, Strings.DialogEmbeddedImages_ShowE_Image);
                     return;
                 }
 
                 if (!ReportNames.IsNameValid(eiv.Name))
                 {
                     MessageBox.Show(this,
-                        string.Format("Name '{0}' contains invalid characters.", eiv.Name), "Image");
+						string.Format(Strings.DialogEmbeddedImages_ShowE_NameInvalid, eiv.Name), Strings.DialogEmbeddedImages_ShowE_Image);
                     return;
                 }
 
@@ -318,7 +319,7 @@ namespace fyiReporting.RdlDesign
                 if (name != null)
                 {
                     MessageBox.Show(this,
-                        string.Format("Each embedded image must have a unique name. '{0}' is repeated.", eiv.Name), "Image");
+						string.Format(Strings.DialogEmbeddedImages_ShowE_ImageMustUniqueName, eiv.Name), Strings.DialogEmbeddedImages_ShowE_Image);
                     return;
                 }
                 ht.Add(eiv.Name, eiv.Name);
@@ -334,7 +335,7 @@ namespace fyiReporting.RdlDesign
             {
                 e.Cancel = true;
                 MessageBox.Show(this,
-                    string.Format("Name '{0}' contains invalid characters.", tbEIName.Text), "Image");
+					string.Format(Strings.DialogEmbeddedImages_ShowE_NameInvalid, tbEIName.Text), Strings.DialogEmbeddedImages_ShowE_Image);
             }
         }
     }

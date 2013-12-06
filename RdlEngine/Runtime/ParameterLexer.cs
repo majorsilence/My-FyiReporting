@@ -24,6 +24,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Text;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -163,7 +164,7 @@ namespace fyiReporting.RDL
 
 				quoted.Append(ch);
 			}
-			throw new ParserException("Unterminated string!");
+			throw new ParserException(Strings.Lexer_ErrorP_UnterminatedString);
 		}
 
 	}

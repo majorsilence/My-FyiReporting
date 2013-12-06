@@ -28,6 +28,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -426,33 +427,33 @@ namespace fyiReporting.RdlDesign
 			string name="";
 			try
 			{
-				if (fPadLeft && !this.tbPadLeft.Text.StartsWith("="))
+				if (fPadLeft && !tbPadLeft.Text.StartsWith("="))
 				{
-					name = "Left";
-					DesignerUtility.ValidateSize(this.tbPadLeft.Text, true, false);
+					name = Strings.StyleCtl_Show_Left;
+					DesignerUtility.ValidateSize(tbPadLeft.Text, true, false);
 				}
 				
-				if (fPadRight && !this.tbPadRight.Text.StartsWith("="))
+				if (fPadRight && !tbPadRight.Text.StartsWith("="))
 				{
-					name = "Right";
-					DesignerUtility.ValidateSize(this.tbPadRight.Text, true, false);
+					name = Strings.StyleCtl_Show_Right;
+					DesignerUtility.ValidateSize(tbPadRight.Text, true, false);
 				}
 				
-				if (fPadTop && !this.tbPadTop.Text.StartsWith("="))
+				if (fPadTop && !tbPadTop.Text.StartsWith("="))
 				{
-					name = "Top";
-					DesignerUtility.ValidateSize(this.tbPadTop.Text, true, false);
+					name = Strings.StyleCtl_Show_Top;
+					DesignerUtility.ValidateSize(tbPadTop.Text, true, false);
 				}
 				
-				if (fPadBottom && !this.tbPadBottom.Text.StartsWith("="))
+				if (fPadBottom && !tbPadBottom.Text.StartsWith("="))
 				{
-					name = "Bottom";
-					DesignerUtility.ValidateSize(this.tbPadBottom.Text, true, false);
+					name = Strings.StyleCtl_Show_Bottom;
+					DesignerUtility.ValidateSize(tbPadBottom.Text, true, false);
 				}
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, name + " Padding Invalid");
+				MessageBox.Show(ex.Message, string.Format(Strings.StyleCtl_Show_PaddingInvalid, name));
 				return false;
 			}
 			return true;

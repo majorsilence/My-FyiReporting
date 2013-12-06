@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
 using fyiReporting.RDL;
 using System.IO;
@@ -42,7 +43,6 @@ namespace fyiReporting.RdlDesign
             rdlEditPreview1.OnSelectionChanged += SelectionChanged;
             rdlEditPreview1.OnReportItemInserted += ReportItemInserted;
             rdlEditPreview1.OnOpenSubreport += OpenSubReportEvent;
-            rdlEditPreview1.OnHeightChanged += HeightChanged;
             rdlEditPreview1.OnSelectionMoved += SelectionMoved;
             rdlEditPreview1.OnDesignTabChanged += DesignTabChanged;
             mainProperties.HidePropertiesClicked += delegate(object sender, EventArgs e)
@@ -279,16 +279,16 @@ namespace fyiReporting.RdlDesign
                 Viewer.GetDataSourceReferencePassword = _GetPassword;
                 if (file != null)
                 {
-                    this.Viewer.Folder = System.IO.Path.GetDirectoryName(file.LocalPath);
-                    this.SourceFile = file;
-                    this.Text = System.IO.Path.GetFileName(file.LocalPath);
-                    this.Viewer.Folder = System.IO.Path.GetDirectoryName(file.LocalPath);
-                    this.Viewer.ReportName = System.IO.Path.GetFileNameWithoutExtension(file.LocalPath);
+                    Viewer.Folder = System.IO.Path.GetDirectoryName(file.LocalPath);
+                    SourceFile = file;
+                    Text = System.IO.Path.GetFileName(file.LocalPath);
+                    Viewer.Folder = System.IO.Path.GetDirectoryName(file.LocalPath);
+                    Viewer.ReportName = System.IO.Path.GetFileNameWithoutExtension(file.LocalPath);
                 }
                 else
                 {
-                    this.SourceRdl = rdl;
-                    this.Viewer.ReportName = this.Text = "Untitled";
+                    SourceRdl = rdl;
+                    Viewer.ReportName = Text = Strings.RdlDesigner_CreateMDIChild_Untitled;
                 }
 
                 ShowEditLines(true);
@@ -374,29 +374,6 @@ namespace fyiReporting.RdlDesign
             }
 
             LoadReport(file, null, true);
-        }
-
-        private void HeightChanged(object sender, HeightEventArgs e)
-        {
-            if (e.Height == null)
-            {
-                return;
-            }
-
-            RegionInfo rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
-            float h = DesignXmlDraw.GetSize(e.Height);
-            string sh;
-            if (rinfo.IsMetric)
-            {
-                sh = string.Format("   height={0:0.00}cm        ",
-                        h / (DesignXmlDraw.POINTSIZED / 2.54d));
-            }
-            else
-            {
-                sh = string.Format("   height={0:0.00}\"        ",
-                        h / DesignXmlDraw.POINTSIZED);
-            }
-          
         }
 
         private void SelectionMoved(object sender, System.EventArgs e)
@@ -766,7 +743,7 @@ namespace fyiReporting.RdlDesign
                     sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
                     break;
                 default:
-                    throw new Exception("Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types.");
+                    throw new Exception(Strings.MDIChild_Error_AllowedExportTypes);
             }
             sfd.FilterIndex = 1;
 
@@ -789,7 +766,7 @@ namespace fyiReporting.RdlDesign
                 // tif can be either in color or black and white; ask user what they want
                 if (type == OutputPresentationType.TIF)
                 {
-                    DialogResult dr = MessageBox.Show(this, "Do you want to display colors in TIF?", "Export", MessageBoxButtons.YesNoCancel);
+                    DialogResult dr = MessageBox.Show(this, Strings.MDIChild_ShowF_WantDisplayColorsInTIF, Strings.MDIChild_ShowF_Export, MessageBoxButtons.YesNoCancel);
                     if (dr == DialogResult.No)
                         type = OutputPresentationType.TIFBW;
                     else if (dr == DialogResult.Cancel)
@@ -799,7 +776,7 @@ namespace fyiReporting.RdlDesign
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
-                        ex.Message, "Export Error",
+                        ex.Message, Strings.MDIChild_ShowG_ExportError,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     rc = false;
                 }
@@ -1144,7 +1121,7 @@ namespace fyiReporting.RdlDesign
 
             if (isPrinting == true)			// already printing
             {
-                MessageBox.Show("Can only print one file at a time.", "RDL Design");
+                MessageBox.Show(Strings.RdlUserControl_Show_PrintOneFile, Strings.RdlUserControl_Show_RDLDesign);
                 return;
             }
 
@@ -1197,7 +1174,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Print error: " + ex.Message, "RDL Design");
+                        MessageBox.Show(Strings.RdlUserControl_Show_PrintError + ex.Message, Strings.RdlUserControl_Show_RDLDesign);
                     }
                 }
                 isPrinting = false;
@@ -1228,7 +1205,7 @@ namespace fyiReporting.RdlDesign
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Zoom Value Invalid");
+                        MessageBox.Show(ex.Message, Strings.RdlUserControl_Show_ZoomValueInvalid);
                     }
                     break;
             }

@@ -25,7 +25,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using RdlEngine.Resources;
 using fyiReporting.RDL;
 
 
@@ -67,13 +67,13 @@ namespace fyiReporting.RDL
 			{
 				string o = _ArgExpr.EvaluateString(null, null);
 				if (o == null)
-					throw new Exception("User collection argument is null"); 
+					throw new Exception(Strings.FunctionUserCollection_Error_UserCollectionNull); 
 				string lo = o.ToLower();
 				if (lo == "userid")
 					return new FunctionUserID();
 				if (lo == "language")
 					return new FunctionUserLanguage();
-				throw new Exception(string.Format("User collection argument {0} is invalid.", o)); 
+				throw new Exception(string.Format(Strings.FunctionUserCollection_Error_UserCollectionInvalid, o)); 
 			}
 
 			return this;

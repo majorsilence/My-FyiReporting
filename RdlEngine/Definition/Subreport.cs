@@ -26,6 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Text;
+using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
@@ -342,7 +343,7 @@ namespace fyiReporting.RDL
 				if (userp == null)
 				{	// parameter name not found
 					throw new Exception(
-						string.Format("Subreport {0} doesn't define parameter {1}.", _ReportName, srp.Name.Nm));
+						string.Format(Strings.Subreport_Error_SubreportNotParameter, _ReportName, srp.Name.Nm));
 				}
 				object v = srp.Value.Evaluate(rpt, row);
 				userp.Value = v;

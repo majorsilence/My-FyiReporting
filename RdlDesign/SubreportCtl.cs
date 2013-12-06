@@ -30,6 +30,7 @@ using System.Xml;
 using System.Text;
 using System.IO;
 using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -243,9 +244,9 @@ namespace fyiReporting.RdlDesign
        
 		public bool IsValid()
 		{
-			if (this.tbReportFile.Text.Length > 0)
+			if (tbReportFile.Text.Length > 0)
 				return true;
-			MessageBox.Show("Subreport file must be specified.", "Subreport");
+			MessageBox.Show(Strings.SubreportCtl_Show_SubreportMustSpecified, Strings.SubreportCtl_Show_Subreport);
 			return false;
 		}
 
@@ -345,7 +346,7 @@ namespace fyiReporting.RdlDesign
 			catch(Exception e)
 			{
 				prog = null;
-				MessageBox.Show(e.Message, "Error reading report file");
+				MessageBox.Show(e.Message, Strings.SubreportCtl_Show_ErrorReading);
 			}
 			finally
 			{
@@ -371,14 +372,14 @@ namespace fyiReporting.RdlDesign
 				r = rdlp.Parse();
 				if (r.ErrorMaxSeverity > 4) 
 				{
-					MessageBox.Show(string.Format("Report {0} has errors and cannot be processed.", "Report"));
+					MessageBox.Show(Strings.DrillParametersDialog_ShowC_ReportHasErrors);
 					r = null;			// don't return when severe errors
 				}
 			}
 			catch(Exception e)
 			{
 				r = null;
-				MessageBox.Show(e.Message, "Report load failed");
+				MessageBox.Show(e.Message, Strings.SubreportCtl_Show_ReportLoadFailed);
 			}
 			return r;
 		}

@@ -28,6 +28,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -62,7 +63,7 @@ namespace fyiReporting.RdlDesign
             MDIChild mc = _RdlDesigner.ActiveMdiChild as MDIChild;
             if (mc == null || mc.DesignTab != "edit")
             {
-                MessageBox.Show("Select the 'RDL Text' tab before validating.");
+                MessageBox.Show(Strings.DialogValidateRdl_ShowC_SelectRDLTab);
                 return;
             }
             string syntax = mc.SourceRdl;
