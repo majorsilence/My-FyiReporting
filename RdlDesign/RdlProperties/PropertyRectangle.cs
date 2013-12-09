@@ -20,47 +20,42 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
 
 namespace fyiReporting.RdlDesign
 {
     /// <summary>
     /// PropertyRectangle - The Rectangle specific Properties
     /// </summary>
-    
     internal class PropertyRectangle : PropertyReportItem
     {
         internal PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("Rectangle"),
-           Description("Determines if report will start a new page at the top of the rectangle.")]
+
+        [LocalizedCategory("Rectangle")]
+		[LocalizedDisplayName("Rectangle_PageBreakAtStart")]
+		[LocalizedDescription("Rectangle_PageBreakAtStart")]
         public bool PageBreakAtStart
         {
-            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtStart", "false").ToLower() == "true" ? true : false; }
+            get { return Draw.GetElementValue(Node, "PageBreakAtStart", "false").ToLower() == "true"; }
             set
             {
-                this.SetValue("PageBreakAtStart", value ? "true" : "false");
-            }
-        }
-        [LocalizedCategory("Rectangle"),
-           Description("Determines if report will start a new page after the bottom of the rectangle.")]
-        public bool PageBreakAtEnd
-        {
-            get { return this.Draw.GetElementValue(this.Node, "PageBreakAtEnd", "false").ToLower() == "true" ? true : false; }
-            set
-            {
-                this.SetValue("PageBreakAtEnd", value ? "true" : "false");
+                SetValue("PageBreakAtStart", value ? "true" : "false");
             }
         }
 
+        [LocalizedCategory("Rectangle")]
+		[LocalizedDisplayName("Rectangle_PageBreakAtEnd")]
+		[LocalizedDescription("Rectangle_PageBreakAtEnd")]
+        public bool PageBreakAtEnd
+        {
+            get { return Draw.GetElementValue(Node, "PageBreakAtEnd", "false").ToLower() == "true"; }
+            set
+            {
+                SetValue("PageBreakAtEnd", value ? "true" : "false");
+            }
+        }
     }
 }

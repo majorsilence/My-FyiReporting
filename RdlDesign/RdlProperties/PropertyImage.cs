@@ -1,3 +1,4 @@
+using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -21,25 +22,19 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
 using System.Drawing.Design;
 using System.Globalization;
-using System.Windows.Forms.Design;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
     /// <summary>
     /// PropertyImage - The Image specific Properties
     /// </summary>
-    
     internal class PropertyImage : PropertyReportItem
     {
         internal PropertyImage(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
@@ -47,16 +42,18 @@ namespace fyiReporting.RdlDesign
 
         }
 
-        [LocalizedCategory("Image"),
-                Description("The image properties.")]
+        [LocalizedCategory("Image")]
+		[LocalizedDisplayName("Image_Image")]
+		[LocalizedDescription("Image_Image")]
         public PropertyImageI Image
         {
             get { return new PropertyImageI(this); }
 
         }
     }
-    [TypeConverter(typeof(PropertyImageConverter)),
-        Editor(typeof(PropertyImageUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+
+    [TypeConverter(typeof(PropertyImageConverter))]
+	[Editor(typeof(PropertyImageUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
     internal class PropertyImageI : IReportItem
     {
         PropertyImage _pi;
@@ -66,9 +63,10 @@ namespace fyiReporting.RdlDesign
             _pi = pi;
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ImageSourceConverter)),
-     Description("Image Source:External, Embedded, Database.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ImageSourceConverter))]
+		[LocalizedDisplayName("ImageI_Source")]
+		[LocalizedDescription("ImageI_Source")]
         public string Source
         {
             get
@@ -81,8 +79,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-     Description("Value depends upon the source of the image.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("ImageI_Value")]
+		[LocalizedDescription("ImageI_Value")]
         public PropertyExpr Value
         {
             get
@@ -95,9 +94,10 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ImageMIMETypeConverter)),
-     Description("When Source is Database MIMEType describes the type of image.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ImageMIMETypeConverter))]
+		[LocalizedDisplayName("ImageI_MIMEType")]
+		[LocalizedDescription("ImageI_MIMEType")]
         public string MIMEType
         {
             get
@@ -112,7 +112,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Defines how image is sized when image doesn't match specified size.")]
+		[LocalizedDisplayName("ImageI_Sizing")]
+		[LocalizedDescription("ImageI_Sizing")]
         public ImageSizingEnum Sizing
         {
             get
@@ -146,6 +147,7 @@ namespace fyiReporting.RdlDesign
 
         #endregion
     }
+
     #region ImageConverter
     internal class PropertyImageConverter : ExpandableObjectConverter
     {
@@ -177,6 +179,7 @@ namespace fyiReporting.RdlDesign
 
     }
 #endregion
+
     #region UIEditor  
     internal class PropertyImageUIEditor : UITypeEditor
     {

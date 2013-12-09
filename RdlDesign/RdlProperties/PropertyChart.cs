@@ -1,3 +1,4 @@
+using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -21,17 +22,10 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Xml;
-using System.Text.RegularExpressions;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using fyiReporting.RDL;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -43,9 +37,11 @@ namespace fyiReporting.RdlDesign
         internal PropertyChart(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("Chart"), 
-        TypeConverter(typeof(ChartTypeConverter)),
-       Description("Type of the chart.")]
+
+        [LocalizedCategory("Chart")]
+        [TypeConverter(typeof(ChartTypeConverter))]
+		[LocalizedDisplayName("Chart_Type")]
+		[LocalizedDescription("Chart_Type")]
         public string Type
         {
             get { return this.GetValue("Type", "Column"); }
@@ -54,9 +50,11 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Type", value);
             }
         }
-        [LocalizedCategory("Chart"),
-        TypeConverter(typeof(PaletteTypeConverter)),
-       Description("Color palette for the chart.")]
+
+        [LocalizedCategory("Chart")]
+        [TypeConverter(typeof(PaletteTypeConverter))]
+		[LocalizedDisplayName("Chart_Palette")]
+		[LocalizedDescription("Chart_Palette")]
         public string Palette
         {
             get { return this.GetValue("Palette", "Default"); }
@@ -65,8 +63,10 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Palette", value);
             }
         }
-        [LocalizedCategory("Chart"),
-       Description("Percentage width for bars and columns.")]
+
+        [LocalizedCategory("Chart")]
+		[LocalizedDisplayName("Chart_PointWidth")]
+		[LocalizedDescription("Chart_PointWidth")]
         public int PointWidth
         {
             get 
@@ -88,46 +88,54 @@ namespace fyiReporting.RdlDesign
             }
         }
  
-        [LocalizedCategory("Chart"),
-      Description("Properties controlling the display of the chart data.")]
+        [LocalizedCategory("Chart")]
+		[LocalizedDisplayName("Chart_ChartData")]
+		[LocalizedDescription("Chart_ChartData")]
         public PropertyChartData ChartData
         {
             get { return new PropertyChartData(this);}
         }
 
-        [LocalizedCategory("Chart"),
-      TypeConverter(typeof(ChartTitleTypeConverter)),
-      Description("Chart Title.")]
+        [LocalizedCategory("Chart")]
+		[TypeConverter(typeof(ChartTitleTypeConverter))]
+		[LocalizedDisplayName("Chart_Title")]
+		[LocalizedDescription("Chart_Title")]
         public PropertyChartTitle Title
         {
             get { return new PropertyChartTitle(this); }
         }
-        [LocalizedCategory("Chart"),
-      TypeConverter(typeof(ChartLegendTypeConverter)),
-      Description("Chart Legend.")]
+
+        [LocalizedCategory("Chart")]
+		[TypeConverter(typeof(ChartLegendTypeConverter))]
+		[LocalizedDisplayName("Chart_Legend")]
+		[LocalizedDescription("Chart_Legend")]
         public PropertyChartLegend Legend
         {
             get { return new PropertyChartLegend(this); }
         }
-        [LocalizedCategory("Chart"),
-      TypeConverter(typeof(ChartAxisTypeConverter)),
-      Description("CategoryAxis defines the category (X) axis.")]
+
+        [LocalizedCategory("Chart")]
+		[TypeConverter(typeof(ChartAxisTypeConverter))]
+		[LocalizedDisplayName("Chart_CategoryAxis")]
+		[LocalizedDescription("Chart_CategoryAxis")]
         public PropertyChartAxis CategoryAxis
         {
             get { return new PropertyChartAxis(this, "CategoryAxis"); }
         }
-        [LocalizedCategory("Chart"),
-      TypeConverter(typeof(ChartAxisTypeConverter)),
-      Description("ValueAxis defines the data (Y) axis.")]
-        public PropertyChartAxis ValueAxis
+
+		[LocalizedCategory("Chart")]
+		[TypeConverter(typeof(ChartAxisTypeConverter))]
+		[LocalizedDisplayName("Chart_ValueAxis")]
+		[LocalizedDescription("Chart_ValueAxis")]
+		public PropertyChartAxis ValueAxis
         {
             get { return new PropertyChartAxis(this, "ValueAxis"); }
         }
     }
 
     #region ChartAxis
-    [TypeConverter(typeof(ChartAxisTypeConverter)),
-      Description("Properties controlling the display of an axis.")]
+    [TypeConverter(typeof(ChartAxisTypeConverter))]
+	[LocalizedDescription("ChartAxis")]
     internal class PropertyChartAxis : IReportItem
     {
         PropertyChart _pt;
@@ -138,7 +146,8 @@ namespace fyiReporting.RdlDesign
             _Axis = axis;
         }
 
-        [Description("Is the axis visible?")]
+		[LocalizedDisplayName("ChartAxis_Visible")]
+		[LocalizedDescription("ChartAxis_Visible")]
         public bool Visible
         {
             get
@@ -151,7 +160,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value ? "true" : "false", _Axis, "Axis", "Visible");
             }
         }
-        [Description("Is there axis margin?")]
+
+		[LocalizedDisplayName("ChartAxis_Margin")]
+		[LocalizedDescription("ChartAxis_Margin")]
         public bool Margin
         {
             get
@@ -164,7 +175,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value ? "true" : "false", _Axis, "Axis", "Margin");
             }
         }
-        [Description("Major tick marks.")]
+
+		[LocalizedDisplayName("ChartAxis_MajorTickMarks")]
+		[LocalizedDescription("ChartAxis_MajorTickMarks")]
         public AxisTickMarksEnum MajorTickMarks
         {
             get
@@ -177,7 +190,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.ToString(), _Axis, "Axis", "MajorTickMarks");
             }
         }
-        [Description("Minor tick marks.")]
+
+		[LocalizedDisplayName("ChartAxis_MinorTickMarks")]
+		[LocalizedDescription("ChartAxis_MinorTickMarks")]
         public AxisTickMarksEnum MinorTickMarks
         {
             get
@@ -190,8 +205,10 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.ToString(), _Axis, "Axis", "MinorTickMarks");
             }
         }
-        [Description("Unit for major gridlines and tickmarks; omit for autodivision.")]
-        public PropertyExpr MajorInterval
+
+		[LocalizedDisplayName("ChartAxis_MajorInterval")]
+		[LocalizedDescription("ChartAxis_MajorInterval")]
+		public PropertyExpr MajorInterval
         {
             get
             {
@@ -203,7 +220,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.Expression, _Axis, "Axis", "MajorInterval");
             }
         }
-        [Description("Unit for minor gridlines and tickmarks; omit for autodivision.")]
+
+		[LocalizedDisplayName("ChartAxis_MinorInterval")]
+		[LocalizedDescription("ChartAxis_MinorInterval")]
         public PropertyExpr MinorInterval
         {
             get
@@ -216,7 +235,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.Expression, _Axis, "Axis", "MinorInterval");
             }
         }
-        [Description("Value at which to cross the other axis.")]
+
+		[LocalizedDisplayName("ChartAxis_CrossAt")]
+		[LocalizedDescription("ChartAxis_CrossAt")]
         public PropertyExpr CrossAt
         {
             get
@@ -229,7 +250,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.Expression, _Axis, "Axis", "CrossAt");
             }
         }
-        [Description("Minimum value for the axis.  When omitted axis autoscales.")]
+
+		[LocalizedDisplayName("ChartAxis_Min")]
+		[LocalizedDescription("ChartAxis_Min")]
         public PropertyExpr Min
         {
             get
@@ -242,7 +265,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.Expression, _Axis, "Axis", "Min");
             }
         }
-        [Description("Maximum value for the axis.  When omitted axis autoscales.")]
+
+		[LocalizedDisplayName("ChartAxis_Max")]
+		[LocalizedDescription("ChartAxis_Max")]
         public PropertyExpr Max
         {
             get
@@ -255,7 +280,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value.Expression, _Axis, "Axis", "Max");
             }
         }
-        [Description("Should axis be plotted normally (false) or should the direction be reversed?")]
+
+		[LocalizedDisplayName("ChartAxis_Reverse")]
+		[LocalizedDescription("ChartAxis_Reverse")]
         public bool Reverse
         {
             get
@@ -268,7 +295,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value ? "true" : "false", _Axis, "Axis", "Reverse");
             }
         }
-        [Description("When true strip lines are drawn every other grid line.")]
+
+		[LocalizedDisplayName("ChartAxis_Interlaced")]
+		[LocalizedDescription("ChartAxis_Interlaced")]
         public bool Interlaced
         {
             get
@@ -281,7 +310,9 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value ? "true" : "false", _Axis, "Axis", "Interlaced");
             }
         }
-        [Description("Scalar")]
+
+		[LocalizedDisplayName("ChartAxis_Scalar")]
+		[LocalizedDescription("ChartAxis_Scalar")]
         public bool Scalar
         {
             get
@@ -295,7 +326,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Scalar")]
+		[LocalizedDisplayName("ChartAxis_LogScale")]
+		[LocalizedDescription("ChartAxis_LogScale")]
         public bool LogScale
         {
             get
@@ -309,43 +341,50 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Title for the axis")]
+		[LocalizedDisplayName("ChartAxis_Title")]
+		[LocalizedDescription("ChartAxis_Title")]
         public PropertyChartTitle Title
         {
             get { return new PropertyChartTitle(_pt, _Axis, "Axis"); }
         }
 
-        [Description("Font, color, alignment, ... of the axis.")]
+		[LocalizedDisplayName("ChartAxis_Appearance")]
+		[LocalizedDescription("ChartAxis_Appearance")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(_pt, _Axis, "Axis"); }
         }
 
-        [Description("Background of the axis.")]
+		[LocalizedDisplayName("ChartAxis_Background")]
+		[LocalizedDescription("ChartAxis_Background")]
         public PropertyBackground Background
         {
             get { return new PropertyBackground(_pt, _Axis, "Axis"); }
         }
 
-        [Description("Border properties of the axis.")]
+		[LocalizedDisplayName("ChartAxis_Border")]
+		[LocalizedDescription("ChartAxis_Border")]
         public PropertyBorder Border
         {
             get { return new PropertyBorder(_pt, _Axis, "Axis"); }
         }
 
-        [Description("Padding properties of the axis.")]
+		[LocalizedDisplayName("ChartAxis_Padding")]
+		[LocalizedDescription("ChartAxis_Padding")]
         public PropertyPadding Padding
         {
             get { return new PropertyPadding(_pt, _Axis, "Axis"); }
         }
 
-        [Description("Major Grid Lines properties")]
+		[LocalizedDisplayName("ChartAxis_MajorGridLines")]
+		[LocalizedDescription("ChartAxis_MajorGridLines")]
         public PropertyChartGridLines MajorGridLines
         {
             get { return new PropertyChartGridLines(_pt, _Axis, "Axis", "MajorGridLines"); }
         }
 
-        [Description("Minor Grid Lines properties")]
+		[LocalizedDisplayName("ChartAxis_MinorGridLines")]
+		[LocalizedDescription("ChartAxis_MinorGridLines")]
         public PropertyChartGridLines MinorGridLines
         {
             get { return new PropertyChartGridLines(_pt, _Axis, "Axis", "MinorGridLines"); }
@@ -402,9 +441,9 @@ namespace fyiReporting.RdlDesign
     #endregion
 
     #region ChartData
-    [LocalizedCategory("ChartData"),
-       TypeConverter(typeof(ChartDataTypeConverter)),
-     Description("Properties controlling the display of the chart data.")]
+    [LocalizedCategory("ChartData")]
+	[TypeConverter(typeof(ChartDataTypeConverter))]
+	[LocalizedDescription("ChartData")]
     [ReadOnly(true)]//Doesn't work with static rows so we have disabled it... 05122007 AJM & GJL
     internal class PropertyChartData : IReportItem
     {
@@ -413,7 +452,9 @@ namespace fyiReporting.RdlDesign
         {
             _pt = pt;
         }
-        [Description("Appearance of the label when visible.")]
+
+		[LocalizedDisplayName("ChartData_LabelAppearance")]
+		[LocalizedDescription("ChartData_LabelAppearance")]
         public PropertyAppearance LabelAppearance
         {
             get
@@ -423,7 +464,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Should data label be displayed?")]
+		[LocalizedDisplayName("ChartData_LabelVisible")]
+		[LocalizedDescription("ChartData_LabelVisible")]
         public bool LabelVisible
         {
             get
@@ -440,7 +482,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Expression that is to be charted.")]
+		[LocalizedDisplayName("ChartData_DataValue")]
+		[LocalizedDescription("ChartData_DataValue")]
         public PropertyExpr DataValue
         {
             get
@@ -476,7 +519,9 @@ namespace fyiReporting.RdlDesign
                     "DataValues", "DataValue", "Value");
             }
         }
-        [Description("Y Coordinate for Scatter and Bubble charts.")]
+
+		[LocalizedDisplayName("ChartData_DataValue2")]
+		[LocalizedDescription("ChartData_DataValue2")]
         public PropertyExpr DataValue2
         {
             get
@@ -518,7 +563,9 @@ namespace fyiReporting.RdlDesign
                 SetChartDataValue(2, value.Expression);
             }
         }
-        [Description("Bubble size in Bubble charts.")]
+
+		[LocalizedDisplayName("ChartData_DataValue3")]
+		[LocalizedDescription("ChartData_DataValue3")]
         public PropertyExpr DataValue3
         {
             get
@@ -563,7 +610,8 @@ namespace fyiReporting.RdlDesign
                 SetChartDataValue(3, value.Expression);
             }
         }
-        private string GetChartDataValue(int i)
+
+		private string GetChartDataValue(int i)
         {
             XmlNode dvs = DesignXmlDraw.FindNextInHierarchy(_pt.Node,
     "ChartData", "ChartSeries", "DataPoints", "DataPoint", "DataValues");
@@ -662,6 +710,7 @@ namespace fyiReporting.RdlDesign
 
 
 #endregion
+
     #region ChartGridLines
     [TypeConverter(typeof(ChartGridLinesTypeConverter))]
     internal class PropertyChartGridLines : IReportItem
@@ -675,8 +724,9 @@ namespace fyiReporting.RdlDesign
             _names = names;
         }
 
-        [RefreshProperties(RefreshProperties.Repaint), 
-        Description("Determines if grid lines are shown.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("ChartGridLines_ShowGridLines")]
+		[LocalizedDescription("ChartGridLines_ShowGridLines")]
         public bool ShowGridLines
         {
             get
@@ -693,8 +743,10 @@ namespace fyiReporting.RdlDesign
                 _pt.SetWithList(value?"true":"false", l.ToArray());
             }
         }
-        [TypeConverter(typeof(ColorConverter)),
-        Description("Line color")]
+
+        [TypeConverter(typeof(ColorConverter))]
+		[LocalizedDisplayName("ChartGridLines_Color")]
+		[LocalizedDescription("ChartGridLines_Color")]
         public string Color
         {
             get
@@ -715,7 +767,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Line style: Dotted, Dashed or Solid")]
+		[LocalizedDisplayName("ChartGridLines_LineStyle")]
+		[LocalizedDescription("ChartGridLines_LineStyle")]
         public LineStyleEnum LineStyle
         {
             get
@@ -743,7 +796,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Width of line")]
+		[LocalizedDisplayName("ChartGridLines_Width")]
+		[LocalizedDescription("ChartGridLines_Width")]
         public PropertyExpr Width
         {
             get
@@ -811,9 +865,9 @@ namespace fyiReporting.RdlDesign
     #endregion
 
     #region ChartLegend
-    [LocalizedCategory("ChartLegend"),
-       TypeConverter(typeof(ChartLegendTypeConverter)),
-      Description("Properties controlling the display of the chart legend.")]
+    [LocalizedCategory("ChartLegend")]
+    [TypeConverter(typeof(ChartLegendTypeConverter))]
+	[LocalizedDescription("ChartLegend")]
     internal class PropertyChartLegend : IReportItem
     {
         PropertyChart _pt;
@@ -822,7 +876,8 @@ namespace fyiReporting.RdlDesign
             _pt = pt;
         }
 
-        [Description("Is the legend visible?")]
+		[LocalizedDisplayName("ChartLegend_Visible")]
+		[LocalizedDescription("ChartLegend_Visible")]
         public bool Visible
         {
             get
@@ -836,7 +891,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Position of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Position")]
+		[LocalizedDescription("ChartLegend_Position")]
         public LegendPositionEnum Position
         {
             get
@@ -850,7 +906,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Layout of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Layout")]
+		[LocalizedDescription("ChartLegend_Layout")]
         public LegendLayoutEnum Layout
         {
             get
@@ -864,7 +921,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Draw legend inside the plot area when true, otherwise outside.")]
+		[LocalizedDisplayName("ChartLegend_InsidePlotArea")]
+		[LocalizedDescription("ChartLegend_InsidePlotArea")]
         public bool InsidePlotArea
         {
             get
@@ -878,25 +936,29 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Font, color, alignment, ... of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Appearance")]
+		[LocalizedDescription("ChartLegend_Appearance")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(_pt, "Legend"); }
         }
 
-        [Description("Background of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Background")]
+		[LocalizedDescription("ChartLegend_Background")]
         public PropertyBackground Background
         {
             get { return new PropertyBackground(_pt, "Legend"); }
         }
 
-        [Description("Border properties of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Border")]
+		[LocalizedDescription("ChartLegend_Border")]
         public PropertyBorder Border
         {
             get { return new PropertyBorder(_pt, "Legend"); }
         }
 
-        [Description("Padding properties of the legend.")]
+		[LocalizedDisplayName("ChartLegend_Padding")]
+		[LocalizedDescription("ChartLegend_Padding")]
         public PropertyPadding Padding
         {
             get { return new PropertyPadding(_pt, "Legend"); }
@@ -952,10 +1014,11 @@ namespace fyiReporting.RdlDesign
 
 
 #endregion
+
     #region ChartTitle
-    [LocalizedCategory("ChartTitle"),
-       TypeConverter(typeof(ChartTitleTypeConverter)),
-      Description("Properties controlling the display of the chart title.")]
+    [LocalizedCategory("ChartTitle")]
+    [TypeConverter(typeof(ChartTitleTypeConverter))]
+	[LocalizedDescription("ChartTitle")]
     internal class PropertyChartTitle : IReportItem
     {
         PropertyChart _pt;
@@ -983,8 +1046,9 @@ namespace fyiReporting.RdlDesign
             _subitems[i++] = "Title";
         }
 
-        [RefreshProperties(RefreshProperties.Repaint), 
-        Description("The text of the title.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("ChartTitle_Caption")]
+		[LocalizedDescription("ChartTitle_Caption")]
         public PropertyExpr Caption
         {
             get
@@ -1001,25 +1065,29 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Font, color, alignment, ... of the caption.")]
+		[LocalizedDisplayName("ChartTitle_Appearance")]
+		[LocalizedDescription("ChartTitle_Appearance")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(_pt, _subitems); }
         }
 
-        [Description("Background of the caption.")]
+		[LocalizedDisplayName("ChartTitle_Background")]
+		[LocalizedDescription("ChartTitle_Background")]
         public PropertyBackground Background
         {
             get { return new PropertyBackground(_pt, _subitems); }
         }
 
-        [Description("Border properties of the caption.")]
+		[LocalizedDisplayName("ChartTitle_Border")]
+		[LocalizedDescription("ChartTitle_Border")]
         public PropertyBorder Border
         {
             get { return new PropertyBorder(_pt, _subitems); }
         }
 
-        [Description("Padding properties of the caption.")]
+		[LocalizedDisplayName("ChartTitle_Padding")]
+		[LocalizedDescription("ChartTitle_Padding")]
         public PropertyPadding Padding
         {
             get { return new PropertyPadding(_pt, _subitems); }
@@ -1070,6 +1138,7 @@ namespace fyiReporting.RdlDesign
     }
 
     #endregion
+
     #region ChartType
     internal class ChartTypeConverter : StringConverter
     {
@@ -1088,6 +1157,7 @@ namespace fyiReporting.RdlDesign
         }
     }
     #endregion
+
     #region PaletteType
     internal class PaletteTypeConverter : StringConverter
     {

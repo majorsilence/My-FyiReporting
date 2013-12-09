@@ -21,15 +21,8 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlDesign
 {
@@ -45,7 +38,9 @@ namespace fyiReporting.RdlDesign
         {
             _pr = pr;
         }
+
         [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Margin_Left")]
         public string Left
         {
             get
@@ -57,7 +52,9 @@ namespace fyiReporting.RdlDesign
                 SetMargin("LeftMargin", value);
             }
         }
-        [RefreshProperties(RefreshProperties.Repaint)]
+
+		[LocalizedDisplayName("Margin_Right")]
+		[RefreshProperties(RefreshProperties.Repaint)]
         public string Right
         {
             get
@@ -69,8 +66,10 @@ namespace fyiReporting.RdlDesign
                 SetMargin("RightMargin", value);
             }
         }
-        [RefreshProperties(RefreshProperties.Repaint)]
-        public string Top
+
+		[RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Margin_Top")]
+		public string Top
         {
             get
             {
@@ -81,8 +80,10 @@ namespace fyiReporting.RdlDesign
                 SetMargin("TopMargin", value);
             }
         }
-        [RefreshProperties(RefreshProperties.Repaint)]
-        public string Bottom
+
+		[RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Margin_Bottom")]
+		public string Bottom
         {
             get
             {

@@ -1,3 +1,4 @@
+using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -20,15 +21,10 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
 
 namespace fyiReporting.RdlDesign
 {
@@ -41,8 +37,10 @@ namespace fyiReporting.RdlDesign
         internal PropertyTextbox(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("Textbox"),
-           Description("The value of the textbox.")]
+
+        [LocalizedCategory("Textbox")]
+		[LocalizedDisplayName("Textbox_Value")]
+		[LocalizedDescription("Textbox_Value")]
         public PropertyExpr Value
         {
             get { return new PropertyExpr(this.GetValue("Value", "")); }
@@ -51,14 +49,18 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("Value", value.Expression);
             }
         }
-        [LocalizedCategory("Style"),
-                   Description("Font, color, alignment, ... of text.")]
+
+        [LocalizedCategory("Style")]
+		[LocalizedDisplayName("Textbox_Appearance")]
+		[LocalizedDescription("Textbox_Appearance")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(this); }
         }
-        [LocalizedCategory("Textbox"),
-           Description("CanGrow indicates the height of the Textbox can increase depending on its contents.")]
+
+        [LocalizedCategory("Textbox")]
+		[LocalizedDisplayName("Textbox_CanGrow")]
+		[LocalizedDescription("Textbox_CanGrow")]
         public bool CanGrow
         {
             get { return this.GetValue("CanGrow", "false").ToLower() == "true"; }
@@ -67,8 +69,10 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("CanGrow", value? "true": "false");
             }
         }
-        [LocalizedCategory("Textbox"),
-           Description("CanShrink indicates the height of the Textbox can decrease depending on its contents.")]
+
+        [LocalizedCategory("Textbox")]
+		[LocalizedDisplayName("Textbox_CanShrink")]
+		[LocalizedDescription("Textbox_CanShrink")]
         public bool CanShrink
         {
             get { return this.GetValue("CanShrink", "false").ToLower() == "true"; }
@@ -77,9 +81,11 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("CanShrink", value ? "true" : "false");
             }
         }
-        [LocalizedCategory("Textbox"),
-            TypeConverter(typeof(HideDuplicatesConverter)),
-            Description("To HideDuplicate values provide the scope (dataset or group) over which you want to hide the Textbox.")]
+
+        [LocalizedCategory("Textbox")]
+		[LocalizedDisplayName("Textbox_HideDuplicates")]
+		[LocalizedDescription("Textbox_HideDuplicates")]
+		[TypeConverter(typeof(HideDuplicatesConverter))]
         public string HideDuplicates
         {
             get { return this.GetValue("HideDuplicates", ""); }
@@ -91,8 +97,10 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("HideDuplicates", value);
             }
         }
-        [LocalizedCategory("XML"),
-   Description("Specifies whether Textbox renders as an Attribute or an Element.")]
+
+        [LocalizedCategory("XML")]
+		[LocalizedDisplayName("Textbox_DataElementStyle")]
+		[LocalizedDescription("Textbox_DataElementStyle")]
         public DataElementStyleEnum DataElementStyle
         {
             get

@@ -255,6 +255,16 @@
       <LastGenOutput>Categories.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RdlProperties\Categories.ru-RU.resx" />
+    <EmbeddedResource Include="RdlProperties\Descriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Descriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Descriptions.ru-RU.resx" />
+    <EmbeddedResource Include="RdlProperties\DisplayNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\DisplayNames.ru-RU.resx" />
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>ResXFileCodeGeneratorEx</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
@@ -465,12 +475,24 @@
     <Compile Include="DesignRuler.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="RdlProperties\Descriptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Descriptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RdlProperties\DisplayNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisplayNames.resx</DependentUpon>
+    </Compile>
     <Compile Include="RdlProperties\LocalizedCategoryAttribute.cs" />
     <Compile Include="RdlProperties\Categories.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Categories.resx</DependentUpon>
     </Compile>
+    <Compile Include="RdlProperties\LocalizedDescriptionAttribute.cs" />
+    <Compile Include="RdlProperties\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -21,12 +21,8 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
@@ -36,8 +32,8 @@ namespace fyiReporting.RdlDesign
     /// <summary>
     /// PropertyAction - 
     /// </summary>
-    [TypeConverter(typeof(PropertyAppearanceConverter)),
-       Editor(typeof(PropertyAppearanceUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertyAppearanceConverter))]
+    [Editor(typeof(PropertyAppearanceUIEditor), typeof(UITypeEditor))]
     internal class PropertyAppearance : IReportItem
     {
         PropertyReportItem pri;
@@ -75,8 +71,9 @@ namespace fyiReporting.RdlDesign
             get { return _names; }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       Description("FontFamily is the name of the font family.  Not all renderers support all fonts.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Appearance_FontFamily")]
+		[LocalizedDescription("Appearance_FontFamily")]
         public PropertyExpr FontFamily
         {
             get 
@@ -89,8 +86,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       Description("Font size controls the text size.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Appearance_FontSize")]
+		[LocalizedDescription("Appearance_FontSize")]
         public PropertyExpr FontSize
         {
             get
@@ -105,8 +103,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(FontStyleConverter)),
-       Description("FontStyle determines if font is italicized.")]
+        [TypeConverter(typeof(FontStyleConverter))]
+		[LocalizedDisplayName("Appearance_FontStyle")]
+		[LocalizedDescription("Appearance_FontStyle")]
         public string FontStyle
         {
             get
@@ -119,8 +118,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(FontWeightConverter)),
-       Description("FontWeight controls the boldness of the font.")]
+        [TypeConverter(typeof(FontWeightConverter))]
+		[LocalizedDisplayName("Appearance_FontWeight")]
+		[LocalizedDescription("Appearance_FontWeight")]
         public string FontWeight
         {
             get
@@ -133,8 +133,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(ColorConverter)),
-       Description("Text color")]
+        [TypeConverter(typeof(ColorConverter))]
+		[LocalizedDisplayName("Appearance_Color")]
+		[LocalizedDescription("Appearance_Color")]
         public string Color
         {
             get
@@ -147,8 +148,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(TextDecorationConverter)),
-       Description("TextDecoration controls underline, overline, and linethrough.  Not all renderers support all options.")]
+        [TypeConverter(typeof(TextDecorationConverter))]
+		[LocalizedDisplayName("Appearance_TextDecoration")]
+		[LocalizedDescription("Appearance_TextDecoration")]
         public string TextDecoration
         {
             get
@@ -161,8 +163,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(TextAlignConverter)),
-       Description("Horizontal alignment")]
+        [TypeConverter(typeof(TextAlignConverter))]
+		[LocalizedDisplayName("Appearance_TextAlign")]
+		[LocalizedDescription("Appearance_TextAlign")]
         public string TextAlign
         {
             get
@@ -175,8 +178,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(VerticalAlignConverter)),
-       Description("Vertical alignment")]
+        [TypeConverter(typeof(VerticalAlignConverter))]
+		[LocalizedDisplayName("Appearance_VerticalAlign")]
+		[LocalizedDescription("Appearance_VerticalAlign")]
         public string VerticalAlign
         {
             get
@@ -189,8 +193,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(DirectionConverter)),
-       Description("Text is either written left-to-right (LTR) or right-to-left (RTL).")]
+        [TypeConverter(typeof(DirectionConverter))]
+		[LocalizedDisplayName("Appearance_Direction")]
+		[LocalizedDescription("Appearance_Direction")]
         public string Direction
         {
             get
@@ -203,8 +208,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(WritingModeConverter)),
-       Description("Text is either written horizontally (lr-tb) or vertically (tb-rl).")]
+        [TypeConverter(typeof(WritingModeConverter))]
+		[LocalizedDisplayName("Appearance_WritingMode")]
+		[LocalizedDescription("Appearance_WritingMode")]
         public string WritingMode
         {
             get
@@ -217,8 +223,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [TypeConverter(typeof(FormatConverter)),
-       Description("Depending on type the value can be formatted.")]
+        [TypeConverter(typeof(FormatConverter))]
+		[LocalizedDisplayName("Appearance_Format")]
+		[LocalizedDescription("Appearance_Format")]
         public string Format
         {
             get

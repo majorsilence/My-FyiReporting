@@ -22,11 +22,8 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
@@ -36,8 +33,8 @@ namespace fyiReporting.RdlDesign
     /// <summary>
     /// PropertyAction - 
     /// </summary>
-    [TypeConverter(typeof(PropertyBackgroundConverter)),
-      Editor(typeof(PropertyBackgroundUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertyBackgroundConverter))]
+    [Editor(typeof(PropertyBackgroundUIEditor), typeof(UITypeEditor))]
     internal class PropertyBackground : IReportItem
     {
         PropertyReportItem pri;
@@ -75,9 +72,10 @@ namespace fyiReporting.RdlDesign
             get { return _names; }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ColorConverter)),
-       Description("Background color.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ColorConverter))]
+		[LocalizedDisplayName("Background_Color")]
+		[LocalizedDescription("Background_Color")]
         public string Color
         {
             get 
@@ -90,9 +88,10 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ColorConverter)),
-       Description("End color when gradient type is not None.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ColorConverter))]
+		[LocalizedDisplayName("Background_EndColor")]
+		[LocalizedDescription("Background_EndColor")]
         public string EndColor
         {
             get
@@ -106,9 +105,10 @@ namespace fyiReporting.RdlDesign
         }
 
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(GradientTypeConverter)),
-       Description("Type of background gradient.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(GradientTypeConverter))]
+		[LocalizedDisplayName("Background_GradientType")]
+		[LocalizedDescription("Background_GradientType")]
         public string GradientType
         {
             get
@@ -121,7 +121,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [Description("Image to place in the background of the report item")]
+		[LocalizedDisplayName("Background_Image")]
+		[LocalizedDescription("Background_Image")]
         public PropertyBackgroundImage Image
         {
             get
@@ -129,6 +130,7 @@ namespace fyiReporting.RdlDesign
                 return new PropertyBackgroundImage(pri, _names);
             }
         }
+
         private string GetStyleValue(string l1, string def)
         {
             _subitems[_subitems.Length - 1] = l1;
@@ -243,6 +245,7 @@ namespace fyiReporting.RdlDesign
             }
         }
     }
+
     #region GradientType
     internal class GradientTypeConverter : StringConverter
     {
@@ -261,8 +264,8 @@ namespace fyiReporting.RdlDesign
     }
     #endregion
 
-    [TypeConverter(typeof(PropertyBackgroundImageConverter)),
-       Editor(typeof(PropertyBackgroundUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [TypeConverter(typeof(PropertyBackgroundImageConverter))]
+    [Editor(typeof(PropertyBackgroundUIEditor), typeof(UITypeEditor))]
     internal class PropertyBackgroundImage : IReportItem
     {
         PropertyReportItem pri;
@@ -305,9 +308,10 @@ namespace fyiReporting.RdlDesign
             return string.Format("{0} {1}", s, v);
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ImageSourceConverter)),
-     Description("Background Image Source: None, External, Embedded, Database.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ImageSourceConverter))]
+		[LocalizedDisplayName("BackgroundImage_Source")]
+		[LocalizedDescription("BackgroundImage_Source")]
         public string Source
         {
             get
@@ -331,8 +335,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-     Description("Value depends upon the source of the image.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("BackgroundImage_Value")]
+		[LocalizedDescription("BackgroundImage_Value")]
         public PropertyExpr Value
         {
             get
@@ -349,9 +354,10 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ImageMIMETypeConverter)),
-     Description("When Source is Database MIMEType describes the type of image.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ImageMIMETypeConverter))]
+		[LocalizedDisplayName("BackgroundImage_MIMEType")]
+		[LocalizedDescription("BackgroundImage_MIMEType")]
         public string MIMEType
         {
             get
@@ -368,9 +374,10 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-       TypeConverter(typeof(ImageRepeatConverter)),
-     Description("Controls repeating of the background image to fill space.")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[TypeConverter(typeof(ImageRepeatConverter))]
+		[LocalizedDisplayName("BackgroundImage_Repeat")]
+		[LocalizedDescription("BackgroundImage_Repeat")]
         public string Repeat
         {
             get
@@ -429,7 +436,7 @@ namespace fyiReporting.RdlDesign
     }
 
 
-#region ImageSource
+	#region ImageSource
     internal class ImageSourceConverter : StringConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
@@ -452,6 +459,7 @@ namespace fyiReporting.RdlDesign
         }
     }
     #endregion
+
     #region ImageMIMEType
     internal class ImageMIMETypeConverter : StringConverter
     {
@@ -470,6 +478,7 @@ namespace fyiReporting.RdlDesign
         }
     }
 #endregion
+
     #region ImageRepeat
     internal class ImageRepeatConverter : StringConverter
     {
@@ -488,5 +497,4 @@ namespace fyiReporting.RdlDesign
         }
     }
 #endregion
-
 }

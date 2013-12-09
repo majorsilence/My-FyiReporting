@@ -21,15 +21,8 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlDesign
 {
@@ -50,6 +43,7 @@ namespace fyiReporting.RdlDesign
             _w = w;
         }
         [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Size_Height")]
         public string Height
         {
             get { return _h; }
@@ -60,8 +54,10 @@ namespace fyiReporting.RdlDesign
                 _pri.SetValue("Height", value);
             }
         }
-        [RefreshProperties(RefreshProperties.Repaint)]
-        public string Width
+
+		[RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Size_Width")]
+		public string Width
         {
             get { return _w; }
             set 

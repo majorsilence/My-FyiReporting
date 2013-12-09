@@ -1,3 +1,4 @@
+using fyiReporting.RdlDesign.Resources;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -21,16 +22,9 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using fyiReporting.RdlDesign.Resources;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -48,6 +42,8 @@ namespace fyiReporting.RdlDesign
             _pr = pr;
             _parent = phNode;
         }
+
+		[LocalizedDisplayName("PrintFirstLast_Height")]
         public string Height
         {
             get
@@ -68,7 +64,8 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        public bool PrintOnFirstPage
+		[LocalizedDisplayName("PrintFirstLast_PrintOnFirstPage")]
+		public bool PrintOnFirstPage
         {
             get
             {
@@ -79,7 +76,9 @@ namespace fyiReporting.RdlDesign
                 SetPrint("PrintOnFirstPage", value);
             }
         }
-        public bool PrintOnLastPage
+
+		[LocalizedDisplayName("PrintFirstLast_PrintOnLastPage")]
+		public bool PrintOnLastPage
         {
             get
             {

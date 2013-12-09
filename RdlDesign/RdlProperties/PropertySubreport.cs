@@ -21,17 +21,12 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
 using System.Drawing.Design;
-using System.Windows.Forms.Design;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -44,20 +39,24 @@ namespace fyiReporting.RdlDesign
         internal PropertySubreport(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("Subreport"),
-        Editor(typeof(PropertySubreportUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
-           Description("The name of the subreport either a full path or a relative path.")]
+
+        [LocalizedCategory("Subreport")]
+		[LocalizedDisplayName("Subreport_ReportName")]
+		[LocalizedDescription("Subreport_ReportName")]
+        [Editor(typeof(PropertySubreportUIEditor), typeof(UITypeEditor))]
         public string ReportName
         {
-            get { return this.Draw.GetElementValue(this.Node, "ReportName", ""); }
+            get { return Draw.GetElementValue(Node, "ReportName", ""); }
             set
             {
-                this.SetValue("ReportName", value);
+                SetValue("ReportName", value);
             }
         }
-        [LocalizedCategory("Subreport"),
-        Editor(typeof(PropertySubreportParametersUIEditor), typeof(System.Drawing.Design.UITypeEditor)),
-           Description("The subreport parameter expressions.")]
+
+        [LocalizedCategory("Subreport")]
+		[LocalizedDisplayName("Subreport_Parameters")]
+		[LocalizedDescription("Subreport_Parameters")]
+		[Editor(typeof(PropertySubreportParametersUIEditor), typeof(UITypeEditor))]
         public string Parameters
         {
             get 
@@ -69,8 +68,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [LocalizedCategory("Subreport"),
-           Description("The name of the subreport either a full path or a relative path.")]
+        [LocalizedCategory("Subreport")]
+		[LocalizedDisplayName("Subreport_NoRows")]
+		[LocalizedDescription("Subreport_NoRows")]
         public PropertyExpr NoRows
         {
             get { return new PropertyExpr(this.Draw.GetElementValue(this.Node, "NoRows", "")); }
@@ -83,8 +83,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [LocalizedCategory("Subreport"),
-           Description("When true DataSource connections in subreport will reuse parent report connections when possible.")]
+        [LocalizedCategory("Subreport")]
+		[LocalizedDisplayName("Subreport_MergeTransactions")]
+		[LocalizedDescription("Subreport_MergeTransactions")]
         public bool MergeTransactions
         {
             get { return string.Compare(this.Draw.GetElementValue(this.Node, "MergeTransactions", "true"), "true", true)==0; }

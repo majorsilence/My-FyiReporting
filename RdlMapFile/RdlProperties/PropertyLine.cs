@@ -1,3 +1,4 @@
+using System.ComponentModel;            // need this for the properties metadata
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -20,17 +21,8 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
-using System.Text.RegularExpressions;
-using System.Drawing.Design;
-using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -45,8 +37,9 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [LocalizedCategory("Line"),
-           Description("One end of the line")]
+        [LocalizedCategory("Line")]
+		[LocalizedDisplayName("Line_P1")]
+		[LocalizedDescription("Line_P1")]
         public Point P1
         {
             get 
@@ -64,8 +57,9 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-		[LocalizedCategory("Line"),
-           Description("Other end of the line")]
+		[LocalizedCategory("Line")]
+		[LocalizedDisplayName("Line_P2")]
+		[LocalizedDescription("Line_P2")]
         public Point P2
         {
             get

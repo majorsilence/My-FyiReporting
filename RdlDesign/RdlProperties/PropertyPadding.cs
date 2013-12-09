@@ -21,15 +21,8 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlDesign
 {
@@ -65,6 +58,7 @@ namespace fyiReporting.RdlDesign
         }
         
         [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Padding_Left")]
         public PropertyExpr Left
         {
             get
@@ -76,8 +70,10 @@ namespace fyiReporting.RdlDesign
                 SetPadding("PaddingLeft", value, true);
             }
         }
+
         [RefreshProperties(RefreshProperties.Repaint)]
-        public PropertyExpr Right
+		[LocalizedDisplayName("Padding_Right")]
+		public PropertyExpr Right
         {
             get
             {
@@ -88,8 +84,10 @@ namespace fyiReporting.RdlDesign
                 SetPadding("PaddingRight", value, false);
             }
         }
+
         [RefreshProperties(RefreshProperties.Repaint)]
-        public PropertyExpr Top
+		[LocalizedDisplayName("Padding_Top")]
+		public PropertyExpr Top
         {
             get
             {
@@ -100,8 +98,10 @@ namespace fyiReporting.RdlDesign
                 SetPadding("PaddingTop", value, true); 
             }
         }
+
         [RefreshProperties(RefreshProperties.Repaint)]
-        public PropertyExpr Bottom
+		[LocalizedDisplayName("Padding_Bottom")]
+		public PropertyExpr Bottom
         {
             get
             {
