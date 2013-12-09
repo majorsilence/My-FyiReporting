@@ -1,3 +1,5 @@
+using RdlMapFile.Resources;
+using System.ComponentModel;            // need this for the properties metadata
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -20,18 +22,9 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.ComponentModel;            // need this for the properties metadata
-using System.Xml;
-using System.Text.RegularExpressions;
-using System.Drawing.Design;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using RdlMapFile.Resources;
+using System.Xml;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -46,17 +39,19 @@ namespace fyiReporting.RdlMapFile
         {
         }
 
-        [LocalizedCategory("Text"),
-           Description("The value of the text")]
+        [LocalizedCategory("Text")]
+		[LocalizedDisplayName("Text_Value")]
+		[LocalizedDescription("Text_Value")]
         public string Value
         {
             get {return GetTextValue("Value"); }
             set{SetTextValue("Value", value); }
         }
 
-        [RefreshProperties(RefreshProperties.Repaint),
-		LocalizedCategory("Text"),
-           Description("The Location of the text")]
+        [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedCategory("Text")]
+		[LocalizedDisplayName("Text_Location")]
+		[LocalizedDescription("Text_Location")]
         public Point Location
         {
             get 
@@ -70,8 +65,10 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Location", l); 
             }
         }
-		[LocalizedCategory("Text"),
-           Description("The Color of the text")]
+
+		[LocalizedCategory("Text")]
+		[LocalizedDisplayName("Text_Color")]
+		[LocalizedDescription("Text_Color")]
         public Color Color
         {
             get
@@ -86,8 +83,10 @@ namespace fyiReporting.RdlMapFile
                 SetTextValue("Color", sc);
             }
         }
-		[LocalizedCategory("Text"),
-           Description("The font of the text.  Only the family, size, bold, italic, underline, and strikethrough options are honored.")]
+
+		[LocalizedCategory("Text")]
+		[LocalizedDisplayName("Text_Font")]
+		[LocalizedDescription("Text_Font")]
         public Font Font
         {
             get

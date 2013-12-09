@@ -21,15 +21,8 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Drawing.Design;
-using System.Xml;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlDesign
 {
@@ -49,7 +42,9 @@ namespace fyiReporting.RdlDesign
             _left = x;
             _top = y;
         }
+
         [RefreshProperties(RefreshProperties.Repaint)]
+		[LocalizedDisplayName("Location_Left")]
         public string Left
         {
             get { return _left; }
@@ -61,7 +56,8 @@ namespace fyiReporting.RdlDesign
             }
         }
         [RefreshProperties(RefreshProperties.Repaint)]
-        public string Top
+		[LocalizedDisplayName("Location_Top")]
+		public string Top
         {
             get { return _top; }
             set 

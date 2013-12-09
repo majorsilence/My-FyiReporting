@@ -21,16 +21,10 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
+using System.Drawing;
+using System.Text;
 using System.Xml;
-using System.Text.RegularExpressions;
-using System.Drawing.Design;
-using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -44,8 +38,10 @@ namespace fyiReporting.RdlMapFile
         internal PropertyPolygon(DesignXmlDraw d):base(d)
         {
         }
-        [LocalizedCategory("Polygon"),
-           Description("The fill color for the polygon")]
+
+        [LocalizedCategory("Polygon")]
+		[LocalizedDisplayName("Polygon_FillColor")]
+		[LocalizedDescription("Polygon_FillColor")]
         public Color FillColor
         {
             get
@@ -71,8 +67,9 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-		[LocalizedCategory("Polygon"),
-           Description("The keys associated with this polygon")]
+		[LocalizedCategory("Polygon")]
+		[LocalizedDisplayName("Polygon_Keys")]
+		[LocalizedDescription("Polygon_Keys")]
         public string[] Keys
         {
             get 
@@ -94,8 +91,9 @@ namespace fyiReporting.RdlMapFile
             }
         }
 
-			[LocalizedCategory("Polygon"),
-               Description("The Points of the polygon")]
+		[LocalizedCategory("Polygon")]
+		[LocalizedDisplayName("Polygon_Points")]
+		[LocalizedDescription("Polygon_Points")]
         public Point[] Points
         {
             get 

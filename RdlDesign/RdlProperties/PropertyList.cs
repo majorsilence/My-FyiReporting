@@ -1,3 +1,4 @@
+using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -21,17 +22,10 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
-using System.Xml;
-using System.Text.RegularExpressions;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using fyiReporting.RDL;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -45,8 +39,10 @@ namespace fyiReporting.RdlDesign
             : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("List"),
-            Description("Grouping data allows each repeated list region to represent a summarization of the rows in the group.")]
+
+        [LocalizedCategory("List")]
+		[LocalizedDisplayName("List_Grouping")]
+		[LocalizedDescription("List_Grouping")]
         public PropertyGrouping Grouping
         {
             get
@@ -54,8 +50,10 @@ namespace fyiReporting.RdlDesign
                 return new PropertyGrouping(this);
             }
         }
-		[LocalizedCategory("List"),
-            Description("Sorting controls the order of the repeated list regions.")]
+
+		[LocalizedCategory("List")]
+		[LocalizedDisplayName("List_Sorting")]
+		[LocalizedDescription("List_Sorting")]
         public PropertySorting Sorting
         {
             get
@@ -63,9 +61,11 @@ namespace fyiReporting.RdlDesign
                 return new PropertySorting(this);
             }
         }
+
         #region XML
-        [LocalizedCategory("XML"),
-   Description("The name to use for the data element for each instance of this list when exporting to XML.")]
+        [LocalizedCategory("XML")]
+		[LocalizedDisplayName("List_DataInstanceName")]
+		[LocalizedDescription("List_DataInstanceName")]
         public string DataInstanceName
         {
             get
@@ -77,8 +77,10 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataInstanceName", value);
             }
         }
-        [LocalizedCategory("XML"),
-   Description("Determines whether list instances appear in the XML.")]
+
+        [LocalizedCategory("XML")]
+		[LocalizedDisplayName("List_DataInstanceElementOutput")]
+		[LocalizedDescription("List_DataInstanceElementOutput")]
         public DataInstanceElementOutputEnum DataInstanceElementOutput
         {
             get
@@ -93,6 +95,7 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
     }
+
     internal class PropertyListConverter : ExpandableObjectConverter
     {
         public override object ConvertTo(ITypeDescriptorContext context,

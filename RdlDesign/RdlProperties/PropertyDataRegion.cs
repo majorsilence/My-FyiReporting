@@ -20,15 +20,10 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
 
 namespace fyiReporting.RdlDesign
 {
@@ -40,8 +35,10 @@ namespace fyiReporting.RdlDesign
         internal PropertyDataRegion(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
-        [LocalizedCategory("DataRegion"), 
-        Description("Message to display if no rows available.")]
+        
+		[LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_NoRows")]
+		[LocalizedDescription("DataRegion_NoRows")]
         public PropertyExpr NoRows
         {
             get { return new PropertyExpr(this.GetValue("NoRows", "")); }
@@ -53,8 +50,10 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("NoRows", value.Expression);
             }
         }
-        [LocalizedCategory("DataRegion"),
-        Description("Keep data region on one page if possible.")]
+
+        [LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_KeepTogether")]
+		[LocalizedDescription("DataRegion_KeepTogether")]
         public bool KeepTogether
         {
             get { return this.GetValue("KeepTogether", "True").ToLower().Trim() == "true"; }
@@ -63,8 +62,11 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("KeepTogether", value);
             }
         }
-        [LocalizedCategory("DataRegion"), TypeConverter(typeof(DataSetsConverter)),
-        Description("Specifies which data set to use.")]
+
+        [LocalizedCategory("DataRegion")]
+		[TypeConverter(typeof(DataSetsConverter))]
+		[LocalizedDisplayName("DataRegion_DataSetName")]
+		[LocalizedDescription("DataRegion_DataSetName")]
         public string DataSetName
         {
             get { return this.GetValue("DataSetName", ""); }
@@ -76,8 +78,10 @@ namespace fyiReporting.RdlDesign
                     this.SetValue("DataSetName", value);
             }
         }
-        [LocalizedCategory("DataRegion"),
-        Description("Cause a page break before rendering.")]
+
+        [LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_PageBreakAtStart")]
+		[LocalizedDescription("DataRegion_PageBreakAtStart")]
         public bool PageBreakAtStart
         {
             get { return this.GetValue("PageBreakAtStart", "True").ToLower().Trim() == "true"; }
@@ -86,8 +90,10 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtStart", value);
             }
         }
-        [LocalizedCategory("DataRegion"),
-        Description("Cause a page break after rendering.")]
+
+        [LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_PageBreakAtEnd")]
+		[LocalizedDescription("DataRegion_PageBreakAtEnd")]
         public bool PageBreakAtEnd
         {
             get { return this.GetValue("PageBreakAtEnd", "True").ToLower().Trim() == "true"; }
@@ -96,8 +102,10 @@ namespace fyiReporting.RdlDesign
                 this.SetValue("PageBreakAtEnd", value);
             }
         }
-        [LocalizedCategory("DataRegion"),
-                   Description("Filters to apply to each row of data in data region.")]
+
+        [LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_Filters")]
+		[LocalizedDescription("DataRegion_Filters")]
         public PropertyFilters Filters
         {
             get
@@ -105,13 +113,16 @@ namespace fyiReporting.RdlDesign
                 return new PropertyFilters(this);
             }
         }
-        [LocalizedCategory("Style"),
-                   Description("Font, color, alignment, ... of NoRows text.")]
+
+		[LocalizedCategory("DataRegion")]
+		[LocalizedDisplayName("DataRegion_Appearance")]
+		[LocalizedDescription("DataRegion_Appearance")]
         public PropertyAppearance Appearance
         {
             get { return new PropertyAppearance(this); }
         }
     }
+
     #region DataSets
     internal class DataSetsConverter : StringConverter
     {

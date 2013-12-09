@@ -13,7 +13,7 @@ namespace fyiReporting.RdlDesign
 
 		protected override string GetLocalizedString(string value)
 		{
-			return Categories.ResourceManager.GetString(value, Thread.CurrentThread.CurrentUICulture) ?? base.GetLocalizedString(value);
+			return Categories.ResourceManager.GetString(value, Categories.Culture) ?? base.GetLocalizedString(value);
 		}
 	}
 }

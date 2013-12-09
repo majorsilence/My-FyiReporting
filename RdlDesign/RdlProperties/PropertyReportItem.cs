@@ -1,3 +1,5 @@
+using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -22,13 +24,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;            // need this for the properties metadata
+using System.Text;
 using System.Xml;
-using System.Text.RegularExpressions;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -96,9 +94,10 @@ namespace fyiReporting.RdlDesign
         }
  
         #region Design
-        [LocalizedCategory("Design"),
-           ParenthesizePropertyName(true),
-           Description("The unique name of the report item.")]
+        [LocalizedCategory("Design")]
+		[LocalizedDisplayName("Base_Name")]
+		[LocalizedDescription("Base_Name")]
+        [ParenthesizePropertyName(true)]
         public string Name
         {
             get
@@ -113,8 +112,9 @@ namespace fyiReporting.RdlDesign
 #endregion
         
         #region Style
-        [LocalizedCategory("Style"), 
-          Description("Defines the border of the report item.")]
+        [LocalizedCategory("Style")]
+		[LocalizedDisplayName("Base_Border")]
+		[LocalizedDescription("Base_Border")]
         public PropertyBorder Border
         {
             get
@@ -122,8 +122,10 @@ namespace fyiReporting.RdlDesign
                 return new PropertyBorder(this);
             }
         }
-        [LocalizedCategory("Style"),
-           Description("Controls the padding expressions")]
+
+        [LocalizedCategory("Style")]
+		[LocalizedDisplayName("Base_Padding")]
+		[LocalizedDescription("Base_Padding")]
         public PropertyPadding Padding
         {
             get
@@ -131,8 +133,10 @@ namespace fyiReporting.RdlDesign
                 return new PropertyPadding(this);
             }
         }
-        [LocalizedCategory("Style"),
-           Description("Controls the background expressions")]
+
+        [LocalizedCategory("Style")]
+		[LocalizedDisplayName("Base_Background")]
+		[LocalizedDescription("Base_Background")]
         public PropertyBackground Background
         {
             get
@@ -141,9 +145,12 @@ namespace fyiReporting.RdlDesign
             }
         }
         #endregion
+
         #region Behavior
-        [LocalizedCategory("Behavior"),
-           Description("Defines a hyperlink, bookmark link, or drillthrough action for the report item.")]
+
+		[LocalizedCategory("Behavior")]
+		[LocalizedDisplayName("Base_Action")]
+		[LocalizedDescription("Base_Action")]
         public PropertyAction Action
         {
             get
@@ -151,8 +158,10 @@ namespace fyiReporting.RdlDesign
                 return new PropertyAction(this);
             }
         }
-        [LocalizedCategory("Behavior"),
-           Description("In PDFs, bookmarks are created for each instance of the report item.  For example, putting a bookmark on a report item in a group header will generate a list of the groups in the report.")]
+
+        [LocalizedCategory("Behavior")]
+		[LocalizedDisplayName("Base_Bookmark")]
+		[LocalizedDescription("Base_Bookmark")]
         public PropertyExpr Bookmark
         {
             get
@@ -166,8 +175,10 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [LocalizedCategory("Behavior"),
-           Description("A ToolTip provides a label that can be used by a renderer.  For example, the Viewer and PDF renderers use this to popup the specified text when the mouse is over the report item.")]
+
+        [LocalizedCategory("Behavior")]
+		[LocalizedDisplayName("Base_ToolTip")]
+		[LocalizedDescription("Base_ToolTip")]
         public PropertyExpr ToolTip
         {
             get 
@@ -181,8 +192,10 @@ namespace fyiReporting.RdlDesign
             }
 
         }
-        [LocalizedCategory("Behavior"),
-          Description("Defines the visibility of the item.")]
+
+        [LocalizedCategory("Behavior")]
+		[LocalizedDisplayName("Base_Visibility")]
+		[LocalizedDescription("Base_Visibility")]
         public PropertyVisibility Visibility
         {
             get
@@ -190,11 +203,14 @@ namespace fyiReporting.RdlDesign
                 return new PropertyVisibility(this);
             }
         }
+
         #endregion
          
         #region XML
-        [LocalizedCategory("XML"),
-   Description("The name to use for the element or attribute when exporting to XML.")]
+
+        [LocalizedCategory("XML")]
+		[LocalizedDisplayName("Base_DataElementName")]
+		[LocalizedDescription("Base_DataElementName")]
         public string DataElementName
         {
             get
@@ -206,8 +222,10 @@ namespace fyiReporting.RdlDesign
                 SetValue("DataElementName", value);
             }
         }
-        [LocalizedCategory("XML"),
-   Description("When rendering XML determines how or whether the item appears in the XML.")]
+
+        [LocalizedCategory("XML")]
+		[LocalizedDisplayName("Base_DataElementOutput")]
+		[LocalizedDescription("Base_DataElementOutput")]
         public DataElementOutputEnum DataElementOutput
         {
             get
@@ -221,8 +239,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [LocalizedCategory("Layout"),
-   Description("Drawing order of the report item.")]
+        [LocalizedCategory("Layout")]
+		[LocalizedDisplayName("Base_ZIndex")]
+		[LocalizedDescription("Base_ZIndex")]
         public int ZIndex
         {
             get
@@ -246,8 +265,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [LocalizedCategory("Layout"),
-   Description("Report item can span multiple columns.")]
+        [LocalizedCategory("Layout")]
+		[LocalizedDisplayName("Base_ColumnSpan")]
+		[LocalizedDescription("Base_ColumnSpan")]
         public int ColumnSpan
         {
             get
@@ -275,8 +295,9 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        [LocalizedCategory("Layout"),
-   Description("Height and width of the report item.")]
+        [LocalizedCategory("Layout")]
+		[LocalizedDisplayName("Base_Size")]
+		[LocalizedDescription("Base_Size")]
         public PropertySize Size
         {
             get
@@ -286,8 +307,10 @@ namespace fyiReporting.RdlDesign
                 return new PropertySize(this, h, w);
             }
         }
-        [LocalizedCategory("Layout"),
-   Description("Location of the report item.")]
+
+        [LocalizedCategory("Layout")]
+		[LocalizedDisplayName("Base_Location")]
+		[LocalizedDescription("Base_Location")]
         public PropertyLocation Location
         {
             get
@@ -301,8 +324,9 @@ namespace fyiReporting.RdlDesign
         #endregion
 
         #region Table
-        [LocalizedCategory("Table"), 
-            Description("Table report item properties.")]
+        [LocalizedCategory("Table")]
+		[LocalizedDisplayName("Base_Table")]
+		[LocalizedDescription("Base_Table")]
         public PropertyTable Table
         {
             get
@@ -317,9 +341,11 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
 
-#region Matrix
-        [LocalizedCategory("Matrix"),
-            Description("Matrix report item properties.")]
+		#region Matrix
+        
+		[LocalizedCategory("Matrix")]
+		[LocalizedDisplayName("Base_Matrix")]
+		[LocalizedDescription("Base_Matrix")]
         public PropertyMatrix Matrix
         {
             get
@@ -690,6 +716,7 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
     }
+
     #region ColorValues
     internal class ColorConverter : StringConverter
     {
