@@ -266,7 +266,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RdlProperties\DisplayNames.ru-RU.resx" />
     <EmbeddedResource Include="Resources\Strings.resx">
-      <Generator>ResXFileCodeGeneratorEx</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />

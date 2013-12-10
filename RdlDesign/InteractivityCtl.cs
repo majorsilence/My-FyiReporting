@@ -29,6 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -504,12 +505,11 @@ namespace fyiReporting.RdlDesign
 		private void bDrillthrough_Click(object sender, System.EventArgs e)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
-			ofd.Filter = "Report files (*.rdl)|*.rdl" +
-                "|All files (*.*)|*.*";
+			ofd.Filter = Strings.InteractivityCtl_bDrillthrough_Click_ReportFilesFilter;
 			ofd.FilterIndex = 1;
 			ofd.FileName = "*.rdl";
 
-			ofd.Title = "Specify Report File Name";
+			ofd.Title = Strings.InteractivityCtl_bDrillthrough_Click_ReportFilesTitle;
 			ofd.DefaultExt = "rdl";
 			ofd.AddExtension = true;
             try

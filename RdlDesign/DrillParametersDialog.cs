@@ -151,12 +151,11 @@ namespace fyiReporting.RdlDesign
         private void bFile_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Report files (*.rdl)|*.rdl" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.DrillParametersDialog_bFile_Click_ReportFilesFilter;
             ofd.FilterIndex = 1;
             ofd.FileName = "*.rdl";
 
-            ofd.Title = "Specify Report File Name";
+            ofd.Title = Strings.DrillParametersDialog_bFile_Click_ReportFilesTitle;
             ofd.DefaultExt = "rdl";
             ofd.AddExtension = true;
             try

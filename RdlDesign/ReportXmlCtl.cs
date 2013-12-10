@@ -28,6 +28,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using fyiReporting.RdlDesign.Resources;
 
 
 namespace fyiReporting.RdlDesign
@@ -206,12 +207,11 @@ namespace fyiReporting.RdlDesign
 		{
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "XSL files (*.xsl)|*.xsl" +
-                    "|All files (*.*)|*.*";
+                ofd.Filter = Strings.ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter;
                 ofd.FilterIndex = 1;
                 ofd.FileName = "*.xsl";
 
-                ofd.Title = "Specify DataTransform File Name";
+                ofd.Title = Strings.ReportXmlCtl_bOpenXsl_Click_XslFilerTitle;
                 //			ofd.DefaultExt = "xsl";
                 //			ofd.AddExtension = true;
 

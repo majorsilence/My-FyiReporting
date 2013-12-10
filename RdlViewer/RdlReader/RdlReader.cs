@@ -289,8 +289,7 @@ namespace fyiReporting.RdlReader
         private void menuFileOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Report files (*.rdl)|*.rdl|" +
-                "All files (*.*)|*.*";
+            ofd.Filter = Strings.RdlReader_menuFileOpen_Click_Filter;
             ofd.FilterIndex = 1;
             ofd.CheckFileExists = true;
             ofd.Multiselect = true;
@@ -394,15 +393,7 @@ namespace fyiReporting.RdlReader
                 return;
 
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter =
-                "PDF files (*.pdf)|*.pdf|" +
-                "XML files (*.xml)|*.xml|" +
-                "HTML files (*.html)|*.html|" +
-                "CSV files (*.csv)|*.csv|" +
-                "RTF files (*.rtf)|*.rtf|" +
-                "TIF files (*.tif)|*.tif|" +
-                "Excel files (*.xlsx)|*.xlsx|" +
-                "MHT files (*.mht)|*.mht";
+            sfd.Filter = Strings.RdlReader_menuFileSaveAs_Click_FilesFilter;
             sfd.FilterIndex = 1;
 
             Uri file = mc.SourceFile;

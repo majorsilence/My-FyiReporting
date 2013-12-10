@@ -259,8 +259,7 @@ namespace fyiReporting.RdlMapFile
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.DefaultExt = "xml";
-            sfd.Filter = "RDL Map files (*.xml)|*.xml|" +
-                "All files (*.*)|*.*";
+            sfd.Filter = Strings.MapFile_SaveAs_RDL_MapFilesFilter;
             sfd.FilterIndex = 1;
             sfd.CheckFileExists = false;
             bool rc = false;
@@ -294,8 +293,7 @@ namespace fyiReporting.RdlMapFile
 
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.DefaultExt = "xml";
-            ofd.Filter = "Map files (*.xml)|*.xml|" +
-                "All files (*.*)|*.*";
+            ofd.Filter = Strings.MapFile_openToolStripMenuItem_Click_OpenMap;
             ofd.FilterIndex = 1;
             ofd.CheckFileExists = true;
             ofd.Multiselect = false;
@@ -332,13 +330,7 @@ namespace fyiReporting.RdlMapFile
         private void setBackgroundImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Bitmap Files (*.bmp)|*.bmp" +
-                "|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif" +
-                "|GIF (*.gif)|*.gif" +
-                "|TIFF (*.tif;*.tiff)|*.tif;*.tiff" +
-                "|PNG (*.png)|*.png" +
-                "|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture;
             ofd.FilterIndex = 6;
             ofd.CheckFileExists = true;
             try
@@ -496,8 +488,7 @@ namespace fyiReporting.RdlMapFile
         private void importMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Shape Files (*.shp)|*.shp" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.MapFile_importMenuItem_Click_OpenShape;
             ofd.FilterIndex = 0;
             ofd.CheckFileExists = true;
             try

@@ -1421,15 +1421,14 @@ namespace fyiReporting.RdlDesign
         private void bShared_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Data source reference files (*.dsr)|*.dsr" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.DialogDatabase_bShared_Click_DSRFilter;
             ofd.FilterIndex = 1;
             if (tbConnection.Text.Length > 0)
                 ofd.FileName = tbConnection.Text;
             else
                 ofd.FileName = "*.dsr";
 
-            ofd.Title = "Specify Data Source Reference File Name";
+            ofd.Title = Strings.DialogDatabase_bShared_Click_DSRTitle;
             ofd.CheckFileExists = true;
             ofd.DefaultExt = "dsr";
             ofd.AddExtension = true;
@@ -1449,7 +1448,7 @@ namespace fyiReporting.RdlDesign
             OpenFileDialog ofd = new OpenFileDialog();
             try
             {
-                ofd.Filter = "All files (*.*)|*.*";
+                ofd.Filter = Strings.DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter;
                 ofd.CheckFileExists = true;
                 
                 try

@@ -172,7 +172,7 @@ namespace RdlMapFile.Resources {
         ///
         ///Unless required by applicable law or agreed to in writing, software
         ///distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-        ///WITHOUT WARRANTIE [rest of string was truncated]&quot;;.
+        ///WITHO [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DialogAbout_About {
             get {
@@ -208,11 +208,29 @@ namespace RdlMapFile.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shape Files (*.shp)|*.shp|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MapFile_importMenuItem_Click_OpenShape {
+            get {
+                return ResourceManager.GetString("MapFile_importMenuItem_Click_OpenShape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error opening.
         /// </summary>
         internal static string MapFile_openToolStripMenuItem_Click_ErrorOpening {
             get {
                 return ResourceManager.GetString("MapFile_openToolStripMenuItem_Click_ErrorOpening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MapFile_openToolStripMenuItem_Click_OpenMap {
+            get {
+                return ResourceManager.GetString("MapFile_openToolStripMenuItem_Click_OpenMap", resourceCulture);
             }
         }
         
@@ -231,6 +249,24 @@ namespace RdlMapFile.Resources {
         internal static string MapFile_reducePolygonPointsToolStripMenuItem_ReducePolygon {
             get {
                 return ResourceManager.GetString("MapFile_reducePolygonPointsToolStripMenuItem_ReducePolygon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RDL Map files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MapFile_SaveAs_RDL_MapFilesFilter {
+            get {
+                return ResourceManager.GetString("MapFile_SaveAs_RDL_MapFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture {
+            get {
+                return ResourceManager.GetString("MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture", resourceCulture);
             }
         }
         

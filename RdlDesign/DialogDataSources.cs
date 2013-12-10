@@ -123,15 +123,14 @@ namespace fyiReporting.RdlDesign
         private void bGetFilename_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Data source reference files (*.dsr)|*.dsr" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.DialogDataSources_bGetFilename_Click_DSRFilter;
             ofd.FilterIndex = 1;
             if (tbFilename.Text.Length > 0)
                 ofd.FileName = tbFilename.Text;
             else
                 ofd.FileName = "*.dsr";
 
-            ofd.Title = "Specify Data Source Reference File Name";
+            ofd.Title = Strings.DialogDataSources_bGetFilename_Click_DSRTitle;
             ofd.DefaultExt = "dsr";
             ofd.AddExtension = true;
 

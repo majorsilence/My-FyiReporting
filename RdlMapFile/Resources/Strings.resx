@@ -214,4 +214,16 @@ the website www.fyiReporting.com.</value>
 	<data name="ShapeFile_ErrorA_ShapeTypeNotSupported" xml:space="preserve">
     <value>ShapeType {0} is not supported.</value>
   </data>
+	<data name="MapFile_openToolStripMenuItem_Click_OpenMap" xml:space="preserve">
+    <value>Map files (*.xml)|*.xml|All files (*.*)|*.*</value>
+  </data>
+	<data name="MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture" xml:space="preserve">
+    <value>Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*</value>
+  </data>
+	<data name="MapFile_importMenuItem_Click_OpenShape" xml:space="preserve">
+    <value>Shape Files (*.shp)|*.shp|All files (*.*)|*.*</value>
+  </data>
+	<data name="MapFile_SaveAs_RDL_MapFilesFilter" xml:space="preserve">
+    <value>RDL Map files (*.xml)|*.xml|All files (*.*)|*.*</value>
+  </data>
 </root>

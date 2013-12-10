@@ -220,36 +220,36 @@ namespace fyiReporting.RdlDesign
         public bool Export(fyiReporting.RDL.OutputPresentationType type)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Export to " + type.ToString().ToUpper();
+            sfd.Title = string.Format(Strings.MDIChild_Export_ExportTitleFormat, type.ToString().ToUpper());
             switch (type)
             {
                 case  OutputPresentationType.CSV:
-                    sfd.Filter = "CSV file (*.csv)|*.csv|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_CSV;
                     break;
                 case OutputPresentationType.XML:
-                    sfd.Filter = "XML file (*.xml)|*.xml|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_XML;
                     break;
                 case OutputPresentationType.PDF:
                 case OutputPresentationType.PDFOldStyle:
-                    sfd.Filter = "PDF file (*.pdf)|*.pdf|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_PDF;
                     break;
                 case OutputPresentationType.TIF:
-                    sfd.Filter = "TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_TIF;
                     break;
                 case OutputPresentationType.RTF:
-                    sfd.Filter = "RTF file (*.rtf)|*.rtf|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_RTF;
                     break;
                 case OutputPresentationType.Word:
-                    sfd.Filter = "DOC file (*.doc)|*.doc|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_DOC;
                     break;
                 case OutputPresentationType.Excel:
-                    sfd.Filter = "Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_Excel;
                     break;
                 case OutputPresentationType.HTML:
-                    sfd.Filter = "Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_Web_Page;
                     break;
                 case OutputPresentationType.MHTML:
-                    sfd.Filter = "MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*";
+                    sfd.Filter = Strings.MDIChild_Export_MHT;
                     break;
                 default:
                     throw new Exception(Strings.MDIChild_Error_AllowedExportTypes);
@@ -300,7 +300,7 @@ namespace fyiReporting.RdlDesign
         public bool FileSaveAs()
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "RDL files (*.rdl)|*.rdl|All files (*.*)|*.*";
+            sfd.Filter = Strings.MDIChild_FileSaveAs_RDLFilter;
             sfd.FilterIndex = 1;
 
             Uri file = SourceFile;

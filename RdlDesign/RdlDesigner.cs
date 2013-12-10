@@ -794,8 +794,7 @@ namespace fyiReporting.RdlDesign
                 }
             }
             ofd.DefaultExt = "rdl";
-            ofd.Filter = "Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|" +
-                "All files (*.*)|*.*";
+            ofd.Filter = Strings.RdlDesigner_menuFileOpen_Click_ReportFilesFilter;
             ofd.FilterIndex = 1;
             ofd.CheckFileExists = true;
             ofd.Multiselect = true;

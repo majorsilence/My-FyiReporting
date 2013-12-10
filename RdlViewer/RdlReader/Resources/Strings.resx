@@ -153,4 +153,10 @@ the website https://github.com/majorsilence/My-FyiReporting.</value>
 	<data name="DialogAbout_Version" xml:space="preserve">
     <value>Version {0}</value>
   </data>
+	<data name="RdlReader_menuFileOpen_Click_Filter" xml:space="preserve">
+    <value>Report files (*.rdl)|*.rdl|All files (*.*)|*.*</value>
+  </data>
+	<data name="RdlReader_menuFileSaveAs_Click_FilesFilter" xml:space="preserve">
+    <value>PDF files (*.pdf)|*.pdf|XML files (*.xml)|*.xml|HTML files (*.html)|*.html|CSV files (*.csv)|*.csv|RTF files (*.rtf)|*.rtf|TIF files (*.tif)|*.tif|Excel files (*.xlsx)|*.xlsx|MHT files (*.mht)|*.mht</value>
+  </data>
 </root>

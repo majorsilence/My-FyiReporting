@@ -256,12 +256,11 @@ namespace fyiReporting.RdlDesign
 		private void bRowsFile_Click(object sender, System.EventArgs e)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
-			ofd.Filter = "XML files (*.xml)|*.xml" +
-                "|All files (*.*)|*.*";
+			ofd.Filter = Strings.DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter;
 			ofd.FilterIndex = 1;
 			ofd.FileName = "*.xml";
 
-			ofd.Title = "Specify XML File Name";
+			ofd.Title = Strings.DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle;
 			ofd.DefaultExt = "xml";
 			ofd.AddExtension = true;
 

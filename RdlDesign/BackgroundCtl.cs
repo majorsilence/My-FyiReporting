@@ -28,6 +28,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -574,13 +575,7 @@ namespace fyiReporting.RdlDesign
         private void bExternal_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Bitmap Files (*.bmp)|*.bmp" +
-                "|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif" +
-                "|GIF (*.gif)|*.gif" +
-                "|TIFF (*.tif;*.tiff)|*.tif;*.tiff" +
-                "|PNG (*.png)|*.png" +
-                "|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.BackgroundCtl_bExternal_Click_ImageFilesFilter;
             ofd.FilterIndex = 6;
             ofd.CheckFileExists = true;
             try

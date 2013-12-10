@@ -1000,4 +1000,109 @@ http://www.apache.org/licenses/LICENSE-2.0
   <data name="Undo_Error_UnknownAction" xml:space="preserve">
     <value>Неизвестное действие</value>
   </data>
+  <data name="BackgroundCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
+    <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter" xml:space="preserve">
+    <value>XML (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle" xml:space="preserve">
+    <value>Выберите XML-файл</value>
+  </data>
+  <data name="DialogDatabase_bShared_Click_DSRFilter" xml:space="preserve">
+    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DialogDatabase_bShared_Click_DSRTitle" xml:space="preserve">
+    <value>Выберите общий источник данных</value>
+  </data>
+  <data name="DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter" xml:space="preserve">
+    <value>Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DialogDataSources_bGetFilename_Click_DSRFilter" xml:space="preserve">
+    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DialogDataSources_bGetFilename_Click_DSRTitle" xml:space="preserve">
+    <value>Выберите общий источник данных</value>
+  </data>
+  <data name="DialogEmbeddedImages_bImport_Click_ImageFilesFilter" xml:space="preserve">
+    <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DialogToolOptions_bAddMap_Click_MapFilesFilter" xml:space="preserve">
+    <value>Карты (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DrillParametersDialog_bFile_Click_ReportFilesFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DrillParametersDialog_bFile_Click_ReportFilesTitle" xml:space="preserve">
+    <value>Выберите отчёт</value>
+  </data>
+  <data name="FileUIEditor_EditValue_XSLFilesFilter" xml:space="preserve">
+    <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="ImageCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
+    <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesTitle" xml:space="preserve">
+    <value>Выберите отчёт</value>
+  </data>
+  <data name="RdlDesigner_menuFileOpen_Click_ReportFilesFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl;*rdlc)|*.rdl;*.rdlc|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="RdlUserControl_openToolStripButton1_Click_ReportFilesFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl;*rdlc)|*.rdl;*.rdlc|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="ReportXmlCtl_bOpenXsl_Click_XslFilerTitle" xml:space="preserve">
+    <value>Выберите файл преобразования данных</value>
+  </data>
+  <data name="ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter" xml:space="preserve">
+    <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="SubreportCtl_bFile_Click_ReportFilesFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="SubreportCtl_bFile_Click_ReportFilesTitle" xml:space="preserve">
+    <value>Выберите отчёт</value>
+  </data>
+  <data name="DialogDataSourceRef_bGetFilename_Click_DSRFilter" xml:space="preserve">
+    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="DialogDataSourceRef_bGetFilename_Click_DSRTitle" xml:space="preserve">
+    <value>Укажите название общего источника данных</value>
+  </data>
+  <data name="MDIChild_Export_CSV" xml:space="preserve">
+    <value>CSV (*.csv)|*.csv|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_DOC" xml:space="preserve">
+    <value>DOC (*.doc)|*.doc|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_Excel" xml:space="preserve">
+    <value>Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_ExportTitleFormat" xml:space="preserve">
+    <value>Экспортировать в {0}</value>
+  </data>
+  <data name="MDIChild_Export_MHT" xml:space="preserve">
+    <value>MHT (*.mht)|*.mhtml;*.mht|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_PDF" xml:space="preserve">
+    <value>PDF (*.pdf)|*.pdf|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_RTF" xml:space="preserve">
+    <value>RTF (*.rtf)|*.rtf|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_TIF" xml:space="preserve">
+    <value>TIF (*.tif, *.tiff)|*.tiff;*.tif|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_Web_Page" xml:space="preserve">
+    <value>Веб-страница (*.html, *.htm)|*.html;*.htm|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_Export_XML" xml:space="preserve">
+    <value>XML (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
+    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+  </data>
 </root>

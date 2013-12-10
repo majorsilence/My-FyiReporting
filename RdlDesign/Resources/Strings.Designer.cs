@@ -61,6 +61,15 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*.
+        /// </summary>
+        internal static string BackgroundCtl_bExternal_Click_ImageFilesFilter {
+            get {
+                return ResourceManager.GetString("BackgroundCtl_bExternal_Click_ImageFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code Verification.
         /// </summary>
         internal static string CodeCtl_Show_CodeVerification {
@@ -75,6 +84,24 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string CodeCtl_Show_NoErrors {
             get {
                 return ResourceManager.GetString("CodeCtl_Show_NoErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter {
+            get {
+                return ResourceManager.GetString("DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify XML File Name.
+        /// </summary>
+        internal static string DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle {
+            get {
+                return ResourceManager.GetString("DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle", resourceCulture);
             }
         }
         
@@ -804,7 +831,7 @@ namespace fyiReporting.RdlDesign.Resources {
         ///
         ///Unless required by applicable law or agreed to in writing, software
         ///distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-        ///WITHOUT WARRANTIES OR [rest of string was truncated]&quot;;.
+        ///WITHOUT WA [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DialogAbout_DialogAbout_About {
             get {
@@ -818,6 +845,33 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string DialogAbout_DialogAbout_Version {
             get {
                 return ResourceManager.GetString("DialogAbout_DialogAbout_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogDatabase_bShared_Click_DSRFilter {
+            get {
+                return ResourceManager.GetString("DialogDatabase_bShared_Click_DSRFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Data Source Reference File Name.
+        /// </summary>
+        internal static string DialogDatabase_bShared_Click_DSRTitle {
+            get {
+                return ResourceManager.GetString("DialogDatabase_bShared_Click_DSRTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter {
+            get {
+                return ResourceManager.GetString("DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter", resourceCulture);
             }
         }
         
@@ -885,11 +939,47 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogDataSourceRef_bGetFilename_Click_DSRFilter {
+            get {
+                return ResourceManager.GetString("DialogDataSourceRef_bGetFilename_Click_DSRFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Data Source Reference File Name.
+        /// </summary>
+        internal static string DialogDataSourceRef_bGetFilename_Click_DSRTitle {
+            get {
+                return ResourceManager.GetString("DialogDataSourceRef_bGetFilename_Click_DSRTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to create data source reference file.
         /// </summary>
         internal static string DialogDataSourceRef_bOK_Click_UnableCreateDSR {
             get {
                 return ResourceManager.GetString("DialogDataSourceRef_bOK_Click_UnableCreateDSR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogDataSources_bGetFilename_Click_DSRFilter {
+            get {
+                return ResourceManager.GetString("DialogDataSources_bGetFilename_Click_DSRFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Data Source Reference File Name.
+        /// </summary>
+        internal static string DialogDataSources_bGetFilename_Click_DSRTitle {
+            get {
+                return ResourceManager.GetString("DialogDataSources_bGetFilename_Click_DSRTitle", resourceCulture);
             }
         }
         
@@ -926,6 +1016,15 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string DialogDataSources_ShowE_NameMustSpecified {
             get {
                 return ResourceManager.GetString("DialogDataSources_ShowE_NameMustSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogEmbeddedImages_bImport_Click_ImageFilesFilter {
+            get {
+                return ResourceManager.GetString("DialogEmbeddedImages_bImport_Click_ImageFilesFilter", resourceCulture);
             }
         }
         
@@ -1029,6 +1128,15 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Map files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DialogToolOptions_bAddMap_Click_MapFilesFilter {
+            get {
+                return ResourceManager.GetString("DialogToolOptions_bAddMap_Click_MapFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recent files maximum must be an integer between 1 and 50.
         /// </summary>
         internal static string DialogToolOptions_Error_RecentFilesMax {
@@ -1085,6 +1193,24 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DrillParametersDialog_bFile_Click_ReportFilesFilter {
+            get {
+                return ResourceManager.GetString("DrillParametersDialog_bFile_Click_ReportFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Report File Name.
+        /// </summary>
+        internal static string DrillParametersDialog_bFile_Click_ReportFilesTitle {
+            get {
+                return ResourceManager.GetString("DrillParametersDialog_bFile_Click_ReportFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error reading report file.
         /// </summary>
         internal static string DrillParametersDialog_Show_ErrorReading {
@@ -1117,6 +1243,15 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string DrillParametersDialog_ShowC_ReportHasErrors {
             get {
                 return ResourceManager.GetString("DrillParametersDialog_ShowC_ReportHasErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XSL Files (*.xsl)|*.xsl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string FileUIEditor_EditValue_XSLFilesFilter {
+            get {
+                return ResourceManager.GetString("FileUIEditor_EditValue_XSLFilesFilter", resourceCulture);
             }
         }
         
@@ -1238,11 +1373,137 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*.
+        /// </summary>
+        internal static string ImageCtl_bExternal_Click_ImageFilesFilter {
+            get {
+                return ResourceManager.GetString("ImageCtl_bExternal_Click_ImageFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string InteractivityCtl_bDrillthrough_Click_ReportFilesFilter {
+            get {
+                return ResourceManager.GetString("InteractivityCtl_bDrillthrough_Click_ReportFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Report File Name.
+        /// </summary>
+        internal static string InteractivityCtl_bDrillthrough_Click_ReportFilesTitle {
+            get {
+                return ResourceManager.GetString("InteractivityCtl_bDrillthrough_Click_ReportFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only HTML, MHT, XML, CSV, RTF, DOC, Excel, TIF and PDF are allowed as Export types..
         /// </summary>
         internal static string MDIChild_Error_AllowedExportTypes {
             get {
                 return ResourceManager.GetString("MDIChild_Error_AllowedExportTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV file (*.csv)|*.csv|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_CSV {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_CSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOC file (*.doc)|*.doc|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_DOC {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_DOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_Excel {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_Excel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to {0}.
+        /// </summary>
+        internal static string MDIChild_Export_ExportTitleFormat {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_ExportTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_MHT {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_MHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF file (*.pdf)|*.pdf|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_PDF {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_PDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RTF file (*.rtf)|*.rtf|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_RTF {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_RTF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_TIF {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_TIF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_Web_Page {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_Web_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML file (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_Export_XML {
+            get {
+                return ResourceManager.GetString("MDIChild_Export_XML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RDL files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MDIChild_FileSaveAs_RDLFilter {
+            get {
+                return ResourceManager.GetString("MDIChild_FileSaveAs_RDLFilter", resourceCulture);
             }
         }
         
@@ -1886,6 +2147,15 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*.
+        /// </summary>
+        internal static string RdlDesigner_menuFileOpen_Click_ReportFilesFilter {
+            get {
+                return ResourceManager.GetString("RdlDesigner_menuFileOpen_Click_ReportFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Desktop.
         /// </summary>
         internal static string RdlDesigner_menuTools_Popup_StartDesktop {
@@ -2138,6 +2408,15 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*.
+        /// </summary>
+        internal static string RdlUserControl_openToolStripButton1_Click_ReportFilesFilter {
+            get {
+                return ResourceManager.GetString("RdlUserControl_openToolStripButton1_Click_ReportFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print error: .
         /// </summary>
         internal static string RdlUserControl_Show_PrintError {
@@ -2198,6 +2477,24 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string ReportParameterCtl_bDefaultValues_Click_Default_Values {
             get {
                 return ResourceManager.GetString("ReportParameterCtl_bDefaultValues_Click_Default_Values", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify DataTransform File Name.
+        /// </summary>
+        internal static string ReportXmlCtl_bOpenXsl_Click_XslFilerTitle {
+            get {
+                return ResourceManager.GetString("ReportXmlCtl_bOpenXsl_Click_XslFilerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XSL files (*.xsl)|*.xsl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter {
+            get {
+                return ResourceManager.GetString("ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter", resourceCulture);
             }
         }
         
@@ -2423,6 +2720,24 @@ namespace fyiReporting.RdlDesign.Resources {
         internal static string StyleTextCtl_Show_InvalidFontSize {
             get {
                 return ResourceManager.GetString("StyleTextCtl_Show_InvalidFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string SubreportCtl_bFile_Click_ReportFilesFilter {
+            get {
+                return ResourceManager.GetString("SubreportCtl_bFile_Click_ReportFilesFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify Report File Name.
+        /// </summary>
+        internal static string SubreportCtl_bFile_Click_ReportFilesTitle {
+            get {
+                return ResourceManager.GetString("SubreportCtl_bFile_Click_ReportFilesTitle", resourceCulture);
             }
         }
         

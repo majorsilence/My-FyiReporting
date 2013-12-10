@@ -689,8 +689,7 @@ namespace fyiReporting.RdlDesign
 
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "XSL Files (*.xsl)|*.xsl" +
-                    "|All files (*.*)|*.*";
+                ofd.Filter = Strings.FileUIEditor_EditValue_XSLFilesFilter;
                 ofd.FilterIndex = 0;
                 ofd.CheckFileExists = true;
                 if (ofd.ShowDialog() == DialogResult.OK)

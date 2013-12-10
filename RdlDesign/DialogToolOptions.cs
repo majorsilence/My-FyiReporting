@@ -556,8 +556,7 @@ namespace fyiReporting.RdlDesign
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             ofd.DefaultExt = "rdl";
-            ofd.Filter = "Map files (*.xml)|*.xml|" +
-                "All files (*.*)|*.*";
+            ofd.Filter = Strings.DialogToolOptions_bAddMap_Click_MapFilesFilter;
             ofd.FilterIndex = 1;
             ofd.CheckFileExists = true;
             ofd.Multiselect = true;

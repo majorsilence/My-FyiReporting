@@ -145,6 +145,9 @@ Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
   <data name="DialogAbout_Version" xml:space="preserve">
     <value>Версия {0}</value>
   </data>
+  <data name="RdlReader_menuFileOpen_Click_Filter" xml:space="preserve">
+    <value>Файлы отчётов (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+  </data>
   <data name="RdlReader_SaveG_NotValidFileType" xml:space="preserve">
     <value>{0} - некорректный тип файла. Допустимые расширения файлов: PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.</value>
   </data>
@@ -171,5 +174,8 @@ Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
   </data>
   <data name="ZoomTo_ShowI_MagnificationLevelInvalid" xml:space="preserve">
     <value>Уровень увеличения является недопустимым числом.</value>
+  </data>
+  <data name="RdlReader_menuFileSaveAs_Click_FilesFilter" xml:space="preserve">
+    <value>PDF (*.pdf)|*.pdf|XML (*.xml)|*.xml|HTML (*.html)|*.html|CSV files (*.csv)|*.csv|RTF (*.rtf)|*.rtf|TIF (*.tif)|*.tif|Excel (*.xlsx)|*.xlsx|MHT (*.mht)|*.mht</value>
   </data>
 </root>

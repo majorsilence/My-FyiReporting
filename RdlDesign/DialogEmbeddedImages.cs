@@ -111,13 +111,7 @@ namespace fyiReporting.RdlDesign
         private void bImport_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Bitmap Files (*.bmp)|*.bmp" +
-                "|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif" +
-                "|GIF (*.gif)|*.gif" +
-                "|TIFF (*.tif;*.tiff)|*.tif;*.tiff" +
-                "|PNG (*.png)|*.png" +
-                "|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png" +
-                "|All files (*.*)|*.*";
+            ofd.Filter = Strings.DialogEmbeddedImages_bImport_Click_ImageFilesFilter;
             ofd.FilterIndex = 6;
             ofd.CheckFileExists = true;
             ofd.Multiselect = true;

@@ -73,7 +73,7 @@ namespace RdlReader.Resources {
         ///
         ///    http://www.apache.org/licenses/LICENSE-2.0
         ///
-        ///Unless required by applicable law or agree [rest of string was truncated]&quot;;.
+        ///Unless required by applicable  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DialogAbout_About {
             get {
@@ -96,6 +96,24 @@ namespace RdlReader.Resources {
         internal static string DialogAbout_Version {
             get {
                 return ResourceManager.GetString("DialogAbout_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        /// </summary>
+        internal static string RdlReader_menuFileOpen_Click_Filter {
+            get {
+                return ResourceManager.GetString("RdlReader_menuFileOpen_Click_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF files (*.pdf)|*.pdf|XML files (*.xml)|*.xml|HTML files (*.html)|*.html|CSV files (*.csv)|*.csv|RTF files (*.rtf)|*.rtf|TIF files (*.tif)|*.tif|Excel files (*.xlsx)|*.xlsx|MHT files (*.mht)|*.mht.
+        /// </summary>
+        internal static string RdlReader_menuFileSaveAs_Click_FilesFilter {
+            get {
+                return ResourceManager.GetString("RdlReader_menuFileSaveAs_Click_FilesFilter", resourceCulture);
             }
         }
         

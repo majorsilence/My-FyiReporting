@@ -287,12 +287,11 @@ namespace fyiReporting.RdlDesign
 		{
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Report files (*.rdl)|*.rdl" +
-                    "|All files (*.*)|*.*";
+                ofd.Filter = Strings.SubreportCtl_bFile_Click_ReportFilesFilter;
                 ofd.FilterIndex = 1;
                 ofd.FileName = "*.rdl";
 
-                ofd.Title = "Specify Report File Name";
+                ofd.Title = Strings.SubreportCtl_bFile_Click_ReportFilesTitle;
                 ofd.DefaultExt = "rdl";
                 ofd.AddExtension = true;
 

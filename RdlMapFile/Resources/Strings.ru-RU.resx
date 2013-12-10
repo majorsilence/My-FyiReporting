@@ -233,4 +233,16 @@ http://www.apache.org/licenses/LICENSE-2.0
   <data name="ShapeFile_ErrorA_ShapeTypeNotSupported" xml:space="preserve">
     <value>Тип фигуры {0} не поддерживается.</value>
   </data>
+  <data name="MapFile_importMenuItem_Click_OpenShape" xml:space="preserve">
+    <value>Файлы фигур (*.shp)|*.shp|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MapFile_openToolStripMenuItem_Click_OpenMap" xml:space="preserve">
+    <value>Файлы карт (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture" xml:space="preserve">
+    <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все файлы изображений|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="MapFile_SaveAs_RDL_MapFilesFilter" xml:space="preserve">
+    <value>Карты (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+  </data>
 </root>
