@@ -6,7 +6,7 @@ cd ../RdlCmd
 
 rm ./bin/Release/RdlCmd.exe
 # RdlCmd should still build and work with 3.5 and older versions of linux only suport 3.5 and not 4.0
-xbuild "RdlCmd.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" # /m:4
+xbuild "RdlCmd.sln" /toolsversion:4.0 /p:Configuration="BundleLinux";Platform="AnyCPU" # /m:4
 
 cd ./bin/Release/
 
