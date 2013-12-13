@@ -10,6 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlCri", "..\RdlCri\RdlCri.
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		BundleLinux|Any CPU = BundleLinux|Any CPU
+		BundleLinux|x64 = BundleLinux|x64
+		BundleLinux|x86 = BundleLinux|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -18,6 +21,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|Any CPU.ActiveCfg = BundleLinux|Any CPU
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|Any CPU.Build.0 = BundleLinux|Any CPU
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|x64.ActiveCfg = BundleLinux|x64
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|x64.Build.0 = BundleLinux|x64
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|x86.ActiveCfg = BundleLinux|x86
+		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.BundleLinux|x86.Build.0 = BundleLinux|x86
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Debug|x64.ActiveCfg = Debug|x64
@@ -30,6 +39,12 @@ Global
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Release|x64.Build.0 = Release|x64
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Release|x86.ActiveCfg = Release|x86
 		{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}.Release|x86.Build.0 = Release|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|Any CPU.ActiveCfg = BundleLinux|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|Any CPU.Build.0 = BundleLinux|Any CPU
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|x64.ActiveCfg = BundleLinux|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|x64.Build.0 = BundleLinux|x64
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|x86.ActiveCfg = BundleLinux|x86
+		{C97E91F4-B310-44E2-9B6C-96775395722D}.BundleLinux|x86.Build.0 = BundleLinux|x86
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Debug|x64.ActiveCfg = Debug|x64
@@ -42,6 +57,12 @@ Global
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x64.Build.0 = Release|x64
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.ActiveCfg = Release|x86
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.Build.0 = Release|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|Any CPU.ActiveCfg = BundleLinux|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|Any CPU.Build.0 = BundleLinux|Any CPU
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|x64.ActiveCfg = BundleLinux|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|x64.Build.0 = BundleLinux|x64
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|x86.ActiveCfg = BundleLinux|x86
+		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.BundleLinux|x86.Build.0 = BundleLinux|x86
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Debug|x64.ActiveCfg = Debug|x64
@@ -54,6 +75,12 @@ Global
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x64.Build.0 = Release|x64
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.ActiveCfg = Release|x86
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.Build.0 = Release|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|Any CPU.ActiveCfg = BundleLinux|Any CPU
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|Any CPU.Build.0 = BundleLinux|Any CPU
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|x64.ActiveCfg = BundleLinux|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|x64.Build.0 = BundleLinux|x64
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|x86.ActiveCfg = BundleLinux|x86
+		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.BundleLinux|x86.Build.0 = BundleLinux|x86
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.ActiveCfg = Debug|x64

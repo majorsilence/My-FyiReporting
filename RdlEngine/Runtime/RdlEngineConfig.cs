@@ -414,10 +414,22 @@ namespace fyiReporting.RDL
                 case "itunes":
                     cn = new fyiReporting.Data.iTunesConnection(cstring);
                     break;
+#if EnableBundleLinux
+                    // See properties -> Build -> Conditional compilation symbols
+                case "SQLite":
+                    cn = new Mono.Data.Sqlite.SqliteConnection(cstring);
+                    break;
+                case "PostgreSQL":
+                    cn = new Npgsql.NpgsqlConnection(cstring);
+                    break;
+#endif
                 default:
                     if (SqlEntries == null){         // if never initialized; we should init 
                         RdlEngineConfigInit();
 				}
+
+
+
 				System.Console.WriteLine("Attempt to find provider");
                     SqlConfigEntry sce = SqlEntries[provider] as SqlConfigEntry;
                     if (sce == null || sce.CodeModule == null)
