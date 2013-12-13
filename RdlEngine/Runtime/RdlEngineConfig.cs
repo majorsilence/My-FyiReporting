@@ -416,10 +416,10 @@ namespace fyiReporting.RDL
                     break;
 #if EnableBundleLinux
                     // See properties -> Build -> Conditional compilation symbols
-                case "SQLite":
+                case "sqlite":
                     cn = new Mono.Data.Sqlite.SqliteConnection(cstring);
                     break;
-                case "PostgreSQL":
+                case "postgresql":
                     cn = new Npgsql.NpgsqlConnection(cstring);
                     break;
 #endif
