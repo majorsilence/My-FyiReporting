@@ -904,7 +904,7 @@ namespace fyiReporting.RDL
                 cb = writer.DirectContent;
                 pdfdocument.AddAuthor(r.Author);
                 pdfdocument.AddCreationDate();
-                pdfdocument.AddCreator("MyFyiReporting");
+                pdfdocument.AddCreator("Majorsilence Reporting");
                 pdfdocument.AddSubject(r.Description);
                 pdfdocument.AddTitle(r.Name);
 
@@ -931,7 +931,7 @@ namespace fyiReporting.RDL
                 }
                 pdfdocument.Close();
                 //write out ItextSharp pdf stream to RDL stream
-                byte[] contentbyte = ms.GetBuffer();
+                byte[] contentbyte = ms.ToArray();
                 tw.Write(contentbyte, 0, contentbyte.Length);
                 ms.Dispose();
                 BaseFonts.Clear();
