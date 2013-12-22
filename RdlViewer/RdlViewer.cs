@@ -46,6 +46,7 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         public event HyperlinkEventHandler Hyperlink;
         public event EventHandler<SubreportDataRetrievalEventArgs> SubreportDataRetrieval;
+		public event EventHandler<PageChangeEventArgs> CurrentPageChange;
 
         public NeedPassword GetDataSourceReferencePassword = null;
         bool _InPaint = false;
@@ -1792,7 +1793,28 @@ namespace fyiReporting.RdlViewer
             _vScrollToolTip.SetToolTip(_vScroll, tt);
 
             _DrawPanel.Invalidate();
+			ChangePageEvent();
         }
+
+		private int previousPage = 0;
+		private void ChangePageEvent()
+		{
+			
+			if (CurrentPageChange == null)
+			{
+				return;
+			}
+
+			int currentPage = (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1;
+
+			if (previousPage != currentPage)
+			{
+				CurrentPageChange(this, new PageChangeEventArgs(currentPage));
+			}
+
+			previousPage = currentPage;
+
+		}
 
         private void DrawPanelMouseWheel(object sender, MouseEventArgs e)
         {
@@ -1842,6 +1864,8 @@ namespace fyiReporting.RdlViewer
                     _DrawPanel.Refresh();
                 }
             }
+
+			ChangePageEvent();
         }
 
         private void DrawPanelKeyDown(object sender, KeyEventArgs e)
@@ -2049,5 +2073,23 @@ namespace fyiReporting.RdlViewer
             get { return _Hyperlink; }
         }
     }
+
+	public class PageChangeEventArgs : EventArgs
+	{
+		public PageChangeEventArgs(int page) : base() 
+		{
+			_currentPage = page;
+		}
+
+		private int _currentPage;
+		public int CurrentPage
+		{
+			get { 
+				return _currentPage;
+			}
+		}
+
+	}
+
 
 }
