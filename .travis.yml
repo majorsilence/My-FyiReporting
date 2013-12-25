@@ -1,0 +1,9 @@
+language: c
+ 
+install:
+  - sudo apt-get install mono-devel mono-gmcs mono-dmcs nunit-console libpoppler-cil
+ 
+script:
+  - xbuild CI.proj
+
+

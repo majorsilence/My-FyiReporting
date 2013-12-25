@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlReader", "RdlViewer\RdlR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportServer", "ReportServer\ReportServer.csproj", "{AA890E36-4560-4F0F-A277-550399825B66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlGtkViewer", "RdlGtkViewer\RdlGtkViewer\RdlGtkViewer.csproj", "{921488F1-F4FC-4438-920E-86E57442B253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibRdlCrossPlatformViewer", "LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj", "{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,18 +95,6 @@ Global
 		{5C53B7BA-E8F0-433F-B777-358F3C2AD679}.Release|x64.Build.0 = Release|x64
 		{5C53B7BA-E8F0-433F-B777-358F3C2AD679}.Release|x86.ActiveCfg = Release|x86
 		{5C53B7BA-E8F0-433F-B777-358F3C2AD679}.Release|x86.Build.0 = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|Any CPU.Build.0 = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|x64.ActiveCfg = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|x64.Build.0 = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|x86.ActiveCfg = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Debug|x86.Build.0 = Debug|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|Any CPU.ActiveCfg = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|Any CPU.Build.0 = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x64.ActiveCfg = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x64.Build.0 = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x86.ActiveCfg = Release|x86
-		{921488F1-F4FC-4438-920E-86E57442B253}.Release|x86.Build.0 = Release|x86
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Debug|x64.ActiveCfg = Debug|x64
@@ -143,6 +131,18 @@ Global
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x64.Build.0 = Release|x64
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.ActiveCfg = Release|x86
 		{C97E91F4-B310-44E2-9B6C-96775395722D}.Release|x86.Build.0 = Release|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x64.ActiveCfg = Debug|x64
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x64.Build.0 = Debug|x64
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x86.ActiveCfg = Debug|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|x86.Build.0 = Debug|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x64.ActiveCfg = Release|x64
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x64.Build.0 = Release|x64
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x86.ActiveCfg = Release|x86
+		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Release|x86.Build.0 = Release|x86
 		{D605B305-BB81-441C-B909-DEA35F33C8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D605B305-BB81-441C-B909-DEA35F33C8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D605B305-BB81-441C-B909-DEA35F33C8BF}.Debug|x64.ActiveCfg = Debug|x64
@@ -181,7 +181,7 @@ Global
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = RdlGtkViewer\RdlGtkViewer\RdlGtkViewer.csproj
+		StartupItem = RdlDesign\ReportDesigner.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
