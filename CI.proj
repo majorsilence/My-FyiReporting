@@ -4,7 +4,7 @@
   <Target Name="CI" DependsOnTargets="Build" />
  
   <Target Name="Build">
-    <MSBuild Projects="MajorsilenceReporting-Linux.sln" Properties="Configuration=Debug;Platform=x86" />
+    <MSBuild Projects="MajorsilenceReporting-Linux.sln" Properties="Configuration=Debug;Platform=Any CPU" />
   </Target>
  
 </Project>
