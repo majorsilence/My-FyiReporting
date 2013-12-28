@@ -46,7 +46,7 @@ Partial Class Form1
         Me.RdlViewer1.Location = New System.Drawing.Point(15, 86)
         Me.RdlViewer1.Name = "RdlViewer1"
         Me.RdlViewer1.PageCurrent = 1
-        Me.RdlViewer1.Parameters = Nothing
+        Me.RdlViewer1.Parameters = ""
         Me.RdlViewer1.ReportName = Nothing
         Me.RdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous
         Me.RdlViewer1.SelectTool = False

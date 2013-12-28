@@ -41,12 +41,13 @@ namespace fyiReporting.RdlViewer
     public partial class RdlViewer : System.Windows.Forms.UserControl
     {
         public delegate void HyperlinkEventHandler(object source, HyperlinkEventArgs e);
+        public delegate void PageNavigationEventHandler(object sender, PageNavigationEventArgs e);
         /// <summary>
         /// Hyperlink invoked when report item with hyperlink is clicked on.
         /// </summary>
         public event HyperlinkEventHandler Hyperlink;
         public event EventHandler<SubreportDataRetrievalEventArgs> SubreportDataRetrieval;
-		public event EventHandler<PageChangeEventArgs> CurrentPageChange;
+        public event PageNavigationEventHandler PageNavigation;
 
         public NeedPassword GetDataSourceReferencePassword = null;
         bool _InPaint = false;
@@ -1799,8 +1800,8 @@ namespace fyiReporting.RdlViewer
 		private int previousPage = 0;
 		private void ChangePageEvent()
 		{
-			
-			if (CurrentPageChange == null)
+
+            if (PageNavigation == null)
 			{
 				return;
 			}
@@ -1809,7 +1810,7 @@ namespace fyiReporting.RdlViewer
 
 			if (previousPage != currentPage)
 			{
-				CurrentPageChange(this, new PageChangeEventArgs(currentPage));
+                PageNavigation(this, new PageNavigationEventArgs(currentPage));
 			}
 
 			previousPage = currentPage;
@@ -2074,18 +2075,19 @@ namespace fyiReporting.RdlViewer
         }
     }
 
-	public class PageChangeEventArgs : EventArgs
+	public class PageNavigationEventArgs  : EventArgs
 	{
-		public PageChangeEventArgs(int page) : base() 
+        public PageNavigationEventArgs(int newPage)
+            : base() 
 		{
-			_currentPage = page;
+            _newPage = newPage;
 		}
 
-		private int _currentPage;
-		public int CurrentPage
+		private int _newPage;
+		public int NewPage
 		{
 			get { 
-				return _currentPage;
+				return _newPage;
 			}
 		}
 

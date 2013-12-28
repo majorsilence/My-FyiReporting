@@ -2729,3 +2729,12 @@ My-FyiReporting.4.5.2.x86.nupkg
 /MajorsilenceiReporting.suo
 /MajorsilenceiReporting.v11.suo
 /MajorsilenceReporting.v11.suo
+
+/Examples/SampleApp/SampleReportApp/bin/Debug
+
+/Examples/SampleApp/SampleReportApp/bin/x86/Debug
+
+/Examples/SampleApp/SampleReportApp/obj/Debug
+
+/Examples/SampleApp/packages/System.Data.SQLite.1.0.90.0
+/Examples/SampleAspDotNet/SampleAspDotNet/bin
