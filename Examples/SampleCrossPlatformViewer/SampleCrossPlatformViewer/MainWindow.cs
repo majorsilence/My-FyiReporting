@@ -22,7 +22,7 @@ namespace SampleCrossPlatformViewer
 
 
             rv = new LibRdlCrossPlatformViewer.ReportViewer();
-            rv.DefaultBackend = LibRdlCrossPlatformViewer.Backend.PureXwt;
+            rv.DefaultBackend = LibRdlCrossPlatformViewer.Backend.XwtWinforms;
 
 #if DEBUG 
             if (System.Environment.MachineName == "GILL-PC")

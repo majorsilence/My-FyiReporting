@@ -220,15 +220,10 @@ namespace LibRdlCrossPlatformViewer
 
             System.IO.MemoryStream s = new System.IO.MemoryStream();
             gImg.Save(s, System.Drawing.Imaging.ImageFormat.Png);
-            string fileName = System.IO.Path.GetTempFileName();
-            gImg.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+            Xwt.Drawing.Image img = Xwt.Drawing.Image.FromStream(s);
 
-            // Xwt.Drawing.Image img = Xwt.Drawing.Image.FromStream(s);
-           
-            Xwt.Drawing.Image img = Xwt.Drawing.Image.FromFile(fileName);
             xwtContext.DrawImage(img, new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height), new Xwt.Rectangle(0, 0, gImg.Width, gImg.Height));
             img.Dispose();
-            System.IO.File.Delete(fileName);
             
         }
 
