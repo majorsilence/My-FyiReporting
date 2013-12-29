@@ -47,13 +47,13 @@ namespace LibRdlCrossPlatformViewer
 
         protected override void OnDraw(Xwt.Drawing.Context ctx, Xwt.Rectangle dirtyRect)
         {
+
             base.OnDraw(ctx, dirtyRect);
 
             if (pages == null)
             {
                 return;
             }
-            ctx.Font = this.Font;
             ctx.Save();
 
             //Xwt.Rectangle rep_r = new Xwt.Rectangle(1, 1, width - 1, height - 1);
@@ -64,7 +64,7 @@ namespace LibRdlCrossPlatformViewer
 
             if (_defaultBackend == Backend.PureXwt)
             {
-                RenderXwt render = new RenderXwt(ctx, 1f);
+                RenderXwt render = new RenderXwt(ctx, this, 1f);
                 render.RunPage(pages);
             }
             else

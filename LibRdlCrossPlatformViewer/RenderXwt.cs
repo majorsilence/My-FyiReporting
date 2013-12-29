@@ -12,20 +12,21 @@ namespace LibRdlCrossPlatformViewer
 {
     public class RenderXwt
     {
-        Xwt.Drawing.Context g;
+        Xwt.Drawing.Context cxt;
+        Xwt.Canvas cvs;
         Xwt.Drawing.TextLayout layout;
 
         float dpiX = 96;
         float dpiY = 96;
 
-        public RenderXwt(Xwt.Drawing.Context g) : this(g, 1.0f)
-        {
-        }
+        public RenderXwt(Xwt.Drawing.Context g, Xwt.Canvas c) : this(g, c, 1.0f)
+        { }
 
-        public RenderXwt(Xwt.Drawing.Context g, float scale)
+        public RenderXwt(Xwt.Drawing.Context g, Xwt.Canvas c, float scale)
 		{
-			this.g = g;
-            this.layout = new Xwt.Drawing.TextLayout(this.g );
+            this.cxt = g;
+            this.cvs = c;
+            this.layout = new Xwt.Drawing.TextLayout(this.cvs);
 			
 			dpiX *= scale;
 			dpiY *= scale;
@@ -245,14 +246,13 @@ namespace LibRdlCrossPlatformViewer
             StyleInfo si = pt.SI;
             string s = pt.Text;
             g.Save();
-            layout = new Xwt.Drawing.TextLayout(g);
-            layout.Font = g.Font;
-           
+
+            layout = new Xwt.Drawing.TextLayout(this.cvs);
 
             float fontsize = (si.FontSize * 72 / 96);
             
             layout.Font.WithFamily(si.GetFontFamily().Name);
-            layout.Font.WithPixelSize(fontsize * PixelsX(1));
+            layout.Font.WithSize(fontsize * PixelsX(1));
 
             if (si.FontStyle == FontStyleEnum.Italic)
                 layout.Font.WithStyle(Xwt.Drawing.FontStyle.Italic);
@@ -432,7 +432,7 @@ namespace LibRdlCrossPlatformViewer
             {
                 foreach (Page p in pgs)
                 {
-                    ProcessPage(g, p);
+                    ProcessPage(cxt, p);
                     break;
                 }
             }
@@ -451,7 +451,7 @@ namespace LibRdlCrossPlatformViewer
 
             try
             {
-                ProcessPage(g, pgs);
+                ProcessPage(cxt, pgs);
             }
             finally
             {

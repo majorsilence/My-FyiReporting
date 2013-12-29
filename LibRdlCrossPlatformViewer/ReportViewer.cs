@@ -110,7 +110,7 @@ namespace LibRdlCrossPlatformViewer
             scrollView.Content = vboxContents;
             scrollView.VerticalScrollPolicy = ScrollPolicy.Automatic;
             scrollView.BorderVisible = true;
-            this.PackStart(scrollView, BoxMode.FillAndExpand);
+            this.PackStart(scrollView,true, true);
 
             Parameters = new ListDictionary();
 
@@ -203,7 +203,7 @@ namespace LibRdlCrossPlatformViewer
                 ReportArea area = new ReportArea(this.DefaultBackend);
                 area.SetReport(_report, pages[pageCount]);
 
-                vboxPages.PackStart(area, BoxMode.FillAndExpand);
+                vboxPages.PackStart(area, true, true);
             }
 
             this.Show();

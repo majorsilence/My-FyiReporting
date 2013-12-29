@@ -84,17 +84,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend.cs" />
-    <Compile Include="PageDrawing.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PageDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderXwt.cs" />
-    <Compile Include="ReportArea.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ReportViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ReportArea.cs" />
+    <Compile Include="ReportViewer.cs" />
     <Compile Include="XwtColor.cs" />
   </ItemGroup>
   <ItemGroup>
