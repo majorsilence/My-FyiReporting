@@ -33,6 +33,10 @@ namespace SampleCrossPlatformViewer
             {
                 rv.LoadReport(new Uri(@"/home/peter/projects/My-FyiReporting/Examples/SqliteExamples/SimpleTest1.rdl"));
             }
+            else if (System.Environment.MachineName == "GILL-LAPTOP")
+            {
+                rv.LoadReport(new Uri(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\SqliteExamples\SimpleTest1.rdl"));
+            }
 #endif
 
             this.Content = rv;

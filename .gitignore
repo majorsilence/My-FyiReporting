@@ -2771,3 +2771,9 @@ My-FyiReporting.4.5.2.x86.nupkg
 /Examples/SampleAppHyperLinkCustomAction/packages/System.Data.SQLite.1.0.90.0
 
 /Examples/SampleAppHyperLinkCustomAction/SampleReportApp.v11.suo
+
+/Examples/SampleCrossPlatformViewer/SampleCrossPlatformViewer/bin/Debug
+
+/Examples/SampleCrossPlatformViewer/SampleCrossPlatformViewer/obj/Debug
+
+/Examples/SampleCrossPlatformViewer/packages/System.Data.SQLite.1.0.90.0
