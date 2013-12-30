@@ -11,8 +11,7 @@ A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizard
 reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
 
 Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#, VB.NET, IronPython, or any 
-other .NET language.  The winform viewer also works in linux using mono.  There is also a basic Gtk# (gtk-sharp) 
-viewer. 
+other .NET language.  The winform viewer also works in linux using mono.  An experimental Gtk/WPF/Cocoa viewer also exists. 
 
 Majorsilence Reporting started as My-FyiReporting which was a fork of fyiReporting after it died. It has been rebranded as Majorsilence Reporting to make it clearer that it is a separate forked project.  Majorsilence Reporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
 The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.  I am leaving the
