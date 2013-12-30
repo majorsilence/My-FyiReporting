@@ -27,19 +27,28 @@ namespace LibRdlCrossPlatformViewer
             }
         }
 
+        public int PageNumber
+        {
+            get
+            {
+                return this.pages.PageNumber;
+            }
+        }
+
         private Backend _defaultBackend;
         public ReportArea(Backend defaultBackend)
         {
             // Insert initialization code here.
             this.BackgroundColor = Xwt.Drawing.Colors.White;
             _defaultBackend = defaultBackend;
+
         }
 
         public void SetReport(Report report, Page pages)
         {
             this.pages = pages;
             this.report = report;
-
+            
             this.MinHeight = (int)report.PageWidthPoints + (rep_padding * 2);
             this.MinWidth = (int)report.PageHeightPoints + (rep_padding * 2);
 
