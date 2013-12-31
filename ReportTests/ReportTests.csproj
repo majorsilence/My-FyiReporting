@@ -61,10 +61,14 @@
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\References\dot net 3.5\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
@@ -115,11 +119,18 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ExampleTest.cs" />
+    <Compile Include="FunctionTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
       <Link>RdlEngineConfig.Linux.xml</Link>
+    </None>
+    <None Include="../Examples/northwindEF.db">
+      <Link>northwindEF.db</Link>
+    </None>
+    <None Include="Reports\FunctionTest.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
