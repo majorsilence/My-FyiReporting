@@ -6,7 +6,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>ReportTests</RootNamespace>
     <AssemblyName>ReportTests</AssemblyName>
   </PropertyGroup>
@@ -60,6 +60,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
@@ -69,6 +72,7 @@
       <HintPath>..\References\dot net 3.5\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
@@ -118,8 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="DatabaseInfo.cs" />
     <Compile Include="ExampleTest.cs" />
     <Compile Include="FunctionTest.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -128,6 +134,10 @@
     </None>
     <None Include="../Examples/northwindEF.db">
       <Link>northwindEF.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\BaseTestReport.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Reports\FunctionTest.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

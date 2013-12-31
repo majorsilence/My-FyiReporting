@@ -73,10 +73,13 @@
         <Left>.1in</Left>
         <Width>6in</Width>
         <Height>.25in</Height>
-        <Value>Function Test</Value>
+        <Value>Base Test Report</Value>
         <Style>
           <FontSize>15pt</FontSize>
           <FontWeight>Bold</FontWeight>
+          <BorderStyle  />
+          <BorderColor  />
+          <BorderWidth  />
         </Style>
       </Textbox>
       <Textbox Name="Textbox2">
@@ -283,7 +286,7 @@
             <Left>1.25in</Left>
             <Width>1.375in</Width>
             <Height>.25in</Height>
-            <Value>=Mid(Fields!CompanyName.Value, 1, 3)</Value>
+            <Value>=Fields!CompanyName.Value</Value>
             <CanGrow>true</CanGrow>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
@@ -294,7 +297,7 @@
             <Left>2.625in</Left>
             <Width>1.375in</Width>
             <Height>.25in</Height>
-            <Value>=Left(Fields!ContactName.Value, 4)</Value>
+            <Value>=Fields!ContactName.Value</Value>
             <CanGrow>true</CanGrow>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
