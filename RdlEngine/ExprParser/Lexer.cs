@@ -233,7 +233,7 @@ namespace fyiReporting.RDL
 					break;	// another character
 			}
 
-			if (number.CompareTo(separator) == 0)
+			if (number.CompareTo(separator.ToString()) == 0)
 				throw new ParserException(string.Format(Strings.Lexer_Error_SeparatorMustFollowedNumber, separator));
 
 			TokenTypes t;
