@@ -113,12 +113,12 @@ mkdir .\majorsilence-reporting-build-dot-net-4-viewer-x86
 
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\majorsilence-reporting-build-dot-net-4-viewer-x86\config.xml /Y
 copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlEngineConfig.xml /Y
-copy "%CD%\..\RdlCri\bin\x86\Release\RdlCri.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlCri.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlCri.dll /Y
 copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlReader.exe /Y
-copy "%CD%\..\DataProviders\bin\x86\Release\DataProviders.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\DataProviders.dll /Y
-copy "%CD%\..\RdlEngine\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlEngine.dll /Y
-copy "%CD%\..\RdlEngine\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\ICSharpCode.SharpZipLib.dll /Y
-copy "%CD%\..\RdlViewer\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewer.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\DataProviders.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlEngine.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\ICSharpCode.SharpZipLib.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewer.dll /Y
 del .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
 
 
