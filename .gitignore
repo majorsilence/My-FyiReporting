@@ -2790,3 +2790,9 @@ My-FyiReporting.4.5.2.x86.nupkg
 /Release-Builds/setup-Majorsilence-Reporting-dot-net4-x86.wixobj
 /Release-Builds/setup-Majorsilence-Reporting-dot-net4-x86.wixpdb
 /Release-Builds/setup-Majorsilence-Reporting-dot-net4-x86.wxs
+
+/Examples/SampleDesignerControl/SampleDesignerControlWPF/obj/x86/Debug
+
+/Examples/SampleDesignerControl/SampleDesignerControlWPF/bin/x86/Debug
+
+/Examples/SampleDesignerControl/SampleDesignerControl/bin/x86/Debug/ru-RU

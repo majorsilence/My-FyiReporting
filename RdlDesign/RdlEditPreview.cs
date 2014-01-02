@@ -952,6 +952,7 @@ namespace fyiReporting.RdlDesign
 				try
 				{
 					dcDesign.ReportSource = text;
+					dcDesign.Refresh();
 				}
 				catch (Exception e)
 				{
@@ -962,7 +963,9 @@ namespace fyiReporting.RdlDesign
 				}
 			}
 			else
+			{
 				this.tbEditor.Text = text;
+			}
 		}
 
 		/// <summary>
