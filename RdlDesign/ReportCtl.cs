@@ -74,8 +74,8 @@ namespace fyiReporting.RdlDesign
             cbPageSize.DisplayMember = "PaperName";
 
 
-            int width = MeasurementTypeAsHundrethsOfAnInch(tbPageWidth.Text);
-            int height = MeasurementTypeAsHundrethsOfAnInch(tbPageHeight.Text);
+            int width = Conversions.MeasurementTypeAsHundrethsOfAnInch(tbPageWidth.Text);
+            int height = Conversions.MeasurementTypeAsHundrethsOfAnInch(tbPageHeight.Text);
             int pageCount = settings.PaperSizes.Count;
 
             // This conversion may be better converted to mm instead of hundrethds of an inch
@@ -97,31 +97,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        private int MeasurementTypeAsHundrethsOfAnInch(string value)
-        {
-            string measurementType = value.Trim().ToLower();
-            string measurementValue="0";
-            if (measurementType.Length>=2)
-            {
-                measurementValue = measurementType.Substring(0, measurementType.Length-2);
-                measurementType = measurementType.Substring(measurementType.Length-2);
-            }
-
-            if (measurementType == "mm")
-            {
-                // metric.  Convert to imperial for now
-                return (int) ((decimal.Parse(measurementValue) / 25.4m) * 100);
-            }
-            else
-            {
-                // assume imperial
-                return (int)(decimal.Parse(measurementValue) * 100);
-            }
-
-            
-
-        }
-
+        
 
         private string GetPaperSizeAsInch(int paperSize)
         {

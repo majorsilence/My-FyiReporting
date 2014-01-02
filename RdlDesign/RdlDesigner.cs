@@ -1644,13 +1644,13 @@ namespace fyiReporting.RdlDesign
                 XmlNodeList heightList = docxml.GetElementsByTagName("PageHeight");
                 for (int i = 0; i < heightList.Count; i++)
                 {
-                  height = float.Parse(heightList[i].InnerText.Replace("in", "")) * 100;
+                  height = Conversions.MeasurementTypeAsHundrethsOfAnInch(heightList[i].InnerText);
                 }
 
                 XmlNodeList widthList = docxml.GetElementsByTagName("PageWidth");
                 for (int i = 0; i < widthList.Count; i++)
                 {
-                    width = float.Parse(widthList[i].InnerText.Replace("in", "")) * 100;
+					width = Conversions.MeasurementTypeAsHundrethsOfAnInch(widthList[i].InnerText);
                 }
 
                 pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", (int)width, (int)height);
