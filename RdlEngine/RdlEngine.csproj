@@ -153,7 +153,7 @@
       <Name>System.XML</Name>
     </Reference>
     <Reference Include="itextsharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
-      <HintPath>..\References\dot net 4\itextsharp.dll</HintPath>
+      <HintPath>..\References\dot net 3.5\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <HintPath>..\References\dot net 3.5\ICSharpCode.SharpZipLib.dll</HintPath>
