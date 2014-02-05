@@ -26,3 +26,5 @@ Majorsilence reporting started as My-FyiReporting which was a fork of fyiReporti
 
 [Release Notes Go Here]
 
+Download from: https://github.com/majorsilence/My-FyiReporting/wiki/Downloads
+

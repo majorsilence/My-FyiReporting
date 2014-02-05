@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -37,8 +37,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -122,22 +120,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|AnyCPU'">
     <OutputPath>bin\BundleLinux\</OutputPath>
     <DefineConstants>EnableBundleLinux</DefineConstants>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|x86'">
     <OutputPath>bin\x86\BundleLinux\</OutputPath>
     <DefineConstants>EnableBundleLinux</DefineConstants>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|x64'">
     <OutputPath>bin\x64\BundleLinux\</OutputPath>
     <DefineConstants>EnableBundleLinux</DefineConstants>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Data.Sqlite" Condition="'$(Configuration)'=='BundleLinux'">
       <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=2.0.11.92, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL" Condition="'$(Configuration)'=='BundleLinux'">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\dot net 4\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -153,10 +156,13 @@
       <Name>System.XML</Name>
     </Reference>
     <Reference Include="itextsharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
-      <HintPath>..\References\dot net 4\itextsharp.dll</HintPath>
+      <HintPath>..\References\dot net 3.5\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <HintPath>..\References\dot net 3.5\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql" Condition="'$(Configuration)'=='BundleLinux'">
+      <HintPath>..\References\dot net 4\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1106,6 +1112,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Utility\Measurement.cs" />
+    <Compile Include="Utility\Runtime.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

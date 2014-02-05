@@ -78,7 +78,10 @@
 			this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
 			this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
 			this.mainTC = new System.Windows.Forms.TabControl();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			if (fyiReporting.RDL.Utility.Runtime.IsMono == false)
+			{
+				((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			}
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
@@ -545,7 +548,10 @@
 			this.Name = "RdlUserControl";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			if (fyiReporting.RDL.Utility.Runtime.IsMono == false)
+			{
+				((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			}
 			this.splitContainer1.ResumeLayout(false);
 			this.mainTB.ResumeLayout(false);
 			this.mainTB.PerformLayout();
