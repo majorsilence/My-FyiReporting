@@ -6,7 +6,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>ReportTests</RootNamespace>
     <AssemblyName>ReportTests</AssemblyName>
   </PropertyGroup>
