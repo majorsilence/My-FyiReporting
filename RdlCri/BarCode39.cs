@@ -39,8 +39,8 @@ namespace fyiReporting.CRI
 
         public void DrawImage(ref Bitmap bm, string code39)
         {
-            com.google.zxing.oned.Code39Writer writer = new com.google.zxing.oned.Code39Writer();
-            com.google.zxing.common.ByteMatrix matrix;
+			var writer = new ZXing.BarcodeWriter();
+			writer.Format = ZXing.BarcodeFormat.CODE_39;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
@@ -49,31 +49,13 @@ namespace fyiReporting.CRI
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
             int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
-            
-            matrix = writer.encode(code39, com.google.zxing.BarcodeFormat.CODE_39, 
-                barWidth, barHeight, null);
 
 
-            bm = new Bitmap(barWidth, barHeight);
-            Color Color = Color.FromArgb(0, 0, 0);
+			writer.Options.Height = barHeight;
+			writer.Options.Width = barWidth;
 
-            for (int y = 0; y < matrix.Height; ++y)
-            {
-                for (int x = 0; x < matrix.Width; ++x)
-                {
-                    Color pixelColor = bm.GetPixel(x, y);
 
-                    //Find the colour of the dot
-                    if (matrix.get_Renamed(x, y) == -1)
-                    {
-                        bm.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        bm.SetPixel(x, y, Color.Black);
-                    }
-                }
-            }
+			bm = writer.Write(code39);
         }
 
         public void SetProperties(IDictionary<string, object> props)

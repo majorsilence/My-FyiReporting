@@ -33,8 +33,8 @@ namespace fyiReporting.CRI
         /// <param name="qrcode"></param>
         internal void DrawImage(ref System.Drawing.Bitmap bm, string qrcode)
         {
-            com.google.zxing.qrcode.QRCodeWriter writer = new com.google.zxing.qrcode.QRCodeWriter();
-            com.google.zxing.common.ByteMatrix matrix;
+			var writer = new ZXing.BarcodeWriter();
+			writer.Format = ZXing.BarcodeFormat.QR_CODE;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
@@ -43,29 +43,12 @@ namespace fyiReporting.CRI
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
             int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
 
-            matrix = writer.encode(qrcode, com.google.zxing.BarcodeFormat.QR_CODE, barWidth, barHeight, null);
+			writer.Options.Height = barHeight;
+			writer.Options.Width = barWidth;
 
 
-            bm = new Bitmap(barWidth, barHeight);
-            Color Color = Color.FromArgb(0, 0, 0);
-
-            for (int y = 0; y < matrix.Height; ++y)
-            {
-                for (int x = 0; x < matrix.Width; ++x)
-                {
-                    Color pixelColor = bm.GetPixel(x, y);
-
-                    //Find the colour of the dot
-                    if (matrix.get_Renamed(x, y) == -1)
-                    {
-                        bm.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        bm.SetPixel(x, y, Color.Black);
-                    }
-                }
-            }
+			bm = writer.Write(qrcode);
+         
         }
 
         /// <summary>

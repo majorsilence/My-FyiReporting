@@ -39,8 +39,8 @@ namespace fyiReporting.CRI
 
         public void DrawImage(ref Bitmap bm, string code)
         {
-            com.google.zxing.oned.EAN8Writer writer = new com.google.zxing.oned.EAN8Writer();
-            com.google.zxing.common.ByteMatrix matrix;
+			var writer = new ZXing.BarcodeWriter();
+			writer.Format = ZXing.BarcodeFormat.EAN_8;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
@@ -50,30 +50,11 @@ namespace fyiReporting.CRI
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
             int barWidth = PixelConversions.PixelYFromMm(g, OptimalWidth * mag);
 
-            matrix = writer.encode(code, com.google.zxing.BarcodeFormat.EAN_8,
-                barWidth, barHeight, null);
+			writer.Options.Height = barHeight;
+			writer.Options.Width = barWidth;
 
-
-            bm = new Bitmap(barWidth, barHeight);
-            Color Color = Color.FromArgb(0, 0, 0);
-
-            for (int y = 0; y < matrix.Height; ++y)
-            {
-                for (int x = 0; x < matrix.Width; ++x)
-                {
-                    Color pixelColor = bm.GetPixel(x, y);
-
-                    //Find the colour of the dot
-                    if (matrix.get_Renamed(x, y) == -1)
-                    {
-                        bm.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        bm.SetPixel(x, y, Color.Black);
-                    }
-                }
-            }
+			bm = writer.Write(code);
+     
         }
 
         public void SetProperties(IDictionary<string, object> props)
