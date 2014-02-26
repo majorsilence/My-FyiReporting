@@ -65,5 +65,11 @@ namespace fyiReporting.RDL
 			_dsd.Query.SetData(_rpt, ie, _dsd.Fields, _dsd.Filters);
 		}
 
+        public void SetSource(string sql)
+        {
+            _dsd.Query.CommandText.SetSource(sql);
+        }
+
+
 	}
 }

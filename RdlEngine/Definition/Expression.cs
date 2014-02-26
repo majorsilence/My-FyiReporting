@@ -347,5 +347,12 @@ namespace fyiReporting.RDL
 		}
 
 		#endregion
+
+        public void SetSource(string sql)
+        {
+            this._Source = sql;
+            FinalPass();
+        }
+
 	}
 }
