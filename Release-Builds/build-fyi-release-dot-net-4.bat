@@ -141,3 +141,10 @@ copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-ne
 del .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
 
 7za.exe a majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
+
+REM ************* Begin nuget *********************************************
+REM http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
+
+REM ************* End nuget *********************************************
+
+
