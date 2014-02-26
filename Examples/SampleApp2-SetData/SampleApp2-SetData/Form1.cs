@@ -31,6 +31,7 @@ namespace SampleApp2_SetData
             string filepath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory() , "SampleApp2-TestReport.rdl");
             rdlViewer1.SourceFile = new Uri(filepath);
             rdlViewer1.Report.DataSets["Data"].SetData(dt);
+            //rdlViewer1.Report.DataSets["Data"].SetSource("SELECT CategoryID, CategoryName, Description FROM Categories where CategoryName = 'SeaFood'");
             rdlViewer1.Rebuild();
         }
 
