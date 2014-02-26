@@ -44,6 +44,7 @@ copy ..\LibRdlCrossPlatformViewer\bin\x64\Release\LibRdlCrossPlatformViewer.dll 
 copy "..\References\dot net 4\Xwt.dll" .\majorsilence-reporting-build-dot-net-4-x64\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\majorsilence-reporting-build-dot-net-4-x64\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\majorsilence-reporting-build-dot-net-4-x64\Xwt.WPF.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-x64\zxing.dll /Y
 
 mkdir .\majorsilence-reporting-build-dot-net-4-x64\ru-RU
 copy ..\RdlDesign\bin\x64\Release\ru-RU\RdlDesigner.resources.dll .\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlDesigner.resources.dll /Y
@@ -100,6 +101,7 @@ copy ..\LibRdlCrossPlatformViewer\bin\x86\Release\LibRdlCrossPlatformViewer.dll 
 copy "..\References\dot net 4\Xwt.dll" .\majorsilence-reporting-build-dot-net-4-x86\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\majorsilence-reporting-build-dot-net-4-x86\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\majorsilence-reporting-build-dot-net-4-x86\Xwt.WPF.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-x86\zxing.dll
 
 mkdir .\majorsilence-reporting-build-dot-net-4-x86\ru-RU
 copy ..\RdlDesign\bin\x86\Release\ru-RU\RdlDesigner.resources.dll .\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlDesigner.resources.dll /Y
@@ -135,6 +137,7 @@ copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" .\majorsile
 copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlEngine.dll /Y
 copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\ICSharpCode.SharpZipLib.dll /Y
 copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewer.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-viewer-x86\zxing.dll
 del .\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
 
 7za.exe a majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\

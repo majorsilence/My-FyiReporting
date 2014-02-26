@@ -36,6 +36,7 @@ cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./majorsilence-reporting-build-d
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlMapFile.exe 
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlReader.exe 
+cp "../References/dot net 3.5/zxing.dll" ./majorsilence-reporting-build-dot-net-4-x86/zxing.dll
 
 zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-build-dot-net-4-AnyCPU/
 
