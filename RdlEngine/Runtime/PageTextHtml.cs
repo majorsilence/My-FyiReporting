@@ -133,6 +133,7 @@ namespace fyiReporting.RDL
 			SizeF ms;
 			bool bWhiteSpace=false;
 			List<PageItem> lineItems = new List<PageItem>();
+			int liCount = 0;	//Maintains number of OL items
 			foreach (string token in tokens)
 			{
 				if (token[0] == PageTextHtmlLexer.HTMLCMD)		// indicates an HTML command
@@ -307,6 +308,28 @@ namespace fyiReporting.RDL
                     {   // we really should match span and font but it shouldn't matter very often?
                         PopStyle();
                     }
+                    else if (ltoken.StartsWith("<ol"))
+                    {
+                        yPos += maxLineHeight;
+                        NormalizeLineHeight(lineItems, maxLineHeight, maxDescent);
+                        maxLineHeight = xPos = lineXPos = maxDescent = 0;
+                        bFirstInLine = true;
+                        bWhiteSpace = false;
+                    }
+                    else if (ltoken.StartsWith("<li"))
+                    {
+                        yPos += maxLineHeight;
+                        NormalizeLineHeight(lineItems, maxLineHeight, maxDescent);
+                        maxLineHeight = xPos = lineXPos = maxDescent = 0;
+                        bFirstInLine = true;
+                        bWhiteSpace = false;
+
+                        liCount++;
+                    }
+                    else if (ltoken.StartsWith("</ol"))
+                    {
+                        liCount = 0;
+                    }                    
                     continue;
 				}
 				if (token == PageTextHtmlLexer.WHITESPACE)
@@ -329,6 +352,10 @@ namespace fyiReporting.RDL
 					ms = this.MeasureString(ntoken, CurrentStyle(si), g, out descent);
 					if (xPos + ms.Width < textWidth)
 					{
+					        //Adds OL numeric prefix
+                        			if (bFirstInLine && liCount > 0)
+                            				sb.AppendFormat("{0})   ", liCount);
+                            					
 						bFirstInLine = false;
 						sb.Append(ntoken);
 
