@@ -80,7 +80,7 @@ namespace SampleCrossPlatformViewer
             OpenFileDialog dlg = new OpenFileDialog("Select a file");
             dlg.InitialFileName = "Some file";
             dlg.Multiselect = false;
-            dlg.Filters.Add(new FileDialogFilter("Xwt files", "*.rdl"));
+            dlg.Filters.Add(new FileDialogFilter("Report files", "*.rdl"));
             dlg.Filters.Add(new FileDialogFilter("All files", "*.*"));
 
 
