@@ -73,7 +73,7 @@ namespace fyiReporting.RdlDesign
             //
             InitializeComponent();
 
-            tbExpr.Text = expr;
+			tbExpr.Text = expr.Replace("\n", Environment.NewLine);
 
             // Fill out the fields list 
             string[] fields = null;
