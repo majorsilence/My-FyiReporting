@@ -711,7 +711,7 @@ namespace fyiReporting.RdlDesign
 			if (cbValue.Enabled)
 			{
 				if (fValue)
-					_Draw.SetElement(node, lblValue.Text, cbValue.Text);		// only adjust value when single item selected
+					_Draw.SetElement(node, "Value", cbValue.Text);		// only adjust value when single item selected
 			}
 
 			XmlNode sNode = _Draw.GetNamedChildNode(node, "Style");
