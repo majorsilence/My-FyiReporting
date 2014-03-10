@@ -55,7 +55,7 @@ namespace fyiReporting.RdlDesign
 
         private void InitValues(string sql)
         {
-			this.tbSQL.Text = sql.Replace("\n", Environment.NewLine);
+			this.tbSQL.Text = sql.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
 
             // Fill out the tables, columns and parameters
 

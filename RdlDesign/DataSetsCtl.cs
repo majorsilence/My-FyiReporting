@@ -145,7 +145,7 @@ namespace fyiReporting.RdlDesign
 				}
 			}
 			this.tbDSName.Text = _dsv.Name;
-			this.tbSQL.Text = _dsv.CommandText.Replace("\n", Environment.NewLine);
+			this.tbSQL.Text = _dsv.CommandText.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
 			this.cbDataSource.Text = _dsv.DataSourceName;
 			dgFields.DataSource = _dsv.Fields;
 		}
