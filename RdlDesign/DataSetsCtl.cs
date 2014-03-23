@@ -139,6 +139,10 @@ namespace fyiReporting.RdlDesign
 						if (typename != null)
 							_UseTypenameQualified = true;	// we got it qualified so we'll generate qualified
 					}
+					if (typename != null && !dgtbTypeName.Items.Contains(typename))
+					{
+						dgtbTypeName.Items.Add(typename);
+					}
 					rowValues[3] = typename==null?"":typename;
 
 					_dsv.Fields.Rows.Add(rowValues);
