@@ -91,7 +91,10 @@ namespace fyiReporting.RDL
 		public override bool EvaluateBoolean(Report rpt, Row row)
 		{
 			object o = base.Evaluate(rpt, row);
-			return o == null? true: false;
+			if(o is double)
+				return double.IsNaN((double)o) ? true : false;
+			else
+				return o == null? true: false;
 		}
 	}
 }
