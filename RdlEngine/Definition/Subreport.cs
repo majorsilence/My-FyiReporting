@@ -58,12 +58,17 @@ namespace fyiReporting.RDL
 	
 		ReportDefn _ReportDefn;	// loaded report definition
 
+        // EBN 30/03/2014
+        // Store the cross object
+        CrossDelegate _SubReportGetContent = new CrossDelegate();
+
 		internal Subreport(ReportDefn r, ReportLink p, XmlNode xNode) :base(r, p, xNode)
 		{
 			_ReportName=null;
 			_Parameters=null;
 			_NoRows=null;
 			_MergeTransactions=true;
+            _SubReportGetContent = r.SubReportGetContent;
 
 			// Loop thru all the child nodes
 			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
@@ -310,7 +315,23 @@ namespace fyiReporting.RDL
 		{
 			// TODO: at some point might want to provide interface so that read can be controlled
 			//         by server:  would allow for caching etc.
-			StreamReader fs=null;
+            //if (this.OwnerReport)
+
+            // EBN 30/03/2014
+            // If a cross object has been defined, use it to get the content of the sub report
+            if (_SubReportGetContent.SubReportGetContent != null)
+            {
+                try
+                {
+                    return _SubReportGetContent.SubReportGetContent(name);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+   
+            StreamReader fs=null;
 			string prog=null;
 			try
 			{

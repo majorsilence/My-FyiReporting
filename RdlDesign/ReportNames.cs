@@ -647,6 +647,88 @@ namespace fyiReporting.RdlDesign
 
 			return result;
 		}
-	}
+
+        /// <summary>
+        /// EBN 30/03/2014
+        /// Get the modules defined in the report if any
+        /// </summary>
+        /// <param name="asExpression">When true names are returned as expressions.</param>
+        /// <returns></returns>
+        internal string[] GetReportModules(bool asExpression)
+        {
+            XmlNode rNode = _doc.LastChild;
+            XmlNode rpsNode = DesignXmlDraw.FindNextInHierarchy(rNode, "CodeModules");
+            if (rpsNode == null)
+                return null;
+            StringCollection st = new StringCollection();
+            foreach (XmlNode repNode in rpsNode)
+            {
+                if (repNode.Name != "CodeModule")
+                    continue;
+                if (repNode.InnerText == "")	// shouldn't really happen
+                    continue;
+                if (asExpression)
+                    st.Add(string.Format("=Module!{0}", repNode.InnerText));
+                else
+                    st.Add(repNode.InnerText);
+            }
+
+            if (st.Count <= 0)
+                return null;
+
+            string[] result = new string[st.Count];
+            st.CopyTo(result, 0);
+
+            return result;
+        }
+
+        /// <summary>
+        /// EBN 30/03/2014
+        /// Get the modules defined in the report if any
+        /// </summary>
+        /// <param name="asExpression">When true names are returned as expressions.</param>
+        /// <returns></returns>
+        internal string[] GetReportClasses(bool asExpression)
+        {
+            XmlNode rNode = _doc.LastChild;
+            XmlNode rpsNode = DesignXmlDraw.FindNextInHierarchy(rNode, "Classes");
+            if (rpsNode == null)
+                return null;
+            StringCollection st = new StringCollection();
+            foreach (XmlNode repNode in rpsNode)
+            {
+                string ClassName = "";
+                string InstanceName = "";
+
+                if (repNode.Name != "Class")
+                    continue;
+                if (repNode.InnerText == "")	// shouldn't really happen
+                    continue;
+                foreach (XmlNode claNode in repNode)
+                {
+                    if (claNode.Name == "ClassName")
+                        ClassName = claNode.InnerText;
+                    if (claNode.Name == "InstanceName")
+                        InstanceName = claNode.InnerText;
+                }
+                if (ClassName != "")
+                {
+                    if (asExpression)
+                        st.Add(string.Format("=({0}){1}",ClassName,InstanceName));
+                    else
+                        st.Add(string.Format("{0}", ClassName));
+                }
+            }
+
+            if (st.Count <= 0)
+                return null;
+
+            string[] result = new string[st.Count];
+            st.CopyTo(result, 0);
+
+            return result;
+        }
+
+    }
 
 }

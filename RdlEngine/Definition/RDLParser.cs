@@ -42,6 +42,15 @@ namespace fyiReporting.RDL
 		NeedPassword _DataSourceReferencePassword;	// password for decrypting data source reference file
 		string _Folder;			// folder that will contain report; needed when DataSourceReference used
 
+        /// <summary>
+        /// EBN 31/03/2014
+        /// Cross-Object parameters
+        /// The SubReportGetContent delegate handles a callback to get the content of a subreport from another source (server, memory, database, ...)
+        /// </summary>
+        /// <param name="SubReportName"></param>
+        /// <returns></returns>
+        public CrossDelegate OnSubReportGetContent = new CrossDelegate();
+
 		/// <summary>
 		/// RDLParser takes in an RDL XML file and creates the
 		/// definition that will be used at runtime.  It validates
@@ -124,7 +133,7 @@ namespace fyiReporting.RDL
 			
 			ReportLog rl = new ReportLog();		// create a report log
 
-			ReportDefn rd = new ReportDefn(xNode, rl, this._Folder, this._DataSourceReferencePassword, oc);
+			ReportDefn rd = new ReportDefn(xNode, rl, this._Folder, this._DataSourceReferencePassword, oc, OnSubReportGetContent);
 			_Report = new Report(rd);
 			
 			bPassed = true;

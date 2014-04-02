@@ -100,8 +100,19 @@ namespace fyiReporting.RDL
 		string _ParseFolder;			// temporary folder for looking up things during parse/finalpass
 		Type _CodeType;			// used for parsing of expressions; DONT USE AT RUNTIME
 
+        /// <summary>
+        /// EBN 31/03/2014
+        /// Cross object
+        /// </summary>
+        private CrossDelegate _SubReportGetContent = new CrossDelegate();
+        public CrossDelegate SubReportGetContent
+        {
+            get { return _SubReportGetContent; }
+            set { _SubReportGetContent = value; }
+        }
+
 		// Constructor
-		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount)		// report has no parents
+		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount, CrossDelegate crossdel)		// report has no parents
 		{
 			rl = replog;				// used for error reporting
 			_ObjectCount = objcount;	// starting number for objects in this report; 0 other than for subreports
@@ -136,6 +147,9 @@ namespace fyiReporting.RDL
 			_LUEmbeddedImages = new ListDictionary();	// probably not very many
 			_LUDynamicNames = new Hashtable();
             _DataCache = new List<ICacheData>();
+            
+            // EBN 30/03/2014
+            SubReportGetContent = crossdel;
 
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in xNode.Attributes)

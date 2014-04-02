@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -707,6 +707,7 @@
     <Compile Include="Functions\FunctionMinusInt32.cs" />
     <Compile Include="Functions\FunctionAggrArray.cs" />
     <Compile Include="GraphicsExtended.cs" />
+    <Compile Include="RDLBaseEBN.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

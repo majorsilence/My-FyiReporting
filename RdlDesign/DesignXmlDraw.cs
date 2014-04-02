@@ -517,6 +517,27 @@ namespace fyiReporting.RdlDesign
 			return ReportNames.GetReportParameters(asExpression);
 		}
 
+        /// <summary>
+        /// EBN 30/03/2014
+        /// </summary>
+        /// <param name="asExpression"></param>
+        /// <returns></returns>
+        internal string[] GetReportModules(bool asExpression)
+        {
+            return ReportNames.GetReportModules(asExpression);
+        }
+
+        /// <summary>
+        /// EBN 30/03/2014
+        /// </summary>
+        /// <param name="asExpression"></param>
+        /// <returns></returns>
+        internal string[] GetReportClasses(bool asExpression)
+        {
+            return ReportNames.GetReportClasses(asExpression);
+        }
+
+
 		internal PointF SelectionPosition(XmlNode xNode)
 		{
 			RectangleF r = this.GetReportItemRect(xNode);

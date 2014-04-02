@@ -119,6 +119,9 @@ namespace fyiReporting.RdlDesign
             InitOperators();
             // Colors (if requested)
             InitColors();
+            // Modules and class (if any)
+            // EBN 30/03/2014
+            InitReportModulesAndClass();
 
             tvOp.EndUpdate();
 
@@ -208,6 +211,48 @@ namespace fyiReporting.RdlDesign
             {
                 List<string> parameters = ArrayToFormattedList(ps, "{?", "}");
                 InitTreeNodes("Parameters", parameters);
+            }
+        }
+
+
+        /// <summary>
+        /// Populate tree view with the Module and Class parameters (if any)
+        /// EBN 30/03/2014
+        /// </summary>
+        void InitReportModulesAndClass()
+        {
+            string[] ms = _Draw.GetReportModules(false);
+            string[] qs = _Draw.GetReportClasses(false);
+            List<string> mc = new List<string>();
+            if (ms == null) return;
+            if (qs == null) return;
+
+            // Try to load the assembly if not already loaded
+            foreach (string s in ms)
+            {
+                try
+                {
+                    Assembly a = Assembly.LoadFrom(s);
+                    foreach (string c in qs)
+                    {
+                        Type t = a.GetType(c);
+                        if (t != null)
+                        {
+                            // Class is found in this assembly
+                            BuildMethods(mc, t, c + ".");
+                        }
+                    }
+                }
+                catch
+                {
+                    // Nothing to do, we can not load the assembly...
+                }
+            }
+
+
+            if (qs != null && qs.Length != 0)
+            {
+                InitTreeNodes("Modules", mc);
             }
         }
 

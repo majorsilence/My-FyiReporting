@@ -49,6 +49,19 @@ namespace fyiReporting.RdlViewer
         public event EventHandler<SubreportDataRetrievalEventArgs> SubreportDataRetrieval;
         public event PageNavigationEventHandler PageNavigation;
 
+        /// <summary>
+        /// EBN 31/03/2014
+        /// Delegate is used to provide the content of a sub report from an alternate source (server, database, memory, ...)
+        /// </summary>
+        /// <param name="SubReportName">Name and path of the subreport</param>
+        /// <returns>The content of the sub report (XML content)</returns>
+        private CrossDelegate SubReportGetContent = new CrossDelegate();
+        public CrossDelegate.GetContent dSubReportGetContent
+        {
+            get { return SubReportGetContent.SubReportGetContent; }
+            set { SubReportGetContent.SubReportGetContent = value; }
+        }
+
         public NeedPassword GetDataSourceReferencePassword = null;
         bool _InPaint = false;
         bool _InLoading = false;
@@ -1173,6 +1186,10 @@ namespace fyiReporting.RdlViewer
                     rdlp.Folder = Path.GetDirectoryName(_SourceFileName.LocalPath);
                 else
                     rdlp.Folder = this.Folder;
+
+                // EBN 31/03/2014
+                // Cross objects
+                rdlp.OnSubReportGetContent.SubReportGetContent = dSubReportGetContent;
 
                 r = rdlp.Parse();
                 if (r.ErrorMaxSeverity > 0)
