@@ -791,7 +791,7 @@ namespace fyiReporting.RDL
                     string sc = ci.ToString();
                     xtw.WriteAttributeString("min", sc);
                     xtw.WriteAttributeString("max", sc);
-                    xtw.WriteAttributeString("width", cd.Val.ToString());
+                    xtw.WriteAttributeString("width", cd.Val.ToString().Replace(',','.'));
                     xtw.WriteAttributeString("customWidth", "1");
                     xtw.WriteEndElement();
                 }
