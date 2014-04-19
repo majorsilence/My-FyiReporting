@@ -118,8 +118,23 @@ REM ************* End x86 *********************************************
 
 
 REM ************* Begin PHP *********************************************
+del .\majorsilence-reporting-build-dot-net-4-php-x86 /Q
+mkdir .\majorsilence-reporting-build-dot-net-4-php-x86
 
+copy ..\RdlDesktop\bin\x86\Release\config.xml .\majorsilence-reporting-build-dot-net-4-php-x86\config.xml /Y
+copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\majorsilence-reporting-build-dot-net-4-php-x86\RdlEngineConfig.xml /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\RdlCri.dll /Y
+copy ..\RdlCmd\bin\x86\Release\RdlCmd.exe .\majorsilence-reporting-build-dot-net-4-php-x86\RdlCmd.exe /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\DataProviders.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\RdlEngine.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\ICSharpCode.SharpZipLib.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\RdlViewer.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-php-x86\zxing.dll
 
+copy "..\LanguageWrappers\php\config.php" .\majorsilence-reporting-build-dot-net-4-php-x86\config.php
+copy "..\LanguageWrappers\php\report.php" .\majorsilence-reporting-build-dot-net-4-php-x86\report.php
+
+7za.exe a majorsilence-reporting-build-dot-net-4-php-x86.zip majorsilence-reporting-build-dot-net-4-php-x86\
 REM ************* End PHP *********************************************
 
 
