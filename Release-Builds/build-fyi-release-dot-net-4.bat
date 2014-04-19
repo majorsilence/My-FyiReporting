@@ -139,6 +139,49 @@ REM ************* End PHP *********************************************
 
 
 
+REM ************* Begin Python *********************************************
+del .\majorsilence-reporting-build-dot-net-4-python-x86 /Q
+mkdir .\majorsilence-reporting-build-dot-net-4-python-x86
+
+copy ..\RdlDesktop\bin\x86\Release\config.xml .\majorsilence-reporting-build-dot-net-4-python-x86\config.xml /Y
+copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\majorsilence-reporting-build-dot-net-4-python-x86\RdlEngineConfig.xml /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\RdlCri.dll /Y
+copy ..\RdlCmd\bin\x86\Release\RdlCmd.exe .\majorsilence-reporting-build-dot-net-4-python-x86\RdlCmd.exe /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\DataProviders.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\RdlEngine.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\ICSharpCode.SharpZipLib.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\RdlViewer.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-python-x86\zxing.dll
+
+copy "..\LanguageWrappers\python\config.py" .\majorsilence-reporting-build-dot-net-4-python-x86\config.py
+copy "..\LanguageWrappers\python\report.py" .\majorsilence-reporting-build-dot-net-4-python-x86\report.py
+
+7za.exe a majorsilence-reporting-build-dot-net-4-python-x86.zip majorsilence-reporting-build-dot-net-4-python-x86\
+REM ************* End Python *********************************************
+
+
+REM ************* Begin Ruby *********************************************
+del .\majorsilence-reporting-build-dot-net-4-ruby-x86 /Q
+mkdir .\majorsilence-reporting-build-dot-net-4-ruby-x86
+
+copy ..\RdlDesktop\bin\x86\Release\config.xml .\majorsilence-reporting-build-dot-net-4-ruby-x86\config.xml /Y
+copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\majorsilence-reporting-build-dot-net-4-ruby-x86\RdlEngineConfig.xml /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\RdlCri.dll /Y
+copy ..\RdlCmd\bin\x86\Release\RdlCmd.exe .\majorsilence-reporting-build-dot-net-4-ruby-x86\RdlCmd.exe /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\DataProviders.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\RdlEngine.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\ICSharpCode.SharpZipLib.dll /Y
+copy "%CD%\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\RdlViewer.dll /Y
+copy "..\References\dot net 3.5\zxing.dll" .\majorsilence-reporting-build-dot-net-4-ruby-x86\zxing.dll
+
+copy "..\LanguageWrappers\ruby\config.rb" .\majorsilence-reporting-build-dot-net-4-ruby-x86\config.rb
+copy "..\LanguageWrappers\ruby\report.rb" .\majorsilence-reporting-build-dot-net-4-ruby-x86\report.rb
+
+7za.exe a majorsilence-reporting-build-dot-net-4-ruby-x86.zip majorsilence-reporting-build-dot-net-4-ruby-x86\
+REM ************* End Ruby *********************************************
+
+
+
 REM ************* ILMerge RdlReader *********************************************
 
 del .\majorsilence-reporting-build-dot-net-4-viewer-x86 /Q
