@@ -200,32 +200,38 @@ namespace fyiReporting.RDL
 				int height = im.Height;
 				int width = im.Width;
 				MemoryStream ostrm = new MemoryStream();
-                // 140208AJM Better JPEG Encoding
-
+				strm.Position = 0;
 				ImageFormat imf;
-				//				if (mtype.ToLower() == "image/jpeg")    //TODO: how do we get png to work
-				//					imf = ImageFormat.Jpeg;
-				//				else
-				imf = ImageFormat.Jpeg;
-                System.Drawing.Imaging.ImageCodecInfo[] info;
-                info = ImageCodecInfo.GetImageEncoders();
-                EncoderParameters encoderParameters;
-                encoderParameters = new EncoderParameters(1);
-                encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
-                System.Drawing.Imaging.ImageCodecInfo codec = null;
-                for (int i = 0; i < info.Length; i++)
-                {
-                    if (info[i].FormatDescription == "JPEG")
-                    {
-                        codec = info[i];
-                        break;
-                    }
-                }
-                im.Save(ostrm, codec, encoderParameters);
+				switch(mtype.ToLower())
+				{	
+					case "image/jpeg" :
+						imf = ImageFormat.Jpeg;
+						strm.CopyTo(ostrm);
+						break;
+					case "image/png":
+						imf = ImageFormat.Png;
+						strm.CopyTo(ostrm);
+						break;
+					default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
+						imf = ImageFormat.Jpeg;
+						System.Drawing.Imaging.ImageCodecInfo[] info;
+						info = ImageCodecInfo.GetImageEncoders();
+						EncoderParameters encoderParameters;
+						encoderParameters = new EncoderParameters(1);
+						encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
+						System.Drawing.Imaging.ImageCodecInfo codec = null;
+						for (int i = 0; i < info.Length; i++)
+						{
+							if (info[i].FormatDescription == "JPEG")
+							{
+								codec = info[i];
+								break;
+							}
+						}
+						im.Save(ostrm, codec, encoderParameters);
+						break;
+				}
 
-				// im.Save(ostrm, imf, encoderParameters);
-
-                //END 140208AJM
 				byte[] ba = ostrm.ToArray();
 				ostrm.Close();
 				PageImage pi = new PageImage(imf, ba, width, height);
