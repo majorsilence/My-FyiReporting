@@ -802,10 +802,10 @@ namespace fyiReporting.RDL
 
                     //add URL
                     if (url != null)
-                        pdfdocument.Add(new Annotation(x, _pSize.yHeight - y, width + x, height, url));
+						pdfdocument.Add(new Annotation(x, _pSize.yHeight - (y + height), width + x, _pSize.yHeight - y, url));
                     //add tooltip
                     if (tooltip != null)
-                        pdfdocument.Add(new Annotation(x, _pSize.yHeight - y, width + x, height, tooltip));
+						pdfdocument.Add(new Annotation(x, _pSize.yHeight - (y + height), width + x, _pSize.yHeight - y, tooltip));
 
                 }
 
