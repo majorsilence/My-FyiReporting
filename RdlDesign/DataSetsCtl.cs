@@ -268,6 +268,11 @@ namespace fyiReporting.RdlDesign
 				rowValues[0] = sc.Name;
 				rowValues[1] = sc.Name;
 				rowValues[2] = "";
+				DataGridViewComboBoxColumn TypeColumn = (dgFields.Columns[3] as DataGridViewComboBoxColumn);
+				if (!TypeColumn.Items.Contains(sc.DataType.FullName))
+				{
+					TypeColumn.Items.Add(sc.DataType.FullName);
+				}
                 rowValues[3] = sc.DataType.FullName;
 				_dsv.Fields.Rows.Add(rowValues);
 			}
