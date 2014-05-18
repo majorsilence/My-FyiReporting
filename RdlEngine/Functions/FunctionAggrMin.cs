@@ -75,7 +75,7 @@ namespace fyiReporting.RDL
 				foreach (Row r in re)
 				{
 					current_value = _Expr.Evaluate(rpt, r);
-					if (current_value == null)
+					if (current_value == null || (current_value is double && double.IsNaN((double)current_value)))
 						continue;
 					else if (min_value == null)
 						min_value = current_value;
