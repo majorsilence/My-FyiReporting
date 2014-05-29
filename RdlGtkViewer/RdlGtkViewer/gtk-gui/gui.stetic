@@ -11,7 +11,7 @@
   <icon-factory>
     <icon-set id="PdfIcon">
       <source>
-        <property name="Image">file:./Resources/Icons/Pdf_16x16.png</property>
+        <property name="Image">resource:fyiReporting.RdlGtkViewer.Resources.Icons.Pdf_16x16.png</property>
       </source>
     </icon-set>
   </icon-factory>

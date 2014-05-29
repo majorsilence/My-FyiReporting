@@ -68,6 +68,9 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -91,10 +94,6 @@
   <ItemGroup>
     <Content Include="app.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
-    </Content>
-    <Content Include="Resources\Icons\Pdf_16x16.png">
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
