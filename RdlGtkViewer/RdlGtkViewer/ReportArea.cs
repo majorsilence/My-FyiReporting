@@ -44,9 +44,8 @@ namespace fyiReporting.RdlGtkViewer
 			set {
 				if (value != scale && value != 0) {
 					scale = value;
-//				
-//					WidthRequest = (int)(WidthRequest * Scale);
-//					HeightRequest = (int)(HeightRequest * Scale);
+
+					this.QueueResize();
 					GdkWindow.Invalidate ();
 				}	
 			}
@@ -61,9 +60,8 @@ namespace fyiReporting.RdlGtkViewer
 		{
 			this.pages = pages;
 			this.report = report;
-			this.WidthRequest = (int)report.PageWidthPoints + rep_padding * 2;
-			this.HeightRequest = (int)report.PageHeightPoints + rep_padding * 2;
-			
+
+			this.QueueResize();
 			GdkWindow.Invalidate ();
 		}
 
@@ -123,9 +121,11 @@ namespace fyiReporting.RdlGtkViewer
 
 		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
 		{
-			// Calculate desired size here.
-			//requisition.Height = 297 ;
-			//requisition.Width = 210 ;
+			if(report != null)
+			{
+				requisition.Width = (int)(report.PageWidthPoints * scale) + rep_padding * 2; 
+				requisition.Height = (int)(report.PageHeightPoints * scale) + rep_padding * 2;
+			}
 		}
 	}	
 }
