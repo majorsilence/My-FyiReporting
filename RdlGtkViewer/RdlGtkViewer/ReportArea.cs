@@ -79,10 +79,13 @@ namespace fyiReporting.RdlGtkViewer
 			
 			if (pages == null)
 				return false;
-			
+				
 			int width = (int)(report.PageWidthPoints * Scale);
 			int height = (int)(report.PageHeightPoints * Scale);
 			Cairo.Rectangle rep_r = new Cairo.Rectangle (1, 1, width - 1, height - 1);
+
+			int widgetWidth, widgetHeight;
+			ev.Window.GetSize (out widgetWidth, out widgetHeight);
 			
 			using (Context g = Gdk.CairoHelper.Create (this.GdkWindow)) 
 			using (ImageSurface rep_s = new ImageSurface (Format.Argb32, width, height))
@@ -90,6 +93,7 @@ namespace fyiReporting.RdlGtkViewer
 			using (ImageSurface shadow_s = rep_s.Clone ())
 			using (Context shadow_g = new Context (shadow_s)) {
 				
+				g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
 				shadow_g.Pattern = new SolidPattern (new Color (0.6, 0.6, 0.6));
 				shadow_g.Paint ();
 				g.SetSourceSurface (shadow_s, shadow_padding, shadow_padding);
