@@ -89,7 +89,7 @@ public partial class MainWindow: Gtk.Window
 	private string GetParameters(Uri sourcefile)
 	{
 		string parameters = "";
-		string sourceRdl = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
+		string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
 		fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
 		parser.Parse();
 		if (parser.Report.UserReportParameters.Count > 0)

@@ -99,14 +99,14 @@ namespace fyiReporting.RdlGtkViewer
 		{
 
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filename.AbsolutePath);
+			xmlDoc.Load(filename.LocalPath);
 
             foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
             {
                 node.InnerText = connectionString;
             }
 
-            xmlDoc.Save(filename.AbsolutePath);
+			xmlDoc.Save(filename.LocalPath);
 
 			LoadReport(filename, parameters);
         }
@@ -148,7 +148,7 @@ namespace fyiReporting.RdlGtkViewer
 			}
 			
 			// Obtain the source 
-			source = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
+			source = System.IO.File.ReadAllText(sourcefile.LocalPath);
 			// GetSource is omitted: all it does is read the file.
 			// Compile the report 
 			report = this.GetReport(source);
