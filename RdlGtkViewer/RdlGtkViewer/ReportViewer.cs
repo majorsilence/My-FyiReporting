@@ -94,10 +94,15 @@ namespace fyiReporting.RdlGtkViewer
 			DisableActions ();
 			ShowErrors = false;
 		}
-		
+
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name="filename">Filename.</param>
+		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+		/// <param name="connectionString">Relace all Connection string in report.</param>
 		public void LoadReport(Uri filename, string parameters, string connectionString)
 		{
-
             XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.Load(filename.LocalPath);
 
@@ -106,11 +111,10 @@ namespace fyiReporting.RdlGtkViewer
                 node.InnerText = connectionString;
             }
 
-			xmlDoc.Save(filename.LocalPath);
+			string reportXml = xmlDoc.OuterXml;
 
-			LoadReport(filename, parameters);
+			LoadReport(reportXml, parameters);
         }
-		
 		
 		/// <summary>
 		/// Loads the report.
@@ -126,7 +130,7 @@ namespace fyiReporting.RdlGtkViewer
 		/// <summary>
 		/// Loads the report.
 		/// </summary>
-		/// <param name='filename'>
+		/// <param name='sourcefile'>
 		/// Filename.
 		/// </param>
 		/// <param name='parameters'>
@@ -136,7 +140,17 @@ namespace fyiReporting.RdlGtkViewer
 		{
 			SourceFile = sourcefile;
 						
-			string source;
+			string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
+			LoadReport(source, parameters);
+		}
+
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name="source">Xml source of report</param>
+		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+		public void LoadReport(string source, string parameters)
+		{
 			// Any parameters?  e.g.  file1.rdl?orderid=5 
 			if (parameters.Trim() != "")
 			{
@@ -147,9 +161,6 @@ namespace fyiReporting.RdlGtkViewer
 			    this.Parameters = null;
 			}
 			
-			// Obtain the source 
-			source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-			// GetSource is omitted: all it does is read the file.
 			// Compile the report 
 			report = this.GetReport(source);
 			AddParameterControls ();		
@@ -162,7 +173,6 @@ namespace fyiReporting.RdlGtkViewer
 			SetParametersFromControls ();
 			report.RunGetData (Parameters);
 			pages = report.BuildPages ();
-			
 			
 			foreach (Gtk.Widget w in vboxPages.AllChildren)
 			{
