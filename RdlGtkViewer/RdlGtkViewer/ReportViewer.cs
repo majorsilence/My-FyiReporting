@@ -604,8 +604,21 @@ namespace fyiReporting.RdlGtkViewer
             render.RunPages(pages);	
         }
 
-        void HandlePrintEndPrint(object o, EndPrintArgs args)
-        {
+		void HandlePrintBeginPrint (object o, BeginPrintArgs args)
+		{
+			printing.NPages = pages.Count;
+		}
+
+		void HandlePrintDrawPage (object o, DrawPageArgs args)
+		{
+			Cairo.Context g = args.Context.CairoContext;
+
+			RenderCairo render = new RenderCairo (g);
+			render.RunPage(pages[args.PageNr]);	
+		}
+
+		void HandlePrintEndPrint (object o, EndPrintArgs args)
+		{
 			
         }
 
