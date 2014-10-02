@@ -53,6 +53,17 @@ namespace fyiReporting.RDL
 		bool _ConstantImage;	// true if Image is a constant at runtime
 
         private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
+		
+		private static void CopyStream(Stream src, Stream dst)
+		{
+			byte[] buffer = new byte[16 * 1024];
+            int bytesRead;
+
+            while ((bytesRead = src.Read(buffer, 0, buffer.Length)) > 0) {
+                dst.Write(buffer, 0, bytesRead);
+            }
+		}
+		
         /// <summary>
         /// Only gets set for Images which contain urls rather than coming from the database etc..
         /// </summary>
@@ -206,11 +217,11 @@ namespace fyiReporting.RDL
 				{	
 					case "image/jpeg" :
 						imf = ImageFormat.Jpeg;
-						strm.CopyTo(ostrm);
+						CopyStream(strm, ostrm);
 						break;
 					case "image/png":
 						imf = ImageFormat.Png;
-						strm.CopyTo(ostrm);
+						CopyStream(strm, ostrm);
 						break;
 					default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
 						imf = ImageFormat.Jpeg;
