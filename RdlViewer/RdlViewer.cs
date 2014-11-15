@@ -40,8 +40,10 @@ namespace fyiReporting.RdlViewer
     /// </summary>
     public partial class RdlViewer : System.Windows.Forms.UserControl
     {
-        public delegate void HyperlinkEventHandler(object source, HyperlinkEventArgs e);
-        public delegate void PageNavigationEventHandler(object sender, PageNavigationEventArgs e);
+        public delegate void HyperlinkEventHandler(object source,HyperlinkEventArgs e);
+
+        public delegate void PageNavigationEventHandler(object sender,PageNavigationEventArgs e);
+
         /// <summary>
         /// Hyperlink invoked when report item with hyperlink is clicked on.
         /// </summary>
@@ -56,6 +58,7 @@ namespace fyiReporting.RdlViewer
         /// <param name="SubReportName">Name and path of the subreport</param>
         /// <returns>The content of the sub report (XML content)</returns>
         private CrossDelegate SubReportGetContent = new CrossDelegate();
+
         public CrossDelegate.GetContent dSubReportGetContent
         {
             get { return SubReportGetContent.SubReportGetContent; }
@@ -88,7 +91,7 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// The pages of the report to view
         /// </summary>
-        private Pages _pgs;        
+        private Pages _pgs;
         /// <summary>
         /// Last load of report failed
         /// </summary>
@@ -97,7 +100,9 @@ namespace fyiReporting.RdlViewer
         /// Left margin; calculated based on size of window & scroll style
         /// </summary>
         private float _leftMargin;
+
         #region report information
+
         /// <summary>
         /// Width of page
         /// </summary>
@@ -110,10 +115,13 @@ namespace fyiReporting.RdlViewer
         private string _ReportAuthor;
         private string _ReportName;
         private IList _errorMsgs;
+
         #endregion report information
+
         //private PageDrawing _pd;			// draws the pages of a report
 
         #region Zoom
+
         /// <summary>
         /// Zoom factor
         /// </summary>
@@ -132,10 +140,12 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// gap between pages: 10 points
         /// </summary>
-        private float _pageGap = 10;	 
+        private float _pageGap = 10;
+
         #endregion
 
         #region Printing
+
         /// <summary>
         /// Compensate for non-printable region
         /// </summary>
@@ -148,6 +158,7 @@ namespace fyiReporting.RdlViewer
         /// Current page to print
         /// </summary>
         private int printCurrentPage;
+
         #endregion Printing
 
         // Scrollbars
@@ -157,15 +168,21 @@ namespace fyiReporting.RdlViewer
 
 
         // panel for specifying parameters
-        private int _ParametersMaxHeight;			// max height of controls in _ParameterPanel
+        private int _ParametersMaxHeight;
+        // max height of controls in _ParameterPanel
 
-        private string _HighlightText = null;      // text that should be highlighted when drawn
-        private bool _HighlightCaseSensitive = false;   // highlight text is case insensitive
-        private bool _HighlightAll = false;     // highlight all instances of Highlight text
-        private PageItem _HighlightItem = null; // page item to highlight
+        private string _HighlightText = null;
+        // text that should be highlighted when drawn
+        private bool _HighlightCaseSensitive = false;
+        // highlight text is case insensitive
+        private bool _HighlightAll = false;
+        // highlight all instances of Highlight text
+        private PageItem _HighlightItem = null;
+        // page item to highlight
 
         private bool _ShowParameters = true;
-        private bool _ShowWaitDialog = true;    // show wait dialog when running report
+        private bool _ShowWaitDialog = true;
+        // show wait dialog when running report
         private volatile bool _stopWaitDialog = false;
 
         public RdlViewer()
@@ -245,6 +262,7 @@ namespace fyiReporting.RdlViewer
 
             this.ResumeLayout(false);
         }
+
         public new bool Focus()
         {
             return (this._DrawPanel.Focus());
@@ -258,6 +276,7 @@ namespace fyiReporting.RdlViewer
             get { return _UseTrueMargins; }
             set { _UseTrueMargins = value; }
         }
+
         /// <summary>
         /// Show the Wait Dialog when retrieving and rendering report when true.
         /// </summary>
@@ -266,6 +285,7 @@ namespace fyiReporting.RdlViewer
             get { return _ShowWaitDialog; }
             set { _ShowWaitDialog = value; }
         }
+
         /// <summary>
         /// True if Parameter panel should be shown. 
         /// </summary>
@@ -282,6 +302,7 @@ namespace fyiReporting.RdlViewer
                 RdlViewer_Layout(this, null);				// re layout based on new report
             }
         }
+
         /// <summary>
         /// True when find panel is visible
         /// </summary>
@@ -297,6 +318,7 @@ namespace fyiReporting.RdlViewer
                 RdlViewer_Layout(this, null);				// re layout based on new report
             }
         }
+
         /// <summary>
         /// Causes the find panel to find the next item
         /// </summary>
@@ -304,6 +326,7 @@ namespace fyiReporting.RdlViewer
         {
             _FindCtl.FindNext();
         }
+
         /// <summary>
         /// The color to use when highlighting the current found item
         /// </summary>
@@ -312,6 +335,7 @@ namespace fyiReporting.RdlViewer
             get { return _DrawPanel.HighlightItemColor; }
             set { _DrawPanel.HighlightItemColor = value; }
         }
+
         /// <summary>
         /// The color to use when highlighting all
         /// </summary>
@@ -363,6 +387,7 @@ namespace fyiReporting.RdlViewer
                     _DrawPanel.Invalidate();    // force redraw when need to
             }
         }
+
         /// <summary>
         /// When used with HighlightText; HighlightPageItem will only highlight the selected item.
         /// </summary>
@@ -375,6 +400,7 @@ namespace fyiReporting.RdlViewer
                 _DrawPanel.Invalidate();    // force redraw
             }
         }
+
         /// <summary>
         /// Returns the number of pages in the report.  0 is returned if no report has been loaded.
         /// </summary>
@@ -417,8 +443,8 @@ namespace fyiReporting.RdlViewer
                     _vScroll.Value = (int)Math.Round(scrollValue);
 
                     string tt = string.Format("Page {0} of {1}",
-                        (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-                        _pgs.PageCount);
+                                    (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+                                    _pgs.PageCount);
 
                     _vScrollToolTip.SetToolTip(_vScroll, tt);
 
@@ -484,6 +510,7 @@ namespace fyiReporting.RdlViewer
                 this._DrawPanel.Invalidate();
             }
         }
+
         /// <summary>
         /// Enables/Disables the selection tool.  The selection tool allows the user
         /// to select text and images on the display and copy it to the clipboard.
@@ -493,6 +520,7 @@ namespace fyiReporting.RdlViewer
             get { return _DrawPanel.SelectTool; }
             set { _DrawPanel.SelectTool = value; }
         }
+
         /// <summary>
         /// Returns true when one or more PageItems are selected.
         /// </summary>
@@ -500,6 +528,7 @@ namespace fyiReporting.RdlViewer
         {
             get { return _DrawPanel.CanCopy; }
         }
+
         /// <summary>
         /// Copies the current selection (if any) to the clipboard.
         /// </summary>
@@ -517,6 +546,7 @@ namespace fyiReporting.RdlViewer
                 im.Dispose();
             }
         }
+
         /// <summary>
         /// The contents of the selected text.  Tab separate items on same y coordinate;
         /// newline separate items when y coordinate changes.   Order is based on user
@@ -598,28 +628,28 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         public string Parameters
         {
-            get 
+            get
             {
                 string result = "";
 
-				// Check for zero to working form designer
-	            if (_Parameters != null)
-	            {
-		            foreach (KeyValuePair<String, String> kvp in _Parameters)
-		            {
-			            result += String.Format("{0:s}={1:s};", kvp.Key, kvp.Value);
-		            }
-	            }
+                // Check for zero to working form designer
+                if (_Parameters != null)
+                {
+                    foreach (KeyValuePair<String, String> kvp in _Parameters)
+                    {
+                        result += String.Format("{0:s}={1:s};", kvp.Key, kvp.Value);
+                    }
+                }
 
-	            return result.TrimEnd(';');
+                return result.TrimEnd(';');
             }
-            set 
+            set
             {
                 _Parameters = new ListDictionary();
                 if (String.IsNullOrEmpty(value))
                     return;
                 String[] prms = value.TrimEnd(';').Split('&');
-                foreach(String p in prms)
+                foreach (String p in prms)
                 {
                     int iEq = p.IndexOf("=");
                     if (iEq > 0)
@@ -752,6 +782,7 @@ namespace fyiReporting.RdlViewer
                 _Print(pd);
             }
         }
+
         private void _Print(PrintDocument pd)
         {
             printCurrentPage = -1;
@@ -828,8 +859,8 @@ namespace fyiReporting.RdlViewer
                         
      
             OneFileStreamGen sg = new OneFileStreamGen(FileName, true);	// overwrite with this name
-            if (!(type == OutputPresentationType.PDF || type == OutputPresentationType.PDFOldStyle || 
-                type == OutputPresentationType.TIF || type  == OutputPresentationType.TIFBW))
+            if (!(type == OutputPresentationType.PDF || type == OutputPresentationType.PDFOldStyle ||
+                type == OutputPresentationType.TIF || type == OutputPresentationType.TIFBW))
             {
                 ListDictionary ld = GetParameters();		// split parms into dictionary
                 _Report.RunGetData(ld);                     // obtain the data (again)
@@ -839,7 +870,7 @@ namespace fyiReporting.RdlViewer
                 switch (type)
                 {
                     case  OutputPresentationType.PDF:
-                         _Report.ItextPDF = true;
+                        _Report.ItextPDF = true;
                         _Report.RunRenderPdf(sg, _pgs);
                         break;
                     case OutputPresentationType.PDFOldStyle:  
@@ -991,9 +1022,9 @@ namespace fyiReporting.RdlViewer
                 sPage = pi.Page.PageNumber - 1;
                 sItem = pi.ItemNumber;
                 RectangleF rect = new RectangleF(PixelsX(pi.X + _leftMargin),
-                    PixelsY(pi.Y),
-                    PixelsX(pi.W),
-                    PixelsY(pi.H));
+                                      PixelsY(pi.Y),
+                                      PixelsX(pi.W),
+                                      PixelsY(pi.H));
                 itemVerticalOffset = (int)(rect.Top);
                 itemHorzOffset = (int)rect.Left;
                 width = (int)rect.Width;
@@ -1220,7 +1251,9 @@ namespace fyiReporting.RdlViewer
                             r.Name = this.ReportName;
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
             }
             catch (Exception ex)
@@ -1746,8 +1779,8 @@ namespace fyiReporting.RdlViewer
             }
             _vScroll.Enabled = true;
             string tt = string.Format("Page {0} of {1}",
-                    (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-                    _pgs.PageCount);
+                            (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+                            _pgs.PageCount);
 
             _vScrollToolTip.SetToolTip(_vScroll, tt);
             //			switch (_ScrollMode)
@@ -1805,34 +1838,35 @@ namespace fyiReporting.RdlViewer
                 return;
 
             string tt = string.Format("Page {0} of {1}",
-                (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-                _pgs.PageCount);
+                            (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+                            _pgs.PageCount);
 
             _vScrollToolTip.SetToolTip(_vScroll, tt);
 
             _DrawPanel.Invalidate();
-			ChangePageEvent();
+            ChangePageEvent();
         }
 
-		private int previousPage = 0;
-		private void ChangePageEvent()
-		{
+        private int previousPage = 0;
+
+        private void ChangePageEvent()
+        {
 
             if (PageNavigation == null)
-			{
-				return;
-			}
+            {
+                return;
+            }
 
-			int currentPage = (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1;
+            int currentPage = (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1;
 
-			if (previousPage != currentPage)
-			{
+            if (previousPage != currentPage)
+            {
                 PageNavigation(this, new PageNavigationEventArgs(currentPage));
-			}
+            }
 
-			previousPage = currentPage;
+            previousPage = currentPage;
 
-		}
+        }
 
         private void DrawPanelMouseWheel(object sender, MouseEventArgs e)
         {
@@ -1883,7 +1917,7 @@ namespace fyiReporting.RdlViewer
                 }
             }
 
-			ChangePageEvent();
+            ChangePageEvent();
         }
 
         private void DrawPanelKeyDown(object sender, KeyEventArgs e)
@@ -1912,7 +1946,7 @@ namespace fyiReporting.RdlViewer
                 if (!_vScroll.Enabled)
                     return;
                 _vScroll.Value = Math.Min(_vScroll.Value + _vScroll.LargeChange,
-                                        _vScroll.Maximum - _DrawPanel.Height);
+                    _vScroll.Maximum - _DrawPanel.Height);
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -1966,7 +2000,7 @@ namespace fyiReporting.RdlViewer
                     _hScroll.Value = _hScroll.Maximum - _DrawPanel.Width;
                 else
                     _hScroll.Value = Math.Min(_hScroll.Value + _hScroll.SmallChange,
-                                                _hScroll.Maximum - _DrawPanel.Width);
+                        _hScroll.Maximum - _DrawPanel.Width);
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -2074,12 +2108,14 @@ namespace fyiReporting.RdlViewer
         FitPage,
         FitWidth
     }
+
     /// <summary>
     /// HyperlinkEventArgs passed when a report item with a hyperlink defined is clicked on
     /// </summary>
     public class HyperlinkEventArgs : System.ComponentModel.CancelEventArgs
     {
-        string _Hyperlink;      // Hyperlink text
+        string _Hyperlink;
+        // Hyperlink text
         public HyperlinkEventArgs(string hyperlink)
             : base()
         {
@@ -2092,23 +2128,25 @@ namespace fyiReporting.RdlViewer
         }
     }
 
-	public class PageNavigationEventArgs  : EventArgs
-	{
+    public class PageNavigationEventArgs  : EventArgs
+    {
         public PageNavigationEventArgs(int newPage)
-            : base() 
-		{
+            : base()
+        {
             _newPage = newPage;
-		}
+        }
 
-		private int _newPage;
-		public int NewPage
-		{
-			get { 
-				return _newPage;
-			}
-		}
+        private int _newPage;
 
-	}
+        public int NewPage
+        {
+            get
+            { 
+                return _newPage;
+            }
+        }
+
+    }
 
 
 }
