@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+set -e # exit on first error
+set -u # exit on using unset variable
+
 # Platform optios: "AnyCPU", "x64", "AnyCPU"
 # /p:Configuration="Debug" or "Release"
 
@@ -5,16 +9,7 @@
 # ************* Begin AnyCPU *********************************************
 # Seems to be the only option that matter on linux
 
-xbuild "../DataProviders/DataProviders.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-# xbuild "../pwd/../OracleSP/OracleSp.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlAsp/RdlAsp.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlCmd/RdlCmd.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlCri/RdlCri.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlDesign/RdlDesign.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlDesktop/RdlDesktop.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlEngine/RdlEngine.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlMapFile/RdlMapFile.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
-xbuild "../RdlViewer/RdlViewer.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU" /t:clean;rebuild /m:4
+xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU"
 
 rm -rf ./majorsilence-reporting-build-dot-net-4-AnyCPU
 mkdir ./majorsilence-reporting-build-dot-net-4-AnyCPU
@@ -36,8 +31,22 @@ cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./majorsilence-reporting-build-d
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlMapFile.exe 
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./majorsilence-reporting-build-dot-net-4-AnyCPU/RdlReader.exe 
-cp "../References/dot net 3.5/zxing.dll" ./majorsilence-reporting-build-dot-net-4-x86/zxing.dll
+cp "../References/dot net 3.5/zxing.dll" ./majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.dll
 
 zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-build-dot-net-4-AnyCPU/
 
 # ************* End AnyCPU *********************************************
+
+cd nuget/My-FyiReporting
+rm -rf lib
+rm -rf ../My-FyiReporting-Build
+
+mkdir ../My-FyiReporting-Build
+mkdir lib
+cd lib
+mkdir net40
+cd ..
+
+cp -R ../../majorsilence-reporting-build-dot-net-4-AnyCPU/* lib/net40
+
+nuget pack "My-FyiReporting.nuspec" -OutputDirectory "../My-FyiReporting-Build"
