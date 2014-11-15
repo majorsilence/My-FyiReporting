@@ -1470,8 +1470,11 @@ namespace fyiReporting.RdlViewer
         {
             try
             {
-                DialogWait wait = new DialogWait(this, StopWaitDialog);
-                wait.ShowDialog();
+                if (System.Environment.OSVersion.Platform != PlatformID.Unix)
+                {
+                    DialogWait wait = new DialogWait(this, StopWaitDialog);
+                    wait.ShowDialog();
+                }
             }
             catch (ObjectDisposedException ode)
             {
