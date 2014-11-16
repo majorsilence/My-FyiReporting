@@ -187,7 +187,7 @@ namespace fyiReporting.RdlDesign
             XmlNode qpsNode = _Draw.CreateElement(qNode, "QueryParameters", null);
             foreach (DataRow dr in _dsv.QueryParameters.Rows)
             {
-                if (dr[0] == DBNull.Value || dr[1] == null)
+                if (dr[0] == DBNull.Value || dr[1] == null || dr[1] == DBNull.Value)
                     continue;
                 string name = (string)dr[0];
                 if (name.Length <= 0)
