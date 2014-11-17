@@ -5773,20 +5773,27 @@ namespace fyiReporting.RdlDesign
 				
 				// Need to create a column for each spaned column
 				int colSpan = Convert.ToInt32(GetElementValue(tcell, "ColSpan", "1"));
-				XmlNode styleNode = DesignXmlDraw.FindNextInHierarchy(tcell, "ReportItems", "Textbox", "Style");
-				for (int ci=0; ci < colSpan; ci++)
-				{
-					XmlElement tbox = rDoc.CreateElement("Textbox");
-					ReportNames.GenerateName(tbox);
-					ris.AppendChild(tbox);
 
-					XmlElement vnode = rDoc.CreateElement("Value");
-					vnode.InnerText = "";
-					tbox.AppendChild(vnode);
-					if (styleNode != null)
-						tbox.AppendChild(styleNode.CloneNode(true));
-				}
-			}
+                // add ColSpan to match the source row
+                if (colSpan > 1)
+                {
+                    XmlElement colSpanNode = rDoc.CreateElement("ColSpan");
+                    colSpanNode.InnerText = colSpan.ToString();
+                    ntcell.AppendChild(colSpanNode);
+                }
+
+                XmlNode styleNode = DesignXmlDraw.FindNextInHierarchy(tcell, "ReportItems", "Textbox", "Style");
+                XmlElement tbox = rDoc.CreateElement("Textbox");
+                ReportNames.GenerateName(tbox);
+                ris.AppendChild(tbox);
+
+                XmlElement vnode = rDoc.CreateElement("Value");
+                vnode.InnerText = "";
+                tbox.AppendChild(vnode);
+                if (styleNode != null)
+                    tbox.AppendChild(styleNode.CloneNode(true));
+
+            }
 
 			return true;
 		}
