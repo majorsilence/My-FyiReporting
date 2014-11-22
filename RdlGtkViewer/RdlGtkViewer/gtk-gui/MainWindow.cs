@@ -4,12 +4,17 @@
 public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
-	private global::Gtk.Action FileAction;
-	private global::Gtk.Action OpenAction;
-	private global::Gtk.Table table1;
-	private global::Gtk.MenuBar menubar1;
-	private global::fyiReporting.RdlGtkViewer.ReportViewer reportviewer1;
 	
+	private global::Gtk.Action FileAction;
+	
+	private global::Gtk.Action OpenAction;
+	
+	private global::Gtk.Table table1;
+	
+	private global::Gtk.MenuBar menubar1;
+	
+	private global::fyiReporting.RdlGtkViewer.ReportViewer reportviewer1;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);

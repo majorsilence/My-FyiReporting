@@ -5,18 +5,29 @@ namespace fyiReporting.RdlGtkViewer
 	public partial class RdlGtkViewer
 	{
 		private global::Gtk.VBox vbox1;
-		private global::Gtk.HBox hbox1;
-		private global::Gtk.Button SaveButton;
-		private global::Gtk.Button PrintButton;
-		private global::Gtk.Button FirstPageButton;
-		private global::Gtk.Button PreviousButton;
-		private global::Gtk.Button NextButton;
-		private global::Gtk.Button LastPageButton;
-		private global::Gtk.SpinButton CurrentPage;
-		private global::Gtk.Label PageCountLabel;
-		private global::Gtk.ScrolledWindow scrolledwindow1;
-		private global::Gtk.VBox vboxImages;
 		
+		private global::Gtk.HBox hbox1;
+		
+		private global::Gtk.Button SaveButton;
+		
+		private global::Gtk.Button PrintButton;
+		
+		private global::Gtk.Button FirstPageButton;
+		
+		private global::Gtk.Button PreviousButton;
+		
+		private global::Gtk.Button NextButton;
+		
+		private global::Gtk.Button LastPageButton;
+		
+		private global::Gtk.SpinButton CurrentPage;
+		
+		private global::Gtk.Label PageCountLabel;
+		
+		private global::Gtk.ScrolledWindow scrolledwindow1;
+		
+		private global::Gtk.VBox vboxImages;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

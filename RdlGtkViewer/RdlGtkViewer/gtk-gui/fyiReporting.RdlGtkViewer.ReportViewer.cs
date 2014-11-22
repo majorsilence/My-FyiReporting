@@ -5,23 +5,39 @@ namespace fyiReporting.RdlGtkViewer
 	public partial class ReportViewer
 	{
 		private global::Gtk.UIManager UIManager;
-		private global::Gtk.Action refreshAction;
-		private global::Gtk.Action PdfAction;
-		private global::Gtk.Action printAction;
-		private global::Gtk.Action ZoomOutAction;
-		private global::Gtk.Action ZoomInAction;
-		private global::Gtk.ToggleAction errorsAction;
-		private global::Gtk.VBox vbox;
-		private global::Gtk.HBox hboxHeader;
-		private global::Gtk.Toolbar toolbar;
-		private global::Gtk.HBox hbox;
-		private global::Gtk.VBox vboxParameters;
-		private global::Gtk.HPaned hpanedReport;
-		private global::Gtk.ScrolledWindow scrolledwindowPages;
-		private global::Gtk.VBox vboxPages;
-		private global::Gtk.ScrolledWindow scrolledwindowErrors;
-		private global::Gtk.TextView textviewErrors;
 		
+		private global::Gtk.Action refreshAction;
+		
+		private global::Gtk.Action PdfAction;
+		
+		private global::Gtk.Action printAction;
+		
+		private global::Gtk.Action ZoomOutAction;
+		
+		private global::Gtk.Action ZoomInAction;
+		
+		private global::Gtk.ToggleAction errorsAction;
+		
+		private global::Gtk.VBox vbox;
+		
+		private global::Gtk.HBox hboxHeader;
+		
+		private global::Gtk.Toolbar toolbar;
+		
+		private global::Gtk.HBox hbox;
+		
+		private global::Gtk.VBox vboxParameters;
+		
+		private global::Gtk.HPaned hpanedReport;
+		
+		private global::Gtk.ScrolledWindow scrolledwindowPages;
+		
+		private global::Gtk.VBox vboxPages;
+		
+		private global::Gtk.ScrolledWindow scrolledwindowErrors;
+		
+		private global::Gtk.TextView textviewErrors;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

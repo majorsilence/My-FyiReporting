@@ -5,11 +5,15 @@ namespace fyiReporting.RdlGtkViewer
 	public partial class ParameterPrompt
 	{
 		private global::Gtk.HBox hbox3;
-		private global::Gtk.Label label2;
-		private global::Gtk.Entry TextBoxParameters;
-		private global::Gtk.Button buttonCancel;
-		private global::Gtk.Button buttonOk;
 		
+		private global::Gtk.Label label2;
+		
+		private global::Gtk.Entry TextBoxParameters;
+		
+		private global::Gtk.Button buttonCancel;
+		
+		private global::Gtk.Button buttonOk;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
