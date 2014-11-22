@@ -27,38 +27,46 @@ using fyiReporting.RDL;
 
 namespace fyiReporting.RdlGtkViewer
 {
-	public class CairoPdfWriter
-	{
-		public CairoPdfWriter ()
-		{
-		}
+    public class CairoPdfWriter
+    {
+        public CairoPdfWriter()
+        {
+        }
 
-		#region IPdfWriter implementation
-		public byte[] GetFileBytes (Report report)
-		{
-			var pages = report.BuildPages ();
-			int width = (int)report.PageWidthPoints;
-			int height = (int)report.PageHeightPoints;
-			string filename = string.Format ("gen-{0}.pdf", Guid.NewGuid ());
+        #region IPdfWriter implementation
+
+        public byte[] GetFileBytes(Report report)
+        {
+            var pages = report.BuildPages();
+            int width = (int)report.PageWidthPoints;
+            int height = (int)report.PageHeightPoints;
+            string filename = string.Format("gen-{0}.pdf", Guid.NewGuid());
 			
-			try {
-				using (Cairo.PdfSurface pdf = new Cairo.PdfSurface (filename, width, height)) {
-					using (Cairo.Context g = new Cairo.Context (pdf)) {
+            try
+            {
+                using (Cairo.PdfSurface pdf = new Cairo.PdfSurface(filename, width, height))
+                {
+                    using (Cairo.Context g = new Cairo.Context(pdf))
+                    {
 						
-						var render = new  fyiReporting.RdlGtkViewer.RenderCairo (g);
-						render.RunPages (pages);
-					}
-				}
-				byte[] bytes = File.ReadAllBytes (filename);
-				return bytes;
+                        var render = new  fyiReporting.RdlGtkViewer.RenderCairo(g);
+                        render.RunPages(pages);
+                    }
+                }
+                byte[] bytes = File.ReadAllBytes(filename);
+                return bytes;
 				
-			} finally {
-				if (File.Exists (filename)) {
-					File.Delete (filename);
-				}
-			}
-		}
-		#endregion
-	}
+            }
+            finally
+            {
+                if (File.Exists(filename))
+                {
+                    File.Delete(filename);
+                }
+            }
+        }
+
+        #endregion
+    }
 }
 

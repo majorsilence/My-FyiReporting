@@ -29,104 +29,107 @@ using fyiReporting.RDL;
 
 namespace fyiReporting.RdlGtkViewer
 {
-	[System.ComponentModel.ToolboxItem(true)]
-	public class ReportArea : Gtk.DrawingArea
-	{
-		Page pages;
-		Report report;
-		int rep_padding = 10;
-		int shadow_padding = 16;
-		float scale = 1.0f;
-		
-		public float Scale
-		{
-			get { return scale; }
-			set {
-				if (value != scale && value != 0) {
-					scale = value;
+    [System.ComponentModel.ToolboxItem(true)]
+    public class ReportArea : Gtk.DrawingArea
+    {
+        Page pages;
+        Report report;
+        int rep_padding = 10;
+        int shadow_padding = 16;
+        float scale = 1.0f;
 
-					this.QueueResize();
-					GdkWindow.Invalidate ();
-				}	
-			}
-		}
-		
-		public ReportArea ()
-		{
-			// Insert initialization code here.
-		}
-		
-		public void SetReport (Report report, Page pages)
-		{
-			this.pages = pages;
-			this.report = report;
+        public float Scale
+        {
+            get { return scale; }
+            set
+            {
+                if (value != scale && value != 0)
+                {
+                    scale = value;
 
-			this.QueueResize();
-			GdkWindow.Invalidate ();
-		}
+                    this.QueueResize();
+                    GdkWindow.Invalidate();
+                }	
+            }
+        }
 
-		protected override bool OnButtonPressEvent (Gdk.EventButton ev)
-		{
-			// Insert button press handling code here.
-			return base.OnButtonPressEvent (ev);
-		}
+        public ReportArea()
+        {
+            // Insert initialization code here.
+        }
 
-		protected override bool OnExposeEvent (Gdk.EventExpose ev)
-		{
-			base.OnExposeEvent (ev);
+        public void SetReport(Report report, Page pages)
+        {
+            this.pages = pages;
+            this.report = report;
+
+            this.QueueResize();
+            GdkWindow.Invalidate();
+        }
+
+        protected override bool OnButtonPressEvent(Gdk.EventButton ev)
+        {
+            // Insert button press handling code here.
+            return base.OnButtonPressEvent(ev);
+        }
+
+        protected override bool OnExposeEvent(Gdk.EventExpose ev)
+        {
+            base.OnExposeEvent(ev);
 			
-			if (pages == null)
-				return false;
+            if (pages == null)
+                return false;
 				
-			int width = (int)(report.PageWidthPoints * Scale);
-			int height = (int)(report.PageHeightPoints * Scale);
-			Cairo.Rectangle rep_r = new Cairo.Rectangle (1, 1, width - 1, height - 1);
+            int width = (int)(report.PageWidthPoints * Scale);
+            int height = (int)(report.PageHeightPoints * Scale);
+            Cairo.Rectangle rep_r = new Cairo.Rectangle(1, 1, width - 1, height - 1);
 
-			int widgetWidth, widgetHeight;
-			ev.Window.GetSize (out widgetWidth, out widgetHeight);
+            int widgetWidth, widgetHeight;
+            ev.Window.GetSize(out widgetWidth, out widgetHeight);
 			
-			using (Context g = Gdk.CairoHelper.Create (this.GdkWindow)) 
-			using (ImageSurface rep_s = new ImageSurface (Format.Argb32, width, height))
-			using (Context rep_g = new Context (rep_s)) 
-			using (ImageSurface shadow_s = rep_s.Clone ())
-			using (Context shadow_g = new Context (shadow_s)) {
+            using (Context g = Gdk.CairoHelper.Create(this.GdkWindow))
+            using (ImageSurface rep_s = new ImageSurface(Format.Argb32, width, height))
+            using (Context rep_g = new Context(rep_s))
+            using (ImageSurface shadow_s = rep_s.Clone())
+            using (Context shadow_g = new Context(shadow_s))
+            {
 				
-				g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
-				shadow_g.Pattern = new SolidPattern (new Color (0.6, 0.6, 0.6));
-				shadow_g.Paint ();
-				g.SetSourceSurface (shadow_s, shadow_padding, shadow_padding);
-				g.Paint ();
+                g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
+                shadow_g.Pattern = new SolidPattern(new Color(0.6, 0.6, 0.6));
+                shadow_g.Paint();
+                g.SetSourceSurface(shadow_s, shadow_padding, shadow_padding);
+                g.Paint();
 				
-				rep_g.Pattern = new SolidPattern (new Color (1, 1, 1));
-				rep_g.Paint ();
+                rep_g.Pattern = new SolidPattern(new Color(1, 1, 1));
+                rep_g.Paint();
 				
-				rep_g.DrawRectangle (rep_r, new Color (0.1, 0.1, 0.1), 1);
+                rep_g.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
 				
-				RenderCairo render = new RenderCairo (rep_g, Scale);
-				render.RunPage (pages);
+                RenderCairo render = new RenderCairo(rep_g, Scale);
+                render.RunPage(pages);
 				
 
-				g.SetSourceSurface (rep_s, rep_padding, rep_padding);
-				g.Paint ();
+                g.SetSourceSurface(rep_s, rep_padding, rep_padding);
+                g.Paint();
 				
-			}
-			return true;
-		}
+            }
+            return true;
+        }
 
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-		{
-			base.OnSizeAllocated (allocation);
-			// Insert layout code here.
-		}
+        protected override void OnSizeAllocated(Gdk.Rectangle allocation)
+        {
+            base.OnSizeAllocated(allocation);
+            // Insert layout code here.
+        }
 
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
-		{
-			if(report != null)
-			{
-				requisition.Width = (int)(report.PageWidthPoints * scale) + rep_padding * 2; 
-				requisition.Height = (int)(report.PageHeightPoints * scale) + rep_padding * 2;
-			}
-		}
-	}	
+        protected override void OnSizeRequested(ref Gtk.Requisition requisition)
+        {
+            if (report != null)
+            {
+                requisition.Width = (int)(report.PageWidthPoints * scale) + rep_padding * 2; 
+                requisition.Height = (int)(report.PageHeightPoints * scale) + rep_padding * 2;
+            }
+        }
+    }
 }
 
