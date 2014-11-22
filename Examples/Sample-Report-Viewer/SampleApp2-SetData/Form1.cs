@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mono.Data.Sqlite;
+using System.Drawing.Printing;
 
 namespace SampleApp2_SetData
 {
@@ -46,8 +47,25 @@ namespace SampleApp2_SetData
 
         private void PrintClicked(object sender, System.EventArgs e)
         {
-            //rdlViewer1.Print(
 
+            PrintDocument pd = new PrintDocument();
+            pd.DocumentName = rdlViewer1.SourceFile.LocalPath;
+            pd.PrinterSettings.FromPage = 1;
+            pd.PrinterSettings.ToPage = rdlViewer1.PageCount;
+            pd.PrinterSettings.MaximumPage = rdlViewer1.PageCount;
+            pd.PrinterSettings.MinimumPage = 1;
+            pd.DefaultPageSettings.Landscape = rdlViewer1.PageWidth > rdlViewer1.PageHeight ? true : false;
+            using (PrintDialog dlg = new PrintDialog())
+            {
+                dlg.Document = pd;
+                dlg.AllowSelection = true;
+                dlg.AllowSomePages = true;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    rdlViewer1.Print(pd);
+                }
+            }
+     
         }
 
         private void SaveAsClicked(object sender, System.EventArgs e)
