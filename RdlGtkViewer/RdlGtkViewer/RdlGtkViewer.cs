@@ -2,6 +2,7 @@
 using System;
 using System.Xml;
 using fyiReporting.RDL;
+using Cairo;
 
 
 namespace fyiReporting.RdlGtkViewer
@@ -34,10 +35,13 @@ namespace fyiReporting.RdlGtkViewer
 			
             // It is important to set the image to have the correct size
             img.Pixbuf = new  Gdk.Pixbuf(Gdk.Colorspace.Rgb, false, 8, (int)width, (int)height);
-            Gdk.Pixbuf pixbuf = img.Pixbuf;
-			
-            page.RenderToPixbuf(0, 0, (int)width, (int)height, 1.0, 0, pixbuf);
-            img.Pixbuf = pixbuf;
+       
+            using (var sur = new ImageSurface(img.Pixbuf.Pixels, Format.Argb32, (int)width, (int)height, img.Pixbuf.Rowstride))
+            using (var con = new Context(sur))
+            {
+                page.Render(con);
+            }
+
             vboxImages.Add(img);		
 			
         }
