@@ -10,7 +10,7 @@
     <DataSource Name="DS1">
       <ConnectionProperties>
         <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+        <ConnectString>Data Source=/home/peter/Projects/My-FyiReporting/Examples/northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>
@@ -456,7 +456,7 @@
                         </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                       </Style>
-                      <Action >
+                      <Action>
                         <Hyperlink>="lastname:" &amp; {LastName}</Hyperlink>
                       </Action>
                     </Textbox>
@@ -677,6 +677,19 @@
           </TableRows>
         </Details>
       </Table>
+      <Textbox Name="Textbox20" >
+        <Height>12pt</Height>
+        <Width>1in</Width>
+        <Value>Hello World</Value>
+        <ZIndex>1</ZIndex>
+        <Left>122.5pt</Left>
+        <Top>94.15pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>242.0pt</Height>
     <Columns>1</Columns>

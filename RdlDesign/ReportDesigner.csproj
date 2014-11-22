@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,8 +48,6 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE;MONO;</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -65,8 +63,6 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
     <FileAlignment>4096</FileAlignment>
     <Optimize>true</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
@@ -1026,7 +1022,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
-      <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
+      <Project>{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}</Project>
       <Name>DataProviders</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlCri\RdlCri.csproj">

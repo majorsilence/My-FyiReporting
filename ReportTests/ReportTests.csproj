@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -36,6 +36,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -43,6 +45,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +55,8 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -59,9 +64,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Data.Sqlite">
@@ -80,43 +83,43 @@
       <Name>DataProviders</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj">
-      <Project>{d0262213-c37a-4ec9-a76b-b8bcffe5c882}</Project>
+      <Project>{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}</Project>
       <Name>LibRdlCrossPlatformViewer</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlAsp\RdlAsp.csproj">
-      <Project>{5c53b7ba-e8f0-433f-b777-358f3c2ad679}</Project>
+      <Project>{5C53B7BA-E8F0-433F-B777-358F3C2AD679}</Project>
       <Name>RdlAsp</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlCmd\RdlCmd.csproj">
-      <Project>{3456cd50-7d14-4aa6-aaa1-ac3760bbc0f3}</Project>
+      <Project>{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}</Project>
       <Name>RdlCmd</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlCri\RdlCri.csproj">
-      <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
+      <Project>{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}</Project>
       <Name>RdlCri</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlDesign\ReportDesigner.csproj">
-      <Project>{3e1d2c49-44a2-46a0-b107-9e8a87ae78a7}</Project>
+      <Project>{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}</Project>
       <Name>ReportDesigner</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlDesktop\RdlDesktop.csproj">
-      <Project>{d605b305-bb81-441c-b909-dea35f33c8bf}</Project>
+      <Project>{D605B305-BB81-441C-B909-DEA35F33C8BF}</Project>
       <Name>RdlDesktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlEngine\RdlEngine.csproj">
-      <Project>{c97e91f4-b310-44e2-9b6c-96775395722d}</Project>
+      <Project>{C97E91F4-B310-44E2-9B6C-96775395722D}</Project>
       <Name>RdlEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlMapFile\RdlMapFile.csproj">
-      <Project>{342676da-226d-437f-aac2-2fea68ebc466}</Project>
+      <Project>{342676DA-226D-437F-AAC2-2FEA68EBC466}</Project>
       <Name>RdlMapFile</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlViewer\RdlReader\RdlReader.csproj">
-      <Project>{2412e381-d3d9-4ab7-a2fa-02d9786260f0}</Project>
+      <Project>{2412E381-D3D9-4AB7-A2FA-02D9786260F0}</Project>
       <Name>RdlReader</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlViewer\RdlViewer.csproj">
-      <Project>{d99145b1-cb6c-41f5-ba86-723325145fb5}</Project>
+      <Project>{D99145B1-CB6C-41F5-BA86-723325145FB5}</Project>
       <Name>RdlViewer</Name>
     </ProjectReference>
   </ItemGroup>
@@ -132,14 +135,14 @@
     <None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
       <Link>RdlEngineConfig.Linux.xml</Link>
     </None>
-    <None Include="../Examples/northwindEF.db">
-      <Link>northwindEF.db</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Reports\BaseTestReport.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Reports\FunctionTest.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Examples\northwindEF.db">
+      <Link>northwindEF.db</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
