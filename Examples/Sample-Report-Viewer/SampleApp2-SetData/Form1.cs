@@ -16,6 +16,8 @@ namespace SampleApp2_SetData
     {
         private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
         private ToolStrip bar;
+        private ToolStripTextBox currentPage = new ToolStripTextBox("Current Page");
+        private ToolStripLabel pageCount = new ToolStripLabel("Page Count");
 
         public Form1()
         {
@@ -43,6 +45,9 @@ namespace SampleApp2_SetData
 
             rdlViewer1.SourceFile = new Uri(dlg.FileName);
             rdlViewer1.Rebuild();
+
+            currentPage.Text = rdlViewer1.PageCurrent.ToString();
+            pageCount.Text = rdlViewer1.PageCount.ToString();
         }
 
         private void PrintClicked(object sender, System.EventArgs e)
@@ -134,6 +139,32 @@ namespace SampleApp2_SetData
             rdlViewer1.SaveAs(dlg.FileName, type);
         }
 
+        private void FirstPageClicked(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void PreviousPageClicked(object sender, System.EventArgs e)
+        {
+        }
+
+        private void NextPageClicked(object sender, System.EventArgs e)
+        {
+        }
+
+        private void LastPageClicked(object sender, System.EventArgs e)
+        {
+        }
+
+        private void ZoomInClicked(object sender, System.EventArgs e)
+        {
+            rdlViewer1.Zoom += 0.5f;
+        }
+
+        private void ZoomOutClicked(object sender, System.EventArgs e)
+        {
+            rdlViewer1.Zoom -= 0.5f;
+        }
 
         private void InitializeToolBar()
         {
@@ -143,6 +174,14 @@ namespace SampleApp2_SetData
             bar.Items.Add(new ToolStripButton("Open", null, OpenClicked));
             bar.Items.Add(new ToolStripButton("Save As", null, SaveAsClicked));
             bar.Items.Add(new ToolStripButton("Print", null, PrintClicked));
+            //bar.Items.Add(new ToolStripButton("First Page", null, FirstPageClicked));
+            //bar.Items.Add(new ToolStripButton("Previous Page", null, PreviousPageClicked));
+            //bar.Items.Add(new ToolStripButton("Next Page", null, NextPageClicked));
+            //bar.Items.Add(new ToolStripButton("Last Page", null, LastPageClicked));
+            bar.Items.Add(this.currentPage);
+            bar.Items.Add(this.pageCount);
+            bar.Items.Add(new ToolStripButton("Zoom In", null, ZoomInClicked));
+            bar.Items.Add(new ToolStripButton("Zoom Out", null, ZoomOutClicked));
         }
 
         private void InitializeViewer()
@@ -157,6 +196,13 @@ namespace SampleApp2_SetData
 
             this.rdlViewer1.Size = new System.Drawing.Size(731, 381);
 
+            this.rdlViewer1.PageNavigation += HandlePageNavigation;
+
+        }
+
+        void HandlePageNavigation(object sender, fyiReporting.RdlViewer.PageNavigationEventArgs e)
+        {
+            currentPage.Text = e.NewPage.ToString();
         }
 
 
