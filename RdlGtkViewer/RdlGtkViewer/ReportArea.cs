@@ -105,9 +105,10 @@ namespace fyiReporting.RdlGtkViewer
 				
                 rep_g.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
 				
-                RenderCairo render = new RenderCairo(rep_g, Scale);
-                render.RunPage(pages);
-				
+                using (var render = new RenderCairo(rep_g, Scale))
+                {
+                    render.RunPage(pages);
+                }
 
                 g.SetSourceSurface(rep_s, rep_padding, rep_padding);
                 g.Paint();
