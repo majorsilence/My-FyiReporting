@@ -176,11 +176,11 @@ namespace fyiReporting.RdlGtkViewer
             Gtk.PrintContext context = args.Context;
 
             // Create a Cairo Context from the Print Context
-            Cairo.Context cr = context.CairoContext;
-            
-            Poppler.Page pg = this.pdf.GetPage(args.PageNr);
-            pg.RenderForPrintingWithOptions(cr, Poppler.PrintFlags.Document);
-                  
+            using (var cr = context.CairoContext)
+            {
+                Poppler.Page pg = this.pdf.GetPage(args.PageNr);
+                pg.RenderForPrintingWithOptions(cr, Poppler.PrintFlags.Document);
+            }
         }
 
         /// <summary>
@@ -363,13 +363,15 @@ namespace fyiReporting.RdlGtkViewer
 				
             for (this.pageIndex = 0; this.pageIndex < pdf.NPages; this.pageIndex++)
             {
-                Gdk.Pixbuf pixbuf = new Gdk.Pixbuf(Gdk.Colorspace.Rgb, false, 8, 0, 0);
-                Gtk.Image img = new Gtk.Image();
-                img.Pixbuf = pixbuf;		
-                img.Name = "image1";
+                using (var pixbuf = new Gdk.Pixbuf(Gdk.Colorspace.Rgb, false, 8, 0, 0))
+                {
+                    Gtk.Image img = new Gtk.Image();
+                    img.Pixbuf = pixbuf;		
+                    img.Name = "image1";
 								
-                //vboxImages.Add (img);
-                RenderPage(ref img);
+                    //vboxImages.Add (img);
+                    RenderPage(ref img);
+                }
             }
 			
             this.ShowAll();
