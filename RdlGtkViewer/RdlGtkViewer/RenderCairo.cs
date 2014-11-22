@@ -29,7 +29,7 @@ using fyiReporting.RDL;
 
 namespace fyiReporting.RdlGtkViewer
 {
-    public class RenderCairo
+    public class RenderCairo : IDisposable
     {
         Cairo.Context g;
         Pango.Layout layout;
@@ -49,6 +49,19 @@ namespace fyiReporting.RdlGtkViewer
 			
             dpiX *= scale;
             dpiY *= scale;
+        }
+
+        public void Dispose()
+        { 
+            if (g != null)
+            {
+                g.Dispose();
+            }
+
+            if (layout != null)
+            {
+                layout.Dispose();
+            }
         }
 
         internal float PixelsX(float x)
@@ -216,9 +229,9 @@ namespace fyiReporting.RdlGtkViewer
 //                r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
 //                r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
             Cairo.Rectangle r2 = new Cairo.Rectangle(r.X + PixelsX(si.PaddingLeft),
-                            r.Y + PixelsY(si.PaddingTop),
-                            r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
-                            r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
+                                     r.Y + PixelsY(si.PaddingTop),
+                                     r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
+                                     r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
 
             Cairo.Rectangle ir;   // int work rectangle 
             switch (pi.Sizing)
@@ -292,6 +305,7 @@ namespace fyiReporting.RdlGtkViewer
             StyleInfo si = pt.SI;
             string s = pt.Text;
             g.Save();
+
             layout = Pango.CairoHelper.CreateLayout(g);
 
 //            Font drawFont = null;
@@ -306,7 +320,7 @@ namespace fyiReporting.RdlGtkViewer
             //Pango fonts are scaled to 72dpi, Windows fonts uses 96dpi
             float fontsize = (si.FontSize * 72 / 96);
             var font = Pango.FontDescription.FromString(string.Format("{0} {1}", si.GetFontFamily().Name,  
-                       fontsize * PixelsX(1)));
+                               fontsize * PixelsX(1)));
             if (si.FontStyle == FontStyleEnum.Italic)
                 font.Style = Pango.Style.Italic;	
 //
@@ -446,10 +460,10 @@ namespace fyiReporting.RdlGtkViewer
 //                                               r.Width - si.PaddingLeft - si.PaddingRight,
 //                                               r.Height - si.PaddingTop - si.PaddingBottom);
             Cairo.Rectangle box = new Cairo.Rectangle(
-                              r.X + si.PaddingLeft + 1,
-                              y,
-                              r.Width,
-                              r.Height);
+                                      r.X + si.PaddingLeft + 1,
+                                      y,
+                                      r.Width,
+                                      r.Height);
 
             //drawBrush = new SolidBrush(si.Color);
             g.Color = si.Color.ToCairoColor();
@@ -484,7 +498,7 @@ namespace fyiReporting.RdlGtkViewer
             Cairo.Gradient gradient = null;
 			
             if (si.BackgroundGradientType != BackgroundGradientTypeEnum.None &&
-                    !si.BackgroundGradientEndColor.IsEmpty)
+                !si.BackgroundGradientEndColor.IsEmpty)
             {
                 Cairo.Color ec = si.BackgroundGradientEndColor.ToCairoColor();
 
