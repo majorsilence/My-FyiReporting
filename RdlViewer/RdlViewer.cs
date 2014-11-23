@@ -425,7 +425,7 @@ namespace fyiReporting.RdlViewer
             {
                 if (_pgs == null)
                     return 0;
-                int pc = (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1;
+                int pc = (int)(_pgs.PageCount * ((long)_vScroll.Value + PageHeight) / (double)_vScroll.Maximum) + 1;
                 if (pc > _pgs.PageCount)
                     pc = _pgs.PageCount;
                 return pc;
@@ -449,6 +449,9 @@ namespace fyiReporting.RdlViewer
                     _vScrollToolTip.SetToolTip(_vScroll, tt);
 
                     _DrawPanel.Invalidate();
+                    _DrawPanel.Refresh();
+                    Refresh();
+                    ChangePageEvent();
                 }
                 else
                     throw new ArgumentOutOfRangeException("PageCurrent", value, String.Format("Value must be between 1 and {0}.", _pgs.PageCount));
@@ -1850,7 +1853,7 @@ namespace fyiReporting.RdlViewer
             ChangePageEvent();
         }
 
-        private int previousPage = 0;
+        private int previousPage = 1;
 
         private void ChangePageEvent()
         {
@@ -1860,7 +1863,7 @@ namespace fyiReporting.RdlViewer
                 return;
             }
 
-            int currentPage = (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1;
+            int currentPage = PageCurrent;
 
             if (previousPage != currentPage)
             {
