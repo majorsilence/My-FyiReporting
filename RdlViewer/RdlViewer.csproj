@@ -13,7 +13,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>RdlViewer</RootNamespace>
+    <RootNamespace>fyiReporting.RdlViewer</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -211,6 +211,9 @@
       <DependentUpon>RdlViewerFind.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="ViewerToolstrip.cs" />
+    <EmbeddedResource Include="Resources\document-print.png" />
+    <EmbeddedResource Include="Resources\document-open.png" />
+    <EmbeddedResource Include="Resources\document-save.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
