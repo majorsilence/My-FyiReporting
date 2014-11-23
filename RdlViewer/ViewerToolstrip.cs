@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using System.Drawing;
+using System.Resources;
+using System.Reflection;
+using System.IO;
 
 namespace fyiReporting.RdlViewer
 {
@@ -29,8 +33,8 @@ namespace fyiReporting.RdlViewer
             } 
         }
 
-        private ToolStripTextBox currentPage = new ToolStripTextBox("Current Page");
-        private ToolStripLabel pageCount = new ToolStripLabel("Page Count");
+        private ToolStripTextBox currentPage = new ToolStripTextBox();
+        private ToolStripLabel pageCount = new ToolStripLabel("");
 
         private void Init()
         {
@@ -51,7 +55,7 @@ namespace fyiReporting.RdlViewer
             Viewer.Rebuild();
 
             currentPage.Text = Viewer.PageCurrent.ToString();
-            pageCount.Text = Viewer.PageCount.ToString();
+            pageCount.Text = "/" + Viewer.PageCount;
         }
 
         private void PrintClicked(object sender, System.EventArgs e)
@@ -226,14 +230,15 @@ namespace fyiReporting.RdlViewer
         private void InitializeToolBar()
         {
 
+           
 
-            this.Items.Add(new ToolStripButton("Open", null, OpenClicked));
-            this.Items.Add(new ToolStripButton("Save As", null, SaveAsClicked));
-            this.Items.Add(new ToolStripButton("Print", null, PrintClicked));
-            this.Items.Add(new ToolStripButton("First Page", null, FirstPageClicked));
-            this.Items.Add(new ToolStripButton("Previous Page", null, PreviousPageClicked));
-            this.Items.Add(new ToolStripButton("Next Page", null, NextPageClicked));
-            this.Items.Add(new ToolStripButton("Last Page", null, LastPageClicked));
+            this.Items.Add(new ToolStripButton("Open", GetImage("fyiReporting.RdlViewer.Resources.document-open.png"), OpenClicked));
+            this.Items.Add(new ToolStripButton("Save As", GetImage("fyiReporting.RdlViewer.Resources.document-save.png"), SaveAsClicked));
+            this.Items.Add(new ToolStripButton("Print", GetImage("fyiReporting.RdlViewer.Resources.document-print.png"), PrintClicked));
+            this.Items.Add(new ToolStripButton("<<", null, FirstPageClicked));
+            this.Items.Add(new ToolStripButton("<", null, PreviousPageClicked));
+            this.Items.Add(new ToolStripButton(">", null, NextPageClicked));
+            this.Items.Add(new ToolStripButton(">>", null, LastPageClicked));
             this.Items.Add(this.currentPage);
             this.Items.Add(this.pageCount);
             this.Items.Add(new ToolStripButton("Zoom In", null, ZoomInClicked));
@@ -246,6 +251,17 @@ namespace fyiReporting.RdlViewer
             currentPage.Text = e.NewPage.ToString();
         }
 
+        private Bitmap GetImage(string resourceName)
+        {
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                return new Bitmap(stream);
+            }
+
+        }
 
     }
 }
