@@ -6,6 +6,7 @@ set -u # exit on using unset variable
 # /p:Configuration="Debug" or "Release"
 
 
+
 # ************* Begin AnyCPU *********************************************
 # Seems to be the only option that matter on linux
 
@@ -36,7 +37,7 @@ cp "../References/dot net 3.5/zxing.dll" ./majorsilence-reporting-build-dot-net-
 zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-build-dot-net-4-AnyCPU/
 
 # ************* End AnyCPU *********************************************
-
+# nuget pack seems to be broken.  See https://nuget.codeplex.com/SourceControl/network/forks/ddunkin/mono/contribution/6849
 cd nuget/My-FyiReporting
 rm -rf lib
 rm -rf ../My-FyiReporting-Build
@@ -49,4 +50,7 @@ cd ..
 
 cp -R ../../majorsilence-reporting-build-dot-net-4-AnyCPU/* lib/net40
 
-nuget pack "My-FyiReporting.nuspec" -OutputDirectory "../My-FyiReporting-Build"
+cd ..
+
+CURRENTPATH=`pwd`
+nuget pack "$CURRENTPATH/My-FyiReporting/My-FyiReporting.nuspec" -OutputDirectory "$CURRENTPATH/My-FyiReporting-Build"
