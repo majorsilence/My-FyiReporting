@@ -9,7 +9,7 @@ set -u # exit on using unset variable
 # ************* Begin AnyCPU *********************************************
 # Seems to be the only option that matter on linux
 
-xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="AnyCPU"
+xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="Any CPU"
 
 rm -rf ./majorsilence-reporting-build-dot-net-4-AnyCPU
 mkdir ./majorsilence-reporting-build-dot-net-4-AnyCPU
