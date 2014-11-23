@@ -141,19 +141,35 @@ namespace SampleApp2_SetData
 
         private void FirstPageClicked(object sender, System.EventArgs e)
         {
-
+            rdlViewer1.PageCurrent = 1;
         }
 
         private void PreviousPageClicked(object sender, System.EventArgs e)
         {
+
+            if (rdlViewer1.PageCurrent == 1)
+            {
+                return;
+            }
+
+            rdlViewer1.PageCurrent -= 1;
+
         }
 
         private void NextPageClicked(object sender, System.EventArgs e)
         {
+
+            if (rdlViewer1.PageCurrent == rdlViewer1.PageCount)
+            {
+                return;
+            }
+            rdlViewer1.PageCurrent += 1;
+
         }
 
         private void LastPageClicked(object sender, System.EventArgs e)
         {
+            rdlViewer1.PageCurrent = rdlViewer1.PageCount;
         }
 
         private void ZoomInClicked(object sender, System.EventArgs e)
@@ -174,10 +190,10 @@ namespace SampleApp2_SetData
             bar.Items.Add(new ToolStripButton("Open", null, OpenClicked));
             bar.Items.Add(new ToolStripButton("Save As", null, SaveAsClicked));
             bar.Items.Add(new ToolStripButton("Print", null, PrintClicked));
-            //bar.Items.Add(new ToolStripButton("First Page", null, FirstPageClicked));
-            //bar.Items.Add(new ToolStripButton("Previous Page", null, PreviousPageClicked));
-            //bar.Items.Add(new ToolStripButton("Next Page", null, NextPageClicked));
-            //bar.Items.Add(new ToolStripButton("Last Page", null, LastPageClicked));
+            bar.Items.Add(new ToolStripButton("First Page", null, FirstPageClicked));
+            bar.Items.Add(new ToolStripButton("Previous Page", null, PreviousPageClicked));
+            bar.Items.Add(new ToolStripButton("Next Page", null, NextPageClicked));
+            bar.Items.Add(new ToolStripButton("Last Page", null, LastPageClicked));
             bar.Items.Add(this.currentPage);
             bar.Items.Add(this.pageCount);
             bar.Items.Add(new ToolStripButton("Zoom In", null, ZoomInClicked));
