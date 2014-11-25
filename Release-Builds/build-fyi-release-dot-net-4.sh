@@ -38,6 +38,11 @@ zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-
 # ************* End AnyCPU .NET 4*********************************************
 
 # ************* Begin AnyCPU .NET 3.5*********************************************
+
+# mono is not correctly targetting 3.5
+exit
+
+
 xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="Any CPU";TargetFrameworkVersion=v3.5
 
 rm -rf ./majorsilence-reporting-build-dot-net-3.5-AnyCPU
