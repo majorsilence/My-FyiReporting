@@ -383,6 +383,11 @@ namespace fyiReporting.RDL
                         ch = '\r';
                         reader.GetNext();               // skip the character
                     }
+					else if (pChar == '\\')
+					{
+						ch = '\\';
+						reader.GetNext();
+					}
                 }
                 else if (ch == qChar)
                 {
