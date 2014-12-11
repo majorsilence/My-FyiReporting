@@ -2,17 +2,15 @@
 *Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
 
 1. Update Assembly version numbers in all projects
-2. Update RdlDesign\Program.cs version string to match version number
-3. Update RdlDesign\RdlDesigner.cs IpcFileName to match version number
-4. Build .NET 4.0 package:
+2. Build .NET 4.0 package:
 	* Run build-fyi-release-dot-net-4.bat
-5. Build Linux package:
+3. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh
-6. Update warsetup project and version number
-7. Build warsetup project
-8. Build NuGet packages
-9. Create Git TAG
-10. Post to google group https://groups.google.com/d/forum/myfyireporting
+4. Update warsetup project and version number
+5. Build warsetup project
+6. Build NuGet packages
+7. Create Git TAG
+8. Post to google group https://groups.google.com/d/forum/myfyireporting
 
 
 Release Google Group Post Message:
