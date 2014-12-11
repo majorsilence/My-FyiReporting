@@ -210,7 +210,9 @@
     <EmbeddedResource Include="RdlViewerFind.ru-RU.resx">
       <DependentUpon>RdlViewerFind.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="ViewerToolstrip.cs" />
+    <Compile Include="ViewerToolstrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Resources\document-print.png" />
     <EmbeddedResource Include="Resources\document-open.png" />
     <EmbeddedResource Include="Resources\document-save.png" />
