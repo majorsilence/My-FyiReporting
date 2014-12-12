@@ -29,7 +29,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Text;
-using RdlViewer.Resources;
+using fyiReporting.RdlViewer.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer

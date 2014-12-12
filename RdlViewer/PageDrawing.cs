@@ -28,7 +28,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-using RdlViewer.Resources;
+using fyiReporting.RdlViewer.Resources;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer
