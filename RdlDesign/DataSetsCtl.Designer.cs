@@ -33,8 +33,7 @@ namespace fyiReporting.RdlDesign
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetsCtl));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tbTimeout = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
@@ -48,11 +47,12 @@ namespace fyiReporting.RdlDesign
 			this.lDataSetName = new System.Windows.Forms.Label();
 			this.bDeleteField = new System.Windows.Forms.Button();
 			this.dgFields = new System.Windows.Forms.DataGridView();
-			this.label2 = new System.Windows.Forms.Label();
 			this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgtbQueryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgtbTypeName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.label2 = new System.Windows.Forms.Label();
+			this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -61,12 +61,6 @@ namespace fyiReporting.RdlDesign
 			((System.ComponentModel.ISupportInitialize)(this.dgFields)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// dataGridTableStyle1
-			// 
-			this.dataGridTableStyle1.DataGrid = null;
-			resources.ApplyResources(this.dataGridTableStyle1, "dataGridTableStyle1");
-			this.dataGridTableStyle1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			// 
 			// splitContainer1
 			// 
 			resources.ApplyResources(this.splitContainer1, "splitContainer1");
@@ -74,7 +68,6 @@ namespace fyiReporting.RdlDesign
 			// 
 			// splitContainer1.Panel1
 			// 
-			resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
 			this.splitContainer1.Panel1.Controls.Add(this.tbTimeout);
 			this.splitContainer1.Panel1.Controls.Add(this.label3);
 			this.splitContainer1.Panel1.Controls.Add(this.bRefresh);
@@ -88,7 +81,6 @@ namespace fyiReporting.RdlDesign
 			// 
 			// splitContainer1.Panel2
 			// 
-			resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
 			this.splitContainer1.Panel2.Controls.Add(this.bDeleteField);
 			this.splitContainer1.Panel2.Controls.Add(this.dgFields);
 			this.splitContainer1.Panel2.Controls.Add(this.label2);
@@ -102,7 +94,7 @@ namespace fyiReporting.RdlDesign
             0,
             0});
 			this.tbTimeout.Name = "tbTimeout";
-			this.tbTimeout.Click += new System.EventHandler(this.tbTimeout_ValueChanged);
+			this.tbTimeout.ValueChanged += new System.EventHandler(this.tbTimeout_ValueChanged);
 			// 
 			// label3
 			// 
@@ -167,25 +159,20 @@ namespace fyiReporting.RdlDesign
 			// 
 			resources.ApplyResources(this.dgFields, "dgFields");
 			this.dgFields.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgFields.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgFields.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgtbName,
             this.dgtbQueryName,
             this.dgtbValue,
             this.dgtbTypeName});
 			this.dgFields.Name = "dgFields";
-			// 
-			// label2
-			// 
-			resources.ApplyResources(this.label2, "label2");
-			this.label2.Name = "label2";
 			// 
 			// dgtbName
 			// 
@@ -228,12 +215,22 @@ namespace fyiReporting.RdlDesign
 			this.dgtbTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.dgtbTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// dataGridTableStyle1
+			// 
+			this.dataGridTableStyle1.DataGrid = null;
+			this.dataGridTableStyle1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+			// 
 			// DataSetsCtl
 			// 
-			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.splitContainer1);
 			this.MinimumSize = new System.Drawing.Size(480, 300);
 			this.Name = "DataSetsCtl";
+			resources.ApplyResources(this, "$this");
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
