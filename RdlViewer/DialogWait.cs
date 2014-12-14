@@ -55,7 +55,10 @@ namespace fyiReporting.RdlViewer
         private void timer1_Tick(object sender, EventArgs e)
         {
             var time = DateTime.Now - Started;
-	        lblTimeTaken.Text = string.Format("{0} {1} {2} {3}", (int) time.TotalMinutes, Strings.DialogWait_Minutes,
+			if (time.TotalMinutes < 1)
+				lblTimeTaken.Text = string.Format("{0} {1}", time.Seconds, Strings.DialogWait_Seconds);
+			else
+ 				lblTimeTaken.Text = string.Format("{0} {1} {2} {3}", (int) time.TotalMinutes, Strings.DialogWait_Minutes,
 	                                          time.Seconds, Strings.DialogWait_Seconds);
            
             if (_checkStopFunction())
