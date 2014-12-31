@@ -29,15 +29,7 @@ All changes are immediately built and the last 100 build artifacts available.
 
 # Download
 
-If you have [NuGet](http://nuget.org) installed, the easiest way to get started is to install Majorsilence Reporting via NuGet:
-
-This will setup My-FyiReporting in your project ready to use the viewers or designer.
-* PM> Install-Package My-FyiReporting.x86 
-
-If you prefer not to use NuGet and just want to download the latest release binaries get them at:
-
-  * **[http://files.majorsilence.com/myfyireporting/](http://files.majorsilence.com/myfyireporting/)**
-  * Also see the [downloads wiki page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads) for more details on the type of packages.
+See the [downloads page](https://github.com/majorsilence/My-FyiReporting/commit/58239a800a20d14702a09995f635a47dec1cd0ee).
 
 Alternatively if you want keep up with the latest version you can always use Git
 
