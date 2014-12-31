@@ -1,7 +1,7 @@
 *Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
 *Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
 
-1. Update Assembly version numbers in all projects
+1. Update Assembly version numbers in all projects (Run: prepare-files-for-release.bat)
 2. Build .NET 4.0 package:
 	* Run build-fyi-release-dot-net-4.bat
 3. Build Linux package:
