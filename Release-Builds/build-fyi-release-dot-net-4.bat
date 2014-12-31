@@ -55,7 +55,7 @@ copy ..\RdlViewer\bin\x64\Release\ru-RU\RdlViewer.resources.dll .\build-output\m
 copy ..\RdlViewer\RdlReader\bin\x64\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-x64.zip majorsilence-reporting-build-dot-net-4-x64\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-x64.zip majorsilence-reporting-build-dot-net-4-x64\
 cd ..
 
 REM ************* End x64 *********************************************
@@ -114,7 +114,7 @@ copy ..\RdlViewer\bin\x86\Release\ru-RU\RdlViewer.resources.dll .\build-output\m
 copy ..\RdlViewer\RdlReader\bin\x86\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-x86.zip majorsilence-reporting-build-dot-net-4-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-x86.zip majorsilence-reporting-build-dot-net-4-x86\
 cd ..
 
 REM ************* End x86 *********************************************
@@ -139,7 +139,7 @@ copy "..\LanguageWrappers\php\config.php" .\build-output\majorsilence-reporting-
 copy "..\LanguageWrappers\php\report.php" .\build-output\majorsilence-reporting-build-dot-net-4-php-x86\report.php
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-php-x86.zip majorsilence-reporting-build-dot-net-4-php-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-php-x86.zip majorsilence-reporting-build-dot-net-4-php-x86\
 cd ..
 
 REM ************* End PHP *********************************************
@@ -164,7 +164,7 @@ copy "..\LanguageWrappers\python\config.py" .\build-output\majorsilence-reportin
 copy "..\LanguageWrappers\python\report.py" .\build-output\majorsilence-reporting-build-dot-net-4-python-x86\report.py
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-python-x86.zip majorsilence-reporting-build-dot-net-4-python-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-python-x86.zip majorsilence-reporting-build-dot-net-4-python-x86\
 cd ..
 REM ************* End Python *********************************************
 
@@ -187,7 +187,7 @@ copy "..\LanguageWrappers\ruby\config.rb" .\build-output\majorsilence-reporting-
 copy "..\LanguageWrappers\ruby\report.rb" .\build-output\majorsilence-reporting-build-dot-net-4-ruby-x86\report.rb
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-ruby-x86.zip majorsilence-reporting-build-dot-net-4-ruby-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-ruby-x86.zip majorsilence-reporting-build-dot-net-4-ruby-x86\
 cd ..
 
 REM ************* End Ruby *********************************************
@@ -211,7 +211,7 @@ copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting
 del .\build-output\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
 cd ..
 
 REM ************* Begin nuget *********************************************

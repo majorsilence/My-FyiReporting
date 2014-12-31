@@ -43,7 +43,7 @@ copy ..\RdlViewer\bin\x64\Release\ru-RU\RdlViewer.resources.dll .\build-output\m
 copy ..\RdlViewer\RdlReader\bin\x64\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-2-x64\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output	
-7za.exe a majorsilence-reporting-build-dot-net-2-x64.zip majorsilence-reporting-build-dot-net-2-x64\
+..\7za.exe a majorsilence-reporting-build-dot-net-2-x64.zip majorsilence-reporting-build-dot-net-2-x64\
 cd ..
 
 REM ************* End x64 *********************************************
@@ -90,7 +90,7 @@ copy ..\RdlViewer\bin\x86\Release\ru-RU\RdlViewer.resources.dll .\build-output\m
 copy ..\RdlViewer\RdlReader\bin\x86\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output
-7za.exe a majorsilence-reporting-build-dot-net-2-x86.zip majorsilence-reporting-build-dot-net-2-x86\
+..\7za.exe a majorsilence-reporting-build-dot-net-2-x86.zip majorsilence-reporting-build-dot-net-2-x86\
 cd ..
 REM ************* End x86 *********************************************
 
