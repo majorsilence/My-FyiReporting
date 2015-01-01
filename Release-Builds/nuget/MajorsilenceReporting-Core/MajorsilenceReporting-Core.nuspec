@@ -16,9 +16,6 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="System.Data.SQLite" />
-      <dependency id="Npgsql" />
-      <dependency id="MySql.Data" />
       <dependency id="SharpZipLib" />
       <dependency id="iTextSharp-LGPL" />
     </dependencies>

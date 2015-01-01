@@ -6,7 +6,7 @@
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Report and charting system based on Microsoft's Report Definition.</summary>
+    <summary>Report and charting system based on Microsoft's Report Definition.  This contains the viewer component.</summary>
     <description>Majorsilence Reporting is a fork of fyiReporting. I cannot stress this enough. This is a FORK. The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
 
 "FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
@@ -16,11 +16,7 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="System.Data.SQLite" />
-      <dependency id="Npgsql" />
-      <dependency id="MySql.Data" />
-      <dependency id="SharpZipLib" />
-      <dependency id="iTextSharp-LGPL" />
+      <dependency id="MajorsilenceReporting-Core" />
     </dependencies>
 
   </metadata>
