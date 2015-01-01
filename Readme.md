@@ -29,7 +29,7 @@ All changes are immediately built and the last 100 build artifacts available.
 
 # Download
 
-See the [downloads page](https://github.com/majorsilence/My-FyiReporting/commit/58239a800a20d14702a09995f635a47dec1cd0ee).
+See the [downloads page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads).
 
 Alternatively if you want keep up with the latest version you can always use Git
 
