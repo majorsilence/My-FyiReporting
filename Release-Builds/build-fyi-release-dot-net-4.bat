@@ -2,6 +2,9 @@ REM Platform options: "x86", "x64", "x64"
 REM /p:Configuration="Debug" or "Release"
 
 
+
+
+
 REM ************* Begin x64 *********************************************
 
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\DataProviders\DataProviders.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
@@ -20,27 +23,27 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 del .\build-output\majorsilence-reporting-build-dot-net-4-x64 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x64
 
-copy ..\DataProviders\bin\x64\Release\DataProviders.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\DataProviders.dll /Y
+copy ..\DataProviders\bin\Release\DataProviders.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\DataProviders.dll /Y
 REM copy ..\OracleSp\bin\x64\Release\OracleSp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\OracleSp.dll /Y
-copy ..\RdlAsp\bin\x64\Release\RdlAsp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlAsp.dll /Y
+copy ..\RdlAsp\bin\Release\RdlAsp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlAsp.dll /Y
 copy ..\RdlCmd\bin\x64\Release\RdlCmd.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlCmd.exe /Y
-copy ..\RdlCri\bin\x64\Release\RdlCri.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlCri.dll /Y
+copy ..\RdlCri\bin\Release\RdlCri.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlCri.dll /Y
 copy ..\RdlDesign\bin\x64\Release\RdlDesigner.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlDesigner.exe /Y
 copy ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlDesktop.exe /Y
 copy ..\RdlDesktop\bin\x64\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\config.xml /Y
-copy ..\RdlEngine\bin\x64\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.dll /Y
-copy ..\RdlEngine\bin\x64\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
+copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.dll /Y
+copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
 copy "..\References\dot net 4\Mono.Security.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Mono.Security.dll /Y
 copy "..\References\dot net 4\Npgsql.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Npgsql.dll /Y
 copy "..\References\dot net 4\64bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
-copy ..\RdlEngine\bin\x64\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.xml /Y
-copy ..\RdlEngine\bin\x64\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.Linux.xml /Y
+copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.xml /Y
+copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlMapFile.exe /Y
-copy ..\RdlViewer\bin\x64\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlViewer.dll /Y
+copy ..\RdlViewer\bin\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x64\Release\RdlReader.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlReader.exe /Y
-copy ..\LibRdlWpfViewer\bin\x64\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
-copy ..\LibRdlCrossPlatformViewer\bin\x64\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
+copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
+copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
 copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.WPF.dll /Y
@@ -49,9 +52,9 @@ copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU
 copy ..\RdlDesign\bin\x64\Release\ru-RU\RdlDesigner.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlDesigner.resources.dll /Y
 copy ..\RdlDesktop\bin\x64\Release\ru-RU\RdlDesktop.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlDesktop.resources.dll /Y
-copy ..\RdlEngine\bin\x64\Release\ru-RU\RdlEngine.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlEngine.resources.dll /Y
+copy ..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlEngine.resources.dll /Y
 copy ..\RdlMapFile\bin\x64\Release\ru-RU\RdlMapFile.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlMapFile.resources.dll /Y
-copy ..\RdlViewer\bin\x64\Release\ru-RU\RdlViewer.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlViewer.resources.dll /Y
+copy ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlViewer.resources.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x64\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output	
@@ -79,27 +82,27 @@ REM "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "..\%CD%\..\Orac
 del .\build-output\majorsilence-reporting-build-dot-net-4-x86 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x86
 
-copy ..\DataProviders\bin\x86\Release\DataProviders.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.dll /Y
+copy ..\DataProviders\bin\Release\DataProviders.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.dll /Y
 REM copy ..\OracleSp\bin\x86\Release\OracleSp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\OracleSp.dll /Y
-copy ..\RdlAsp\bin\x86\Release\RdlAsp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlAsp.dll /Y
+copy ..\RdlAsp\bin\Release\RdlAsp.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlAsp.dll /Y
 copy ..\RdlCmd\bin\x86\Release\RdlCmd.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCmd.exe /Y
-copy ..\RdlCri\bin\x86\Release\RdlCri.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.dll /Y
+copy ..\RdlCri\bin\Release\RdlCri.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.dll /Y
 copy ..\RdlDesign\bin\x86\Release\RdlDesigner.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlDesigner.exe /Y
 copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlDesktop.exe /Y
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\config.xml /Y
-copy ..\RdlEngine\bin\x86\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.dll /Y
-copy ..\RdlEngine\bin\x86\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ICSharpCode.SharpZipLib.dll /Y
+copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.dll /Y
+copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ICSharpCode.SharpZipLib.dll /Y
 copy "..\References\dot net 4\Mono.Security.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Mono.Security.dll /Y
 copy "..\References\dot net 4\Npgsql.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Npgsql.dll /Y
 copy "..\References\dot net 4\32bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\itextsharp.dll /Y
-copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml /Y
-copy ..\RdlEngine\bin\x86\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml /Y
+copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml /Y
+copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlMapFile.exe /Y
-copy ..\RdlViewer\bin\x86\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll /Y
+copy ..\RdlViewer\bin\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlReader.exe /Y
-copy ..\LibRdlWpfViewer\bin\x86\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll /Y
-copy ..\LibRdlCrossPlatformViewer\bin\x86\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll /Y
+copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll /Y
+copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll /Y
 copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.WPF.dll /Y
@@ -108,9 +111,9 @@ copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU
 copy ..\RdlDesign\bin\x86\Release\ru-RU\RdlDesigner.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlDesigner.resources.dll /Y
 copy ..\RdlDesktop\bin\x86\Release\ru-RU\RdlDesktop.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlDesktop.resources.dll /Y
-copy ..\RdlEngine\bin\x86\Release\ru-RU\RdlEngine.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlEngine.resources.dll /Y
+copy ..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlEngine.resources.dll /Y
 copy ..\RdlMapFile\bin\x86\Release\ru-RU\RdlMapFile.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlMapFile.resources.dll /Y
-copy ..\RdlViewer\bin\x86\Release\ru-RU\RdlViewer.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlViewer.resources.dll /Y
+copy ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlViewer.resources.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlReader.resources.dll /Y
 
 cd build-output	
@@ -215,23 +218,3 @@ cd build-output
 cd ..
 
 
-REM ************* Begin nuget *********************************************
-REM http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
-
-cd nuget/MajorsilenceReporting
-rm -rf lib
-rm -rf ..\MajorsilenceReporting-Build
-
-mkdir ..\MajorsilenceReporting-Build
-mkdir lib
-cd lib
-mkdir net40
-cd ..
-
-copy "%CD%\..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\*" "lib\net40" /Y
-cd ..
-
-nuget pack "%CD%\MajorsilenceReporting\MajorsilenceReporting.nuspec" -OutputDirectory "%CD%\MajorsilenceReporting-Build"
-
-
-REM ************* End nuget *********************************************
