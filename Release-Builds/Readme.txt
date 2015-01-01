@@ -1,5 +1,7 @@
-*Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
-*Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
+* Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
+* Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
+* Install Gow - choco install gow
+* Install nuget command line - choco install nuget.commandline 
 
 1. Update Assembly version numbers in all projects (Run: prepare-files-for-release.bat)
 2. Build .NET 4.0 package:
@@ -8,7 +10,7 @@
 	* Run build-fyi-release-dot-net-4.sh
 4. Update warsetup project and version number
 5. Build warsetup project
-6. Build NuGet packages
+6. Build NuGet packages - build-nuget-packages.bat
 7. Create Git TAG
 8. Post to google group https://groups.google.com/d/forum/myfyireporting
 
