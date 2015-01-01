@@ -214,9 +214,24 @@ cd build-output
 ..\7za.exe a majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
 cd ..
 
+
 REM ************* Begin nuget *********************************************
 REM http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
 
+cd nuget/MajorsilenceReporting
+rm -rf lib
+rm -rf ..\MajorsilenceReporting-Build
+
+mkdir ..\MajorsilenceReporting-Build
+mkdir lib
+cd lib
+mkdir net40
+cd ..
+
+copy "%CD%\..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\*" "lib\net40" /Y
+cd ..
+
+nuget pack "%CD%\MajorsilenceReporting\MajorsilenceReporting.nuspec" -OutputDirectory "%CD%\MajorsilenceReporting-Build"
+
+
 REM ************* End nuget *********************************************
-
-
