@@ -13,7 +13,7 @@ set -u # exit on using unset variable
 xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="Any CPU"
 
 rm -rf ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU
-mkdir ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU
+mkdir -p ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU
 
 cp ../DataProviders/bin/Release/DataProviders.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/DataProviders.dll 
 cp ../RdlAsp/bin/Release/RdlAsp.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlAsp.dll 
