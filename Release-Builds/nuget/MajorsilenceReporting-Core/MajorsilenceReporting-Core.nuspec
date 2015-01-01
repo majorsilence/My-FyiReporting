@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>MajorsilenceReporting</id>
+    <id>MajorsilenceReporting-Core</id>
     <version>4.5.4</version>
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>

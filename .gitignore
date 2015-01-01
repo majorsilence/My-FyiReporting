@@ -223,3 +223,6 @@ obj/
 /Release-Builds/majorsilence-reporting-build-dot-net-2-x64
 /Release-Builds/majorsilence-reporting-build-dot-net-2-x86
 /Release-Builds/build-output
+/Release-Builds/nuget/MajorsilenceReporting/lib
+/Release-Builds/nuget/MajorsilenceReporting-Core/lib
+/Release-Builds/nuget/MajorsilenceReporting-Core/content

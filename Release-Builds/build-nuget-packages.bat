@@ -1,0 +1,53 @@
+REM ************* Begin nuget *********************************************
+REM http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
+
+
+REM Core reporting nuget package
+cd nuget/MajorsilenceReporting-Core
+rm -rf lib
+rm -rf content
+rm -rf ..\MajorsilenceReporting-Core-Build
+
+mkdir ..\MajorsilenceReporting-Core-Build
+mkdir lib
+mkdir content
+cd lib
+mkdir net40
+cd ..
+
+REM copy "%CD%\..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\*" "lib\net40" /Y
+copy ..\..\..\DataProviders\bin\Release\DataProviders.dll lib\net40\DataProviders.dll /Y
+copy ..\..\..\RdlCri\bin\Release\RdlCri.dll lib\net40\RdlCri.dll /Y
+copy ..\..\..\RdlEngine\bin\Release\RdlEngine.dll lib\net40\RdlEngine.dll /Y
+REM make this a nuget dependency ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
+
+REM make this a nuget dependency copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
+copy ..\..\..\RdlEngine\bin\Release\RdlEngineConfig.xml content\RdlEngineConfig.xml /Y
+copy ..\..\..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml content\RdlEngineConfig.Linux.xml /Y
+
+
+mkdir lib\net40\ru-RU
+copy ..\..\..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll lib\net40\ru-RU\RdlEngine.resources.dll /Y
+
+
+cd ..
+
+nuget pack "%CD%\MajorsilenceReporting-Core\MajorsilenceReporting-Core.nuspec" -OutputDirectory "%CD%\MajorsilenceReporting-Core-Build"
+
+cd ..
+
+REM future nuget packages
+
+REM make a seperate package copy ..\RdlViewer\bin\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlViewer.dll /Y
+
+
+REM make a seperate package copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
+
+REM make a separate package copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
+REM copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.dll /Y
+REM copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.Gtk.dll /Y
+REM copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.WPF.dll /Y
+REM copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\zxing.dll /Y
+
+
+REM ************* End nuget *********************************************
