@@ -23,9 +23,7 @@ cp ../RdlDesign/bin/Release/RdlDesigner.exe ./build-output/majorsilence-reportin
 cp ../RdlDesktop/bin/Release/RdlDesktop.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlDesktop.exe 
 cp ../RdlDesktop/bin/Release/config.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/config.xml 
 cp ../RdlEngine/bin/Release/RdlEngine.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.dll 
-cp ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll 
-cp "../References/dot net 4/Mono.Security.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Mono.Security.dll 
-cp "../References/dot net 4/Npgsql.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Npgsql.dll 
+cp ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll  
 cp "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll 
 cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.xml 
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlMapFile.exe 

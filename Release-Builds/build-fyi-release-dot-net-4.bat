@@ -33,8 +33,6 @@ copy ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe .\build-output\majorsilence-re
 copy ..\RdlDesktop\bin\x64\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\config.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
-copy "..\References\dot net 4\Mono.Security.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Mono.Security.dll /Y
-copy "..\References\dot net 4\Npgsql.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Npgsql.dll /Y
 copy "..\References\dot net 4\64bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.xml /Y
@@ -92,8 +90,6 @@ copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\build-output\majorsilence-re
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\config.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ICSharpCode.SharpZipLib.dll /Y
-copy "..\References\dot net 4\Mono.Security.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Mono.Security.dll /Y
-copy "..\References\dot net 4\Npgsql.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Npgsql.dll /Y
 copy "..\References\dot net 4\32bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\System.Data.SQLite.dll /Y
 copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\itextsharp.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml /Y

@@ -135,9 +135,6 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite" Condition="'$(Configuration)'=='BundleLinux'">
-      <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -156,9 +153,6 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <HintPath>..\References\dot net 3.5\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql" Condition="'$(Configuration)'=='BundleLinux'">
-      <HintPath>..\References\dot net 4\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1156,12 +1150,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\References\dot net 3.5\ICSharpCode.SharpZipLib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\References\dot net 4\Mono.Security.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\References\dot net 4\Npgsql.dll" Condition="'$(Platform)'!='BundleLinux'">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
