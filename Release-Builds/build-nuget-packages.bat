@@ -8,7 +8,6 @@ rm -rf lib
 rm -rf content
 rm -rf ..\MajorsilenceReporting-Core-Build
 
-mkdir ..\MajorsilenceReporting-Core-Build
 mkdir lib
 mkdir content
 cd lib
@@ -31,7 +30,7 @@ copy ..\..\..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll lib\net40\ru-R
 
 cd ..
 
-nuget pack "%CD%\MajorsilenceReporting-Core\MajorsilenceReporting-Core.nuspec" -OutputDirectory "%CD%\MajorsilenceReporting-Core-Build"
+nuget pack "%CD%\MajorsilenceReporting-Core\MajorsilenceReporting-Core.nuspec" -OutputDirectory "%CD%\..\build-output"
 
 cd ..
 
@@ -62,7 +61,7 @@ copy ..\..\..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll lib\net40\ru-R
 
 cd ..
 
-nuget pack "%CD%\MajorsilenceReporting-Viewer\MajorsilenceReporting-Viewer.nuspec" -OutputDirectory "%CD%\MajorsilenceReporting-Viewer-Build"
+nuget pack "%CD%\MajorsilenceReporting-Viewer\MajorsilenceReporting-Viewer.nuspec" -OutputDirectory "%CD%\..\build-output"
 
 cd ..
 

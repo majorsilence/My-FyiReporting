@@ -1,14 +1,14 @@
 # ************* Begin CORE *********************************************
 # http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
 
-
+mkdir -p build-output
+rm -rf build-output/*.nupkg
 # Core reporting nuget package
 cd nuget/MajorsilenceReporting-Core
 rm -rf lib
 rm -rf content
 rm -rf ../MajorsilenceReporting-Core-Build
 
-mkdir -p ../MajorsilenceReporting-Core-Build
 mkdir -p lib
 mkdir -p content
 cd lib
@@ -31,7 +31,7 @@ cp -f ../../../RdlEngine/bin/Release/ru-RU/RdlEngine.resources.dll lib/net40/ru-
 
 cd ..
 CURRENTPATH=`pwd`
-nuget pack "$CURRENTPATH/MajorsilenceReporting-Core/MajorsilenceReporting-Core.nuspec" -OutputDirectory "$CURRENTPATH/MajorsilenceReporting-Core-Build"
+nuget pack "$CURRENTPATH/MajorsilenceReporting-Core/MajorsilenceReporting-Core.nuspec" -OutputDirectory "$CURRENTPATH/../build-output"
 
 cd ..
 
@@ -48,7 +48,7 @@ rm -rf lib
 rm -rf content
 rm -rf ../MajorsilenceReporting-Viewer-Build
 
-mkdir -p ../MajorsilenceReporting-Viewer-Build
+
 mkdir -p lib
 cd lib
 mkdir net40
@@ -61,7 +61,7 @@ cp -f ../../../RdlViewer/bin/Release/ru-RU/RdlViewer.resources.dll lib/net40/ru-
 
 cd ..
 
-nuget pack "$CURRENTPATH/MajorsilenceReporting-Viewer/MajorsilenceReporting-Viewer.nuspec" -OutputDirectory "$CURRENTPATH/MajorsilenceReporting-Viewer-Build"
+nuget pack "$CURRENTPATH/MajorsilenceReporting-Viewer/MajorsilenceReporting-Viewer.nuspec" -OutputDirectory "$CURRENTPATH/../build-output"
 
 cd ..
 
