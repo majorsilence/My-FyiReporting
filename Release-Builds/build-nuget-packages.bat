@@ -82,16 +82,46 @@ cd lib
 mkdir net40
 cd ..
 
-copy ../../..//RdlAsp/bin/Release/RdlAsp.dll lib/net40/RdlAsp.dll /Y
+copy ..\..\..\RdlAsp\bin\Release\RdlAsp.dll lib\net40\RdlAsp.dll /Y
 
 cd ..
 
-nuget pack "%CD%/MajorsilenceReporting-Asp/MajorsilenceReporting-Asp.nuspec" -OutputDirectory "%CD%/../build-output"
+nuget pack "%CD%\MajorsilenceReporting-Asp\MajorsilenceReporting-Asp.nuspec" -OutputDirectory "%CD%\..\build-output"
 
 cd ..
 
 
 # ************* End Asp.net *********************************************
+
+
+# ************* Begin XwtViewer *********************************************
+# make a seperate package 
+
+cd nuget/MajorsilenceReporting-XwtViewer
+rm -rf lib
+rm -rf content
+
+
+mkdir -p lib
+cd lib
+mkdir net40
+cd ..
+
+
+copy ..\..\..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll lib\net40\LibRdlCrossPlatformViewer.dll /Y
+copy "..\..\..\References/dot net 4\Xwt.dll" lib\net40/Xwt.dll /Y
+copy "..\..\..\References/dot net 4\Xwt.Gtk.dll" lib\net40/Xwt.Gtk.dll /Y
+copy "..\..\..\References/dot net 4\Xwt.WPF.dll" lib\net40/Xwt.WPF.dll /Y
+
+cd ..
+
+nuget pack "%CD%\MajorsilenceReporting-XwtViewer\MajorsilenceReporting-XwtViewer.nuspec" -OutputDirectory "%CD%\..\build-output"
+
+cd ..
+
+
+# ************* End XwtViewer *********************************************
+
 
 
 

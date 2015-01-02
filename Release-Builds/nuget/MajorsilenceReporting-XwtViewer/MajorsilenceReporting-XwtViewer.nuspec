@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MajorsilenceReporting-XwtViewer</id>
+    <version>4.5.4</version>
+    <authors>Peter Gill</authors>
+    <owners>Peter Gill</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Report and charting system based on Microsoft's Report Definition.  This contains the xwt cross platform (WPF/Cocoa/Gtk) viewer component.</summary>
+    <description>Majorsilence Reporting is a fork of fyiReporting. I cannot stress this enough. This is a FORK. The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
+
+"FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
+    </description>
+    <releaseNotes>See https://github.com/majorsilence/My-FyiReporting/releases</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Reporting</tags>
+
+    <dependencies>
+      <dependency id="MajorsilenceReporting-Core" />
+    </dependencies>
+
+  </metadata>
+
+  <files>
+    <file src="lib/net40/*.*" target="lib/net40" />
+  </files>
+
+</package>

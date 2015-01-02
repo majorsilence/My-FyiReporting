@@ -197,10 +197,10 @@ obj/
 
 /Release-Builds/majorsilence-reporting-build-dot-net-4-viewer-x86
 
-/Release-Builds/majorsilence-reporting-build-dot-net-4-x64
+/Release-Builds/majorsilence-reporting-build-dot-net-4-AnyCPU
 /Release-Builds/majorsilence-reporting-build-dot-net-4-x86
 /Release-Builds/majorsilence-reporting-build-dot-net-4-viewer-x86.zip
-/Release-Builds/majorsilence-reporting-build-dot-net-4-x64.zip
+/Release-Builds/majorsilence-reporting-build-dot-net-4-AnyCPU.zip
 /Release-Builds/majorsilence-reporting-build-dot-net-4-x86.zip
 /Release-Builds/setup-Majorsilence-Reporting-dot-net4-x86.msi
 /Release-Builds/setup-Majorsilence-Reporting-dot-net4-x86.wixobj
@@ -228,3 +228,4 @@ obj/
 /Release-Builds/nuget/MajorsilenceReporting-Core/content
 /Release-Builds/nuget/MajorsilenceReporting-Viewer/lib
 /Release-Builds/nuget/MajorsilenceReporting-Asp/lib
+/Release-Builds/nuget/MajorsilenceReporting-XwtViewer/lib
