@@ -18,6 +18,7 @@
     <dependencies>
       <dependency id="SharpZipLib" />
       <dependency id="iTextSharp-LGPL" />
+      <dependency id="ZXing.Net" />
     </dependencies>
 
   </metadata>
