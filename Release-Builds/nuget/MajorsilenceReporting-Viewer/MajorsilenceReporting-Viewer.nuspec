@@ -20,4 +20,10 @@
     </dependencies>
 
   </metadata>
+
+  <files>
+    <file src="lib/net40/*.*" target="lib/net40" />
+    <file src="lib/net40/ru-RU/*.*" target="lib/net40/ru-RU" />
+  </files>
+
 </package>
