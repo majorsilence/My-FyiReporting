@@ -69,6 +69,31 @@ cd ..
 REM ************* End Viewer *********************************************
 
 
+# ************* Begin Asp.net *********************************************
+# make a seperate package 
+
+cd nuget/MajorsilenceReporting-Asp
+rm -rf lib
+rm -rf content
+
+
+mkdir lib
+cd lib
+mkdir net40
+cd ..
+
+copy ../../..//RdlAsp/bin/Release/RdlAsp.dll lib/net40/RdlAsp.dll /Y
+
+cd ..
+
+nuget pack "%CD%/MajorsilenceReporting-Asp/MajorsilenceReporting-Asp.nuspec" -OutputDirectory "%CD%/../build-output"
+
+cd ..
+
+
+# ************* End Asp.net *********************************************
+
+
 
 REM future nuget packages
 

@@ -18,9 +18,9 @@ cd ..
 cp -f ../../../DataProviders/bin/Release/DataProviders.dll lib/net40/DataProviders.dll
 cp -f ../../../RdlCri/bin/Release/RdlCri.dll lib/net40/RdlCri.dll
 cp -f ../../../RdlEngine/bin/Release/RdlEngine.dll lib/net40/RdlEngine.dll
-# make this a nuget dependency ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-x64/ICSharpCode.SharpZipLib.dll /Y
+# make this a nuget dependency ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll /Y
 
-# make this a nuget dependency copy "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-x64/itextsharp.dll /Y
+# make this a nuget dependency copy "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll /Y
 cp -f ../../../RdlEngine/bin/Release/RdlEngineConfig.xml content/RdlEngineConfig.xml
 cp -f ../../../RdlEngine/bin/Release/RdlEngineConfig.Linux.xml content/RdlEngineConfig.Linux.xml
 
@@ -70,14 +70,41 @@ cd ..
 
 
 
+
+# ************* Begin Asp.net *********************************************
+# make a seperate package 
+
+cd nuget/MajorsilenceReporting-Asp
+rm -rf lib
+rm -rf content
+
+
+mkdir -p lib
+cd lib
+mkdir net40
+cd ..
+
+cp -f ../../..//RdlAsp/bin/Release/RdlAsp.dll lib/net40/RdlAsp.dll
+
+cd ..
+
+nuget pack "$CURRENTPATH/MajorsilenceReporting-Asp/MajorsilenceReporting-Asp.nuspec" -OutputDirectory "$CURRENTPATH/../build-output"
+
+cd ..
+
+
+# ************* End Asp.net *********************************************
+
+
+
 # future nuget packages
 
 
 
-# make a seperate package copy ../LibRdlWpfViewer/bin/Release/LibRdlWpfViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-x64/LibRdlWpfViewer.dll /Y
+# make a seperate package copy ../LibRdlWpfViewer/bin/Release/LibRdlWpfViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlWpfViewer.dll /Y
 
-# make a separate package copy ../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-x64/LibRdlCrossPlatformViewer.dll /Y
-# copy "../References/dot net 4/Xwt.dll" ./build-output/majorsilence-reporting-build-dot-net-4-x64/Xwt.dll /Y
-# copy "../References/dot net 4/Xwt.Gtk.dll" ./build-output/majorsilence-reporting-build-dot-net-4-x64/Xwt.Gtk.dll /Y
-# copy "../References/dot net 4/Xwt.WPF.dll" ./build-output/majorsilence-reporting-build-dot-net-4-x64/Xwt.WPF.dll /Y
-# copy "../References/dot net 3.5/zxing.dll" ./build-output/majorsilence-reporting-build-dot-net-4-x64/zxing.dll /Y
+# make a separate package copy ../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.dll /Y
+# copy "../References/dot net 4/Xwt.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.dll /Y
+# copy "../References/dot net 4/Xwt.Gtk.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.Gtk.dll /Y
+# copy "../References/dot net 4/Xwt.WPF.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.WPF.dll /Y
+# copy "../References/dot net 3.5/zxing.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.dll /Y
