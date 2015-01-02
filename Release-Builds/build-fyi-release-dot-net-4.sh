@@ -30,6 +30,18 @@ cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./build-output/majorsilence-reportin
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlReader.exe 
 cp "../References/dot net 3.5/zxing.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.dll
+cp ../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.dll
+cp "../References/dot net 4/Xwt.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.dll
+cp "../References/dot net 4/Xwt.Gtk.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.Gtk.dll
+cp "../References/dot net 4/Xwt.WPF.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.WPF.dll
+
+mkdir -p ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU
+cp ../RdlDesign/bin/Release/ru-RU/RdlDesigner.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlDesigner.resources.dll
+cp ../RdlDesktop/bin/Release/ru-RU/RdlDesktop.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlDesktop.resources.dll
+cp ../RdlEngine/bin/Release/ru-RU/RdlEngine.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlEngine.resources.dll
+cp ../RdlMapFile/bin/Release/ru-RU/RdlMapFile.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlMapFile.resources.dll
+cp ../RdlViewer/bin/Release/ru-RU/RdlViewer.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlViewer.resources.dll
+cp ../RdlViewer/RdlReader/bin/Release/ru-RU/RdlReader.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlReader.resources.dll
 
 cd build-output	
 zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-build-dot-net-4-AnyCPU/
