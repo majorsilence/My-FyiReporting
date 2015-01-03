@@ -15,18 +15,18 @@ cd lib
 mkdir -p net40
 cd ..
 
-cp -f ../../../DataProviders/bin/Release/DataProviders.dll lib/net40/DataProviders.dll
-cp -f ../../../RdlCri/bin/Release/RdlCri.dll lib/net40/RdlCri.dll
-cp -f ../../../RdlEngine/bin/Release/RdlEngine.dll lib/net40/RdlEngine.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/DataProviders.dll lib/net40/DataProviders.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlCri.dll lib/net40/RdlCri.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.dll lib/net40/RdlEngine.dll
 # make this a nuget dependency ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll /Y
 
 # make this a nuget dependency copy "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll /Y
-cp -f ../../../RdlEngine/bin/Release/RdlEngineConfig.xml content/RdlEngineConfig.xml
-cp -f ../../../RdlEngine/bin/Release/RdlEngineConfig.Linux.xml content/RdlEngineConfig.Linux.xml
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.xml content/RdlEngineConfig.xml
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.Linux.xml content/RdlEngineConfig.Linux.xml
 
 
 mkdir -p lib/net40/ru-RU
-cp -f ../../../RdlEngine/bin/Release/ru-RU/RdlEngine.resources.dll lib/net40/ru-RU/RdlEngine.resources.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlEngine.resources.dll lib/net40/ru-RU/RdlEngine.resources.dll
 
 
 cd ..
@@ -54,10 +54,10 @@ cd lib
 mkdir net40
 cd ..
 
-cp -f ../../../RdlViewer/bin/Release/RdlViewer.dll lib/net40/RdlViewer.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll lib/net40/RdlViewer.dll
 
 mkdir -p lib/net40/ru-RU
-cp -f ../../../RdlViewer/bin/Release/ru-RU/RdlViewer.resources.dll lib/net40/ru-RU/RdlViewer.resources.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlViewer.resources.dll lib/net40/ru-RU/RdlViewer.resources.dll
 
 cd ..
 
@@ -84,7 +84,7 @@ cd lib
 mkdir net40
 cd ..
 
-cp -f ../../../RdlAsp/bin/Release/RdlAsp.dll lib/net40/RdlAsp.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlAsp.dll lib/net40/RdlAsp.dll
 
 cd ..
 
@@ -112,10 +112,10 @@ mkdir net40
 cd ..
 
 
-cp ../../../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.dll lib/net40/LibRdlCrossPlatformViewer.dll
-cp "../../../References/dot net 4/Xwt.dll" lib/net40/Xwt.dll
-cp "../../../References/dot net 4/Xwt.Gtk.dll" lib/net40/Xwt.Gtk.dll
-cp "../../../References/dot net 4/Xwt.WPF.dll" lib/net40/Xwt.WPF.dll
+cp ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.dll lib/net40/LibRdlCrossPlatformViewer.dll
+cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.dll" lib/net40/Xwt.dll
+cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.Gtk.dll" lib/net40/Xwt.Gtk.dll
+cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.WPF.dll" lib/net40/Xwt.WPF.dll
 
 cd ..
 
