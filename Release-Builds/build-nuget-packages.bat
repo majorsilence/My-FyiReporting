@@ -12,21 +12,26 @@ mkdir lib
 mkdir content
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
+REM net 40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.dll lib\net40\DataProviders.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.dll lib\net40\RdlCri.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net40\RdlEngine.dll /Y
-REM make this a nuget dependency ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
-
-REM make this a nuget dependency copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml content\RdlEngineConfig.xml /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml content\RdlEngineConfig.Linux.xml /Y
-
-
 mkdir lib\net40\ru-RU
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlEngine.resources.dll lib\net40\ru-RU\RdlEngine.resources.dll /Y
 
+REM net 35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\DataProviders.dll lib\net35\DataProviders.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlCri.dll lib\net35\RdlCri.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net35\RdlEngine.dll /Y
+mkdir lib\net35\ru-RU
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlEngine.resources.dll lib\net35\ru-RU\RdlEngine.resources.dll /Y
+
+REM Content
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml content\RdlEngineConfig.xml /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml content\RdlEngineConfig.Linux.xml /Y
 
 cd ..
 
@@ -51,12 +56,20 @@ mkdir lib
 mkdir content
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
+REM net40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll lib\net40\RdlViewer.dll /Y
-
 mkdir lib\net40\ru-RU
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlViewer.resources.dll lib\net40\ru-RU\RdlViewer.resources.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlViewer.dll lib\net35\RdlViewer.dll /Y
+mkdir lib\net35\ru-RU
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlViewer.resources.dll lib\net35\ru-RU\RdlViewer.resources.dll /Y
+
+
 
 cd ..
 
@@ -78,9 +91,14 @@ rm -rf content
 mkdir lib
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
+REM net40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlAsp.dll lib\net40\RdlAsp.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlAsp.dll lib\net35\RdlAsp.dll /Y
 
 cd ..
 
@@ -103,6 +121,7 @@ rm -rf content
 mkdir lib
 cd lib
 mkdir net40
+REM xwt only support .net 4
 cd ..
 
 
@@ -134,10 +153,15 @@ rm -rf content
 mkdir lib
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
-
+REM net40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll lib\net40\LibRdlWpfViewer.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\LibRdlWpfViewer.dll lib\net35\LibRdlWpfViewer.dll /Y
+
 
 cd ..
 
