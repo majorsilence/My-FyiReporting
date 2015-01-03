@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer", "RdlViewer\RdlV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlReader", "RdlViewer\RdlReader\RdlReader.csproj", "{2412E381-D3D9-4AB7-A2FA-02D9786260F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportServer", "ReportServer\ReportServer.csproj", "{AA890E36-4560-4F0F-A277-550399825B66}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibRdlCrossPlatformViewer", "LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj", "{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{41D0ACBF-09D8-47D1-B8DC-F71B14EFEA32}"
@@ -220,6 +222,20 @@ Global
 		{2412E381-D3D9-4AB7-A2FA-02D9786260F0}.Release|x64.Build.0 = Release|x64
 		{2412E381-D3D9-4AB7-A2FA-02D9786260F0}.Release|x86.ActiveCfg = Release|x86
 		{2412E381-D3D9-4AB7-A2FA-02D9786260F0}.Release|x86.Build.0 = Release|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|x64.ActiveCfg = Debug|x64
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|x64.Build.0 = Debug|x64
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|x86.ActiveCfg = Debug|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|x86.Build.0 = Debug|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|x64.ActiveCfg = Release|x64
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|x64.Build.0 = Release|x64
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|x86.ActiveCfg = Release|x86
+		{AA890E36-4560-4F0F-A277-550399825B66}.Release|x86.Build.0 = Release|x86
 		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0262213-C37A-4EC9-A76B-B8BCFFE5C882}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
