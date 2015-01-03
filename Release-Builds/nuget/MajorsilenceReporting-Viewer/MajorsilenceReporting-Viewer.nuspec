@@ -22,8 +22,11 @@
   </metadata>
 
   <files>
-    <file src="lib/net40/*.*" target="lib/net40" />
-    <file src="lib/net40/ru-RU/*.*" target="lib/net40/ru-RU" />
+    <file src="lib/net40/*.*" target="lib/net40" /> <!-- Find on linux -->
+    <file src="lib/net40/ru-RU/*.*" target="lib/net40/ru-RU" /> <!-- Find on linux -->
+
+    <file src="lib\net40\*.*" target="lib\net40" /> <!-- Find on windows -->
+    <file src="lib\net40\ru-RU\*.*" target="lib\net40\ru-RU" /> <!-- Find on windows -->
   </files>
 
 </package>
