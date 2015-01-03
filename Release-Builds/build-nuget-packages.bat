@@ -47,7 +47,6 @@ rm -rf lib
 rm -rf content
 rm -rf ..\MajorsilenceReporting-Viewer-Build
 
-mkdir ..\MajorsilenceReporting-Viewer-Build
 mkdir lib
 mkdir content
 cd lib
@@ -121,6 +120,33 @@ cd ..
 
 REM ************* End XwtViewer *********************************************
 
+
+
+
+REM ************* Begin WpfViewer *********************************************
+REM make a seperate package 
+
+cd nuget/MajorsilenceReporting-WpfViewer
+rm -rf lib
+rm -rf content
+
+
+mkdir lib
+cd lib
+mkdir net40
+cd ..
+
+
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll lib\net40\LibRdlWpfViewer.dll /Y
+
+cd ..
+
+nuget pack "%CD%\MajorsilenceReporting-WpfViewer\MajorsilenceReporting-WpfViewer.nuspec" -OutputDirectory "%CD%\..\build-output"
+
+cd ..
+
+
+REM ************* End WpfViewer *********************************************
 
 
 
