@@ -4,6 +4,14 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 
 https://groups.google.com/d/forum/myfyireporting
 
+# Download
+
+See the [downloads page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads).
+
+Alternatively if you want keep up with the latest version you can always use Git
+
+    git clone https://github.com/majorsilence/My-FyiReporting.git
+
 # Introduction
 "FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
 Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
@@ -26,14 +34,6 @@ the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.
 http://build01.majorsilence.com/
 
 All changes are immediately built and the last 100 build artifacts available.
-
-# Download
-
-See the [downloads page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads).
-
-Alternatively if you want keep up with the latest version you can always use Git
-
-    git clone https://github.com/majorsilence/My-FyiReporting.git
 
 # Development
 Majorsilence Reporting is developed with the following workflow:
