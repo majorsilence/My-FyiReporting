@@ -26,6 +26,7 @@ cp ../RdlEngine/bin/Release/RdlEngine.dll ./build-output/majorsilence-reporting-
 cp ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll  
 cp "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll 
 cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.xml 
+cp ../RdlEngine/bin/Release/RdlEngineConfig.Linux.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.Linux.xml 
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlMapFile.exe 
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlReader.exe 
