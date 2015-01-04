@@ -443,8 +443,8 @@ namespace fyiReporting.RdlViewer
 					_vScroll.Value = (int)Math.Round(scrollValue);
 
 					string tt = string.Format("Page {0} of {1}",
-						                           (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-						                           _pgs.PageCount);
+						            (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+						            _pgs.PageCount);
 
 					_vScrollToolTip.SetToolTip(_vScroll, tt);
 
@@ -863,7 +863,7 @@ namespace fyiReporting.RdlViewer
      
 			OneFileStreamGen sg = new OneFileStreamGen(FileName, true);	// overwrite with this name
 			if (!(type == OutputPresentationType.PDF || type == OutputPresentationType.PDFOldStyle ||
-			             type == OutputPresentationType.TIF || type == OutputPresentationType.TIFBW))
+			    type == OutputPresentationType.TIF || type == OutputPresentationType.TIFBW))
 			{
 				ListDictionary ld = GetParameters();		// split parms into dictionary
 				_Report.RunGetData(ld);                     // obtain the data (again)
@@ -1025,9 +1025,9 @@ namespace fyiReporting.RdlViewer
 				sPage = pi.Page.PageNumber - 1;
 				sItem = pi.ItemNumber;
 				RectangleF rect = new RectangleF(PixelsX(pi.X + _leftMargin),
-					                              PixelsY(pi.Y),
-					                              PixelsX(pi.W),
-					                              PixelsY(pi.H));
+					                  PixelsY(pi.Y),
+					                  PixelsX(pi.W),
+					                  PixelsY(pi.H));
 				itemVerticalOffset = (int)(rect.Top);
 				itemHorzOffset = (int)rect.Left;
 				width = (int)rect.Width;
@@ -1785,8 +1785,8 @@ namespace fyiReporting.RdlViewer
 			}
 			_vScroll.Enabled = true;
 			string tt = string.Format("Page {0} of {1}",
-				                     (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-				                     _pgs.PageCount);
+				            (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+				            _pgs.PageCount);
 
 			_vScrollToolTip.SetToolTip(_vScroll, tt);
 			//			switch (_ScrollMode)
@@ -1806,8 +1806,8 @@ namespace fyiReporting.RdlViewer
 			// calculate the horizontal scroll needed
 			float w = PointsX(_DrawPanel.Width);	// width of pane
 			if (_zoomMode == ZoomEnum.FitPage ||
-			             _zoomMode == ZoomEnum.FitWidth ||
-			             _zoom * (this._PageWidth + this._leftGap + this._rightGap) <= w)
+			    _zoomMode == ZoomEnum.FitWidth ||
+			    _zoom * (this._PageWidth + this._leftGap + this._rightGap) <= w)
 			{
 				_hScroll.Enabled = false;
 				_hScroll.Value = 0;
@@ -1844,8 +1844,8 @@ namespace fyiReporting.RdlViewer
                 return;
 
 			string tt = string.Format("Page {0} of {1}",
-				                     (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
-				                     _pgs.PageCount);
+				            (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
+				            _pgs.PageCount);
 
 			_vScrollToolTip.SetToolTip(_vScroll, tt);
 
@@ -2090,7 +2090,15 @@ namespace fyiReporting.RdlViewer
 				Hyperlink(this, hlea);
 		}
 
+		public void HideRunButton()
+		{
+			_RunButton.Visible = false;
+		}
 
+		public void ShowRunButton()
+		{
+			_RunButton.Visible = true;
+		}
 	}
 
 	public enum RdlViewerFinds
