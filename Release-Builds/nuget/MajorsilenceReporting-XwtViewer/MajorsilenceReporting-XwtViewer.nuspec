@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MajorsilenceReporting-XwtViewer</id>
-    <version>4.5.4</version>
+    <version>4.8</version>
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -22,7 +22,8 @@
   </metadata>
 
   <files>
-    <file src="lib/net40/*.*" target="lib/net40" />
+    <file src="lib/net40/*.*" target="lib/net40" /> <!-- Find on linux -->
+    <file src="lib\net40\*.*" target="lib\net40" /> <!-- Find on windows -->
   </files>
 
 </package>

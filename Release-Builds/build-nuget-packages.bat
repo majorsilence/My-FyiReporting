@@ -12,21 +12,26 @@ mkdir lib
 mkdir content
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
-copy ..\..\..\DataProviders\bin\Release\DataProviders.dll lib\net40\DataProviders.dll /Y
-copy ..\..\..\RdlCri\bin\Release\RdlCri.dll lib\net40\RdlCri.dll /Y
-copy ..\..\..\RdlEngine\bin\Release\RdlEngine.dll lib\net40\RdlEngine.dll /Y
-REM make this a nuget dependency ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
-
-REM make this a nuget dependency copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
-copy ..\..\..\RdlEngine\bin\Release\RdlEngineConfig.xml content\RdlEngineConfig.xml /Y
-copy ..\..\..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml content\RdlEngineConfig.Linux.xml /Y
-
-
+REM net 40
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.dll lib\net40\DataProviders.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.dll lib\net40\RdlCri.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net40\RdlEngine.dll /Y
 mkdir lib\net40\ru-RU
-copy ..\..\..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll lib\net40\ru-RU\RdlEngine.resources.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlEngine.resources.dll lib\net40\ru-RU\RdlEngine.resources.dll /Y
 
+REM net 35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\DataProviders.dll lib\net35\DataProviders.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlCri.dll lib\net35\RdlCri.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net35\RdlEngine.dll /Y
+mkdir lib\net35\ru-RU
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlEngine.resources.dll lib\net35\ru-RU\RdlEngine.resources.dll /Y
+
+REM Content
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml content\RdlEngineConfig.xml /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml content\RdlEngineConfig.Linux.xml /Y
 
 cd ..
 
@@ -47,17 +52,24 @@ rm -rf lib
 rm -rf content
 rm -rf ..\MajorsilenceReporting-Viewer-Build
 
-mkdir ..\MajorsilenceReporting-Viewer-Build
 mkdir lib
 mkdir content
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
-copy ..\..\..\RdlViewer\bin\Release\RdlViewer.dll lib\net40\RdlViewer.dll /Y
-
+REM net40
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll lib\net40\RdlViewer.dll /Y
 mkdir lib\net40\ru-RU
-copy ..\..\..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll lib\net40\ru-RU\RdlViewer.resources.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlViewer.resources.dll lib\net40\ru-RU\RdlViewer.resources.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlViewer.dll lib\net35\RdlViewer.dll /Y
+mkdir lib\net35\ru-RU
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlViewer.resources.dll lib\net35\ru-RU\RdlViewer.resources.dll /Y
+
+
 
 cd ..
 
@@ -69,8 +81,7 @@ cd ..
 REM ************* End Viewer *********************************************
 
 
-# ************* Begin Asp.net *********************************************
-# make a seperate package 
+REM ************* Begin Asp.net *********************************************
 
 cd nuget/MajorsilenceReporting-Asp
 rm -rf lib
@@ -80,9 +91,14 @@ rm -rf content
 mkdir lib
 cd lib
 mkdir net40
+mkdir net35
 cd ..
 
-copy ..\..\..\RdlAsp\bin\Release\RdlAsp.dll lib\net40\RdlAsp.dll /Y
+REM net40
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlAsp.dll lib\net40\RdlAsp.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlAsp.dll lib\net35\RdlAsp.dll /Y
 
 cd ..
 
@@ -91,27 +107,28 @@ nuget pack "%CD%\MajorsilenceReporting-Asp\MajorsilenceReporting-Asp.nuspec" -Ou
 cd ..
 
 
-# ************* End Asp.net *********************************************
+REM ************* End Asp.net *********************************************
 
 
-# ************* Begin XwtViewer *********************************************
-# make a seperate package 
+REM ************* Begin XwtViewer *********************************************
+REM make a seperate package 
 
 cd nuget/MajorsilenceReporting-XwtViewer
 rm -rf lib
 rm -rf content
 
 
-mkdir -p lib
+mkdir lib
 cd lib
 mkdir net40
+REM xwt only support .net 4
 cd ..
 
 
-copy ..\..\..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll lib\net40\LibRdlCrossPlatformViewer.dll /Y
-copy "..\..\..\References/dot net 4\Xwt.dll" lib\net40/Xwt.dll /Y
-copy "..\..\..\References/dot net 4\Xwt.Gtk.dll" lib\net40/Xwt.Gtk.dll /Y
-copy "..\..\..\References/dot net 4\Xwt.WPF.dll" lib\net40/Xwt.WPF.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlCrossPlatformViewer.dll lib\net40\LibRdlCrossPlatformViewer.dll /Y
+copy "..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.dll" lib\net40\Xwt.dll /Y
+copy "..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.Gtk.dll" lib\net40\Xwt.Gtk.dll /Y
+copy "..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.WPF.dll" lib\net40\Xwt.WPF.dll /Y
 
 cd ..
 
@@ -120,8 +137,40 @@ nuget pack "%CD%\MajorsilenceReporting-XwtViewer\MajorsilenceReporting-XwtViewer
 cd ..
 
 
-# ************* End XwtViewer *********************************************
+REM ************* End XwtViewer *********************************************
 
+
+
+
+REM ************* Begin WpfViewer *********************************************
+REM make a seperate package 
+
+cd nuget/MajorsilenceReporting-WpfViewer
+rm -rf lib
+rm -rf content
+
+
+mkdir lib
+cd lib
+mkdir net40
+mkdir net35
+cd ..
+
+REM net40
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll lib\net40\LibRdlWpfViewer.dll /Y
+
+REM net35
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\LibRdlWpfViewer.dll lib\net35\LibRdlWpfViewer.dll /Y
+
+
+cd ..
+
+nuget pack "%CD%\MajorsilenceReporting-WpfViewer\MajorsilenceReporting-WpfViewer.nuspec" -OutputDirectory "%CD%\..\build-output"
+
+cd ..
+
+
+REM ************* End WpfViewer *********************************************
 
 
 
@@ -130,9 +179,3 @@ REM future nuget packages
 
 
 REM make a seperate package copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
-
-REM make a separate package copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlCrossPlatformViewer.dll /Y
-REM copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.dll /Y
-REM copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.Gtk.dll /Y
-REM copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.WPF.dll /Y
-REM copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\zxing.dll /Y

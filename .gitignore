@@ -229,3 +229,4 @@ obj/
 /Release-Builds/nuget/MajorsilenceReporting-Viewer/lib
 /Release-Builds/nuget/MajorsilenceReporting-Asp/lib
 /Release-Builds/nuget/MajorsilenceReporting-XwtViewer/lib
+/Release-Builds/nuget/MajorsilenceReporting-WpfViewer/lib
