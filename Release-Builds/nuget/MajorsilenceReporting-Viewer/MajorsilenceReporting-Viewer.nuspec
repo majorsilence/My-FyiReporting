@@ -5,6 +5,8 @@
     <version>4.8</version>
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>
+    <licenseUrl>https://github.com/majorsilence/My-FyiReporting/blob/master/LICENSE-2_0.txt</licenseUrl>
+    <projectUrl>https://github.com/majorsilence/My-FyiReporting</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Report and charting system based on Microsoft's Report Definition.  This contains the viewer component.</summary>
     <description>Majorsilence Reporting is a fork of fyiReporting. I cannot stress this enough. This is a FORK. The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.
