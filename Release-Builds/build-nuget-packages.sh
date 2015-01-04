@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+set -e # exit on first error
+set -u # exit on using unset variable
+
 # ************* Begin CORE *********************************************
 # http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
 
