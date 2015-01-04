@@ -68,7 +68,7 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\Release\RdlViewer.xml1591</DocumentationFile>
+    <DocumentationFile>bin\Release\RdlViewer.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

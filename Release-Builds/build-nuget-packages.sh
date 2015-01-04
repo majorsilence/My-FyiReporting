@@ -22,6 +22,9 @@ cd ..
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/DataProviders.dll lib/net40/DataProviders.dll
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlCri.dll lib/net40/RdlCri.dll
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.dll lib/net40/RdlEngine.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/DataProviders.xml lib/net40/DataProviders.xml
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlCri.xml lib/net40/RdlCri.xml
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.xml lib/net40/RdlEngine.xml
 # make this a nuget dependency ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll /Y
 
 # make this a nuget dependency copy "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll /Y
@@ -59,6 +62,7 @@ mkdir net40
 cd ..
 
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll lib/net40/RdlViewer.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.xml lib/net40/RdlViewer.xml
 
 mkdir -p lib/net40/ru-RU
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlViewer.resources.dll lib/net40/ru-RU/RdlViewer.resources.dll
@@ -89,6 +93,7 @@ mkdir net40
 cd ..
 
 cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlAsp.dll lib/net40/RdlAsp.dll
+cp -f ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlAsp.xml lib/net40/RdlAsp.xml
 
 cd ..
 
@@ -117,6 +122,7 @@ cd ..
 
 
 cp ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.dll lib/net40/LibRdlCrossPlatformViewer.dll
+cp ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.xml lib/net40/LibRdlCrossPlatformViewer.xml
 cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.dll" lib/net40/Xwt.dll
 cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.Gtk.dll" lib/net40/Xwt.Gtk.dll
 cp "../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.WPF.dll" lib/net40/Xwt.WPF.dll
