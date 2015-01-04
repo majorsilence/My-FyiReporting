@@ -5,7 +5,10 @@ set -u # exit on using unset variable
 # Platform optios: "AnyCPU", "x64", "AnyCPU"
 # /p:Configuration="Debug" or "Release"
 
-
+CURRENTPATH=`pwd`
+VERSION_FULL_LINE=$(grep -F "AssemblyVersion" "$CURRENTPATH/../RdlEngine/AssemblyInfo.cs")
+VERSION_WITH_ASTERIK=$(echo $VERSION_FULL_LINE | awk -F\" '{print $(NF-1)}')
+VERSION="${VERSION_WITH_ASTERIK%??}"
 
 # ************* Begin AnyCPU .NET 4*********************************************
 # Seems to be the only option that matter on linux
@@ -45,27 +48,7 @@ cp ../RdlViewer/bin/Release/ru-RU/RdlViewer.resources.dll ./build-output/majorsi
 cp ../RdlViewer/RdlReader/bin/Release/ru-RU/RdlReader.resources.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ru-RU/RdlReader.resources.dll
 
 cd build-output	
-zip -r majorsilence-reporting-build-dot-net-4-AnyCPU.zip majorsilence-reporting-build-dot-net-4-AnyCPU/
+zip -r "$VERSION-majorsilence-reporting-build-dot-net-4-AnyCPU.zip" majorsilence-reporting-build-dot-net-4-AnyCPU/
 cd ..
 
 # ************* End AnyCPU .NET 4*********************************************
-
-# nuget pack seems to be broken.  See https://nuget.codeplex.com/SourceControl/network/forks/ddunkin/mono/contribution/6849
-
-exit
-cd nuget/My-FyiReporting
-rm -rf lib
-rm -rf ../My-FyiReporting-Build
-
-mkdir ../My-FyiReporting-Build
-mkdir lib
-cd lib
-mkdir net40
-cd ..
-
-cp -R ../../build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/* lib/net40
-
-cd ..
-
-CURRENTPATH=`pwd`
-nuget pack "$CURRENTPATH/My-FyiReporting/My-FyiReporting.nuspec" -OutputDirectory "$CURRENTPATH/My-FyiReporting-Build"
