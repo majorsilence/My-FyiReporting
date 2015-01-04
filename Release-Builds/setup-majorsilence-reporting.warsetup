@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" menuShortcutDirName="" overRideMenuShortcutDir="false" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1708" projectName="Majorsilence Reporting" projectUuid="95910d9d-dc07-4725-a54d-671cc44b6508" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.7.0" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 3" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds\build-output" projectRequireDotNetVersion=".NET 4.0 FULL" projectTargetName="setup-Majorsilence-Reporting-dot-net4-x86" projectType="0" projectUserInterface="WixUI_FeatureTree">
+<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" menuShortcutDirName="" overRideMenuShortcutDir="false" projectRunAfterInstall="true" mainTargetApp="ID_ac0d4a40_2eb5_401a_8daf_5e534e01e7d8" nextUniqueId="1734" projectName="Majorsilence Reporting" projectUuid="b40a4f4c-1d11-4783-bed6-2f6f84897526" projectUpgradeUuid="cb05fe8c-3572-41c2-83ce-46055393e123" projectVersion="4.8.0" projectOrganization="MajorSilence" projectFromWindowsVersion="Windows XP SP 3" projectMustBeAdministratorToInstall="true" project64BitTarget="false" projectTargetDirectory="C:\Users\Peter\Projects\My-FyiReporting\Release-Builds\build-output" projectRequireDotNetVersion=".NET 4.0 FULL" projectTargetName="setup-Majorsilence-Reporting-dot-net4-x86" projectType="0" projectUserInterface="WixUI_FeatureTree">
   <LicencePaths>
     <string>C:\Program Files (x86)\MajorSilence\War Setup Fork\Licenses</string>
   </LicencePaths>
@@ -89,22 +89,6 @@
       <components componentId="ID1081" componentGuid="bd2952be-9de8-4907-b00f-8bff512f2fd7">
         <componentFiles fileId="ID_46eace7f_2d2a_46e5_897d_25dec36a0373" srcName="ICSharpCode.SharpZipLib.dll" srcDirectory=".\build-output\majorsilence-reporting-build-dot-net-4-x86" dstName="ICSharpCode.SharpZipLib.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="ICSharpCode.SharpZipLib" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
           <service StartWhenInstalled="true" Remove="both" id="ID1080" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
-          <executeOnInstall>false</executeOnInstall>
-          <executeOnInstallParameters />
-        </componentFiles>
-        <addToCreateFolder>false</addToCreateFolder>
-      </components>
-      <components componentId="ID1083" componentGuid="ad0ad0ad-3fa1-481c-8f66-55413d446db2">
-        <componentFiles fileId="ID_f23223cf_131a_463b_ab8a_ef9b15007a9b" srcName="Mono.Security.dll" srcDirectory=".\build-output\majorsilence-reporting-build-dot-net-4-x86" dstName="Mono.Security.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="Mono.Security" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
-          <service StartWhenInstalled="true" Remove="both" id="ID1082" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
-          <executeOnInstall>false</executeOnInstall>
-          <executeOnInstallParameters />
-        </componentFiles>
-        <addToCreateFolder>false</addToCreateFolder>
-      </components>
-      <components componentId="ID1085" componentGuid="28cd37a9-47a1-467b-86de-2bca1887698f">
-        <componentFiles fileId="ID_e2151b65_b37c_4d91_91d5_21527bbecad0" srcName="Npgsql.dll" srcDirectory=".\build-output\majorsilence-reporting-build-dot-net-4-x86" dstName="Npgsql.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="Npgsql" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
-          <service StartWhenInstalled="true" Remove="both" id="ID1084" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
           <executeOnInstall>false</executeOnInstall>
           <executeOnInstallParameters />
         </componentFiles>
