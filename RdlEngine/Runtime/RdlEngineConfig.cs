@@ -15,7 +15,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
    See the License for the specific language governing permissions and 
    limitations under the License. 
-
+ 
 
    For additional information, email info@fyireporting.com or visit 
    the website www.fyiReporting.com. 
@@ -41,11 +41,12 @@ namespace fyiReporting.RDL
     ///</summary> 
     public class RdlEngineConfig
     {
-        static internal IDictionary SqlEntries = null;   // list of entries 
+        static internal IDictionary SqlEntries = null;
+        // list of entries
         static internal Dictionary<string, CustomReportItemEntry> CustomReportItemEntries = null;
         static DateTime _InitFileCreationTime = DateTime.MinValue;
 
-        // Compression entries 
+        // Compression entries
         static CompressionConfig _Compression = null;
         static string _DirectoryLoadedFrom = null;
 
@@ -56,7 +57,7 @@ namespace fyiReporting.RDL
                 return _DirectoryLoadedFrom;
             }
         }
-        // initializes when no init available 
+        // initializes when no init available
         static public void RdlEngineConfigInit()
         {
             string d1, d2;
@@ -67,7 +68,7 @@ namespace fyiReporting.RDL
             RdlEngineConfigInit(d1, d2);
         }
 
-        // initialize configuration 
+        // initialize configuration
         static public void RdlEngineConfigInit(params string[] dirs)
         {
             bool bLoaded = false;
@@ -81,15 +82,15 @@ namespace fyiReporting.RDL
                 if (dir == null)
                     continue;
 
-				PlatformID pid = System.Environment.OSVersion.Platform;
-				if (pid == PlatformID.Unix)
-				{
-					file = System.IO.Path.Combine(dir, "RdlEngineConfig.Linux.xml");
-				}
-				else
-				{
-					file = System.IO.Path.Combine(dir, "RdlEngineConfig.xml");
-				}
+                PlatformID pid = System.Environment.OSVersion.Platform;
+                if (pid == PlatformID.Unix)
+                {
+                    file = System.IO.Path.Combine(dir, "RdlEngineConfig.Linux.xml");
+                }
+                else
+                {
+                    file = System.IO.Path.Combine(dir, "RdlEngineConfig.xml");
+                }
 
                 
                 try
@@ -343,7 +344,7 @@ namespace fyiReporting.RDL
 
                     if (System.IO.File.Exists(codemodule) == false)
                     {
-                        sce = new SqlConfigEntry(provider, codemodule , cname, null, tselect, string.Format(Strings.RdlEngineConfig_Error_CashModuleNotFound, codemodule));
+                        sce = new SqlConfigEntry(provider, codemodule, cname, null, tselect, string.Format(Strings.RdlEngineConfig_Error_CashModuleNotFound, codemodule));
                         dsDir.Add(provider, sce);
                         return;
                     }
@@ -360,13 +361,13 @@ namespace fyiReporting.RDL
                         }
                     }
                     if (la == null)
-					{
+                    {
                         la = XmlUtil.AssemblyLoadFrom(codemodule);
-					}
+                    }
                     if (la == null)
-					{
+                    {
                         msg = string.Format(Strings.RdlEngineConfig_Error_CashModuleNotFound, codemodule);
-					}
+                    }
                 }
                 sce = new SqlConfigEntry(provider, codemodule, cname, la, tselect, msg);
                 dsDir.Add(provider, sce);
@@ -396,9 +397,9 @@ namespace fyiReporting.RDL
                 case "oledb":
                     cn = new OleDbConnection(cstring);
                     break;
-			    case "filedirectory":
-    				cn = new fyiReporting.Data.FileDirConnection(cstring);
-    				break;
+                case "filedirectory":
+                    cn = new fyiReporting.Data.FileDirConnection(cstring);
+                    break;
                 case "xml":
                     cn = new fyiReporting.Data.XmlConnection(cstring);
                     break;
@@ -424,26 +425,28 @@ namespace fyiReporting.RDL
                     break;
 #endif
                 default:
-                    if (SqlEntries == null){         // if never initialized; we should init 
+                    if (SqlEntries == null)
+                    {         // if never initialized; we should init 
                         RdlEngineConfigInit();
-				}
+                    }
 
 
 
-				System.Console.WriteLine("Attempt to find provider");
+                    System.Console.WriteLine("Attempt to find provider");
                     SqlConfigEntry sce = SqlEntries[provider] as SqlConfigEntry;
                     if (sce == null || sce.CodeModule == null)
                     {
-                        if (sce != null && sce.ErrorMsg != null){   // error during initialization?? 
+                        if (sce != null && sce.ErrorMsg != null)
+                        {   // error during initialization?? 
                             throw new Exception(sce.ErrorMsg);
-					}
+                        }
                         break;
                     }
-				System.Console.WriteLine("Provider Create Instance");
+                    System.Console.WriteLine("Provider Create Instance");
                     object[] args = new object[] { cstring };
                     Assembly asm = sce.CodeModule;
                     object o = asm.CreateInstance(sce.ClassName, false,
-                       BindingFlags.CreateInstance, null, args, null, null);
+                                   BindingFlags.CreateInstance, null, args, null, null);
                     if (o == null)
                         throw new Exception(string.Format(Strings.RdlEngineConfig_Error_UnableCreateInstance, sce.ClassName, provider));
                     cn = o as IDbConnection;
@@ -573,7 +576,7 @@ namespace fyiReporting.RDL
                     foreach (Assembly ass in allLoadedAss)
                     {
                         var type = ass.GetType();
-                        if( type.GetMethod("Location") != null)
+                        if (type.GetMethod("Location") != null)
                         {
                             if (ass.Location.Equals(codemodule, StringComparison.CurrentCultureIgnoreCase))
                             {
@@ -608,7 +611,7 @@ namespace fyiReporting.RDL
                 throw new Exception(string.Format(Strings.RdlEngineConfig_Error_NotKnownCustomReportItemType, friendlyTypeName));
             if (crie.Type == null)
                 throw new Exception(crie.ErrorMsg ??
-			   string.Format(Strings.RdlEngineConfig_Error_NotKnownCustomReportItemType, friendlyTypeName));
+                    string.Format(Strings.RdlEngineConfig_Error_NotKnownCustomReportItemType, friendlyTypeName));
 
             var item = (ICustomReportItem)Activator.CreateInstance(crie.Type);
             return item;
@@ -618,7 +621,7 @@ namespace fyiReporting.RDL
         {
             if (!typeof(ICustomReportItem).IsAssignableFrom(type))
                 throw new ArgumentException("The type does not implement the ICustomReportItem interface: " +
-                   type == null ? "null" : type.Name);
+                    type == null ? "null" : type.Name);
 
             if (CustomReportItemEntries == null)
                 RdlEngineConfigInit();
@@ -639,8 +642,10 @@ namespace fyiReporting.RDL
         string _CodeModule;
         string _ClassName;
         string _Finish;
-        MethodInfo _FinishMethodInfo;   //   if there is a finish method 
-        string _ErrorMsg;            // error encountered loading compression 
+        MethodInfo _FinishMethodInfo;
+        //   if there is a finish method
+        string _ErrorMsg;
+        // error encountered loading compression
 
         internal CompressionConfig(string cm, string cn, string fn)
         {
@@ -769,7 +774,7 @@ namespace fyiReporting.RDL
                 object[] args = new object[] { str };
 
                 Stream so = _Assembly.CreateInstance(_ClassName, false,
-                   BindingFlags.CreateInstance, null, args, null, null) as Stream;
+                                BindingFlags.CreateInstance, null, args, null, null) as Stream;
                 return so;
             }
             catch
@@ -800,7 +805,7 @@ namespace fyiReporting.RDL
                     object[] args = new object[] { new MemoryStream() };
 
                     Stream so = _Assembly.CreateInstance(_ClassName, false,
-                       BindingFlags.CreateInstance, null, args, null, null) as Stream;
+                                    BindingFlags.CreateInstance, null, args, null, null) as Stream;
 
                     if (so != null)
                     {      // we've successfully inited 
@@ -835,6 +840,7 @@ namespace fyiReporting.RDL
         internal string ErrorMsg;
         internal bool ReplaceParameters;
         internal string FileName;
+
         internal SqlConfigEntry(string provider, string file, string cname, Assembly codemodule, string tselect, string msg)
         {
             Provider = provider;
@@ -852,6 +858,7 @@ namespace fyiReporting.RDL
         internal string ItemName;
         internal Type Type;
         internal string ErrorMsg;
+
         internal CustomReportItemEntry(string itemName, Type type, string msg)
         {
             Type = type;
