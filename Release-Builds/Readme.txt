@@ -28,3 +28,10 @@ Majorsilence reporting started as My-FyiReporting which was a fork of fyiReporti
 
 Download from: https://github.com/majorsilence/My-FyiReporting/wiki/Downloads
 
+If you have [NuGet](http://nuget.org) installed, the easiest way to get started is to install Majorsilence Reporting via NuGet:
+
+* PM> Install-Package MajorsilenceReporting-Core
+* PM> Install-Package MajorsilenceReporting-Asp
+* PM> Install-Package MajorsilenceReporting-Viewer 
+* PM> Install-Package MajorsilenceReporting-WpfViewer
+* PM> Install-Package MajorsilenceReporting-XwtViewer
