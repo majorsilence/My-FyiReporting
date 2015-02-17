@@ -18,20 +18,20 @@ cd ..
 REM net 40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.dll lib\net40\DataProviders.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.dll lib\net40\RdlCri.dll /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net40\RdlEngine.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.dll lib\net40\RdlEngine.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\DataProviders.xml lib\net40\DataProviders.xml /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.xml lib\net40\RdlCri.xml /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine\bin\Release\RdlEngine.xml lib\net40\RdlEngine.xml /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.xml lib\net40\RdlEngine.xml /Y
 mkdir lib\net40\ru-RU
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlEngine.resources.dll lib\net40\ru-RU\RdlEngine.resources.dll /Y
 
 REM net 35
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\DataProviders.dll lib\net35\DataProviders.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlCri.dll lib\net35\RdlCri.dll /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine\bin\Release\RdlEngine.dll lib\net35\RdlEngine.dll /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine.dll lib\net35\RdlEngine.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\DataProviders.xml lib\net35\DataProviders.xml /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlCri.xml lib\net35\RdlCri.xml /Y
-copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine\bin\Release\RdlEngine.xml lib\net35\RdlEngine.xml /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\RdlEngine.xml lib\net35\RdlEngine.xml /Y
 mkdir lib\net35\ru-RU
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlEngine.resources.dll lib\net35\ru-RU\RdlEngine.resources.dll /Y
 
