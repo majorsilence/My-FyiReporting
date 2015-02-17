@@ -4,6 +4,9 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 
 https://groups.google.com/d/forum/myfyireporting
 
+# Documentation
+See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
+
 # Download
 
 See the [downloads page](https://github.com/majorsilence/My-FyiReporting/wiki/Downloads).
