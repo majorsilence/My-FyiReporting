@@ -3,15 +3,17 @@
 * Install Gow - choco install gow
 * Install nuget command line - choco install nuget.commandline 
 
-1. Update Assembly version numbers in all projects (Run: prepare-files-for-release.bat)
-2. Build .NET 4.0 package:
+
+1. Build .NET 4.0/3.5 package:
 	* Run build-fyi-release-dot-net-4.bat
-3. Build Linux package:
+	* Run build-fyi-release-dot-net-3.5.bat
+2. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh
-4. Update warsetup project and version number
-5. Build warsetup project
-6. Build NuGet packages - build-nuget-packages.bat
-7. Create Git TAG
+3. Update warsetup project and version number
+4. Build warsetup project
+5. Build NuGet packages - build-nuget-packages.bat
+6. Create Git TAG
+7. Update Assembly version numbers in all projects (Run: prepare-files-for-release.bat)
 8. Post to google group https://groups.google.com/d/forum/myfyireporting
 
 
