@@ -35,5 +35,6 @@ sed.exe -i "5s/.*/    <version>%Version%<\/version>/" "%CD%\nuget\MajorsilenceRe
 sed.exe -i "5s/.*/    <version>%Version%<\/version>/" "%CD%\nuget\MajorsilenceReporting-Core\MajorsilenceReporting-Core.nuspec"
 sed.exe -i "5s/.*/    <version>%Version%<\/version>/" "%CD%\nuget\MajorsilenceReporting-XwtViewer\MajorsilenceReporting-XwtViewer.nuspec"
 sed.exe -i "5s/.*/    <version>%Version%<\/version>/" "%CD%\nuget\MajorsilenceReporting-Viewer\MajorsilenceReporting-Viewer.nuspec"
+sed.exe -i "5s/.*/    <version>%Version%<\/version>/" "%CD%\nuget\MajorsilenceReporting-WpfViewer\MajorsilenceReporting-WpfViewer.nuspec"
 
 del "sed*"
