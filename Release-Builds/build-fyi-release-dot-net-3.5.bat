@@ -34,10 +34,8 @@ copy ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe .\build-output\majorsilence-re
 copy ..\RdlDesktop\bin\x64\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-2-x64\config.xml /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-2-x64\LibRdlWpfViewer.dll /Y
 
-
-
-copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x64\zxing.dll
-copy "..\References\dot net 3.5\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x64\itextsharp.dll
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net35\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x64\zxing.dll
+copy "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x64\iTextSharp.dll /Y
 
 mkdir .\build-output\majorsilence-reporting-build-dot-net-2-x64\ru-RU
 copy ..\RdlDesktop\bin\x64\Release\ru-RU\RdlDesktop.resources.dll .\build-output\majorsilence-reporting-build-dot-net-2-x64\ru-RU\RdlDesktop.resources.dll /Y
@@ -75,8 +73,8 @@ copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\build-output\majorsilence-re
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-2-x86\config.xml /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-2-x86\LibRdlWpfViewer.dll /Y
 
-copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x86\zxing.dll
-copy "..\References\dot net 3.5\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x86\itextsharp.dll
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net35\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x86\zxing.dll
+copy "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" .\build-output\majorsilence-reporting-build-dot-net-2-x86\iTextSharp.dll /Y
 
 mkdir .\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU
 copy ..\RdlDesktop\bin\x86\Release\ru-RU\RdlDesktop.resources.dll .\build-output\majorsilence-reporting-build-dot-net-2-x86\ru-RU\RdlDesktop.resources.dll /Y
