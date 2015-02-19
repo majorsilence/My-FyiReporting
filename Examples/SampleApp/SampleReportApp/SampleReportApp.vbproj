@@ -68,9 +68,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataProviders, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DataProviders, Version=4.11.5528.34566, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\DataProviders.dll</HintPath>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.11\lib\net40\DataProviders.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
@@ -86,17 +86,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
     </Reference>
-    <Reference Include="RdlCri, Version=4.5.5526.13520, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="RdlCri, Version=4.5.5528.34568, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlCri.dll</HintPath>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.11\lib\net40\RdlCri.dll</HintPath>
     </Reference>
-    <Reference Include="RdlEngine, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RdlEngine, Version=4.11.5528.34567, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlEngine.dll</HintPath>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.11\lib\net40\RdlEngine.dll</HintPath>
     </Reference>
-    <Reference Include="RdlViewer, Version=4.9.5526.13520, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RdlViewer, Version=4.11.5528.34568, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MajorsilenceReporting-Viewer.4.9\lib\net40\RdlViewer.dll</HintPath>
+      <HintPath>..\packages\MajorsilenceReporting-Viewer.4.11\lib\net40\RdlViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
