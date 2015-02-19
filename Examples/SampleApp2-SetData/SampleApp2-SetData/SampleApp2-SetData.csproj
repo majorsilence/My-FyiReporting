@@ -52,8 +52,29 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RdlEngine">
-      <HintPath>..\..\..\RdlEngine\bin\x86\Debug\RdlEngine.dll</HintPath>
+    <Reference Include="DataProviders, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\DataProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="iTextSharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlCri, Version=4.5.5526.13520, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlCri.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlEngine, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlViewer, Version=4.9.5526.13520, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Viewer.4.9\lib\net40\RdlViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,6 +89,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
@@ -90,6 +118,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -107,23 +136,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj">
-      <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
-      <Name>DataProviders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj">
-      <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
-      <Name>RdlCri</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj">
-      <Project>{D99145B1-CB6C-41F5-BA86-723325145FB5}</Project>
-      <Name>RdlViewer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="RdlEngineConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RdlEngineConfig.Linux.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
