@@ -68,11 +68,35 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataProviders, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\DataProviders.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="iTextSharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlCri, Version=4.5.5526.13520, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlCri.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlEngine, Version=4.9.5526.13519, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Core.4.9\lib\net40\RdlEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RdlViewer, Version=4.9.5526.13520, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MajorsilenceReporting-Viewer.4.9\lib\net40\RdlViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -95,6 +119,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -157,22 +188,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj">
-      <Project>{d9f4197f-52d2-49f0-8daf-e2884733cf2d}</Project>
-      <Name>DataProviders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj">
-      <Project>{9c9ecaca-0deb-4517-8cf1-02c3d3eb128e}</Project>
-      <Name>RdlCri</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\RdlEngine\RdlEngine.csproj">
-      <Project>{c97e91f4-b310-44e2-9b6c-96775395722d}</Project>
-      <Name>RdlEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj">
-      <Project>{d99145b1-cb6c-41f5-ba86-723325145fb5}</Project>
-      <Name>RdlViewer</Name>
-    </ProjectReference>
+    <Content Include="RdlEngineConfig.Linux.xml" />
+    <Content Include="RdlEngineConfig.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />

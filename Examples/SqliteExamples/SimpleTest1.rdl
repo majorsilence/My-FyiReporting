@@ -10,7 +10,7 @@
     <DataSource Name="DS1">
       <ConnectionProperties>
         <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=/home/peter/Projects/My-FyiReporting/Examples/northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>
