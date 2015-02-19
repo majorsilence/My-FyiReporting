@@ -20,7 +20,7 @@
     <dependencies>
       <dependency id="SharpZipLib" />
       <dependency id="iTextSharp-LGPL" />
-      <dependency id="ZXing.Net" />
+      <dependency id="ZXing.Net" version="0.14.0.1" />
     </dependencies>
 
   </metadata>

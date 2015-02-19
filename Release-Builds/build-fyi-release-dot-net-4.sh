@@ -31,14 +31,15 @@ cp ../RdlDesktop/bin/Release/config.xml ./build-output/majorsilence-reporting-bu
 cp ../RdlEngine/bin/Release/RdlEngine.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.dll 
 cp ../RdlEngine/bin/Release/RdlEngine.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngine.xml 
 cp ../RdlEngine/bin/Release/ICSharpCode.SharpZipLib.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/ICSharpCode.SharpZipLib.dll  
-cp "../References/dot net 4/itextsharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/itextsharp.dll 
+copy "../packages/iTextSharp-LGPL.4.1.6/lib/iTextSharp.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/iTextSharp.dll 
 cp ../RdlEngine/bin/Release/RdlEngineConfig.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.xml 
 cp ../RdlEngine/bin/Release/RdlEngineConfig.Linux.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlEngineConfig.Linux.xml 
 cp ../RdlMapFile/bin/Release/RdlMapFile.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlMapFile.exe 
 cp ../RdlViewer/bin/Release/RdlViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.dll 
 cp ../RdlViewer/bin/Release/RdlViewer.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlViewer.xml
 cp ../RdlViewer/RdlReader/bin/Release/RdlReader.exe ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/RdlReader.exe 
-cp "../References/dot net 3.5/zxing.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.dll
+copy "../packages/ZXing.Net.0.14.0.1/lib/net40/zxing.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.dll
+copy "../packages/ZXing.Net.0.14.0.1/lib/net40/zxing.presentation.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/zxing.presentation.dll
 cp ../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.dll ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.dll
 cp ../LibRdlCrossPlatformViewer/bin/Release/LibRdlCrossPlatformViewer.xml ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/LibRdlCrossPlatformViewer.xml
 cp "../References/dot net 4/Xwt.dll" ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU/Xwt.dll

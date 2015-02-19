@@ -35,7 +35,7 @@ copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reportin
 copy ..\RdlEngine\bin\Release\RdlEngine.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.xml /Y
 copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
 copy "..\References\dot net 4\64bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\System.Data.SQLite.dll /Y
-copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\itextsharp.dll /Y
+copy "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\iTextSharp.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlMapFile.exe /Y
@@ -49,7 +49,8 @@ copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.xml .\bu
 copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\Xwt.WPF.dll /Y
-copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\zxing.dll /Y
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\zxing.dll
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x64\zxing.presentation.dll
 
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU
 copy ..\RdlDesign\bin\x64\Release\ru-RU\RdlDesigner.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlDesigner.resources.dll /Y
@@ -88,7 +89,7 @@ copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reportin
 copy ..\RdlEngine\bin\Release\RdlEngine.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.xml /Y
 copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ICSharpCode.SharpZipLib.dll /Y
 copy "..\References\dot net 4\32bit\System.Data.SQLite.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\System.Data.SQLite.dll /Y
-copy "..\References\dot net 4\itextsharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\itextsharp.dll /Y
+copy "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\iTextSharp.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngineConfig.Linux.xml /Y
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlMapFile.exe /Y
@@ -102,7 +103,8 @@ copy ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.xml .\bu
 copy "..\References\dot net 4\Xwt.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.dll /Y
 copy "..\References\dot net 4\Xwt.Gtk.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.Gtk.dll /Y
 copy "..\References\dot net 4\Xwt.WPF.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\Xwt.WPF.dll /Y
-copy "..\References\dot net 3.5\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\zxing.dll
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\zxing.dll
+copy "..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll" .\build-output\majorsilence-reporting-build-dot-net-4-x86\zxing.presentation.dll
 
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU
 copy ..\RdlDesign\bin\x86\Release\ru-RU\RdlDesigner.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlDesigner.resources.dll /Y
