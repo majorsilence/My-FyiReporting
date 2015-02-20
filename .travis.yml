@@ -4,5 +4,5 @@ install:
   - sudo apt-get install mono-devel mono-gmcs mono-dmcs nunit-console libpoppler-cil xvfb libgtk2.0-cil libpoppler-cil nuget
  
 script:
-  - nunit-console ./ReportTests/bin/Debug/ReportTests.dll -exclude Integration,NotWorkingOnMono
+  - nunit-console ./ReportTests/bin/Release/ReportTests.dll -exclude Integration,NotWorkingOnMono
 
