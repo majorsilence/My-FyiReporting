@@ -137,6 +137,8 @@ namespace fyiReporting.RdlGtkViewer
 			this.textviewErrors.WidthRequest = 200;
 			this.textviewErrors.CanFocus = true;
 			this.textviewErrors.Name = "textviewErrors";
+			this.textviewErrors.Editable = false;
+			this.textviewErrors.WrapMode = ((global::Gtk.WrapMode)(3));
 			this.scrolledwindowErrors.Add (this.textviewErrors);
 			this.hpanedReport.Add (this.scrolledwindowErrors);
 			global::Gtk.Paned.PanedChild w11 = ((global::Gtk.Paned.PanedChild)(this.hpanedReport [this.scrolledwindowErrors]));
