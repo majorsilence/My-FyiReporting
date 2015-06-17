@@ -8,6 +8,7 @@ using Cairo;
 namespace fyiReporting.RdlGtkViewer
 {
     [System.ComponentModel.ToolboxItem(true)]
+	[Obsolete("Please using ReportViewer.")]
     public partial class RdlGtkViewer : Gtk.Bin
     {
 
