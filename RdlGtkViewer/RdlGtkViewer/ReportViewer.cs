@@ -200,8 +200,12 @@ namespace fyiReporting.RdlGtkViewer
             }
             this.ShowAll();
 			
-            if (report.ErrorMaxSeverity > 0)
-                SetErrorMessages(report.ErrorItems);
+			if (report.ErrorMaxSeverity > 0)
+				SetErrorMessages (report.ErrorItems);
+			else
+				show_errors = false;
+			
+			errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
 			
 //			Title = string.Format ("RDL report viewer - {0}", report.Name);
             EnableActions();
