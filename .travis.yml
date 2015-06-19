@@ -1,7 +1,7 @@
 language: csharp
 solution: MajorsilenceReporting-Linux.sln
 install:
-  - sudo apt-get install mono-devel mono-gmcs mono-dmcs nunit-console libpoppler-cil xvfb libgtk2.0-cil libpoppler-cil nuget
+  - sudo apt-get install mono-devel nunit-console libpoppler-cil xvfb libgtk2.0-cil libpoppler-cil nuget
  
 script:
   - nuget restore ./MajorsilenceReporting-Linux.sln -NonInteractive
