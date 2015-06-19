@@ -60,7 +60,9 @@ namespace fyiReporting.RdlReader
             InitializeComponent();
 
             BuildMenus();
-
+	   // CustomReportItem load 
+            RdlEngineConfig.GetCustomReportTypes();
+            
             Application.AddMessageFilter(this);
 
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlReader_Closing);
