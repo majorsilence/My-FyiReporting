@@ -187,6 +187,9 @@ namespace fyiReporting.RdlViewer
 
 		public RdlViewer()
 		{
+			 // CustomReportItem init 
+        		 RdlEngineConfig.GetCustomReportTypes();
+            
 			this.InitializeComponent();
 			_DrawPanel.BorderStyle = BorderStyle.None;
 			_SourceFileName = null;
