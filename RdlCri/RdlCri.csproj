@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AztecCode.cs" />
     <Compile Include="BarCode128.cs" />
     <Compile Include="BarCodeEAN8.cs" />
     <Compile Include="BarCodeBookland.cs" />
