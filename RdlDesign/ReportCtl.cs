@@ -108,7 +108,7 @@ namespace fyiReporting.RdlDesign
         private string GetPaperSizeAsMillimeter(int paperSize)
         {
             // paperSize is in hundredths of an inch.
-            return ((paperSize / 100.0) * 24.5).ToString() + "mm";
+            return ((paperSize / 100.0) * 25.4).ToString() + "mm";
         }
 
         public bool IsValid()
