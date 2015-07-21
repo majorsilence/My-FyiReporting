@@ -279,7 +279,7 @@ namespace fyiReporting.RdlReader
             // convert pt to hundredths of an inch.
             pd.DefaultPageSettings.PaperSize = new PaperSize(
                 "",
-                (int)(rdlViewer.PageWidth / 72.27 * 100),
+                (int)((rdlViewer.PageWidth / 72.27) * 100),
                 (int)((rdlViewer.PageHeight / 72.27) * 100));
 
             if (!string.IsNullOrWhiteSpace(printerName) && printerName != SET_DEFAULT_PRINTER)
