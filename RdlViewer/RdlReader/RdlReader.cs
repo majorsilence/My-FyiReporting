@@ -36,6 +36,7 @@ using System.Collections.Generic;
 
 namespace fyiReporting.RdlReader
 {
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>
@@ -162,6 +163,8 @@ namespace fyiReporting.RdlReader
         /// </summary>
         private static Dictionary<Uri, String> _startUpFiles;
 
+        private const string SET_DEFAULT_PRINTER = "Default";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -202,6 +205,10 @@ namespace fyiReporting.RdlReader
                     if (args.Length > i + 1 && !args[i + 1].StartsWith("-"))
                     {
                         printerName = args[i + 1];
+                    }
+                    else
+                    {
+                        printerName = SET_DEFAULT_PRINTER;
                     }
                 }
             }
@@ -275,7 +282,7 @@ namespace fyiReporting.RdlReader
                 (int)(rdlViewer.PageWidth / 72.27 * 100),
                 (int)((rdlViewer.PageHeight / 72.27) * 100));
 
-            if (!string.IsNullOrWhiteSpace(printerName))
+            if (!string.IsNullOrWhiteSpace(printerName) && printerName != SET_DEFAULT_PRINTER)
             {
                 pd.DefaultPageSettings.PrinterSettings.PrinterName = printerName;
             }
@@ -291,7 +298,18 @@ namespace fyiReporting.RdlReader
             }
             catch (Exception ex)
             {
-                Console.WriteLine(Strings.RdlReader_ShowC_PrintError + ex.Message);
+#if !DEBUG
+                const string rdlreaderlog = "RdlReaderLog.txt";
+                if (!File.Exists(rdlreaderlog))
+                {
+                    File.Create(rdlreaderlog).Dispose();
+                }
+
+                File.AppendAllLines(
+                    rdlreaderlog,
+                    new[] { string.Format("[{0}] {1}", DateTime.Now.ToString("dd.MM.yyyy H:mm:ss"), ex.Message) });
+#endif
+                Debug.WriteLine(Strings.RdlReader_ShowC_PrintError + ex.Message);
             }
         }
 
@@ -300,7 +318,7 @@ namespace fyiReporting.RdlReader
             // FILE MENU
 
             ToolStripMenuItem menuRecentItem = new ToolStripMenuItem(string.Empty);
-            recentFilesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuRecentItem }); ;
+            recentFilesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuRecentItem });
             fileToolStripMenuItem.DropDownOpening += new EventHandler(menuFile_Popup);
 
             // Intialize the recent file menu
