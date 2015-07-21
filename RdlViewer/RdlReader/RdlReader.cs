@@ -36,6 +36,8 @@ using System.Collections.Generic;
 
 namespace fyiReporting.RdlReader
 {
+    using System.Linq;
+
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
     /// </summary>
@@ -267,6 +269,11 @@ namespace fyiReporting.RdlReader
             pd.PrinterSettings.MinimumPage = 1;
             pd.DefaultPageSettings.Landscape = rdlViewer.PageWidth > rdlViewer.PageHeight;
             pd.PrintController = new StandardPrintController();
+            // convert pt to hundredths of an inch.
+            pd.DefaultPageSettings.PaperSize = new PaperSize(
+                "",
+                (int)(rdlViewer.PageWidth / 72.27 * 100),
+                (int)((rdlViewer.PageHeight / 72.27) * 100));
 
             if (!string.IsNullOrWhiteSpace(printerName))
             {
