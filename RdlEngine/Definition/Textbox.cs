@@ -75,6 +75,10 @@ namespace fyiReporting.RDL
 
         static readonly Regex HTMLEXPR = new Regex("(<expr>.+</expr>)");     // Split on all expressions.
 
+		object lastEvaluatedValue = null;
+		Report lastValueForReport = null;
+		Row lastValueForRow = null;
+
 		internal Textbox(ReportDefn r, ReportLink p, XmlNode xNode):base(r,p,xNode)
 		{
 			_Value=null;
@@ -333,7 +337,7 @@ namespace fyiReporting.RDL
 
 		internal string RunText(Report rpt, Row row)
 		{
-			object o = _Value.Evaluate(rpt, row);
+			object o = Evaluate(rpt, row);
             // AJM 15082008: Suppress NaN from appearing in a textbox
             if (o is double) 
             {
@@ -375,7 +379,7 @@ namespace fyiReporting.RDL
 			if (IsHidden(rpt, row))
 				return 0;
 
-			object o = _Value.Evaluate(rpt, row);
+			object o = Evaluate(rpt, row);
 
 			TypeCode tc = _Value.GetTypeCode();
 			int width = this.WidthCalc(rpt, g);
@@ -409,8 +413,14 @@ namespace fyiReporting.RDL
 
 		internal object Evaluate(Report rpt, Row r)
 		{
-			object o = _Value.Evaluate(rpt, r);
-			return o;
+			if(lastValueForRow != r || lastValueForReport != rpt)
+			{
+				lastEvaluatedValue = _Value.Evaluate(rpt, r);
+				lastValueForReport = rpt;
+				lastValueForRow = r;
+			}
+				
+			return lastEvaluatedValue;
 		}
 
 		internal Expression Value
