@@ -36,12 +36,14 @@ using System.Collections.Generic;
 
 namespace fyiReporting.RdlReader
 {
+    using System.Diagnostics;
+    using System.Linq;
+
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
     /// </summary>
-    public partial class RdlReader :  IMessageFilter
+    public partial class RdlReader : IMessageFilter
     {
-
         SortedList _RecentFiles = null;
 
         /// <summary>
@@ -56,13 +58,13 @@ namespace fyiReporting.RdlReader
         {
             bMono = mono;
             GetStartupState();
-            
+
             InitializeComponent();
 
             BuildMenus();
-	   // CustomReportItem load 
+            // CustomReportItem load 
             RdlEngineConfig.GetCustomReportTypes();
-            
+
             Application.AddMessageFilter(this);
 
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlReader_Closing);
@@ -78,7 +80,7 @@ namespace fyiReporting.RdlReader
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
 
                     mc.SourceFile = dict.Key;
-                    if(dict.Value != "")
+                    if (dict.Value != string.Empty)
                     {
                         mc.Parameters = dict.Value;
                     }
@@ -91,7 +93,7 @@ namespace fyiReporting.RdlReader
                     }
 
                     mc.Show();
-               
+
                 }
                 _CurrentFiles = null;		// don't need this any longer
             }
@@ -161,6 +163,8 @@ namespace fyiReporting.RdlReader
         /// </summary>
         private static Dictionary<Uri, String> _startUpFiles;
 
+        private const string SET_DEFAULT_PRINTER = "Default";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -170,32 +174,46 @@ namespace fyiReporting.RdlReader
             bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
 
-            string reportFile = "";
-            string parameters = "";
-            for (int i = 0; i < Environment.GetCommandLineArgs().Length; i++)
+            string reportFile = string.Empty;
+            string parameters = string.Empty;
+            string printerName = string.Empty;
+
+            for (int i = 0; i < args.Length; i++)
             {
-                string argValue  = Environment.GetCommandLineArgs()[i];
+                string argValue = args[i];
                 if (argValue.ToLower() == "/m" || argValue.ToLower() == "-m")
                 {
                     // user want to run with mono simplifications
                     bMono = true;
                 }
-                else if(argValue == "-r")
+                else if (argValue == "-r")
                 {
-                    reportFile = Environment.GetCommandLineArgs()[i + 1];
-                    if (System.IO.Path.GetDirectoryName(reportFile) == "")
+                    reportFile = args[i + 1];
+                    if (System.IO.Path.GetDirectoryName(reportFile) == string.Empty)
                     {
                         // Try to find the file in the current working directory
                         reportFile = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(reportFile));
                     }
                 }
-                else if(argValue == "-p")
+                else if (argValue == "-p")
                 {
-                     parameters = Environment.GetCommandLineArgs()[i + 1];
+                    parameters = args[i + 1];
+                }
+                // if we have nothing or key after -print then we have to set printer by default
+                else if (argValue == "-print")
+                {
+                    if (args.Length > i + 1 && !args[i + 1].StartsWith("-"))
+                    {
+                        printerName = args[i + 1];
+                    }
+                    else
+                    {
+                        printerName = SET_DEFAULT_PRINTER;
+                    }
                 }
             }
 
-            if (reportFile == "")
+            if (reportFile == string.Empty)
             {
                 // keep backwards compatiablity from when it worked with only a filename being passed in
 
@@ -204,7 +222,7 @@ namespace fyiReporting.RdlReader
                     if (args[1].Length >= 5)
                     {
                         reportFile = args[1];
-                        if (System.IO.Path.GetDirectoryName(reportFile) == "")
+                        if (System.IO.Path.GetDirectoryName(reportFile) == string.Empty)
                         {
                             // Try to find the file in the current working directory
                             reportFile = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(reportFile));
@@ -213,10 +231,15 @@ namespace fyiReporting.RdlReader
                 }
             }
 
-            if (reportFile != "")
+            if (reportFile != string.Empty)
             {
                 if (File.Exists(reportFile))
                 {
+                    if (!string.IsNullOrWhiteSpace(printerName))
+                    {
+                        SilentPrint(reportFile, parameters, printerName);
+                        return;
+                    }
 
                     _startUpFiles = new Dictionary<Uri, string>();
                     _startUpFiles.Add(new Uri(reportFile), parameters);
@@ -227,41 +250,95 @@ namespace fyiReporting.RdlReader
                 }
             }
 
-            if(bMono == false)
+            if (bMono == false)
             {
                 Application.EnableVisualStyles();
                 Application.DoEvents();				// when Mono this goes into a loop
             }
 
             Application.Run(new RdlReader(bMono));
+
+        }
+
+        public static void SilentPrint(string reportPath, string parameters, string printerName = null)
+        {
+            var rdlViewer = new fyiReporting.RdlViewer.RdlViewer();
+            rdlViewer.Visible = false;
+            rdlViewer.SourceFile = new Uri(reportPath);
+            rdlViewer.Parameters = parameters;
+            rdlViewer.Rebuild();
+
+            var pd = new PrintDocument();
+            pd.DocumentName = rdlViewer.SourceFile.LocalPath;
+            pd.PrinterSettings.FromPage = 1;
+            pd.PrinterSettings.ToPage = rdlViewer.PageCount;
+            pd.PrinterSettings.MaximumPage = rdlViewer.PageCount;
+            pd.PrinterSettings.MinimumPage = 1;
+            pd.DefaultPageSettings.Landscape = rdlViewer.PageWidth > rdlViewer.PageHeight;
+            pd.PrintController = new StandardPrintController();
+            // convert pt to hundredths of an inch.
+            pd.DefaultPageSettings.PaperSize = new PaperSize(
+                "",
+                (int)((rdlViewer.PageWidth / 72.27) * 100),
+                (int)((rdlViewer.PageHeight / 72.27) * 100));
+
+            if (!string.IsNullOrWhiteSpace(printerName) && printerName != SET_DEFAULT_PRINTER)
+            {
+                pd.DefaultPageSettings.PrinterSettings.PrinterName = printerName;
+            }
+
+            try
+            {
+                if (pd.PrinterSettings.PrintRange == PrintRange.Selection)
+                {
+                    pd.PrinterSettings.FromPage = rdlViewer.PageCurrent;
+                }
+
+                rdlViewer.Print(pd);
+            }
+            catch (Exception ex)
+            {
+#if !DEBUG
+                const string rdlreaderlog = "RdlReaderLog.txt";
+                if (!File.Exists(rdlreaderlog))
+                {
+                    File.Create(rdlreaderlog).Dispose();
+                }
+
+                File.AppendAllLines(
+                    rdlreaderlog,
+                    new[] { string.Format("[{0}] {1}", DateTime.Now.ToString("dd.MM.yyyy H:mm:ss"), ex.Message) });
+#endif
+                Debug.WriteLine(Strings.RdlReader_ShowC_PrintError + ex.Message);
+            }
         }
 
         private void BuildMenus()
         {
             // FILE MENU
-           
-           ToolStripMenuItem menuRecentItem = new ToolStripMenuItem("");
-           recentFilesToolStripMenuItem.DropDownItems.AddRange ( new ToolStripItem[] { menuRecentItem});;
-           fileToolStripMenuItem.DropDownOpening += new EventHandler(menuFile_Popup);
+
+            ToolStripMenuItem menuRecentItem = new ToolStripMenuItem(string.Empty);
+            recentFilesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuRecentItem });
+            fileToolStripMenuItem.DropDownOpening += new EventHandler(menuFile_Popup);
 
             // Intialize the recent file menu
             RecentFilesMenu();
             // Edit menu
             editToolStripMenuItem.DropDownOpening += new EventHandler(this.menuEdit_Popup);
-    
+
             // VIEW MENU
 
 
             pageLayoutToolStripMenuItem.DropDownOpening += new EventHandler(this.menuPL_Popup);
             viewToolStripMenuItem.DropDownOpening += new EventHandler(this.menuView_Popup);
-   
+
             // Add the Window menu
-            windowToolStripMenuItem.DropDownOpening += new EventHandler(this.menuWnd_Popup);    
+            windowToolStripMenuItem.DropDownOpening += new EventHandler(this.menuWnd_Popup);
 
             // MAIN
-            
+
             IsMdiContainer = true;
-           
+
         }
 
         private void menuFile_Popup(object sender, EventArgs e)
@@ -334,7 +411,7 @@ namespace fyiReporting.RdlReader
                 mc.MdiParent = this;
                 mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
                 mc.SourceFile = file;
-                mc.Text = file == null ? "" : file.LocalPath;
+                mc.Text = file == null ? string.Empty : file.LocalPath;
                 NoteRecentFiles(file, bMenuUpdate);
                 mc.Show();
             }
@@ -419,7 +496,7 @@ namespace fyiReporting.RdlReader
             string ext = null;
             int i = sfd.FileName.LastIndexOf('.');
             if (i < 1)
-                ext = "";
+                ext = string.Empty;
             else
                 ext = sfd.FileName.Substring(i + 1).ToLower();
 
@@ -466,7 +543,7 @@ namespace fyiReporting.RdlReader
                     break;
             }
 
-            if (type == OutputPresentationType.TIF )
+            if (type == OutputPresentationType.TIF)
             {
                 DialogResult dr = MessageBox.Show(this, Strings.RdlReader_ShowF_WantSaveColorsInTIF, Strings.RdlReader_ShowF_Export, MessageBoxButtons.YesNoCancel);
                 if (dr == DialogResult.No)
@@ -730,9 +807,9 @@ namespace fyiReporting.RdlReader
 
             if (_startUpFiles != null)
             {
-                foreach(var dict in _startUpFiles)
+                foreach (var dict in _startUpFiles)
                 {
-                    _CurrentFiles.Add( dict.Key, dict.Value);
+                    _CurrentFiles.Add(dict.Key, dict.Value);
                 }
             }
 
@@ -772,7 +849,7 @@ namespace fyiReporting.RdlReader
                                 {
                                     if (_CurrentFiles.ContainsKey(new Uri(file)) == false)
                                     {
-                                        _CurrentFiles.Add(new Uri(file), "");
+                                        _CurrentFiles.Add(new Uri(file), string.Empty);
                                     }
                                 }
                             }

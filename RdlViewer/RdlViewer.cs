@@ -35,7 +35,9 @@ using fyiReporting.RDL;
 
 namespace fyiReporting.RdlViewer
 {
-	/// <summary>
+    using System.Threading;
+
+    /// <summary>
 	/// RdlViewer displays RDL files or syntax. 
 	/// </summary>
 	public partial class RdlViewer : System.Windows.Forms.UserControl
@@ -1513,7 +1515,7 @@ namespace fyiReporting.RdlViewer
 					// 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
 					if (_ShowWaitDialog)
 					{
-						t = new System.Threading.Thread(new System.Threading.ThreadStart(showWait));
+                        t = this.Visible ? new Thread(this.showWait) : new Thread(() => { /* do nothing */ });
 						t.Start();
 
 						while (!t.IsAlive)
