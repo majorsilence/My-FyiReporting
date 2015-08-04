@@ -85,6 +85,10 @@ namespace fyiReporting.RDL
 				_currentPage = _pages[_currentPage.PageNumber];  
 				_currentPage.SetEmpty();			
 			}
+			//Allows using PageNumber in report body.
+			//Important! This feature is NOT included in RDL specification!
+			//PageNumber will be wrong if element using it will cause carry to next page after render.
+			Report.PageNumber = _currentPage.PageNumber;
 		}
 
 		/// <summary>
