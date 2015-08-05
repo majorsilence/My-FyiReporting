@@ -457,11 +457,16 @@ namespace fyiReporting.RDL
 			if (curToken.Type != TokenTypes.LPAREN) switch (firstPart)
 			{
 				case "Fields":
-					Field f = idLookup.LookupField(method);
-                    if (f == null && !this._InAggregate)
-                    {
-                        throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldNotFound, method));
-                    }
+					Field f = null;
+					if (!this._InAggregate)
+					{
+						f = idLookup.LookupField(method);
+						if (f == null)
+						{
+							throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldNotFound, method));
+						}
+					}
+
 					if (thirdPart == null || thirdPart == "Value")
 					{
 						if (f == null)
