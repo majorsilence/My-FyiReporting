@@ -120,42 +120,11 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1019, 24</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="newReportToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="newReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
@@ -183,6 +152,7 @@
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 6</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="saveToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -215,15 +185,6 @@
   </data>
   <data name="printToolStripMenuItem.Text" xml:space="preserve">
     <value>Print</value>
-  </data>
-  <data name="exportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
-  </data>
-  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export</value>
   </data>
   <data name="pDFToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
@@ -285,6 +246,15 @@
   <data name="webArchiveSingleFileMHTToolStripMenuItem.Text" xml:space="preserve">
     <value>Web Archive, single file MHT...</value>
   </data>
+  <data name="exportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 22</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 6</value>
   </data>
@@ -309,11 +279,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Edit</value>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
   </data>
   <data name="undoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Z</value>
@@ -364,7 +334,7 @@
     <value>&amp;Paste</value>
   </data>
   <data name="deleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Delete</value>
+    <value>Ctrl+Del</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 22</value>
@@ -432,11 +402,11 @@
   <data name="formatXMLToolStripMenuItem.Text" xml:space="preserve">
     <value>Format XM&amp;L</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;View</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Edit</value>
   </data>
   <data name="designerToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F7</value>
@@ -483,95 +453,77 @@
   <data name="propertiesWindowsToolStripMenuItem.Text" xml:space="preserve">
     <value>Properties Windows</value>
   </data>
-  <data name="insertToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="insertToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Insert</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;View</value>
   </data>
   <data name="chartToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="chartToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Chart...</value>
   </data>
   <data name="gridToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="gridToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Grid</value>
   </data>
   <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="imageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Image</value>
   </data>
   <data name="lineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="lineToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Line</value>
   </data>
   <data name="listToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="listToolStripMenuItem.Text" xml:space="preserve">
     <value>Lis&amp;t</value>
   </data>
   <data name="matrixToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="matrixToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Matrix...</value>
   </data>
   <data name="rectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="rectangleToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Rectangle</value>
   </data>
   <data name="subReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="subReportToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Subreport</value>
   </data>
   <data name="tableToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="tableToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Table...</value>
   </data>
   <data name="textboxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="textboxToolStripMenuItem.Text" xml:space="preserve">
     <value>T&amp;extbox</value>
   </data>
-  <data name="barCodeEAN13ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+  <data name="insertToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
   </data>
-  <data name="barCodeEAN13ToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;BarCode EAN-13...</value>
-  </data>
-  <data name="barCodeEAN13ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="barCodeBooklandToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="barCodeBooklandToolStripMenuItem.Text" xml:space="preserve">
-    <value>BarC&amp;ode Bookland...</value>
-  </data>
-  <data name="barCodeBooklandToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="dataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="dataToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Data</value>
+  <data name="insertToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Insert</value>
   </data>
   <data name="dataSetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 22</value>
@@ -603,17 +555,11 @@
   <data name="createSharedDataSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Create Shared Data Source...</value>
   </data>
-  <data name="formatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+  <data name="dataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
   </data>
-  <data name="formatToolStripMenuItem.Text" xml:space="preserve">
-    <value>F&amp;ormat</value>
-  </data>
-  <data name="alignToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
-  </data>
-  <data name="alignToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Align</value>
+  <data name="dataToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Data</value>
   </data>
   <data name="leftsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 22</value>
@@ -654,11 +600,11 @@
   <data name="bottomsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bottoms</value>
   </data>
-  <data name="sizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="alignToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="sizeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Size</value>
+  <data name="alignToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Align</value>
   </data>
   <data name="widthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 22</value>
@@ -678,11 +624,11 @@
   <data name="bothToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Both</value>
   </data>
-  <data name="horizontalSpacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="sizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="horizontalSpacingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Horizontal Spacing</value>
+  <data name="sizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Size</value>
   </data>
   <data name="makeEqualToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 22</value>
@@ -708,11 +654,11 @@
   <data name="zeroToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="verticalSpacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="horizontalSpacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="verticalSpacingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vertical Spacing</value>
+  <data name="horizontalSpacingToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Horizontal Spacing</value>
   </data>
   <data name="makeEqualToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 22</value>
@@ -738,14 +684,14 @@
   <data name="zeroToolStripMenuItem1.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 6</value>
-  </data>
-  <data name="paddingLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="verticalSpacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="paddingLeftToolStripMenuItem.Text" xml:space="preserve">
-    <value>Padding &amp;Left</value>
+  <data name="verticalSpacingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Vertical Spacing</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 6</value>
   </data>
   <data name="increaseToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 22</value>
@@ -765,11 +711,11 @@
   <data name="zeroToolStripMenuItem2.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="paddingRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paddingLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="paddingRightToolStripMenuItem.Text" xml:space="preserve">
-    <value>Padding &amp;Right</value>
+  <data name="paddingLeftToolStripMenuItem.Text" xml:space="preserve">
+    <value>Padding &amp;Left</value>
   </data>
   <data name="increaseToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 22</value>
@@ -789,11 +735,11 @@
   <data name="zeroToolStripMenuItem3.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="paddintTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paddingRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="paddintTopToolStripMenuItem.Text" xml:space="preserve">
-    <value>Padding &amp;Top</value>
+  <data name="paddingRightToolStripMenuItem.Text" xml:space="preserve">
+    <value>Padding &amp;Right</value>
   </data>
   <data name="increaseToolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 22</value>
@@ -813,11 +759,11 @@
   <data name="zeroToolStripMenuItem4.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="paddingBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paddintTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
-  <data name="paddingBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Padding &amp;Bottom</value>
+  <data name="paddintTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Padding &amp;Top</value>
   </data>
   <data name="increaseToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 22</value>
@@ -837,11 +783,17 @@
   <data name="zeroToolStripMenuItem5.Text" xml:space="preserve">
     <value>&amp;Zero</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+  <data name="paddingBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 22</value>
   </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
+  <data name="paddingBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Padding &amp;Bottom</value>
+  </data>
+  <data name="formatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
+  </data>
+  <data name="formatToolStripMenuItem.Text" xml:space="preserve">
+    <value>F&amp;ormat</value>
   </data>
   <data name="validateRDLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -867,11 +819,11 @@
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
-  <data name="windowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
   </data>
-  <data name="windowToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Window</value>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
   </data>
   <data name="cascadeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+J</value>
@@ -881,12 +833,6 @@
   </data>
   <data name="cascadeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Cascade</value>
-  </data>
-  <data name="tileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
-  </data>
-  <data name="tileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tile</value>
   </data>
   <data name="horizontalToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+K</value>
@@ -906,6 +852,12 @@
   <data name="verticallyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Vertically</value>
   </data>
+  <data name="tileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="tileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tile</value>
+  </data>
   <data name="closeAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+W</value>
   </data>
@@ -915,11 +867,11 @@
   <data name="closeAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Close &amp;All</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="windowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
+  <data name="windowToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Window</value>
   </data>
   <data name="helpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
@@ -939,33 +891,39 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1019, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <metadata name="mainTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
-  <data name="mainTB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="mainTB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1019, 25</value>
-  </data>
-  <data name="mainTB.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="mainTB.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;mainTB.Name" xml:space="preserve">
-    <value>mainTB</value>
-  </data>
-  <data name="&gt;&gt;mainTB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainTB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainTB.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="newToolStripButton1.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1179,33 +1137,33 @@
   <data name="ctlEditTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 25</value>
   </data>
+  <data name="mainTB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="mainTB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1019, 25</value>
+  </data>
+  <data name="mainTB.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="mainTB.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;mainTB.Name" xml:space="preserve">
+    <value>mainTB</value>
+  </data>
+  <data name="&gt;&gt;mainTB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainTB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainTB.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>224, 17</value>
   </metadata>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 49</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1019, 25</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="boldToolStripButton1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
@@ -1456,6 +1414,30 @@
   <data name="TifToolStripButton2.Text" xml:space="preserve">
     <value>TIF</value>
   </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 49</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1019, 25</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="mainTC.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 39</value>
   </data>
@@ -1479,6 +1461,9 @@
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 15</value>
@@ -1506,6 +1491,9 @@
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>209, 15</value>
@@ -1537,6 +1525,1266 @@
   <data name="foreColorPicker1.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="foreColorPicker1.Items" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="foreColorPicker1.Items1" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="foreColorPicker1.Items2" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="foreColorPicker1.Items3" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items4" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="foreColorPicker1.Items5" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="foreColorPicker1.Items6" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="foreColorPicker1.Items7" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="foreColorPicker1.Items8" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="foreColorPicker1.Items9" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="foreColorPicker1.Items10" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items11" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="foreColorPicker1.Items12" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="foreColorPicker1.Items13" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="foreColorPicker1.Items14" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="foreColorPicker1.Items15" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="foreColorPicker1.Items16" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="foreColorPicker1.Items17" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items18" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="foreColorPicker1.Items19" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="foreColorPicker1.Items20" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="foreColorPicker1.Items21" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="foreColorPicker1.Items22" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items23" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items24" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="foreColorPicker1.Items25" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items26" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="foreColorPicker1.Items27" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="foreColorPicker1.Items28" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items29" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="foreColorPicker1.Items30" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items31" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="foreColorPicker1.Items32" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items33" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items34" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items35" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="foreColorPicker1.Items36" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items37" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items38" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="foreColorPicker1.Items39" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items40" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="foreColorPicker1.Items41" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items42" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="foreColorPicker1.Items43" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items44" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items45" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="foreColorPicker1.Items46" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="foreColorPicker1.Items47" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items48" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="foreColorPicker1.Items49" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items50" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="foreColorPicker1.Items51" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="foreColorPicker1.Items52" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items53" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="foreColorPicker1.Items54" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="foreColorPicker1.Items55" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="foreColorPicker1.Items56" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="foreColorPicker1.Items57" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="foreColorPicker1.Items58" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="foreColorPicker1.Items59" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="foreColorPicker1.Items60" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="foreColorPicker1.Items61" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="foreColorPicker1.Items62" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="foreColorPicker1.Items63" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items64" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="foreColorPicker1.Items65" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items66" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items67" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items68" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="foreColorPicker1.Items69" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="foreColorPicker1.Items70" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items71" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items72" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items73" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="foreColorPicker1.Items74" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items75" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items76" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="foreColorPicker1.Items77" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items78" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="foreColorPicker1.Items79" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="foreColorPicker1.Items80" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="foreColorPicker1.Items81" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items82" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="foreColorPicker1.Items83" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items84" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="foreColorPicker1.Items85" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items86" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items87" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items88" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items89" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items90" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items91" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="foreColorPicker1.Items92" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="foreColorPicker1.Items93" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="foreColorPicker1.Items94" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="foreColorPicker1.Items95" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="foreColorPicker1.Items96" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="foreColorPicker1.Items97" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="foreColorPicker1.Items98" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="foreColorPicker1.Items99" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="foreColorPicker1.Items100" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="foreColorPicker1.Items101" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="foreColorPicker1.Items102" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items103" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items104" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items105" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items106" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="foreColorPicker1.Items107" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="foreColorPicker1.Items108" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="foreColorPicker1.Items109" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="foreColorPicker1.Items110" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="foreColorPicker1.Items111" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="foreColorPicker1.Items112" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="foreColorPicker1.Items113" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="foreColorPicker1.Items114" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items115" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="foreColorPicker1.Items116" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="foreColorPicker1.Items117" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="foreColorPicker1.Items118" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items119" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items120" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="foreColorPicker1.Items121" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="foreColorPicker1.Items122" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="foreColorPicker1.Items123" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items124" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items125" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="foreColorPicker1.Items126" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="foreColorPicker1.Items127" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items128" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items129" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="foreColorPicker1.Items130" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="foreColorPicker1.Items131" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="foreColorPicker1.Items132" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="foreColorPicker1.Items133" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items134" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="foreColorPicker1.Items135" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="foreColorPicker1.Items136" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="foreColorPicker1.Items137" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="foreColorPicker1.Items138" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="foreColorPicker1.Items139" xml:space="preserve">
+    <value>Yellowgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items140" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="foreColorPicker1.Items141" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="foreColorPicker1.Items142" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="foreColorPicker1.Items143" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items144" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="foreColorPicker1.Items145" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="foreColorPicker1.Items146" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="foreColorPicker1.Items147" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="foreColorPicker1.Items148" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="foreColorPicker1.Items149" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="foreColorPicker1.Items150" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items151" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="foreColorPicker1.Items152" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="foreColorPicker1.Items153" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="foreColorPicker1.Items154" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="foreColorPicker1.Items155" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="foreColorPicker1.Items156" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="foreColorPicker1.Items157" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items158" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="foreColorPicker1.Items159" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="foreColorPicker1.Items160" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="foreColorPicker1.Items161" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="foreColorPicker1.Items162" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items163" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items164" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="foreColorPicker1.Items165" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items166" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="foreColorPicker1.Items167" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="foreColorPicker1.Items168" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items169" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="foreColorPicker1.Items170" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items171" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="foreColorPicker1.Items172" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items173" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items174" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items175" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="foreColorPicker1.Items176" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items177" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items178" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="foreColorPicker1.Items179" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items180" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="foreColorPicker1.Items181" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items182" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="foreColorPicker1.Items183" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items184" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items185" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="foreColorPicker1.Items186" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="foreColorPicker1.Items187" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items188" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="foreColorPicker1.Items189" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items190" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="foreColorPicker1.Items191" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="foreColorPicker1.Items192" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items193" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="foreColorPicker1.Items194" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="foreColorPicker1.Items195" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="foreColorPicker1.Items196" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="foreColorPicker1.Items197" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="foreColorPicker1.Items198" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="foreColorPicker1.Items199" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="foreColorPicker1.Items200" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="foreColorPicker1.Items201" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="foreColorPicker1.Items202" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="foreColorPicker1.Items203" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items204" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="foreColorPicker1.Items205" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items206" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items207" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items208" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="foreColorPicker1.Items209" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="foreColorPicker1.Items210" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items211" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items212" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items213" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="foreColorPicker1.Items214" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items215" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items216" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="foreColorPicker1.Items217" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items218" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="foreColorPicker1.Items219" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="foreColorPicker1.Items220" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="foreColorPicker1.Items221" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items222" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="foreColorPicker1.Items223" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items224" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="foreColorPicker1.Items225" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items226" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items227" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items228" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items229" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items230" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items231" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="foreColorPicker1.Items232" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="foreColorPicker1.Items233" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="foreColorPicker1.Items234" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="foreColorPicker1.Items235" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="foreColorPicker1.Items236" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="foreColorPicker1.Items237" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="foreColorPicker1.Items238" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="foreColorPicker1.Items239" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="foreColorPicker1.Items240" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="foreColorPicker1.Items241" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="foreColorPicker1.Items242" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items243" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items244" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items245" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items246" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="foreColorPicker1.Items247" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="foreColorPicker1.Items248" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="foreColorPicker1.Items249" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="foreColorPicker1.Items250" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="foreColorPicker1.Items251" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="foreColorPicker1.Items252" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="foreColorPicker1.Items253" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="foreColorPicker1.Items254" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items255" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="foreColorPicker1.Items256" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="foreColorPicker1.Items257" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="foreColorPicker1.Items258" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items259" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items260" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="foreColorPicker1.Items261" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="foreColorPicker1.Items262" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="foreColorPicker1.Items263" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items264" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items265" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="foreColorPicker1.Items266" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="foreColorPicker1.Items267" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items268" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items269" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="foreColorPicker1.Items270" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="foreColorPicker1.Items271" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="foreColorPicker1.Items272" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="foreColorPicker1.Items273" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items274" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="foreColorPicker1.Items275" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="foreColorPicker1.Items276" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="foreColorPicker1.Items277" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="foreColorPicker1.Items278" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="foreColorPicker1.Items279" xml:space="preserve">
+    <value>Yellowgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items280" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="foreColorPicker1.Items281" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="foreColorPicker1.Items282" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="foreColorPicker1.Items283" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items284" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="foreColorPicker1.Items285" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="foreColorPicker1.Items286" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="foreColorPicker1.Items287" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="foreColorPicker1.Items288" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="foreColorPicker1.Items289" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="foreColorPicker1.Items290" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items291" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="foreColorPicker1.Items292" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="foreColorPicker1.Items293" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="foreColorPicker1.Items294" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="foreColorPicker1.Items295" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="foreColorPicker1.Items296" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="foreColorPicker1.Items297" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items298" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="foreColorPicker1.Items299" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="foreColorPicker1.Items300" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="foreColorPicker1.Items301" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="foreColorPicker1.Items302" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items303" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items304" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="foreColorPicker1.Items305" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items306" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="foreColorPicker1.Items307" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="foreColorPicker1.Items308" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items309" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="foreColorPicker1.Items310" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items311" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="foreColorPicker1.Items312" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items313" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items314" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items315" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="foreColorPicker1.Items316" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items317" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="foreColorPicker1.Items318" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="foreColorPicker1.Items319" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items320" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="foreColorPicker1.Items321" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="foreColorPicker1.Items322" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="foreColorPicker1.Items323" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items324" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items325" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="foreColorPicker1.Items326" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="foreColorPicker1.Items327" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="foreColorPicker1.Items328" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="foreColorPicker1.Items329" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items330" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="foreColorPicker1.Items331" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="foreColorPicker1.Items332" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items333" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="foreColorPicker1.Items334" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="foreColorPicker1.Items335" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="foreColorPicker1.Items336" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="foreColorPicker1.Items337" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="foreColorPicker1.Items338" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="foreColorPicker1.Items339" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="foreColorPicker1.Items340" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="foreColorPicker1.Items341" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="foreColorPicker1.Items342" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="foreColorPicker1.Items343" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items344" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="foreColorPicker1.Items345" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="foreColorPicker1.Items346" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items347" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items348" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="foreColorPicker1.Items349" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="foreColorPicker1.Items350" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="foreColorPicker1.Items351" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items352" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items353" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="foreColorPicker1.Items354" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items355" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="foreColorPicker1.Items356" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="foreColorPicker1.Items357" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items358" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="foreColorPicker1.Items359" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="foreColorPicker1.Items360" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="foreColorPicker1.Items361" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="foreColorPicker1.Items362" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="foreColorPicker1.Items363" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="foreColorPicker1.Items364" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="foreColorPicker1.Items365" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items366" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items367" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items368" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items369" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items370" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="foreColorPicker1.Items371" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="foreColorPicker1.Items372" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="foreColorPicker1.Items373" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="foreColorPicker1.Items374" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="foreColorPicker1.Items375" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="foreColorPicker1.Items376" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="foreColorPicker1.Items377" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="foreColorPicker1.Items378" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="foreColorPicker1.Items379" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="foreColorPicker1.Items380" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="foreColorPicker1.Items381" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="foreColorPicker1.Items382" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="foreColorPicker1.Items383" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="foreColorPicker1.Items384" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items385" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="foreColorPicker1.Items386" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="foreColorPicker1.Items387" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="foreColorPicker1.Items388" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="foreColorPicker1.Items389" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="foreColorPicker1.Items390" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="foreColorPicker1.Items391" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="foreColorPicker1.Items392" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="foreColorPicker1.Items393" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="foreColorPicker1.Items394" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items395" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="foreColorPicker1.Items396" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="foreColorPicker1.Items397" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="foreColorPicker1.Items398" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="foreColorPicker1.Items399" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="foreColorPicker1.Items400" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="foreColorPicker1.Items401" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="foreColorPicker1.Items402" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="foreColorPicker1.Items403" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="foreColorPicker1.Items404" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="foreColorPicker1.Items405" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="foreColorPicker1.Items406" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="foreColorPicker1.Items407" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="foreColorPicker1.Items408" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="foreColorPicker1.Items409" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="foreColorPicker1.Items410" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="foreColorPicker1.Items411" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="foreColorPicker1.Items412" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="foreColorPicker1.Items413" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="foreColorPicker1.Items414" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="foreColorPicker1.Items415" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="foreColorPicker1.Items416" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="foreColorPicker1.Items417" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="foreColorPicker1.Items418" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="foreColorPicker1.Items419" xml:space="preserve">
+    <value>Yellowgreen</value>
+  </data>
   <data name="foreColorPicker1.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 12</value>
   </data>
@@ -1550,7 +2798,7 @@
     <value>foreColorPicker1</value>
   </data>
   <data name="&gt;&gt;foreColorPicker1.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.5.5088.20753, Culture=neutral, PublicKeyToken=null</value>
+    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.12.5695.17632, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;foreColorPicker1.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1563,6 +2811,1266 @@
   </data>
   <data name="backColorPicker1.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="backColorPicker1.Items" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="backColorPicker1.Items1" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="backColorPicker1.Items2" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="backColorPicker1.Items3" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items4" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="backColorPicker1.Items5" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="backColorPicker1.Items6" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="backColorPicker1.Items7" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="backColorPicker1.Items8" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="backColorPicker1.Items9" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="backColorPicker1.Items10" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="backColorPicker1.Items11" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="backColorPicker1.Items12" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="backColorPicker1.Items13" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="backColorPicker1.Items14" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="backColorPicker1.Items15" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="backColorPicker1.Items16" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="backColorPicker1.Items17" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="backColorPicker1.Items18" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="backColorPicker1.Items19" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="backColorPicker1.Items20" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="backColorPicker1.Items21" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="backColorPicker1.Items22" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="backColorPicker1.Items23" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items24" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="backColorPicker1.Items25" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="backColorPicker1.Items26" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="backColorPicker1.Items27" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="backColorPicker1.Items28" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="backColorPicker1.Items29" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="backColorPicker1.Items30" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="backColorPicker1.Items31" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="backColorPicker1.Items32" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="backColorPicker1.Items33" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items34" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items35" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="backColorPicker1.Items36" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items37" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="backColorPicker1.Items38" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="backColorPicker1.Items39" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items40" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="backColorPicker1.Items41" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="backColorPicker1.Items42" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="backColorPicker1.Items43" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="backColorPicker1.Items44" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="backColorPicker1.Items45" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="backColorPicker1.Items46" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="backColorPicker1.Items47" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="backColorPicker1.Items48" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="backColorPicker1.Items49" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items50" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="backColorPicker1.Items51" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="backColorPicker1.Items52" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="backColorPicker1.Items53" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="backColorPicker1.Items54" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="backColorPicker1.Items55" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="backColorPicker1.Items56" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="backColorPicker1.Items57" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="backColorPicker1.Items58" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="backColorPicker1.Items59" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="backColorPicker1.Items60" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="backColorPicker1.Items61" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="backColorPicker1.Items62" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="backColorPicker1.Items63" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="backColorPicker1.Items64" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="backColorPicker1.Items65" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="backColorPicker1.Items66" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="backColorPicker1.Items67" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="backColorPicker1.Items68" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="backColorPicker1.Items69" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="backColorPicker1.Items70" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="backColorPicker1.Items71" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items72" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items73" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="backColorPicker1.Items74" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="backColorPicker1.Items75" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="backColorPicker1.Items76" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="backColorPicker1.Items77" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="backColorPicker1.Items78" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="backColorPicker1.Items79" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="backColorPicker1.Items80" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="backColorPicker1.Items81" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items82" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="backColorPicker1.Items83" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="backColorPicker1.Items84" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="backColorPicker1.Items85" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items86" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items87" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="backColorPicker1.Items88" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items89" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="backColorPicker1.Items90" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="backColorPicker1.Items91" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="backColorPicker1.Items92" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="backColorPicker1.Items93" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="backColorPicker1.Items94" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="backColorPicker1.Items95" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="backColorPicker1.Items96" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="backColorPicker1.Items97" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="backColorPicker1.Items98" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="backColorPicker1.Items99" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="backColorPicker1.Items100" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="backColorPicker1.Items101" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="backColorPicker1.Items102" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items103" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="backColorPicker1.Items104" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items105" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="backColorPicker1.Items106" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="backColorPicker1.Items107" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="backColorPicker1.Items108" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="backColorPicker1.Items109" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="backColorPicker1.Items110" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="backColorPicker1.Items111" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="backColorPicker1.Items112" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="backColorPicker1.Items113" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="backColorPicker1.Items114" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="backColorPicker1.Items115" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="backColorPicker1.Items116" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="backColorPicker1.Items117" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="backColorPicker1.Items118" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="backColorPicker1.Items119" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="backColorPicker1.Items120" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="backColorPicker1.Items121" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="backColorPicker1.Items122" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="backColorPicker1.Items123" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="backColorPicker1.Items124" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="backColorPicker1.Items125" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="backColorPicker1.Items126" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="backColorPicker1.Items127" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="backColorPicker1.Items128" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="backColorPicker1.Items129" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="backColorPicker1.Items130" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="backColorPicker1.Items131" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="backColorPicker1.Items132" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="backColorPicker1.Items133" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="backColorPicker1.Items134" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="backColorPicker1.Items135" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="backColorPicker1.Items136" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="backColorPicker1.Items137" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="backColorPicker1.Items138" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="backColorPicker1.Items139" xml:space="preserve">
+    <value>Yellowgreen</value>
+  </data>
+  <data name="backColorPicker1.Items140" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="backColorPicker1.Items141" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="backColorPicker1.Items142" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="backColorPicker1.Items143" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items144" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="backColorPicker1.Items145" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="backColorPicker1.Items146" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="backColorPicker1.Items147" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="backColorPicker1.Items148" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="backColorPicker1.Items149" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="backColorPicker1.Items150" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="backColorPicker1.Items151" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="backColorPicker1.Items152" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="backColorPicker1.Items153" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="backColorPicker1.Items154" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="backColorPicker1.Items155" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="backColorPicker1.Items156" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="backColorPicker1.Items157" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="backColorPicker1.Items158" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="backColorPicker1.Items159" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="backColorPicker1.Items160" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="backColorPicker1.Items161" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="backColorPicker1.Items162" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="backColorPicker1.Items163" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items164" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="backColorPicker1.Items165" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="backColorPicker1.Items166" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="backColorPicker1.Items167" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="backColorPicker1.Items168" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="backColorPicker1.Items169" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="backColorPicker1.Items170" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="backColorPicker1.Items171" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="backColorPicker1.Items172" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="backColorPicker1.Items173" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items174" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items175" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="backColorPicker1.Items176" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items177" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="backColorPicker1.Items178" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="backColorPicker1.Items179" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items180" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="backColorPicker1.Items181" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="backColorPicker1.Items182" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="backColorPicker1.Items183" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="backColorPicker1.Items184" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="backColorPicker1.Items185" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="backColorPicker1.Items186" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="backColorPicker1.Items187" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="backColorPicker1.Items188" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="backColorPicker1.Items189" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items190" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="backColorPicker1.Items191" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="backColorPicker1.Items192" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="backColorPicker1.Items193" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="backColorPicker1.Items194" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="backColorPicker1.Items195" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="backColorPicker1.Items196" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="backColorPicker1.Items197" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="backColorPicker1.Items198" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="backColorPicker1.Items199" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="backColorPicker1.Items200" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="backColorPicker1.Items201" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="backColorPicker1.Items202" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="backColorPicker1.Items203" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="backColorPicker1.Items204" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="backColorPicker1.Items205" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="backColorPicker1.Items206" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="backColorPicker1.Items207" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="backColorPicker1.Items208" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="backColorPicker1.Items209" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="backColorPicker1.Items210" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="backColorPicker1.Items211" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items212" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items213" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="backColorPicker1.Items214" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="backColorPicker1.Items215" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="backColorPicker1.Items216" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="backColorPicker1.Items217" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="backColorPicker1.Items218" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="backColorPicker1.Items219" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="backColorPicker1.Items220" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="backColorPicker1.Items221" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items222" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="backColorPicker1.Items223" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="backColorPicker1.Items224" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="backColorPicker1.Items225" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items226" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items227" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="backColorPicker1.Items228" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items229" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="backColorPicker1.Items230" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="backColorPicker1.Items231" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="backColorPicker1.Items232" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="backColorPicker1.Items233" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="backColorPicker1.Items234" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="backColorPicker1.Items235" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="backColorPicker1.Items236" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="backColorPicker1.Items237" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="backColorPicker1.Items238" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="backColorPicker1.Items239" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="backColorPicker1.Items240" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="backColorPicker1.Items241" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="backColorPicker1.Items242" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items243" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="backColorPicker1.Items244" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items245" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="backColorPicker1.Items246" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="backColorPicker1.Items247" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="backColorPicker1.Items248" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="backColorPicker1.Items249" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="backColorPicker1.Items250" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="backColorPicker1.Items251" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="backColorPicker1.Items252" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="backColorPicker1.Items253" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="backColorPicker1.Items254" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="backColorPicker1.Items255" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="backColorPicker1.Items256" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="backColorPicker1.Items257" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="backColorPicker1.Items258" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="backColorPicker1.Items259" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="backColorPicker1.Items260" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="backColorPicker1.Items261" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="backColorPicker1.Items262" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="backColorPicker1.Items263" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="backColorPicker1.Items264" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="backColorPicker1.Items265" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="backColorPicker1.Items266" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="backColorPicker1.Items267" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="backColorPicker1.Items268" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="backColorPicker1.Items269" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="backColorPicker1.Items270" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="backColorPicker1.Items271" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="backColorPicker1.Items272" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="backColorPicker1.Items273" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="backColorPicker1.Items274" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="backColorPicker1.Items275" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="backColorPicker1.Items276" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="backColorPicker1.Items277" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="backColorPicker1.Items278" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="backColorPicker1.Items279" xml:space="preserve">
+    <value>Yellowgreen</value>
+  </data>
+  <data name="backColorPicker1.Items280" xml:space="preserve">
+    <value>Aliceblue</value>
+  </data>
+  <data name="backColorPicker1.Items281" xml:space="preserve">
+    <value>Antiquewhite</value>
+  </data>
+  <data name="backColorPicker1.Items282" xml:space="preserve">
+    <value>Aqua</value>
+  </data>
+  <data name="backColorPicker1.Items283" xml:space="preserve">
+    <value>Aquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items284" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="backColorPicker1.Items285" xml:space="preserve">
+    <value>Beige</value>
+  </data>
+  <data name="backColorPicker1.Items286" xml:space="preserve">
+    <value>Bisque</value>
+  </data>
+  <data name="backColorPicker1.Items287" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="backColorPicker1.Items288" xml:space="preserve">
+    <value>Blanchedalmond</value>
+  </data>
+  <data name="backColorPicker1.Items289" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="backColorPicker1.Items290" xml:space="preserve">
+    <value>Blueviolet</value>
+  </data>
+  <data name="backColorPicker1.Items291" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="backColorPicker1.Items292" xml:space="preserve">
+    <value>Burlywood</value>
+  </data>
+  <data name="backColorPicker1.Items293" xml:space="preserve">
+    <value>Cadetblue</value>
+  </data>
+  <data name="backColorPicker1.Items294" xml:space="preserve">
+    <value>Chartreuse</value>
+  </data>
+  <data name="backColorPicker1.Items295" xml:space="preserve">
+    <value>Chocolate</value>
+  </data>
+  <data name="backColorPicker1.Items296" xml:space="preserve">
+    <value>Coral</value>
+  </data>
+  <data name="backColorPicker1.Items297" xml:space="preserve">
+    <value>Cornflowerblue</value>
+  </data>
+  <data name="backColorPicker1.Items298" xml:space="preserve">
+    <value>Cornsilk</value>
+  </data>
+  <data name="backColorPicker1.Items299" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="backColorPicker1.Items300" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="backColorPicker1.Items301" xml:space="preserve">
+    <value>Darkblue</value>
+  </data>
+  <data name="backColorPicker1.Items302" xml:space="preserve">
+    <value>Darkcyan</value>
+  </data>
+  <data name="backColorPicker1.Items303" xml:space="preserve">
+    <value>Darkgoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items304" xml:space="preserve">
+    <value>Darkgray</value>
+  </data>
+  <data name="backColorPicker1.Items305" xml:space="preserve">
+    <value>Darkgreen</value>
+  </data>
+  <data name="backColorPicker1.Items306" xml:space="preserve">
+    <value>Darkkhaki</value>
+  </data>
+  <data name="backColorPicker1.Items307" xml:space="preserve">
+    <value>Darkmagenta</value>
+  </data>
+  <data name="backColorPicker1.Items308" xml:space="preserve">
+    <value>Darkolivegreen</value>
+  </data>
+  <data name="backColorPicker1.Items309" xml:space="preserve">
+    <value>Darkorange</value>
+  </data>
+  <data name="backColorPicker1.Items310" xml:space="preserve">
+    <value>Darkorchid</value>
+  </data>
+  <data name="backColorPicker1.Items311" xml:space="preserve">
+    <value>Darkred</value>
+  </data>
+  <data name="backColorPicker1.Items312" xml:space="preserve">
+    <value>Darksalmon</value>
+  </data>
+  <data name="backColorPicker1.Items313" xml:space="preserve">
+    <value>Darkseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items314" xml:space="preserve">
+    <value>Darkslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items315" xml:space="preserve">
+    <value>Darkslategray</value>
+  </data>
+  <data name="backColorPicker1.Items316" xml:space="preserve">
+    <value>Darkturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items317" xml:space="preserve">
+    <value>Darkviolet</value>
+  </data>
+  <data name="backColorPicker1.Items318" xml:space="preserve">
+    <value>Deeppink</value>
+  </data>
+  <data name="backColorPicker1.Items319" xml:space="preserve">
+    <value>Deepskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items320" xml:space="preserve">
+    <value>Dimgray</value>
+  </data>
+  <data name="backColorPicker1.Items321" xml:space="preserve">
+    <value>Dodgerblue</value>
+  </data>
+  <data name="backColorPicker1.Items322" xml:space="preserve">
+    <value>Firebrick</value>
+  </data>
+  <data name="backColorPicker1.Items323" xml:space="preserve">
+    <value>Floralwhite</value>
+  </data>
+  <data name="backColorPicker1.Items324" xml:space="preserve">
+    <value>Forestgreen</value>
+  </data>
+  <data name="backColorPicker1.Items325" xml:space="preserve">
+    <value>Fuchsia</value>
+  </data>
+  <data name="backColorPicker1.Items326" xml:space="preserve">
+    <value>Gainsboro</value>
+  </data>
+  <data name="backColorPicker1.Items327" xml:space="preserve">
+    <value>Ghostwhite</value>
+  </data>
+  <data name="backColorPicker1.Items328" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="backColorPicker1.Items329" xml:space="preserve">
+    <value>Goldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items330" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="backColorPicker1.Items331" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="backColorPicker1.Items332" xml:space="preserve">
+    <value>Greenyellow</value>
+  </data>
+  <data name="backColorPicker1.Items333" xml:space="preserve">
+    <value>Honeydew</value>
+  </data>
+  <data name="backColorPicker1.Items334" xml:space="preserve">
+    <value>Hotpink</value>
+  </data>
+  <data name="backColorPicker1.Items335" xml:space="preserve">
+    <value>Indianred</value>
+  </data>
+  <data name="backColorPicker1.Items336" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+  <data name="backColorPicker1.Items337" xml:space="preserve">
+    <value>Ivory</value>
+  </data>
+  <data name="backColorPicker1.Items338" xml:space="preserve">
+    <value>Khaki</value>
+  </data>
+  <data name="backColorPicker1.Items339" xml:space="preserve">
+    <value>Lavender</value>
+  </data>
+  <data name="backColorPicker1.Items340" xml:space="preserve">
+    <value>Lavenderblush</value>
+  </data>
+  <data name="backColorPicker1.Items341" xml:space="preserve">
+    <value>Lawngreen</value>
+  </data>
+  <data name="backColorPicker1.Items342" xml:space="preserve">
+    <value>Lemonchiffon</value>
+  </data>
+  <data name="backColorPicker1.Items343" xml:space="preserve">
+    <value>Lightblue</value>
+  </data>
+  <data name="backColorPicker1.Items344" xml:space="preserve">
+    <value>Lightcoral</value>
+  </data>
+  <data name="backColorPicker1.Items345" xml:space="preserve">
+    <value>Lightcyan</value>
+  </data>
+  <data name="backColorPicker1.Items346" xml:space="preserve">
+    <value>Lightgoldenrodyellow</value>
+  </data>
+  <data name="backColorPicker1.Items347" xml:space="preserve">
+    <value>Lightgreen</value>
+  </data>
+  <data name="backColorPicker1.Items348" xml:space="preserve">
+    <value>Lightgrey</value>
+  </data>
+  <data name="backColorPicker1.Items349" xml:space="preserve">
+    <value>Lightpink</value>
+  </data>
+  <data name="backColorPicker1.Items350" xml:space="preserve">
+    <value>Lightsalmon</value>
+  </data>
+  <data name="backColorPicker1.Items351" xml:space="preserve">
+    <value>Lightseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items352" xml:space="preserve">
+    <value>Lightskyblue</value>
+  </data>
+  <data name="backColorPicker1.Items353" xml:space="preserve">
+    <value>Lightslategrey</value>
+  </data>
+  <data name="backColorPicker1.Items354" xml:space="preserve">
+    <value>Lightsteelblue</value>
+  </data>
+  <data name="backColorPicker1.Items355" xml:space="preserve">
+    <value>Lightyellow</value>
+  </data>
+  <data name="backColorPicker1.Items356" xml:space="preserve">
+    <value>Lime</value>
+  </data>
+  <data name="backColorPicker1.Items357" xml:space="preserve">
+    <value>Limegreen</value>
+  </data>
+  <data name="backColorPicker1.Items358" xml:space="preserve">
+    <value>Linen</value>
+  </data>
+  <data name="backColorPicker1.Items359" xml:space="preserve">
+    <value>Magenta</value>
+  </data>
+  <data name="backColorPicker1.Items360" xml:space="preserve">
+    <value>Maroon</value>
+  </data>
+  <data name="backColorPicker1.Items361" xml:space="preserve">
+    <value>Mediumaquamarine</value>
+  </data>
+  <data name="backColorPicker1.Items362" xml:space="preserve">
+    <value>Mediumblue</value>
+  </data>
+  <data name="backColorPicker1.Items363" xml:space="preserve">
+    <value>Mediumorchid</value>
+  </data>
+  <data name="backColorPicker1.Items364" xml:space="preserve">
+    <value>Mediumpurple</value>
+  </data>
+  <data name="backColorPicker1.Items365" xml:space="preserve">
+    <value>Mediumseagreen</value>
+  </data>
+  <data name="backColorPicker1.Items366" xml:space="preserve">
+    <value>Mediumslateblue</value>
+  </data>
+  <data name="backColorPicker1.Items367" xml:space="preserve">
+    <value>Mediumspringgreen</value>
+  </data>
+  <data name="backColorPicker1.Items368" xml:space="preserve">
+    <value>Mediumturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items369" xml:space="preserve">
+    <value>Mediumvioletred</value>
+  </data>
+  <data name="backColorPicker1.Items370" xml:space="preserve">
+    <value>Midnightblue</value>
+  </data>
+  <data name="backColorPicker1.Items371" xml:space="preserve">
+    <value>Mintcream</value>
+  </data>
+  <data name="backColorPicker1.Items372" xml:space="preserve">
+    <value>Mistyrose</value>
+  </data>
+  <data name="backColorPicker1.Items373" xml:space="preserve">
+    <value>Moccasin</value>
+  </data>
+  <data name="backColorPicker1.Items374" xml:space="preserve">
+    <value>Navajowhite</value>
+  </data>
+  <data name="backColorPicker1.Items375" xml:space="preserve">
+    <value>Navy</value>
+  </data>
+  <data name="backColorPicker1.Items376" xml:space="preserve">
+    <value>Oldlace</value>
+  </data>
+  <data name="backColorPicker1.Items377" xml:space="preserve">
+    <value>Olive</value>
+  </data>
+  <data name="backColorPicker1.Items378" xml:space="preserve">
+    <value>Olivedrab</value>
+  </data>
+  <data name="backColorPicker1.Items379" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="backColorPicker1.Items380" xml:space="preserve">
+    <value>Orangered</value>
+  </data>
+  <data name="backColorPicker1.Items381" xml:space="preserve">
+    <value>Orchid</value>
+  </data>
+  <data name="backColorPicker1.Items382" xml:space="preserve">
+    <value>Palegoldenrod</value>
+  </data>
+  <data name="backColorPicker1.Items383" xml:space="preserve">
+    <value>Palegreen</value>
+  </data>
+  <data name="backColorPicker1.Items384" xml:space="preserve">
+    <value>Paleturquoise</value>
+  </data>
+  <data name="backColorPicker1.Items385" xml:space="preserve">
+    <value>Palevioletred</value>
+  </data>
+  <data name="backColorPicker1.Items386" xml:space="preserve">
+    <value>Papayawhip</value>
+  </data>
+  <data name="backColorPicker1.Items387" xml:space="preserve">
+    <value>Peachpuff</value>
+  </data>
+  <data name="backColorPicker1.Items388" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="backColorPicker1.Items389" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="backColorPicker1.Items390" xml:space="preserve">
+    <value>Plum</value>
+  </data>
+  <data name="backColorPicker1.Items391" xml:space="preserve">
+    <value>Powderblue</value>
+  </data>
+  <data name="backColorPicker1.Items392" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="backColorPicker1.Items393" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="backColorPicker1.Items394" xml:space="preserve">
+    <value>Rosybrown</value>
+  </data>
+  <data name="backColorPicker1.Items395" xml:space="preserve">
+    <value>Royalblue</value>
+  </data>
+  <data name="backColorPicker1.Items396" xml:space="preserve">
+    <value>Saddlebrown</value>
+  </data>
+  <data name="backColorPicker1.Items397" xml:space="preserve">
+    <value>Salmon</value>
+  </data>
+  <data name="backColorPicker1.Items398" xml:space="preserve">
+    <value>Sandybrown</value>
+  </data>
+  <data name="backColorPicker1.Items399" xml:space="preserve">
+    <value>Seagreen</value>
+  </data>
+  <data name="backColorPicker1.Items400" xml:space="preserve">
+    <value>Seashell</value>
+  </data>
+  <data name="backColorPicker1.Items401" xml:space="preserve">
+    <value>Sienna</value>
+  </data>
+  <data name="backColorPicker1.Items402" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="backColorPicker1.Items403" xml:space="preserve">
+    <value>Skyblue</value>
+  </data>
+  <data name="backColorPicker1.Items404" xml:space="preserve">
+    <value>Slateblue</value>
+  </data>
+  <data name="backColorPicker1.Items405" xml:space="preserve">
+    <value>Slategray</value>
+  </data>
+  <data name="backColorPicker1.Items406" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="backColorPicker1.Items407" xml:space="preserve">
+    <value>Springgreen</value>
+  </data>
+  <data name="backColorPicker1.Items408" xml:space="preserve">
+    <value>Steelblue</value>
+  </data>
+  <data name="backColorPicker1.Items409" xml:space="preserve">
+    <value>Tan</value>
+  </data>
+  <data name="backColorPicker1.Items410" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="backColorPicker1.Items411" xml:space="preserve">
+    <value>Thistle</value>
+  </data>
+  <data name="backColorPicker1.Items412" xml:space="preserve">
+    <value>Tomato</value>
+  </data>
+  <data name="backColorPicker1.Items413" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="backColorPicker1.Items414" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="backColorPicker1.Items415" xml:space="preserve">
+    <value>Wheat</value>
+  </data>
+  <data name="backColorPicker1.Items416" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="backColorPicker1.Items417" xml:space="preserve">
+    <value>Whitesmoke</value>
+  </data>
+  <data name="backColorPicker1.Items418" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="backColorPicker1.Items419" xml:space="preserve">
+    <value>Yellowgreen</value>
   </data>
   <data name="backColorPicker1.Location" type="System.Drawing.Point, System.Drawing">
     <value>273, 12</value>
@@ -1577,7 +4085,7 @@
     <value>backColorPicker1</value>
   </data>
   <data name="&gt;&gt;backColorPicker1.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.5.5088.20753, Culture=neutral, PublicKeyToken=null</value>
+    <value>fyiReporting.RdlDesign.ColorPicker, RdlDesigner, Version=4.12.5695.17632, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;backColorPicker1.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1612,30 +4120,6 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>329, 17</value>
   </metadata>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 448</value>
-  </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1019, 22</value>
-  </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="statusSelected.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 17</value>
   </data>
@@ -1660,8 +4144,35 @@
   <data name="statusPosition.ToolTipText" xml:space="preserve">
     <value>Position of selected ReportItem</value>
   </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 448</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1019, 22</value>
+  </data>
+  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="mainSP.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
+  </data>
+  <data name="mainSP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mainSP.Location" type="System.Drawing.Point, System.Drawing">
     <value>776, 140</value>
@@ -1684,42 +4195,9 @@
   <data name="&gt;&gt;mainSP.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="mainProperties.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="mainProperties.Location" type="System.Drawing.Point, System.Drawing">
-    <value>779, 140</value>
-  </data>
-  <data name="mainProperties.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 308</value>
-  </data>
-  <data name="mainProperties.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="&gt;&gt;mainProperties.Name" xml:space="preserve">
-    <value>mainProperties</value>
-  </data>
-  <data name="&gt;&gt;mainProperties.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.PropertyCtl, RdlDesigner, Version=4.5.5088.20753, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;mainProperties.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainProperties.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="ContextMenuTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>445, 17</value>
   </metadata>
-  <data name="ContextMenuTB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 70</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuTB.Name" xml:space="preserve">
-    <value>ContextMenuTB</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuTB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="MenuTBClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 22</value>
   </data>
@@ -1737,6 +4215,39 @@
   </data>
   <data name="MenuTBCloseAllButThis.Text" xml:space="preserve">
     <value>Close All But This</value>
+  </data>
+  <data name="ContextMenuTB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 70</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuTB.Name" xml:space="preserve">
+    <value>ContextMenuTB</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuTB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mainProperties.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="mainProperties.Location" type="System.Drawing.Point, System.Drawing">
+    <value>779, 140</value>
+  </data>
+  <data name="mainProperties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 308</value>
+  </data>
+  <data name="mainProperties.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;mainProperties.Name" xml:space="preserve">
+    <value>mainProperties</value>
+  </data>
+  <data name="&gt;&gt;mainProperties.Type" xml:space="preserve">
+    <value>fyiReporting.RdlDesign.PropertyCtl, RdlDesigner, Version=4.12.5695.17632, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mainProperties.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainProperties.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2112,18 +4623,6 @@
     <value>textboxToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;textboxToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;barCodeEAN13ToolStripMenuItem.Name" xml:space="preserve">
-    <value>barCodeEAN13ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;barCodeEAN13ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;barCodeBooklandToolStripMenuItem.Name" xml:space="preserve">
-    <value>barCodeBooklandToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;barCodeBooklandToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dataToolStripMenuItem.Name" xml:space="preserve">

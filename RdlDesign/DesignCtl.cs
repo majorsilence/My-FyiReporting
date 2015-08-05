@@ -1,4 +1,3 @@
-using fyiReporting.RDL;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -21,16 +20,18 @@ using fyiReporting.RDL;
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
+using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -1665,6 +1666,11 @@ namespace fyiReporting.RdlDesign
 					menuInsertSubreport_Click(sender, e);
 					break;
 				default:
+					var types = RdlEngineConfig.GetCustomReportTypes();
+					if (types.Contains(_CurrentInsert))
+					{
+						menuInsertCustomReportItem(sender, e, _CurrentInsert);
+					}
 					break;
 			}
 			return true;
@@ -2128,38 +2134,42 @@ namespace fyiReporting.RdlDesign
 	
 		private void menuInsertCustomReportItem_Click(object sender, EventArgs e)
 		{
+			var mi = (ToolStripMenuItem)sender;
+			menuInsertCustomReportItem(sender, e, (string) mi.Tag);
+		}
+
+		private void menuInsertCustomReportItem(object sender, EventArgs e, string customName)
+		{
 			string ri;
-            ICustomReportItem cri = null;
-            try
-            {
-				var mi = (ToolStripMenuItem)sender;
+			ICustomReportItem cri = null;
+			try
+			{
+				cri = RdlEngineConfig.CreateCustomReportItem(customName);
 
-                cri = RdlEngineConfig.CreateCustomReportItem((string) mi.Tag);
+				var criXml = cri.GetCustomReportItemXml().Trim();
 
-                var criXml = cri.GetCustomReportItemXml().Trim();
+				if (!(criXml.StartsWith("<CustomReportItem>") && criXml.EndsWith("</CustomReportItem>")))
+				{
+					MessageBox.Show(
+						string.Format(Strings.DesignCtl_Show_CustomReportItem, customName, criXml), Strings.DesignCtl_Show_Insert);
+					return;
+				}
 
-                if (!(criXml.StartsWith("<CustomReportItem>") && criXml.EndsWith("</CustomReportItem>")))
-                {
-                    MessageBox.Show(
-                        string.Format(Strings.DesignCtl_Show_CustomReportItem, mi.Tag, criXml), Strings.DesignCtl_Show_Insert);
-                    return;
-                }
-
-                ri = "<ReportItems>" +
-                    string.Format(criXml, mi.Tag) +     // substitute the type of custom report item
-                    "</ReportItems>";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string .Format(Strings.DesignCtl_Show_CustomReportItemException, ex.Message), Strings.DesignCtl_Show_Insert);
-                return;
-            }
-            finally
-            {
-                if (cri != null)
-                    cri.Dispose();
-            }
-            menuInsertReportItem(sender, e, ri);
+				ri = "<ReportItems>" +
+					string.Format(criXml, customName) +     // substitute the type of custom report item
+					"</ReportItems>";
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format(Strings.DesignCtl_Show_CustomReportItemException, ex.Message), Strings.DesignCtl_Show_Insert);
+				return;
+			}
+			finally
+			{
+				if (cri != null)
+					cri.Dispose();
+			}
+			menuInsertReportItem(sender, e, ri);
 		}
 
         private void menuInsertGrid_Click(object sender, EventArgs e)

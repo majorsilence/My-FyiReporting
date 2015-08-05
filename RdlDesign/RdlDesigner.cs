@@ -32,25 +32,26 @@
 */
 
 
-using System;
-using System.Drawing;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Drawing.Printing;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Globalization;
-using System.Diagnostics;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -196,6 +197,9 @@ namespace fyiReporting.RdlDesign
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
             InitToolbar();
+
+			//Build CustomItems insert menu
+			BuildCustomItemsInsertMenu(insertToolStripMenuItem);
             
             // open up the current files if any
             if (_CurrentFiles != null && openPreviousSession == true)
@@ -450,6 +454,45 @@ namespace fyiReporting.RdlDesign
             }
         }
 
+		private void BuildCustomItemsInsertMenu(ToolStripDropDownItem menuItem)
+		{
+			try
+			{
+				var sa = RdlEngineConfig.GetCustomReportTypes();
+				if (sa == null || sa.Length == 0)
+					return;
+
+				var separator = menuItem.DropDownItems["CustomSeparator"];
+
+				if (separator == null)
+				{
+					separator = new ToolStripSeparator { Name = "CustomSeparator" };
+					menuItem.DropDownItems.Add(separator);       // put a separator
+				}
+				else
+				{
+					var index = menuItem.DropDownItems.IndexOf(separator) + 1;
+
+					while (menuItem.DropDownItems.Count > index)
+					{
+						menuItem.DropDownItems.RemoveAt(index);
+					}
+				}
+
+				// Add the custom report items to the insert menu
+				foreach (var m in sa)
+				{
+					var mi = new ToolStripMenuItem(m + "...");
+					mi.Click += InsertToolStripMenuItem_Click;
+					mi.Tag = m;
+					menuItem.DropDownItems.Add(mi);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format(Strings.DesignCtl_ShowB_CustomReportItemError, ex.Message), Strings.DesignCtl_Show_Insert, MessageBoxButtons.OK);
+			}
+		}
 
         internal bool ShowReportItemOutline
         {
@@ -1060,54 +1103,11 @@ namespace fyiReporting.RdlDesign
             {
                 RtfToolStripButton2.Enabled = bEnablePreview;
             }
-            if (chartToolStripMenuItem != null)
-            {
-                chartToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (gridToolStripMenuItem != null)
-            {
-                gridToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (imageToolStripMenuItem != null)
-            {
-                imageToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (lineToolStripMenuItem != null)
-            {
-                lineToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (listToolStripMenuItem != null)
-            {
-                listToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (matrixToolStripMenuItem != null)
-            {
-                matrixToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (rectangleToolStripMenuItem != null)
-            {
-                rectangleToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (subReportToolStripMenuItem != null)
-            {
-                subReportToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (tableToolStripMenuItem != null)
-            {
-                tableToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (textboxToolStripMenuItem != null)
-            {
-                textboxToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (barCodeBooklandToolStripMenuItem != null)
-            {
-                barCodeBooklandToolStripMenuItem.Enabled = bEnableDesign;
-            }
-            if (barCodeEAN13ToolStripMenuItem != null)
-            {
-                barCodeEAN13ToolStripMenuItem.Enabled = bEnableDesign;
-            }
+
+			foreach (var item in insertToolStripMenuItem.DropDownItems.OfType<ToolStripItem>())
+			{
+				item.Enabled = bEnableDesign;
+			}
 
             this.EnableEditTextBox();
 
