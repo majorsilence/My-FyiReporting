@@ -222,7 +222,7 @@
               <widget class="Gtk.HPaned" id="hpanedReport">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Position">455</property>
+                <property name="Position">364</property>
                 <signal name="SizeAllocated" handler="OnHpanedReportSizeAllocated" />
                 <child>
                   <widget class="Gtk.ScrolledWindow" id="scrolledwindowPages">

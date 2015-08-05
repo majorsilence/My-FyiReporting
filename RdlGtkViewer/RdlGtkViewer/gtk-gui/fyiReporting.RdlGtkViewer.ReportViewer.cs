@@ -109,7 +109,7 @@ namespace fyiReporting.RdlGtkViewer
 			this.hpanedReport = new global::Gtk.HPaned ();
 			this.hpanedReport.CanFocus = true;
 			this.hpanedReport.Name = "hpanedReport";
-			this.hpanedReport.Position = 455;
+			this.hpanedReport.Position = 364;
 			// Container child hpanedReport.Gtk.Paned+PanedChild
 			this.scrolledwindowPages = new global::Gtk.ScrolledWindow ();
 			this.scrolledwindowPages.CanFocus = true;

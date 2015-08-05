@@ -22,19 +22,13 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Globalization;
-using System.IO;
 using System.Text;
-using System.Threading;
 using System.Xml;
-
-using Gtk;
 using fyiReporting.RDL;
+using Gtk;
 
 namespace fyiReporting.RdlGtkViewer
 {
@@ -175,6 +169,8 @@ namespace fyiReporting.RdlGtkViewer
 			
             // Compile the report 
             report = this.GetReport(source);
+			if (report == null)
+				return;
             AddParameterControls();		
 			
             RefreshReport();
@@ -200,9 +196,9 @@ namespace fyiReporting.RdlGtkViewer
             }
             this.ShowAll();
 			
-			if (report.ErrorMaxSeverity > 0)
-				SetErrorMessages (report.ErrorItems);
-			else
+			SetErrorMessages (report.ErrorItems);
+
+			if (report.ErrorMaxSeverity == 0)
 				show_errors = false;
 			
 			errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
@@ -278,20 +274,20 @@ namespace fyiReporting.RdlGtkViewer
             r = rdlp.Parse();
             if (r.ErrorMaxSeverity > 0)
             {
-			
                 foreach (string emsg in r.ErrorItems)
                 {
                     Console.WriteLine(emsg);
                 }
+				SetErrorMessages (r.ErrorItems);
 			
                 int severity = r.ErrorMaxSeverity;
                 r.ErrorReset();
                 if (severity > 4)
                 {
-                    r = null; // don't return when severe errors
+					errorsAction.Active = true;
+					return null; // don't return when severe errors
                 }
             }
-		
             return r;
         }
 
@@ -401,8 +397,13 @@ namespace fyiReporting.RdlGtkViewer
         void SetErrorMessages(IList errors)
         {
             textviewErrors.Buffer.Clear();
-			
+
+			if (errors == null || errors.Count == 0)
+				return;
+
             StringBuilder msgs = new StringBuilder();
+			msgs.AppendLine("Report rendering errors:");
+			msgs.AppendLine ();
             foreach (var error in errors)
                 msgs.AppendLine(error.ToString());
 			
@@ -586,7 +587,7 @@ namespace fyiReporting.RdlGtkViewer
                 printing = new PrintOperation();
                 printing.Unit = Unit.Points;
                 printing.UseFullPage = false;
-				
+
                 printing.BeginPrint += HandlePrintBeginPrint;
                 printing.DrawPage += HandlePrintDrawPage;
                 printing.EndPrint += HandlePrintEndPrint;
