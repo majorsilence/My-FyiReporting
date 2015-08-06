@@ -89,7 +89,18 @@ namespace fyiReporting.RdlGtkViewer
             }
         }
 
-        public Uri SourceFile { get; private set; }
+		public string WorkingDirectory { get; set; }
+
+		Uri sourceFile;
+        public Uri SourceFile {
+			get {
+				return sourceFile;
+			}
+			private set {
+				sourceFile = value;
+				WorkingDirectory = System.IO.Path.GetDirectoryName (sourceFile.LocalPath);
+			}
+		}
 
         public ReportViewer()
         {
@@ -109,7 +120,8 @@ namespace fyiReporting.RdlGtkViewer
         /// <param name="connectionString">Relace all Connection string in report.</param>
         public void LoadReport(Uri filename, string parameters, string connectionString)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+			SourceFile = filename;
+			XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(filename.LocalPath);
 
             foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
@@ -269,6 +281,7 @@ namespace fyiReporting.RdlGtkViewer
             Report r;
 		
             rdlp = new RDLParser(reportSource);
+			rdlp.Folder = WorkingDirectory;
             // RDLParser takes RDL XML and Parse compiles the report
 			
             r = rdlp.Parse();
