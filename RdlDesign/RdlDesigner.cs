@@ -897,7 +897,7 @@ namespace fyiReporting.RdlDesign
                         mc.Viewer.Folder = Path.GetDirectoryName(file.LocalPath);
                         mc.SourceFile = file;
                         mc.Text = Path.GetFileName(file.LocalPath);
-                        mc.Viewer.Folder = Path.GetDirectoryName(file.LocalPath);
+                        mc.DrawCtl.Folder = Path.GetDirectoryName(file.LocalPath);
                         mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(file.LocalPath);
                         NoteRecentFiles(file, bMenuUpdate);
                     }

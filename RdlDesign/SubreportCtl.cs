@@ -311,6 +311,9 @@ namespace fyiReporting.RdlDesign
 			if (tbReportFile.Text.Length > 0)
 				filename = tbReportFile.Text + ".rdl";
 
+			if (!String.IsNullOrWhiteSpace(_Draw.Folder))
+				filename = Path.Combine(_Draw.Folder, filename);
+
 			string source = this.GetSource(filename);
 			if (source == null)
 				return;						// error: message already displayed

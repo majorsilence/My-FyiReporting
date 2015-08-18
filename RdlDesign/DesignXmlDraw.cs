@@ -66,6 +66,8 @@ namespace fyiReporting.RdlDesign
 		float DpiX;
 		float DpiY;
 
+		public string Folder { get; set; }
+
 		// During drawing these are set
 		Graphics g;
 		float _vScroll;
