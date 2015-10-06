@@ -133,6 +133,14 @@
          <TableSelect>SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME NOT LIKE 'pg_%' ORDER BY 1</TableSelect>
          <Interface>SQL</Interface>
       </DataSource>
+     <DataSource>
+       <DataProvider>PostgreSQL_Devart</DataProvider>
+       <CodeModule>Devart.Data.PostgreSql.dll</CodeModule>
+       <ClassName>Devart.Data.PostgreSql.PgSqlConnection</ClassName>
+       <TableSelect>SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME NOT LIKE 'pg_%' ORDER BY 1</TableSelect>
+       <Interface>SQL</Interface>
+     </DataSource>
+
    </DataSources>
    <Compression>
       <CodeModule>ICSharpCode.SharpZipLib.dll</CodeModule>
