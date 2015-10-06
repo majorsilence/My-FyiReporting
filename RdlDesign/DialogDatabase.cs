@@ -1380,6 +1380,7 @@ namespace fyiReporting.RdlDesign
                     buttonSqliteSelectDatabase.Visible = true;
                     break;
                 case "PostgreSQL":
+                case "PostgreSQL_Devart":
                     tbConnection.Text = "Server=127.0.0.1;Port=5432;Database=myDataBase;User Id=myUsername;Password=myPassword;";
                     break;               
                 default:
