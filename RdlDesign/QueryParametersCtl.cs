@@ -40,8 +40,8 @@ namespace fyiReporting.RdlDesign
 	{
 		private DesignXmlDraw _Draw;
 		private DataSetValues _dsv;
-
-		internal QueryParametersCtl(DesignXmlDraw dxDraw, DataSetValues dsv)
+      
+        internal QueryParametersCtl(DesignXmlDraw dxDraw, DataSetValues dsv)
 		{
 			_Draw = dxDraw;
 			_dsv = dsv;
@@ -67,5 +67,29 @@ namespace fyiReporting.RdlDesign
 			return;			// the apply is done as part of the DataSetsCtl.Apply()
 		}
 
-	}
+        private void bValueExpr_Click(object sender, EventArgs e)
+        {
+            if (dgParms.CurrentCell != null)
+            {
+                DataGridViewCell dgc = dgParms.CurrentCell;
+                if (dgc.ColumnIndex == 1)
+                {
+                    string cv = dgc.Value as string;
+
+                    DialogExprEditor ee = new DialogExprEditor(_Draw, cv, _dsv.Node, false);
+                    try
+                    {
+                        DialogResult dlgr = ee.ShowDialog();
+                        if (dlgr == DialogResult.OK)
+                            dgc.Value = ee.Expression;
+                    }
+                    finally
+                    {
+                        ee.Dispose();
+                    }
+                }
+            }
+
+        }
+    }
 }

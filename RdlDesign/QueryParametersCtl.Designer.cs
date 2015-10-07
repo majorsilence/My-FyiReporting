@@ -29,48 +29,56 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryParametersCtl));
-			this.dgParms = new System.Windows.Forms.DataGridView();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
-			this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// dgParms
-			// 
-			resources.ApplyResources(this.dgParms, "dgParms");
-			this.dgParms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dgParms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryParametersCtl));
+            this.dgParms = new System.Windows.Forms.DataGridView();
+            this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+            this.bValueExpr = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgParms
+            // 
+            resources.ApplyResources(this.dgParms, "dgParms");
+            this.dgParms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgParms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgtbName,
             this.dgtbValue});
-			this.dgParms.Name = "dgParms";
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.DataGrid = null;
-			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			// 
-			// dgtbName
-			// 
-			this.dgtbName.DataPropertyName = "Name";
-			resources.ApplyResources(this.dgtbName, "dgtbName");
-			this.dgtbName.Name = "dgtbName";
-			// 
-			// dgtbValue
-			// 
-			this.dgtbValue.DataPropertyName = "Value";
-			resources.ApplyResources(this.dgtbValue, "dgtbValue");
-			this.dgtbValue.Name = "dgtbValue";
-			// 
-			// QueryParametersCtl
-			// 
-			resources.ApplyResources(this, "$this");
-			this.Controls.Add(this.dgParms);
-			this.Name = "QueryParametersCtl";
-			((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
-			this.ResumeLayout(false);
+            this.dgParms.Name = "dgParms";
+            // 
+            // dgtbName
+            // 
+            this.dgtbName.DataPropertyName = "Name";
+            resources.ApplyResources(this.dgtbName, "dgtbName");
+            this.dgtbName.Name = "dgtbName";
+            // 
+            // dgtbValue
+            // 
+            this.dgtbValue.DataPropertyName = "Value";
+            resources.ApplyResources(this.dgtbValue, "dgtbValue");
+            this.dgtbValue.Name = "dgtbValue";
+            // 
+            // dgTableStyle
+            // 
+            this.dgTableStyle.DataGrid = null;
+            this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            // 
+            // bValueExpr
+            // 
+            resources.ApplyResources(this.bValueExpr, "bValueExpr");
+            this.bValueExpr.Name = "bValueExpr";
+            this.bValueExpr.Tag = "value";
+            this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
+            // 
+            // QueryParametersCtl
+            // 
+            this.Controls.Add(this.bValueExpr);
+            this.Controls.Add(this.dgParms);
+            this.Name = "QueryParametersCtl";
+            resources.ApplyResources(this, "$this");
+            ((System.ComponentModel.ISupportInitialize)(this.dgParms)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 		#endregion
@@ -79,5 +87,6 @@ namespace fyiReporting.RdlDesign
 		private System.Windows.Forms.DataGridView dgParms;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbValue;
-	}
+        private System.Windows.Forms.Button bValueExpr;
+    }
 }
