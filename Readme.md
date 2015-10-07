@@ -111,7 +111,7 @@ A big thanks to all of Majorsilence Reporting contributors:
 
  RDL Compliance
 Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly 
-compatiable with RDL 2005.  If you want to add more features see the specfications.
+compatible with RDL 2005.  If you want to add more features see the specfications.
 
 * RDL specifications: [http://msdn.microsoft.com/en-us/library/dd297486%28v=sql.100%29.aspx](http://msdn.microsoft.com/en-us/library/dd297486%28v=sql.100%29.aspx)
 * 2005 direct link: [http://download.microsoft.com/download/c/2/0/c2091a26-d7bf-4464-8535-dbc31fb45d3c/rdlNov05.pdf](http://download.microsoft.com/download/c/2/0/c2091a26-d7bf-4464-8535-dbc31fb45d3c/rdlNov05.pdf)
