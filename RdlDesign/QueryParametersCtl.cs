@@ -91,5 +91,14 @@ namespace fyiReporting.RdlDesign
             }
 
         }
+
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+            if (dgParms.CurrentRow == null)
+                return;
+
+             dgParms.Rows.RemoveAt(this.dgParms.CurrentRow.Index);
+
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace fyiReporting.RdlDesign
             this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
             this.bValueExpr = new System.Windows.Forms.Button();
+            this.bDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,8 +72,15 @@ namespace fyiReporting.RdlDesign
             this.bValueExpr.Tag = "value";
             this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
             // 
+            // bDelete
+            // 
+            resources.ApplyResources(this.bDelete, "bDelete");
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
             // QueryParametersCtl
             // 
+            this.Controls.Add(this.bDelete);
             this.Controls.Add(this.bValueExpr);
             this.Controls.Add(this.dgParms);
             this.Name = "QueryParametersCtl";
@@ -88,5 +96,6 @@ namespace fyiReporting.RdlDesign
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbValue;
         private System.Windows.Forms.Button bValueExpr;
+        private System.Windows.Forms.Button bDelete;
     }
 }
