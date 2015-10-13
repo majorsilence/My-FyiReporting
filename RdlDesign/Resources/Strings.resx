@@ -1003,109 +1003,112 @@ the website https://github.com/majorsilence/My-FyiReporting.</value>
   <data name="Undo_Error_EndGroupNotMatchStartGroup" xml:space="preserve">
     <value>Internal logic error: EndGroup doesn't match StartGroup</value>
   </data>
-	<data name="FileUIEditor_EditValue_XSLFilesFilter" xml:space="preserve">
+  <data name="FileUIEditor_EditValue_XSLFilesFilter" xml:space="preserve">
     <value>XSL Files (*.xsl)|*.xsl|All files (*.*)|*.*</value>
   </data>
-	<data name="BackgroundCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
+  <data name="BackgroundCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
     <value>Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*</value>
   </data>
-	<data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter" xml:space="preserve">
+  <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter" xml:space="preserve">
     <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
-	<data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle" xml:space="preserve">
+  <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle" xml:space="preserve">
     <value>Specify XML File Name</value>
   </data>
-	<data name="DialogDatabase_bShared_Click_DSRFilter" xml:space="preserve">
+  <data name="DialogDatabase_bShared_Click_DSRFilter" xml:space="preserve">
     <value>Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*</value>
   </data>
-	<data name="DialogDatabase_bShared_Click_DSRTitle" xml:space="preserve">
+  <data name="DialogDatabase_bShared_Click_DSRTitle" xml:space="preserve">
     <value>Specify Data Source Reference File Name</value>
   </data>
-	<data name="DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter" xml:space="preserve">
+  <data name="DialogDatabase_buttonSqliteSelectDatabase_Click_AllFilesFilter" xml:space="preserve">
     <value>All files (*.*)|*.*</value>
   </data>
-	<data name="DialogDataSources_bGetFilename_Click_DSRFilter" xml:space="preserve">
+  <data name="DialogDataSources_bGetFilename_Click_DSRFilter" xml:space="preserve">
     <value>Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*</value>
   </data>
-	<data name="DialogDataSources_bGetFilename_Click_DSRTitle" xml:space="preserve">
+  <data name="DialogDataSources_bGetFilename_Click_DSRTitle" xml:space="preserve">
     <value>Specify Data Source Reference File Name</value>
   </data>
-	<data name="DialogEmbeddedImages_bImport_Click_ImageFilesFilter" xml:space="preserve">
+  <data name="DialogEmbeddedImages_bImport_Click_ImageFilesFilter" xml:space="preserve">
     <value>Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*</value>
   </data>
-	<data name="DialogToolOptions_bAddMap_Click_MapFilesFilter" xml:space="preserve">
+  <data name="DialogToolOptions_bAddMap_Click_MapFilesFilter" xml:space="preserve">
     <value>Map files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
-	<data name="DrillParametersDialog_bFile_Click_ReportFilesFilter" xml:space="preserve">
+  <data name="DrillParametersDialog_bFile_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl)|*.rdl|All files (*.*)|*.*</value>
   </data>
-	<data name="DrillParametersDialog_bFile_Click_ReportFilesTitle" xml:space="preserve">
+  <data name="DrillParametersDialog_bFile_Click_ReportFilesTitle" xml:space="preserve">
     <value>Specify Report File Name</value>
   </data>
-	<data name="ImageCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
+  <data name="ImageCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
     <value>Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*</value>
   </data>
-	<data name="InteractivityCtl_bDrillthrough_Click_ReportFilesFilter" xml:space="preserve">
+  <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl)|*.rdl|All files (*.*)|*.*</value>
   </data>
-	<data name="InteractivityCtl_bDrillthrough_Click_ReportFilesTitle" xml:space="preserve">
+  <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesTitle" xml:space="preserve">
     <value>Specify Report File Name</value>
   </data>
-	<data name="RdlDesigner_menuFileOpen_Click_ReportFilesFilter" xml:space="preserve">
+  <data name="RdlDesigner_menuFileOpen_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*</value>
   </data>
-	<data name="RdlUserControl_openToolStripButton1_Click_ReportFilesFilter" xml:space="preserve">
+  <data name="RdlUserControl_openToolStripButton1_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*</value>
   </data>
-	<data name="ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter" xml:space="preserve">
+  <data name="ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter" xml:space="preserve">
     <value>XSL files (*.xsl)|*.xsl|All files (*.*)|*.*</value>
   </data>
-	<data name="ReportXmlCtl_bOpenXsl_Click_XslFilerTitle" xml:space="preserve">
+  <data name="ReportXmlCtl_bOpenXsl_Click_XslFilerTitle" xml:space="preserve">
     <value>Specify DataTransform File Name</value>
   </data>
-	<data name="SubreportCtl_bFile_Click_ReportFilesFilter" xml:space="preserve">
+  <data name="SubreportCtl_bFile_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl)|*.rdl|All files (*.*)|*.*</value>
   </data>
-	<data name="SubreportCtl_bFile_Click_ReportFilesTitle" xml:space="preserve">
+  <data name="SubreportCtl_bFile_Click_ReportFilesTitle" xml:space="preserve">
     <value>Specify Report File Name</value>
   </data>
-	<data name="DialogDataSourceRef_bGetFilename_Click_DSRFilter" xml:space="preserve">
+  <data name="DialogDataSourceRef_bGetFilename_Click_DSRFilter" xml:space="preserve">
     <value>Data source reference files (*.dsr)|*.dsr|All files (*.*)|*.*</value>
   </data>
-	<data name="DialogDataSourceRef_bGetFilename_Click_DSRTitle" xml:space="preserve">
+  <data name="DialogDataSourceRef_bGetFilename_Click_DSRTitle" xml:space="preserve">
     <value>Specify Data Source Reference File Name</value>
   </data>
-	<data name="MDIChild_Export_ExportTitleFormat" xml:space="preserve">
+  <data name="MDIChild_Export_ExportTitleFormat" xml:space="preserve">
     <value>Export to {0}</value>
   </data>
-	<data name="MDIChild_Export_CSV" xml:space="preserve">
+  <data name="MDIChild_Export_CSV" xml:space="preserve">
     <value>CSV file (*.csv)|*.csv|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_XML" xml:space="preserve">
+  <data name="MDIChild_Export_XML" xml:space="preserve">
     <value>XML file (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_PDF" xml:space="preserve">
+  <data name="MDIChild_Export_PDF" xml:space="preserve">
     <value>PDF file (*.pdf)|*.pdf|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_TIF" xml:space="preserve">
+  <data name="MDIChild_Export_TIF" xml:space="preserve">
     <value>TIF file (*.tif, *.tiff)|*.tiff;*.tif|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_RTF" xml:space="preserve">
+  <data name="MDIChild_Export_RTF" xml:space="preserve">
     <value>RTF file (*.rtf)|*.rtf|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_DOC" xml:space="preserve">
+  <data name="MDIChild_Export_DOC" xml:space="preserve">
     <value>DOC file (*.doc)|*.doc|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_Excel" xml:space="preserve">
+  <data name="MDIChild_Export_Excel" xml:space="preserve">
     <value>Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_Web_Page" xml:space="preserve">
+  <data name="MDIChild_Export_Web_Page" xml:space="preserve">
     <value>Web Page (*.html, *.htm)|*.html;*.htm|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_Export_MHT" xml:space="preserve">
+  <data name="MDIChild_Export_MHT" xml:space="preserve">
     <value>MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*</value>
   </data>
-	<data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
+  <data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
     <value>RDL files (*.rdl)|*.rdl|All files (*.*)|*.*</value>
+  </data>
+  <data name="ReportNames_DescriptionDuplicateNameError" xml:space="preserve">
+    <value>NameError: duplicate name: {0}, name of the node: {1}</value>
   </data>
 </root>

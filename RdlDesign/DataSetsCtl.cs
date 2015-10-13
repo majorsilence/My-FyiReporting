@@ -160,7 +160,7 @@ namespace fyiReporting.RdlDesign
             string nerr = _Draw.NameError(this._dsNode, this.tbDSName.Text);
             if (nerr != null)
             {
-                MessageBox.Show(nerr, Strings.DataSetsCtl_Show_Name);
+                MessageBox.Show(nerr, Strings.DataSetsCtl_Show_Name, MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return false;
             }
             return true;

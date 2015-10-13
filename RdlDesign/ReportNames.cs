@@ -26,7 +26,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
-
+using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -326,22 +326,27 @@ namespace fyiReporting.RdlDesign
 			if (fNode == xNode)
 				return null;
 
-			if (fNode != null)
-				return "Duplicate name.";
+            if (fNode != null)
+                return DescriptionDuplicateNameError(name, fNode);
 
-			// Grouping; also restrict to not being same name as any group or dataset
-			if (xNode.Name == "Grouping")
+            // Grouping; also restrict to not being same name as any group or dataset
+            if (xNode.Name == "Grouping")
 			{
 				_Groupings.TryGetValue(name, out fNode);
 				if (fNode != null)
-					return "Duplicate name.";
+					return DescriptionDuplicateNameError(name, fNode);
                 List<string> dsets = new List<string>(this.DataSetNames);
 				if (dsets.IndexOf(name) >= 0)
-					return "Duplicate name.";
+					return "Duplicate name of the dataset :"+name;
 			}
 
 			return null;
 		}
+
+        private string DescriptionDuplicateNameError(string name, XmlNode fNode)
+        {
+            return String.Format(Strings.ReportNames_DescriptionDuplicateNameError, name, fNode.Name);
+        }
 
 		internal string GroupingNameCheck(XmlNode xNode, string name)
 		{
