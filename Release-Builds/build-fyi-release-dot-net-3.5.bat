@@ -12,6 +12,8 @@ echo %Version%
 cd ..
 cd Release-Builds
 
+nuget restore "../MajorsilenceReporting.sln"
+
 REM ************* Begin x64 *********************************************
 
 "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\MajorsilenceReporting-35.sln" /v:q /nologo /toolsversion:4.0 /p:Configuration="Release";Platform="x64";TargetFrameworkVersion=v3.5 /t:clean;rebuild /m:4
