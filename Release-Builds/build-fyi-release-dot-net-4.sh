@@ -12,7 +12,7 @@ VERSION="${VERSION_WITH_ASTERIK%??}"
 
 # ************* Begin AnyCPU .NET 4*********************************************
 # Seems to be the only option that matter on linux
-
+nuget restore "../MajorsilenceReporting-Linux.sln"
 xbuild "../MajorsilenceReporting-Linux.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="Any CPU"
 
 rm -rf ./build-output/majorsilence-reporting-build-dot-net-4-AnyCPU
