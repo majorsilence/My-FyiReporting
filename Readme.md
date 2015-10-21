@@ -4,7 +4,7 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 
 https://groups.google.com/d/forum/myfyireporting
 
-[![Build Status](http://build01.majorsilence.com/buildStatus/icon?job=Majorsilence Reporting - Build)](http://build01.majorsilence.com/job/Majorsilence%20Reporting%20-%20Build/)
+[![Build Status](https://travis-ci.org/majorsilence/My-FyiReporting.svg)](https://travis-ci.org/majorsilence/My-FyiReporting)
 
 # Documentation
 See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
