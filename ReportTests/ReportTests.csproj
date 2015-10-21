@@ -67,6 +67,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -76,6 +80,8 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
@@ -127,15 +133,27 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="DatabaseInfo.cs" />
     <Compile Include="ExampleTest.cs" />
+    <Compile Include="ExcelValetTests.cs" />
     <Compile Include="FunctionTest.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Utils\GeneralUtils.cs" />
+    <Compile Include="Utils\OpenXmlUtils.cs" />
+    <Compile Include="Utils\RandomDateTime.cs" />
+    <Compile Include="Utils\RdlUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
       <Link>RdlEngineConfig.Linux.xml</Link>
     </None>
+    <None Include="packages.config" />
     <None Include="Reports\BaseTestReport.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\Excel\testdata.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\Excel\WorldFacts.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Reports\FunctionTest.rdl">
@@ -146,4 +164,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\Excel\WorldFacts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
