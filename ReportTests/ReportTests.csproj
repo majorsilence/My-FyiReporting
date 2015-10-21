@@ -174,7 +174,7 @@
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>if '$(OS)' == 'Unix' (
-cp "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)"
+cp $(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll  $(TargetDir)
 ) ELSE (
 xcopy /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)")
 )</PostBuildEvent>
