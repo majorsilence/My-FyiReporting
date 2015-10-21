@@ -173,6 +173,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>if $(OS) == Unix (
+cp "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)"
+) ELSE (
+xcopy /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)")
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>
