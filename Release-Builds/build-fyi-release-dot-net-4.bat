@@ -12,6 +12,7 @@ echo %Version%
 cd ..
 cd Release-Builds
 
+nuget restore "../MajorsilenceReporting.sln"
 
 REM ************* Begin x64 *********************************************
 
