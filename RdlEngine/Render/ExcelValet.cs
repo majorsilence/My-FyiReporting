@@ -282,15 +282,19 @@ namespace fyiReporting.RDL
         }
         int GetFontIndex(StyleInfo si)
         {
+
+            //Excel requires the child elements to be in the following sequence: 
+            //i, strike, condense, extend, outline, shadow, u, vertAlign, sz, color, name, family, charset, scheme.
+
             StringBuilder sb = new StringBuilder(150);
             sb.Append("<font>");
-            sb.Append(GetColor(si.Color));
-            sb.AppendFormat("<sz val=\"{0}\"/> ", si.FontSize);
-            sb.AppendFormat("<name val=\"{0}\"/> ", si.FontFamily);
             if (si.IsFontBold())
                 sb.Append("<b /> ");
             if (si.FontStyle == FontStyleEnum.Italic)
                 sb.Append("<i /> ");
+            sb.AppendFormat("<sz val=\"{0}\"/> ", si.FontSize);
+            sb.Append(GetColor(si.Color));
+            sb.AppendFormat("<name val=\"{0}\"/> ", si.FontFamily);
             sb.Append("</font>");
             int i = _FontCache.GetIndex(sb.ToString());
             return i;
@@ -926,7 +930,6 @@ namespace fyiReporting.RDL
                     else
                     //WRP 31102008 Need to have "non" string values only in worksheet XML documents in Excel07
                     {
-                        xtw.WriteAttributeString("s", cd.FormatIndex.ToString());    
                         k = 0;
                         foreach (string f in _StringCache)
                         {
@@ -948,15 +951,28 @@ namespace fyiReporting.RDL
                         {   //WRP 31102008 RDL number values in reports contain fromatting characters - need to remove these to extract pure numbers
                             value = value.Replace("(", "-");
                             value = value.Replace(")", "");
-                            value = value.Replace(",", "");
+                            value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
+                            value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
                             value = value.Replace("$", "");
+
                             if (value.IndexOf('%') != -1)       //WRP 31102008 if a properly RDL formatted percentage need to remove "%" and pass throught value/100 to excel for correct formatting
                             {
-                                value = value.Replace("%", "");
+                                value = value.Replace("%", String.Empty);
                                 decimal decvalue = Convert.ToDecimal(value) / 100;
                                 value = decvalue.ToString();    
                             }
-                            value = value.Replace(" ","");      //WRP 31102008 remove any white space
+                            value = Regex.Replace(value, @"\s+", "");      //WRP 31102008 remove any white space
+
+                            if (!(IsNumeric(value) || IsNumeric(value,CultureInfo.CurrentCulture)))
+                            {
+                                xtw.WriteAttributeString("t","s");
+                                value = cd.Val.ToString();
+                            }
+
+                            xtw.WriteAttributeString("s", cd.FormatIndex.ToString());
+
+
+
                         }
                         xtw.WriteElementString("v", value);  
                     }
@@ -964,6 +980,13 @@ namespace fyiReporting.RDL
                 }
                 xtw.WriteEndElement();
             }
+        }
+
+        private bool IsNumeric(string str, CultureInfo culture = null, NumberStyles style = NumberStyles.Number)
+        {
+            double numOut;
+            if (culture == null) culture = CultureInfo.InvariantCulture;
+            return Double.TryParse(str, style, culture, out numOut) && !String.IsNullOrWhiteSpace(str);
         }
     }
    
