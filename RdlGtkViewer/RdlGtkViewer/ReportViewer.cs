@@ -221,7 +221,7 @@ namespace fyiReporting.RdlGtkViewer
         }
 
 		
-        protected virtual void OnZoomOutActionActivated(object sender, System.EventArgs e)
+        protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
         {
             foreach (Gtk.Widget w in vboxPages.AllChildren)
             {
@@ -233,7 +233,7 @@ namespace fyiReporting.RdlGtkViewer
             //reportarea.Scale -= 0.1f;
         }
 
-        protected virtual void OnZoomInActionActivated(object sender, System.EventArgs e)
+        protected void OnZoomInActionActivated(object sender, System.EventArgs e)
         {
             foreach (Gtk.Widget w in vboxPages.AllChildren)
             {
@@ -423,7 +423,7 @@ namespace fyiReporting.RdlGtkViewer
             textviewErrors.Buffer.Text = msgs.ToString();
         }
 
-        protected virtual void OnPdfActionActivated(object sender, System.EventArgs e)
+        protected void OnPdfActionActivated(object sender, System.EventArgs e)
         {
 
             // *********************************
@@ -592,7 +592,7 @@ namespace fyiReporting.RdlGtkViewer
             return;
         }
 
-        protected virtual void OnPrintActionActivated(object sender, System.EventArgs e)
+        protected void OnPrintActionActivated(object sender, System.EventArgs e)
         {
             using (PrintContext context = new PrintContext(GdkWindow.Handle))
             {
@@ -627,7 +627,7 @@ namespace fyiReporting.RdlGtkViewer
 			
         }
 
-        protected virtual void OnRefreshActionActivated(object sender, System.EventArgs e)
+        protected void OnRefreshActionActivated(object sender, System.EventArgs e)
         {
             RefreshReport();
         }
@@ -640,7 +640,7 @@ namespace fyiReporting.RdlGtkViewer
             hpanedReport.Position = hpanedWidth - textviewWidth;
         }
 
-        protected virtual void OnHpanedReportSizeAllocated(object o, Gtk.SizeAllocatedArgs args)
+        protected void OnHpanedReportSizeAllocated(object o, Gtk.SizeAllocatedArgs args)
         {
             if (args.Allocation.Width != hpanedWidth)
             {
