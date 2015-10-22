@@ -180,6 +180,6 @@
   <PropertyGroup>
     <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">cp $(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll  $(TargetDir)</PostBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">xcopy /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)"</PostBuildEvent>
-    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">mv $(TargetDir)iTextSharp.dll $(TargetDir)itextsharp.dll</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">cp $(SolutionDir)RdlEngine\$(OutDir)iTextSharp.dll $(TargetDir)itextsharp.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>
