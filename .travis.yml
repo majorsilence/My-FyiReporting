@@ -5,7 +5,6 @@ install:
  
 script:
   - nuget restore ./MajorsilenceReporting-Linux.sln -NonInteractive
-  - export MONO_IOMAP=all
-  - xbuild /p:Configuration=Release /t:Rebuild MajorsilenceReporting-Linux.sln
+  - xbuild /p:Configuration=Release MajorsilenceReporting-Linux.sln
   - nunit-console ./ReportTests/bin/Release/ReportTests.dll -exclude Integration,NotWorkingOnMono
 
