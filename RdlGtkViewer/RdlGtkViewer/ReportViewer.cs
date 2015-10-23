@@ -41,22 +41,6 @@ namespace fyiReporting.RdlGtkViewer
 		
         public NeedPassword DataSourceReferencePassword = null;
 		
-        public string connstr_param_name = "connection_string";
-
-        public string ConnectionStringParameterName
-        {
-            get { return connstr_param_name; }
-            set { connstr_param_name = value; }
-        }
-
-        public string conntype_param_name = "connection_type";
-
-        public string ConnectionTypeParameterName
-        {
-            get { return conntype_param_name; }
-            set { conntype_param_name = value; }
-        }
-
 		private string connectionString;
 		private bool overwriteSubreportConnection;
 
