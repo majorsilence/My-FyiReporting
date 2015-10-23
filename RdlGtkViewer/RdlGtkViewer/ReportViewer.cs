@@ -57,6 +57,9 @@ namespace fyiReporting.RdlGtkViewer
             set { conntype_param_name = value; }
         }
 
+		private string connectionString;
+		private bool overwriteSubreportConnection;
+
         public ListDictionary Parameters { get; private set; }
 
         bool show_errors;
@@ -118,20 +121,15 @@ namespace fyiReporting.RdlGtkViewer
         /// <param name="filename">Filename.</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
         /// <param name="connectionString">Relace all Connection string in report.</param>
-        public void LoadReport(Uri filename, string parameters, string connectionString)
+		/// <param name="overwriteConSubreport">If true connection string in subreport also will be overwrite</param>
+		public void LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false)
         {
 			SourceFile = filename;
-			XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filename.LocalPath);
 
-            foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
-            {
-                node.InnerText = connectionString;
-            }
+			this.connectionString = connectionString;
+			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-            string reportXml = xmlDoc.OuterXml;
-
-            LoadReport(reportXml, parameters);
+			LoadReport(filename, parameters);
         }
 
         /// <summary>
@@ -282,6 +280,8 @@ namespace fyiReporting.RdlGtkViewer
 		
             rdlp = new RDLParser(reportSource);
 			rdlp.Folder = WorkingDirectory;
+			rdlp.OverwriteConnectionString = connectionString;
+			rdlp.OverwriteInSubreport = overwriteSubreportConnection;
             // RDLParser takes RDL XML and Parse compiles the report
 			
             r = rdlp.Parse();

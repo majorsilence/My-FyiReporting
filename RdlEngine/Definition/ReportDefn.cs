@@ -100,6 +100,9 @@ namespace fyiReporting.RDL
 		string _ParseFolder;			// temporary folder for looking up things during parse/finalpass
 		Type _CodeType;			// used for parsing of expressions; DONT USE AT RUNTIME
 
+		string _OverwriteConnectionString; // To overwrite ConnectionString
+		bool _OverwriteInSubreport; // Overwrite ConnectionString in subreport too
+
         /// <summary>
         /// EBN 31/03/2014
         /// Cross object
@@ -112,7 +115,7 @@ namespace fyiReporting.RDL
         }
 
 		// Constructor
-		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount, CrossDelegate crossdel)		// report has no parents
+		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount, CrossDelegate crossdel, string overwriteConnectionString, bool overwriteInSubreport)		// report has no parents
 		{
 			rl = replog;				// used for error reporting
 			_ObjectCount = objcount;	// starting number for objects in this report; 0 other than for subreports
@@ -150,6 +153,9 @@ namespace fyiReporting.RDL
             
             // EBN 30/03/2014
             SubReportGetContent = crossdel;
+
+			_OverwriteConnectionString = overwriteConnectionString;
+			_OverwriteInSubreport = overwriteInSubreport;
 
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in xNode.Attributes)
@@ -788,6 +794,18 @@ namespace fyiReporting.RDL
 		{
 			get {return _ContainsSubreport;}
 			set {_ContainsSubreport = value;}
+		}
+
+		internal string OverwriteConnectionString
+		{
+			get {return _OverwriteConnectionString;}
+			set {_OverwriteConnectionString = value;}
+		}
+
+		internal bool OverwriteInSubreport
+		{
+			get {return _OverwriteInSubreport;}
+			set {_OverwriteInSubreport = value;}
 		}
 
 		internal int ErrorMaxSeverity
