@@ -413,7 +413,7 @@ namespace fyiReporting.RDL
 
 		internal object Evaluate(Report rpt, Row r)
 		{
-			if(lastValueForRow != r || lastValueForReport != rpt)
+			if(r == null || lastValueForRow != r || lastValueForReport != rpt)
 			{
 				lastEvaluatedValue = _Value.Evaluate(rpt, r);
 				lastValueForReport = rpt;
