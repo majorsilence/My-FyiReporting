@@ -3680,7 +3680,7 @@ namespace fyiReporting.RdlDesign
 
 			float bh = 0, hh = 0, fh = 0;
 
-			_HitPoint = new PointF(PointsX(p.X)+_hScroll, PointsY(p.Y) + _vScroll);
+			_HitPoint = new PointF(PointsX(p.X)+_hScroll - lMargin, PointsY(p.Y) + _vScroll);
 
 			// Check for hit in the header
 			XmlNode hn =GetNamedChildNode(phNode, "Height");
