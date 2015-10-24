@@ -47,12 +47,14 @@ namespace fyiReporting.RdlDesign
         readonly Color BANDBORDERCOLOR = Color.DimGray; //Josh: added for Band Border
         readonly BorderStyleEnum BANDBORDERSTYLE = BorderStyleEnum.Solid; //Josh: Band Border Style
         const float BANDBORDERWIDTH = 1f; //Josh: Band border width
-        readonly Color AREABACKCOLOR = Color.LightGray; //Josh: added for area background color (behind page) 
+        readonly Color AREABACKCOLOR = Color.LightGray; //Josh: added for area background color (behind page)
+		readonly Color OUTWORKAREACOLOR = Color.Azure; //out work area background color (on page, but in margin)
+		readonly Color OUTITEMCOLOR = Color.Salmon; //color of out work area parts of item 
 
 		const float RADIUS = 2.5f;
         readonly Color BANDCOLOR = Color.LightGray;
 		const int BANDHEIGHT = 12;              // height of band (e.g. body, pageheader, pagefooter) in pts
-		const float LEFTGAP = 10f; // keep a gap on the left size of the screen
+		const float LEFTGAP = 0f; // keep a gap on the left size of the screen
 		// Various page measurements that we keep
 		float rWidth, pHeight, pWidth;
 		float lMargin, rMargin, tMargin, bMargin;
@@ -1096,10 +1098,19 @@ namespace fyiReporting.RdlDesign
             // in the "off-paper" area.
             //White "Paper" 
 			StyleInfo si = new StyleInfo();
-            si.BackgroundColor = Color.White;
 
-            RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
-            DrawBackground(b, si); 
+			// Entire Paper
+			si.BackgroundColor = OUTWORKAREACOLOR;
+			RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
+			DrawBackground(b, si);
+
+			// Work area
+			si.BackgroundColor = Color.White;
+			b = new RectangleF(xLoc + lMargin, yLoc + 1, /*PointsX(Width)*/(pWidth - lMargin - rMargin) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
+            DrawBackground(b, si);
+
+			//Edge of paper
+			DrawLine(Color.Gray, BorderStyleEnum.Solid, 1, pWidth, yLoc + 1, pWidth, yLoc + height);
             //End "Paper"
 
             // Josh:
@@ -1246,7 +1257,7 @@ namespace fyiReporting.RdlDesign
         {
             RectangleF rir = GetReportItemRect(xNode);
 
-            if (rir.Right + LEFTGAP <= r.Right)
+            if (rir.Right + LEFTGAP + lMargin <= r.Right)
             {
                 return rir;
             }
@@ -1907,7 +1918,7 @@ namespace fyiReporting.RdlDesign
         {
             StyleInfo si = GetStyleInfo(xNode);
             RectangleF ri = GetOutOfBoundsRightReportItemRect(xNode, r);
-            si.BackgroundColor = AREABACKCOLOR;
+			si.BackgroundColor = OUTITEMCOLOR;
 
             if (ri.Right > r.Right)//(!r.Contains(ri))
             {
