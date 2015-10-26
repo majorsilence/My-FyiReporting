@@ -87,6 +87,13 @@ namespace fyiReporting.RDL
         {
             get { return _ZipError; }
         }
+        static public void PropertySettingByEnum(object classInstance,Type classType,string propertyName,string desiredValue)
+        {
+            PropertyInfo dstPropertyInfo = classType.GetProperty(propertyName);
+            Type enumType = dstPropertyInfo.PropertyType;
+            object value2change = Enum.Parse(enumType, desiredValue);
+            dstPropertyInfo.SetValue(classInstance, value2change, null);
+        }
     }
 
     public class ZipOutputStream
@@ -108,7 +115,8 @@ namespace fyiReporting.RDL
                 BindingFlags.CreateInstance, null, args, null, null);
             
             Type theClassType= _ZipOutputStream.GetType();
-			this._PutNextEntry = theClassType.GetMethod("PutNextEntry");
+            ZipWrap.PropertySettingByEnum(_ZipOutputStream, theClassType, "UseZip64","Off");
+            this._PutNextEntry = theClassType.GetMethod("PutNextEntry");
             Type[] types = new Type[3];
             types[0] = typeof(byte[]);
             types[1] = typeof(int);
@@ -118,7 +126,7 @@ namespace fyiReporting.RDL
             this._Finish = theClassType.GetMethod("Finish", types);
             this._Close = theClassType.GetMethod("Close", types);
         }
-
+        
         public Stream ZipStream
         {
             get { return _ZipOutputStream as Stream; }
