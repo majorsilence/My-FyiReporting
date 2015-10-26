@@ -178,11 +178,11 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent Condition="('$(OS)' != 'Unix')">
+    <PostBuildEvent Condition="('$(OS)' == 'Windows_NT')">
       echo '$(OS)'
       xcopy /s /y "$(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll"   "$(TargetDir)"
     </PostBuildEvent>
-    <PostBuildEvent Condition="('$(OS)' != 'Windows_NT')">
+    <PostBuildEvent Condition="('$(OS)' == 'Unix')">
       cp -rv $(SolutionDir)RdlEngine\$(OutDir)ICSharpCode.SharpZipLib.dll $(TargetDir)
       rm -f $(TargetDir)iTextSharp.dll
       cp -rv $(SolutionDir)RdlEngine\$(OutDir)iTextSharp.dll $(TargetDir)itextsharp.dll
