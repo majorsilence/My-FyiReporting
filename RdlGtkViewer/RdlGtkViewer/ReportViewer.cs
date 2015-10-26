@@ -583,7 +583,7 @@ namespace fyiReporting.RdlGtkViewer
 				
                 printing = new PrintOperation();
                 printing.Unit = Unit.Points;
-                printing.UseFullPage = false;
+				printing.UseFullPage = true;
 
                 printing.BeginPrint += HandlePrintBeginPrint;
                 printing.DrawPage += HandlePrintDrawPage;
@@ -601,6 +601,8 @@ namespace fyiReporting.RdlGtkViewer
 		void HandlePrintDrawPage (object o, DrawPageArgs args)
 		{
 			Cairo.Context g = args.Context.CairoContext;
+
+			g.Translate (report.LeftMarginPoints, 0); //FIXME Perhaps need add top margin
 
 			RenderCairo render = new RenderCairo (g);
 			render.RunPage(pages[args.PageNr]);	
