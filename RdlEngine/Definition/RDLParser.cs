@@ -41,6 +41,8 @@ namespace fyiReporting.RDL
 		Report _Report=null;	// The report; complete if bPassed true
 		NeedPassword _DataSourceReferencePassword;	// password for decrypting data source reference file
 		string _Folder;			// folder that will contain report; needed when DataSourceReference used
+		string _overwriteConnectionString; // ConnectionString to be overwrite
+		bool _overwriteInSubreport ;// ConnectionString overwrite in subreport too
 
         /// <summary>
         /// EBN 31/03/2014
@@ -133,7 +135,7 @@ namespace fyiReporting.RDL
 			
 			ReportLog rl = new ReportLog();		// create a report log
 
-			ReportDefn rd = new ReportDefn(xNode, rl, this._Folder, this._DataSourceReferencePassword, oc, OnSubReportGetContent);
+			ReportDefn rd = new ReportDefn(xNode, rl, this._Folder, this._DataSourceReferencePassword, oc, OnSubReportGetContent, OverwriteConnectionString, OverwriteInSubreport);
 			_Report = new Report(rd);
 			
 			bPassed = true;
@@ -150,6 +152,7 @@ namespace fyiReporting.RDL
 			get { return _DataSourceReferencePassword; }
 			set { _DataSourceReferencePassword = value; }
 		}
+
 		/// <summary>
 		/// Folder is the location of the report.
 		/// </summary>
@@ -158,5 +161,24 @@ namespace fyiReporting.RDL
 			get { return _Folder; }
 			set { _Folder = value; }
 		}
+
+		/// <summary>
+		/// ConnectionString to overwrite
+		/// </summary>
+		public string OverwriteConnectionString
+		{
+			get { return _overwriteConnectionString; }
+			set { _overwriteConnectionString = value; }
+		}
+
+		/// <summary>
+		/// overwrite ConnectionString in subreport
+		/// </summary>
+		public bool OverwriteInSubreport
+		{
+			get { return _overwriteInSubreport; }
+			set { _overwriteInSubreport = value; }
+		}
+
 	}
 }

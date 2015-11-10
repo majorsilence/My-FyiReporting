@@ -104,7 +104,9 @@ namespace fyiReporting.RdlGtkViewer
                 rep_g.Paint();
 				
                 rep_g.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
-				
+
+				rep_g.Translate (report.LeftMarginPoints * Scale, 0); //FIXME Perhaps need add top margin
+
                 using (var render = new RenderCairo(rep_g, Scale))
                 {
                     render.RunPage(pages);

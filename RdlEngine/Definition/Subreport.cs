@@ -286,6 +286,12 @@ namespace fyiReporting.RDL
 				prog = GetRdlSource(name);
 				rdlp =  new RDLParser(prog);
 				rdlp.Folder = folder;
+				if(OwnerReport.OverwriteInSubreport)
+				{
+					rdlp.OverwriteConnectionString = OwnerReport.OverwriteConnectionString;
+					rdlp.OverwriteInSubreport = OwnerReport.OverwriteInSubreport;
+				}
+
 				r = rdlp.Parse(OwnerReport.GetObjectNumber());
 				OwnerReport.SetObjectNumber(r.ReportDefinition.GetObjectNumber());
 				if (r.ErrorMaxSeverity > 0) 

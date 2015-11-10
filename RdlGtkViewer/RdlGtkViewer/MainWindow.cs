@@ -15,31 +15,6 @@ public partial class MainWindow: Gtk.Window
         a.RetVal = true;
     }
 
-    protected void OnZoomInActionActivated(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected void OnPrintActionActivated(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected void OnPdfActionActivated(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected void OnRefreshActionActivated(object sender, System.EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
     protected void OnFileOpen_Activated(object sender, System.EventArgs e)
     {
         object[] param = new object[4];
@@ -83,8 +58,6 @@ public partial class MainWindow: Gtk.Window
         }
         //Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
         fc.Destroy();
-	
-			
     }
 
     private string GetParameters(Uri sourcefile)

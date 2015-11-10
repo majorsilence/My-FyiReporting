@@ -4,6 +4,8 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 
 https://groups.google.com/d/forum/myfyireporting
 
+[![Build Status](https://travis-ci.org/majorsilence/My-FyiReporting.svg)](https://travis-ci.org/majorsilence/My-FyiReporting)
+
 # Documentation
 See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
 
@@ -56,6 +58,7 @@ See the wiki page [https://github.com/majorsilence/My-FyiReporting/wiki/Contribu
 ### Core Team
 
 * [majorsilence](https://github.com/majorsilence) (Peter Gill)
+* [Gankov](https://github.com/Gankov)
 
 
 ### Contributors
@@ -66,7 +69,6 @@ A big thanks to all of Majorsilence Reporting contributors:
 * [Geek648](https://github.com/Geek648)
 * [kobruleht](https://github.com/kobruleht)
 * [jzielke](https://github.com/jzielke)
-* [Gankov](https://github.com/Gankov)
 * [gam6itko](https://github.com/gam6itko)
 * [tsliang](https://github.com/tsliang)
 * [mohsenalikhani](https://github.com/mohsenalikhani)

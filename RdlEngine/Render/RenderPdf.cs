@@ -495,25 +495,26 @@ namespace fyiReporting.RDL
         /// Default I get embedded fonts in Fonts folder in current 
         /// folder RdlEngine.dll in, can set font folder here 
         /// </summary> 
-        private string FontFolder {
-            get 
-            {
-                if (System.Environment.OSVersion.Platform == PlatformID.Unix) {
+		private string FontFolder {
+			get {
+				int platform = (int)Environment.OSVersion.Platform;
+				int version = (int)Environment.OSVersion.Version.Major;
 
-                    if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
-                    {
-                        return "/usr/share/fonts/truetype/msttcorefonts";
-                    }
-                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
-                    {
-                        dejavuFonts=true;
-                        return "/usr/share/fonts/truetype/ttf-dejavu";
-                    }
-                    else
-                    {
-                        throw new System.IO.DirectoryNotFoundException("Cannot find font directory");
-                    }
-                }
+				//Kind of MacOSX
+				if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+					return "/Library/Fonts";
+				}
+				if (System.Environment.OSVersion.Platform == PlatformID.Unix) {
+					if (System.IO.Directory.Exists ("/usr/share/fonts/truetype/msttcorefonts")) {
+						return "/usr/share/fonts/truetype/msttcorefonts";
+					} else if (System.IO.Directory.Exists ("/usr/share/fonts/truetype")) {
+						dejavuFonts = true;
+						return "/usr/share/fonts/truetype";
+					} else {
+						dejavuFonts = true;
+						return Environment.GetFolderPath (Environment.SpecialFolder.Fonts);
+					}
+				}
 
 #if NET_4
          return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
@@ -531,112 +532,135 @@ namespace fyiReporting.RDL
         /// Page Text element at the X Y position; multiple lines handled
         /// </summary>
         /// <returns></returns>
-        private void iAddText(float x, float y, float height, float width, string[] sa,
-            StyleInfo si, PdfFonts fonts, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
-        {
+		private void iAddText (float x, float y, float height, float width, string[] sa,
+			StyleInfo si, PdfFonts fonts, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
+		{
+			int platform = (int)Environment.OSVersion.Platform;
+			int version = (int)Environment.OSVersion.Version.Major;
 
-            string pdfFont = fonts.GetPdfFont(si);	// get the pdf font resource name
-            BaseFont bf;
-            string face = iFontNameNormalize(si.FontFamily);
-            string fontname = "";
-            bool fonttype1 = true;
-            if (face == "Times-Roman")
-            {
-                if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
-                {
-                    face = dejavuFonts ? "DejaVu Serif Condensed Bold Italic" : "Times-BoldItalic";
-                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-BoldItalic.ttf" : "timesbi.ttf");
-                }
-                else if (si.IsFontBold())
-                {
-                    face = dejavuFonts ? "DejaVu Serif Condensed Bold" : "Times-Bold";
-                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-Bold.ttf" : "timesbd.ttf");
-
-                    //face = "Times-Bold";
-                    //fontname = "\\timesbd.ttf";
-                }
-                else if (si.FontStyle == FontStyleEnum.Italic)
-                {
-                    face = dejavuFonts ? "DejaVu Serif Condensed Italic" : "Times-Italic";
-                    fontname = (dejavuFonts ? "DejaVuSerifCondensed-Italic.ttf" : "timesi.ttf");
-
-                    //face = "Times-Italic";
-                    //fontname = "\\timesi.ttf";
-                }
-                else
-                {
-                    face = dejavuFonts ? "DejaVu Serif Condensed" : face;
-                    fontname = (dejavuFonts ? "DejaVuSerifCondensed.ttf" : "times.ttf");
-                }
-                fonttype1 = false;
-            }
-            else
-                if (face == "Arial")
-                {
-                    if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
-                    {
-                        face = dejavuFonts ? "DejaVu Sans Condensed Bold Oblique" : "Arial-BoldItalic";
-                        fontname = (dejavuFonts ? "DejaVuSansCondensed-BoldOblique.ttf" : "arialbi.ttf");
-                        //face = "Arial-BoldItalic";
-                        //fontname = "\\arialbi.ttf";
-                    }
-                    else if (si.IsFontBold())
-                    {
-                        face = dejavuFonts ? "DejaVu Sans Condensed Bold" : "Arial-Bold";
-                        fontname = (dejavuFonts ? "DejaVuSansCondensed-Bold.ttf" : "arialbd.ttf");
-                        //face = "Arial-Bold";
-                        //fontname = "\\arialbd.ttf";
-                    }
-                    else if (si.FontStyle == FontStyleEnum.Italic)
-                    {
-                        face = dejavuFonts ? "DejaVu Sans Condensed Oblique" : "Arial-Italic";
-                        fontname = (dejavuFonts ? "DejaVuSansCondensed-Oblique.ttf" : "ariali.ttf");
-                        //face = "Arial-Italic";
-                        //fontname = "\\ariali.ttf";
-                    }
-                    else
-                    {
-                        face = dejavuFonts ? "DejaVu Sans Condensed" : face;
-                        fontname = (dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
-                        // original was: probsbly mispüeleld file name:  fontname = "\\ariali.ttf";
-                    }
-                    fonttype1 = false;
-                }
-                else
-                    if (face == "Courier New")
-                    {
-                        if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
-                        {
-                            face = dejavuFonts ? "DejaVu Sans Mono Bold Oblique" : "Courier New-BoldItalic";
-                            fontname = (dejavuFonts ? "DejaVuSansMono-BoldOblique.ttf" : "courbi.ttf");
-                            //face = "Courier New-BoldItalic";
-                            //fontname = "\\courbi.ttf";
-                        }
-                        else if (si.IsFontBold())
-                        {
-                            face = dejavuFonts ? "DejaVu Sans Mono Bold" : "Courier New-Bold";
-                            fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "courbd.ttf");
-
-                            //face = "Courier New-Bold";
-                            //fontname = "\\courbd.ttf";
-                        }
-                        else if (si.FontStyle == FontStyleEnum.Italic)
-                        {
-                            face = dejavuFonts ? "DejaVu Sans Mono Oblique" : "Courier New-Italic";
-                            fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "couri.ttf");
-                            //face = "Courier New-Italic";
-                            //fontname = "\\couri.ttf";
-                        }
-                        else
-                        {
-                            face = dejavuFonts ? "DejaVu Sans Mono" : face;
-                            fontname = (dejavuFonts ? "DejaVuSansMono.ttf" : "cour.ttf");
-                            //fontname = "\\cour.ttf";
-                        }
-                        fonttype1 = false;
-                    }
-                    else
-                    {
+			BaseFont bf;
+			string face = iFontNameNormalize (si.FontFamily);
+			string fontname = "";
+			bool fonttype1 = true;
+			var folder = FontFolder; //Call to determine folder and set value of dejavuFonts;
+			if (face == "Times-Roman") {
+				if (si.IsFontBold () && si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "TimesNewRomanPS-BoldItalicMT";
+						fontname = "Times New Roman Bold Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Serif Condensed Bold Italic" : "Times-BoldItalic";
+						fontname = (dejavuFonts ? "DejaVuSerifCondensed-BoldItalic.ttf" : "timesbi.ttf");
+					}
+				} else if (si.IsFontBold ()) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "TimesNewRomanPS-BoldMT";
+						fontname = "Times New Roman Bold.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Serif Condensed Bold" : "Times-Bold";
+						fontname = (dejavuFonts ? "DejaVuSerifCondensed-Bold.ttf" : "timesbd.ttf");
+					}
+				} else if (si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "TimesNewRomanPS-ItalicMT";
+						fontname = "Times New Roman Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Serif Condensed Italic" : "Times-Italic";
+						fontname = (dejavuFonts ? "DejaVuSerifCondensed-Italic.ttf" : "timesi.ttf");
+					}
+				} else {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "TimesNewRomanPSMT";
+						fontname = "Times New Roman.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Serif Condensed" : face;
+						fontname = (dejavuFonts ? "DejaVuSerifCondensed.ttf" : "times.ttf");
+					}
+				}
+				fonttype1 = false;
+			} else if (face == "Arial") {
+				if (si.IsFontBold () && si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "Arial BoldItalicMT";
+						fontname = "Arial Bold Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Condensed Bold Oblique" : "Arial-BoldItalic";
+						fontname = (dejavuFonts ? "DejaVuSansCondensed-BoldOblique.ttf" : "arialbi.ttf");
+					}
+				} else if (si.IsFontBold ()) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "Arial-BoldMT";
+						fontname = "Arial Bold.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Condensed Bold" : "Arial-Bold";
+						fontname = (dejavuFonts ? "DejaVuSansCondensed-Bold.ttf" : "arialbd.ttf");
+					}
+				} else if (si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "Arial-ItalicMT";
+						fontname = "Arial Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Condensed Oblique" : "Arial-Italic";
+						fontname = (dejavuFonts ? "DejaVuSansCondensed-Oblique.ttf" : "ariali.ttf");
+					}
+				} else {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "ArialMT";
+						fontname = "Arial.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Condensed" : face;
+						fontname = (dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
+					}
+				}
+				fonttype1 = false;
+			} else if (face == "Courier New") {
+				if (si.IsFontBold () && si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "CourierNewPS-BoldItalicMT";
+						fontname = "Courier New Bold Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Mono Bold Oblique" : "Courier New-BoldItalic";
+						fontname = (dejavuFonts ? "DejaVuSansMono-BoldOblique.ttf" : "courbi.ttf");
+					}
+				} else if (si.IsFontBold ()) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "CourierNewPS-BoldMT";
+						fontname = "Courier New Bold.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Mono Bold" : "Courier New-Bold";
+						fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "courbd.ttf");
+					}
+				} else if (si.FontStyle == FontStyleEnum.Italic) {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "CourierNewPS-ItalicMT";
+						fontname = "Courier New Italic.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Mono Oblique" : "Courier New-Italic";
+						fontname = (dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "couri.ttf");
+					}
+				} else {
+					//OSX
+					if ((platform == 4 || platform == 6 || platform == 128) && version > 8) {
+						face = "CourierNewPSMT";
+						fontname = "Courier New.ttf";
+					} else {
+						face = dejavuFonts ? "DejaVu Sans Mono" : face;
+						fontname = (dejavuFonts ? "DejaVuSansMono.ttf" : "cour.ttf");
+					}
+				}
+				fonttype1 = false;
+			} else {
                         if (si.IsFontBold() &&
                     si.FontStyle == FontStyleEnum.Italic)   // bold and italic?
                             face = face + "-BoldOblique";
@@ -658,7 +682,7 @@ namespace fyiReporting.RDL
                 }
                 else
                 {
-                    string path = System.IO.Path.Combine(FontFolder, fontname);
+                    string path = System.IO.Path.Combine(folder, fontname);
                     bf = BaseFont.CreateFont(path, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 }
                 BaseFonts.Add(bf);

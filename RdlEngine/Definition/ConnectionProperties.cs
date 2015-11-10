@@ -59,7 +59,9 @@ namespace fyiReporting.RDL
 						_DataProvider = xNodeLoop.InnerText;
 						break;
 					case "ConnectString":
-						_ConnectString = new Expression(r, this, xNodeLoop, ExpressionType.String);
+					_ConnectString = String.IsNullOrWhiteSpace (r.OverwriteConnectionString) 
+						? new Expression(r, this, xNodeLoop, ExpressionType.String)
+						: new Expression(r, this, r.OverwriteConnectionString, ExpressionType.String);
 						break;
 					case "IntegratedSecurity":
 						_IntegratedSecurity = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
