@@ -1438,11 +1438,14 @@
   <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="mainTC.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="mainTC.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 39</value>
   </data>
   <data name="mainTC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>712, 21</value>
+    <value>1013, 21</value>
   </data>
   <data name="mainTC.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
