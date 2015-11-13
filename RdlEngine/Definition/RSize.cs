@@ -136,6 +136,11 @@ namespace fyiReporting.RDL
             return rs.Points;
         }
 
+		internal RSize(int normalizedSize)
+		{
+			_Size = normalizedSize;
+		}
+
 		internal RSize(ReportDefn r, XmlNode xNode):this(r, xNode.InnerText)
 		{
 		}
@@ -286,6 +291,20 @@ namespace fyiReporting.RDL
 
                 return _Original; 
             }
-        }
+		}
+
+		#region operators
+
+		public static RSize operator +(RSize arg1, RSize arg2)
+		{
+			return new RSize(arg1.Size + arg2.Size);
+		}
+
+		public static RSize operator -(RSize arg1, RSize arg2)
+		{
+			return new RSize(arg1.Size - arg2.Size);
+		}
+
+		#endregion
 	}
 }
