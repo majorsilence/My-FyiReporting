@@ -602,8 +602,6 @@ namespace fyiReporting.RdlGtkViewer
 		{
 			Cairo.Context g = args.Context.CairoContext;
 
-			g.Translate (report.LeftMarginPoints, 0); //FIXME Perhaps need add top margin
-
 			RenderCairo render = new RenderCairo (g);
 			render.RunPage(pages[args.PageNr]);	
 		}
