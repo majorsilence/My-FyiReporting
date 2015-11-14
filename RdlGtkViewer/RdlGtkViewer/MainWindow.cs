@@ -68,8 +68,6 @@ public partial class MainWindow: Gtk.Window
         parser.Parse();
         if (parser.Report.UserReportParameters.Count > 0)
         {
-					
-            int count = 0;
             foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters)
             {
                 parameters += "&" + rp.Name + "=";

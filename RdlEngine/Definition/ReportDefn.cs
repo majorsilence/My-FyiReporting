@@ -601,7 +601,7 @@ namespace fyiReporting.RDL
                 {
                     if (Subreport.Left == null)
                         Subreport.Left = new RSize(this, "0 in");
-                    return Subreport.Left;
+                    return Subreport.Left + Subreport.OwnerReport.LeftMargin;
                 }
 
 				if (_LeftMargin == null)
