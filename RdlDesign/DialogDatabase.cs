@@ -245,6 +245,37 @@ namespace fyiReporting.RdlDesign
 	</PageFooter>
 		</Report>";
 
+        private string _TemplateEmpty = @"<?xml version='1.0' encoding='UTF-8'?>
+<Report |schema| > 
+	<Description>|description|</Description>
+	<Author>|author|</Author>
+	|orientation|
+	<Width>7.5in</Width>
+	<TopMargin>.25in</TopMargin>
+	<LeftMargin>.25in</LeftMargin>
+	<RightMargin>.25in</RightMargin>
+	<BottomMargin>.25in</BottomMargin>
+	|reportparameters|
+	<PageHeader>
+		<Height>.5in</Height>
+        <PrintOnFirstPage>true</PrintOnFirstPage>
+        <PrintOnLastPage>true</PrintOnLastPage>
+	</PageHeader>
+	<Body><Height>25pt</Height></Body>
+	<PageFooter>
+		<Height>14pt</Height>
+		<ReportItems>
+			<Textbox><Top>1pt</Top><Left>10pt</Left><Height>12pt</Height><Width>3in</Width>
+				<Value>=Globals!PageNumber + ' of ' + Globals!TotalPages</Value>
+				<Style><FontSize>10pt</FontSize><FontWeight>Normal</FontWeight></Style>
+			</Textbox> 	
+		</ReportItems>
+        <PrintOnFirstPage>true</PrintOnFirstPage>
+        <PrintOnLastPage>true</PrintOnLastPage>
+	</PageFooter>
+		</Report>";
+
+
         public DialogDatabase(RdlDesigner rDesigner)
         {
             _rDesigner = rDesigner;
@@ -436,19 +467,21 @@ namespace fyiReporting.RdlDesign
         {
             if (cbColumnList.Items.Count > 0)		// We already have the columns?
                 return;
-
-            if (_ColumnList == null)
-                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
-
-            foreach (SqlColumn sq in _ColumnList)
+            if (!rbEmpty.Checked)
             {
-                cbColumnList.Items.Add(sq);
-                clbSubtotal.Items.Add(sq);
-            }
+                if (_ColumnList == null)
+                    _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
 
-            SqlColumn sqc = new SqlColumn();
-            sqc.Name = "";
-            cbColumnList.Items.Add(sqc);
+                foreach (SqlColumn sq in _ColumnList)
+                {
+                    cbColumnList.Items.Add(sq);
+                    clbSubtotal.Items.Add(sq);
+                }
+
+                SqlColumn sqc = new SqlColumn();
+                sqc.Name = "";
+                cbColumnList.Items.Add(sqc);
+            }
             return;
         }
 
@@ -464,14 +497,19 @@ namespace fyiReporting.RdlDesign
                 template = _TemplateMatrix;
             else if (rbChart.Checked)
                 template = _TemplateChart;
+            else if (rbEmpty.Checked)
+                template = _TemplateEmpty;
             else
                 template = _TemplateTable;	// default to table- should never reach
 
-            if (_ColumnList == null)
-                _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
+            if (!rbEmpty.Checked)
+            {
+                if (_ColumnList == null)
+                    _ColumnList = DesignerUtility.GetSqlColumns(GetDataProvider(), GetDataConnection(), tbSQL.Text, reportParameterCtl1.lbParameters.Items);
 
-            if (_ColumnList.Count == 0)		// can only happen by an error
-                return false;
+                if (_ColumnList.Count == 0)     // can only happen by an error
+                    return false;
+            }
 
             string[] parts = template.Split('|');
             StringBuilder sb = new StringBuilder(template.Length);
@@ -1629,6 +1667,14 @@ namespace fyiReporting.RdlDesign
                 }
             }
 
+        }
+
+        private void rbEmpty_CheckedChanged(object sender, EventArgs e)
+        {
+            tbReportSyntax.Text = "";	// when SQL changes get rid of report syntax
+            TabularGroup.Enabled = !rbEmpty.Checked;
+            DBConnection.Enabled = !rbEmpty.Checked;
+            DBSql.Enabled= !rbEmpty.Checked;
         }
     }
 }
