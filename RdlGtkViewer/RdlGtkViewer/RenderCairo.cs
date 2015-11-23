@@ -164,7 +164,7 @@ namespace fyiReporting.RdlGtkViewer
             g.Save();
 //          Pen p = null;  
 //          p = new Pen(c, w);
-			g.SetSourceColor (c);
+            g.Color = c;
             g.LineWidth = w;
             switch (bs)
             {
@@ -466,7 +466,7 @@ namespace fyiReporting.RdlGtkViewer
                                       r.Height);
 
             //drawBrush = new SolidBrush(si.Color);
-			g.SetSourceColor (si.Color.ToCairoColor());
+            g.Color = si.Color.ToCairoColor();
 //                if (pt.NoClip)   // request not to clip text 
 //                {
 //                    g.DrawString(pt.Text, drawFont, drawBrush, new PointF(r.Left, r.Top), drawFormat);
@@ -542,9 +542,9 @@ namespace fyiReporting.RdlGtkViewer
 
             if (gradient != null)
             {
-//                    g.FillRectangle(linGrBrush, rect);
+////                    g.FillRectangle(linGrBrush, rect);
                 g.FillRectangle(rect, gradient);
-				gradient.Dispose();	
+                gradient.Destroy();	
             }
             else if (!si.BackgroundColor.IsEmpty)
             {

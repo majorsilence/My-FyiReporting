@@ -92,17 +92,15 @@ namespace fyiReporting.RdlGtkViewer
             using (Context rep_g = new Context(rep_s))
             using (ImageSurface shadow_s = rep_s.Clone())
             using (Context shadow_g = new Context(shadow_s))
-			using (SolidPattern shadow_pattern = new SolidPattern(new Color(0.6, 0.6, 0.6)))
-			using (SolidPattern rep_pattern = new SolidPattern(new Color(1, 1, 1)))
             {
 				
                 g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
-				shadow_g.SetSource (shadow_pattern);
+                shadow_g.Pattern = new SolidPattern(new Color(0.6, 0.6, 0.6));
                 shadow_g.Paint();
                 g.SetSourceSurface(shadow_s, shadow_padding, shadow_padding);
                 g.Paint();
 				
-				rep_g.SetSource (rep_pattern);
+                rep_g.Pattern = new SolidPattern(new Color(1, 1, 1));
                 rep_g.Paint();
 				
                 rep_g.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
