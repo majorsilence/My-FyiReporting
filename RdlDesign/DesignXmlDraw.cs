@@ -1883,24 +1883,116 @@ namespace fyiReporting.RdlDesign
 			}
 
 			StyleInfo si = new StyleInfo();
-		
-			si.BStyleBottom = si.BStyleLeft = si.BStyleTop = si.BStyleRight = BorderStyleEnum.Solid;
-			si.BWidthBottom = si.BWidthLeft = si.BWidthRight = si.BWidthTop = 1;
+
+            XmlNode parent = GetReportItemDataRegionContainer(xNode);
+         
+            if (parent != null)
+            {
+                RectangleF rect = GetRectangle(parent);
+                rect.X += lMargin;
+                rect.Y += BANDBORDERWIDTH;
+                DrawSelected(parent, rect);
+            }
+            si.BStyleBottom = si.BStyleLeft = si.BStyleTop = si.BStyleRight = BorderStyleEnum.Solid;
+            si.BWidthBottom = si.BWidthLeft = si.BWidthRight = si.BWidthTop = 1;
             // Josh: Changed to DimGray (personal preference)
             si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = Color.DimGray; //Color.LightGray; 
-			DrawBorder(si, r);
 
-			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
-				r.X - RADIUS, r.Y - RADIUS, RADIUS*2, true);  // top left
-			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
-				r.X + r.Width - RADIUS, r.Y - RADIUS, RADIUS*2, true);  // top right
-			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
-				r.X - RADIUS, r.Y + r.Height - RADIUS, RADIUS*2, true);  // bottom left
-			DrawCircle(Color.Black, BorderStyleEnum.Solid, 1, 
-				r.X + r.Width - RADIUS, r.Y + r.Height - RADIUS, RADIUS*2, true);  // bottom right
-		}
+            if (!IsDataRegion(xNode))
+            {
+                DrawBorder(si, r);
+                DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
+                    r.X - RADIUS, r.Y - RADIUS, RADIUS * 2, true);  // top left
+                DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
+                    r.X + r.Width - RADIUS, r.Y - RADIUS, RADIUS * 2, true);  // top right
+                DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
+                    r.X - RADIUS, r.Y + r.Height - RADIUS, RADIUS * 2, true);  // bottom left
+                DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
+                    r.X + r.Width - RADIUS, r.Y + r.Height - RADIUS, RADIUS * 2, true);  // bottom right
+            }
+            else
+            {
+                if (xNode.Name == "Table")
+                {
+                    HighLightTableRegion(xNode, r);
+                }
+            
+            }
 
-		private void DrawSelectedLine(XmlNode xNode, RectangleF r)
+        }
+
+        private void HighLightTableRegion(XmlNode xNode,RectangleF r)
+        {
+            Color[] defaultTableGroupColors =
+            {
+                Color.LightBlue,Color.LightGreen,Color.LightYellow,Color.Pink,Color.Orange,Color.Aquamarine
+            };
+
+            int descBandWitdh = 100;
+            int descColumnsHeight = 10;
+
+            StyleInfo siDefault = new StyleInfo();
+            siDefault.BackgroundColor = Color.Aqua;
+            siDefault.FontFamily = "Arial";
+            siDefault.FontSize = 8;
+            siDefault.FontWeight = FontWeightEnum.Bold;
+            siDefault.BStyleBottom = siDefault.BStyleLeft = siDefault.BStyleRight = siDefault.BStyleTop = BorderStyleEnum.Solid;
+            siDefault.BColorBottom = siDefault.BColorLeft = siDefault.BColorRight = siDefault.BColorTop =  Color.Black;
+            
+            RectangleF bandPos = r;
+            bandPos.X = r.X + r.Width;
+            bandPos.Width = descBandWitdh;
+
+
+            StyleInfo si = (StyleInfo) siDefault.Clone();
+            Dictionary<string, Color> assignedGroupColors = new Dictionary<string, Color>();
+
+            Dictionary<string, List<XmlNode>> sections = GetTableSections(xNode);
+            int colorGroupIndex = 0;
+            foreach (var s in sections)
+            {
+                foreach (var p in s.Value)
+                {
+                    float h = GetSize(GetNamedChildNode(p, "Height").InnerText);
+                    si = (StyleInfo)siDefault.Clone();
+                    bandPos.Height = h;
+                    if (s.Key.StartsWith("G"))
+                    {
+                        int sepGroup = s.Key.IndexOf('_');
+                        string groupDesc = s.Key.Substring(sepGroup + 1);
+                        if (groupDesc.Length > 0)
+                        {
+                            Color groupColor;
+                            if (!assignedGroupColors.TryGetValue(groupDesc, out groupColor))
+                            {
+
+                                if (colorGroupIndex > defaultTableGroupColors.Length - 1)
+                                    groupColor = defaultTableGroupColors[defaultTableGroupColors.Length-1];
+                                else
+                                    groupColor = defaultTableGroupColors[colorGroupIndex];
+
+                                    assignedGroupColors.Add(groupDesc, groupColor);
+                                    colorGroupIndex++;
+                            }
+                            si.BackgroundColor = groupColor;
+                        }
+                    }
+                    DrawString(s.Key, si, bandPos);
+                    bandPos.Y += h;
+                }
+
+            }
+
+            //columns
+            bandPos = r;
+            bandPos.Y -= descColumnsHeight;
+            bandPos.Height = descColumnsHeight;
+            si = (StyleInfo)siDefault.Clone();
+            si.TextAlign = TextAlignEnum.Center;
+            DrawString("Columns", si, bandPos);
+
+        }
+        private void DrawSelectedLine(XmlNode xNode, RectangleF r)
 		{
 			PointF p1;
 			PointF p2;
@@ -2012,78 +2104,171 @@ namespace fyiReporting.RdlDesign
 			}
 			return cols;
 		}
+        
+        private Dictionary<string, List<XmlNode>> GetTableSections(XmlNode xNode)
+        {
+            Dictionary<string, XmlNode> mainSections=new Dictionary<string, XmlNode>();
+            Dictionary<string, List<XmlNode>> resultSections = new Dictionary<string, List<XmlNode>>();
+            XmlNode tableNode;
 
-		private List<XmlNode> GetTableRows(XmlNode xNode)
-		{
+            mainSections.Add("Header", null);
+            mainSections.Add("Details", null);
+            mainSections.Add("Footer", null);
+            mainSections.Add("TableGroups", null);
+
+            foreach (XmlNode cNode in xNode)
+            {
+                if (cNode.NodeType != XmlNodeType.Element)
+                    continue;
+                if (mainSections.ContainsKey(cNode.Name))
+                {
+                    mainSections[cNode.Name] = cNode;
+                }
+           }
+
+           if (mainSections.TryGetValue("Header", out tableNode) && tableNode != null)
+           {
+                resultSections.Add("Header",GetTableRowsNodes(GetNamedChildNode(tableNode, "TableRows")));
+           }
+
+           if (mainSections.TryGetValue("TableGroups", out tableNode)&&tableNode!=null)
+           {
+                foreach(var tg in GetTableGroupRowsNodes(tableNode, "Header", (s) => "GH_" + s))
+                    resultSections.Add(tg.Key,tg.Value);
+
+           }
+
+           if (mainSections.TryGetValue("Details", out tableNode) && tableNode != null)
+           {
+                resultSections.Add("Details", GetTableRowsNodes(GetNamedChildNode(tableNode, "TableRows")));
+           }
+
+           if (mainSections.TryGetValue("TableGroups", out tableNode) && tableNode != null)
+           {
+                foreach (var tg in GetTableGroupRowsNodes(tableNode, "Footer", (s) => "GF_" + s))
+                    resultSections.Add(tg.Key, tg.Value);
+
+           }
+
+           if (mainSections.TryGetValue("Footer", out tableNode) && tableNode != null)
+           {
+               resultSections.Add("Footer", GetTableRowsNodes(GetNamedChildNode(tableNode, "TableRows")));
+           }
+
+
+            return resultSections;
+
+        }
+        
+        private List<XmlNode> GetTableRows(XmlNode xNode)
+        {
             List<XmlNode> trs = new List<XmlNode>();
 
-			XmlNode tblGroups=null, header=null, footer=null, details=null;
+            XmlNode tblGroups = null, header = null, footer = null, details = null;
 
-			// Find the major groups that have TableRows
-			foreach (XmlNode cNode in xNode)
-			{
-				if (cNode.NodeType != XmlNodeType.Element)
-					continue;
-				switch (cNode.Name)
-				{
-					case "Header":
-						header = cNode;
-						break;
-					case "Details":
-						details = cNode;
-						break;
-					case "Footer":
-						footer = cNode;
-						break;
-					case "TableGroups":
-						tblGroups = cNode;
-						break;			
-				}
-			}
-			GetTableRowsAdd(GetNamedChildNode(header, "TableRows"), trs);
-			GetTableGroupsRows(tblGroups, trs, "Header");
-			GetTableRowsAdd(GetNamedChildNode(details, "TableRows"), trs);
-			GetTableGroupsRows(tblGroups, trs, "Footer");
-			GetTableRowsAdd(GetNamedChildNode(footer, "TableRows"), trs);
+            // Find the major groups that have TableRows
+            foreach (XmlNode cNode in xNode)
+            {
+                if (cNode.NodeType != XmlNodeType.Element)
+                    continue;
+                switch (cNode.Name)
+                {
+                    case "Header":
+                        header = cNode;
+                        break;
+                    case "Details":
+                        details = cNode;
+                        break;
+                    case "Footer":
+                        footer = cNode;
+                        break;
+                    case "TableGroups":
+                        tblGroups = cNode;
+                        break;
+                }
+            }
+            GetTableRowsAdd(GetNamedChildNode(header, "TableRows"), trs);
+            GetTableGroupsRows(tblGroups, trs, "Header");
+            GetTableRowsAdd(GetNamedChildNode(details, "TableRows"), trs);
+            GetTableGroupsRows(tblGroups, trs, "Footer");
+            GetTableRowsAdd(GetNamedChildNode(footer, "TableRows"), trs);
 
-			return trs;
-		}
+            return trs;
+        }
 
         private void GetTableGroupsRows(XmlNode xNode, List<XmlNode> trs, string name)
-		{
-			if (xNode == null)
-				return;
-			foreach (XmlNode xNodeLoop in xNode.ChildNodes)
-			{
-				if (xNodeLoop.NodeType == XmlNodeType.Element && 
-					xNodeLoop.Name == "TableGroup")
-				{
-					XmlNode n = GetNamedChildNode(xNodeLoop, name);
-					if (n == null)
-						continue;
-					n = GetNamedChildNode(n, "TableRows");
-					if (n == null)
-						continue;
+        {
+            if (xNode == null)
+                return;
+            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+            {
+                if (xNodeLoop.NodeType == XmlNodeType.Element &&
+                    xNodeLoop.Name == "TableGroup")
+                {
+                    XmlNode n = GetNamedChildNode(xNodeLoop, name);
+                    if (n == null)
+                        continue;
+                    n = GetNamedChildNode(n, "TableRows");
+                    if (n == null)
+                        continue;
 
-					GetTableRowsAdd(n, trs);
-				}
-			}
+                    GetTableRowsAdd(n, trs);
+                }
+            }
 
-		}
+        }
 
+        private Dictionary<string,List<XmlNode>> GetTableGroupRowsNodes(XmlNode xNode,string sectionGroup,Func<string,string> groupNameKey)
+        {
+            Dictionary<string, List<XmlNode>> result = new Dictionary<string, List<XmlNode>>();
+            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+            {
+                if (xNodeLoop.NodeType == XmlNodeType.Element &&
+                    xNodeLoop.Name == "TableGroup")
+                {
+
+                    XmlNode groupNode = GetNamedChildNode(xNodeLoop, "Grouping");
+                    XmlAttribute groupName = groupNode.Attributes["Name"];
+                    XmlNode headerNode = GetNamedChildNode(xNodeLoop, sectionGroup);
+                    if (headerNode != null)
+                    {
+
+                        result.Add( groupNameKey(groupName.InnerText), GetTableRowsNodes(GetNamedChildNode(headerNode, "TableRows")));
+                    }
+                }
+            }
+            return result;
+        }
         private void GetTableRowsAdd(XmlNode xNode, List<XmlNode> trs)
-		{
-			if (xNode == null)
-				return;
-			foreach (XmlNode xNodeLoop in xNode.ChildNodes)
-			{
-				if (xNodeLoop.NodeType == XmlNodeType.Element && 
-					xNodeLoop.Name == "TableRow")
-				{
-					trs.Add(xNodeLoop);
-				}
-			}
-		}
+        {
+            if (xNode == null)
+                return;
+            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+            {
+                if (xNodeLoop.NodeType == XmlNodeType.Element &&
+                    xNodeLoop.Name == "TableRow")
+                {
+                    trs.Add(xNodeLoop);
+                }
+            }
+        }
+        private List<XmlNode> GetTableRowsNodes(XmlNode xNode)
+        {
+            if (xNode == null)
+                return null;
+
+            List<XmlNode> result = new List<XmlNode>();
+
+            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+            {
+                if (xNodeLoop.NodeType == XmlNodeType.Element &&
+                    xNodeLoop.Name == "TableRow")
+                {
+                    result.Add( xNodeLoop);
+                }
+            }
+            return result;
+        }
 
         private float GetTableRowsHeight(List<XmlNode> trs)
 		{
