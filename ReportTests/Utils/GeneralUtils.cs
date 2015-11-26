@@ -15,5 +15,19 @@ namespace ReportTests.Utils
             thread.CurrentCulture = new CultureInfo(cultureName);
           
         }
+
+        public static Uri OutputTestsFolder()
+        {
+            string tmpf = System.IO.Path.GetTempPath();
+            return new Uri(System.IO.Path.Combine(tmpf, "rdlTestResults", Guid.NewGuid().ToString()));
+
+        }
+        public static Uri ReportsFolder(string subFoder)
+        {
+            string cwd = System.Environment.CurrentDirectory;
+            return new Uri(System.IO.Path.Combine(cwd, "Reports", subFoder));
+
+        }
+
     }
 }
