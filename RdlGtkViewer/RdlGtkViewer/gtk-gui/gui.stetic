@@ -152,6 +152,7 @@
         <property name="Label" translatable="yes" />
         <property name="ShortLabel" translatable="yes">Show _Errors</property>
         <property name="StockId">gtk-dialog-warning</property>
+        <property name="VisibleHorizontal">False</property>
         <property name="DrawAsRadio">True</property>
         <property name="Active">False</property>
       </action>
