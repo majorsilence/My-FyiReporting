@@ -1102,13 +1102,11 @@ namespace fyiReporting.RdlViewer
             if (bs == BorderStyleEnum.None || c.IsEmpty || w <= 0)	// nothing to draw
                 return;
 
-            float tmpW = w;
+            float widthPen = w;
             if (g.PageUnit == GraphicsUnit.Pixel)
-                tmpW = (tmpW * g.DpiX) / 72;
-            Pen p = new Pen(c, tmpW);
-            try
+                widthPen=RDL.Utility.Measurement.PixelsFromPoints(w, g.DpiX);
+            using (Pen p = new Pen(c, widthPen))
             {
-                p = new Pen(c, w);
                 switch (bs)
                 {
                     case BorderStyleEnum.Dashed:
@@ -1131,14 +1129,10 @@ namespace fyiReporting.RdlViewer
 
                 g.DrawLine(p, x, y, x2, y2);
             }
-            finally
-            {
-                if (p != null)
-                    p.Dispose();
-            }
-
+            
         }
 
+       
         private void DrawCurve(Color c, BorderStyleEnum bs, float w, Graphics g,
                                 PointF[] points, int Offset, float Tension)
         {
