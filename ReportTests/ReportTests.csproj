@@ -133,6 +133,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="DatabaseInfo.cs" />
     <Compile Include="ExampleTest.cs" />
+    <Compile Include="iTextSharpTests.cs" />
     <Compile Include="ExcelValetTests.cs" />
     <Compile Include="FunctionTest.cs" />
     <Compile Include="Program.cs" />
@@ -162,6 +163,9 @@
     </None>
     <None Include="..\Examples\northwindEF.db">
       <Link>northwindEF.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\Objects\LineObjects.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

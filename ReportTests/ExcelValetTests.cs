@@ -26,14 +26,10 @@ namespace ReportTests
         {
             if (_outputFolder==null)
             {
-                string tmpf = System.IO.Path.GetTempPath();
-                _outputFolder = new Uri(System.IO.Path.Combine(tmpf, "rdlTestResults", Guid.NewGuid().ToString()));
-
+                _outputFolder = GeneralUtils.OutputTestsFolder();
             }
 
-            string cwd = System.Environment.CurrentDirectory;
-            _reportFolder = new Uri(System.IO.Path.Combine(cwd, "Reports", "Excel/"));
-
+            _reportFolder = GeneralUtils.ReportsFolder("Excel/");
             
             Directory.CreateDirectory(_outputFolder.LocalPath);
 
