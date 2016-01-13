@@ -71,9 +71,6 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\References\dot net 3.5\nunit.framework.dll</HintPath>
@@ -141,6 +138,7 @@
     <Compile Include="Utils\OpenXmlUtils.cs" />
     <Compile Include="Utils\RandomDateTime.cs" />
     <Compile Include="Utils\RdlUtils.cs" />
+    <Compile Include="RenderPdf_iTextSharpTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -152,10 +150,16 @@
     <None Include="Reports\BaseTestReport.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Excel\testdata.rdl">
+    <None Include="Reports\ListReport.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Excel\WorldFacts.rdl">
+    <None Include="Reports\MatrixExample.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\testdata.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\WorldFacts.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Reports\FunctionTest.rdl">
@@ -165,7 +169,10 @@
       <Link>northwindEF.db</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Objects\LineObjects.rdl">
+    <None Include="Reports\LineObjects.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\ChartTypes.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -174,7 +181,7 @@
       <Link>RdlEngineConfig.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Reports\Excel\WorldFacts.xml">
+    <Content Include="Reports\WorldFacts.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

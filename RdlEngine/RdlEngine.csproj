@@ -701,6 +701,8 @@
     <Compile Include="Functions\FunctionAggrArray.cs" />
     <Compile Include="GraphicsExtended.cs" />
     <Compile Include="RDLBaseEBN.cs" />
+    <Compile Include="Render\RenderBase.cs" />
+    <Compile Include="Render\RenderPdf_iTextSharp.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
