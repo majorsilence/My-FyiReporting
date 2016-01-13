@@ -141,6 +141,7 @@
     <Compile Include="Utils\OpenXmlUtils.cs" />
     <Compile Include="Utils\RandomDateTime.cs" />
     <Compile Include="Utils\RdlUtils.cs" />
+    <Compile Include="RenderPdf_iTextSharpTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -168,8 +169,17 @@
     <None Include="Reports\Objects\LineObjects.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Reports\Pdf\LineObjects.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\Pdf\WorldFacts.rdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reports\Pdf\WorldFacts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="..\RdlEngine\RdlEngineConfig.xml">
       <Link>RdlEngineConfig.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

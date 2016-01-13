@@ -173,9 +173,13 @@ namespace fyiReporting.RDL
 			MemoryStreamGen msg = null;
 			switch (type)
 			{
-				case OutputPresentationType.PDF:
-					ip = new RenderPdf(this, sg);
-					_Report.Run(ip);
+                case OutputPresentationType.RenderPdf_iTextSharp:
+                    ip =new RenderPdf_iTextSharp(this, sg);
+                    _Report.Run(ip);
+                    break;
+                case OutputPresentationType.PDF:
+                    ip = new RenderPdf(this, sg);
+                    _Report.Run(ip);
 					break;
                 case OutputPresentationType.PDFOldStyle:
                     ip = new RenderPdf(this, sg);
