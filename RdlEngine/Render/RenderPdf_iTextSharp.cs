@@ -12,7 +12,7 @@
 
   This file is part of the fyiReporting RDL project.
 	
-   Licensed under the Apache License, Version 2.0 (the "License");
+   Licensed under the Apache License, _osVersion 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
@@ -48,14 +48,15 @@ namespace fyiReporting.RDL
     [SecuritySafeCritical]
     internal class RenderPdf_iTextSharp : RenderBase
     {
-        bool _dejavuFonts = false;
-
-
-        #region PdfElements Rewrite in iTextSharp (Sinnovasoft add April 14 2010)
-        Document _pdfDocument = new Document();
+        #region private
+        Document _pdfDocument;
         PdfContentByte _contentByte;
-        MemoryStream _ms = new MemoryStream();
+        MemoryStream _ms;
 
+        int _osPlatform = (int)Environment.OSVersion.Platform;
+        int _osVersion = (int)Environment.OSVersion.Version.Major;
+
+        bool _dejavuFonts = false;
         /// <summary>
         /// List itextSharp Basefont added
         /// </summary>
@@ -64,7 +65,68 @@ namespace fyiReporting.RDL
         /// List font name
         /// </summary>
         private List<string> _baseFontsName = new List<string>();
-   
+        #endregion
+
+        #region properties
+
+        private bool IsOSX
+        {
+            get { return (_osPlatform == 4 || _osPlatform == 6 || _osPlatform == 128) && _osVersion > 8; }
+        }
+
+        /// <summary> 
+        /// Default I get embedded fonts in Fonts folder in current 
+        /// folder RdlEngine.dll in, can set font folder here 
+        /// </summary> 
+        private string FontFolder
+        {
+            get
+            {
+
+                //Kind of MacOSX
+                if (IsOSX)
+                {
+                    return "/Library/Fonts";
+                }
+                if (_osPlatform == (int)PlatformID.Unix)
+                {
+                    if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
+                    {
+                        return "/usr/share/fonts/truetype/msttcorefonts";
+                    }
+                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype"))
+                    {
+                        _dejavuFonts = true;
+                        return "/usr/share/fonts/truetype";
+                    }
+                    else {
+                        _dejavuFonts = true;
+                        return Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
+                    }
+                }
+
+#if NET_4
+         return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
+#else
+                // get parent of System folder to have Windows folder
+                DirectoryInfo dirWindowsFolder = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System));
+                // Concatenate Fonts folder onto Windows folder.
+                return Path.Combine(dirWindowsFolder.FullName, "Fonts");
+                // Results in full path e.g. "C:\Windows\Fonts" 
+#endif
+            }
+        }
+        #endregion
+
+        #region ctor
+        public RenderPdf_iTextSharp(Report report, IStreamGen sg) : base(report, sg)
+        {
+            _pdfDocument = new Document();
+            _ms = new MemoryStream();
+        }
+        #endregion
+
+        #region implementations
         protected internal override void CreateDocument()
         {
             Report r = base.Report();
@@ -73,7 +135,7 @@ namespace fyiReporting.RDL
             _contentByte = writer.DirectContent;
             _pdfDocument.AddAuthor(r.Author);
             _pdfDocument.AddCreationDate();
-            _pdfDocument.AddCreator("Majorsilence Reporting");
+            _pdfDocument.AddCreator("Majorsilence Reporting - RenderPdf_iTextSharp");
             _pdfDocument.AddSubject(r.Description);
             _pdfDocument.AddTitle(r.Name);
         }
@@ -98,12 +160,12 @@ namespace fyiReporting.RDL
 
         protected internal override void AfterProcessPage()
         {
-          
+
         }
 
         protected internal override void AddBookmark(PageText pt)
         {
-            throw new NotImplementedException();
+
         }
 
         protected internal override void AddLine(float x, float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
@@ -129,27 +191,27 @@ namespace fyiReporting.RDL
             _contentByte.MoveTo(x, PageSize.yHeight - y);
             _contentByte.LineTo(x2, PageSize.yHeight - y2);
             _contentByte.Stroke();
-     }
+        }
 
         protected internal override void AddImage(string name, StyleInfo si, ImageFormat imf, float x, float y, float width, float height, RectangleF clipRect, byte[] im, int samplesW, int samplesH, string url, string tooltip)
-        { 
+        {
             iTextSharp.text.Image pdfImg = iTextSharp.text.Image.GetInstance(im);
             pdfImg.ScaleAbsolute(width, height); //zoom		  
             pdfImg.SetAbsolutePosition(x, PageSize.yHeight - y - height);//Set position
-           _pdfDocument.Add(pdfImg);
+            _pdfDocument.Add(pdfImg);
             //add url
             if (url != null)
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, url));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, url));
             //add tooltip
             if (!string.IsNullOrEmpty(tooltip))
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, tooltip));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, tooltip));
             iAddBorder(si, x - si.PaddingLeft, y - si.PaddingTop,
                 height + si.PaddingTop + si.PaddingBottom,
                 width + si.PaddingLeft + si.PaddingRight);			// add any required border
         }
 
         protected internal override void AddPolygon(PointF[] pts, StyleInfo si, string url)
-        { 
+        {
             if (si.BackgroundColor.IsEmpty)
                 return;		 // nothing to do
 
@@ -159,7 +221,7 @@ namespace fyiReporting.RDL
             _contentByte.SetRGBColorFill(c.R, c.G, c.B);
             _contentByte.ClosePathFillStroke();
 
-          
+
         }
 
         protected internal override void AddRectangle(float x, float y, float height, float width, StyleInfo si, string url, string tooltip)
@@ -173,9 +235,9 @@ namespace fyiReporting.RDL
             iAddBorder(si, x, y, height, width);			// add any required border
 
             if (url != null)
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, url));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, url));
             if (!string.IsNullOrEmpty(tooltip))
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, tooltip));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, tooltip));
 
             return;
         }
@@ -192,15 +254,15 @@ namespace fyiReporting.RDL
 
             //add url
             if (url != null)
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, url));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, url));
             //add tooltip
             if (!string.IsNullOrEmpty(tooltip))
-               _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, tooltip));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, tooltip));
             return;
         }
 
         protected internal override void AddCurve(PointF[] pts, StyleInfo si)
-        { 
+        {
             if (pts.Length > 2)
             {   // do a spline curve
                 PointF[] tangents = iGetCurveTangents(pts);
@@ -208,7 +270,7 @@ namespace fyiReporting.RDL
             }
             else
             {   // we only have two points; just do a line segment
-               AddLine(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y, si);
+                AddLine(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y, si);
             }
         }
         protected internal override void AddEllipse(float x, float y, float height, float width, StyleInfo si, string url)
@@ -242,6 +304,10 @@ namespace fyiReporting.RDL
             else
                 _contentByte.ClosePathFillStroke();
         }
+
+        #endregion
+
+        #region private methods
         /// <summary>
         /// Font name , for my application almost fonts  will be unicode and embedded
         /// </summary>
@@ -289,8 +355,6 @@ namespace fyiReporting.RDL
         }
         protected internal override void AddText(float x, float y, float height, float width, string[] sa, StyleInfo si, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
         {
-            int platform = (int)Environment.OSVersion.Platform;
-            int version = (int)Environment.OSVersion.Version.Major;
 
             BaseFont bf;
             string face = iFontNameNormalize(si.FontFamily);
@@ -302,7 +366,7 @@ namespace fyiReporting.RDL
                 if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "TimesNewRomanPS-BoldItalicMT";
                         fontname = "Times New Roman Bold Italic.ttf";
@@ -315,7 +379,7 @@ namespace fyiReporting.RDL
                 else if (si.IsFontBold())
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "TimesNewRomanPS-BoldMT";
                         fontname = "Times New Roman Bold.ttf";
@@ -328,7 +392,7 @@ namespace fyiReporting.RDL
                 else if (si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "TimesNewRomanPS-ItalicMT";
                         fontname = "Times New Roman Italic.ttf";
@@ -340,7 +404,7 @@ namespace fyiReporting.RDL
                 }
                 else {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "TimesNewRomanPSMT";
                         fontname = "Times New Roman.ttf";
@@ -357,7 +421,7 @@ namespace fyiReporting.RDL
                 if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "Arial BoldItalicMT";
                         fontname = "Arial Bold Italic.ttf";
@@ -370,7 +434,7 @@ namespace fyiReporting.RDL
                 else if (si.IsFontBold())
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "Arial-BoldMT";
                         fontname = "Arial Bold.ttf";
@@ -383,7 +447,7 @@ namespace fyiReporting.RDL
                 else if (si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "Arial-ItalicMT";
                         fontname = "Arial Italic.ttf";
@@ -395,7 +459,7 @@ namespace fyiReporting.RDL
                 }
                 else {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "ArialMT";
                         fontname = "Arial.ttf";
@@ -412,7 +476,7 @@ namespace fyiReporting.RDL
                 if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "CourierNewPS-BoldItalicMT";
                         fontname = "Courier New Bold Italic.ttf";
@@ -425,7 +489,7 @@ namespace fyiReporting.RDL
                 else if (si.IsFontBold())
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "CourierNewPS-BoldMT";
                         fontname = "Courier New Bold.ttf";
@@ -438,7 +502,7 @@ namespace fyiReporting.RDL
                 else if (si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "CourierNewPS-ItalicMT";
                         fontname = "Courier New Italic.ttf";
@@ -450,7 +514,7 @@ namespace fyiReporting.RDL
                 }
                 else {
                     //OSX
-                    if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
+                    if (IsOSX)
                     {
                         face = "CourierNewPSMT";
                         fontname = "Courier New.ttf";
@@ -628,10 +692,10 @@ namespace fyiReporting.RDL
 
                     //add URL
                     if (url != null)
-                       _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, url));
+                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, url));
                     //add tooltip
                     if (tooltip != null)
-                       _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, tooltip));
+                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, tooltip));
 
                 }
 
@@ -661,10 +725,6 @@ namespace fyiReporting.RDL
 
             return;
         }
-
-        #endregion
-
-
         /// <summary>
         /// Add a filled rectangle
         /// </summary>
@@ -672,9 +732,9 @@ namespace fyiReporting.RDL
         private void iAddFillRect(float x, float y, float width, float height, System.Drawing.Color c)
         {
             // Get the fill color
-           _contentByte.SetRGBColorFill(c.R, c.G, c.B);
-           _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
-           _contentByte.Fill();
+            _contentByte.SetRGBColorFill(c.R, c.G, c.B);
+            _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
+            _contentByte.Fill();
         }
         /// <summary>
         /// Add border
@@ -814,53 +874,11 @@ namespace fyiReporting.RDL
 
             return tangents;
         }
-        /// <summary> 
-        /// Default I get embedded fonts in Fonts folder in current 
-        /// folder RdlEngine.dll in, can set font folder here 
-        /// </summary> 
-        private string FontFolder
-        {
-            get
-            {
-                int platform = (int)Environment.OSVersion.Platform;
-                int version = (int)Environment.OSVersion.Version.Major;
 
-                //Kind of MacOSX
-                if ((platform == 4 || platform == 6 || platform == 128) && version > 8)
-                {
-                    return "/Library/Fonts";
-                }
-                if (System.Environment.OSVersion.Platform == PlatformID.Unix)
-                {
-                    if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
-                    {
-                        return "/usr/share/fonts/truetype/msttcorefonts";
-                    }
-                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype"))
-                    {
-                        _dejavuFonts = true;
-                        return "/usr/share/fonts/truetype";
-                    }
-                    else {
-                        _dejavuFonts = true;
-                        return Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
-                    }
-                }
 
-#if NET_4
-         return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
-#else
-                // get parent of System folder to have Windows folder
-                DirectoryInfo dirWindowsFolder = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System));
-                // Concatenate Fonts folder onto Windows folder.
-                return Path.Combine(dirWindowsFolder.FullName, "Fonts");
-                // Results in full path e.g. "C:\Windows\Fonts" 
-#endif
-            }
-        }
+        #endregion
 
-        public RenderPdf_iTextSharp(Report report, IStreamGen sg):base(report,sg)
-        {
-        }
+
+
     }
 }

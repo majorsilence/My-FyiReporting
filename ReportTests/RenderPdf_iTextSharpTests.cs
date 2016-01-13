@@ -43,6 +43,10 @@ namespace ReportTests.Utils
             new object[]{ "WorldFacts.rdl",
                             "pl-PL",
                             "RenderPdf_iTextSharp",
+                            null }, //Load data from xml file
+            new object[]{ "ChartTypes.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
                             null } //Load data from xml file
       
 

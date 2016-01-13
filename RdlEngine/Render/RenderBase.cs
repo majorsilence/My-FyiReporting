@@ -46,6 +46,7 @@ namespace fyiReporting.RDL
     internal abstract class RenderBase : IPresent
     {
 
+        #region private
         Stream _streamGen;                  // where the output is going
         Report _report;                 // report
         static readonly char[] LINEBREAK = new char[] { '\n' };
@@ -53,6 +54,10 @@ namespace fyiReporting.RDL
         //		static readonly int MEASUREMAX = int.MaxValue;  //  .Net 2 doesn't seem to have a limit; 1.1 limit was 32
         static readonly int MEASUREMAX = 32;  //  guess I'm wrong -- .Net 2 doesn't seem to have a limit; 1.1 limit was 32
 
+        #endregion
+
+
+        #region properties
         private PdfPageSize _pageSize;
 
         internal protected PdfPageSize PageSize
@@ -60,8 +65,10 @@ namespace fyiReporting.RDL
             get { return _pageSize; }
             private set { _pageSize = value; }
         }
+        #endregion
 
 
+        #region abstract methods
         internal protected void  AddLine(float x, float y, float x2, float y2, StyleInfo si)
         {
             AddLine(x, y, x2, y2, si.BWidthTop, si.BColorTop, si.BStyleTop);
@@ -127,7 +134,9 @@ namespace fyiReporting.RDL
         /// <returns></returns>
         internal abstract protected void AddText(float x, float y, float height, float width, string[] sa,
             StyleInfo si,  float[] tw, bool bWrap, string url, bool bNoClip, string tooltip);
-	
+
+        #endregion
+
         //Replaced from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
         public void Dispose() { }
 
@@ -255,7 +264,6 @@ namespace fyiReporting.RDL
                     if (pt.Bookmark != null)
                     {
                         AddBookmark(pt);
-                       //  outline.Bookmarks.Add(new PdfOutlineEntry(anchor, page.objectNum, pt.Bookmark, pt.X, elements.PageSize.yHeight - pt.Y));
                     }
                     continue;
                 }
