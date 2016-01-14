@@ -79,6 +79,12 @@ namespace fyiReporting.RDL
 			}
 			return v;
 		}
+
+		public override bool EvaluateBoolean(Report rpt,Row row)
+		{
+			object result = Evaluate(rpt, row);
+			return Convert.ToBoolean(result);
+		}
 		
 		public double EvaluateDouble(Report rpt, Row row)
 		{
