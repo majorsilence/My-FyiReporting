@@ -48,7 +48,7 @@
       </DataSource>
       <DataSource>
          <DataProvider>SQLite</DataProvider>
-         <CodeModule>/usr/lib/mono/4.0/Mono.Data.Sqlite.dll</CodeModule>
+         <CodeModule>Mono.Data.Sqlite.dll</CodeModule>
          <ClassName>Mono.Data.Sqlite.SqliteConnection</ClassName>
          <TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect>
          <Interface>SQL</Interface>

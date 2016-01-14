@@ -10,12 +10,11 @@ using fyiReporting.RDL;
 using NUnit.Framework;
 using ReportTests.Utils;
 
-namespace ReportTests
+namespace ReportTests.Utils
 {
     [TestFixture]
-    public class iTextSharpTests
+    public class RenderPdf_iTextSharpTests
     {
-
         private Uri _reportFolder = null;
         private Uri _outputFolder = null;
         private string _extOuput = ".pdf";
@@ -36,17 +35,36 @@ namespace ReportTests
             RdlEngineConfig.RdlEngineConfigInit();
         }
 
-        private static readonly object[] TestCasesiTextSharpDraw =
+        private static readonly object[] TestCasesRenderPdf_iTextSharpDraw =
         {
             new object[]{"LineObjects.rdl",
                             "en-US",
-                            "",
-                            null }
+                            "RenderPdf_iTextSharp",
+                            null },
+            new object[]{ "WorldFacts.rdl",
+                            "pl-PL",
+                            "RenderPdf_iTextSharp",
+                            null }, //Load data from xml file
+            new object[]{ "ChartTypes.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null } ,//Load data from sqlite
+            new object[]{ "MatrixExample.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null }, //Load data from sqlite
+            new object[]{ "ListReport.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null } //Load data from sqlite
+      
+      
+      
 
         };
 
-        [Test, TestCaseSource("TestCasesiTextSharpDraw")]
-        public void iTextSharpDraw(string file2test,
+        [Test, TestCaseSource("TestCasesRenderPdf_iTextSharpDraw")]
+        public void RenderPdf_iTextSharpDraw(string file2test,
                                       string cultureName,
                                       string suffixFileName,
                                       Func<Dictionary<string, IEnumerable>> fillDatasets)
@@ -76,7 +94,7 @@ namespace ReportTests
 
             string fullOutputPath = System.IO.Path.Combine(_outputFolder.LocalPath, fileNameOut);
             sg = new OneFileStreamGen(fullOutputPath, true);
-            rap.RunRender(sg, OutputPresentationType.PDF);
+            rap.RunRender(sg, OutputPresentationType.RenderPdf_iTextSharp);
         }
 
     }

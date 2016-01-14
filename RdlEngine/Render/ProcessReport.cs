@@ -36,6 +36,7 @@ namespace fyiReporting.RDL
 	public enum OutputPresentationType
 	{
 		HTML,
+        RenderPdf_iTextSharp,
 		PDF,
         PDFOldStyle,
 		XML,
