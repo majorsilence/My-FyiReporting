@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report>
   <RightMargin>0.25in</RightMargin>
+  <Author>fyiReporting Software, LLC</Author>
+  <Description>
+  </Description>
+  <PageWidth>8.5in</PageWidth>
+  <PageHeight>11in</PageHeight>
+  <DataElementName>Report</DataElementName>
+  <DataElementStyle>AttributeNormal</DataElementStyle>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider>SQLite</DataProvider>
+        <ConnectString>Data Source=northwindEF.db;Version=3;</ConnectString>
+        <IntegratedSecurity>false</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText>SELECT ContactName, Phone FROM Customers ORDER BY 1</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ContactName">
+          <DataField>ContactName</DataField>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <Body>
     <ReportItems>
       <Table Name="table1">
@@ -66,23 +98,7 @@
     <Columns>3</Columns>
   </Body>
   <TopMargin>0.5in</TopMargin>
-  <DataSets>
-    <DataSet Name="Data">
-      <Query>
-        <DataSourceName>DS1</DataSourceName>
-        <CommandText>SELECT ContactName, Phone FROM Customers ORDER BY 1</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="ContactName">
-          <DataField>ContactName</DataField>
-        </Field>
-        <Field Name="Phone">
-          <DataField>Phone</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
-  <LeftMargin>0.25in</LeftMargin>
+ <LeftMargin>0.25in</LeftMargin>
   <BottomMargin>0.5in</BottomMargin>
   <Width>2.5in</Width>
   <PageHeader>
@@ -95,20 +111,5 @@
     <PrintOnFirstPage>True</PrintOnFirstPage>
     <PrintOnLastPage>True</PrintOnLastPage>
   </PageFooter>
-  <Author>fyiReporting Software, LLC</Author>
-  <Description>
-  </Description>
-  <PageWidth>8.5in</PageWidth>
-  <PageHeight>11in</PageHeight>
-  <DataElementName>Report</DataElementName>
-  <DataElementStyle>AttributeNormal</DataElementStyle>
-  <DataSources>
-    <DataSource Name="DS1">
-      <ConnectionProperties>
-        <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=northwindEF.db;Version=3;</ConnectString>
-        <IntegratedSecurity>false</IntegratedSecurity>
-      </ConnectionProperties>
-    </DataSource>
-  </DataSources>
+
 </Report>
