@@ -173,14 +173,11 @@ namespace fyiReporting.RDL
 			MemoryStreamGen msg = null;
 			switch (type)
 			{
+                case OutputPresentationType.PDF:
                 case OutputPresentationType.RenderPdf_iTextSharp:
                     ip =new RenderPdf_iTextSharp(this, sg);
                     _Report.Run(ip);
                     break;
-                case OutputPresentationType.PDF:
-                    ip = new RenderPdf(this, sg);
-                    _Report.Run(ip);
-					break;
                 case OutputPresentationType.PDFOldStyle:
                     ip = new RenderPdf(this, sg);
                     this.ItextPDF = false;
@@ -308,7 +305,11 @@ namespace fyiReporting.RDL
 			PageNumber = 1;		// reset page numbers
 			TotalPages = 1;
 
-			IPresent ip = new RenderPdf(this, sg);	
+            IPresent ip;
+            if (this.ItextPDF)
+                ip = new RenderPdf_iTextSharp(this, sg);
+            else
+                ip=new RenderPdf(this, sg);	
 			try
 			{
 				ip.Start();
