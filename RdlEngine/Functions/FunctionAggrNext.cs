@@ -85,6 +85,12 @@ namespace fyiReporting.RDL
 				v = _Expr.Evaluate(rpt, crow);
 			return v;
 		}
+
+		public override bool EvaluateBoolean(Report rpt,Row row)
+		{
+			object result = Evaluate(rpt, row);
+			return result == null? false: Convert.ToBoolean(result);
+		}
 		
 		public double EvaluateDouble(Report rpt, Row row)
 		{

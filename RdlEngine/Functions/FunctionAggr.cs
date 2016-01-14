@@ -67,7 +67,7 @@ namespace fyiReporting.RDL
 			return (IExpr) this;
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public virtual bool EvaluateBoolean(Report rpt, Row row)
 		{
 			return false;
 		}
