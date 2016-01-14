@@ -48,7 +48,21 @@ namespace ReportTests.Utils
             new object[]{ "ChartTypes.rdl",
                             "en-US",
                             "RenderPdf_iTextSharp",
-                            null } //Load data from xml file
+                            null } ,//Load data from sqlite
+            new object[]{ "TableThreeColumns.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null } ,//Load data from sqlite
+            new object[]{ "MatrixExample.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null }, //Load data from sqlite
+            new object[]{ "ListReport.rdl",
+                            "en-US",
+                            "RenderPdf_iTextSharp",
+                            null } //Load data from sqlite
+      
+      
       
 
         };
