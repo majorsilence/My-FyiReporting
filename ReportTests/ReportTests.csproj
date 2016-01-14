@@ -71,9 +71,6 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>..\References\dot net 4\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\References\dot net 3.5\nunit.framework.dll</HintPath>
