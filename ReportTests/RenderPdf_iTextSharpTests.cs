@@ -12,7 +12,8 @@ using ReportTests.Utils;
 
 namespace ReportTests.Utils
 {
-   public class RenderPdf_iTextSharpTests
+    [TestFixture]
+    public class RenderPdf_iTextSharpTests
     {
         private Uri _reportFolder = null;
         private Uri _outputFolder = null;
@@ -27,7 +28,7 @@ namespace ReportTests.Utils
                 _outputFolder = GeneralUtils.OutputTestsFolder();
             }
 
-            _reportFolder = GeneralUtils.ReportsFolder("Pdf/");
+            _reportFolder = GeneralUtils.ReportsFolder();
 
             Directory.CreateDirectory(_outputFolder.LocalPath);
 

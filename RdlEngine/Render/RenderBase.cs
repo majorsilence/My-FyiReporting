@@ -10,6 +10,8 @@
  This file has been modified with suggestiong from forum users.
  *Obtained from Forum, User: sinnovasoft http://www.fyireporting.com/forum/viewtopic.php?t=1049
 
+ Refactored by Daniel Romanowski http://dotlink.pl
+
   This file is part of the fyiReporting RDL project.
 	
    Licensed under the Apache License, Version 2.0 (the "License");

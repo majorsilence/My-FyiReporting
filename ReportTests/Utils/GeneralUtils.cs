@@ -22,10 +22,15 @@ namespace ReportTests.Utils
             return new Uri(System.IO.Path.Combine(tmpf, "rdlTestResults", Guid.NewGuid().ToString()));
 
         }
-        public static Uri ReportsFolder(string subFoder)
+        public static Uri ReportsFolder(string subFoder=null)
         {
+            string defaultReportsFolder = "Reports/";
             string cwd = System.Environment.CurrentDirectory;
-            return new Uri(System.IO.Path.Combine(cwd, "Reports", subFoder));
+            if (subFoder!=null)
+                return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder, subFoder));
+            else
+                return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder));
+
 
         }
 

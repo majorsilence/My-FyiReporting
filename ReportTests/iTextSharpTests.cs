@@ -29,7 +29,7 @@ namespace ReportTests
                 _outputFolder = GeneralUtils.OutputTestsFolder();
             }
 
-            _reportFolder = GeneralUtils.ReportsFolder("Objects/");
+            _reportFolder = GeneralUtils.ReportsFolder();
 
             Directory.CreateDirectory(_outputFolder.LocalPath);
 

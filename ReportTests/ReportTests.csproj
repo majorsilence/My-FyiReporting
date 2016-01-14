@@ -153,10 +153,10 @@
     <None Include="Reports\BaseTestReport.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Excel\testdata.rdl">
+    <None Include="Reports\testdata.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Excel\WorldFacts.rdl">
+    <None Include="Reports\WorldFacts.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Reports\FunctionTest.rdl">
@@ -166,28 +166,19 @@
       <Link>northwindEF.db</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Objects\LineObjects.rdl">
+    <None Include="Reports\LineObjects.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Reports\Pdf\ChartTypes.rdl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Reports\Pdf\LineObjects.rdl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Reports\Pdf\WorldFacts.rdl">
+    <None Include="Reports\ChartTypes.rdl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\Pdf\WorldFacts.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="..\RdlEngine\RdlEngineConfig.xml">
       <Link>RdlEngineConfig.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Reports\Excel\WorldFacts.xml">
+    <Content Include="Reports\WorldFacts.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
