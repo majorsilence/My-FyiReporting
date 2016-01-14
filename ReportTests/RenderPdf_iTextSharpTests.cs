@@ -49,10 +49,6 @@ namespace ReportTests.Utils
                             "en-US",
                             "RenderPdf_iTextSharp",
                             null } ,//Load data from sqlite
-            new object[]{ "TableThreeColumns.rdl",
-                            "en-US",
-                            "RenderPdf_iTextSharp",
-                            null } ,//Load data from sqlite
             new object[]{ "MatrixExample.rdl",
                             "en-US",
                             "RenderPdf_iTextSharp",
