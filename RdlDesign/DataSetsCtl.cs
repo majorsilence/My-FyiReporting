@@ -258,7 +258,8 @@ namespace fyiReporting.RdlDesign
         {
             // Need to clear all the fields and then replace with the columns 
             //   of the SQL statement
-            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, tbSQL.Text);
+
+            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, tbSQL.Text, _dsv.QueryParameters);
             if (cols == null || cols.Count <= 0)
                 return;				// something didn't work right
 			
