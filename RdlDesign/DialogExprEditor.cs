@@ -476,6 +476,10 @@ namespace fyiReporting.RdlDesign
             tbExpr.SelectedText = t;
         }
 
+		private void tvOp_DoubleClick(object sender, EventArgs e)
+		{
+			bCopy.PerformClick();
+		}
     }
 
 }
