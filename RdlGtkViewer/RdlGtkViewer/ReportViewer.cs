@@ -26,7 +26,6 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
-using System.Xml;
 using fyiReporting.RDL;
 using Gtk;
 
@@ -580,10 +579,12 @@ namespace fyiReporting.RdlGtkViewer
         {
             using (PrintContext context = new PrintContext(GdkWindow.Handle))
             {
-				
                 printing = new PrintOperation();
                 printing.Unit = Unit.Points;
 				printing.UseFullPage = true;
+				printing.DefaultPageSetup = new PageSetup();
+				printing.DefaultPageSetup.Orientation = 
+					report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
 
                 printing.BeginPrint += HandlePrintBeginPrint;
                 printing.DrawPage += HandlePrintDrawPage;
