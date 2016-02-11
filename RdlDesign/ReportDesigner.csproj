@@ -19,7 +19,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlDesign</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>fyiReporting.RdlDesign.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>

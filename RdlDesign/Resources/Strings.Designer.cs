@@ -1499,7 +1499,7 @@ namespace fyiReporting.RdlDesign.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RDL files (*.rdl)|*.rdl|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to RDL files (*.rdl)|*.rdl|Encrypted RDL files (*.encrypted)|&quot;.encrypted|All files (*.*)|*.*.
         /// </summary>
         internal static string MDIChild_FileSaveAs_RDLFilter {
             get {
