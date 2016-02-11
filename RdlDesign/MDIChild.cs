@@ -32,6 +32,7 @@ using System.Xml;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
+using EncryptionProvider.String;
 
 namespace fyiReporting.RdlDesign
 {
@@ -192,11 +193,24 @@ namespace fyiReporting.RdlDesign
             return FileSave(file, rdl);
         }
 
+        private String doPossibleEncryption(Uri file, String rdl)
+        {
+            String extension = Path.GetExtension(file.LocalPath);
+            if (extension.Equals(".encrypted"))
+            {
+                StringEncryption enc = new StringEncryption("Your+Secret+Static+Encryption+Key+Goes+Here=");
+                rdl = enc.Encrypt(rdl);
+            }
+            return rdl;
+        }
+
+
         private bool FileSave(Uri file, string rdl)
         {
             bool bOK = true;
             try
             {
+                rdl = doPossibleEncryption(file, rdl);
                 using (StreamWriter writer = new StreamWriter(file.LocalPath))
                 {
                     writer.Write(rdl);
