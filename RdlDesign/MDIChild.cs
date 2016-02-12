@@ -368,9 +368,30 @@ namespace fyiReporting.RdlDesign
             set
             {
                 _SourceFile = value;
+                
                 string rdl = GetRdlSource();
                 this.rdlDesigner.SetRdlText(rdl == null ? "" : rdl);
             }
+        }
+
+        private String doPossibleDecryption(String rdl)
+        {
+
+            if (Path.GetExtension(_SourceFile.LocalPath).Equals(".encrypted"))
+            {
+                
+                try
+                {
+                    StringEncryption enc = new StringEncryption(Prompt.ShowDialog("Please enter the passkey", "Passkey?"));
+                    rdl = enc.Decrypt(rdl);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Incorrect passkey entered.");
+                }
+            }
+
+            return rdl;
         }
 
         public string SourceRdl
@@ -393,6 +414,8 @@ namespace fyiReporting.RdlDesign
                 if (fs != null)
                     fs.Close();
             }
+
+            prog = doPossibleDecryption(prog);
 
             return prog;
         }
