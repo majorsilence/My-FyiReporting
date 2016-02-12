@@ -200,7 +200,15 @@ namespace fyiReporting.RdlDesign
             if (extension.Equals(".encrypted"))
             {
                 StringEncryption enc = new StringEncryption(Prompt.ShowDialog("Please enter passkey", "Passkey?"));
-                rdl = enc.Encrypt(rdl);
+                try
+                {
+                    rdl = enc.Encrypt(rdl);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Properties.Resources.MDIChild_doPossibleEncryption_Unable_to_encrypt_file_);
+                }
+                
             }
             return rdl;
         }
@@ -387,7 +395,7 @@ namespace fyiReporting.RdlDesign
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Incorrect passkey entered.");
+                    MessageBox.Show(Properties.Resources.MDIChild_doPossibleDecryption_Incorrect_passkey_entered_);
                 }
             }
 

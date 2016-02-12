@@ -172,4 +172,10 @@
   <data name="Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MDIChild_doPossibleDecryption_Incorrect_passkey_entered_" xml:space="preserve">
+    <value>Incorrect passkey entered.</value>
+  </data>
+  <data name="MDIChild_doPossibleEncryption_Unable_to_encrypt_file_" xml:space="preserve">
+    <value>Unable to encrypt file.</value>
+  </data>
 </root>
