@@ -1052,7 +1052,7 @@ the website https://github.com/majorsilence/My-FyiReporting.</value>
     <value>Specify Report File Name</value>
   </data>
   <data name="RdlDesigner_menuFileOpen_Click_ReportFilesFilter" xml:space="preserve">
-    <value>Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*</value>
+    <value>Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|Encrypted RDL files (*.encrypted)|*.encrypted|All files (*.*)|*.*</value>
   </data>
   <data name="RdlUserControl_openToolStripButton1_Click_ReportFilesFilter" xml:space="preserve">
     <value>Report files (*.rdl;*rdlc)|*.rdl;*.rdlc|All files (*.*)|*.*</value>
@@ -1106,7 +1106,7 @@ the website https://github.com/majorsilence/My-FyiReporting.</value>
     <value>MHT (*.mht)|*.mhtml;*.mht|All files (*.*)|*.*</value>
   </data>
   <data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
-    <value>RDL files (*.rdl)|*.rdl|Encrypted RDL files (*.encrypted)|".encrypted|All files (*.*)|*.*</value>
+    <value>RDL files (*.rdl)|*.rdl|Encrypted RDL files (*.encrypted)|*.encrypted|All files (*.*)|*.*</value>
   </data>
   <data name="ReportNames_DescriptionDuplicateNameError" xml:space="preserve">
     <value>NameError: duplicate name: {0}, name of the node: {1}</value>

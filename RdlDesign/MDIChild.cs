@@ -29,6 +29,7 @@ using System.Data;
 using System.Drawing.Printing;
 using System.IO;
 using System.Xml;
+using EncryptionProvider;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
@@ -198,7 +199,7 @@ namespace fyiReporting.RdlDesign
             String extension = Path.GetExtension(file.LocalPath);
             if (extension.Equals(".encrypted"))
             {
-                StringEncryption enc = new StringEncryption("Your+Secret+Static+Encryption+Key+Goes+Here=");
+                StringEncryption enc = new StringEncryption(Prompt.ShowDialog("Please enter passkey", "Passkey?"));
                 rdl = enc.Encrypt(rdl);
             }
             return rdl;
