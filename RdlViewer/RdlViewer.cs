@@ -30,6 +30,8 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Text;
+using EncryptionProvider;
+using EncryptionProvider.String;
 using fyiReporting.RdlViewer.Resources;
 using fyiReporting.RDL;
 
@@ -1470,11 +1472,33 @@ namespace fyiReporting.RdlViewer
 					fs.Close();
 			}
 
-			return prog;
+            prog = doPossibleDecryption(prog);
+
+            return prog;
 		}
 
-		// 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
-		private void showWait()
+        private String doPossibleDecryption(String rdl)
+        {
+
+            if (Path.GetExtension(_SourceFileName.LocalPath).Equals(".encrypted"))
+            {
+
+                try
+                {
+                    StringEncryption enc = new StringEncryption(Prompt.ShowDialog("Please enter the passkey", "Passkey?"));
+                    rdl = enc.Decrypt(rdl);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Strings.RdlViewer_doPossibleDecryption_Incorrect_Pass_key_entered_);
+                }
+            }
+
+            return rdl;
+        }
+
+        // 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
+        private void showWait()
 		{
 			try
 			{
