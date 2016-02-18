@@ -120,6 +120,7 @@ namespace fyiReporting.RdlDesign
 			resources.ApplyResources(this.tbSQL, "tbSQL");
 			this.tbSQL.Name = "tbSQL";
 			this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
+			this.tbSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSQL_KeyDown);
 			// 
 			// label1
 			// 

@@ -79,6 +79,7 @@ private System.ComponentModel.Container components = null;
 			this.tbExpr.AcceptsTab = true;
 			resources.ApplyResources(this.tbExpr, "tbExpr");
 			this.tbExpr.Name = "tbExpr";
+			this.tbExpr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbExpr_KeyDown);
 			// 
 			// lExpr
 			// 
