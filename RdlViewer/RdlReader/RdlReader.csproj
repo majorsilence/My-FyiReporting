@@ -18,7 +18,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>RdlReader</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>fyiReporting.RdlReader.RdlReader</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>

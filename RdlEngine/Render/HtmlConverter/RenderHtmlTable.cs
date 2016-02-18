@@ -1303,8 +1303,10 @@ function findObject(id) {
 				io.Flush();
 				io.Close();
 			}
-
-			relativeName = FixupRelativeName(relativeName);
+            if (i.ImageSource == ImageSourceEnum.Embedded) // embedded image in html
+                relativeName = "data:" + mimeType + ";base64," + i.EmbeddedImageData;
+            else
+                relativeName = FixupRelativeName(relativeName);
 
 			// Create syntax in a string buffer
 			StringWriter sw = new StringWriter();

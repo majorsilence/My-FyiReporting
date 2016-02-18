@@ -117,52 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DialogWait_Minutes" xml:space="preserve">
-    <value>Minutes</value>
-  </data>
-  <data name="DialogWait_Seconds" xml:space="preserve">
-    <value>Seconds</value>
-  </data>
-  <data name="PageDrawing_OnMouseDown_HyperLinkError" xml:space="preserve">
-    <value>HyperLink Error</value>
-  </data>
-  <data name="PageDrawing_OnMouseDown_UnableLink" xml:space="preserve">
-    <value>Unable to link to</value>
-  </data>
-  <data name="RdlViewer_ParametersLeave_InvalidReportParameter" xml:space="preserve">
-    <value>Invalid Report Parameter</value>
-  </data>
-  <data name="RdlViewer_ParametersViewClick_ReportParameterMissing" xml:space="preserve">
-    <value>Report Parameter Missing</value>
-  </data>
-  <data name="RdlViewer_ParametersViewClick_RequiredParameterNotProvided" xml:space="preserve">
-    <value>Parameter '{0}' is required but not provided.</value>
-  </data>
-  <data name="RdlViewer_ShowD_Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="RdlViewer_Error_Report_must_be_loaded_prior_to_Rebuild_being_called" xml:space="preserve">
-    <value>Report must be loaded prior to Rebuild being called.</value>
-  </data>
-  <data name="RdlViewer_Error_UnsupportedExtension" xml:space="preserve">
-    <value>Unsupported file extension for SaveAs</value>
-  </data>
-  <data name="RdlViewerFind_ErrorA_PropertyMustSetPriorFindNext" xml:space="preserve">
-    <value>Viewer property must be set prior to issuing FindNext.</value>
-  </data>
-  <data name="RdlViewerFind_ErrorA_PropertyMustSetPriorFindPrevious" xml:space="preserve">
-    <value>Viewer property must be set prior to issuing FindPrevious.</value>
-  </data>
-  <data name="RdlViewerFind_FindNext_Phrase_not_found" xml:space="preserve">
-    <value>Phrase not found</value>
-  </data>
-  <data name="RdlViewerFind_FindNext_Reached_end_of_report" xml:space="preserve">
-    <value>Reached end of report, continued from top</value>
-  </data>
-  <data name="RdlViewerFind_FindPrevious_Reached_top_of_report" xml:space="preserve">
-    <value>Reached top of report, continued from end</value>
-  </data>
-  <data name="RdlViewer_doPossibleDecryption_Incorrect_Pass_key_entered_" xml:space="preserve">
-    <value>Incorrect Pass key entered.</value>
+  <data name="Prompt_ShowDialog_OK" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

@@ -52,8 +52,10 @@ namespace fyiReporting.RDL
 	
 		bool _ConstantImage;	// true if Image is a constant at runtime
 
-        private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
-		
+        string _EmbeddedImageData; // only for RenderHtml and embeddedImage. we need the embedded image code for html.
+
+        private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905        
+
 		private static void CopyStream(Stream src, Stream dst)
 		{
 			byte[] buffer = new byte[16 * 1024];
@@ -294,7 +296,8 @@ namespace fyiReporting.RDL
 						EmbeddedImage ei = (EmbeddedImage) OwnerReport.LUEmbeddedImages[name];
 						mtype = ei.MIMEType;
 						byte[] ba = Convert.FromBase64String(ei.ImageData);
-						strm = new MemoryStream(ba);
+                        _EmbeddedImageData = ei.ImageData; // we need this for html embedded image
+                        strm = new MemoryStream(ba);
 						break;
 					case ImageSourceEnum.External:
 						//Added Image URL from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
@@ -357,7 +360,13 @@ namespace fyiReporting.RDL
 			get { return _ConstantImage; }
 		}
 
-		static internal string GetMimeType(string file)
+        internal string EmbeddedImageData
+        {
+            get { return _EmbeddedImageData; }
+        }
+
+
+        static internal string GetMimeType(string file)
 		{
 			String fileExt;
 			

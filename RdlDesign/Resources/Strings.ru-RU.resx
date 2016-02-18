@@ -1061,7 +1061,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
   </data>
   <data name="SubreportCtl_bFile_Click_ReportFilesFilter" xml:space="preserve">
-    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+    <value>Отчёты (*.rdl)|*.rdl| зашифрованный (*.encrypted)|*.encrypted|Все файлы (*.*)|*.*</value>
   </data>
   <data name="SubreportCtl_bFile_Click_ReportFilesTitle" xml:space="preserve">
     <value>Выберите отчёт</value>
