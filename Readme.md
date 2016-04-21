@@ -4,7 +4,8 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 
 https://groups.google.com/d/forum/myfyireporting
 
-[![Build Status](https://travis-ci.org/majorsilence/My-FyiReporting.svg)](https://travis-ci.org/majorsilence/My-FyiReporting)
+[![Build Status travis](https://travis-ci.org/majorsilence/My-FyiReporting.svg)](https://travis-ci.org/majorsilence/My-FyiReporting)
+[![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting)
 
 # Documentation
 See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
