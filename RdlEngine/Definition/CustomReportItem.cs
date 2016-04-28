@@ -214,12 +214,13 @@ namespace fyiReporting.RDL
                 p.AddObject(pi);	// Put image onto the current page
 
   //              RunPageRegionEnd(pgs);
-
-                if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
+// I don't know why we need move offset after draw. If we do it, barcode if it first in list all text shifted.
+// If it broken something, write to Gankov
+/*                if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
                 {
                     float newY = pi.Y + pi.H;
                     p.YOffset += newY;	// bump the y location
-                }
+                } */
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
             }
             catch (Exception ex)
