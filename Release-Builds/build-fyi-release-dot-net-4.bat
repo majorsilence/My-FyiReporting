@@ -1,6 +1,7 @@
 REM Platform options: "x86", "x64", "x64"
 REM /p:Configuration="Debug" or "Release"
 
+set msbuildpath="%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe"
 
 REM retrieve new version number
 REM See http://stackoverflow.com/questions/4044579/how-to-get-output-of-a-for-loop-into-a-variable-in-a-batch-file
@@ -16,7 +17,7 @@ nuget restore "../MajorsilenceReporting.sln"
 
 REM ************* Begin x64 *********************************************
 
-"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
+%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 
 del .\build-output\majorsilence-reporting-build-dot-net-4-x64 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x64
@@ -70,7 +71,7 @@ REM ************* End x64 *********************************************
 
 REM ************* Begin x86 *********************************************
 
-"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
+%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 
 del .\build-output\majorsilence-reporting-build-dot-net-4-x86 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x86
@@ -193,10 +194,6 @@ cd build-output
 cd ..
 
 REM ************* End Ruby *********************************************
-
-
-
-REM ************* ILMerge RdlReader *********************************************
 
 del .\build-output\majorsilence-reporting-build-dot-net-4-viewer-x86 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-viewer-x86
