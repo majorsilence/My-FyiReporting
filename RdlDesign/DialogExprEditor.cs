@@ -110,6 +110,8 @@ namespace fyiReporting.RdlDesign
             InitGlobals();
             // Fields - only when a dataset is specified
             InitFields(flds);
+			// Fields - is missing
+			InitFieldsIsMissing(flds);
             // Report parameters
             InitReportParameters();
             // Handle the functions
@@ -183,6 +185,15 @@ namespace fyiReporting.RdlDesign
                 InitTreeNodes("Fields", fields);
             }
         }
+		// Initializes the database fields is missing
+		void InitFieldsIsMissing(string[] flds)
+		{
+			if (flds != null && flds.Length > 0)
+			{
+				List<string> fields = ArrayToFormattedList(flds, "Fields!", ".IsMissing");
+				InitTreeNodes("Check for null", fields);
+			}
+		}
         // Initializes the aggregate functions
         void InitAggrFunctions()
         {
