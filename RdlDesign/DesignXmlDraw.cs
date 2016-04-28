@@ -1900,7 +1900,7 @@ namespace fyiReporting.RdlDesign
             // Josh: Changed to DimGray (personal preference)
             si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = Color.DimGray; //Color.LightGray; 
 
-            if (!IsDataRegion(xNode))
+			if (!IsDataRegion(xNode) || xNode.Name == "List")
             {
                 DrawBorder(si, r);
                 DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
