@@ -19,7 +19,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlDesign</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>fyiReporting.RdlDesign.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -1034,6 +1035,10 @@
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
       <Project>{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}</Project>
       <Name>DataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj">
+      <Project>{83d67c75-ce23-4141-8bfe-3ac52f53310e}</Project>
+      <Name>EncryptionProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\RdlCri\RdlCri.csproj">
       <Project>{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}</Project>

@@ -22,19 +22,55 @@ private System.ComponentModel.Container components = null;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SQLCtl));
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.bOK = new System.Windows.Forms.Button();
-			this.bCancel = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tvTablesColumns = new System.Windows.Forms.TreeView();
 			this.tbSQL = new System.Windows.Forms.TextBox();
 			this.bMove = new System.Windows.Forms.Button();
-			this.panel1.SuspendLayout();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.bOK = new System.Windows.Forms.Button();
+			this.bCancel = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// splitContainer1
+			// 
+			resources.ApplyResources(this.splitContainer1, "splitContainer1");
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.tvTablesColumns);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.tbSQL);
+			this.splitContainer1.Panel2.Controls.Add(this.bMove);
+			// 
+			// tvTablesColumns
+			// 
+			resources.ApplyResources(this.tvTablesColumns, "tvTablesColumns");
+			this.tvTablesColumns.FullRowSelect = true;
+			this.tvTablesColumns.Name = "tvTablesColumns";
+			this.tvTablesColumns.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvTablesColumns_BeforeExpand);
+			// 
+			// tbSQL
+			// 
+			this.tbSQL.AcceptsReturn = true;
+			this.tbSQL.AcceptsTab = true;
+			this.tbSQL.AllowDrop = true;
+			resources.ApplyResources(this.tbSQL, "tbSQL");
+			this.tbSQL.Name = "tbSQL";
+			this.tbSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSQL_KeyDown);
+			// 
+			// bMove
+			// 
+			resources.ApplyResources(this.bMove, "bMove");
+			this.bMove.Name = "bMove";
+			this.bMove.Click += new System.EventHandler(this.bMove_Click);
 			// 
 			// panel1
 			// 
@@ -56,43 +92,6 @@ private System.ComponentModel.Container components = null;
 			this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.bCancel.Name = "bCancel";
 			// 
-			// splitContainer1
-			// 
-			resources.ApplyResources(this.splitContainer1, "splitContainer1");
-			this.splitContainer1.Name = "splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
-			this.splitContainer1.Panel1.Controls.Add(this.tvTablesColumns);
-			// 
-			// splitContainer1.Panel2
-			// 
-			resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
-			this.splitContainer1.Panel2.Controls.Add(this.tbSQL);
-			this.splitContainer1.Panel2.Controls.Add(this.bMove);
-			// 
-			// tvTablesColumns
-			// 
-			resources.ApplyResources(this.tvTablesColumns, "tvTablesColumns");
-			this.tvTablesColumns.FullRowSelect = true;
-			this.tvTablesColumns.Name = "tvTablesColumns";
-			this.tvTablesColumns.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvTablesColumns_BeforeExpand);
-			// 
-			// tbSQL
-			// 
-			this.tbSQL.AcceptsReturn = true;
-			this.tbSQL.AcceptsTab = true;
-			resources.ApplyResources(this.tbSQL, "tbSQL");
-			this.tbSQL.AllowDrop = true;
-			this.tbSQL.Name = "tbSQL";
-			// 
-			// bMove
-			// 
-			resources.ApplyResources(this.bMove, "bMove");
-			this.bMove.Name = "bMove";
-			this.bMove.Click += new System.EventHandler(this.bMove_Click);
-			// 
 			// SQLCtl
 			// 
 			this.AcceptButton = this.bOK;
@@ -106,12 +105,12 @@ private System.ComponentModel.Container components = null;
 			this.Name = "SQLCtl";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-			this.panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

@@ -20,19 +20,21 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
+
+using fyiReporting.RDL;
+using fyiReporting.RdlDesign.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Windows.Forms;
-using System.IO;
-using System.Xml;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Net;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
@@ -1898,7 +1900,7 @@ namespace fyiReporting.RdlDesign
             // Josh: Changed to DimGray (personal preference)
             si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = Color.DimGray; //Color.LightGray; 
 
-            if (!IsDataRegion(xNode))
+			if (!IsDataRegion(xNode) || xNode.Name == "List")
             {
                 DrawBorder(si, r);
                 DrawCircle(Color.Black, BorderStyleEnum.Solid, 1,
@@ -2133,7 +2135,7 @@ namespace fyiReporting.RdlDesign
 
            if (mainSections.TryGetValue("TableGroups", out tableNode)&&tableNode!=null)
            {
-                foreach(var tg in GetTableGroupRowsNodes(tableNode, "Header", (s) => "GH_" + s))
+                foreach(var tg in GetTableGroupRowsNodes(tableNode, "Header", (s) => "GH_" + s, false))
                     resultSections.Add(tg.Key,tg.Value);
 
            }
@@ -2145,7 +2147,7 @@ namespace fyiReporting.RdlDesign
 
            if (mainSections.TryGetValue("TableGroups", out tableNode) && tableNode != null)
            {
-                foreach (var tg in GetTableGroupRowsNodes(tableNode, "Footer", (s) => "GF_" + s))
+                foreach (var tg in GetTableGroupRowsNodes(tableNode, "Footer", (s) => "GF_" + s, true))
                     resultSections.Add(tg.Key, tg.Value);
 
            }
@@ -2188,19 +2190,26 @@ namespace fyiReporting.RdlDesign
                 }
             }
             GetTableRowsAdd(GetNamedChildNode(header, "TableRows"), trs);
-            GetTableGroupsRows(tblGroups, trs, "Header");
+            GetTableGroupsRows(tblGroups, trs, "Header", false);
             GetTableRowsAdd(GetNamedChildNode(details, "TableRows"), trs);
-            GetTableGroupsRows(tblGroups, trs, "Footer");
+            GetTableGroupsRows(tblGroups, trs, "Footer", true);
             GetTableRowsAdd(GetNamedChildNode(footer, "TableRows"), trs);
 
             return trs;
         }
 
-        private void GetTableGroupsRows(XmlNode xNode, List<XmlNode> trs, string name)
+        private void GetTableGroupsRows(XmlNode xNode, List<XmlNode> trs, string name, bool reverse)
         {
             if (xNode == null)
                 return;
-            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+
+			IEnumerable<XmlNode> childs;
+			if (reverse) //Need for correct footer order in nested groups
+				childs = xNode.ChildNodes.Cast<XmlNode>().Reverse();
+			else
+				childs = xNode.ChildNodes.Cast<XmlNode>();
+
+            foreach (XmlNode xNodeLoop in childs)
             {
                 if (xNodeLoop.NodeType == XmlNodeType.Element &&
                     xNodeLoop.Name == "TableGroup")
@@ -2218,10 +2227,17 @@ namespace fyiReporting.RdlDesign
 
         }
 
-        private Dictionary<string,List<XmlNode>> GetTableGroupRowsNodes(XmlNode xNode,string sectionGroup,Func<string,string> groupNameKey)
+        private Dictionary<string,List<XmlNode>> GetTableGroupRowsNodes(XmlNode xNode,string sectionGroup,Func<string,string> groupNameKey, bool reverse)
         {
             Dictionary<string, List<XmlNode>> result = new Dictionary<string, List<XmlNode>>();
-            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+
+			IEnumerable<XmlNode> childs; 
+			if (reverse) //Need for correct footer order in nested groups
+				childs = xNode.ChildNodes.Cast<XmlNode>().Reverse();
+			else
+				childs = xNode.ChildNodes.Cast<XmlNode>();
+
+            foreach (XmlNode xNodeLoop in childs)
             {
                 if (xNodeLoop.NodeType == XmlNodeType.Element &&
                     xNodeLoop.Name == "TableGroup")
@@ -2232,7 +2248,6 @@ namespace fyiReporting.RdlDesign
                     XmlNode headerNode = GetNamedChildNode(xNodeLoop, sectionGroup);
                     if (headerNode != null)
                     {
-
                         result.Add( groupNameKey(groupName.InnerText), GetTableRowsNodes(GetNamedChildNode(headerNode, "TableRows")));
                     }
                 }

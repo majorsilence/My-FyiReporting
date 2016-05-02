@@ -64,6 +64,7 @@ namespace fyiReporting.RdlGtkViewer
 			this.errorsAction.DrawAsRadio = true;
 			this.errorsAction.IsImportant = true;
 			this.errorsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Show _Errors");
+			this.errorsAction.VisibleHorizontal = false;
 			w2.Add (this.errorsAction, null);
 			this.UIManager.InsertActionGroup (w2, 0);
 			this.WidthRequest = 0;

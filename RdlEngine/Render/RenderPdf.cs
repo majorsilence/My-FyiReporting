@@ -99,13 +99,14 @@ namespace fyiReporting.RDL
             cb.SetRGBColorStroke(c.R, c.G, c.B);
             cb.SetLineWidth(width);
             // Get the line style Dotted - Dashed - Solid
+            
             switch (ls)
             {
                 case BorderStyleEnum.Dashed:
-                    cb.SetLineDash(new float[] { '3', '2' }, 0);
+                    cb.SetLineDash(new float[] { width*3, width  }, 0);
                     break;
                 case BorderStyleEnum.Dotted:
-                    cb.SetLineDash(new float[] { '2' }, 0);
+                    cb.SetLineDash(new float[] { width },0);
                     break;
                 case BorderStyleEnum.Solid:
                 default:

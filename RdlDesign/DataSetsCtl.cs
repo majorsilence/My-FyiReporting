@@ -258,7 +258,8 @@ namespace fyiReporting.RdlDesign
         {
             // Need to clear all the fields and then replace with the columns 
             //   of the SQL statement
-            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, tbSQL.Text);
+
+            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, tbSQL.Text, _dsv.QueryParameters);
             if (cols == null || cols.Count <= 0)
                 return;				// something didn't work right
 			
@@ -300,6 +301,16 @@ namespace fyiReporting.RdlDesign
         {
             _dsv.Timeout = Convert.ToInt32(tbTimeout.Value);
         }
+
+		private void tbSQL_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && (e.KeyCode == Keys.A))
+			{
+				if (sender != null)
+					((TextBox)sender).SelectAll();
+				e.Handled = true;
+			}
+		}
     }
 
     internal class DataSetValues

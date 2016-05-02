@@ -162,4 +162,7 @@
   <data name="RdlViewerFind_FindPrevious_Reached_top_of_report" xml:space="preserve">
     <value>Reached top of report, continued from end</value>
   </data>
+  <data name="RdlViewer_doPossibleDecryption_Incorrect_Pass_key_entered_" xml:space="preserve">
+    <value>Incorrect Pass key entered.</value>
+  </data>
 </root>

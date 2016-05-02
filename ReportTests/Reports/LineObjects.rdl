@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>Test lines </Description>
+  <Author>
+  </Author>
+  <PageHeight>11in</PageHeight>
+  <PageWidth>8.5in</PageWidth>
+  <Width>7.5in</Width>
+  <TopMargin>.25in</TopMargin>
+  <LeftMargin>.25in</LeftMargin>
+  <RightMargin>.25in</RightMargin>
+  <BottomMargin>.25in</BottomMargin>
+  <PageHeader>
+    <Height>0.0pt</Height>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <Height>412.1pt</Height>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Height>11.26pt</Height>
+        <Width>575.24pt</Width>
+        <Value>dotted</Value>
+        <ZIndex>1</ZIndex>
+        <Left>2.0pt</Left>
+        <Top>0.1pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+          <TextAlign>Center</TextAlign>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>1pt</Value>
+        <ZIndex>1</ZIndex>
+        <Left>11.9pt</Left>
+        <Top>12.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line1">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <Left>55.71pt</Left>
+        <Top>18.87pt</Top>
+      </Line>
+      <Textbox Name="Textbox3">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>2pt</Value>
+        <ZIndex>2</ZIndex>
+        <Left>11.9pt</Left>
+        <Top>22.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line2">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>2pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.8pt</Left>
+        <Top>28.1pt</Top>
+      </Line>
+      <Textbox Name="Textbox4">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>3pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.9pt</Left>
+        <Top>32.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line3">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>3pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.8pt</Left>
+        <Top>38.1pt</Top>
+      </Line>
+      <Textbox Name="Textbox5" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>4pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>12.0pt</Left>
+        <Top>43.8pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line4" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>4pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.9pt</Left>
+        <Top>49.3pt</Top>
+      </Line>
+      <Textbox Name="Textbox6" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>5pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>10.9pt</Left>
+        <Top>56.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line5" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>5pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>54.8pt</Left>
+        <Top>61.5pt</Top>
+      </Line>
+      <Textbox Name="Textbox7" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>6pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.9pt</Left>
+        <Top>69.7pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line6" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>6pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.8pt</Left>
+        <Top>75.2pt</Top>
+      </Line>
+      <Textbox Name="Textbox8" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>7pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.6pt</Left>
+        <Top>83.7pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line7" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>7pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.5pt</Left>
+        <Top>89.2pt</Top>
+      </Line>
+      <Textbox Name="Textbox9" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>8pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>12.8pt</Left>
+        <Top>97.8pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line8" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>8pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>56.7pt</Left>
+        <Top>103.3pt</Top>
+      </Line>
+      <Textbox Name="Textbox10" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>9pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>13.4pt</Left>
+        <Top>112.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line9" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dotted</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>9pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.6pt</Left>
+        <Top>116.7pt</Top>
+      </Line>
+      <Textbox Name="Textbox11" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>11.26pt</Height>
+        <Width>575.24pt</Width>
+        <Value>dashed</Value>
+        <ZIndex>1</ZIndex>
+        <Left>3.2pt</Left>
+        <Top>143.1pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+          <TextAlign>Center</TextAlign>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>1pt</Value>
+        <ZIndex>1</ZIndex>
+        <Left>11.6pt</Left>
+        <Top>155.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line10" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <Left>55.4pt</Left>
+        <Top>161.9pt</Top>
+      </Line>
+      <Textbox Name="Textbox13" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>2pt</Value>
+        <ZIndex>2</ZIndex>
+        <Left>11.6pt</Left>
+        <Top>165.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line11" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>2pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.5pt</Left>
+        <Top>171.1pt</Top>
+      </Line>
+      <Textbox Name="Textbox14" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>3pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.6pt</Left>
+        <Top>175.6pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line12" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>3pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.5pt</Left>
+        <Top>181.1pt</Top>
+      </Line>
+      <Textbox Name="Textbox15" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>4pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.7pt</Left>
+        <Top>186.8pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line13" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>4pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.6pt</Left>
+        <Top>192.3pt</Top>
+      </Line>
+      <Textbox Name="Textbox16" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>5pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>10.6pt</Left>
+        <Top>199.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line14" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>5pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>54.5pt</Left>
+        <Top>204.5pt</Top>
+      </Line>
+      <Textbox Name="Textbox17" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>6pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.6pt</Left>
+        <Top>212.7pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line15" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>6pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.5pt</Left>
+        <Top>218.2pt</Top>
+      </Line>
+      <Textbox Name="Textbox18" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>7pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>11.3pt</Left>
+        <Top>226.7pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line16" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>7pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.2pt</Left>
+        <Top>232.2pt</Top>
+      </Line>
+      <Textbox Name="Textbox19" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>8pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>12.5pt</Left>
+        <Top>240.8pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line17" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>8pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>56.4pt</Left>
+        <Top>246.3pt</Top>
+      </Line>
+      <Textbox Name="Textbox20" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>12pt</Height>
+        <Width>0.5in</Width>
+        <Value>9pt</Value>
+        <ZIndex>3</ZIndex>
+        <Left>13.1pt</Left>
+        <Top>255.0pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+      <Line Name="Line18" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>-0.04pt</Height>
+        <Width>518.09pt</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Dashed</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>9pt</Default>
+          </BorderWidth>
+        </Style>
+        <Left>55.3pt</Left>
+        <Top>259.7pt</Top>
+      </Line>
+    </ReportItems>
+    <Columns >1</Columns>
+  </Body>
+  <PageFooter>
+    <Height>14pt</Height>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+  <DataElementName >Report</DataElementName>
+  <DataElementStyle >AttributeNormal</DataElementStyle>
+</Report>
