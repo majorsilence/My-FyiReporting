@@ -784,22 +784,27 @@ namespace fyiReporting.RdlDesign
 
 		public void Goto(Control ctl, int nLine)
 		{	
-			if (_CurrentTab != DesignTabs.Edit)
-				return;
+			if (_CurrentTab == DesignTabs.Edit)
+			{
+				int offset = 0;
+				nLine = Math.Min(Math.Max(0, nLine - 1), tbEditor.Lines.Length - 1);	// don't go off the ends
 
-			int offset = 0;
-            nLine = Math.Min(Math.Max(0, nLine - 1), tbEditor.Lines.Length - 1);	// don't go off the ends
+				offset = tbEditor.GetFirstCharIndexFromLine(nLine);    
 
-            offset = tbEditor.GetFirstCharIndexFromLine(nLine);    
+				Control savectl = this.ActiveControl;
+				tbEditor.Focus(); 
+				tbEditor.Select( offset, this.tbEditor.Lines[nLine].Length);
+				this.ActiveControl = savectl;
+			}
 
-//   Before .Net 2
-//			for ( int i = 0; i < nLine - 1 && i < tbEditor.Lines.Length; ++i ) 
-//				offset += this.tbEditor.Lines[i].Length + 1; 
-
-			Control savectl = this.ActiveControl;
-			tbEditor.Focus(); 
-			tbEditor.Select( offset, this.tbEditor.Lines[nLine].Length);
-			this.ActiveControl = savectl;
+			if (_CurrentTab == DesignTabs.NewEdit)
+			{
+				if(nLine > scintilla1.Lines.Count)
+					nLine = scintilla1.Lines.Count;
+				scintilla1.Lines[nLine-1].Goto();
+				scintilla1.SelectionStart = scintilla1.Lines[nLine - 1].Position;
+				scintilla1.SelectionEnd = scintilla1.Lines[nLine - 1].EndPosition;
+			}
 		}
 
 		/// <summary> 
