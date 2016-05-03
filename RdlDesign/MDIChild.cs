@@ -136,9 +136,13 @@ namespace fyiReporting.RdlDesign
             get { return rdlDesigner.CurrentCh; }
         }
 
-        internal string DesignTab
+        internal DesignTabs DesignTab
         {
-            get { return rdlDesigner.DesignTab; }
+			get
+			{
+				if (rdlDesigner.DesignTab == DesignTabs.NewEdit)// FIXME tempory don't show to outside NewEditor
+					return DesignTabs.Edit;
+				return rdlDesigner.DesignTab; }
             set { rdlDesigner.DesignTab = value; }
         }
 
