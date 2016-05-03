@@ -127,6 +127,7 @@ namespace fyiReporting.RdlDesign
 
 			//ScintillaNET Init
 			ConfigureScintillaStyle(scintilla1);
+			scintilla1.TextChanged += scintilla1_TextChanged;
 
 			tbEditor.SelectionChanged +=new EventHandler(tbEditor_SelectionChanged);
             // adjust size of line box by measuring a large #
@@ -137,6 +138,16 @@ namespace fyiReporting.RdlDesign
             }
 #endif
 
+		}
+
+		void scintilla1_TextChanged(object sender, EventArgs e)
+		{
+			_DesignChanged = DesignTabs.NewEdit;
+
+			if (OnRdlChanged != null)
+			{
+				OnRdlChanged(this, e);
+			}
 		}
 
 		private void ConfigureScintillaStyle(ScintillaNET.Scintilla scintilla)
@@ -337,12 +348,19 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{ 
-				return tbEditor.Modified; 
+				if(_CurrentTab == DesignTabs.NewEdit)
+					return scintilla1.Modified;
+				else
+					return tbEditor.Modified;
 			}
 			set 
 			{ 
 				_DesignChanged = _CurrentTab;
-				tbEditor.Modified = value;
+				if (_CurrentTab == DesignTabs.NewEdit)
+					if(value == false) 
+						scintilla1.SetSavePoint();
+				else
+					tbEditor.Modified = value;
 			}
 		}
 
@@ -998,8 +1016,9 @@ namespace fyiReporting.RdlDesign
 				case DesignTabs.Design:
 					// sync up the editor
 					tbEditor.Text = dcDesign.ReportSource;
-					tbEditor.Modified = true;
+					tbEditor.Modified = false;
 					scintilla1.Text = dcDesign.ReportSource;
+					scintilla1.SetSavePoint();
 					break;
 				case DesignTabs.Edit:
 				case DesignTabs.Preview:
@@ -1022,7 +1041,10 @@ namespace fyiReporting.RdlDesign
 				{
 					try
 					{
-						dcDesign.ReportSource = tbEditor.Text;
+						if(_DesignChanged == DesignTabs.NewEdit)
+							dcDesign.ReportSource = scintilla1.Text;
+						else
+							dcDesign.ReportSource = tbEditor.Text;
 					}
 					catch (Exception ge)
 					{
