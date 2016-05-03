@@ -124,6 +124,9 @@ namespace fyiReporting.RdlDesign
 			dcDesign.ReportItemInserted += new System.EventHandler(dcDesign_ReportItemInserted);
 			dcDesign.OpenSubreport += new DesignCtl.OpenSubreportEventHandler(dcDesign_OpenSubreport);
 
+			//ScintillaNET Init
+			scintilla1.Margins[0].Width = 40;
+
 			tbEditor.SelectionChanged +=new EventHandler(tbEditor_SelectionChanged);
             // adjust size of line box by measuring a large #
 #if !MONO
