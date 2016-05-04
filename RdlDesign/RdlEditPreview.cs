@@ -1082,7 +1082,10 @@ namespace fyiReporting.RdlDesign
 					// sync up the editor
 					tbEditor.Text = dcDesign.ReportSource;
 					tbEditor.Modified = false;
+					bool clearUndo = String.IsNullOrEmpty(scintilla1.Text);
 					scintilla1.Text = dcDesign.ReportSource;
+					if (clearUndo)
+						scintilla1.EmptyUndoBuffer();
 					scintilla1.SetSavePoint();
 					break;
 				case DesignTabs.Edit:
@@ -1166,7 +1169,12 @@ namespace fyiReporting.RdlDesign
 				}
 			}
 			else if (_CurrentTab == DesignTabs.NewEdit)
+			{
+				bool clearUndo = String.IsNullOrEmpty(scintilla1.Text);
 				scintilla1.Text = text;
+				if(clearUndo)
+					scintilla1.EmptyUndoBuffer();
+			}
 			else
 			{
 				this.tbEditor.Text = text;

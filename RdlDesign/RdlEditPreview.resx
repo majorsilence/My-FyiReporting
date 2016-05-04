@@ -193,7 +193,7 @@
     <value>pbLines</value>
   </data>
   <data name="&gt;&gt;pbLines.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.DesignEditLines, RdlDesigner, Version=4.13.5967.20647, Culture=neutral, PublicKeyToken=null</value>
+    <value>fyiReporting.RdlDesign.DesignEditLines, RdlDesigner, Version=4.13.5968.40867, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pbLines.Parent" xml:space="preserve">
     <value>tpEditor</value>
@@ -287,9 +287,6 @@
   </data>
   <data name="scintilla1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="scintilla1.Text" xml:space="preserve">
-    <value>scintilla1</value>
   </data>
   <data name="&gt;&gt;scintilla1.Name" xml:space="preserve">
     <value>scintilla1</value>
