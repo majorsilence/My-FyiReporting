@@ -76,6 +76,10 @@ namespace fyiReporting.RdlDesign
 
 		int filePosition=0;				// file position; for use with search
 
+		// Indicators 0-7 could be in use by a lexer
+		// so we'll use indicator 8 to highlight words.
+		const int SEARCH_INDICATOR_NUM = 8;
+
 		public RdlEditPreview()
 		{
 			// This call is required by the Windows.Forms Form Designer.
@@ -703,37 +707,93 @@ namespace fyiReporting.RdlDesign
 			set {this.rdlPreview.ZoomMode = value;}
 		}
 
-		public void FindNext(Control ctl, string str, bool matchCase)
+		public void FindNext(Control ctl, string str, bool matchCase, bool revertSearch, bool showEndMsg = true)
 		{
-			FindNext(ctl, str, matchCase, true);
+			if (_CurrentTab == DesignTabs.Edit)
+			{
+				try
+				{
+					int nStart = tbEditor.Find(str, filePosition,
+						matchCase ? RichTextBoxFinds.MatchCase : RichTextBoxFinds.None);
+
+					if (nStart < 0)
+					{
+						if (showEndMsg)
+							MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
+						filePosition = 0;
+						return;
+					}
+					int nLength = str.Length;
+
+					tbEditor.ScrollToCaret();
+					filePosition = nStart + nLength;
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(string.Format(Strings.RdlEditPreview_Show_ErrorFind, ex.Message), Strings.RdlEditPreview_Show_InternalError);
+					filePosition = 0;       // restart at 0
+				}
+			}
+			if (_CurrentTab == DesignTabs.NewEdit)
+			{
+				scintilla1.SearchFlags = matchCase ? SearchFlags.MatchCase : SearchFlags.None;
+				HighlightWord(str);
+				if (revertSearch)
+				{
+					scintilla1.TargetStart = scintilla1.SelectionStart;
+					scintilla1.TargetEnd = 0;
+				}
+				else
+				{
+					scintilla1.TargetStart = scintilla1.SelectionEnd;
+					scintilla1.TargetEnd = scintilla1.TextLength;
+				}
+				var pos = scintilla1.SearchInTarget(str);
+				if (pos == -1)
+				{
+					if (showEndMsg)
+						MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
+				}
+				else
+				{
+					scintilla1.GotoPosition(pos);
+					scintilla1.SelectionStart = scintilla1.TargetStart;
+					scintilla1.SelectionEnd = scintilla1.TargetEnd;
+				}
+			}
 		}
 
-		public void FindNext(Control ctl, string str, bool matchCase, bool showEndMsg)
+		private void HighlightWord(string text)
 		{
-			if (_CurrentTab != DesignTabs.Edit)
-				return;
-            try
-            {
-                int nStart = tbEditor.Find(str, filePosition,
-                    matchCase ? RichTextBoxFinds.MatchCase : RichTextBoxFinds.None);
+			// Remove all uses of our indicator
+			scintilla1.IndicatorCurrent = SEARCH_INDICATOR_NUM;
+			scintilla1.IndicatorClearRange(0, scintilla1.TextLength);
 
-                if (nStart < 0)
-                {
-                    if (showEndMsg)
-                        MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-                    filePosition = 0;
-                    return;
-                }
-                int nLength = str.Length;
+			// Update indicator appearance
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Style = IndicatorStyle.StraightBox;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Under = true;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].ForeColor = Color.Orange;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].OutlineAlpha = 50;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Alpha = 30;
 
-                tbEditor.ScrollToCaret();
-                filePosition = nStart + nLength;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format(Strings.RdlEditPreview_Show_ErrorFind, ex.Message), Strings.RdlEditPreview_Show_InternalError);
-                filePosition = 0;       // restart at 0
-            }
+			// Search the document
+			scintilla1.TargetStart = 0;
+			scintilla1.TargetEnd = scintilla1.TextLength;
+			while (scintilla1.SearchInTarget(text) != -1)
+			{
+				// Mark the search results with the current indicator
+				scintilla1.IndicatorFillRange(scintilla1.TargetStart, scintilla1.TargetEnd - scintilla1.TargetStart);
+
+				// Search the remainder of the document
+				scintilla1.TargetStart = scintilla1.TargetEnd;
+				scintilla1.TargetEnd = scintilla1.TextLength;
+			}
+		}
+
+		public void ClearSearchHighlight()
+		{
+			scintilla1.IndicatorCurrent = SEARCH_INDICATOR_NUM;
+			scintilla1.IndicatorClearRange(0, scintilla1.TextLength);
 		}
 
 		public void ReplaceNext(Control ctl, string str, string strReplace, bool matchCase)
