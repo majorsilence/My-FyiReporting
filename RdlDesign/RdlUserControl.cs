@@ -432,8 +432,6 @@ namespace fyiReporting.RdlDesign
 
         private void DesignTabChanged(object sender, System.EventArgs e)
         {
-
-            string tab = "";
             bool bEnableEdit = false;
             bool bEnableDesign = false;
             bool bEnablePreview = false;
@@ -441,7 +439,6 @@ namespace fyiReporting.RdlDesign
             switch (rdlEditPreview1.DesignTab)
             {
                 case DesignTabs.Edit:
-				case DesignTabs.NewEdit:
                     bEnableEdit = true;
                     break;
                 case DesignTabs.Design:

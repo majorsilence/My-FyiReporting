@@ -147,59 +147,29 @@
   <data name="&gt;&gt;tpDesign.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tbEditor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="scintilla1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="tbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 0</value>
+  <data name="scintilla1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 0</value>
   </data>
-  <data name="tbEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 350</value>
+  <data name="scintilla1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
   </data>
-  <data name="tbEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tbEditor.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tbEditor.WordWrap" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.Name" xml:space="preserve">
-    <value>tbEditor</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.Parent" xml:space="preserve">
-    <value>tpEditor</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pbLines.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="pbLines.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pbLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 350</value>
-  </data>
-  <data name="pbLines.TabIndex" type="System.Int32, mscorlib">
+  <data name="scintilla1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;pbLines.Name" xml:space="preserve">
-    <value>pbLines</value>
+  <data name="&gt;&gt;scintilla1.Name" xml:space="preserve">
+    <value>scintilla1</value>
   </data>
-  <data name="&gt;&gt;pbLines.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.DesignEditLines, RdlDesigner, Version=4.13.5968.40867, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;scintilla1.Type" xml:space="preserve">
+    <value>ScintillaNET.Scintilla, ScintillaNET, Version=3.5.6.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;pbLines.Parent" xml:space="preserve">
+  <data name="&gt;&gt;scintilla1.Parent" xml:space="preserve">
     <value>tpEditor</value>
   </data>
-  <data name="&gt;&gt;pbLines.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;scintilla1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tpEditor.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -275,57 +245,6 @@
   </data>
   <data name="&gt;&gt;tpBrowser.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="scintilla1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="scintilla1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="scintilla1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="scintilla1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;scintilla1.Name" xml:space="preserve">
-    <value>scintilla1</value>
-  </data>
-  <data name="&gt;&gt;scintilla1.Type" xml:space="preserve">
-    <value>ScintillaNET.Scintilla, ScintillaNET, Version=3.5.6.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;scintilla1.Parent" xml:space="preserve">
-    <value>tabRDLText</value>
-  </data>
-  <data name="&gt;&gt;scintilla1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabRDLText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="tabRDLText.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabRDLText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="tabRDLText.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tabRDLText.Text" xml:space="preserve">
-    <value>RDL (Experimental)</value>
-  </data>
-  <data name="&gt;&gt;tabRDLText.Name" xml:space="preserve">
-    <value>tabRDLText</value>
-  </data>
-  <data name="&gt;&gt;tabRDLText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabRDLText.Parent" xml:space="preserve">
-    <value>tcEHP</value>
-  </data>
-  <data name="&gt;&gt;tabRDLText.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="tcEHP.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

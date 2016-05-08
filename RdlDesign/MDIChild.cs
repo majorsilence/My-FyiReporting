@@ -140,9 +140,8 @@ namespace fyiReporting.RdlDesign
         {
 			get
 			{
-				if (rdlDesigner.DesignTab == DesignTabs.NewEdit)// FIXME tempory don't show to outside NewEditor
-					return DesignTabs.Edit;
-				return rdlDesigner.DesignTab; }
+				return rdlDesigner.DesignTab; 
+			}
             set { rdlDesigner.DesignTab = value; }
         }
 
