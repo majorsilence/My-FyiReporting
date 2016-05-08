@@ -49,6 +49,7 @@ namespace fyiReporting.RdlDesign
         internal FindTab(RdlEditPreview pad)
         {
             rdlEdit = pad;
+			rdlEdit.FindTab = this;
             InitializeComponent();
 
             this.AcceptButton = btnNext;
@@ -157,6 +158,12 @@ namespace fyiReporting.RdlDesign
 		private void FindTab_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			rdlEdit.ClearSearchHighlight();
+		}
+
+		public void FindNextClick()
+		{
+			if (!String.IsNullOrEmpty(txtFind.Text))
+				btnNext.PerformClick();
 		}
     }
 }

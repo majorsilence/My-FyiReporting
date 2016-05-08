@@ -117,167 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;tabFind.Name" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;tabFind.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabFind.Parent" xml:space="preserve">
-    <value>tcFRG</value>
-  </data>
-  <data name="&gt;&gt;tabFind.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabReplace.Name" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;tabReplace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabReplace.Parent" xml:space="preserve">
-    <value>tcFRG</value>
-  </data>
-  <data name="&gt;&gt;tabReplace.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabGoTo.Name" xml:space="preserve">
-    <value>tabGoTo</value>
-  </data>
-  <data name="&gt;&gt;tabGoTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabGoTo.Parent" xml:space="preserve">
-    <value>tcFRG</value>
-  </data>
-  <data name="&gt;&gt;tabGoTo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tcFRG.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="tcFRG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 192</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tcFRG.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tcFRG.Name" xml:space="preserve">
-    <value>tcFRG</value>
-  </data>
-  <data name="&gt;&gt;tcFRG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tcFRG.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tcFRG.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnNext.Name" xml:space="preserve">
-    <value>btnNext</value>
-  </data>
-  <data name="&gt;&gt;btnNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnNext.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;btnNext.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;chkCase.Name" xml:space="preserve">
-    <value>chkCase</value>
-  </data>
-  <data name="&gt;&gt;chkCase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkCase.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;chkCase.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;txtFind.Name" xml:space="preserve">
-    <value>txtFind</value>
-  </data>
-  <data name="&gt;&gt;txtFind.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFind.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;txtFind.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tabFind.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabFind.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 166</value>
-  </data>
-  <data name="tabFind.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabFind.Text" xml:space="preserve">
-    <value>Find</value>
-  </data>
-  <data name="&gt;&gt;tabFind.Name" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;tabFind.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabFind.Parent" xml:space="preserve">
-    <value>tcFRG</value>
-  </data>
-  <data name="&gt;&gt;tabFind.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 128</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -347,54 +194,6 @@
   <data name="&gt;&gt;chkCase.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;radioUp.Name" xml:space="preserve">
-    <value>radioUp</value>
-  </data>
-  <data name="&gt;&gt;radioUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioUp.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;radioUp.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;radioDown.Name" xml:space="preserve">
-    <value>radioDown</value>
-  </data>
-  <data name="&gt;&gt;radioDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;radioDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 48</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 64</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Search Direction</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>tabFind</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="radioUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 24</value>
   </data>
@@ -443,6 +242,30 @@
   <data name="&gt;&gt;radioDown.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 48</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 64</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Search Direction</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>tabFind</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 16</value>
   </data>
@@ -488,137 +311,29 @@
   <data name="&gt;&gt;txtFind.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;bCloseReplace.Name" xml:space="preserve">
-    <value>bCloseReplace</value>
-  </data>
-  <data name="&gt;&gt;bCloseReplace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bCloseReplace.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;bCloseReplace.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnFindNext.Name" xml:space="preserve">
-    <value>btnFindNext</value>
-  </data>
-  <data name="&gt;&gt;btnFindNext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFindNext.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;btnFindNext.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;chkMatchCase.Name" xml:space="preserve">
-    <value>chkMatchCase</value>
-  </data>
-  <data name="&gt;&gt;chkMatchCase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkMatchCase.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;chkMatchCase.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnReplaceAll.Name" xml:space="preserve">
-    <value>btnReplaceAll</value>
-  </data>
-  <data name="&gt;&gt;btnReplaceAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReplaceAll.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;btnReplaceAll.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnReplace.Name" xml:space="preserve">
-    <value>btnReplace</value>
-  </data>
-  <data name="&gt;&gt;btnReplace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReplace.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;btnReplace.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;txtFindR.Name" xml:space="preserve">
-    <value>txtFindR</value>
-  </data>
-  <data name="&gt;&gt;txtFindR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtFindR.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;txtFindR.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtReplace.Name" xml:space="preserve">
-    <value>txtReplace</value>
-  </data>
-  <data name="&gt;&gt;txtReplace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtReplace.Parent" xml:space="preserve">
-    <value>tabReplace</value>
-  </data>
-  <data name="&gt;&gt;txtReplace.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="tabReplace.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabFind.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabReplace.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabFind.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 166</value>
   </data>
-  <data name="tabReplace.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="tabFind.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="tabReplace.Text" xml:space="preserve">
-    <value>Replace</value>
+  <data name="tabFind.Text" xml:space="preserve">
+    <value>Find</value>
   </data>
-  <data name="&gt;&gt;tabReplace.Name" xml:space="preserve">
-    <value>tabReplace</value>
+  <data name="&gt;&gt;tabFind.Name" xml:space="preserve">
+    <value>tabFind</value>
   </data>
-  <data name="&gt;&gt;tabReplace.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabFind.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabReplace.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabFind.Parent" xml:space="preserve">
     <value>tcFRG</value>
   </data>
-  <data name="&gt;&gt;tabReplace.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tabFind.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="bCloseReplace.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 128</value>
@@ -839,77 +554,29 @@
   <data name="&gt;&gt;txtReplace.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;bCloseGoto.Name" xml:space="preserve">
-    <value>bCloseGoto</value>
-  </data>
-  <data name="&gt;&gt;bCloseGoto.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bCloseGoto.Parent" xml:space="preserve">
-    <value>tabGoTo</value>
-  </data>
-  <data name="&gt;&gt;bCloseGoto.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtLine.Name" xml:space="preserve">
-    <value>txtLine</value>
-  </data>
-  <data name="&gt;&gt;txtLine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLine.Parent" xml:space="preserve">
-    <value>tabGoTo</value>
-  </data>
-  <data name="&gt;&gt;txtLine.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabGoTo</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnGoto.Name" xml:space="preserve">
-    <value>btnGoto</value>
-  </data>
-  <data name="&gt;&gt;btnGoto.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGoto.Parent" xml:space="preserve">
-    <value>tabGoTo</value>
-  </data>
-  <data name="&gt;&gt;btnGoto.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabGoTo.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabReplace.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabGoTo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabReplace.Size" type="System.Drawing.Size, System.Drawing">
     <value>424, 166</value>
   </data>
-  <data name="tabGoTo.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="tabReplace.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="tabGoTo.Text" xml:space="preserve">
-    <value>GoTo</value>
+  <data name="tabReplace.Text" xml:space="preserve">
+    <value>Replace</value>
   </data>
-  <data name="&gt;&gt;tabGoTo.Name" xml:space="preserve">
-    <value>tabGoTo</value>
+  <data name="&gt;&gt;tabReplace.Name" xml:space="preserve">
+    <value>tabReplace</value>
   </data>
-  <data name="&gt;&gt;tabGoTo.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabReplace.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabGoTo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabReplace.Parent" xml:space="preserve">
     <value>tcFRG</value>
   </data>
-  <data name="&gt;&gt;tabGoTo.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tabReplace.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="bCloseGoto.Location" type="System.Drawing.Point, System.Drawing">
     <value>344, 128</value>
@@ -1003,6 +670,51 @@
   </data>
   <data name="&gt;&gt;btnGoto.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="tabGoTo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabGoTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 166</value>
+  </data>
+  <data name="tabGoTo.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabGoTo.Text" xml:space="preserve">
+    <value>GoTo</value>
+  </data>
+  <data name="&gt;&gt;tabGoTo.Name" xml:space="preserve">
+    <value>tabGoTo</value>
+  </data>
+  <data name="&gt;&gt;tabGoTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabGoTo.Parent" xml:space="preserve">
+    <value>tcFRG</value>
+  </data>
+  <data name="&gt;&gt;tabGoTo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tcFRG.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="tcFRG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 192</value>
+  </data>
+  <data name="tcFRG.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tcFRG.Name" xml:space="preserve">
+    <value>tcFRG</value>
+  </data>
+  <data name="&gt;&gt;tcFRG.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tcFRG.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tcFRG.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

@@ -2057,7 +2057,10 @@ namespace fyiReporting.RdlDesign
             }
             else
             {
-                FindTab tab = new FindTab(e);
+                FindTab tab = e.FindTab;
+				if(tab == null)
+					tab = new FindTab(e);
+				tab.tcFRG.SelectedTab = tab.tabFind;
                 tab.Show();
             }
         }
@@ -2068,8 +2071,13 @@ namespace fyiReporting.RdlDesign
             if (e == null)
                 return;
 
-            FindTab tab = new FindTab(e);
-            tab.Show();
+			FindTab tab = e.FindTab;
+			if (tab == null)
+				tab = new FindTab(e);
+
+			tab.tcFRG.SelectedTab = tab.tabFind;
+			tab.Show();
+			tab.FindNextClick();
         }
 
         private void menuEdit_FormatXml(object sender, System.EventArgs ea)
@@ -2097,9 +2105,14 @@ namespace fyiReporting.RdlDesign
             RdlEditPreview e = GetEditor();
             if (e == null)
                 return;
-            FindTab tab = new FindTab(e);
+
+			FindTab tab = e.FindTab;
+			if (tab == null)
+				tab = new FindTab(e);
+
             tab.tcFRG.SelectedTab = tab.tabReplace;
             tab.Show();
+			tab.Focus();
         }
 
         private void menuEditGoto_Click(object sender, System.EventArgs ea)
@@ -2108,9 +2121,13 @@ namespace fyiReporting.RdlDesign
             if (e == null)
                 return;
 
-            FindTab tab = new FindTab(e);
+			FindTab tab = e.FindTab;
+			if (tab == null)
+				tab = new FindTab(e);
+
             tab.tcFRG.SelectedTab = tab.tabGoTo;
             tab.Show();
+			tab.Focus();
         }
 
         private void menuHelpAbout_Click(object sender, System.EventArgs ea)

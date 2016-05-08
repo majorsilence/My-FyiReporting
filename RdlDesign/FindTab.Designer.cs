@@ -9,8 +9,8 @@ namespace fyiReporting.RdlDesign
     internal partial class FindTab : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		private System.Windows.Forms.TabPage tabFind;
-private System.Windows.Forms.Label label1;
+
+		private System.Windows.Forms.Label label1;
 private System.Windows.Forms.TextBox txtFind;
 private System.Windows.Forms.RadioButton radioUp;
 private System.Windows.Forms.RadioButton radioDown;
@@ -273,5 +273,7 @@ private System.ComponentModel.Container components = null;
 			}
 			base.Dispose( disposing );
 		}
+
+		public TabPage tabFind;
 	}
 }

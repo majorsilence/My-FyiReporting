@@ -54,6 +54,8 @@ namespace fyiReporting.RdlDesign
 		private fyiReporting.RdlViewer.RdlViewer rdlPreview;
 		private System.Windows.Forms.TabPage tpDesign;
 		private DesignCtl dcDesign;
+
+		public FindTab FindTab;
 	
 		public delegate void RdlChangeHandler(object sender, EventArgs e);
 		public event RdlChangeHandler OnRdlChanged;
@@ -70,7 +72,6 @@ namespace fyiReporting.RdlDesign
         private DesignRuler dcTopRuler;
 		private DesignRuler dcLeftRuler;
 
-		int filePosition=0;
 		private Scintilla scintilla1;				// file position; for use with search
 		private bool noFireRDLTextChanged;
 
@@ -692,6 +693,7 @@ namespace fyiReporting.RdlDesign
 		{
 			scintilla1.IndicatorCurrent = SEARCH_INDICATOR_NUM;
 			scintilla1.IndicatorClearRange(0, scintilla1.TextLength);
+			FindTab = null;
 		}
 
 		public void ReplaceNext(Control ctl, string str, string strReplace, bool matchCase)
