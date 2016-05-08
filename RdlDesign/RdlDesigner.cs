@@ -2091,7 +2091,6 @@ namespace fyiReporting.RdlDesign
                 try
                 {
                     e.Text = DesignerUtility.FormatXml(e.Text);
-                    e.Modified = true;
                 }
                 catch (Exception ex)
                 {
