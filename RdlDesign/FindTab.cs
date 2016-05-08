@@ -77,7 +77,6 @@ namespace fyiReporting.RdlDesign
 
         private void btnReplace_Click(object sender, System.EventArgs e)
         {
-            rdlEdit.FindNext(this, txtFindR.Text, chkMatchCase.Checked, false);
             rdlEdit.ReplaceNext(this, txtFindR.Text, txtReplace.Text, chkCase.Checked);
             txtFindR.Focus();
         }

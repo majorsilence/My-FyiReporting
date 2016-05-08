@@ -797,48 +797,57 @@ namespace fyiReporting.RdlDesign
 		}
 
 		public void ReplaceNext(Control ctl, string str, string strReplace, bool matchCase)
-		{			
-			if (_CurrentTab != DesignTabs.Edit)
-				return;
-			try
+		{
+			if (_CurrentTab == DesignTabs.Edit)
 			{
-				int nStart = tbEditor.Find(str, filePosition, 
-					matchCase? RichTextBoxFinds.MatchCase: RichTextBoxFinds.None);
-				int nLength = str.Length;
-				
-				tbEditor.Text = tbEditor.Text.Remove(nStart, nLength);
-				tbEditor.Text = tbEditor.Text.Insert(nStart, strReplace);
-                tbEditor.Modified = true;
-				tbEditor.ScrollToCaret();
+				try
+				{
+					int nStart = tbEditor.Find(str, filePosition,
+						matchCase ? RichTextBoxFinds.MatchCase : RichTextBoxFinds.None);
+					int nLength = str.Length;
+
+					tbEditor.Text = tbEditor.Text.Remove(nStart, nLength);
+					tbEditor.Text = tbEditor.Text.Insert(nStart, strReplace);
+					tbEditor.Modified = true;
+					tbEditor.ScrollToCaret();
+				}
+				catch (Exception e)
+				{
+					e.ToString();
+					MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
+					filePosition = 0;
+				}
 			}
-			catch (Exception e)
+			if (_CurrentTab == DesignTabs.NewEdit)
 			{
-				e.ToString();
-				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-				filePosition = 0;
+				if (String.Compare(scintilla1.SelectedText, str, !matchCase) == 0)
+				{
+					scintilla1.ReplaceSelection(strReplace);
+				}
+				else
+				{
+					FindNext(ctl, str, matchCase, false);
+					if (String.Compare(scintilla1.SelectedText, str, !matchCase) == 0)
+						scintilla1.ReplaceSelection(strReplace);
+				}
 			}
 		}
 
 		public void ReplaceAll(Control ctl, string str, string strReplace, bool matchCase)
 		{			
-			if (_CurrentTab != DesignTabs.Edit)
+			if (_CurrentTab != DesignTabs.NewEdit)
 				return;
-			try
+
+			scintilla1.TargetStart = 0;
+			scintilla1.TargetEnd = scintilla1.TextLength;
+			scintilla1.SearchFlags = matchCase ? SearchFlags.MatchCase : SearchFlags.None;
+			while (scintilla1.SearchInTarget(str) != -1)
 			{
-				int nStart = tbEditor.Text.IndexOf(str, filePosition);
-				int nLength = str.Length;
-				
-				tbEditor.Select(nStart, nLength);
-				tbEditor.Text= tbEditor.Text.Replace(str, strReplace);
-                tbEditor.Modified = true;
-                tbEditor.ScrollToCaret();
-				filePosition = nStart+nLength;
-			}
-			catch (Exception e)
-			{
-				e.ToString();
-				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-				filePosition = 0;
+				scintilla1.ReplaceTarget(strReplace);
+
+				// Search the remainder of the document
+				scintilla1.TargetStart = scintilla1.TargetEnd;
+				scintilla1.TargetEnd = scintilla1.TextLength;
 			}
 		}
 
