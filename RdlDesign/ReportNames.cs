@@ -607,6 +607,8 @@ namespace fyiReporting.RdlDesign
 			StringCollection st = new StringCollection();
 			foreach (XmlNode f in fields.ChildNodes)
 			{
+				if (f.Attributes == null)
+					continue;
 				XmlAttribute xAttr = f.Attributes["Name"];
 				if (xAttr == null)
 					continue;
