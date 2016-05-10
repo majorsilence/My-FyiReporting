@@ -136,7 +136,10 @@ namespace fyiReporting.RDL
 		{
 			if (row == null)
 				return decimal.MinValue;
-			return Convert.ToDecimal(Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
+			var value = Evaluate(rpt, row);
+			if (value is double && double.IsNaN((double)value))
+				return decimal.MinValue;
+			return Convert.ToDecimal(value, NumberFormatInfo.InvariantInfo);
 		}
 
         public virtual int EvaluateInt32(Report rpt, Row row)
