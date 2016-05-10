@@ -384,7 +384,7 @@ namespace fyiReporting.RdlDesign
         private void SelectionChanged(object sender, System.EventArgs e)
         {
             // handle edit tab first
-            if (rdlEditPreview1.DesignTab == "edit")
+            if (rdlEditPreview1.DesignTab == DesignTabs.Edit)
             {
                 SetStatusNameAndPosition();
                 return;
@@ -432,21 +432,19 @@ namespace fyiReporting.RdlDesign
 
         private void DesignTabChanged(object sender, System.EventArgs e)
         {
-
-            string tab = "";
             bool bEnableEdit = false;
             bool bEnableDesign = false;
             bool bEnablePreview = false;
             bool bShowProp = _ShowProperties;
-            switch (rdlEditPreview1.CurrentTab)
+            switch (rdlEditPreview1.DesignTab)
             {
-                case "edit":
+                case DesignTabs.Edit:
                     bEnableEdit = true;
                     break;
-                case "design":
+                case DesignTabs.Design:
                     bEnableDesign = true;
                     break;
-                case "preview":
+                case DesignTabs.Preview:
                     bEnablePreview = true;
                     break;
             }
@@ -625,7 +623,7 @@ namespace fyiReporting.RdlDesign
             bool bEnable = false;
 
             if (this.ctlEditTextbox == null ||
-              rdlEditPreview1.DesignTab != "design" || rdlEditPreview1.DrawCtl.SelectedCount != 1)
+              rdlEditPreview1.DesignTab != DesignTabs.Design || rdlEditPreview1.DrawCtl.SelectedCount != 1)
             { }
             else
             {
@@ -657,7 +655,7 @@ namespace fyiReporting.RdlDesign
 
         private void SetProperties()
         {
-            if (!_ShowProperties || rdlEditPreview1.DesignTab != "design")
+            if (!_ShowProperties || rdlEditPreview1.DesignTab != DesignTabs.Design)
                 mainProperties.ResetSelection(null, null);
             else
                 mainProperties.ResetSelection(rdlEditPreview1.DrawCtl, rdlEditPreview1.DesignCtl);
@@ -666,7 +664,7 @@ namespace fyiReporting.RdlDesign
         internal void ShowProperties(bool bShow)
         {
             _ShowProperties = bShow;
-            if (!_ShowProperties || rdlEditPreview1.DesignTab != "design")
+            if (!_ShowProperties || rdlEditPreview1.DesignTab != DesignTabs.Design)
                 mainProperties.ResetSelection(null, null);
             else
                 mainProperties.ResetSelection(rdlEditPreview1.DrawCtl, rdlEditPreview1.DesignCtl);

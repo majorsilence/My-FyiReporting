@@ -9,8 +9,8 @@ namespace fyiReporting.RdlDesign
     internal partial class FindTab : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		private System.Windows.Forms.TabPage tabFind;
-private System.Windows.Forms.Label label1;
+
+		private System.Windows.Forms.Label label1;
 private System.Windows.Forms.TextBox txtFind;
 private System.Windows.Forms.RadioButton radioUp;
 private System.Windows.Forms.RadioButton radioDown;
@@ -74,10 +74,10 @@ private System.ComponentModel.Container components = null;
 			// 
 			// tcFRG
 			// 
-			resources.ApplyResources(this.tcFRG, "tcFRG");
 			this.tcFRG.Controls.Add(this.tabFind);
 			this.tcFRG.Controls.Add(this.tabReplace);
 			this.tcFRG.Controls.Add(this.tabGoTo);
+			resources.ApplyResources(this.tcFRG, "tcFRG");
 			this.tcFRG.Name = "tcFRG";
 			this.tcFRG.SelectedIndex = 0;
 			this.tcFRG.SelectedIndexChanged += new System.EventHandler(this.tcFRG_SelectedIndexChanged);
@@ -85,20 +85,20 @@ private System.ComponentModel.Container components = null;
 			// 
 			// tabFind
 			// 
-			resources.ApplyResources(this.tabFind, "tabFind");
 			this.tabFind.Controls.Add(this.btnCancel);
 			this.tabFind.Controls.Add(this.btnNext);
 			this.tabFind.Controls.Add(this.chkCase);
 			this.tabFind.Controls.Add(this.groupBox1);
 			this.tabFind.Controls.Add(this.label1);
 			this.tabFind.Controls.Add(this.txtFind);
+			resources.ApplyResources(this.tabFind, "tabFind");
 			this.tabFind.Name = "tabFind";
 			this.tabFind.Tag = "find";
 			// 
 			// btnCancel
 			// 
-			resources.ApplyResources(this.btnCancel, "btnCancel");
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			resources.ApplyResources(this.btnCancel, "btnCancel");
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
@@ -115,9 +115,9 @@ private System.ComponentModel.Container components = null;
 			// 
 			// groupBox1
 			// 
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.radioUp);
 			this.groupBox1.Controls.Add(this.radioDown);
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
@@ -125,12 +125,13 @@ private System.ComponentModel.Container components = null;
 			// 
 			resources.ApplyResources(this.radioUp, "radioUp");
 			this.radioUp.Name = "radioUp";
-			this.radioUp.CheckedChanged += new System.EventHandler(this.radioUp_CheckedChanged);
 			// 
 			// radioDown
 			// 
+			this.radioDown.Checked = true;
 			resources.ApplyResources(this.radioDown, "radioDown");
 			this.radioDown.Name = "radioDown";
+			this.radioDown.TabStop = true;
 			// 
 			// label1
 			// 
@@ -145,7 +146,6 @@ private System.ComponentModel.Container components = null;
 			// 
 			// tabReplace
 			// 
-			resources.ApplyResources(this.tabReplace, "tabReplace");
 			this.tabReplace.Controls.Add(this.bCloseReplace);
 			this.tabReplace.Controls.Add(this.btnFindNext);
 			this.tabReplace.Controls.Add(this.chkMatchCase);
@@ -155,6 +155,7 @@ private System.ComponentModel.Container components = null;
 			this.tabReplace.Controls.Add(this.label3);
 			this.tabReplace.Controls.Add(this.label2);
 			this.tabReplace.Controls.Add(this.txtReplace);
+			resources.ApplyResources(this.tabReplace, "tabReplace");
 			this.tabReplace.Name = "tabReplace";
 			this.tabReplace.Tag = "replace";
 			// 
@@ -210,11 +211,11 @@ private System.ComponentModel.Container components = null;
 			// 
 			// tabGoTo
 			// 
-			resources.ApplyResources(this.tabGoTo, "tabGoTo");
 			this.tabGoTo.Controls.Add(this.bCloseGoto);
 			this.tabGoTo.Controls.Add(this.txtLine);
 			this.tabGoTo.Controls.Add(this.label4);
 			this.tabGoTo.Controls.Add(this.btnGoto);
+			resources.ApplyResources(this.tabGoTo, "tabGoTo");
 			this.tabGoTo.Name = "tabGoTo";
 			this.tabGoTo.Tag = "goto";
 			// 
@@ -247,6 +248,7 @@ private System.ComponentModel.Container components = null;
 			this.Controls.Add(this.tcFRG);
 			this.Name = "FindTab";
 			this.TopMost = true;
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FindTab_FormClosed);
 			this.tcFRG.ResumeLayout(false);
 			this.tabFind.ResumeLayout(false);
 			this.tabFind.PerformLayout();
@@ -271,5 +273,7 @@ private System.ComponentModel.Container components = null;
 			}
 			base.Dispose( disposing );
 		}
+
+		public TabPage tabFind;
 	}
 }

@@ -61,7 +61,7 @@ namespace fyiReporting.RdlDesign
         private void bValidate_Click(object sender, System.EventArgs e)
         {
             MDIChild mc = _RdlDesigner.ActiveMdiChild as MDIChild;
-            if (mc == null || mc.DesignTab != "edit")
+			if (mc == null || mc.DesignTab != DesignTabs.Edit)
             {
                 MessageBox.Show(Strings.DialogValidateRdl_ShowC_SelectRDLTab);
                 return;

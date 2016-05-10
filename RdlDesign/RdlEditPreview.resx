@@ -118,201 +118,171 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="rdlPreview.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="tcEHP.Alignment" type="System.Windows.Forms.TabAlignment, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
-  <data name="tpDesign.Text" xml:space="preserve">
-    <value>Designer</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tpDesign.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="tpDesign.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tpDesign.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="tpDesign.Text" xml:space="preserve">
+    <value>Designer</value>
+  </data>
+  <data name="&gt;&gt;tpDesign.Name" xml:space="preserve">
+    <value>tpDesign</value>
+  </data>
+  <data name="&gt;&gt;tpDesign.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tpDesign.Parent" xml:space="preserve">
+    <value>tcEHP</value>
+  </data>
+  <data name="&gt;&gt;tpDesign.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="scintilla1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="scintilla1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 0</value>
+  </data>
+  <data name="scintilla1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
+  </data>
+  <data name="scintilla1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;scintilla1.Name" xml:space="preserve">
+    <value>scintilla1</value>
+  </data>
+  <data name="&gt;&gt;scintilla1.Type" xml:space="preserve">
+    <value>ScintillaNET.Scintilla, ScintillaNET, Version=3.5.6.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;scintilla1.Parent" xml:space="preserve">
+    <value>tpEditor</value>
+  </data>
+  <data name="&gt;&gt;scintilla1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tpEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="tpEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
+  </data>
+  <data name="tpEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="tpEditor.Text" xml:space="preserve">
     <value>RDL Text</value>
   </data>
-  <data name="&gt;&gt;tbEditor.Parent" xml:space="preserve">
+  <data name="tpEditor.ToolTipText" xml:space="preserve">
+    <value>Edit Report Syntax</value>
+  </data>
+  <data name="&gt;&gt;tpEditor.Name" xml:space="preserve">
     <value>tpEditor</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tpBrowser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="&gt;&gt;rdlPreview.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pbLines.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;rdlPreview.Name" xml:space="preserve">
-    <value>rdlPreview</value>
-  </data>
-  <data name="tbEditor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;tcEHP.Name" xml:space="preserve">
-    <value>tcEHP</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>RdlEditPreview</value>
-  </data>
-  <data name="pbLines.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="&gt;&gt;tpBrowser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="rdlPreview.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;tpEditor.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tbEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 350</value>
-  </data>
-  <data name="&gt;&gt;pbLines.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pbLines.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tcEHP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>488, 376</value>
-  </data>
   <data name="&gt;&gt;tpEditor.Parent" xml:space="preserve">
     <value>tcEHP</value>
   </data>
+  <data name="&gt;&gt;tpEditor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rdlPreview.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rdlPreview.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="rdlPreview.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
+  </data>
+  <data name="rdlPreview.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rdlPreview.Name" xml:space="preserve">
+    <value>rdlPreview</value>
+  </data>
+  <data name="&gt;&gt;rdlPreview.Type" xml:space="preserve">
+    <value>fyiReporting.RdlViewer.RdlViewer, RdlViewer, Version=4.13.5966.25779, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rdlPreview.Parent" xml:space="preserve">
+    <value>tpBrowser</value>
+  </data>
+  <data name="&gt;&gt;rdlPreview.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tpBrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="tpBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 350</value>
+  </data>
   <data name="tpBrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tpBrowser.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="&gt;&gt;tpBrowser.Name" xml:space="preserve">
+    <value>tpBrowser</value>
+  </data>
+  <data name="&gt;&gt;tpBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tpBrowser.Parent" xml:space="preserve">
+    <value>tcEHP</value>
+  </data>
+  <data name="&gt;&gt;tpBrowser.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="tcEHP.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="rdlPreview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="&gt;&gt;tpDesign.Parent" xml:space="preserve">
-    <value>tcEHP</value>
-  </data>
-  <data name="&gt;&gt;tcEHP.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.Name" xml:space="preserve">
-    <value>tbEditor</value>
-  </data>
-  <data name="&gt;&gt;rdlPreview.Parent" xml:space="preserve">
-    <value>tpBrowser</value>
-  </data>
-  <data name="tpDesign.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="tbEditor.WordWrap" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tpBrowser.Name" xml:space="preserve">
-    <value>tpBrowser</value>
-  </data>
-  <data name="tpBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="tbEditor.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tcEHP.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="tcEHP.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </data>
-  <data name="tpDesign.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="&gt;&gt;tcEHP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pbLines.Parent" xml:space="preserve">
-    <value>tpEditor</value>
-  </data>
-  <data name="tbEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tpEditor.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;rdlPreview.Type" xml:space="preserve">
-    <value>fyiReporting.RdlViewer.RdlViewer, RdlViewer, Version=4.5.5081.26446, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="tbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 0</value>
-  </data>
-  <data name="&gt;&gt;tpDesign.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tpBrowser.Text" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="&gt;&gt;pbLines.Type" xml:space="preserve">
-    <value>fyiReporting.RdlDesign.DesignEditLines, RdlDesigner, Version=4.5.5081.32755, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;pbLines.Name" xml:space="preserve">
-    <value>pbLines</value>
-  </data>
-  <data name="tcEHP.Alignment" type="System.Windows.Forms.TabAlignment, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="&gt;&gt;tpBrowser.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tpEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 350</value>
-  </data>
-  <data name="&gt;&gt;tpBrowser.Parent" xml:space="preserve">
-    <value>tcEHP</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>488, 376</value>
-  </data>
-  <data name="pbLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 350</value>
-  </data>
-  <data name="rdlPreview.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;tbEditor.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="tcEHP.ShowToolTips" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tpEditor.ToolTipText" xml:space="preserve">
-    <value>Edit Report Syntax</value>
+  <data name="tcEHP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 376</value>
   </data>
-  <data name="tpEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="&gt;&gt;tpEditor.Name" xml:space="preserve">
-    <value>tpEditor</value>
-  </data>
-  <data name="&gt;&gt;tpDesign.ZOrder" xml:space="preserve">
+  <data name="tcEHP.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="tpEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;tcEHP.Name" xml:space="preserve">
+    <value>tcEHP</value>
+  </data>
+  <data name="&gt;&gt;tcEHP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tcEHP.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tpDesign.Name" xml:space="preserve">
-    <value>tpDesign</value>
+  <data name="&gt;&gt;tcEHP.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 376</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>RdlEditPreview</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

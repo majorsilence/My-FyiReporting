@@ -49,22 +49,17 @@ namespace fyiReporting.RdlDesign
         internal FindTab(RdlEditPreview pad)
         {
             rdlEdit = pad;
+			rdlEdit.FindTab = this;
             InitializeComponent();
 
             this.AcceptButton = btnNext;
             this.CancelButton = btnCancel;
             txtFind.Focus();
-        }
-
-
-        private void radioUp_CheckedChanged(object sender, System.EventArgs e)
-        {
-
-        }
+		}
 
         private void btnNext_Click(object sender, System.EventArgs e)
         {
-            rdlEdit.FindNext(this, txtFind.Text, chkCase.Checked);
+            rdlEdit.FindNext(this, txtFind.Text, chkCase.Checked, radioUp.Checked);
         }
 
         private void txtFind_TextChanged(object sender, System.EventArgs e)
@@ -77,13 +72,12 @@ namespace fyiReporting.RdlDesign
 
         private void btnFindNext_Click(object sender, System.EventArgs e)
         {
-            rdlEdit.FindNext(this, txtFindR.Text, chkCase.Checked);
+            rdlEdit.FindNext(this, txtFindR.Text, chkMatchCase.Checked, false);
             txtFind.Focus();
         }
 
         private void btnReplace_Click(object sender, System.EventArgs e)
         {
-            rdlEdit.FindNext(this, txtFindR.Text, chkCase.Checked);
             rdlEdit.ReplaceNext(this, txtFindR.Text, txtReplace.Text, chkCase.Checked);
             txtFindR.Focus();
         }
@@ -100,7 +94,7 @@ namespace fyiReporting.RdlDesign
         private void btnReplaceAll_Click(object sender, System.EventArgs e)
         {
 
-            rdlEdit.ReplaceAll(this, txtFindR.Text, txtReplace.Text, chkCase.Checked);
+            rdlEdit.ReplaceAll(this, txtFindR.Text, txtReplace.Text, chkMatchCase.Checked);
             txtFindR.Focus();
         }
 
@@ -160,5 +154,16 @@ namespace fyiReporting.RdlDesign
         {
             tcFRG_SelectedIndexChanged(this.tcFRG, new EventArgs());
         }
+
+		private void FindTab_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			rdlEdit.ClearSearchHighlight();
+		}
+
+		public void FindNextClick()
+		{
+			if (!String.IsNullOrEmpty(txtFind.Text))
+				btnNext.PerformClick();
+		}
     }
 }

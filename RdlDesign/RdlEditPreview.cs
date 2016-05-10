@@ -34,6 +34,7 @@ using System.Xml;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
+using ScintillaNET;
 
 namespace fyiReporting.RdlDesign
 {
@@ -45,7 +46,6 @@ namespace fyiReporting.RdlDesign
 		private System.Windows.Forms.TabControl tcEHP;
 		private System.Windows.Forms.TabPage tpEditor;
 		private System.Windows.Forms.TabPage tpBrowser;
-		private System.Windows.Forms.RichTextBox tbEditor;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -54,6 +54,8 @@ namespace fyiReporting.RdlDesign
 		private fyiReporting.RdlViewer.RdlViewer rdlPreview;
 		private System.Windows.Forms.TabPage tpDesign;
 		private DesignCtl dcDesign;
+
+		public FindTab FindTab;
 	
 		public delegate void RdlChangeHandler(object sender, EventArgs e);
 		public event RdlChangeHandler OnRdlChanged;
@@ -65,20 +67,23 @@ namespace fyiReporting.RdlDesign
 		public event DesignCtl.OpenSubreportEventHandler OnOpenSubreport; 
 
 		// When toggling between the items we need to track who has latest changes
-		string _DesignChanged;			// last designer that triggered change
-		string _CurrentTab="design";
-        private DesignEditLines pbLines;
+		DesignTabs _DesignChanged;			// last designer that triggered change
+		DesignTabs _CurrentTab = DesignTabs.Design;
         private DesignRuler dcTopRuler;
-        private DesignRuler dcLeftRuler;
+		private DesignRuler dcLeftRuler;
 
-		int filePosition=0;				// file position; for use with search
+		private Scintilla scintilla1;				// file position; for use with search
+		private bool noFireRDLTextChanged;
+
+		// Indicators 0-7 could be in use by a lexer
+		// so we'll use indicator 8 to highlight words.
+		const int SEARCH_INDICATOR_NUM = 8;
 
 		public RdlEditPreview()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            pbLines.Editor = tbEditor;
 			rdlPreview.Zoom=1;				// force default zoom to 1
 			// initialize the design tab
             dcTopRuler = new DesignRuler();
@@ -122,15 +127,82 @@ namespace fyiReporting.RdlDesign
 			dcDesign.ReportItemInserted += new System.EventHandler(dcDesign_ReportItemInserted);
 			dcDesign.OpenSubreport += new DesignCtl.OpenSubreportEventHandler(dcDesign_OpenSubreport);
 
-			tbEditor.SelectionChanged +=new EventHandler(tbEditor_SelectionChanged);
-            // adjust size of line box by measuring a large #
-#if !MONO
-            using (Graphics g = this.CreateGraphics())
-            {
-                this.pbLines.Width = (int) (g.MeasureString("99999", tbEditor.Font).Width);
-            }
-#endif
+			//ScintillaNET Init
+			ConfigureScintillaStyle(scintilla1);
+			scintilla1.SetSavePoint();
+		}
 
+		void scintilla1_TextChanged(object sender, EventArgs e)
+		{
+			_DesignChanged = DesignTabs.Edit;
+			if (noFireRDLTextChanged)
+				return;
+
+			if (OnRdlChanged != null)
+			{
+				OnRdlChanged(this, e);
+			}
+		}
+
+		private void ConfigureScintillaStyle(ScintillaNET.Scintilla scintilla)
+		{
+			// Reset the styles
+			scintilla.StyleResetDefault();
+			scintilla.Styles[Style.Default].Font = "Consolas";
+			scintilla.Styles[Style.Default].Size = 10;
+			scintilla.StyleClearAll();
+
+			// Set the XML Lexer
+			scintilla.Lexer = Lexer.Xml;
+
+			// Show line numbers
+			scintilla.Margins[0].Width = 40;
+
+			// Enable folding
+			scintilla.SetProperty("fold", "1");
+			scintilla.SetProperty("fold.compact", "1");
+			scintilla.SetProperty("fold.html", "1");
+
+			// Use Margin 2 for fold markers
+			scintilla.Margins[2].Type = MarginType.Symbol;
+			scintilla.Margins[2].Mask = Marker.MaskFolders;
+			scintilla.Margins[2].Sensitive = true;
+			scintilla.Margins[2].Width = 20;
+
+			// Reset folder markers
+			for (int i = Marker.FolderEnd; i <= Marker.FolderOpen; i++)
+			{
+				scintilla.Markers[i].SetForeColor(SystemColors.ControlLightLight);
+				scintilla.Markers[i].SetBackColor(SystemColors.ControlDark);
+			}
+
+			// Style the folder markers
+			scintilla.Markers[Marker.Folder].Symbol = MarkerSymbol.BoxPlus;
+			scintilla.Markers[Marker.Folder].SetBackColor(SystemColors.ControlText);
+			scintilla.Markers[Marker.FolderOpen].Symbol = MarkerSymbol.BoxMinus;
+			scintilla.Markers[Marker.FolderEnd].Symbol = MarkerSymbol.BoxPlusConnected;
+			scintilla.Markers[Marker.FolderEnd].SetBackColor(SystemColors.ControlText);
+			scintilla.Markers[Marker.FolderMidTail].Symbol = MarkerSymbol.TCorner;
+			scintilla.Markers[Marker.FolderOpenMid].Symbol = MarkerSymbol.BoxMinusConnected;
+			scintilla.Markers[Marker.FolderSub].Symbol = MarkerSymbol.VLine;
+			scintilla.Markers[Marker.FolderTail].Symbol = MarkerSymbol.LCorner;
+
+			// Enable automatic folding
+			scintilla.AutomaticFold = AutomaticFold.Show | AutomaticFold.Click | AutomaticFold.Change;
+
+			// Set the Styles
+			scintilla.StyleResetDefault();
+			// I like fixed font for XML
+			scintilla.Styles[Style.Default].Font = "Courier";
+			scintilla.Styles[Style.Default].Size = 10;
+			scintilla.StyleClearAll();
+			scintilla.Styles[Style.Xml.Attribute].ForeColor = Color.Red;
+			scintilla.Styles[Style.Xml.Entity].ForeColor = Color.Red;
+			scintilla.Styles[Style.Xml.Comment].ForeColor = Color.Green;
+			scintilla.Styles[Style.Xml.Tag].ForeColor = Color.Blue;
+			scintilla.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
+			scintilla.Styles[Style.Xml.DoubleString].ForeColor = Color.DeepPink;
+			scintilla.Styles[Style.Xml.SingleString].ForeColor = Color.DeepPink;
 		}
  
 		internal DesignCtl DesignCtl
@@ -153,25 +225,12 @@ namespace fyiReporting.RdlDesign
 			get {return dcDesign.ReportDocument;}
 		}
 
-        internal string CurrentTab { get { return _CurrentTab; } }
-
-		internal string DesignTab
+		internal DesignTabs DesignTab
 		{
 			get {return _CurrentTab;}
 			set 
 			{
-				switch (value)
-				{
-					case "design":
-						tcEHP.SelectedIndex = 0;
-						break;						
-					case "edit":
-						tcEHP.SelectedIndex = 1;
-						break;
-					case "preview":
-						tcEHP.SelectedIndex = 2;
-						break;
-				}
+				tcEHP.SelectedIndex = (int)value;				
 			}
 		}
  		
@@ -179,13 +238,13 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "edit":
-					tbEditor.Focus();
+				case DesignTabs.Edit:
+					scintilla1.Focus();
 					break;
-				case "preview":
+				case DesignTabs.Preview:
 					rdlPreview.Focus();
 					break;
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.SetFocus();
 					break;
 			}
@@ -193,7 +252,7 @@ namespace fyiReporting.RdlDesign
 
         internal void ShowEditLines(bool bShow)
         {
-            pbLines.Visible = bShow;
+			scintilla1.Margins[0].Width = bShow ? 40 : 0;
         }
 
         internal void ShowPreviewWaitDialog(bool bShow)
@@ -211,22 +270,22 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{
-				if (_CurrentTab == "design")
+				if (_CurrentTab == DesignTabs.Design)
 					return dcDesign.ReportSource;
-				else
-					return tbEditor.Text; 
+				else 
+					return scintilla1.Text;
 			}
 			set 
-			{  
-				if (_CurrentTab == "edit")
-					tbEditor.Text = value;
+			{
+				if (_CurrentTab == DesignTabs.Edit)
+					SetTextToScintilla(value);
 				else
 				{
 					dcDesign.ReportSource = value;
 				}
-				if (_CurrentTab == "preview")
+				if (_CurrentTab == DesignTabs.Preview)
 				{
-					_CurrentTab = "design";
+					_CurrentTab = DesignTabs.Design;
 					tcEHP.SelectedIndex = 0;	// Force current tab to design
 				}
 			}
@@ -254,13 +313,13 @@ namespace fyiReporting.RdlDesign
 
 		public void ApplyStyleToSelected(string name, string v)
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 				dcDesign.ApplyStyleToSelected(name, v);
 		}
 
 		public void SetSelectedText(string v)
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 				dcDesign.SetSelectedText(v);
 		}
 
@@ -268,7 +327,7 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{ 
-				return _CurrentTab == "edit" || _CurrentTab == "design"? true: false;
+				return _CurrentTab != DesignTabs.Preview;
 			}
 		}
 
@@ -276,12 +335,15 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{ 
-				return tbEditor.Modified; 
+				return scintilla1.Modified;
 			}
 			set 
 			{ 
 				_DesignChanged = _CurrentTab;
-				tbEditor.Modified = value;
+				if (value == false)
+					scintilla1.SetSavePoint();
+				else
+					throw new InvalidOperationException();
 			}
 		}
 
@@ -289,19 +351,19 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{ 
-				return _CurrentTab == "design"? dcDesign.UndoDescription: "";
+				return _CurrentTab == DesignTabs.Design? dcDesign.UndoDescription: "";
 			}
 		}
 
 		public void StartUndoGroup(string description)
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 				dcDesign.StartUndoGroup(description);
 		}
 
 		public void EndUndoGroup(bool keepChanges)
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 				dcDesign.EndUndoGroup(keepChanges);
 		}
 
@@ -311,10 +373,10 @@ namespace fyiReporting.RdlDesign
 			{ 
 				switch (_CurrentTab)
 				{
-					case "design":
+					case DesignTabs.Design:
 						return dcDesign.CanUndo;
-					case "edit":
-						return tbEditor.CanUndo;
+					case DesignTabs.Edit:
+						return scintilla1.CanUndo;
 					default:
 						return false;
 				}
@@ -327,10 +389,10 @@ namespace fyiReporting.RdlDesign
 			{ 
 				switch (_CurrentTab)
 				{
-					case "design":
+					case DesignTabs.Design:
 						return dcDesign.CanUndo;
-					case "edit":
-						return tbEditor.CanUndo;
+					case DesignTabs.Edit:
+						return scintilla1.CanRedo;
 					default:
 						return false;
 				}
@@ -343,11 +405,11 @@ namespace fyiReporting.RdlDesign
 			{ 
 				switch (_CurrentTab)
 				{
-					case "design":
+					case DesignTabs.Design:
 						return dcDesign.SelectionCount;
-					case "edit":
-						return tbEditor.SelectionLength;
-                    case "preview":
+					case DesignTabs.Edit:
+						return scintilla1.SelectedText.Length;
+                    case DesignTabs.Preview:
                         return rdlPreview.CanCopy ? 1 : 0;
                     default:
 						return 0;
@@ -361,21 +423,21 @@ namespace fyiReporting.RdlDesign
 			{ 
 				switch (_CurrentTab)
 				{
-					case "design":
+					case DesignTabs.Design:
 						return dcDesign.SelectedText;
-					case "edit":
-						return tbEditor.SelectedText;
-                    case "preview":
+					case DesignTabs.Edit:
+						return scintilla1.SelectedText;
+                    case DesignTabs.Preview:
                         return rdlPreview.SelectText;
                     default:
 						return "";
 				}
 			}
 			set 
-			{ 
-				if (_CurrentTab == "edit" && tbEditor.SelectionLength >= 0) 
-					tbEditor.SelectedText = value; 
-				else if (_CurrentTab == "design" && value.Length == 0)
+			{
+				if (_CurrentTab == DesignTabs.Edit && String.IsNullOrWhiteSpace(value))
+					scintilla1.ClearSelections();
+				else if (_CurrentTab == DesignTabs.Design && value.Length == 0)
 					dcDesign.Delete();
 			}
 		}
@@ -388,11 +450,11 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.ClearUndo();
 					break;
-				case "edit":
-					tbEditor.ClearUndo();
+				case DesignTabs.Edit:
+					scintilla1.EmptyUndoBuffer();
 					break;
 				default:
 					break;
@@ -403,11 +465,11 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Undo();
 					break;
-				case "edit":
-					tbEditor.Undo();
+				case DesignTabs.Edit:
+					scintilla1.Undo();
 					break;
 				default:
 					break;
@@ -418,11 +480,11 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Redo();
 					break;
-				case "edit":
-					tbEditor.Redo();
+				case DesignTabs.Edit:
+					scintilla1.Redo();
 					break;
 				default:
 					break;
@@ -433,11 +495,11 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Cut();
 					break;
-				case "edit":
-					tbEditor.Cut();
+				case DesignTabs.Edit:
+					scintilla1.Cut();
 					break;
 				default:
 					break;
@@ -448,13 +510,13 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Copy();
 					break;
-				case "edit":
-					tbEditor.Copy();
+				case DesignTabs.Edit:
+					scintilla1.Copy();
 					break;
-                case "preview":
+                case DesignTabs.Preview:
                     rdlPreview.Copy();
                     break;
 				default:
@@ -466,11 +528,11 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Clear();
 					break;
-				case "edit":
-					tbEditor.Clear();
+				case DesignTabs.Edit:
+					scintilla1.Clear();
 					break;
 				default:
 					break;
@@ -481,40 +543,26 @@ namespace fyiReporting.RdlDesign
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.Paste();
 					break;
-				case "edit":
-					PasteText();
+				case DesignTabs.Edit:
+					scintilla1.Paste();
 					break;
 				default:
 					break;
 			}
 		}
 
-		void PasteText()
-		{
-			// The Paste function of RTF carries too much information; formatting etc.
-			//   We only allow pasting of text information
-			IDataObject iData = Clipboard.GetDataObject();
-			if (iData == null)
-				return;
-			if (!iData.GetDataPresent(DataFormats.Text)) 
-				return;
-
-			string t = (string) iData.GetData(DataFormats.Text);
-			this.tbEditor.SelectedText = t;
-		}
-
 		public void SelectAll()
 		{
 			switch (_CurrentTab)
 			{
-				case "design":
+				case DesignTabs.Design:
 					dcDesign.SelectAll();
 					break;
-				case "edit":
-					tbEditor.SelectAll();
+				case DesignTabs.Edit:
+					scintilla1.SelectAll();
 					break;
 				default:
 					break;
@@ -534,8 +582,7 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{
-				int v = tbEditor.SelectionStart;
-				return this.tbEditor.GetLineFromCharIndex(v)+1;
+				return scintilla1.CurrentLine + 1;
 			}
 		}
 
@@ -543,15 +590,7 @@ namespace fyiReporting.RdlDesign
 		{
 			get 
 			{
-				int v = tbEditor.SelectionStart;
-				int line = tbEditor.GetLineFromCharIndex(v);
-
-				// Go back a character at a time until you hit previous line
-				int c=0;
-				while (--v >= 0 && line == tbEditor.GetLineFromCharIndex(v))
-					c++;
-
-				return c+1;
+				return scintilla1.GetColumn(scintilla1.CurrentPosition);
 			}
 		}
 
@@ -559,7 +598,7 @@ namespace fyiReporting.RdlDesign
         {
             get
             {
-                if (_CurrentTab == "preview")
+                if (_CurrentTab == DesignTabs.Preview)
                 {
                     return rdlPreview.SelectTool;
                 }
@@ -568,7 +607,7 @@ namespace fyiReporting.RdlDesign
             }
             set
             {
-                if (_CurrentTab == "preview")
+                if (_CurrentTab == DesignTabs.Preview)
                 {
                     rdlPreview.SelectTool = value;
                 }
@@ -592,103 +631,116 @@ namespace fyiReporting.RdlDesign
 			set {this.rdlPreview.ZoomMode = value;}
 		}
 
-		public void FindNext(Control ctl, string str, bool matchCase)
+		public void FindNext(Control ctl, string str, bool matchCase, bool revertSearch, bool showEndMsg = true)
 		{
-			FindNext(ctl, str, matchCase, true);
+			if (_CurrentTab != DesignTabs.Edit)
+				return;
+			
+			scintilla1.SearchFlags = matchCase ? SearchFlags.MatchCase : SearchFlags.None;
+			HighlightWord(str);
+			if (revertSearch)
+			{
+				scintilla1.TargetStart = scintilla1.SelectionStart;
+				scintilla1.TargetEnd = 0;
+			}
+			else
+			{
+				scintilla1.TargetStart = scintilla1.SelectionEnd;
+				scintilla1.TargetEnd = scintilla1.TextLength;
+			}
+			var pos = scintilla1.SearchInTarget(str);
+			if (pos == -1)
+			{
+				if (showEndMsg)
+					MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
+			}
+			else
+			{
+				scintilla1.GotoPosition(pos);
+				scintilla1.SelectionStart = scintilla1.TargetStart;
+				scintilla1.SelectionEnd = scintilla1.TargetEnd;
+			}
 		}
 
-		public void FindNext(Control ctl, string str, bool matchCase, bool showEndMsg)
+		private void HighlightWord(string text)
 		{
-			if (_CurrentTab != "edit")
-				return;
-            try
-            {
-                int nStart = tbEditor.Find(str, filePosition,
-                    matchCase ? RichTextBoxFinds.MatchCase : RichTextBoxFinds.None);
+			// Remove all uses of our indicator
+			scintilla1.IndicatorCurrent = SEARCH_INDICATOR_NUM;
+			scintilla1.IndicatorClearRange(0, scintilla1.TextLength);
 
-                if (nStart < 0)
-                {
-                    if (showEndMsg)
-                        MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-                    filePosition = 0;
-                    return;
-                }
-                int nLength = str.Length;
+			// Update indicator appearance
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Style = IndicatorStyle.StraightBox;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Under = true;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].ForeColor = Color.Orange;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].OutlineAlpha = 50;
+			scintilla1.Indicators[SEARCH_INDICATOR_NUM].Alpha = 30;
 
-                tbEditor.ScrollToCaret();
-                filePosition = nStart + nLength;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format(Strings.RdlEditPreview_Show_ErrorFind, ex.Message), Strings.RdlEditPreview_Show_InternalError);
-                filePosition = 0;       // restart at 0
-            }
+			// Search the document
+			scintilla1.TargetStart = 0;
+			scintilla1.TargetEnd = scintilla1.TextLength;
+			while (scintilla1.SearchInTarget(text) != -1)
+			{
+				// Mark the search results with the current indicator
+				scintilla1.IndicatorFillRange(scintilla1.TargetStart, scintilla1.TargetEnd - scintilla1.TargetStart);
+
+				// Search the remainder of the document
+				scintilla1.TargetStart = scintilla1.TargetEnd;
+				scintilla1.TargetEnd = scintilla1.TextLength;
+			}
+		}
+
+		public void ClearSearchHighlight()
+		{
+			scintilla1.IndicatorCurrent = SEARCH_INDICATOR_NUM;
+			scintilla1.IndicatorClearRange(0, scintilla1.TextLength);
+			FindTab = null;
 		}
 
 		public void ReplaceNext(Control ctl, string str, string strReplace, bool matchCase)
-		{			
-			if (_CurrentTab != "edit")
+		{
+			if (_CurrentTab != DesignTabs.Edit)
 				return;
-			try
+
+			if (String.Compare(scintilla1.SelectedText, str, !matchCase) == 0)
 			{
-				int nStart = tbEditor.Find(str, filePosition, 
-					matchCase? RichTextBoxFinds.MatchCase: RichTextBoxFinds.None);
-				int nLength = str.Length;
-				
-				tbEditor.Text = tbEditor.Text.Remove(nStart, nLength);
-				tbEditor.Text = tbEditor.Text.Insert(nStart, strReplace);
-                tbEditor.Modified = true;
-				tbEditor.ScrollToCaret();
+				scintilla1.ReplaceSelection(strReplace);
 			}
-			catch (Exception e)
+			else
 			{
-				e.ToString();
-				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-				filePosition = 0;
+				FindNext(ctl, str, matchCase, false);
+				if (String.Compare(scintilla1.SelectedText, str, !matchCase) == 0)
+					scintilla1.ReplaceSelection(strReplace);
 			}
 		}
 
 		public void ReplaceAll(Control ctl, string str, string strReplace, bool matchCase)
 		{			
-			if (_CurrentTab != "edit")
+			if (_CurrentTab != DesignTabs.Edit)
 				return;
-			try
+
+			scintilla1.TargetStart = 0;
+			scintilla1.TargetEnd = scintilla1.TextLength;
+			scintilla1.SearchFlags = matchCase ? SearchFlags.MatchCase : SearchFlags.None;
+			while (scintilla1.SearchInTarget(str) != -1)
 			{
-				int nStart = tbEditor.Text.IndexOf(str, filePosition);
-				int nLength = str.Length;
-				
-				tbEditor.Select(nStart, nLength);
-				tbEditor.Text= tbEditor.Text.Replace(str, strReplace);
-                tbEditor.Modified = true;
-                tbEditor.ScrollToCaret();
-				filePosition = nStart+nLength;
-			}
-			catch (Exception e)
-			{
-				e.ToString();
-				MessageBox.Show(ctl, Strings.RdlEditPreview_ShowI_ReachedEndDocument);
-				filePosition = 0;
+				scintilla1.ReplaceTarget(strReplace);
+
+				// Search the remainder of the document
+				scintilla1.TargetStart = scintilla1.TargetEnd;
+				scintilla1.TargetEnd = scintilla1.TextLength;
 			}
 		}
 
 		public void Goto(Control ctl, int nLine)
-		{	
-			if (_CurrentTab != "edit")
+		{
+			if (_CurrentTab != DesignTabs.Edit)
 				return;
 
-			int offset = 0;
-            nLine = Math.Min(Math.Max(0, nLine - 1), tbEditor.Lines.Length - 1);	// don't go off the ends
-
-            offset = tbEditor.GetFirstCharIndexFromLine(nLine);    
-
-//   Before .Net 2
-//			for ( int i = 0; i < nLine - 1 && i < tbEditor.Lines.Length; ++i ) 
-//				offset += this.tbEditor.Lines[i].Length + 1; 
-
-			Control savectl = this.ActiveControl;
-			tbEditor.Focus(); 
-			tbEditor.Select( offset, this.tbEditor.Lines[nLine].Length);
-			this.ActiveControl = savectl;
+			if(nLine > scintilla1.Lines.Count)
+				nLine = scintilla1.Lines.Count;
+			scintilla1.Lines[nLine-1].Goto();
+			scintilla1.SelectionStart = scintilla1.Lines[nLine - 1].Position;
+			scintilla1.SelectionEnd = scintilla1.Lines[nLine - 1].EndPosition;
 		}
 
 		/// <summary> 
@@ -717,13 +769,11 @@ namespace fyiReporting.RdlDesign
 			this.tcEHP = new System.Windows.Forms.TabControl();
 			this.tpDesign = new System.Windows.Forms.TabPage();
 			this.tpEditor = new System.Windows.Forms.TabPage();
-			this.tbEditor = new System.Windows.Forms.RichTextBox();
-			this.pbLines = new fyiReporting.RdlDesign.DesignEditLines();
+			this.scintilla1 = new ScintillaNET.Scintilla();
 			this.tpBrowser = new System.Windows.Forms.TabPage();
 			this.rdlPreview = new fyiReporting.RdlViewer.RdlViewer();
 			this.tcEHP.SuspendLayout();
 			this.tpEditor.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbLines)).BeginInit();
 			this.tpBrowser.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -745,38 +795,32 @@ namespace fyiReporting.RdlDesign
 			// 
 			// tpEditor
 			// 
+			this.tpEditor.Controls.Add(this.scintilla1);
 			resources.ApplyResources(this.tpEditor, "tpEditor");
-			this.tpEditor.Controls.Add(this.tbEditor);
-			this.tpEditor.Controls.Add(this.pbLines);
 			this.tpEditor.Name = "tpEditor";
 			this.tpEditor.Tag = "edit";
 			// 
-			// tbEditor
+			// scintilla1
 			// 
-			this.tbEditor.AcceptsTab = true;
-			resources.ApplyResources(this.tbEditor, "tbEditor");
-			this.tbEditor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tbEditor.HideSelection = false;
-			this.tbEditor.Name = "tbEditor";
-			this.tbEditor.TextChanged += new System.EventHandler(this.tbEditor_TextChanged);
-			// 
-			// pbLines
-			// 
-			resources.ApplyResources(this.pbLines, "pbLines");
-			this.pbLines.Name = "pbLines";
-			this.pbLines.TabStop = false;
+			resources.ApplyResources(this.scintilla1, "scintilla1");
+			this.scintilla1.Lexer = ScintillaNET.Lexer.Xml;
+			this.scintilla1.Name = "scintilla1";
+			this.scintilla1.UseTabs = false;
+			this.scintilla1.UpdateUI += new System.EventHandler<ScintillaNET.UpdateUIEventArgs>(this.scintilla1_UpdateUI);
+			this.scintilla1.TextChanged += new System.EventHandler(this.scintilla1_TextChanged);
 			// 
 			// tpBrowser
 			// 
-			resources.ApplyResources(this.tpBrowser, "tpBrowser");
 			this.tpBrowser.Controls.Add(this.rdlPreview);
+			resources.ApplyResources(this.tpBrowser, "tpBrowser");
 			this.tpBrowser.Name = "tpBrowser";
 			this.tpBrowser.Tag = "preview";
 			// 
 			// rdlPreview
 			// 
-			resources.ApplyResources(this.rdlPreview, "rdlPreview");
 			this.rdlPreview.Cursor = System.Windows.Forms.Cursors.Default;
+			resources.ApplyResources(this.rdlPreview, "rdlPreview");
+			this.rdlPreview.dSubReportGetContent = null;
 			this.rdlPreview.Folder = null;
 			this.rdlPreview.HighlightAll = false;
 			this.rdlPreview.HighlightAllColor = System.Drawing.Color.Fuchsia;
@@ -796,41 +840,44 @@ namespace fyiReporting.RdlDesign
 			this.rdlPreview.SourceFile = null;
 			this.rdlPreview.SourceRdl = null;
 			this.rdlPreview.UseTrueMargins = true;
-			this.rdlPreview.Zoom = 0.5690382F;
+			this.rdlPreview.Zoom = 0.5495112F;
 			this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
 			// 
 			// RdlEditPreview
 			// 
-			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.tcEHP);
 			this.Name = "RdlEditPreview";
+			resources.ApplyResources(this, "$this");
 			this.tcEHP.ResumeLayout(false);
 			this.tpEditor.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbLines)).EndInit();
 			this.tpBrowser.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 		#endregion
 
-		private void tbEditor_TextChanged(object sender, System.EventArgs e)
+		private void dcDesign_ReportChanged(object sender, System.EventArgs e)
 		{
-			_DesignChanged = "edit";
+			_DesignChanged = DesignTabs.Design;
+			if (!Modified)
+				SetTextToScintilla(dcDesign.ReportSource);
 
 			if (OnRdlChanged != null)
 			{
 				OnRdlChanged(this, e);
 			}
 		}
-		
-		private void dcDesign_ReportChanged(object sender, System.EventArgs e)
-		{
-			_DesignChanged = "design";
-			tbEditor.Modified = true;
 
-			if (OnRdlChanged != null)
+		private void SetTextToScintilla(string text)
+		{
+			bool firstSet = String.IsNullOrEmpty(scintilla1.Text);
+			noFireRDLTextChanged = firstSet;
+			scintilla1.Text = text;
+			if (firstSet)
 			{
-				OnRdlChanged(this, e);
+				scintilla1.EmptyUndoBuffer();
+				scintilla1.SetSavePoint();
+				noFireRDLTextChanged = false;
 			}
 		}
 
@@ -877,38 +924,33 @@ namespace fyiReporting.RdlDesign
 		private void tcEHP_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			TabControl tc = (TabControl) sender;
-			string tag = (string) tc.TabPages[tc.SelectedIndex].Tag;
+			DesignTabs tag = (DesignTabs)tc.SelectedIndex;
 
 			// Sync up the various pane whenever they switch so the editor is always accurate
 			switch (_DesignChanged)
 			{	// Sync up the editor in every case
-				case "design":
+				case DesignTabs.Design:
 					// sync up the editor
-					tbEditor.Text = dcDesign.ReportSource;
-					tbEditor.Modified = true;
+					SetTextToScintilla(dcDesign.ReportSource);
 					break;
-				case "edit":
-				case "preview":
-					break;
-				default:	// this can happen the first time 
-					if (tbEditor.Text.Length <= 0)
-						tbEditor.Text = dcDesign.ReportSource;
+				case DesignTabs.Edit:
+				case DesignTabs.Preview:
 					break;
 			}
 
 			// Below sync up the changed item
-			if (tag == "preview")
+			if (tag == DesignTabs.Preview)
 			{
-				if (rdlPreview.SourceRdl != tbEditor.Text)			// sync up preview
-					this.rdlPreview.SourceRdl = this.tbEditor.Text;
+				if (rdlPreview.SourceRdl != scintilla1.Text)			// sync up preview
+					this.rdlPreview.SourceRdl = scintilla1.Text;
 			}
-			else if (tag == "design")
+			else if (tag == DesignTabs.Design)
 			{
-				if (_DesignChanged != "design" && _DesignChanged != null)
+				if (_DesignChanged != DesignTabs.Design)
 				{
 					try
 					{
-						dcDesign.ReportSource = tbEditor.Text;
+						dcDesign.ReportSource = scintilla1.Text;
 					}
 					catch (Exception ge)
 					{
@@ -939,32 +981,33 @@ namespace fyiReporting.RdlDesign
 
 		public string GetRdlText()
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 				return dcDesign.ReportSource;
-			else	
-				return this.tbEditor.Text;
+			else
+				return scintilla1.Text;
 		}
 
 		public void SetRdlText(string text)
 		{
-			if (_CurrentTab == "design")
+			if (_CurrentTab == DesignTabs.Design)
 			{
 				try
 				{
 					dcDesign.ReportSource = text;
 					dcDesign.Refresh();
+					SetTextToScintilla(text);
 				}
 				catch (Exception e)
 				{
 					MessageBox.Show(e.Message, Strings.RdlEditPreview_Show_Report);
-					this.tbEditor.Text = text;
-					tcEHP.SelectedIndex = 1;	// Force current tab to edit syntax
-					_DesignChanged = "edit";
+					SetTextToScintilla(text);
+					tcEHP.SelectedIndex = (int)DesignTabs.Edit;	// Force current tab to edit syntax
+					_DesignChanged = DesignTabs.Edit;
 				}
 			}
-			else
+			else 
 			{
-				this.tbEditor.Text = text;
+				SetTextToScintilla(text);
 			}
 		}
 
@@ -1005,12 +1048,22 @@ namespace fyiReporting.RdlDesign
 			get {return this.rdlPreview;}
 		}
 
-		private void tbEditor_SelectionChanged(object sender, EventArgs e)
+		private void scintilla1_UpdateUI(object sender, UpdateUIEventArgs e)
 		{
-			if (OnSelectionChanged != null)
+			if ((e.Change & UpdateChange.Selection) > 0)
 			{
-				OnSelectionChanged(this, e);
+				if (OnSelectionChanged != null)
+				{
+					OnSelectionChanged(this, e);
+				}
 			}
 		}
+	}
+
+	public enum DesignTabs
+	{
+		Design,
+		Edit,
+		Preview
 	}
 }
