@@ -331,19 +331,20 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 
+		private bool modified = false;
+
 		public bool Modified
 		{
 			get 
 			{ 
-				return scintilla1.Modified;
+				return modified || scintilla1.Modified;
 			}
 			set 
 			{ 
 				_DesignChanged = _CurrentTab;
+				modified = value;
 				if (value == false)
 					scintilla1.SetSavePoint();
-				else
-					throw new InvalidOperationException();
 			}
 		}
 
