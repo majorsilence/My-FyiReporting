@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>ReportTests</RootNamespace>
@@ -127,6 +125,10 @@
       <Project>{D99145B1-CB6C-41F5-BA86-723325145FB5}</Project>
       <Name>RdlViewer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj">
+      <Project>{83D67C75-CE23-4141-8BFE-3AC52F53310E}</Project>
+      <Name>EncryptionProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Utils\RandomDateTime.cs" />
     <Compile Include="Utils\RdlUtils.cs" />
     <Compile Include="RenderPdf_iTextSharpTests.cs" />
+    <Compile Include="StringEncryptionTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

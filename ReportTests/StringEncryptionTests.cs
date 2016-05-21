@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EncryptionProvider.String;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace EncryptionProvider.String.Tests
+using NUnit.Framework;
+
+namespace ReportTests
 {
-    [TestClass()]
+    [TestFixture()]
     public class StringEncryptionTests
     {
-        [TestMethod()]
+        [Test()]
         public void DecryptTest()
         {
             // Arrange
             var pass = "Your+Secret+Static+Encryption+Key+Goes+Here=";
             var pass2 = "This is a test key";
             var subject = new StringEncryption(pass);
-    var subject2 = new StringEncryption(pass2);
-    var originalString = "Testing123!£$";
+            var subject2 = new StringEncryption(pass2);
+            var originalString = "Testing123!£$";
 
-    // Act
-    var encryptedString1 = subject.Encrypt(originalString);
-    var encryptedString2 = subject.Encrypt(originalString);
-    var decryptedString1 = subject.Decrypt(encryptedString1);
-    var decryptedString2 = subject.Decrypt(encryptedString2);
+            // Act
+            var encryptedString1 = subject.Encrypt(originalString);
+            var encryptedString2 = subject.Encrypt(originalString);
+            var decryptedString1 = subject.Decrypt(encryptedString1);
+            var decryptedString2 = subject.Decrypt(encryptedString2);
 
             var encryptedString3 = subject2.Encrypt(originalString);
             var encryptedString4 = subject2.Encrypt(originalString);
@@ -40,7 +37,7 @@ namespace EncryptionProvider.String.Tests
 
         }
 
-        [TestMethod()]
+        [Test()]
         public void EncryptTest()
         {
             var pass = "Your+Secret+Static+Encryption+Key+Goes+Here=";
@@ -62,3 +59,4 @@ namespace EncryptionProvider.String.Tests
         }
     }
 }
+
