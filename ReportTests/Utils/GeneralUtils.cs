@@ -22,16 +22,27 @@ namespace ReportTests.Utils
             return new Uri(System.IO.Path.Combine(tmpf, "rdlTestResults", Guid.NewGuid().ToString()));
 
         }
-        public static Uri ReportsFolder(string subFoder=null)
+
+        public static Uri ReportsFolder(string subFoder = null)
         {
             string defaultReportsFolder = "Reports/";
-            string cwd = System.Environment.CurrentDirectory;
-            if (subFoder!=null)
+            string cwd = CurrentDirectory();
+            if (subFoder != null)
                 return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder, subFoder));
             else
                 return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder));
 
 
+        }
+
+        static string CurrentDirectory()
+        {
+            // Works from within nunit and regular execution
+            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            var u = new UriBuilder(codeBase);
+
+            var path = Uri.UnescapeDataString(u.Path);
+            return System.IO.Path.GetDirectoryName(path);
         }
 
     }
