@@ -210,7 +210,7 @@ namespace LibRdlCrossPlatformViewer
 
             // TO: convert System.Drawing.Graphics to Xwt.Drawing.Context and draw it to this.g
            
-            Bitmap bm = new Bitmap(gImg.Width, gImg.Height );
+            Bitmap bm = new Bitmap(gImg.Width, gImg.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             g.DrawImage(bm, gImg.Width, gImg.Height);
 
 
