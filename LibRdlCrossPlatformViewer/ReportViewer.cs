@@ -83,7 +83,19 @@ namespace LibRdlCrossPlatformViewer
 
         public Uri SourceFile { get; private set; }
 
-        public string SourceRdl { get; set; }
+        private string _SourceRdl;
+        public string SourceRdl
+        {
+            get
+            {
+                return _SourceRdl;
+            }
+            set
+            {
+                _SourceRdl = value;
+                Rebuild();
+            }
+        }
 
         public fyiReporting.RDL.Report Report
         {
