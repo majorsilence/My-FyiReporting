@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportTests", "ReportTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionProvider", "EncryptionProvider\EncryptionProvider.csproj", "{83D67C75-CE23-4141-8BFE-3AC52F53310E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlViewer.Tests", "RdlViewer.Tests\RdlViewer.Tests.csproj", "{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,18 @@ Global
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.Build.0 = Release|x64
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.ActiveCfg = Release|x86
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.Build.0 = Release|x86
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|x64.Build.0 = Release|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE}.Release|x86.Build.0 = Release|Any CPU
 		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA890E36-4560-4F0F-A277-550399825B66}.Debug|x64.ActiveCfg = Debug|x64
@@ -207,9 +221,6 @@ Global
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x64.Build.0 = Release|x64
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.ActiveCfg = Release|x86
 		{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = RdlDesign\ReportDesigner.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
