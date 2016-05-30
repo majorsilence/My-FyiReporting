@@ -17,7 +17,7 @@ nuget restore "../MajorsilenceReporting.sln"
 
 REM ************* Begin x64 *********************************************
 
-%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
+%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /verbosity:minimal /p:Configuration="Release";Platform="x64" /t:clean;rebuild /m:4
 
 del .\build-output\majorsilence-reporting-build-dot-net-4-x64 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x64
@@ -71,7 +71,7 @@ REM ************* End x64 *********************************************
 
 REM ************* Begin x86 *********************************************
 
-%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /toolsversion:4.0 /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
+%msbuildpath% "%CD%\..\MajorsilenceReporting.sln" /verbosity:minimal /p:Configuration="Release";Platform="x86" /t:clean;rebuild /m:4
 
 del .\build-output\majorsilence-reporting-build-dot-net-4-x86 /Q
 mkdir .\build-output\majorsilence-reporting-build-dot-net-4-x86

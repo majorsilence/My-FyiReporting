@@ -14,7 +14,8 @@ namespace SampleCrossPlatformViewer
         {
             Application.Initialize(ToolkitType.Wpf);
 
-            MainWindow app = new MainWindow();
+            var app = new MainWindow();
+            //var app = new MainWindowExample2();
             
             Application.Run();
 

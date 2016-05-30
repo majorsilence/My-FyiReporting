@@ -42,13 +42,13 @@ namespace LibRdlCrossPlatformViewer
         }
 
         private bool displayButtonMenuToolbar = false;
-        public bool DisplayMenuToolBar 
+        public bool DisplayMenuToolBar
         {
             get { return displayButtonMenuToolbar; }
-            set 
+            set
             {
                 vboxToolMenu.Visible = value;
-                displayButtonMenuToolbar = value; 
+                displayButtonMenuToolbar = value;
             }
         }
 
@@ -83,6 +83,28 @@ namespace LibRdlCrossPlatformViewer
 
         public Uri SourceFile { get; private set; }
 
+        private string _SourceRdl;
+        public string SourceRdl
+        {
+            get
+            {
+                return _SourceRdl;
+            }
+            set
+            {
+                _SourceRdl = value;
+                Rebuild();
+            }
+        }
+
+        public fyiReporting.RDL.Report Report
+        {
+            get
+            {
+                return this._report;
+            }
+        }
+
         public ReportViewer()
         {
             // Setup layout boxes
@@ -91,7 +113,8 @@ namespace LibRdlCrossPlatformViewer
 
             // Setup tool button menu
             Xwt.Button buttonExport = new Xwt.Button("Export");
-            buttonExport.Clicked += delegate(object sender, EventArgs e) {
+            buttonExport.Clicked += delegate (object sender, EventArgs e)
+            {
                 SaveAs();
             };
             vboxToolMenu.PackStart(buttonExport);
@@ -110,7 +133,7 @@ namespace LibRdlCrossPlatformViewer
             scrollView.Content = vboxContents;
             scrollView.VerticalScrollPolicy = ScrollPolicy.Automatic;
             scrollView.BorderVisible = true;
-            this.PackStart(scrollView,true, true);
+            this.PackStart(scrollView, true, true);
 
             Parameters = new ListDictionary();
 
@@ -158,7 +181,6 @@ namespace LibRdlCrossPlatformViewer
         {
             SourceFile = sourcefile;
 
-            string source;
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
             {
@@ -170,20 +192,16 @@ namespace LibRdlCrossPlatformViewer
             }
 
             // Obtain the source 
-            source = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
+            SourceRdl = System.IO.File.ReadAllText(sourcefile.AbsolutePath);
             // GetSource is omitted: all it does is read the file.
             // Compile the report 
-            _report = this.GetReport(source);
 
-            RefreshReport();
-
-
-
+            Rebuild();
         }
 
-        void RefreshReport()
+        public void Rebuild()
         {
-
+            _report = this.GetReport(SourceRdl);
             _report.RunGetData(Parameters);
             pages = _report.BuildPages();
 
@@ -191,7 +209,7 @@ namespace LibRdlCrossPlatformViewer
             List<ReportArea> tempList = new List<ReportArea>();
             foreach (ReportArea w in this.vboxPages.Children)
             {
-                tempList.Add(w);     
+                tempList.Add(w);
             }
             foreach (ReportArea w in tempList)
             {
@@ -274,7 +292,7 @@ namespace LibRdlCrossPlatformViewer
         }
 
 
-        public void SaveAs (string FileName, fyiReporting.RDL.OutputPresentationType type)
+        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
             fyiReporting.RDL.OneFileStreamGen sg = null;
 
@@ -300,45 +318,49 @@ namespace LibRdlCrossPlatformViewer
             return;
         }
 
-        public void SaveAs ()
+        public void SaveAs()
         {
 
-            SaveFileDialog dlg = new SaveFileDialog ("Select a file");
+            SaveFileDialog dlg = new SaveFileDialog("Select a file");
             dlg.Multiselect = false;
-            dlg.Filters.Add (new FileDialogFilter ("PDF files", "*.pdf"));
-            dlg.Filters.Add (new FileDialogFilter ("XML files", "*.xml"));
-            dlg.Filters.Add (new FileDialogFilter ("HTML files", "*.html"));
-            dlg.Filters.Add (new FileDialogFilter ("CSV files", "*.csv"));
-            dlg.Filters.Add (new FileDialogFilter ("RTF files", "*.rtf"));
-            dlg.Filters.Add (new FileDialogFilter ("TIF files", "*.tif"));
-            dlg.Filters.Add (new FileDialogFilter ("Excel files", "*.xlsx"));
-            dlg.Filters.Add (new FileDialogFilter ("MHT files", "*.mht"));
+            dlg.Filters.Add(new FileDialogFilter("PDF files", "*.pdf"));
+            dlg.Filters.Add(new FileDialogFilter("XML files", "*.xml"));
+            dlg.Filters.Add(new FileDialogFilter("HTML files", "*.html"));
+            dlg.Filters.Add(new FileDialogFilter("CSV files", "*.csv"));
+            dlg.Filters.Add(new FileDialogFilter("RTF files", "*.rtf"));
+            dlg.Filters.Add(new FileDialogFilter("TIF files", "*.tif"));
+            dlg.Filters.Add(new FileDialogFilter("Excel files", "*.xlsx"));
+            dlg.Filters.Add(new FileDialogFilter("MHT files", "*.mht"));
 
 
             Uri file = this.SourceFile;
 
-            if (file != null) {
+            if (file != null)
+            {
                 dlg.InitialFileName = "*.pdf";
-            } else {
+            }
+            else
+            {
                 dlg.InitialFileName = "*.pdf";
             }
 
 
 
-            if (dlg.Run () == false) {
+            if (dlg.Run() == false)
+            {
                 return;
             }
 
             // save the report in a rendered format 
             string ext = null;
-            int i = dlg.FileName.LastIndexOf ('.');
-            if (i < 1) 
+            int i = dlg.FileName.LastIndexOf('.');
+            if (i < 1)
             {
                 ext = "";
             }
-            else 
+            else
             {
-                ext = dlg.FileName.Substring (i + 1).ToLower ();
+                ext = dlg.FileName.Substring(i + 1).ToLower();
             }
 
             fyiReporting.RDL.OutputPresentationType type = fyiReporting.RDL.OutputPresentationType.Internal;

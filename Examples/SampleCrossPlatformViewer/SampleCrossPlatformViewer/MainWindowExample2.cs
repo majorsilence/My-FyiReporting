@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Xwt;
 
 namespace SampleCrossPlatformViewer
 {
-    public class MainWindow : Window
+    public class MainWindowExample2 : Window
     {
         private LibRdlCrossPlatformViewer.ReportViewer rv;
 
@@ -14,19 +15,21 @@ namespace SampleCrossPlatformViewer
         private string parameters = "";
 
 
-        public MainWindow()
+        public MainWindowExample2()
         {
             this.Title = "Xwt Demo Application";
             this.Width = 800;
             this.Height = 600;
 
-
             rv = new LibRdlCrossPlatformViewer.ReportViewer();
             rv.DefaultBackend = LibRdlCrossPlatformViewer.Backend.XwtWinforms;
+
             var path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "../", "../", "../", "../", "SqliteExamples", "SimpleTest1.rdl");
-            rv.LoadReport(new Uri(path));
+            rv.SourceRdl = File.ReadAllText(path);
+            rv.Rebuild();
 
             this.Content = rv;
+
 
             this.MainMenu = CreateMenu();
             this.Show();

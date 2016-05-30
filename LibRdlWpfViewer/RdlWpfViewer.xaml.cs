@@ -36,13 +36,13 @@ namespace LibRdlWpfViewer
 
         public Uri SourceFile
         {
-            get 
-            { 
-                return this.reportViewer.SourceFile; 
+            get
+            {
+                return this.reportViewer.SourceFile;
             }
-            set 
-            { 
-                this.reportViewer.SourceFile = value; 
+            set
+            {
+                this.reportViewer.SourceFile = value;
             }
         }
 
@@ -70,9 +70,15 @@ namespace LibRdlWpfViewer
             }
         }
 
-        
+        public fyiReporting.RDL.Report Report
+        {
+            get
+            {
+                return this.reportViewer.Report;
+            }
+        }
 
     }
 
-
 }
+
