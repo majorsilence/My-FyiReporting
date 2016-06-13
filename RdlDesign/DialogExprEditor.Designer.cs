@@ -95,6 +95,7 @@ private System.ComponentModel.Container components = null;
 			resources.ApplyResources(this.bOK, "bOK");
 			this.bOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.bOK.Name = "bOK";
+			this.bOK.Click += new System.EventHandler(this.bOK_Click);
 			// 
 			// scintilla1
 			// 
