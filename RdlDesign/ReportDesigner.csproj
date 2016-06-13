@@ -408,6 +408,7 @@
     <Compile Include="ChartLegendCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="RdlScriptLexer.cs" />
     <Compile Include="CodeCtl.cs">
       <SubType>UserControl</SubType>
     </Compile>

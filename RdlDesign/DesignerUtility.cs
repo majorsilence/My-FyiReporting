@@ -44,7 +44,7 @@ namespace fyiReporting.RdlDesign
 	/// <summary>
 	/// Static utility classes used in the Rdl Designer
 	/// </summary>
-	internal class DesignerUtility
+	internal static class DesignerUtility
 	{
 		static internal Color ColorFromHtml(string sc, Color dc)
 		{
@@ -1148,7 +1148,7 @@ namespace fyiReporting.RdlDesign
 		internal string Label;
 	}
 
-	internal class StaticLists
+	internal static class StaticLists
 	{
 		/// <summary>
 		/// Names of colors to put into lists
@@ -1528,5 +1528,26 @@ namespace fyiReporting.RdlDesign
         static public readonly string[] GradientList = new string[] {
         "None", "LeftRight", "TopBottom", "Center", "DiagonalLeft",
         "DiagonalRight", "HorizontalCenter", "VerticalCenter"};
+
+		//Josh: 6:22:10 Added to place the start and end shortcut "caps" on the fields.
+		public static List<string> ArrayToFormattedList(IEnumerable<string> array, string frontCap, string endCap)
+		{
+			List<string> returnList = new List<string>(array);
+
+			returnList.ForEach(
+			delegate(string item)
+			{
+				returnList[returnList.IndexOf(item)] =
+				item.StartsWith("=") ?
+				string.Format("{0}{1}{2}",
+				frontCap,
+				item.Split('!')[1].Replace(".Value", string.Empty),
+				endCap)
+				: item;
+			});
+
+			return returnList;
+		}
+
 	}
 }
