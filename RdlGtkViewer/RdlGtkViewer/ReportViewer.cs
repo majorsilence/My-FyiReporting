@@ -321,7 +321,7 @@ namespace fyiReporting.RdlGtkViewer
 
         void DisableActions()
         {
-            PdfAction.Sensitive = false;
+			saveAsAction.Sensitive = false;
             refreshAction.Sensitive = false;
             printAction.Sensitive = false;
             ZoomInAction.Sensitive = false;
@@ -330,7 +330,7 @@ namespace fyiReporting.RdlGtkViewer
 
         void EnableActions()
         {
-            PdfAction.Sensitive = true;
+			saveAsAction.Sensitive = true;
             refreshAction.Sensitive = true;
             printAction.Sensitive = true;
             ZoomInAction.Sensitive = true;

@@ -118,11 +118,12 @@
         <property name="StockId">gtk-refresh</property>
         <signal name="Activated" handler="OnRefreshActionActivated" />
       </action>
-      <action id="PdfAction">
+      <action id="saveAsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Pdf</property>
-        <property name="ShortLabel" translatable="yes">_Pdf</property>
-        <property name="StockId">PdfIcon</property>
+        <property name="Label" translatable="yes">_Export</property>
+        <property name="ShortLabel" translatable="yes">_Export</property>
+        <property name="StockId">gtk-save-as</property>
+        <property name="Tooltip" translatable="yes">Export as PDF, CSV, ASP, HTML, MHTML, XML, Excel</property>
         <signal name="Activated" handler="OnPdfActionActivated" />
       </action>
       <action id="printAction">
@@ -177,7 +178,7 @@
                 <property name="IconSize">SmallToolbar</property>
                 <node name="toolbar" type="Toolbar">
                   <node type="Toolitem" action="printAction" />
-                  <node type="Toolitem" action="PdfAction" />
+                  <node type="Toolitem" action="saveAsAction" />
                   <node type="Separator" />
                   <node type="Toolitem" action="ZoomInAction" />
                   <node type="Toolitem" action="ZoomOutAction" />
