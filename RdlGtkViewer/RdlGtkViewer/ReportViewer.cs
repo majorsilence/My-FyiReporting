@@ -60,6 +60,8 @@ namespace fyiReporting.RdlGtkViewer
             }
         }
 
+		public string DefaultExportFileName { get; set;}
+
         bool show_params;
 
         public bool ShowParameters
@@ -415,12 +417,14 @@ namespace fyiReporting.RdlGtkViewer
             param[1] = Gtk.ResponseType.Cancel;
             param[2] = "Save";
             param[3] = Gtk.ResponseType.Accept;
-			
+
             Gtk.FileChooserDialog fc =
                 new Gtk.FileChooserDialog("Save File As",
                     null,
-                    Gtk.FileChooserAction.Save,
+					Gtk.FileChooserAction.Save,
                     param);
+
+			fc.CurrentName = DefaultExportFileName??report.Name;
 			
             Gtk.FileFilter pdfFilter = new Gtk.FileFilter();
             pdfFilter.Name = "PDF";
