@@ -435,8 +435,8 @@ namespace fyiReporting.RdlGtkViewer
             Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
             asphtmlFilter.Name = "ASP HTML";
 			
-            Gtk.FileFilter excel2003 = new Gtk.FileFilter();
-            excel2003.Name = "Excel 2003";
+			Gtk.FileFilter excel2007 = new Gtk.FileFilter();
+            excel2007.Name = "Excel 2007";
 			
             Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
             htmlFilter.Name = "HTML";
@@ -453,7 +453,7 @@ namespace fyiReporting.RdlGtkViewer
             fc.AddFilter(pdfFilter);
             fc.AddFilter(csvFilter);
             fc.AddFilter(asphtmlFilter);
-            fc.AddFilter(excel2003);
+            fc.AddFilter(excel2007);
             fc.AddFilter(htmlFilter);
             fc.AddFilter(mhtmlFilter);
             fc.AddFilter(xmlFilter);
@@ -491,7 +491,7 @@ namespace fyiReporting.RdlGtkViewer
                             filename = filename + ".asphtml";
                         }
                     }
-                    else if (fc.Filter.Name == "Excel 2003")
+                    else if (fc.Filter.Name == "Excel 2007")
                     {
                         exportType = OutputPresentationType.Excel;
                         if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
