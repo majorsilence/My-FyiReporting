@@ -146,7 +146,9 @@ namespace fyiReporting.RdlDesign
 			var fields = new List<string>();
 			foreach (var dataSet in dxDraw.DataSetNames)
 			{
-				fields.AddRange(dxDraw.GetFields((string)dataSet, false));
+				var datasetFields = dxDraw.GetFields((string)dataSet, false);
+				if(datasetFields != null)
+					fields.AddRange(datasetFields);
 			}
 			rdlLexer.SetFields(fields);
 		}
