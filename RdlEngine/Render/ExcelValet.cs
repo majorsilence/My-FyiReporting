@@ -292,7 +292,7 @@ namespace fyiReporting.RDL
                 sb.Append("<b /> ");
             if (si.FontStyle == FontStyleEnum.Italic)
                 sb.Append("<i /> ");
-            sb.AppendFormat("<sz val=\"{0}\"/> ", si.FontSize);
+			sb.AppendFormat(CultureInfo.InvariantCulture.NumberFormat, "<sz val=\"{0}\"/> ", si.FontSize);
             sb.Append(GetColor(si.Color));
             sb.AppendFormat("<name val=\"{0}\"/> ", si.FontFamily);
             sb.Append("</font>");
