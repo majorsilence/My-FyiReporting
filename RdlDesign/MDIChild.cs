@@ -344,6 +344,7 @@ namespace fyiReporting.RdlDesign
                     Text = sfd.FileName;
                     Tab.Text = Path.GetFileName(sfd.FileName);
                     _SourceFile = new Uri(sfd.FileName);
+					DrawCtl.Folder = Path.GetDirectoryName(sfd.FileName);
                     Tab.ToolTipText = sfd.FileName;
                     return true;
                 }
