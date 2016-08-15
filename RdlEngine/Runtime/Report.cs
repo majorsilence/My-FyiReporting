@@ -437,6 +437,7 @@ namespace fyiReporting.RDL
 		{
 			_Report = r;
             _UserParameters = null;     // force recalculation of user parameters
+            _DataSets = null;           // force reload of datasets
 		}
 
 		public string Description
