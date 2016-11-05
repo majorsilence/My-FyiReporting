@@ -213,4 +213,7 @@
       cp -rv $(SolutionDir)RdlEngine\$(OutDir)iTextSharp.dll $(TargetDir)itextsharp.dll
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent />
+  </PropertyGroup>
 </Project>
