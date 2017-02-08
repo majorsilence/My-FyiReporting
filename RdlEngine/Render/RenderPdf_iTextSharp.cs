@@ -39,6 +39,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using fyiReporting.RDL.Utility;
 using System.Security;
+using System.Linq;
 
 namespace fyiReporting.RDL
 {
@@ -355,6 +356,23 @@ namespace fyiReporting.RDL
             }
             return faceName;
         }
+
+        public bool IsAsian(string[] text)
+        {
+            bool asian = false;
+            for (var i = 0; i < text.Length; ++i)
+            {
+                asian |= text[i].Any(c => (c >= 0x3040 && c <= 0x309f) || //Hiragana
+                                          (c >= 0x30a0 && c <= 0x30ff) || //Katanka
+                                           c >= 0x4e00);                  
+                if (asian)
+                {
+                    break;
+                }
+            }
+            return asian;
+        }
+
         protected internal override void AddText(float x, float y, float height, float width, string[] sa, StyleInfo si, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
         {
 
@@ -420,7 +438,12 @@ namespace fyiReporting.RDL
             }
             else if (face == "Arial")
             {
-                if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
+                if (IsAsian(sa))
+                {
+                    face = "Arial Unicode MS";
+                    fontname = "arialuni.ttf";
+                }
+                else if (si.IsFontBold() && si.FontStyle == FontStyleEnum.Italic)
                 {
                     //OSX
                     if (IsOSX)
