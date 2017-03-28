@@ -81,6 +81,7 @@ namespace fyiReporting.RDL
 					rs = TypeCode.String;
 					break;
                 case "Object":
+				case "TimeSpan":
                     rs = TypeCode.Object;
 					break;
 				default:		// user error

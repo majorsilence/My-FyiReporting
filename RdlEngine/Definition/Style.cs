@@ -1161,11 +1161,12 @@ namespace fyiReporting.RDL
 			if (o == null)
 				return "";
 
+			string format = null;
 			try 
 			{
                 if (s != null && s.Format != null)
                 {
-                    string format = s.Format.EvaluateString(rpt, row);
+                    format = s.Format.EvaluateString(rpt, row);
                     if (format != null && format.Length > 0)
                     {
                         switch (tc)
@@ -1204,7 +1205,11 @@ namespace fyiReporting.RDL
                                 t = ((double)o).ToString(format);
                                 break;
                             default:
-                                t = o.ToString();
+								var formatedMethod = o.GetType().GetMethod("ToString", new Type[] { typeof(string) });
+								if (formatedMethod != null)
+									t = (string)formatedMethod.Invoke(o, new object[] { format });
+								else
+									t = o.ToString();
                                 break;
                         }
                     }
@@ -1216,8 +1221,10 @@ namespace fyiReporting.RDL
                     t = o.ToString();
                 }
 			}
-			catch
+			catch (Exception ex)
 			{
+				rpt.rl.LogError(1, string.Format("Value:{0} Format:{1} exception: {2}", o, format,
+					ex.InnerException != null ? ex.InnerException.Message : ex.Message));
 				t = o.ToString();       // probably type mismatch from expectation
 			}
 			return t;
