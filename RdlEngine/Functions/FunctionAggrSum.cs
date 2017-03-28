@@ -24,11 +24,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
-
-using fyiReporting.RDL;
-
 
 namespace fyiReporting.RDL
 {
@@ -44,7 +42,7 @@ namespace fyiReporting.RDL
 		/// Aggregate function: Sum returns the sum of all values of the
 		///		expression within the scope
 		///	Return type is decimal for decimal expressions and double for all
-		///	other expressions.	
+		///	other expressions.
 		/// </summary>
         public FunctionAggrSum(List<ICacheData> dataCache, IExpr e, object scp)
             : base(e, scp) 
@@ -53,7 +51,7 @@ namespace fyiReporting.RDL
 
 			// Determine the result
 			_tc = e.GetTypeCode();
-			if (_tc != TypeCode.Decimal)	// if not decimal
+			if (_tc != TypeCode.Decimal && _tc != TypeCode.Object)
 				_tc = TypeCode.Double;		// force result to double
 			dataCache.Add(this);
 		}
@@ -66,7 +64,48 @@ namespace fyiReporting.RDL
 		// Evaluate is for interpretation  (and is relatively slow)
 		public object Evaluate(Report rpt, Row row)
 		{
-			return _tc==TypeCode.Decimal? (object) EvaluateDecimal(rpt, row): (object) EvaluateDouble(rpt, row);
+			switch (_tc)
+			{
+				case TypeCode.Decimal:
+					return (object) EvaluateDecimal(rpt, row);
+				case TypeCode.Object:
+					return (object) EvaluateObject(rpt, row);
+				case TypeCode.Double:
+				default:
+					return (object) EvaluateDouble(rpt, row);
+			}
+		}
+
+		public object EvaluateObject(Report rpt, Row row)
+		{
+			bool bSave;
+			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
+			if (re == null)
+				return null;
+
+			var od = GetValueObject(rpt);
+			if (od != null)
+				return od;
+
+			object sum = null;
+			object temp;
+
+			foreach (Row r in re)
+			{
+				temp = _Expr.Evaluate(rpt, r);
+				if (temp != null)
+				{
+					if (sum != null)
+						sum = temp.GetType().GetMethod("op_Addition").Invoke(null, new []{ sum, temp});
+					else
+						sum = temp;
+				}
+			}
+			if (bSave)
+				SetValue(rpt, sum);
+
+			return sum;
+
 		}
 		
 		public double EvaluateDouble(Report rpt, Row row)
@@ -93,11 +132,13 @@ namespace fyiReporting.RDL
 
 			return sum;
 		}
+
         public int EvaluateInt32(Report rpt, Row row)
         {
             double result = EvaluateDouble(rpt, row);
             return Convert.ToInt32(result);
         }
+
 		public decimal EvaluateDecimal(Report rpt, Row row)
 		{
 			bool bSave;
@@ -134,6 +175,7 @@ namespace fyiReporting.RDL
 			object result = Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
+
 		private ODecimal GetValueDecimal(Report rpt)
 		{
 			return rpt.Cache.Get(_key) as ODecimal;
@@ -142,6 +184,11 @@ namespace fyiReporting.RDL
 		private ODouble GetValueDouble(Report rpt)
 		{
 			return rpt.Cache.Get(_key) as ODouble;
+		}
+
+		private object GetValueObject(Report rpt)
+		{
+			return rpt.Cache.Get(_key);
 		}
 
 		private void SetValue(Report rpt, double d)
@@ -153,6 +200,12 @@ namespace fyiReporting.RDL
 		{
 			rpt.Cache.AddReplace(_key, new ODecimal(d));
 		}
+
+		private void SetValue(Report rpt, object d)
+		{
+			rpt.Cache.AddReplace(_key, d);
+		}
+
 		#region ICacheData Members
 
 		public void ClearCache(Report rpt)
