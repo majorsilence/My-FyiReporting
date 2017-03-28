@@ -69,7 +69,7 @@ namespace fyiReporting.RDL
 				case TypeCode.Decimal:
 					return (object) EvaluateDecimal(rpt, row);
 				case TypeCode.Object:
-					return (object) EvaluateObject(rpt, row);
+					return EvaluateObject(rpt, row);
 				case TypeCode.Double:
 				default:
 					return (object) EvaluateDouble(rpt, row);
