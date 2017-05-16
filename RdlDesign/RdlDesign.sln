@@ -1,5 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDesigner", "ReportDesigner.csproj", "{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlEngine", "..\RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
@@ -9,6 +11,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "..\DataProviders\DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdlCri", "..\RdlCri\RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionProvider", "..\EncryptionProvider\EncryptionProvider.csproj", "{83D67C75-CE23-4141-8BFE-3AC52F53310E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +84,18 @@ Global
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x64.Build.0 = Release|x64
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.ActiveCfg = Release|x86
 		{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}.Release|x86.Build.0 = Release|x86
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|x64.Build.0 = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Debug|x86.Build.0 = Debug|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|x64.ActiveCfg = Release|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|x64.Build.0 = Release|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|x86.ActiveCfg = Release|Any CPU
+		{83D67C75-CE23-4141-8BFE-3AC52F53310E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
