@@ -15,3 +15,4 @@ The 4.1.0 maintenance build includes code for the following features and bug fix
 [list][b]bug [/b]scrolling via down arrow (change from scroll via mousewheel); when zoomed doesn't scroll to end[/list]
 [list][b]bug [/b]Fixes mht renderer.  See http://fyireporting.com/forum/viewtopic.php?p=2523[/list]
 [list][b]bug [/b]Exception when closing RdlViewer window when height or width of window < 0 see http://fyireporting.com/forum/viewtopic.php?t=820[/list]
+-2017-
