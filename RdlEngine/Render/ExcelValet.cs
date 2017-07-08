@@ -772,7 +772,7 @@ namespace fyiReporting.RDL
                 xtw.WriteAttributeString("xmlns", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
                 xtw.WriteAttributeString("xmlns:r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
                 xtw.WriteStartElement("dimension");
-                string lastCell = RowColumnToPosition(grid.Count - 2, grid.GetColumnCount(grid.Count - 2) - 1);
+                string lastCell = RowColumnToPosition(grid.Count - 2, grid.MaxColumnCount - 1);
                 xtw.WriteAttributeString("ref", "A1:" + lastCell);
                 xtw.WriteEndElement();
                 xtw.WriteStartElement("sheetViews");
@@ -882,54 +882,41 @@ namespace fyiReporting.RDL
             CheckMergedCellsFormat(grid,mergecells);
             for (int ri = 1; ri < rows; ri++)
             {
-                xtw.WriteStartElement("row");
-                relPos = RowIndexToName(ri - 1);
-                xtw.WriteAttributeString("r", relPos);
                 int cols = grid.GetColumnCount(ri);
-                xtw.WriteAttributeString("spans", "1:" + (cols - 1).ToString());
-                CellData cd = grid[ri, 0] as CellData;
-                if (cd != null)                // skip empty grid items
+                // Only if there is any column in the row
+                if (cols - 1 > 0)
                 {
-                    xtw.WriteAttributeString("ht", Convert.ToString(cd.Val, NumberFormatInfo.InvariantInfo));
-                    xtw.WriteAttributeString("customHeight", "1");
-                }
-                for (int ci = 1; ci < cols; ci++)   //this writes the sparse matrix to the Excel07 XMl sheettable document
-                {
-                    cd = grid[ri, ci] as CellData;
-                    if (cd == null)                // skip empty grid items
-                        continue;
-                    xtw.WriteStartElement("c");
-                    relPos = RowColumnToPosition(ri - 1, ci - 1);
+                    xtw.WriteStartElement("row");
+                    relPos = RowIndexToName(ri - 1);
                     xtw.WriteAttributeString("r", relPos);
-                    //WRP 31102008 - Am I dealing with string/general values?
-                    k = 0;
-                    foreach (string f in _FormatXfsCache)
+                    if (cols > 1)
+                        xtw.WriteAttributeString("spans", "1:" + (cols - 1).ToString());
+                    CellData cd = grid[ri, 0] as CellData;
+                    if (cd != null)                // skip empty grid items
                     {
-                        if (k.ToString() == cd.FormatIndex.ToString())
+                        xtw.WriteAttributeString("ht", Convert.ToString(cd.Val, NumberFormatInfo.InvariantInfo));
+                        xtw.WriteAttributeString("customHeight", "1");
+                    }
+                    for (int ci = 1; ci < cols; ci++)   //this writes the sparse matrix to the Excel07 XMl sheettable document
+                    {
+                        cd = grid[ri, ci] as CellData;
+                        if (cd == null)                // skip empty grid items
+                            continue;
+                        xtw.WriteStartElement("c");
+                        relPos = RowColumnToPosition(ri - 1, ci - 1);
+                        xtw.WriteAttributeString("r", relPos);
+                        //WRP 31102008 - Am I dealing with string/general values?
+                        k = 0;
+                        foreach (string f in _FormatXfsCache)
                         {
-                            value = f;
-                            FormatGeneral = (f.Contains("<xf numFmtId= \"0\""));
-                        
+                            if (k.ToString() == cd.FormatIndex.ToString())
+                            {
+                                value = f;
+                                FormatGeneral = (f.Contains("<xf numFmtId= \"0\""));
+
+                            }
+                            k++;
                         }
-                        k++;
-                    }
-                    k = 0;
-                    foreach (string f in _StringCache)
-                    {
-                        if (k.ToString() == cd.Val.ToString())
-                            value = f;
-                        k++;
-                    }      
-                    if ((FormatGeneral))
-                    {
-                    // WRP 31102008 string values stored in sharedString XML document.  Need to reference them from there
-                        xtw.WriteAttributeString("t", "s");
-                        xtw.WriteAttributeString("s", cd.FormatIndex.ToString());
-                        xtw.WriteElementString("v", cd.Val.ToString());
-                    }
-                    else
-                    //WRP 31102008 Need to have "non" string values only in worksheet XML documents in Excel07
-                    {
                         k = 0;
                         foreach (string f in _StringCache)
                         {
@@ -937,48 +924,66 @@ namespace fyiReporting.RDL
                                 value = f;
                             k++;
                         }
-                        //WRP 31102008 - Adding support for excel import of date values.
-                        //using specific date formats (ignore culture) to check for date value - cannot have any string values in data sheet - must reference them from sharedstring XML document.
-
-                        if ((DateTime.TryParseExact(value, dateformats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out ValueDate)))
+                        if ((FormatGeneral))
                         {
-                            interval = ValueDate - BaseDate;  //subtract the basedate from our date to get interval
-                            Days = interval.Days;
-                            if (Days >= 60) Days++;          // WRP 31102008 must allow adjust for 29 Feb 1900 which Excel considers a valid date  - it is NOT!!!
-                            value = Days.ToString();
+                            // WRP 31102008 string values stored in sharedString XML document.  Need to reference them from there
+                            xtw.WriteAttributeString("t", "s");
+                            xtw.WriteAttributeString("s", cd.FormatIndex.ToString());
+                            xtw.WriteElementString("v", cd.Val.ToString());
                         }
                         else
-                        {   //WRP 31102008 RDL number values in reports contain fromatting characters - need to remove these to extract pure numbers
-                            value = value.Replace("(", "-");
-                            value = value.Replace(")", "");
-                            value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
-                            value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
-                            value = value.Replace("$", "");
-
-                            if (value.IndexOf('%') != -1)       //WRP 31102008 if a properly RDL formatted percentage need to remove "%" and pass throught value/100 to excel for correct formatting
+                        //WRP 31102008 Need to have "non" string values only in worksheet XML documents in Excel07
+                        {
+                            k = 0;
+                            foreach (string f in _StringCache)
                             {
-                                value = value.Replace("%", String.Empty);
-                                decimal decvalue = Convert.ToDecimal(value) / 100;
-                                value = decvalue.ToString();    
+                                if (k.ToString() == cd.Val.ToString())
+                                    value = f;
+                                k++;
                             }
-                            value = Regex.Replace(value, @"\s+", "");      //WRP 31102008 remove any white space
+                            //WRP 31102008 - Adding support for excel import of date values.
+                            //using specific date formats (ignore culture) to check for date value - cannot have any string values in data sheet - must reference them from sharedstring XML document.
 
-                            if (!(IsNumeric(value) || IsNumeric(value,CultureInfo.CurrentCulture)))
+                            if ((DateTime.TryParseExact(value, dateformats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out ValueDate)))
                             {
-                                xtw.WriteAttributeString("t","s");
-                                value = cd.Val.ToString();
+                                interval = ValueDate - BaseDate;  //subtract the basedate from our date to get interval
+                                Days = interval.Days;
+                                if (Days >= 60) Days++;          // WRP 31102008 must allow adjust for 29 Feb 1900 which Excel considers a valid date  - it is NOT!!!
+                                value = Days.ToString();
                             }
+                            else
+                            {   //WRP 31102008 RDL number values in reports contain fromatting characters - need to remove these to extract pure numbers
+                                value = value.Replace("(", "-");
+                                value = value.Replace(")", "");
+                                value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
+                                value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
+                                value = value.Replace("$", "");
 
-                            xtw.WriteAttributeString("s", cd.FormatIndex.ToString());
+                                if (value.IndexOf('%') != -1)       //WRP 31102008 if a properly RDL formatted percentage need to remove "%" and pass throught value/100 to excel for correct formatting
+                                {
+                                    value = value.Replace("%", String.Empty);
+                                    decimal decvalue = Convert.ToDecimal(value) / 100;
+                                    value = decvalue.ToString();
+                                }
+                                value = Regex.Replace(value, @"\s+", "");      //WRP 31102008 remove any white space
+
+                                if (!(IsNumeric(value) || IsNumeric(value, CultureInfo.CurrentCulture)))
+                                {
+                                    xtw.WriteAttributeString("t", "s");
+                                    value = cd.Val.ToString();
+                                }
+
+                                xtw.WriteAttributeString("s", cd.FormatIndex.ToString());
 
 
 
+                            }
+                            xtw.WriteElementString("v", value);
                         }
-                        xtw.WriteElementString("v", value);  
+                        xtw.WriteEndElement();
                     }
                     xtw.WriteEndElement();
                 }
-                xtw.WriteEndElement();
             }
         }
 
@@ -1098,6 +1103,7 @@ namespace fyiReporting.RDL
     internal class SparseMatrix
     {
         List<List<object>> _data;
+        int _maxColumnCount;
 
         internal SparseMatrix()
         {
@@ -1114,6 +1120,11 @@ namespace fyiReporting.RDL
             if (row >= _data.Count)
                 return 0;
             return _data[row].Count;
+        }
+
+        internal int MaxColumnCount
+        {
+            get { return _maxColumnCount; }
         }
 
         object GetCell(int row, int col)
@@ -1137,6 +1148,8 @@ namespace fyiReporting.RDL
             while (col >= l.Count)
                 l.Add(null);
             l[col] = val;
+            if (col + 1 > _maxColumnCount)
+              _maxColumnCount = col + 1;
             return;
         }
 
