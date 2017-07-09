@@ -884,11 +884,12 @@ namespace fyiReporting.RDL
             {
                 int cols = grid.GetColumnCount(ri);
                 // Only if there is any column in the row
-                if (cols - 1 > 0)
+                if (cols > 0)
                 {
                     xtw.WriteStartElement("row");
                     relPos = RowIndexToName(ri - 1);
                     xtw.WriteAttributeString("r", relPos);
+                    // Set row span only if there are values in the row (not only the row header)
                     if (cols > 1)
                         xtw.WriteAttributeString("spans", "1:" + (cols - 1).ToString());
                     CellData cd = grid[ri, 0] as CellData;
