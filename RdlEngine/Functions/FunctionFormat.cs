@@ -120,8 +120,9 @@ namespace fyiReporting.RDL
 			{
 				result = String.Format("{0:" + format + "}", o);
 			}
-			catch 		// invalid format string specified
-			{			//    treat as a weak error
+			catch (Exception ex) 		// invalid format string specified
+			{           //    treat as a weak error
+				rpt.rl.LogError(2, String.Format("Format string:{1} Value Type:{2} Exception:{0}", ex.Message, format, o.GetType().Name));
 				result = o.ToString();
 			}
 			return result;
