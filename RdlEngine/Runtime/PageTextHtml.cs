@@ -133,7 +133,8 @@ namespace fyiReporting.RDL
 			SizeF ms;
 			bool bWhiteSpace=false;
 			List<PageItem> lineItems = new List<PageItem>();
-			int liCount = 0;	//Maintains number of OL items
+            bool bIsOrderedList = false;
+			int? OlLiCount = null;	//Maintains number of OL items; zero indicates UL item (bullet)
 			foreach (string token in tokens)
 			{
 				if (token[0] == PageTextHtmlLexer.HTMLCMD)		// indicates an HTML command
@@ -236,7 +237,7 @@ namespace fyiReporting.RDL
 					{
 						yPos += maxLineHeight;
 						NormalizeLineHeight(lineItems, maxLineHeight, maxDescent);
-						maxLineHeight = xPos = lineXPos = maxDescent = 0;
+						xPos = lineXPos = maxDescent = 0;
 						bFirstInLine = true;
 						bWhiteSpace = false;
 					}
@@ -308,13 +309,15 @@ namespace fyiReporting.RDL
                     {   // we really should match span and font but it shouldn't matter very often?
                         PopStyle();
                     }
-                    else if (ltoken.StartsWith("<ol"))
+                    else if (ltoken.StartsWith("<ol") || ltoken.StartsWith("<ul"))
                     {
                         yPos += maxLineHeight;
                         NormalizeLineHeight(lineItems, maxLineHeight, maxDescent);
                         maxLineHeight = xPos = lineXPos = maxDescent = 0;
                         bFirstInLine = true;
                         bWhiteSpace = false;
+
+                        bIsOrderedList = ltoken.StartsWith("<ol");
                     }
                     else if (ltoken.StartsWith("<li"))
                     {
@@ -324,11 +327,15 @@ namespace fyiReporting.RDL
                         bFirstInLine = true;
                         bWhiteSpace = false;
 
-                        liCount++;
+                        if (OlLiCount == null)
+                            OlLiCount = 0;
+                        if(bIsOrderedList)
+                            OlLiCount++;
                     }
-                    else if (ltoken.StartsWith("</ol"))
+                    else if (ltoken.StartsWith("</ol") || ltoken.StartsWith("</ul"))
                     {
-                        liCount = 0;
+                        bIsOrderedList = false;
+                        OlLiCount = null;
                     }                    
                     continue;
 				}
@@ -352,11 +359,15 @@ namespace fyiReporting.RDL
 					ms = this.MeasureString(ntoken, CurrentStyle(si), g, out descent);
 					if (xPos + ms.Width < textWidth)
 					{
-					        //Adds OL numeric prefix
-                        			if (bFirstInLine && liCount > 0)
-                            				sb.AppendFormat("{0})   ", liCount);
-                            					
-						bFirstInLine = false;
+                        if (bFirstInLine)
+                        {
+                            if (OlLiCount == 0)                        //Adds UL bullet
+                                sb.Append("•   ");
+                            else if (OlLiCount > 0)                        //Adds OL numeric prefix
+                                sb.AppendFormat("{0})   ", OlLiCount);
+                        }
+
+                        bFirstInLine = false;
 						sb.Append(ntoken);
 
 						maxDescent = Math.Max(maxDescent, descent);
