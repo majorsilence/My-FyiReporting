@@ -110,7 +110,12 @@ namespace fyiReporting.RDL
 		public Stream GetStream()
 		{
 			return this._io;
-		}
+        }
+
+        public void SetStream(MemoryStream input)
+        {
+            this._io = input;
+        }
 
 		public TextWriter GetTextWriter()
 		{

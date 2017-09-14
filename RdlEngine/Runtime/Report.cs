@@ -222,6 +222,10 @@ namespace fyiReporting.RDL
                     ip = new RenderExcel(this, sg);
                     _Report.Run(ip);
                     break;
+                case OutputPresentationType.Excel2003:
+                    ip = new RenderExcel2003(this, sg);
+                    _Report.Run(ip);
+                    break;
                 case OutputPresentationType.ASPHTML:
 				case OutputPresentationType.HTML:
 				default:

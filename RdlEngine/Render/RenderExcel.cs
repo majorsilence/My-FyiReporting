@@ -59,7 +59,11 @@ namespace fyiReporting.RDL
             _Excel = new ExcelValet();
 
         }
-        public void Dispose() 
+
+        // Added to expose data to Excel2003 file generation
+        protected IStreamGen StreamGen { get => _sg; set => _sg = value; }
+
+        public void Dispose()
 		{
 			// These should already be cleaned up; but in case of an unexpected error 
 			//   these still need to be disposed of
@@ -97,8 +101,8 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public void End()
-		{
+        public virtual void End()
+        {
             Stream fs = _sg.GetStream();
             _Excel.WriteExcel(fs);
 
