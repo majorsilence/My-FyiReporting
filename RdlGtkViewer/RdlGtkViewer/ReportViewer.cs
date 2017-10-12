@@ -100,22 +100,37 @@ namespace fyiReporting.RdlGtkViewer
             ShowErrors = false;
         }
 
-        /// <summary>
-        /// Loads the report.
-        /// </summary>
-        /// <param name="filename">Filename.</param>
-        /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-        /// <param name="connectionString">Relace all Connection string in report.</param>
-		/// <param name="overwriteConSubreport">If true connection string in subreport also will be overwrite</param>
-		public void LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false)
-        {
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name="filename">Filename.</param>
+		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+		/// <param name="connectionString">Relace all Connection string in report.</param>
+		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
+		public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+		{
 			SourceFile = filename;
 
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport(filename, parameters);
-        }
+			LoadReport (filename, parameters);
+		}
+
+		/// <summary>
+		/// Loads the report.
+		/// </summary>
+		/// <param name="source">Xml source of report</param>
+		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+		/// <param name="connectionString">Relace all Connection string in report.</param>
+		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
+		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+		{
+			this.connectionString = connectionString;
+			this.overwriteSubreportConnection = overwriteSubreportConnection;
+
+			LoadReport(source, parameters);
+		}
 
         /// <summary>
         /// Loads the report.
