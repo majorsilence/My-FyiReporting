@@ -7,7 +7,7 @@ https://groups.google.com/d/forum/myfyireporting
 
 |         |Linux |Windows |
 |---------|:------:|:------:|
-|**Release**|[![Build Status travis](https://travis-ci.org/majorsilence/My-FyiReporting.svg)](https://travis-ci.org/majorsilence/My-FyiReporting) | [![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting) |
+|**Release**|NA | [![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting) |
 
 # Documentation
 See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
@@ -37,11 +37,6 @@ Also check this [projects wiki](https://github.com/majorsilence/My-FyiReporting/
 
 Majorsilence Reporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
 the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
-
-# Build Server
-http://build01.majorsilence.com/
-
-All changes are immediately built and the last 100 build artifacts available.
 
 # Development
 Majorsilence Reporting is developed with the following workflow:

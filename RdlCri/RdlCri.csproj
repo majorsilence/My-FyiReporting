@@ -112,11 +112,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
-    <Reference Include="zxing">
-      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\RdlDesign\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.presentation">
-      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    <Reference Include="zxing.presentation, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\RdlDesign\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +164,9 @@
       <Name>RdlEngine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -172,7 +175,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

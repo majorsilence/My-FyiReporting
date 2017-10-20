@@ -1332,7 +1332,7 @@ namespace fyiReporting.RdlDesign
                 return;
             }
 
-            var rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
+            var rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
 	        var unit = rinfo.IsMetric ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
 			var h = DesignXmlDraw.GetSize(e.Height) / DesignXmlDraw.POINTSIZED;
 
@@ -2989,7 +2989,7 @@ namespace fyiReporting.RdlDesign
 	        }
 	        else
 	        {
-		        var rinfo = new RegionInfo(CultureInfo.CurrentCulture.LCID);
+		        var rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
 		        double m72 = DesignXmlDraw.POINTSIZED;
 
 		        var x = pos.X/m72;

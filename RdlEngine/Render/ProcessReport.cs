@@ -48,8 +48,9 @@ namespace fyiReporting.RDL
         Word,
         Excel,
         TIF,
-        TIFBW                   // black and white tif
-	}
+        TIFBW,                   // black and white tif
+        Excel2003
+    }
 
 	[Serializable]
 	public class ProcessReport
