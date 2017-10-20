@@ -423,4 +423,7 @@
 	<data name="Parser_ErrorP_FunctionOfClassUnknown" xml:space="preserve">
     <value>Function '{0}' of class '{1}' is not known.</value>
   </data>
+  <data name="Parser_ErrorP_CurlyBracketExpected" xml:space="preserve">
+    <value>'}' expected but not found.</value>
+  </data>
 </root>

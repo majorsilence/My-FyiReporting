@@ -424,4 +424,7 @@
   <data name="RDLParser_ErrorP__NoReport" xml:space="preserve">
     <value>Ошибка: RDL не содержит элемента "Report"</value>
   </data>
+  <data name="Parser_ErrorP_CurlyBracketExpected" xml:space="preserve">
+    <value>ожидалась '}', но не найдена.</value>
+  </data>
 </root>

@@ -320,18 +320,21 @@ namespace fyiReporting.RDL
                 }
                 else if (state == 4)
                 { // state must equal 4 Josh: 6:21:10 added state 4 for field/param shortcuts
-                    if (Char.IsLetterOrDigit(cPeek) || cPeek == '@' ||
-                    cPeek == '?' || cPeek == '_' || cPeek == '}' ||
-                    cPeek == '!')
-                        identifier.Append(reader.GetNext());
+					if (Char.IsLetterOrDigit(cPeek) || cPeek == '@' ||
+					cPeek == '?' || cPeek == '_' || cPeek == '}' ||
+					cPeek == '!')
+					{
+						identifier.Append(reader.GetNext());
 
-                    if (cPeek == '}')
-                        break;
-
-                    else if (Char.IsWhiteSpace(cPeek))
-                    {
-                        reader.GetNext(); // skip space
-                    }
+						if (cPeek == '}')
+							break;
+					}
+					else if (Char.IsWhiteSpace(cPeek))
+					{
+						reader.GetNext(); // skip space
+					}
+					else
+						break;
                 } 
 			}
 
@@ -349,7 +352,8 @@ namespace fyiReporting.RDL
             if (state == 4)
             {
                 if (identifier[identifier.Length - 1] != '}')
-                    identifier.Append('}');
+                    throw new ParserException(Strings.Parser_ErrorP_CurlyBracketExpected);
+
                 identifier = new StringBuilder(ParseShortcut(identifier.ToString()));
             } 
 

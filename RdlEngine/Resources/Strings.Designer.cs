@@ -484,7 +484,16 @@ namespace RdlEngine.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End of expression expected..
+        ///   Ищет локализованную строку, похожую на &apos;}&apos; expected but not found..
+        /// </summary>
+        internal static string Parser_ErrorP_CurlyBracketExpected {
+            get {
+                return ResourceManager.GetString("Parser_ErrorP_CurlyBracketExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на End of expression expected..
         /// </summary>
         internal static string Parser_ErrorP_EndExpressionExpected {
             get {
