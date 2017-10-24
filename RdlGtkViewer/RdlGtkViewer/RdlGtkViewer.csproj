@@ -7,6 +7,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlGtkViewer</RootNamespace>
     <AssemblyName>RdlGtkViewer</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,7 +103,6 @@
     <None Include="..\..\RdlEngine\RdlEngineConfig.xml">
       <Link>RdlEngineConfig.xml</Link>
     </None>
-    <None Include="RdlGtkViewer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
