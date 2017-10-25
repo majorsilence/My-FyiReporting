@@ -43,6 +43,8 @@ namespace fyiReporting.RdlGtkViewer
 		private string connectionString;
 		private bool overwriteSubreportConnection;
 
+		public event EventHandler ReportPrinted;
+
         public ListDictionary Parameters { get; private set; }
 
         bool show_errors;
@@ -628,7 +630,7 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintEndPrint (object o, EndPrintArgs args)
 		{
-			
+			ReportPrinted?.Invoke(this, EventArgs.Empty);
         }
 
         protected void OnRefreshActionActivated(object sender, System.EventArgs e)
