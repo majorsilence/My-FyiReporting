@@ -53,11 +53,6 @@ namespace fyiReporting.RdlGtkViewer
 
         public void Dispose()
         { 
-            if (g != null)
-            {
-                g.Dispose();
-            }
-
             if (layout != null)
             {
                 layout.Dispose();
