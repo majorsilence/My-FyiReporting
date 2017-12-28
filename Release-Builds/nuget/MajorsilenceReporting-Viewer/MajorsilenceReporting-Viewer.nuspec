@@ -18,7 +18,7 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="MajorsilenceReporting-Core" />
+      <dependency id="MajorsilenceReporting-Core" version="4.13.0" />
     </dependencies>
 
   </metadata>

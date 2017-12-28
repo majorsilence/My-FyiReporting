@@ -18,8 +18,8 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="SharpZipLib" />
-      <dependency id="iTextSharp-LGPL" />
+      <dependency id="SharpZipLib" version="0.86.0" />
+      <dependency id="iTextSharp-LGPL" version="4.1.6" />
       <dependency id="ZXing.Net" version="0.14.0.1" />
     </dependencies>
 
