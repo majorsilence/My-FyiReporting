@@ -1,7 +1,8 @@
 REM Platform options: "x86", "x64", "x64"
 REM /p:Configuration="Debug" or "Release"
 
-set msbuildpath="%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe"
+REM set msbuildpath="%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe"
+set msbuildpath="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe"
 
 REM retrieve new version number
 REM See http://stackoverflow.com/questions/4044579/how-to-get-output-of-a-for-loop-into-a-variable-in-a-batch-file
