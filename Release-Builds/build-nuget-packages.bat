@@ -68,6 +68,7 @@ cd ..
 REM net40
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll lib\net40\RdlViewer.dll /Y
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.xml lib\net40\RdlViewer.xml /Y
+copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\EncryptionProvider.dll lib\net40\EncryptionProvider.dll /Y
 mkdir lib\net40\ru-RU
 copy ..\..\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlViewer.resources.dll lib\net40\ru-RU\RdlViewer.resources.dll /Y
 

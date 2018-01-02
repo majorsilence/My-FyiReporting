@@ -34,6 +34,7 @@ copy ..\RdlCri\bin\Release\RdlCri.xml .\build-output\majorsilence-reporting-buil
 copy ..\RdlDesign\bin\x64\Release\RdlDesigner.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlDesigner.exe /Y
 copy ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlDesktop.exe /Y
 copy ..\RdlDesktop\bin\x64\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\config.xml /Y
+copy ..\RdlDesktop\bin\x64\Release\ScintillaNET.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ScintillaNET.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlEngine.xml /Y
 copy ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ICSharpCode.SharpZipLib.dll /Y
@@ -44,6 +45,7 @@ copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsile
 copy ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlViewer.dll /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlViewer.xml /Y
+copy ..\RdlViewer\bin\Release\EncryptionProvider.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\EncryptionProvider.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x64\Release\RdlReader.exe .\build-output\majorsilence-reporting-build-dot-net-4-x64\RdlReader.exe /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.dll /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.xml .\build-output\majorsilence-reporting-build-dot-net-4-x64\LibRdlWpfViewer.xml /Y
@@ -87,6 +89,7 @@ copy ..\RdlCri\bin\Release\RdlCri.dll .\build-output\majorsilence-reporting-buil
 copy ..\RdlCri\bin\Release\RdlCri.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlCri.xml /Y
 copy ..\RdlDesign\bin\x86\Release\RdlDesigner.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlDesigner.exe /Y
 copy ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlDesktop.exe /Y
+copy ..\RdlDesktop\bin\x86\Release\ScintillaNET.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ScintillaNET.dll /Y
 copy ..\RdlDesktop\bin\x86\Release\config.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\config.xml /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.dll /Y
 copy ..\RdlEngine\bin\Release\RdlEngine.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlEngine.xml /Y
@@ -98,6 +101,7 @@ copy ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml .\build-output\majorsile
 copy ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlMapFile.exe /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.dll /Y
 copy ..\RdlViewer\bin\Release\RdlViewer.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlViewer.xml /Y
+copy ..\RdlViewer\bin\Release\EncryptionProvider.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\EncryptionProvider.dll /Y
 copy ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe .\build-output\majorsilence-reporting-build-dot-net-4-x86\RdlReader.exe /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.dll /Y
 copy ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.xml .\build-output\majorsilence-reporting-build-dot-net-4-x86\LibRdlWpfViewer.xml /Y
