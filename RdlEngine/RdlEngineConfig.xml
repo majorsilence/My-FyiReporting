@@ -169,6 +169,11 @@
        <CodeModule>RdlCri.dll</CodeModule>
        <ClassName>fyiReporting.CRI.BarCodeITF14</ClassName>
      </CustomReportItem>
+     <CustomReportItem>
+       <Type>AztecCode</Type>
+       <CodeModule>RdlCri.dll</CodeModule>
+       <ClassName>fyiReporting.CRI.AztecCode</ClassName>
+     </CustomReportItem>
       <CustomReportItem>
          <Type>BarCode39</Type>
          <CodeModule>RdlCri.dll</CodeModule>
