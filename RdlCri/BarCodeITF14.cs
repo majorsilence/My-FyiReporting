@@ -50,7 +50,22 @@ namespace fyiReporting.CRI
         {
             BarCodePropertiesItf14 bcp = new BarCodePropertiesItf14(this, iNode);
 
-            bcp.SetITF14(iNode.FirstChild.SelectSingleNode("//Value").Value);
+            foreach (XmlNode n in iNode.ChildNodes)
+            {
+                if (n.Name != "CustomProperty")
+                    continue;
+                string pname = XmlHelpers.GetNamedElementValue(n, "Name", "");
+                switch (pname)
+                {
+                    case "ITF14":
+                        bcp.SetITF14(XmlHelpers.GetNamedElementValue(n, "Value", ""));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return bcp;
 
             return bcp;
         }
