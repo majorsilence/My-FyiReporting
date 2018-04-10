@@ -3632,64 +3632,54 @@ namespace fyiReporting.RdlDesign
         /// <returns>True if the line intersects the rectangle, false otherwise</returns>
         private bool AdvancedLineCollision(PointF p1, PointF p2, RectangleF _hr)
         {
-            //Pre-Calculations to save cycles, used in AdvancedLineCollisionDetails
-            float calcSegment1 = (p1.X * p2.Y) - (p1.Y * p2.X);
-            float calcX1_X2 = (p1.X - p2.X);
-            float calcY1_Y2 = (p1.Y - p2.Y);
-
             //Test Top-Left to Bottom-Left
             PointF p3 = new PointF(_hr.Left, _hr.Top);
             PointF p4 = new PointF(_hr.Left, _hr.Bottom);
-            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+            if (IsIntersectingLineSegments(p1, p2, p3, p4))
                 return true;
 
             //Test Top-Left to Top-Right
             p4 = new PointF(_hr.Right, _hr.Top);
-            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+            if (IsIntersectingLineSegments(p1, p2, p3, p4))
                 return true;
 
             //Test Top-Right to Bottom-Right
             p3 = new PointF(_hr.Right, _hr.Bottom);
-            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+            if (IsIntersectingLineSegments(p1, p2, p3, p4))
                 return true;
 
             //Test Bottom-Right to Bottom-Left
             p4 = new PointF(_hr.Left, _hr.Bottom);
-            if (AdvancedLineCollisionDetails(calcSegment1, calcX1_X2, calcY1_Y2, p3, p4))
+            if (IsIntersectingLineSegments(p1, p2, p3, p4))
                 return true;
 
             return false;
         }
 
         /// <summary>
-        /// Performs the actual test of one line segment against another
+        /// Test intersecting two lines
         /// </summary>
-        /// <param name="segment1">The first segment of the formula, calculated prior</param>
-        /// <param name="xMinus">The x1 minus x2 segment of the formula, calculated prior</param>
-        /// <param name="yMinus">The y1 minus y2 segment of the formula, calculated prior</param>
-        /// <param name="p3">The beginning point of the line to test from the rectangle</param>
-        /// <param name="p4">The ending point of the line to test from the rectangle</param>
-        /// <returns>True if the lines intersect, false otherwise</returns>
-        private bool AdvancedLineCollisionDetails(float segment1, float xMinus, float yMinus, PointF p3, PointF p4)
+        /// <param name="a">Start line1</param>
+        /// <param name="b">End line1</param>
+        /// <param name="c">Start line2</param>
+        /// <param name="d">End line2</param>
+        /// <returns></returns>
+        static bool IsIntersectingLineSegments(PointF a, PointF b, PointF c, PointF d)
         {
+            float denominator = ((b.X - a.X) * (d.Y - c.Y)) - ((b.Y - a.Y) * (d.X - c.X));
+            float numerator1 = ((a.Y - c.Y) * (d.X - c.X)) - ((a.X - c.X) * (d.Y - c.Y));
+            float numerator2 = ((a.Y - c.Y) * (b.X - a.X)) - ((a.X - c.X) * (b.Y - a.Y));
 
-            float calcSection2 = (p3.X * p4.Y) - (p3.Y * p4.X);
-            float calcSectionDenom = (xMinus * (p3.Y - p4.Y)) - (yMinus * (p3.X - p4.X));
+            // Detect coincident lines (has a problem, read below)
+            if (denominator == 0) return numerator1 == 0 && numerator2 == 0;
 
-            float x = (
-            ((segment1 * (p3.X - p4.X)) - (xMinus * calcSection2))
-            / calcSectionDenom
-            );
-            float y = (
-            ((segment1 * (p3.Y - p4.Y)) - (yMinus * calcSection2))
-            / calcSectionDenom
-            );
+            float r = numerator1 / denominator;
+            float s = numerator2 / denominator;
 
-            return _HitRect.Contains(x, y);
+            return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
+        }
 
-        } 
-
-		private void SelectInList(XmlNode xNode, RectangleF r)
+        private void SelectInList(XmlNode xNode, RectangleF r)
 		{
 			RectangleF rif = GetReportItemRect(xNode, r);
 			if (!rif.IntersectsWith(_HitRect))
