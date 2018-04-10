@@ -3515,7 +3515,7 @@ namespace fyiReporting.RdlDesign
 
 			float bh = 0, hh = 0, fh = 0;
 
-			_HitRect = new RectangleF(PointsX(r.X)+_hScroll, PointsY(r.Y) + _vScroll,
+			_HitRect = new RectangleF(PointsX(r.X)+_hScroll - lMargin, PointsY(r.Y) + _vScroll,
 										PointsX(r.Width), PointsY(r.Height));
 
 			// If selected count changes then we need to repaint
