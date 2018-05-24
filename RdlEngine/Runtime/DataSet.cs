@@ -60,9 +60,19 @@ namespace fyiReporting.RDL
 			_dsd.Query.SetData(_rpt, xmlDoc, _dsd.Fields, _dsd.Filters);
 		}
 
-		public void SetData(IEnumerable ie)
+        /// <summary>
+        /// Sets the data in the dataset from an IEnumerable. The content of the IEnumerable
+        /// depends on the flag collection. If collection is false it will contain classes whose fields
+        /// or properties will be matched to the dataset field names. If collection is true it may 
+        /// contain IDictionary(s) that will be matched by key with the field name or IEnumerable(s) 
+        /// that will be matched by column number. It is possible to have a mix of IDictionary and 
+        /// IEnumerable when collection is true.
+        /// </summary>
+        /// <param name="ie"></param>
+        /// <param name="collection"></param>
+		public void SetData(IEnumerable ie, bool collection = false)
 		{
-			_dsd.Query.SetData(_rpt, ie, _dsd.Fields, _dsd.Filters);
+			_dsd.Query.SetData(_rpt, ie, _dsd.Fields, _dsd.Filters, collection);
 		}
 
         public void SetSource(string sql)

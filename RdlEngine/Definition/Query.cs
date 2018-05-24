@@ -393,7 +393,7 @@ namespace fyiReporting.RDL
 
 		}
 
-		internal void SetData(Report rpt, IEnumerable ie, Fields flds, Filters f)
+		internal void SetData(Report rpt, IEnumerable ie, Fields flds, Filters f, bool collection = false)
 		{
 			if (ie == null)			// Does user want to remove user data?
 			{	
@@ -408,6 +408,7 @@ namespace fyiReporting.RDL
 			int rowCount=0;
 			int maxRows = _RowLimit > 0? _RowLimit: int.MaxValue;
 			int fieldCount = flds.Items.Count;
+            Field[] orderedFields = null;
 			foreach (object dt in ie)
 			{
 				// Get the type.
@@ -416,25 +417,47 @@ namespace fyiReporting.RDL
 				// Build the row
 				Row or = new Row(rows, fieldCount);
 
-				// Go thru each field and try to obtain a value
-				foreach (Field fld in flds)
-				{
-					// Get the type and fields of FieldInfoClass.
-					FieldInfo fi = myType.GetField(fld.Name.Nm, BindingFlags.Instance | BindingFlags.Public);
-                    if (fi != null)
-                    {
-                        or.Data[fld.ColumnNumber] = fi.GetValue(dt);
-                    }
-                    else
-                    {
-                        // Try getting it as a property as well
-                        PropertyInfo pi = myType.GetProperty(fld.Name.Nm, BindingFlags.Instance | BindingFlags.Public);
-                        if (pi != null)
-                        {
-                            or.Data[fld.ColumnNumber] = pi.GetValue(dt, null);
+                if (collection) {
+                    if (dt is IDictionary) {
+                        IDictionary dic = (IDictionary)dt;
+                        foreach (Field fld in flds) {
+                            if (dic.Contains(fld.Name.Nm)) {
+                                or.Data[fld.ColumnNumber] = dic[fld.ColumnNumber];
+                            }
                         }
                     }
-				}
+                    else if (dt is IEnumerable) {
+                        if (orderedFields == null) {
+                            orderedFields = new Field[fieldCount];
+                            foreach (Field fld in flds) {
+                                orderedFields[fld.ColumnNumber] = fld;
+                            }
+                        }
+                        IEnumerator inum = ((IEnumerable)dt).GetEnumerator();
+                        foreach (Field fld in orderedFields) {
+                            if (!inum.MoveNext())
+                                break;
+                            or.Data[fld.ColumnNumber] = inum.Current;
+                        }
+                    }
+                }
+                else {
+                    // Go thru each field and try to obtain a value
+                    foreach (Field fld in flds) {
+                        // Get the type and fields of FieldInfoClass.
+                        FieldInfo fi = myType.GetField(fld.Name.Nm, BindingFlags.Instance | BindingFlags.Public);
+                        if (fi != null) {
+                            or.Data[fld.ColumnNumber] = fi.GetValue(dt);
+                        }
+                        else {
+                            // Try getting it as a property as well
+                            PropertyInfo pi = myType.GetProperty(fld.Name.Nm, BindingFlags.Instance | BindingFlags.Public);
+                            if (pi != null) {
+                                or.Data[fld.ColumnNumber] = pi.GetValue(dt, null);
+                            }
+                        }
+                    }
+                }
 
 				// Apply the filters 
 				if (f == null || f.Apply(rpt, or))
