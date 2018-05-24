@@ -422,7 +422,7 @@ namespace fyiReporting.RDL
                         IDictionary dic = (IDictionary)dt;
                         foreach (Field fld in flds) {
                             if (dic.Contains(fld.Name.Nm)) {
-                                or.Data[fld.ColumnNumber] = dic[fld.ColumnNumber];
+                                or.Data[fld.ColumnNumber] = dic[fld.Name.Nm];
                             }
                         }
                     }
