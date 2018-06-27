@@ -368,6 +368,7 @@ namespace fyiReporting.RDL
             {
                 asian |= text[i].Any(c => (c >= 0x3040 && c <= 0x309f) || //Hiragana
                                           (c >= 0x30a0 && c <= 0x30ff) || //Katanka
+                                          (c >= 0xE00 && c <= 0xE7F) || //Thai
                                            c >= 0x4e00);                  
                 if (asian)
                 {
