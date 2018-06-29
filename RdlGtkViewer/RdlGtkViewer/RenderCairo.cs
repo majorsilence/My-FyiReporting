@@ -48,9 +48,6 @@ namespace fyiReporting.RdlGtkViewer
             this.layout = Pango.CairoHelper.CreateLayout(g);
 			this.scale = scale;
 			g.Scale(scale, scale);
-            
-			//dpiX *= scale;
-            //dpiY *= scale;
         }
 
         public void Dispose()
