@@ -501,11 +501,16 @@ namespace fyiReporting.RdlGtkViewer
 			g.Paint ();
 			g.Restore ();
 		}
-		
-		public static void DrawPixbufRect (this Context g, Gdk.Pixbuf pixbuf, Rectangle r)
+
+		public static void DrawPixbufRect (this Context g, Gdk.Pixbuf pixbuf, Rectangle r, float scale)
 		{
-			Gdk.Pixbuf scaled = pixbuf.ScaleSimple ((int)r.Width, (int)r.Height, Gdk.InterpType.Bilinear);
-			g.DrawPixbuf (scaled, (int)r.X, (int)r.Y);
+			var wScale = (r.Width / scale)  / pixbuf.Width;
+			var hScale = (r.Height / scale) / pixbuf.Height;
+			g.Save();
+			g.Scale(scale * wScale, scale * hScale);
+			Gdk.CairoHelper.SetSourcePixbuf(g, pixbuf, (int)(r.X / scale / wScale), (int)(r.Y / scale / hScale));
+			g.Paint();
+			g.Restore();
 		}
 
 		#endregion
