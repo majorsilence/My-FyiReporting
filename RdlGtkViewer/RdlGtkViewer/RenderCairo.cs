@@ -102,7 +102,7 @@ namespace fyiReporting.RdlGtkViewer
 
                 if (pi is PageText)
                 {
-                    PageText pt = pi as PageText;
+					PageText pt = pi as PageText;
                     DrawString(pt, g, rect);
                 }
                 
@@ -490,7 +490,7 @@ namespace fyiReporting.RdlGtkViewer
             g.Save();
             Cairo.Color c = si.BackgroundColor.ToCairoColor();
             Cairo.Gradient gradient = null;
-			
+
             if (si.BackgroundGradientType != BackgroundGradientTypeEnum.None &&
                 !si.BackgroundGradientEndColor.IsEmpty)
             {

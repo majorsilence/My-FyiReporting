@@ -41,8 +41,9 @@ namespace fyiReporting.RDL
 	internal class CustomReportItem : Rectangle
 	{
         static readonly ImageFormat IMAGEFORMAT = ImageFormat.Jpeg;
-        string _Type;	// The type of the custom report item. Interpreted by a
+        string _Type;   // The type of the custom report item. Interpreted by a
 						// report design tool or server.
+		XmlNode xNode;
         System.Collections.Generic.List<CustomProperty> _Properties;
 	
 		internal CustomReportItem(ReportDefn r, ReportLink p, XmlNode xNode):base(r, p, xNode, false)
@@ -50,7 +51,7 @@ namespace fyiReporting.RDL
 			_Type=null;
 			ReportItems ris=null;
             bool bVersion2 = true;
-			
+			this.xNode = xNode;
 			// Loop thru all the child nodes
 			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
 			{
@@ -132,7 +133,38 @@ namespace fyiReporting.RDL
             try
             {
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
+				Type a = cri.GetType();
+				Bitmap bm = null;
+				SetProperties(rpt, row, cri);
+				int width = WidthCalc(rpt, null) -
+					(Style == null ? 0 :
+						(Style.EvalPaddingLeftPx(rpt, row) + Style.EvalPaddingRightPx(rpt, row)));
+				int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
+					(Style == null ? 0 :
+						(Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
+				bm = new Bitmap(width, height);
+				cri.DrawImage(ref bm);
 
+				MemoryStream ostrm = new MemoryStream();
+				// 06122007AJM Changed to use high quality JPEG encoding
+				//bm.Save(ostrm, IMAGEFORMAT);	// generate a jpeg   TODO: get png to work with pdf
+				System.Drawing.Imaging.ImageCodecInfo[] info;
+				info = ImageCodecInfo.GetImageEncoders();
+				EncoderParameters encoderParameters;
+				encoderParameters = new EncoderParameters(1);
+				// 20022008 AJM GJL - Using centralised image quality
+				encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.CustomImageQuality);
+				System.Drawing.Imaging.ImageCodecInfo codec = null;
+				for(int i = 0; i < info.Length; i++) {
+					if(info[i].FormatDescription == "JPEG") {
+						codec = info[i];
+						break;
+					}
+				}
+				bm.Save(ostrm, codec, encoderParameters);
+
+				ip.Image(new Image(rpt.ReportDefinition, this, xNode), row, null, ostrm);
+				ostrm.Close();
             }
             catch (Exception ex)
             {

@@ -223,6 +223,9 @@ namespace fyiReporting.RDL
 
 		override internal void Run(IPresent ip, Row row)
 		{
+			if(Name.Nm == "Textbox32") {
+				var a = true;//tyle.GetStyleInfo();
+			}
 			Report rpt = ip.Report();
 			base.Run(ip, row);
 
