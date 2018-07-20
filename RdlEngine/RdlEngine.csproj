@@ -1121,6 +1121,15 @@
     </Compile>
     <Compile Include="Utility\Measurement.cs" />
     <Compile Include="Utility\Runtime.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelCellsBuilder.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelColumn.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelRow.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelCell.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelImage.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelTable.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelCellStyle.cs" />
+    <Compile Include="Render\RenderExcel2007.cs" />
+    <Compile Include="Render\ExcelConverter\ExcelLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -1177,6 +1186,9 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Render\ExcelConverter\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
