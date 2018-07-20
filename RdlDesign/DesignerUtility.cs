@@ -1454,8 +1454,8 @@ namespace fyiReporting.RdlDesign
 
         static public readonly string[] OperatorList = new string[] { 
                                 " & ", " + "," - "," * "," / "," mod ", 
-								" and ", " or ", 
-								" = ", " != ", " > ", " >= ", " < ", " <= "	};
+								" and ", " or ", " !", 
+								" = ", " != ", " > ", " >= ", " < ", " <= "};
 
 		/// <summary>
 		/// Names of functions with pseudo arguments
