@@ -111,7 +111,7 @@ namespace ReportTests
 
             string fullOutputPath = System.IO.Path.Combine(_outputFolder.LocalPath, fileNameOut);
             sg = new OneFileStreamGen(fullOutputPath, true);
-            rap.RunRender(sg, OutputPresentationType.Excel);
+            rap.RunRender(sg, OutputPresentationType.ExcelTableOnly);
 
 
             

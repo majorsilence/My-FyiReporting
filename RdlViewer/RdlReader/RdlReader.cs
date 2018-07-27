@@ -510,8 +510,6 @@ namespace fyiReporting.RdlReader
                     type = OutputPresentationType.XML;
                     break;
                 case "html":
-                    type = OutputPresentationType.HTML;
-                    break;
                 case "htm":
                     type = OutputPresentationType.HTML;
                     break;
@@ -522,17 +520,13 @@ namespace fyiReporting.RdlReader
                     type = OutputPresentationType.RTF;
                     break;
                 case "mht":
-                    type = OutputPresentationType.MHTML;
-                    break;
                 case "mhtml":
                     type = OutputPresentationType.MHTML;
                     break;
                 case "xlsx":
-                    type = OutputPresentationType.Excel;
+                    type = sfd.FilterIndex == 7 ? OutputPresentationType.ExcelTableOnly : OutputPresentationType.Excel2007;
                     break;
                 case "tif":
-                    type = OutputPresentationType.TIF;
-                    break;
                 case "tiff":
                     type = OutputPresentationType.TIF;
                     break;

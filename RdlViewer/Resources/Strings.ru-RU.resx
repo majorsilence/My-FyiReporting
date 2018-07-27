@@ -150,6 +150,9 @@
   <data name="RdlViewer_Error_UnsupportedExtension" xml:space="preserve">
     <value>Неподдерживаемое разрешение</value>
   </data>
+  <data name="RdlViewer_menuFileSaveAs_Click_FilesFilter" xml:space="preserve">
+    <value>PDF (*.pdf)|*.pdf|XML (*.xml)|*.xml|HTML (*.html)|*.html|CSV files (*.csv)|*.csv|RTF (*.rtf)|*.rtf|TIF (*.tif)|*.tif|Excel 2007 только таблица (*.xlsx)|*.xlsx|Excel 2007 (*.xlsx)|*.xlsx|MHT (*.mht)|*.mht</value>
+  </data>
   <data name="RdlViewer_ParametersLeave_InvalidReportParameter" xml:space="preserve">
     <value>Некорректный параметр отчёта</value>
   </data>
