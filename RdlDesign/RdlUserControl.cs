@@ -731,7 +731,7 @@ namespace fyiReporting.RdlDesign
 				case OutputPresentationType.Word:
 					sfd.Filter = Strings.MDIChild_Export_DOC;
 					break;
-				case OutputPresentationType.Excel:
+				case OutputPresentationType.ExcelTableOnly:
 					sfd.Filter = Strings.MDIChild_Export_Excel;
 					break;
 				case OutputPresentationType.HTML:
@@ -1228,7 +1228,7 @@ namespace fyiReporting.RdlDesign
 
         private void excelToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.Excel);
+            Export(fyiReporting.RDL.OutputPresentationType.Excel2007);
         }
 
         private void XmlToolStripButton2_Click(object sender, EventArgs e)

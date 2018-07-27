@@ -1718,7 +1718,7 @@ namespace fyiReporting.RdlDesign
             if (mc == null)
                 return;
 
-            mc.Export(fyiReporting.RDL.OutputPresentationType.Excel);
+            mc.Export(fyiReporting.RDL.OutputPresentationType.ExcelTableOnly);
             return;
         }
 
@@ -3783,6 +3783,16 @@ namespace fyiReporting.RdlDesign
                 return;
 
             mc.Export(fyiReporting.RDL.OutputPresentationType.Word);
+            return;
+        }
+
+        private void Excel2007ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            mc.Export(fyiReporting.RDL.OutputPresentationType.Excel2007);
             return;
         }
     }

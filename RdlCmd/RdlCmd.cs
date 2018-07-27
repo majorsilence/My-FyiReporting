@@ -380,8 +380,11 @@ namespace fyiReporting.RdlCmd
                     case "csv":
                         report.RunRender(sg, OutputPresentationType.CSV);
                         break;
+                    case "xlsx_table":
+                        report.RunRender(sg, OutputPresentationType.ExcelTableOnly);
+                        break;
                     case "xlsx":
-                        report.RunRender(sg, OutputPresentationType.Excel);
+                        report.RunRender(sg, OutputPresentationType.Excel2007);
                         break;
                     case "rtf":
                         report.RunRender(sg, OutputPresentationType.RTF);
@@ -393,7 +396,7 @@ namespace fyiReporting.RdlCmd
                         report.RunRender(sg, OutputPresentationType.TIFBW);
                         break;
 					default:
-						Console.WriteLine("Unsupported file extension '{0}'.  Must be 'pdf', 'xml', 'mht', 'csv', 'xslx', 'rtf', 'tif', 'tifb' or 'html'", type);
+						Console.WriteLine("Unsupported file extension '{0}'.  Must be 'pdf', 'xml', 'mht', 'csv', 'xslx', 'xlsx_table', 'rtf', 'tif', 'tifb' or 'html'", type);
 						returnCode = 8;
 						break;
 				}
@@ -624,7 +627,7 @@ namespace fyiReporting.RdlCmd
 			Console.WriteLine("  One special argument is 'rc:ofile' which names the output file.");
 			Console.WriteLine("  For example, /ffile1.rdl?parm1=XYZ Inc.&parm2=1000&rc:ofile=xyzfile");
 			Console.WriteLine("/t is followed by the type of output file: pdf, html, mht, xml, csv,");
-            Console.WriteLine("  xslx, rtf, tif, tifb   e.g /tpdf+xml");
+            Console.WriteLine("  xslx, xlsx_table, rtf, tif, tifb   e.g /tpdf+xml");
 			Console.WriteLine("/o is followed by the output directory.   The file name is the same as the");
 			Console.WriteLine("  input (or the rc:ofile parameter) except with the type as the extension.");
 			Console.WriteLine("/p is followed by the pass phrase needed by reports using a shared data source.");

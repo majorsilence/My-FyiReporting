@@ -46,7 +46,7 @@ namespace fyiReporting.RDL
         CSV,
         RTF,
         Word,
-        Excel,
+        ExcelTableOnly,
 		Excel2007,
         TIF,
         TIFBW,                   // black and white tif
