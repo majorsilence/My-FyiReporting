@@ -514,7 +514,7 @@ namespace fyiReporting.RdlGtkViewer
                     }
                     else if (fc.Filter.Name == "Excel 2007 Data")
                     {
-                        exportType = OutputPresentationType.Excel;
+						exportType = OutputPresentationType.ExcelTableOnly;
                         if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
                         {
                             filename = filename + ".xlsx";
