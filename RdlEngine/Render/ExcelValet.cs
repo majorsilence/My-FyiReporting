@@ -953,13 +953,14 @@ namespace fyiReporting.RDL
                             value = value.Replace(")", "");
                             value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
                             value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
+                            value = value.Replace(",", ".");
                             value = value.Replace("$", "");
 
                             if (value.IndexOf('%') != -1)       //WRP 31102008 if a properly RDL formatted percentage need to remove "%" and pass throught value/100 to excel for correct formatting
                             {
                                 value = value.Replace("%", String.Empty);
                                 decimal decvalue = Convert.ToDecimal(value) / 100;
-                                value = decvalue.ToString();    
+                                value = decvalue.ToString();
                             }
                             value = Regex.Replace(value, @"\s+", "");      //WRP 31102008 remove any white space
 

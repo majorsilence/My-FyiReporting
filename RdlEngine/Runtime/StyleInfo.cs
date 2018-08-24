@@ -585,6 +585,8 @@ namespace fyiReporting.RDL
                     return 4;
                 case "0%":
                     return 9;
+                case "p":
+                case "P":
                 case "0.00%":
                     return 10;
                 case "0.00E+00":
