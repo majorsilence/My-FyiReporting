@@ -38,7 +38,7 @@ namespace fyiReporting.RDL
 {
     internal class ExcelValet
     {
-        /* ================================================================================================================        
+		/* ================================================================================================================        
                   Excel file structure is a zip file with the following files and directories
                 dir      _rels
                 file          .rels
@@ -953,14 +953,13 @@ namespace fyiReporting.RDL
                             value = value.Replace(")", "");
                             value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
                             value = value.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, ".");
-                            value = value.Replace(",", ".");
                             value = value.Replace("$", "");
 
                             if (value.IndexOf('%') != -1)       //WRP 31102008 if a properly RDL formatted percentage need to remove "%" and pass throught value/100 to excel for correct formatting
                             {
                                 value = value.Replace("%", String.Empty);
-                                decimal decvalue = Convert.ToDecimal(value) / 100;
-                                value = decvalue.ToString();
+								decimal decvalue = Convert.ToDecimal(value, CultureInfo.InvariantCulture.NumberFormat) / 100;
+								value = XmlConvert.ToString(decvalue);
                             }
                             value = Regex.Replace(value, @"\s+", "");      //WRP 31102008 remove any white space
 
