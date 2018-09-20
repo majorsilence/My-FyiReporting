@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace fyiReporting.RDL
 {
@@ -199,10 +200,11 @@ namespace fyiReporting.RDL
                 int width = WidthCalc(rpt, pgs.G) - 
                     (Style == null? 0 :
                         (Style.EvalPaddingLeftPx(rpt, row) + Style.EvalPaddingRightPx(rpt, row)));
-                int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
+				int height = RSize.PixelsFromPoints(pgs.G, this.HeightOrOwnerHeight) -
                     (Style == null? 0 :
                         (Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
-                bm = new Bitmap(width, height);
+				var rate = 600 / pgs.G.DpiX; // rate scale image for print with 600dpi
+				bm = new Bitmap((int)(width * rate), (int)(height * rate));
                 cri.DrawImage(ref bm);
 
                 MemoryStream ostrm = new MemoryStream();
@@ -215,14 +217,8 @@ namespace fyiReporting.RDL
                 // 20022008 AJM GJL - Using centralised image quality
                 encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.CustomImageQuality);
                 System.Drawing.Imaging.ImageCodecInfo codec = null;
-                for (int i = 0; i < info.Length; i++)
-                {
-                    if (info[i].FormatDescription == "JPEG")
-                    {
-                        codec = info[i];
-                        break;
-                    }
-                }
+				codec = info.First(x => x.FormatDescription == "PNG");
+
                 bm.Save(ostrm, codec, encoderParameters);
 
                 byte[] ba = ostrm.ToArray();

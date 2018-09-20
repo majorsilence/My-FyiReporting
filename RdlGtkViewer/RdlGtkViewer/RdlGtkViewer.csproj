@@ -79,6 +79,7 @@
     <Compile Include="gtk-gui\fyiReporting.RdlGtkViewer.ReportViewer.cs" />
     <Compile Include="ParameterPrompt.cs" />
     <Compile Include="gtk-gui\fyiReporting.RdlGtkViewer.ParameterPrompt.cs" />
+    <Compile Include="ReportExporter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
