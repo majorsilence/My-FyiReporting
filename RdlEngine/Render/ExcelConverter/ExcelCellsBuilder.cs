@@ -136,7 +136,7 @@ namespace RdlEngine.Render.ExcelConverter
 					currentCell.OriginalWidth = spanWidth;
 				}
 				currentCell.GrowedBottomPosition = rowPosition + rowHeight;
-				currentCell.Style = cellTextBox.Style.GetStyleInfo(Report, row);
+				SetCellStyle(currentCell, cellTextBox, row);
 				Cells.Add(currentCell);
 			}
 
@@ -195,10 +195,13 @@ namespace RdlEngine.Render.ExcelConverter
 
 		private void SetCellStyle(ExcelCell excelCell, ReportItem reportItem, Row row)
 		{
-			if(reportItem.Style == null) {
-				return;
+			StyleInfo si = new StyleInfo();
+			if(reportItem.Style != null) {
+				var itemStyleInfo = reportItem.Style.GetStyleInfo(Report, row);
+				if(itemStyleInfo != null) {
+					si = itemStyleInfo;
+				}
 			}
-			var si = reportItem.Style.GetStyleInfo(Report, row);
 			excelCell.Style = si;
 		}
 
