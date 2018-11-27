@@ -435,7 +435,12 @@ namespace fyiReporting.RDL
 
 		public void Line(Line l, Row row)
 		{
-			float borderWidth = l.Style.BorderWidth.EvalDefault(report, row);
+			float borderWidth = 1;
+			if(l.Style.BorderWidth != null) {
+				borderWidth = l.Style.BorderWidth.EvalDefault(report, row);
+			} else if(l.Style.BorderStyle != null) {
+				borderWidth = (float)l.Style.BorderStyle.EvalDefault(report, row);
+			}
 			excelBuilder.AddLine(l, borderWidth);
 
 		}
