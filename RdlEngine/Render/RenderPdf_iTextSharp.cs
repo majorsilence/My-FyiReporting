@@ -70,6 +70,10 @@ namespace fyiReporting.RDL
         private List<string> _baseFontsName = new List<string>();
         #endregion
 
+        static RenderPdf_iTextSharp() {
+            iTextSharp.text.FontFactory.RegisterDirectories();
+        }
+
         #region properties
 
         private bool IsOSX
@@ -317,7 +321,7 @@ namespace fyiReporting.RDL
         /// <returns></returns>
         private string iFontNameNormalize(string face)
         {
-            string faceName;
+            string faceName = face;
             switch (face.ToLower())
             {
                 case "times":
@@ -336,7 +340,7 @@ namespace fyiReporting.RDL
                 case "sans-serif":
                 case "sans serif":
                 default:
-                    faceName = "Arial";
+                    //faceName = "Arial";
                     break;
                 case "courier":
                 case "couriernew":
@@ -364,6 +368,7 @@ namespace fyiReporting.RDL
             {
                 asian |= text[i].Any(c => (c >= 0x3040 && c <= 0x309f) || //Hiragana
                                           (c >= 0x30a0 && c <= 0x30ff) || //Katanka
+                                          (c >= 0xE00 && c <= 0xE7F) || //Thai
                                            c >= 0x4e00);                  
                 if (asian)
                 {
@@ -376,7 +381,7 @@ namespace fyiReporting.RDL
         protected internal override void AddText(float x, float y, float height, float width, string[] sa, StyleInfo si, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
         {
 
-            BaseFont bf;
+            BaseFont bf = null;
             string face = iFontNameNormalize(si.FontFamily);
             string fontname = "";
             bool fonttype1 = true;
@@ -552,43 +557,56 @@ namespace fyiReporting.RDL
                 fonttype1 = false;
             }
             else {
-                if (si.IsFontBold() &&
-            si.FontStyle == FontStyleEnum.Italic)   // bold and italic?
-                    face = face + "-BoldOblique";
-                else if (si.IsFontBold())           // just bold?
-                    face = face + "-Bold";
-                else if (si.FontStyle == FontStyleEnum.Italic)
-                    face = face + "-Oblique";
-                fonttype1 = true;
+
+                int style = si.IsFontBold() ? iTextSharp.text.Font.BOLD : 0;
+                style += si.FontStyle == FontStyleEnum.Italic ? iTextSharp.text.Font.ITALIC : 0;
+                iTextSharp.text.Font ff = FontFactory.GetFont(face, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10f, style);
+                bf = ff.BaseFont;
+                if (bf == null) {
+                    if (IsOSX) {
+                        face = "ArialMT";
+                        fontname = "Arial.ttf";
+                    }
+                    else {
+                        face = _dejavuFonts ? "DejaVu Sans Condensed" : "Arial";
+                        fontname = (_dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
+                    }
+                }
+                /*                if (si.IsFontBold() &&
+                            si.FontStyle == FontStyleEnum.Italic)   // bold and italic?
+                                    face = face + "-BoldOblique";
+                                else if (si.IsFontBold())           // just bold?
+                                    face = face + "-Bold";
+                                else if (si.FontStyle == FontStyleEnum.Italic)
+                                    face = face + "-Oblique";*/
+                fonttype1 = false;
             }
-            //Get index of fontname in List font name
-            int indexbf = _baseFontsName.FindIndex(delegate (string _fontname) { return _fontname == face; });
-            //If not found then add new BaseFont
-            if (indexbf == -1)
-            {
-                _baseFontsName.Add(face);
-                if (fonttype1)
-                {
-                    bf = BaseFont.CreateFont(face, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+            if (bf == null) {
+                //Get index of fontname in List font name
+                int indexbf = _baseFontsName.FindIndex(delegate (string _fontname) { return _fontname == face; });
+                //If not found then add new BaseFont
+                if (indexbf == -1) {
+                    _baseFontsName.Add(face);
+                    if (fonttype1) {
+                        bf = BaseFont.CreateFont(face, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+                    }
+                    else {
+                        string path = System.IO.Path.Combine(folder, fontname);
+                        bf = BaseFont.CreateFont(path, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    }
+                    _baseFonts.Add(bf);
                 }
                 else
+                //Get from List
                 {
-                    string path = System.IO.Path.Combine(folder, fontname);
-                    bf = BaseFont.CreateFont(path, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    bf = _baseFonts[indexbf];
                 }
-                _baseFonts.Add(bf);
             }
-            else
-            //Get from List
-            {
-                bf = _baseFonts[indexbf];
-            }
-
             // Loop thru the lines of text
             for (int i = 0; i < sa.Length; i++)
             {
                 string text = sa[i];
-                float textwidth = tw[i];
+                float textwidth = bf.GetWidthPoint(text, si.FontSize);
                 // Calculate the x positino
                 float startX = x + si.PaddingLeft;						// TODO: handle tb_rl
                 float startY = y + si.PaddingTop + (i * si.FontSize);	// TODO: handle tb_rl

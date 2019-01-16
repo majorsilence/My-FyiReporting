@@ -329,7 +329,8 @@ namespace LibRdlCrossPlatformViewer
             dlg.Filters.Add(new FileDialogFilter("CSV files", "*.csv"));
             dlg.Filters.Add(new FileDialogFilter("RTF files", "*.rtf"));
             dlg.Filters.Add(new FileDialogFilter("TIF files", "*.tif"));
-            dlg.Filters.Add(new FileDialogFilter("Excel files", "*.xlsx"));
+            dlg.Filters.Add(new FileDialogFilter("Excel 2007 (Table Only)", "*.xlsx"));
+            dlg.Filters.Add(new FileDialogFilter("Excel 2007", "*.xlsx"));
             dlg.Filters.Add(new FileDialogFilter("MHT files", "*.mht"));
 
 
@@ -373,8 +374,6 @@ namespace LibRdlCrossPlatformViewer
                     type = fyiReporting.RDL.OutputPresentationType.XML;
                     break;
                 case "html":
-                    type = fyiReporting.RDL.OutputPresentationType.HTML;
-                    break;
                 case "htm":
                     type = fyiReporting.RDL.OutputPresentationType.HTML;
                     break;
@@ -385,13 +384,11 @@ namespace LibRdlCrossPlatformViewer
                     type = fyiReporting.RDL.OutputPresentationType.RTF;
                     break;
                 case "mht":
-                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
-                    break;
                 case "mhtml":
                     type = fyiReporting.RDL.OutputPresentationType.MHTML;
                     break;
                 case "xlsx":
-                    type = fyiReporting.RDL.OutputPresentationType.Excel;
+                    type = dlg.ActiveFilter.Name.Contains("Table") ? OutputPresentationType.ExcelTableOnly : OutputPresentationType.Excel2007;
                     break;
                 case "tif":
                     type = fyiReporting.RDL.OutputPresentationType.TIF;

@@ -76,24 +76,30 @@ namespace fyiReporting.RdlDesign
 
             int width = Conversions.MeasurementTypeAsHundrethsOfAnInch(tbPageWidth.Text);
             int height = Conversions.MeasurementTypeAsHundrethsOfAnInch(tbPageHeight.Text);
-            int pageCount = settings.PaperSizes.Count;
 
-            // This conversion may be better converted to mm instead of hundrethds of an inch
-            int count = 0;
-            bool sizeFound = false;
-            foreach (PaperSize psize in settings.PaperSizes)
+            try
             {
-                cbPageSize.Items.Add(psize);
+                // This conversion may be better converted to mm instead of hundrethds of an inch
+                int count = 0;
+                bool sizeFound = false;
+                foreach (PaperSize psize in settings.PaperSizes)
+                {
+                    cbPageSize.Items.Add(psize);
 
 
-                if ((psize.Width == width) &&
-                    (psize.Height == height) && 
-                    (sizeFound == false))
-                {   
-                    cbPageSize.SelectedIndex = count;
-                    sizeFound = true;
+                    if ((psize.Width == width) &&
+                        (psize.Height == height) && 
+                        (sizeFound == false))
+                    {   
+                        cbPageSize.SelectedIndex = count;
+                        sizeFound = true;
+                    }
+                    count = count + 1;
                 }
-                count = count + 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Exception when try get paper sizes: {ex}");
             }
         }
 

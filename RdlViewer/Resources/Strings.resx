@@ -165,4 +165,7 @@
   <data name="RdlViewer_doPossibleDecryption_Incorrect_Pass_key_entered_" xml:space="preserve">
     <value>Incorrect Pass key entered.</value>
   </data>
+  <data name="RdlViewer_menuFileSaveAs_Click_FilesFilter" xml:space="preserve">
+    <value>PDF files (*.pdf)|*.pdf|XML files (*.xml)|*.xml|HTML files (*.html)|*.html|CSV files (*.csv)|*.csv|RTF files (*.rtf)|*.rtf|TIF files (*.tif)|*.tif|Excel 2007 Table Only (*.xlsx)|*.xlsx|Excel 2007 (*.xlsx)|*.xlsx|MHT files (*.mht)|*.mht</value>
+  </data>
 </root>

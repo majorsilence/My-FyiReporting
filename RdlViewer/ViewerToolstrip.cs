@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Resources;
 using System.Reflection;
 using System.IO;
+using fyiReporting.RDL;
+using fyiReporting.RdlViewer.Resources;
 
 namespace fyiReporting.RdlViewer
 {
@@ -93,7 +95,7 @@ namespace fyiReporting.RdlViewer
             }
 
             var dlg = new SaveFileDialog();
-            dlg.Filter = "PDF files|*.pdf|XML files|*.xml|HTML files|*.html|CSV files|*.csv|RTF files|*.rtf|TIF files|*.tif|Excel files|*.xlsx|MHT files|*.mht";
+            dlg.Filter = Strings.RdlViewer_menuFileSaveAs_Click_FilesFilter;
             dlg.FileName = ".pdf";
             var result = dlg.ShowDialog();
             if (result != DialogResult.OK)
@@ -139,7 +141,7 @@ namespace fyiReporting.RdlViewer
                     type = fyiReporting.RDL.OutputPresentationType.MHTML;
                     break;
                 case "xlsx":
-                    type = fyiReporting.RDL.OutputPresentationType.Excel;
+                    type = dlg.FilterIndex == 7 ? OutputPresentationType.ExcelTableOnly : OutputPresentationType.Excel2007;
                     break;
                 case "tif":
                     type = fyiReporting.RDL.OutputPresentationType.TIF;

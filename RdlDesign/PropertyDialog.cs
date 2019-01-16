@@ -238,7 +238,7 @@ namespace fyiReporting.RdlDesign
 	        switch (type)
 	        {
 		        case "Textbox":
-			        var stc = new StyleTextCtl(_Draw, _Nodes);
+			        var stc = new StyleTextCtl(_Draw, _Nodes, this);
 			        AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 			        break;
 
@@ -391,7 +391,7 @@ namespace fyiReporting.RdlDesign
             AddTab(Strings.PropertyDialog_BuildChartAxisTabs_Axis, cac);
 
             // Style Text
-            var stc = new StyleTextCtl(_Draw, _Nodes);
+            var stc = new StyleTextCtl(_Draw, _Nodes, this);
             AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab
@@ -421,7 +421,7 @@ namespace fyiReporting.RdlDesign
             AddTab(Strings.PropertyDialog_BuildChartLegendTabs_Legend, clc);
 
             // Style Text
-            var stc = new StyleTextCtl(_Draw, _Nodes);
+            var stc = new StyleTextCtl(_Draw, _Nodes, this);
             AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab
@@ -473,7 +473,7 @@ namespace fyiReporting.RdlDesign
             EnsureStyle();	// Make sure we have Style nodes
 
             // Style Text
-            var stc = new StyleTextCtl(_Draw, _Nodes);
+            var stc = new StyleTextCtl(_Draw, _Nodes, this);
             AddTab(Strings.PropertyDialog_BuildReportItemTabs_Text, stc);
 
             // Border tab

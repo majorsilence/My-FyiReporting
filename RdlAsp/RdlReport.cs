@@ -123,7 +123,8 @@ namespace fyiReporting.RdlAsp
 						return "xml";
                     case OutputPresentationType.CSV:
                         return "csv";
-                    case OutputPresentationType.Excel:
+                    case OutputPresentationType.ExcelTableOnly:
+                    case OutputPresentationType.Excel2007:
                         return "xlsx";
                     case OutputPresentationType.RTF:
                         return "rtf";
@@ -429,7 +430,7 @@ namespace fyiReporting.RdlAsp
                 case "csv":
                     return OutputPresentationType.CSV;
                 case "xlsx":
-                    return OutputPresentationType.Excel;
+                    return OutputPresentationType.ExcelTableOnly;
                 case "rtf":
                     return OutputPresentationType.RTF;
                 default:

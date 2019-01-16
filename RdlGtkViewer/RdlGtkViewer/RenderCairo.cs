@@ -33,7 +33,7 @@ namespace fyiReporting.RdlGtkViewer
     {
         Cairo.Context g;
         Pango.Layout layout;
-		
+		float scale = 1.0f;
         float dpiX = 96;
         float dpiY = 96;
 
@@ -46,9 +46,8 @@ namespace fyiReporting.RdlGtkViewer
         {
             this.g = g;
             this.layout = Pango.CairoHelper.CreateLayout(g);
-			
-            dpiX *= scale;
-            dpiY *= scale;
+			this.scale = scale;
+			g.Scale(scale, scale);
         }
 
         public void Dispose()
@@ -247,7 +246,7 @@ namespace fyiReporting.RdlGtkViewer
 //                                           Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
                     //g.DrawImage(im, ir);
                     im = im.ScaleSimple((int)r2.Width, (int)r2.Height, Gdk.InterpType.Hyper);
-                    g.DrawPixbufRect(im, ir);
+                    g.DrawPixbufRect(im, ir, scale);
                     break;
                 case ImageSizingEnum.Clip:
 //                    Region saveRegion = g.Clip;
@@ -266,7 +265,7 @@ namespace fyiReporting.RdlGtkViewer
 //                        ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
 //                                           Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
 //                    g.DrawImage(im, ir);
-                    g.DrawPixbufRect(im, ir);					
+					g.DrawPixbufRect(im, r2, scale);
 //                    g.Clip = saveRegion;
                     g.Restore();
                     break;
@@ -286,11 +285,11 @@ namespace fyiReporting.RdlGtkViewer
                         height = width * ratioIm;
                     }
                     r2 = new Cairo.Rectangle(r2.X, r2.Y, width, height);
-                    g.DrawPixbufRect(im, r2);
+                    g.DrawPixbufRect(im, r2, scale);
                     break;
                 case ImageSizingEnum.Fit:
                 default:
-                    g.DrawPixbufRect(im, r2);
+                    g.DrawPixbufRect(im, r2, scale);
                     break;
             }
         }

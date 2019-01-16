@@ -26,6 +26,7 @@ using System.Xml.XPath;
 using System.Data;
 using System.Collections;
 using System.Collections.Specialized;
+using System.IO;
 
 namespace fyiReporting.Data
 {
@@ -55,8 +56,14 @@ namespace fyiReporting.Data
 			_xcmd = cmd;
 			_behavior = behavior;
 
-			// create an iterator to the selected rows
-			_xpd = new XPathDocument (_xcmd.Url); 
+            // create an iterator to the selected rows
+            if (_xcmd.Url.Trim() == "") {
+                //Use an empty XML to allow rendering from memory
+                _xpd = new XPathDocument(new StringReader("<empty/>"));
+            }
+            else {
+                _xpd = new XPathDocument(_xcmd.Url);
+            }
 			_xpn =  _xpd.CreateNavigator();
 			_xpni =  _xpn.Select(_xcmd.RowsXPath);	// select the rows
 			_NameSpaces = new ListDictionary();
