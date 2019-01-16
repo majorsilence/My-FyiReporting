@@ -324,6 +324,11 @@ namespace fyiReporting.RdlDesign
                 if (dp == null)
                     return false;
                 connection = dp.InnerText;
+
+                if (connection.StartsWith("=Parameters!"))
+                {
+                    connection = d.GetReportParameterDefaultValue(connection);
+                }
             }
             return true;
         }

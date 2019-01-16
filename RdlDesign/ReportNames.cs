@@ -22,6 +22,7 @@
 */
 using System;
 using System.Xml;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -626,7 +627,37 @@ namespace fyiReporting.RdlDesign
 			return result;
 		}
 
-		internal string[] GetReportParameters(bool asExpression)
+        internal string GetReportParameterDefaultValue(string parameterExpression)
+        {
+            var root = _doc.DocumentElement;
+
+            XmlNode rNode = _doc.LastChild;
+            XmlNode rpsNode = DesignXmlDraw.FindNextInHierarchy(rNode, "ReportParameters");
+            if (rpsNode == null)
+                return null;
+
+            var parameterName = parameterExpression.Replace("=Parameters!", "").Replace(".Value", "");
+
+            var parameter = rpsNode.ChildNodes.Cast<XmlNode>()
+                .FirstOrDefault(n => n.Attributes["Name"].Value == parameterName);
+
+            if (parameter == null)
+                //ERROR, parameter not found;
+                return null;
+
+            var defaultValue = parameter.ChildNodes.Cast<XmlNode>()
+                .FirstOrDefault(n => n.Name == "DefaultValue");
+            if (defaultValue == null)
+            {
+                // ERROR, no default value;
+                return null;
+            }
+
+            // selecting DefaultValue/Values/Value
+            return defaultValue.FirstChild.FirstChild.InnerText;
+        }
+
+        internal string[] GetReportParameters(bool asExpression)
 		{
 			XmlNode rNode = _doc.LastChild;
 			XmlNode rpsNode = DesignXmlDraw.FindNextInHierarchy(rNode, "ReportParameters");
