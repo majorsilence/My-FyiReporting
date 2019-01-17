@@ -636,7 +636,14 @@ namespace fyiReporting.RdlDesign
             if (rpsNode == null)
                 return null;
 
-            var parameterName = parameterExpression.Replace("=Parameters!", "").Replace(".Value", "");
+            var parameterName = parameterExpression
+                // syntax 1
+                .Replace("=Parameters!", "")                
+                .Replace(".Value", "")
+                // syntax 2
+                .Replace("={?", "")
+                .Replace("}", "")
+                ;
 
             var parameter = rpsNode.ChildNodes.Cast<XmlNode>()
                 .FirstOrDefault(n => n.Attributes["Name"].Value == parameterName);
