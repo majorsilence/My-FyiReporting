@@ -333,6 +333,18 @@ namespace fyiReporting.RdlDesign
             return true;
         }
 
+        public static string ExtractParameterNameFromParameterExpression(string parameterExpression)
+        {
+            return parameterExpression
+                // syntax 1
+                .Replace("=Parameters!", "")
+                .Replace(".Value", "")
+                // syntax 2
+                .Replace("={?", "")
+                .Replace("}", "")
+                ;
+        }
+
         static internal List<SqlColumn> GetSqlColumns(DesignXmlDraw d, string ds, string sql)
 		{
             string dataProvider;

@@ -627,6 +627,8 @@ namespace fyiReporting.RdlDesign
 			return result;
 		}
 
+
+
         internal string GetReportParameterDefaultValue(string parameterExpression)
         {
             var root = _doc.DocumentElement;
@@ -636,14 +638,7 @@ namespace fyiReporting.RdlDesign
             if (rpsNode == null)
                 return null;
 
-            var parameterName = parameterExpression
-                // syntax 1
-                .Replace("=Parameters!", "")                
-                .Replace(".Value", "")
-                // syntax 2
-                .Replace("={?", "")
-                .Replace("}", "")
-                ;
+            var parameterName = DesignerUtility.ExtractParameterNameFromParameterExpression(parameterExpression);
 
             var parameter = rpsNode.ChildNodes.Cast<XmlNode>()
                 .FirstOrDefault(n => n.Attributes["Name"].Value == parameterName);

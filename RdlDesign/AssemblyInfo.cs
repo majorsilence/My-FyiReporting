@@ -57,3 +57,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyName("")]
 [assembly: ComVisibleAttribute(false)]
+
+[assembly: InternalsVisibleTo("ReportTests")]
