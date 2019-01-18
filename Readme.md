@@ -127,6 +127,6 @@ found at http://www.fyireporting.com/ and it has examples found at [http://www.f
 the forum is [http://www.fyireporting.com/forum/index.php](http://www.fyireporting.com/forum/index.php).  However has I said above for the most part it is a dead 
 project.
 
-UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) is alive?  
+UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) ~~is alive?~~ is dead (2019-01-18)
 UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) - Looks dead.
 
