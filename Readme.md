@@ -5,9 +5,10 @@ If you have any question about Majorsilence Reporting or do you want to contribu
 https://groups.google.com/d/forum/myfyireporting
 
 
-|         |Linux |Windows |
-|---------|:------:|:------:|
-|**Release**|NA | [![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting) |
+|         |Linux |Win(Deploy) |Win (Test)|
+|---------|:------:|:------:|:------:|
+|**Release**|NA | [![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting) |[![Build status](https://ci.appveyor.com/api/projects/status/mpgb1w47ewacbxka?svg=true)](https://ci.appveyor.com/project/chripf/my-fyireporting-q0qc6)
+|
 
 # Documentation
 See the [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki).
