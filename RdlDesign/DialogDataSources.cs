@@ -225,7 +225,13 @@ namespace fyiReporting.RdlDesign
                 return;
             }
 
-            if (DesignerUtility.TestConnection(this.cbDataProvider.Text, tbConnection.Text))
+            var connectionString = tbConnection.Text;
+            if (tbConnection.Text.StartsWith("=Parameters!"))
+            {
+                connectionString = _Draw.GetReportParameterDefaultValue(tbConnection.Text);
+            }
+
+            if (DesignerUtility.TestConnection(this.cbDataProvider.Text, connectionString))
                 MessageBox.Show(Strings.DialogDatabase_Show_ConnectionSuccessful, Strings.DesignerUtility_Show_TestConnection);
         }
 

@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="DatabaseInfo.cs" />
+    <Compile Include="DesignerUtilityTests.cs" />
     <Compile Include="ExampleTest.cs" />
     <Compile Include="iTextSharpTests.cs" />
     <Compile Include="ExcelValetTests.cs" />

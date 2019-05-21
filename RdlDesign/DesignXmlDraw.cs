@@ -518,7 +518,12 @@ namespace fyiReporting.RdlDesign
 			return ReportNames.GetFields(dataSetName, asExpression);
 		}
 
-		internal string[] GetReportParameters(bool asExpression)
+        internal string GetReportParameterDefaultValue(string parameterExpression)
+        {
+            return ReportNames.GetReportParameterDefaultValue(parameterExpression);
+        }
+
+        internal string[] GetReportParameters(bool asExpression)
 		{
 			return ReportNames.GetReportParameters(asExpression);
 		}

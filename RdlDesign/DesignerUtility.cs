@@ -324,8 +324,25 @@ namespace fyiReporting.RdlDesign
                 if (dp == null)
                     return false;
                 connection = dp.InnerText;
+
+                if (connection.StartsWith("="))
+                {
+                    connection = d.GetReportParameterDefaultValue(connection);
+                }
             }
             return true;
+        }
+
+        public static string ExtractParameterNameFromParameterExpression(string parameterExpression)
+        {
+            return parameterExpression
+                // syntax 1
+                .Replace("=Parameters!", "")
+                .Replace(".Value", "")
+                // syntax 2
+                .Replace("={?", "")
+                .Replace("}", "")
+                ;
         }
 
         static internal List<SqlColumn> GetSqlColumns(DesignXmlDraw d, string ds, string sql)
