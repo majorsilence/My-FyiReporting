@@ -153,13 +153,13 @@
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
     <Reference Include="Devart.Data">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.11.1278\lib\Devart.Data.dll</HintPath>
+      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.13.1366\lib\Devart.Data.dll</HintPath>
     </Reference>
     <Reference Include="Devart.Data.PostgreSql">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.11.1278\lib\Devart.Data.PostgreSql.dll</HintPath>
+      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.13.1366\lib\Devart.Data.PostgreSql.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
