@@ -101,10 +101,10 @@ namespace fyiReporting.RDL
                     {
                         return "/usr/share/fonts/truetype/msttcorefonts";
                     }
-                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype"))
+                    else if (System.IO.Directory.Exists("/usr/share/fonts/truetype/dejavu"))
                     {
                         _dejavuFonts = true;
-                        return "/usr/share/fonts/truetype";
+                        return "/usr/share/fonts/truetype/dejavu";
                     }
                     else {
                         _dejavuFonts = true;
