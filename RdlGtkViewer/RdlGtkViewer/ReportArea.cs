@@ -69,6 +69,11 @@ namespace fyiReporting.RdlGtkViewer
 
 		PageItem selectedItem;
 
+		private Rectangle GetSelectedItemRectangle()
+		{
+			return new Rectangle(selectedItem.X * scale, selectedItem.Y * scale, selectedItem.W * scale, selectedItem.H * scale);
+		}
+
 		protected override bool OnButtonPressEvent(Gdk.EventButton ev)
 		{
 			if(ev.Button == 3) {
@@ -265,7 +270,7 @@ namespace fyiReporting.RdlGtkViewer
 
 				if(selectedItem != null) {
 					rep_g.Pattern = new SolidPattern(new Color(0.4, 0.4, 1));
-					rep_g.Rectangle(new Rectangle(selectedItem.X, selectedItem.Y, selectedItem.W, selectedItem.H));
+					rep_g.Rectangle(GetSelectedItemRectangle());
 					rep_g.Fill();
 				}
 				using(var render = new RenderCairo(rep_g, Scale)) {
