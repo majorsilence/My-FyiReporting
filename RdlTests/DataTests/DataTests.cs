@@ -6,8 +6,8 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
-using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
+using fyiReporting.RDL;
 
 namespace DataTests
 {
@@ -760,7 +760,7 @@ namespace DataTests
             ofd.CheckFileExists = true;
             if (ofd.ShowDialog(this) == DialogResult.OK)
             {
-                this.rdlViewer.SourceFile = ofd.FileName;
+                this.rdlViewer.SourceFile = new System.Uri (ofd.FileName);
             }
 
         }

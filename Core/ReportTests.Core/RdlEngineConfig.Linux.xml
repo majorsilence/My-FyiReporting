@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+   <DataSources>
+      <DataSource>
+         <DataProvider>SQL</DataProvider>
+         <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>ODBC</DataProvider>
+         <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
+         <Interface>SQL</Interface>
+         <ReplaceParameters>true</ReplaceParameters>
+      </DataSource>
+      <DataSource>
+         <DataProvider>OLEDB</DataProvider>
+         <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>Oracle</DataProvider>
+         <CodeModule>F:\oracle\product\10.2.0\db_2\BIN\Oracle.DataAccess.dll</CodeModule>
+         <ClassName>Oracle.DataAccess.Client.OracleConnection</ClassName>
+         <TableSelect>select OWNER || '.' || TABLE_NAME from ALL_TABLES WHERE TABLESPACE_NAME NOT IN ('SYSTEM', 'SYSAUX')</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>MySQL.NET</DataProvider>
+         <CodeModule>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.3.7\Assemblies\v2.0\MySql.Data.dll</CodeModule>
+         <ClassName>MySql.Data.MySqlClient.MySqlConnection</ClassName>
+         <TableSelect>show tables</TableSelect>
+         <Interface>SQL</Interface>
+         <ReplaceParameters>true</ReplaceParameters>
+      </DataSource>
+      <DataSource>
+         <DataProvider>Firebird.NET</DataProvider>
+         <CodeModule>C:\Program Files\FirebirdNETProvider1.7\FirebirdSql.Data.Firebird.dll</CodeModule>
+         <ClassName>FirebirdSql.Data.Firebird.FbConnection</ClassName>
+         <TableSelect>SELECT RDB$RELATION_NAME FROM RDB$RELATIONS WHERE RDB$RELATION_NAME NOT LIKE 'RDB$%' ORDER BY 1</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>Firebird.NET 2.0</DataProvider>
+         <CodeModule>FirebirdSql.Data.FirebirdClient.dll</CodeModule>
+         <ClassName>FirebirdSql.Data.FirebirdClient.FbConnection</ClassName>
+         <TableSelect>SELECT RDB$RELATION_NAME FROM RDB$RELATIONS WHERE RDB$SYSTEM_FLAG = 0 ORDER BY 1</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>SQLite</DataProvider>
+         <CodeModule>Mono.Data.Sqlite.dll</CodeModule>
+         <ClassName>Mono.Data.Sqlite.SqliteConnection</ClassName>
+         <TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>iAnywhere.NET</DataProvider>
+         <CodeModule>F:\Sybase\SQL Anywhere Studio 9\win32\iAnywhere.Data.AsaClient.dll</CodeModule>
+         <ClassName>iAnywhere.Data.AsaClient.AsaConnection</ClassName>
+         <TableSelect>select table_name from systable 
+					where table_type = 'BASE' and table_name not like 'SYS%' 
+							and table_name not like 'ix_%' 
+							and table_name not like 'ml_%'
+							and table_name not like 'ul_%'
+							and table_name not like 'rl_%'
+							and table_name not like 'rs_%'
+							and table_name not like 'migrate_%'
+							and table_name not like 'spt_%'
+							and table_name not like 'jdbc_%'
+							and table_name not in ('DUMMY', 'RowGenerator', 'EXCLUDEOBJECT')</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>XML</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.XmlConnection</ClassName>
+         <TableSelect />
+         <Interface>File</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>WebService</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.WebServiceConnection</ClassName>
+         <TableSelect />
+         <Interface>WebService</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>WebLog</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.LogConnection</ClassName>
+         <TableSelect />
+         <Interface>File</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>Text</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.TxtConnection</ClassName>
+         <TableSelect />
+         <Interface>File</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>iTunes</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.iTunesConnection</ClassName>
+         <TableSelect />
+         <Interface>File</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>FileDirectory</DataProvider>
+         <CodeModule>DataProviders.dll</CodeModule>
+         <ClassName>fyiReporting.Data.FileDirConnection</ClassName>
+         <TableSelect />
+         <Interface>File</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>OracleSp</DataProvider>
+         <CodeModule>OracleSp.dll</CodeModule>
+         <ClassName>fyiReporting.OracleSp.OracleSpConnection</ClassName>
+         <TableSelect>select OWNER || '.' || TABLE_NAME from ALL_TABLES WHERE TABLESPACE_NAME NOT IN ('SYSTEM', 'SYSAUX')</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+      <DataSource>
+         <DataProvider>PostgreSQL</DataProvider>
+         <CodeModule>Npgsql.dll</CodeModule>
+         <ClassName>Npgsql.NpgsqlConnection</ClassName>
+         <TableSelect>SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME NOT LIKE 'pg_%' ORDER BY 1</TableSelect>
+         <Interface>SQL</Interface>
+      </DataSource>
+   </DataSources>
+   <Compression>
+      <CodeModule>ICSharpCode.SharpZipLib.dll</CodeModule>
+      <ClassName>ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream</ClassName>
+      <Finish>Finish</Finish>
+      <Enable>true</Enable>
+   </Compression>
+   <CustomReportItems>
+      <CustomReportItem>
+         <Type>BarCode EAN-13</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.BarCodeEAN13</ClassName>
+      </CustomReportItem>
+      <CustomReportItem>
+         <Type>BarCode Bookland</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.BarCodeBookland</ClassName>
+      </CustomReportItem>
+      <CustomReportItem>
+         <Type>QR Code</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.QrCode</ClassName>
+      </CustomReportItem>
+      <CustomReportItem>
+         <Type>BarCode39</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.BarCode39</ClassName>
+      </CustomReportItem>
+      <CustomReportItem>
+         <Type>BarCode128</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.BarCode128</ClassName>
+      </CustomReportItem>
+      <CustomReportItem>
+         <Type>BarCodeEAN8</Type>
+         <CodeModule>RdlCri.dll</CodeModule>
+         <ClassName>fyiReporting.CRI.BarCodeEAN8</ClassName>
+      </CustomReportItem>
+   </CustomReportItems>
+</config>
+
