@@ -28,9 +28,11 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+#if !NETSTANDARD2_0
 using System.Web.Services;
 using System.Web.Services.Description;
 using System.Web.Services.Protocols;
+#endif
 using System.Reflection;
 
 namespace fyiReporting.Data

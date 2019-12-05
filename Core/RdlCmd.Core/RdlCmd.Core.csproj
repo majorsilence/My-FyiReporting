@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <AssemblyName>RdlCmd</AssemblyName>
+    <RootNamespace>RdlCmd</RootNamespace>
+
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Compile Include="..\..\RdlCmd\**\*.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataProviders.Core\DataProviders.Core.csproj" />
+    <ProjectReference Include="..\RdlCri.Core\RdlCri.Core.csproj" />
+    <ProjectReference Include="..\RdlEngine.Core\RdlEngine.Core.csproj" />
+  </ItemGroup>
+
+
+
+</Project>
