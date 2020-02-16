@@ -449,33 +449,35 @@ namespace fyiReporting.RdlGtkViewer
             Gtk.FileFilter csvFilter = new Gtk.FileFilter();
             csvFilter.Name = "CSV";
 			
-            Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
-            asphtmlFilter.Name = "ASP HTML";
-			
 			Gtk.FileFilter excel2007Data = new Gtk.FileFilter();
 			excel2007Data.Name = "Excel 2007 Data";
 
 			Gtk.FileFilter excel2007 = new Gtk.FileFilter();
 			excel2007.Name = "Excel 2007";
-			
-            Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
+
+			Gtk.FileFilter tiffFilter = new Gtk.FileFilter {
+				Name = "TIFF"
+			};
+
+			Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
+			asphtmlFilter.Name = "ASP HTML";
+
+			Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
             htmlFilter.Name = "HTML";
 			
             Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter();
             mhtmlFilter.Name = "MHTML";
-			
-            Gtk.FileFilter rtfFilter = new Gtk.FileFilter();
-            rtfFilter.Name = "RTF";
 			
             Gtk.FileFilter xmlFilter = new Gtk.FileFilter();
             xmlFilter.Name = "XML";
 					
             fc.AddFilter(pdfFilter);
             fc.AddFilter(csvFilter);
-            fc.AddFilter(asphtmlFilter);
             fc.AddFilter(excel2007Data);
 			fc.AddFilter(excel2007);
-            fc.AddFilter(htmlFilter);
+			fc.AddFilter(tiffFilter);
+			fc.AddFilter(asphtmlFilter);
+			fc.AddFilter(htmlFilter);
             fc.AddFilter(mhtmlFilter);
             fc.AddFilter(xmlFilter);
 			
@@ -504,14 +506,6 @@ namespace fyiReporting.RdlGtkViewer
                             filename = filename + ".pdf";
                         }
                     }
-                    else if (fc.Filter.Name == "ASP HTML")
-                    {
-                        exportType = OutputPresentationType.ASPHTML;
-                        if (filename.ToLower().Trim().EndsWith(".asphtml") == false)
-                        {
-                            filename = filename + ".asphtml";
-                        }
-                    }
                     else if (fc.Filter.Name == "Excel 2007 Data")
                     {
 						exportType = OutputPresentationType.ExcelTableOnly;
@@ -526,7 +520,19 @@ namespace fyiReporting.RdlGtkViewer
 							filename = filename + ".xlsx";
 						}
 					}
-                    else if (fc.Filter.Name == "HTML")
+					else if(fc.Filter.Name == "TIFF") {
+						exportType = OutputPresentationType.TIF;
+						if(filename.ToLower().Trim().EndsWith(".tif") == false) {
+							filename = filename + ".tif";
+						}
+					}
+					else if(fc.Filter.Name == "ASP HTML") {
+						exportType = OutputPresentationType.ASPHTML;
+						if(filename.ToLower().Trim().EndsWith(".asphtml") == false) {
+							filename = filename + ".asphtml";
+						}
+					}
+					else if (fc.Filter.Name == "HTML")
                     {
                         exportType = OutputPresentationType.HTML;
                         if (filename.ToLower().Trim().EndsWith(".html") == false)
