@@ -5,7 +5,7 @@
 
 
 1. Build .NET 4.0/3.5 package:
-	* Run build-fyi-release-dot-net-4.bat
+	* Run build-fyi-release-dot-net-4.ps1
 	* Run build-fyi-release-dot-net-3.5.bat
 2. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh

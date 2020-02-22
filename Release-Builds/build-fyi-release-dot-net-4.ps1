@@ -37,9 +37,6 @@ function GetVersions([ref]$theVersion)
 $Version=""
 GetVersions([ref]$Version)
 Write-Host $Version
-cd ..
-cd Release-Builds
-
 nuget restore "../MajorsilenceReporting.sln"
 
 # ************* Begin x64 *********************************************
@@ -93,7 +90,7 @@ Copy-Item ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll .\build-output\
 Copy-Item ..\RdlViewer\RdlReader\bin\x64\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x64\ru-RU\RdlReader.resources.dll
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-x64.zip majorsilence-reporting-build-dot-net-4-x64\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-x64.zip majorsilence-reporting-build-dot-net-4-x64\
 cd ..
 
 # ************* End x64 *********************************************
@@ -149,7 +146,7 @@ Copy-Item ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll .\build-output\
 Copy-Item ..\RdlViewer\RdlReader\bin\x86\Release\ru-RU\RdlReader.resources.dll .\build-output\majorsilence-reporting-build-dot-net-4-x86\ru-RU\RdlReader.resources.dll
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-x86.zip majorsilence-reporting-build-dot-net-4-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-x86.zip majorsilence-reporting-build-dot-net-4-x86\
 cd ..
 
 # ************* End x86 *********************************************
@@ -174,7 +171,7 @@ Copy-Item "..\LanguageWrappers\php\config.php" .\build-output\majorsilence-repor
 Copy-Item "..\LanguageWrappers\php\report.php" .\build-output\majorsilence-reporting-build-dot-net-4-php-x86\report.php
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-php-x86.zip majorsilence-reporting-build-dot-net-4-php-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-php-x86.zip majorsilence-reporting-build-dot-net-4-php-x86\
 cd ..
 
 # ************* End PHP *********************************************
@@ -199,7 +196,7 @@ Copy-Item "..\LanguageWrappers\python\config.py" .\build-output\majorsilence-rep
 Copy-Item "..\LanguageWrappers\python\report.py" .\build-output\majorsilence-reporting-build-dot-net-4-python-x86\report.py
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-python-x86.zip majorsilence-reporting-build-dot-net-4-python-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-python-x86.zip majorsilence-reporting-build-dot-net-4-python-x86\
 cd ..
 # ************* End Python *********************************************
 
@@ -222,7 +219,7 @@ Copy-Item "..\LanguageWrappers\ruby\config.rb" .\build-output\majorsilence-repor
 Copy-Item "..\LanguageWrappers\ruby\report.rb" .\build-output\majorsilence-reporting-build-dot-net-4-ruby-x86\report.rb
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-ruby-x86.zip majorsilence-reporting-build-dot-net-4-ruby-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-ruby-x86.zip majorsilence-reporting-build-dot-net-4-ruby-x86\
 cd ..
 
 # ************* End Ruby *********************************************
@@ -242,7 +239,7 @@ Copy-Item "..\packages\ZXing.Net.0.16.4\lib\net40\zxing.dll" .\build-output\majo
 delete_files .\build-output\majorsilence-reporting-build-dot-net-4-viewer-x86\RdlViewerSC.pdb
 
 cd build-output	
-..\7za.exe a %Version%-majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-dot-net-4-viewer-x86.zip majorsilence-reporting-build-dot-net-4-viewer-x86\
 cd ..
 
 
