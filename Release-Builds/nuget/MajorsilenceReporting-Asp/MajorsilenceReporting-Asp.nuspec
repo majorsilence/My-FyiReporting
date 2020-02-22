@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MajorsilenceReporting-Asp</id>
-    <version>4.14</version>
+    <version>4.15</version>
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>
     <licenseUrl>https://github.com/majorsilence/My-FyiReporting/blob/master/LICENSE-2_0.txt</licenseUrl>
@@ -18,7 +18,7 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="MajorsilenceReporting-Core" version="4.13.0" />
+      <dependency id="MajorsilenceReporting-Core" version="4.15.0" />
     </dependencies>
 
   </metadata>
@@ -26,7 +26,6 @@
   <files>
     <file src="lib/net40/*.*" target="lib/net40" /> <!-- Find on linux -->
     <file src="lib\net40\*.*" target="lib\net40" /> <!-- Find on windows -->
-    <file src="lib\net35\*.*" target="lib\net35" /> <!-- Find on windows, 35 only supported on windows -->
   </files>
 
 </package>
