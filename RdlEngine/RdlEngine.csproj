@@ -1129,6 +1129,7 @@
     <Compile Include="Render\ExcelConverter\ExcelCellStyle.cs" />
     <Compile Include="Render\RenderExcel2007.cs" />
     <Compile Include="Render\ExcelConverter\ExcelLine.cs" />
+    <Compile Include="ReportExporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

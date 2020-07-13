@@ -2,7 +2,7 @@
 using System.IO;
 using fyiReporting.RDL;
 
-namespace fyiReporting.RdlGtkViewer
+namespace RdlEngine
 {
 	public static class ReportExporter
 	{
@@ -69,9 +69,9 @@ namespace fyiReporting.RdlGtkViewer
 		public static void Export(Uri sourcefile, string parameters, string fileName, OutputPresentationType exportType)
 		{
 			sourceFileUri = sourcefile;
-			workingDirectory = System.IO.Path.GetDirectoryName(sourcefile.LocalPath);
+			workingDirectory = Path.GetDirectoryName(sourcefile.LocalPath);
 
-			string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
+			string source = File.ReadAllText(sourcefile.LocalPath);
 			Export(source, parameters, fileName, exportType);
 		}
 
@@ -163,9 +163,9 @@ namespace fyiReporting.RdlGtkViewer
 		public static MemoryStream ExportToMemoryStream(Uri sourcefile, string parameters, OutputPresentationType exportType)
 		{
 			sourceFileUri = sourcefile;
-			workingDirectory = System.IO.Path.GetDirectoryName(sourcefile.LocalPath);
+			workingDirectory = Path.GetDirectoryName(sourcefile.LocalPath);
 
-			string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
+			string source = File.ReadAllText(sourcefile.LocalPath);
 			return ExportToMemoryStream(source, parameters, exportType);
 		}
 
@@ -195,7 +195,7 @@ namespace fyiReporting.RdlGtkViewer
 			return ms.GetStream() as MemoryStream;
 		}
 
-		#endregion	
+		#endregion
 
 		// GetParameters creates a list dictionary
 		// consisting of a report parameter name and a value.
