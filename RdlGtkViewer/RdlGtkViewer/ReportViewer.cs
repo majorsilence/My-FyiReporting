@@ -450,10 +450,10 @@ namespace fyiReporting.RdlGtkViewer
             csvFilter.Name = "CSV";
 			
 			Gtk.FileFilter excel2007Data = new Gtk.FileFilter();
-			excel2007Data.Name = "Excel 2007 Data";
+			excel2007Data.Name = "Excel без форматирования (Быстро)";
 
 			Gtk.FileFilter excel2007 = new Gtk.FileFilter();
-			excel2007.Name = "Excel 2007";
+			excel2007.Name = "Excel с форматированием (Долго)";
 
 			Gtk.FileFilter tiffFilter = new Gtk.FileFilter {
 				Name = "TIFF"
@@ -506,7 +506,7 @@ namespace fyiReporting.RdlGtkViewer
                             filename = filename + ".pdf";
                         }
                     }
-                    else if (fc.Filter.Name == "Excel 2007 Data")
+                    else if (fc.Filter.Name == "Excel без форматирования (Быстро)")
                     {
 						exportType = OutputPresentationType.ExcelTableOnly;
                         if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
@@ -514,7 +514,7 @@ namespace fyiReporting.RdlGtkViewer
                             filename = filename + ".xlsx";
                         }
                     }
-					else if(fc.Filter.Name == "Excel 2007") {
+					else if(fc.Filter.Name == "Excel с форматированием (Долго)") {
 						exportType = OutputPresentationType.Excel2007;
 						if(filename.ToLower().Trim().EndsWith(".xlsx") == false) {
 							filename = filename + ".xlsx";
