@@ -113,17 +113,17 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="zxing">
-      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net461\zxing.dll</HintPath>
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net461\zxing.dll</HintPath>
     </Reference>
     <Reference Include="zxing.presentation">
-      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net461\zxing.presentation.dll</HintPath>
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net461\zxing.presentation.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing.Common">
       <HintPath>..\packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="BarcodeStandard">
-      <HintPath>..\packages\BarcodeLib.2.2.3\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+      <HintPath>..\packages\BarcodeLib.2.2.6\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
