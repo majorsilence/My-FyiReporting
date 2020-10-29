@@ -20,31 +20,29 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
-using System.Xml;
-using System.IO;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.OleDb;
-using System.Data.Odbc;
-using System.Data.SqlClient;
-using System.Text;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using Microsoft.Win32;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
-
+using Microsoft.Win32;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
-	/// <summary>
-	/// Static utility classes used in the Rdl Designer
-	/// </summary>
-	internal static class DesignerUtility
+    /// <summary>
+    /// Static utility classes used in the Rdl Designer
+    /// </summary>
+    internal static class DesignerUtility
 	{
 		static internal Color ColorFromHtml(string sc, Color dc)
 		{
@@ -1549,21 +1547,12 @@ namespace fyiReporting.RdlDesign
 		//Josh: 6:22:10 Added to place the start and end shortcut "caps" on the fields.
 		public static List<string> ArrayToFormattedList(IEnumerable<string> array, string frontCap, string endCap)
 		{
-			List<string> returnList = new List<string>(array);
-
-			returnList.ForEach(
-			delegate(string item)
-			{
-				returnList[returnList.IndexOf(item)] =
-				item.StartsWith("=") ?
-				string.Format("{0}{1}{2}",
-				frontCap,
-				item.Split('!')[1].Replace(".Value", string.Empty),
-				endCap)
-				: item;
-			});
-
-			return returnList;
+            return array.Select(item => item.StartsWith("=") ?
+                string.Format("{0}{1}{2}",
+                frontCap,
+                item.Split('!')[1].Replace(".Value", string.Empty),
+                endCap)
+                : item).ToList();
 		}
 
 	}
