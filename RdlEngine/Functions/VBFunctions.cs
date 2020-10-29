@@ -131,7 +131,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="m"></param>
 		/// <returns></returns>
-		static public string MonthName(int m)
+		static public string MonthName(object m)
 		{
 			return MonthName(m, false);
 		}
@@ -142,12 +142,13 @@ namespace fyiReporting.RDL
 		/// <param name="m"></param>
 		/// <param name="bAbbreviation"></param>
 		/// <returns></returns>
-		static public string MonthName(int m, bool bAbbreviation)
+		static public string MonthName(object m, bool bAbbreviation)
 		{
-			DateTime dt = new DateTime(2005, m, 1);
+            var monthNumber = CInt(m);
 
-			string mdn = bAbbreviation? string.Format("{0:MMM}", dt):string.Format("{0:MMMM}", dt);
-			return mdn;
+            DateTime dt = new DateTime(2005, monthNumber, 1);
+
+			return bAbbreviation? string.Format("{0:MMM}", dt):string.Format("{0:MMMM}", dt);
 		}
 
 		/// <summary>
