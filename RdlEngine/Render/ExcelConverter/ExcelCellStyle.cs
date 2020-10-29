@@ -4,6 +4,7 @@ using System.Linq;
 using fyiReporting.RDL;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using BorderStyleEnum = fyiReporting.RDL.BorderStyleEnum;
 
 namespace RdlEngine.Render.ExcelConverter
 {

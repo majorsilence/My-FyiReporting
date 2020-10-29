@@ -22,15 +22,15 @@
 */
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using RdlEngine.Render.ExcelConverter;
-using NPOI.XSSF.UserModel.Helpers;
+using System.IO;
 using System.Linq;
+using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using NPOI.Util;
+using NPOI.XSSF.UserModel;
+using NPOI.XSSF.UserModel.Helpers;
+using RdlEngine.Render.ExcelConverter;
 
 namespace fyiReporting.RDL
 {
@@ -77,7 +77,7 @@ namespace fyiReporting.RDL
 		public void Dispose()
 		{
 			if(workbook != null)
-				workbook.Dispose();
+				workbook.Close();
 		}
 
 		public Report Report()
@@ -127,7 +127,7 @@ namespace fyiReporting.RDL
 
 						XSSFCellStyle xssfStyle = null;
 						for(int s = 0; s < workbook.NumCellStyles; s++) {
-							XSSFCellStyle innerStyle = workbook.GetCellStyleAt(s);
+							XSSFCellStyle innerStyle = (XSSFCellStyle)workbook.GetCellStyleAt(s);
 
 							if(style.CompareWithXSSFStyle(innerStyle)) {
 								xssfStyle = innerStyle;
