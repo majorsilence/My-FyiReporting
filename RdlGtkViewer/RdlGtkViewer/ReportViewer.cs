@@ -94,10 +94,10 @@ namespace fyiReporting.RdlGtkViewer
 
         public ReportViewer()
         {
-            this.Build();
+            Build();
             Parameters = new ListDictionary();
-			
-            this.errorsAction.Toggled += OnErrorsActionToggled;
+
+            errorsAction.Toggled += OnErrorsActionToggled;
             DisableActions();
             ShowErrors = false;
         }
@@ -638,15 +638,20 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintDrawPage (object o, DrawPageArgs args)
 		{
-			Cairo.Context g = args.Context.CairoContext;
-
-			RenderCairo render = new RenderCairo (g);
-			render.RunPage(pages[args.PageNr]);	
+            using (Cairo.Context g = args.Context.CairoContext)
+            {
+                RenderCairo render = new RenderCairo(g);
+                render.RunPage(pages[args.PageNr]);
+            }
 		}
 
 		void HandlePrintEndPrint (object o, EndPrintArgs args)
 		{
 			ReportPrinted?.Invoke(this, EventArgs.Empty);
+            printing.BeginPrint -= HandlePrintBeginPrint;
+            printing.DrawPage -= HandlePrintDrawPage;
+            printing.EndPrint -= HandlePrintEndPrint;
+            printing.Dispose();
         }
 
         protected void OnRefreshActionActivated(object sender, System.EventArgs e)
@@ -669,6 +674,19 @@ namespace fyiReporting.RdlGtkViewer
                 hpanedWidth = args.Allocation.Width;
                 SetHPanedPosition();
             }
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
+
+        public override void Dispose()
+        {
+            errorsAction.Toggled -= OnErrorsActionToggled;
+            pages?.Dispose();
+            pages = null;
+            report?.Dispose();
         }
     }
 }
