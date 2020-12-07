@@ -37,7 +37,7 @@ namespace fyiReporting.RDL
 	/// Main Report definition; this is the top of the tree that contains the complete
 	/// definition of a instance of a report.
 	///</summary>
-	public class Report
+	public class Report : IDisposable
 	{
         // private definitions
 		ReportDefn _Report;
@@ -630,10 +630,20 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		/// <summary>
-		/// Get/Set the UserID, that is the running user.
-		/// </summary>
-		public string UserID
+        public void Dispose()
+        {
+			_UserParameters = null;
+			_DataSets = null;
+			_Report = null;
+			_Cache = null;
+			_DataSources = null;
+			_CurrentPage = null;
+		}
+
+        /// <summary>
+        /// Get/Set the UserID, that is the running user.
+        /// </summary>
+        public string UserID
 		{
 			get { return _UserID == null? Environment.UserName: _UserID; }
 			set { _UserID = value; }

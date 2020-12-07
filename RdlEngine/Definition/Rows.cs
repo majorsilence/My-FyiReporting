@@ -31,7 +31,7 @@ namespace fyiReporting.RDL
 	///<summary>
 	/// A collection of rows.
 	///</summary>
-    internal class Rows : System.Collections.Generic.IComparer<Row>  
+    internal class Rows : System.Collections.Generic.IComparer<Row>, IDisposable
 	{
 		List<Row> _Data;	// array of Row object;
         List<RowsSortExpression> _SortBy;	// array of expressions used to sort the data
@@ -225,6 +225,11 @@ namespace fyiReporting.RDL
 		}
 
 		#endregion
+
+		public void Dispose()
+		{
+			_Data.Clear();
+		}
 	}
 
 	class RowsSortExpression
