@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MajorsilenceReporting-Viewer</id>
-    <version>4.14</version>
+    <version>4.15</version>
     <authors>Peter Gill</authors>
     <owners>Peter Gill</owners>
     <licenseUrl>https://github.com/majorsilence/My-FyiReporting/blob/master/LICENSE-2_0.txt</licenseUrl>
@@ -18,7 +18,7 @@
     <tags>Reporting</tags>
 
     <dependencies>
-      <dependency id="MajorsilenceReporting-Core" version="4.13.0" />
+      <dependency id="MajorsilenceReporting-Core" version="4.15.0" />
     </dependencies>
 
   </metadata>
@@ -29,8 +29,6 @@
 
     <file src="lib\net40\*.*" target="lib\net40" /> <!-- Find on windows -->
     <file src="lib\net40\ru-RU\*.*" target="lib\net40\ru-RU" /> <!-- Find on windows -->
-    <file src="lib\net35\*.*" target="lib\net35" /> <!-- Find on windows, 35 only supported on windows -->
-    <file src="lib\net35\ru-RU\*.*" target="lib\net35\ru-RU" /> <!-- Find on windows, 35 only supported on windows -->
   </files>
 
 </package>

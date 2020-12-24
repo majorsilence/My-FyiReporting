@@ -73,6 +73,8 @@ namespace ReportTests.Utils
             OneFileStreamGen sg = null;
 
             Uri fileRdlUri = new Uri(_reportFolder, file2test);
+            // We change dir so the SQL lite database is found
+            System.IO.Directory.SetCurrentDirectory(_reportFolder.LocalPath);
             Report rap = RdlUtils.GetReport(fileRdlUri);
             rap.Folder = _reportFolder.LocalPath;
             if (fillDatasets != null)

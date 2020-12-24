@@ -24,9 +24,11 @@ using System;
 using System.Xml;
 using System.Data;
 using System.Collections;
+#if !NETSTANDARD2_0
 using System.Web.Services;
 using System.Web.Services.Description;
 using System.Web.Services.Protocols;
+#endif
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Text;
@@ -34,7 +36,6 @@ using System.Reflection;
 using System.IO;
 using System.Net;
 using Microsoft.CSharp;
-
 
 namespace fyiReporting.Data
 {
@@ -110,10 +111,14 @@ namespace fyiReporting.Data
 					args[ai] = Convert.ChangeType(dp.Value, pi.ParameterType);
 				ai++;
 			}
+#if !NETSTANDARD2_0
 			SoapHttpClientProtocol so = o as SoapHttpClientProtocol;
 			if (so != null && timeout != 0)
 				so.Timeout = timeout;
 			return mi.Invoke(o, args);
+#else
+            throw new NotImplementedException("Some classes are not available on .NET STANDARD");
+#endif
 		}
 
 		// constructor
@@ -126,6 +131,7 @@ namespace fyiReporting.Data
 
 		private Assembly GetAssembly()
 		{
+#if !NETSTANDARD2_0
 			ServiceDescription sd = GetServiceDescription();
 
 			// ServiceDescriptionImporter provide means for generating client proxy classes for XML Web services 
@@ -170,8 +176,12 @@ namespace fyiReporting.Data
 
 			return Assembly.LoadFrom(cr.PathToAssembly);	// We need an assembly loaded from the file system
 															//   or instantiation of object complains
+#else
+            throw new NotImplementedException("Some classes are missing on .NET STANDARD");
+#endif
 		}
 
+#if !NETSTANDARD2_0
 		public ServiceDescription GetServiceDescription()
 		{
 			ServiceDescription sd = new ServiceDescription();
@@ -189,6 +199,7 @@ namespace fyiReporting.Data
 
 			return sd;
 		}
+#endif
 
 		Stream GetStream() 
 		{

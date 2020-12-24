@@ -11,8 +11,11 @@ namespace ReportTests
         public void DecryptTest()
         {
             // Arrange
-            var pass = "Your+Secret+Static+Encryption+Key+Goes+Here=";
-            var pass2 = "This is a test key";
+            // var pass = "Your+Secret+Static+Encryption+Key+Goes+Here=";
+            var pass = "AAECAwQFBgcICQoLDA0ODw==";
+
+            // var pass2 = "This is a test key";
+            var pass2 = "CCECAwQFBgcICQoLDA0ODw==";
             var subject = new StringEncryption(pass);
             var subject2 = new StringEncryption(pass2);
             var originalString = "Testing123!£$";
