@@ -94,8 +94,12 @@ namespace fyiReporting.RDL
 				o = row.Data[f.ColumnNumber];
 
             if (o == DBNull.Value)
+            {
+                if (IsNumericType(f.RunType))
+                    return double.NaN;
+                else
                     return null;
-
+            }
 			if (f.RunType == TypeCode.String && o is char)	// work around; mono odbc driver confuses string and char
 				o = Convert.ChangeType(o, TypeCode.String);
 			
