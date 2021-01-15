@@ -190,7 +190,8 @@ namespace fyiReporting.RdlGtkViewer
 
         void RefreshReport()
         {
-            SetParametersFromControls();
+            if(ShowParameters)
+            	SetParametersFromControls();
             report.RunGetData(Parameters);
             pages = report.BuildPages();
 			
