@@ -634,6 +634,9 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintBeginPrint (object o, BeginPrintArgs args)
 		{
+            if(printing == null || pages == null) {
+                return;
+            }
 			printing.NPages = pages.Count;
 		}
 
