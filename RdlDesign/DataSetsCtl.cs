@@ -21,6 +21,7 @@
    the website www.fyiReporting.com.
 */
 using fyiReporting.RdlDesign.Resources;
+using fyiReporting.RdlDesign.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -47,7 +48,8 @@ namespace fyiReporting.RdlDesign
             InitializeComponent();
 
             // Initialize form using the style node values
-            InitValues();			
+            InitValues();
+            SetupScintilla();
         }
 
         internal DataSetValues DSV
@@ -149,6 +151,11 @@ namespace fyiReporting.RdlDesign
             this.cbDataSource.Text = _dsv.DataSourceName;
 			this.tbTimeout.Value = _dsv.Timeout;
             dgFields.DataSource = _dsv.Fields;
+        }
+
+        private void SetupScintilla()
+        {
+            ScintillaSqlStyle.ConfigureSQLStyle(scintillaSQL);
         }
 
         public bool IsValid()

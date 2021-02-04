@@ -101,6 +101,7 @@ namespace fyiReporting.RdlDesign
             // scintillaSQL
             // 
             resources.ApplyResources(this.scintillaSQL, "scintillaSQL");
+            this.scintillaSQL.Lexer = ScintillaNET.Lexer.Sql;
             this.scintillaSQL.Name = "scintillaSQL";
             this.scintillaSQL.UseTabs = false;
             // 
