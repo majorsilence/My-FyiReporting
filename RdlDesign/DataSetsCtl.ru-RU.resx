@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tbTimeout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 46</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 48</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 16</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Время ожидания</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bRefresh.Location" type="System.Drawing.Point, System.Drawing">
     <value>405, 77</value>
   </data>
@@ -145,41 +136,11 @@
   <data name="bEditSQL.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 23</value>
   </data>
-  <data name="tbSQL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 70</value>
-  </data>
-  <data name="tbSQL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 68</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 51</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>SQL-запрос</value>
   </data>
-  <data name="cbDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 7</value>
-  </data>
-  <data name="cbDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 21</value>
-  </data>
-  <data name="lDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 4</value>
-  </data>
-  <data name="lDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
   <data name="lDataSource.Text" xml:space="preserve">
     <value>Источник данных</value>
-  </data>
-  <data name="tbDSName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 7</value>
-  </data>
-  <data name="lDataSetName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 7</value>
-  </data>
-  <data name="lDataSetName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 16</value>
   </data>
   <data name="lDataSetName.Text" xml:space="preserve">
     <value>Название</value>
@@ -216,13 +177,6 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Поля</value>
-  </data>
-  <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 300</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>145</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 300</value>

@@ -20,28 +20,23 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
-using System.IO;
-using System.Reflection;
-using System.Diagnostics;
-using System.Drawing.Printing;
-using System.Xml;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
+using fyiReporting.RdlDesign.Syntax;
 using fyiReporting.RdlViewer;
 using ScintillaNET;
+using System;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace fyiReporting.RdlDesign
 {
-	/// <summary>
-	/// Summary description for RdlEditPreview.
-	/// </summary>
-	internal class RdlEditPreview : System.Windows.Forms.UserControl
+    /// <summary>
+    /// Summary description for RdlEditPreview.
+    /// </summary>
+    internal class RdlEditPreview : System.Windows.Forms.UserControl
 	{
 		private System.Windows.Forms.TabControl tcEHP;
 		private System.Windows.Forms.TabPage tpEditor;
@@ -127,8 +122,8 @@ namespace fyiReporting.RdlDesign
 			dcDesign.ReportItemInserted += new System.EventHandler(dcDesign_ReportItemInserted);
 			dcDesign.OpenSubreport += new DesignCtl.OpenSubreportEventHandler(dcDesign_OpenSubreport);
 
-			//ScintillaNET Init
-			ConfigureScintillaStyle(scintilla1);
+            //ScintillaNET Init
+            ScintillaXMLStyle.ConfigureScintillaStyle(scintilla1);
 			scintilla1.SetSavePoint();
 		}
 
@@ -142,67 +137,6 @@ namespace fyiReporting.RdlDesign
 			{
 				OnRdlChanged(this, e);
 			}
-		}
-
-		private void ConfigureScintillaStyle(ScintillaNET.Scintilla scintilla)
-		{
-			// Reset the styles
-			scintilla.StyleResetDefault();
-			scintilla.Styles[Style.Default].Font = "Consolas";
-			scintilla.Styles[Style.Default].Size = 10;
-			scintilla.StyleClearAll();
-
-			// Set the XML Lexer
-			scintilla.Lexer = Lexer.Xml;
-
-			// Show line numbers
-			scintilla.Margins[0].Width = 40;
-
-			// Enable folding
-			scintilla.SetProperty("fold", "1");
-			scintilla.SetProperty("fold.compact", "1");
-			scintilla.SetProperty("fold.html", "1");
-
-			// Use Margin 2 for fold markers
-			scintilla.Margins[2].Type = MarginType.Symbol;
-			scintilla.Margins[2].Mask = Marker.MaskFolders;
-			scintilla.Margins[2].Sensitive = true;
-			scintilla.Margins[2].Width = 20;
-
-			// Reset folder markers
-			for (int i = Marker.FolderEnd; i <= Marker.FolderOpen; i++)
-			{
-				scintilla.Markers[i].SetForeColor(SystemColors.ControlLightLight);
-				scintilla.Markers[i].SetBackColor(SystemColors.ControlDark);
-			}
-
-			// Style the folder markers
-			scintilla.Markers[Marker.Folder].Symbol = MarkerSymbol.BoxPlus;
-			scintilla.Markers[Marker.Folder].SetBackColor(SystemColors.ControlText);
-			scintilla.Markers[Marker.FolderOpen].Symbol = MarkerSymbol.BoxMinus;
-			scintilla.Markers[Marker.FolderEnd].Symbol = MarkerSymbol.BoxPlusConnected;
-			scintilla.Markers[Marker.FolderEnd].SetBackColor(SystemColors.ControlText);
-			scintilla.Markers[Marker.FolderMidTail].Symbol = MarkerSymbol.TCorner;
-			scintilla.Markers[Marker.FolderOpenMid].Symbol = MarkerSymbol.BoxMinusConnected;
-			scintilla.Markers[Marker.FolderSub].Symbol = MarkerSymbol.VLine;
-			scintilla.Markers[Marker.FolderTail].Symbol = MarkerSymbol.LCorner;
-
-			// Enable automatic folding
-			scintilla.AutomaticFold = AutomaticFold.Show | AutomaticFold.Click | AutomaticFold.Change;
-
-			// Set the Styles
-			scintilla.StyleResetDefault();
-			// I like fixed font for XML
-			scintilla.Styles[Style.Default].Font = "Courier";
-			scintilla.Styles[Style.Default].Size = 10;
-			scintilla.StyleClearAll();
-			scintilla.Styles[Style.Xml.Attribute].ForeColor = Color.Red;
-			scintilla.Styles[Style.Xml.Entity].ForeColor = Color.Red;
-			scintilla.Styles[Style.Xml.Comment].ForeColor = Color.Green;
-			scintilla.Styles[Style.Xml.Tag].ForeColor = Color.Blue;
-			scintilla.Styles[Style.Xml.TagEnd].ForeColor = Color.Blue;
-			scintilla.Styles[Style.Xml.DoubleString].ForeColor = Color.DeepPink;
-			scintilla.Styles[Style.Xml.SingleString].ForeColor = Color.DeepPink;
 		}
  
 		internal DesignCtl DesignCtl

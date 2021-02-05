@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace fyiReporting.RdlDesign
+namespace fyiReporting.RdlDesign.Syntax
 {
-	class RdlScriptLexer
+	public class RdlScriptLexer
 	{
 		public enum Style
 		{

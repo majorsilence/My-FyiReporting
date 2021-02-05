@@ -20,16 +20,13 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
+using fyiReporting.RdlDesign.Resources;
+using fyiReporting.RdlDesign.Syntax;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
-using System.Text;
-using fyiReporting.RdlDesign.Resources;
 
 namespace fyiReporting.RdlDesign
 {
@@ -51,7 +48,8 @@ namespace fyiReporting.RdlDesign
             InitializeComponent();
 
             // Initialize form using the style node values
-            InitValues();			
+            InitValues();
+            SetupScintilla();
         }
 
         internal DataSetValues DSV
@@ -149,10 +147,15 @@ namespace fyiReporting.RdlDesign
                 }
             }
             this.tbDSName.Text = _dsv.Name;
-            this.tbSQL.Text = _dsv.CommandText.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+            this.scintillaSQL.Text = _dsv.CommandText.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
             this.cbDataSource.Text = _dsv.DataSourceName;
 			this.tbTimeout.Value = _dsv.Timeout;
             dgFields.DataSource = _dsv.Fields;
+        }
+
+        private void SetupScintilla()
+        {
+            ScintillaSqlStyle.ConfigureSQLStyle(scintillaSQL);
         }
 
         public bool IsValid()
@@ -244,7 +247,7 @@ namespace fyiReporting.RdlDesign
 
         private void tbSQL_TextChanged(object sender, System.EventArgs e)
         {
-            _dsv.CommandText = tbSQL.Text;
+            _dsv.CommandText = scintillaSQL.Text;
         }
 
         private void bDeleteField_Click(object sender, System.EventArgs e)
@@ -259,7 +262,7 @@ namespace fyiReporting.RdlDesign
             // Need to clear all the fields and then replace with the columns 
             //   of the SQL statement
 
-            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, tbSQL.Text, _dsv.QueryParameters);
+            List<SqlColumn> cols = DesignerUtility.GetSqlColumns(_Draw, cbDataSource.Text, scintillaSQL.Text, _dsv.QueryParameters);
             if (cols == null || cols.Count <= 0)
                 return;				// something didn't work right
 			
@@ -282,13 +285,13 @@ namespace fyiReporting.RdlDesign
 
         private void bEditSQL_Click(object sender, System.EventArgs e)
         {
-            SQLCtl sc = new SQLCtl(_Draw, cbDataSource.Text, this.tbSQL.Text, _dsv.QueryParameters);
+            SQLCtl sc = new SQLCtl(_Draw, cbDataSource.Text, this.scintillaSQL.Text, _dsv.QueryParameters);
             try
             {
                 DialogResult dr = sc.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
-                    tbSQL.Text = sc.SQL;
+                    scintillaSQL.Text = sc.SQL;
                 }
             }
             finally
