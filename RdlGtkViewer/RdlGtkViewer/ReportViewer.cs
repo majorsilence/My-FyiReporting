@@ -25,6 +25,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using fyiReporting.RDL;
 using Gtk;
@@ -42,6 +43,7 @@ namespace fyiReporting.RdlGtkViewer
 		
 		private string connectionString;
 		private bool overwriteSubreportConnection;
+        private OutputPresentationType[] restrictedOutputPresentationTypes;
 
 		public event EventHandler ReportPrinted;
 
@@ -102,21 +104,22 @@ namespace fyiReporting.RdlGtkViewer
             ShowErrors = false;
         }
 
-		/// <summary>
-		/// Loads the report.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-		/// <param name="connectionString">Relace all Connection string in report.</param>
-		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+        /// <summary>
+        /// Loads the report.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+        /// <param name="connectionString">Relace all Connection string in report.</param>
+        /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
 		{
 			SourceFile = filename;
 
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport (filename, parameters);
+			LoadReport (filename, parameters, restrictedOutputPresentationTypes);
 		}
 
 		/// <summary>
@@ -126,40 +129,37 @@ namespace fyiReporting.RdlGtkViewer
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
 		{
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport(source, parameters);
+			LoadReport(source, parameters, restrictedOutputPresentationTypes);
 		}
 
         /// <summary>
         /// Loads the report.
         /// </summary>
-        /// <param name='filename'>
-        /// Filename.
-        /// </param>
-        public void LoadReport(Uri filename)
+        /// <param name='filename'>Filename.</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(Uri filename, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
-            LoadReport(filename, "");
+            LoadReport(filename, "", restrictedOutputPresentationTypes);
         }
 
         /// <summary>
         /// Loads the report.
         /// </summary>
-        /// <param name='sourcefile'>
-        /// Filename.
-        /// </param>
-        /// <param name='parameters'>
-        /// Example: parameter1=someValue&parameter2=anotherValue
-        /// </param>
-        public void LoadReport(Uri sourcefile, string parameters)
+        /// <param name='sourcefile'>Filename.</param>
+        /// <param name='parameters'>Example: parameter1=someValue&parameter2=anotherValue</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             SourceFile = sourcefile;
 						
             string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-            LoadReport(source, parameters);
+            LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -167,8 +167,11 @@ namespace fyiReporting.RdlGtkViewer
         /// </summary>
         /// <param name="source">Xml source of report</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-        public void LoadReport(string source, string parameters)
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
+            this.restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
+            
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
             {
@@ -428,7 +431,6 @@ namespace fyiReporting.RdlGtkViewer
 
         protected void OnPdfActionActivated(object sender, System.EventArgs e)
         {
-
             // *********************************
             object[] param = new object[4];
             param[0] = "Cancel";
@@ -443,45 +445,63 @@ namespace fyiReporting.RdlGtkViewer
                     param);
 
 			fc.CurrentName = DefaultExportFileName??report.Name;
-			
-            Gtk.FileFilter pdfFilter = new Gtk.FileFilter();
-            pdfFilter.Name = "PDF";
-			
-            Gtk.FileFilter csvFilter = new Gtk.FileFilter();
-            csvFilter.Name = "CSV";
-			
-			Gtk.FileFilter excel2007Data = new Gtk.FileFilter();
-			excel2007Data.Name = "Excel 2007 Data";
 
-			Gtk.FileFilter excel2007 = new Gtk.FileFilter();
-			excel2007.Name = "Excel 2007";
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF)) {
+                Gtk.FileFilter pdfFilter = new Gtk.FileFilter { Name = "PDF" };
+                fc.AddFilter(pdfFilter);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV)) {
+                Gtk.FileFilter csvFilter = new Gtk.FileFilter { Name = "CSV" };
+                fc.AddFilter(csvFilter);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ExcelTableOnly)) {
+                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel no formatting (Fast)" };
+                fc.AddFilter(excel2007Data);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007)) {
+                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel with formatting (Slow)" };
+                fc.AddFilter(excel2007);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF)) {
+                Gtk.FileFilter tiffFilter = new Gtk.FileFilter { Name = "TIFF" };
+                fc.AddFilter(tiffFilter);
+            }
 
-			Gtk.FileFilter tiffFilter = new Gtk.FileFilter {
-				Name = "TIFF"
-			};
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML)) {
+                Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter { Name = "ASP HTML" };
+                fc.AddFilter(asphtmlFilter);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML)) {
+                Gtk.FileFilter htmlFilter = new Gtk.FileFilter { Name = "HTML" };
+                fc.AddFilter(htmlFilter);
+            }
+            
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML)) {
+                Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter { Name = "MHTML" };
+                fc.AddFilter(mhtmlFilter);
+            }
+			
+            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML)) {
+                Gtk.FileFilter xmlFilter = new Gtk.FileFilter { Name = "XML" };
+                fc.AddFilter(xmlFilter);
+            }
 
-			Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter();
-			asphtmlFilter.Name = "ASP HTML";
+            if(!fc.Filters.Any()) {
+                Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+                    Gtk.ButtonsType.Ok, false, 
+                    "Export in all document formats is prohibited");
+                
+                m.WindowPosition = WindowPosition.Center;
+                m.Run();
+                m.Destroy();
+                return;
+            }
 
-			Gtk.FileFilter htmlFilter = new Gtk.FileFilter();
-            htmlFilter.Name = "HTML";
-			
-            Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter();
-            mhtmlFilter.Name = "MHTML";
-			
-            Gtk.FileFilter xmlFilter = new Gtk.FileFilter();
-            xmlFilter.Name = "XML";
-					
-            fc.AddFilter(pdfFilter);
-            fc.AddFilter(csvFilter);
-            fc.AddFilter(excel2007Data);
-			fc.AddFilter(excel2007);
-			fc.AddFilter(tiffFilter);
-			fc.AddFilter(asphtmlFilter);
-			fc.AddFilter(htmlFilter);
-            fc.AddFilter(mhtmlFilter);
-            fc.AddFilter(xmlFilter);
-			
             if (fc.Run() == (int)Gtk.ResponseType.Accept)
             {
                 try
