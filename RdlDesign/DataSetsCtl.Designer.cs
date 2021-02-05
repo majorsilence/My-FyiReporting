@@ -104,6 +104,7 @@ namespace fyiReporting.RdlDesign
             this.scintillaSQL.Lexer = ScintillaNET.Lexer.Sql;
             this.scintillaSQL.Name = "scintillaSQL";
             this.scintillaSQL.UseTabs = false;
+            this.scintillaSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
             // 
             // panel3
             // 

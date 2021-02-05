@@ -304,16 +304,6 @@ namespace fyiReporting.RdlDesign
         {
             _dsv.Timeout = Convert.ToInt32(tbTimeout.Value);
         }
-
-		private void tbSQL_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Control && (e.KeyCode == Keys.A))
-			{
-				if (sender != null)
-					((TextBox)sender).SelectAll();
-				e.Handled = true;
-			}
-		}
     }
 
     internal class DataSetValues
