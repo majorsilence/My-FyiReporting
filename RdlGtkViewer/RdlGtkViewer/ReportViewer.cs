@@ -662,9 +662,10 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintDrawPage (object o, DrawPageArgs args)
 		{
-            if(args == null || args.Context == null) {
+            if(args?.Context == null || pages == null) {
                 return;
             }
+            
             using (Cairo.Context g = args.Context.CairoContext)
             {
                 RenderCairo render = new RenderCairo(g);
