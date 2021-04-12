@@ -83,6 +83,28 @@ namespace fyiReporting.RDL
 			}
 			return dow;
 		}
+		
+		/// <summary>
+		/// Returns the integer day of week: 1=Monday, 2=Tuesday, ..., 7=Sunday
+		/// </summary>
+		/// <param name="dt">DateTime</param>
+		public static int WeekdayNonAmerican(DateTime dt)
+		{
+			var res = (int)dt.DayOfWeek;
+			return res == 0 ? 7 : res;
+		}
+		
+		/// <summary>
+		/// Returns the integer day of week: 1=Monday, 2=Tuesday, ..., 7=Sunday
+		/// </summary>
+		/// <param name="dateString">String representation of a date and time</param>
+		public static int WeekdayNonAmerican(string dateString)
+		{
+			if(DateTime.TryParse(dateString, out var dt)) {
+				return WeekdayNonAmerican(dt);
+			}
+			throw new FormatException("parameter does not contain a valid string representation of a date and time");
+		}
 
 		/// <summary>
 		/// Returns the name of the day of week
