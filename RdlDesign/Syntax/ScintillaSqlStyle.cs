@@ -61,7 +61,7 @@ namespace fyiReporting.RdlDesign.Syntax
                 "tan time timediff timestamp timestampadd timestampdiff time_format time_to_sec to_base64 to_days to_seconds touches trim truncate tsequal " +
                 "ucase unhex uncompress uncompressed_length unix_timestamp updatexml upper user utc_date utc_time utc_timestamp uuid uuid_short " +
                 "version " +
-                "week weekday weekofyear weight_string within " +
+                "week weekday weekdaynonamerican weekofyear weight_string within " +
                 "year yearweek");
             // User1 = 4 (expresions)
             scintilla.SetKeywords(4, @"all and any between cross div exists in inner is join left like mod not null or outer pivot right separator some unpivot ( ) * ");
