@@ -212,13 +212,15 @@ namespace fyiReporting.RdlDesign
 				{
 					// Convert the document into a string
 					StringWriter sw = new StringWriter();
-					XmlTextWriter xtw = new XmlTextWriter(sw);
-					xtw.IndentChar = ' ';
-					xtw.Indentation = 2;
-					xtw.Formatting = Formatting.Indented;
+					var settings = new XmlWriterSettings {
+						NewLineChars = "\n",
+						Indent = true,
+						IndentChars = "  "
+					};
+					var xw = XmlWriter.Create(sw, settings);
 			
-					_ReportDoc.WriteContentTo(xtw);
-					xtw.Close();
+					_ReportDoc.WriteContentTo(xw);
+					xw.Close();
 					sw.Close();	
 					result = sw.ToString();
 					result = result.Replace("xmlns=\"\"", "");
