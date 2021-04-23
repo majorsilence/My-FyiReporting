@@ -178,7 +178,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BarcodeLib" Version="2.2.9" />
+    <PackageReference Include="BarcodeLib" Version="2.3.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.6" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
