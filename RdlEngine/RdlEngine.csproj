@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProjectGuid>{C97E91F4-B310-44E2-9B6C-96775395722D}</ProjectGuid>
@@ -1182,9 +1182,11 @@
   <ItemGroup>
     <PackageReference Include="BouncyCastle" Version="1.8.9" />
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
-    <PackageReference Include="NPOI" Version="2.5.3" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.8.10" />
     <PackageReference Include="SharpZipLib" Version="1.3.1" />
+    <PackageReference Include="NPOI">
+      <Version>2.5.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
