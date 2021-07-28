@@ -21,22 +21,18 @@
    the website www.fyiReporting.com.
 */
 using System;
-using System.Xml;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Collections.Generic;
-using System.IO;
+using System.Collections.Specialized;
 using System.Globalization;
-using System.Data;
-using System.Data.SqlClient;
-using fyiReporting.RDL;
+using System.Xml;
 
 namespace fyiReporting.RDL
 {
-	/// <summary>
-	/// Delegate used to ask for a Data Source Reference password used to decrypt the file.
-	/// </summary>
-	public delegate string NeedPassword();
+    /// <summary>
+    /// Delegate used to ask for a Data Source Reference password used to decrypt the file.
+    /// </summary>
+    public delegate string NeedPassword();
 
 	///<summary>
 	/// Main Report definition; this is the top of the tree that contains the complete
@@ -248,7 +244,7 @@ namespace fyiReporting.RDL
 						_DataElementName = xNodeLoop.InnerText;
 						break;
 					case "DataElementStyle":
-						_DataElementStyle = fyiReporting.RDL.DataElementStyle.GetStyle(xNodeLoop.InnerText, this.rl);
+						_DataElementStyle = RDL.DataElementStyle.GetStyle(xNodeLoop.InnerText, this.rl);
 						break;
 					default:
 						// don't know this element - log it
