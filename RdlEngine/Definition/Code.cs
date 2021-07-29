@@ -120,13 +120,6 @@ namespace fyiReporting.RDL
 
 			string vbcode = sb.ToString();
 
-#if DEBUG
-
-			StreamWriter tsw = File.CreateText(@"vbcode.rendered.debug.txt");
-			tsw.Write(vbcode);
-			tsw.Close();
-
-#endif
 			Console.WriteLine("Parsing the code into the SyntaxTree");
 
 			SyntaxTree syntaxTree = VisualBasicSyntaxTree.ParseText(vbcode);
