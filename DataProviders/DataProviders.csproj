@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>DataProviders</RootNamespace>
-    <Company>Quality Solution</Company>
+    <Company>fyiReporting Software, LLC</Company>
     <LangVersion>8</LangVersion>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
