@@ -1,18 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>RdlEngine</AssemblyName>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <OutputType>Library</OutputType>
-    <RootNamespace>RdlEngine</RootNamespace>
-    <Company>Quality Solution</Company>
-    <LangVersion>8</LangVersion>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <PackageId>RDL Engine</PackageId>
+    <Product>RDL Project</Product>
+    <Company>My-FyiReporting Software</Company>
+    <Authors>My-FyiReporting Software</Authors>
+    <Version>4.15.0.1</Version>
+    <AssemblyVersion>4.15.*</AssemblyVersion>
+    <Copyright>Copyright (C) 2011-2012 Peter Gill</Copyright>
   </PropertyGroup>
   <ItemGroup>
     <None Include="RdlEngineConfig.xml">

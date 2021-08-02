@@ -2,9 +2,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>DataProviders</RootNamespace>
+    <Version>4.15.0</Version>
+    <Product>RDL Project</Product>
+    <PackageId>RDL Data Providers</PackageId>
     <Company>fyiReporting Software, LLC</Company>
-    <LangVersion>8</LangVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <Authors>fyiReporting Software, LLC</Authors>
+    <AssemblyVersion>4.15.*</AssemblyVersion>
+    <FileVersion>4.15.0.1</FileVersion>
+    <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
   </PropertyGroup>
 </Project>
