@@ -6,7 +6,7 @@
     <Company>My-FyiReporting Software</Company>
     <Authors>My-FyiReporting Software</Authors>
     <Version>4.15.0.1</Version>
-    <AssemblyVersion>4.15.*</AssemblyVersion>
+    <AssemblyVersion>4.15.0.1</AssemblyVersion>
     <Copyright>Copyright (C) 2011-2012 Peter Gill</Copyright>
   </PropertyGroup>
   <ItemGroup>

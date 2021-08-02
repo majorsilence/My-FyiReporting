@@ -7,7 +7,7 @@
     <PackageId>RDL Data Providers</PackageId>
     <Company>fyiReporting Software, LLC</Company>
     <Authors>fyiReporting Software, LLC</Authors>
-    <AssemblyVersion>4.15.*</AssemblyVersion>
+    <AssemblyVersion>4.15.0.1</AssemblyVersion>
     <FileVersion>4.15.0.1</FileVersion>
     <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
   </PropertyGroup>
