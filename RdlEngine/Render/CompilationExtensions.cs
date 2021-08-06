@@ -10,17 +10,17 @@ namespace fyiReporting.RDL
 #if NETSTANDARD2_0
         public static void SetRGBColorFill(this PdfContentByte contentByte, int red, int green, int blue)
         {
-            contentByte.SetRgbColorFill(red, green, blue);
+            contentByte.SetRGBColorFill(red, green, blue);
         }
 
         public static void SetRGBColorStroke(this PdfContentByte contentByte, int red, int green, int blue)
         {
-            contentByte.SetRgbColorStroke(red, green, blue);
+            contentByte.SetRGBColorStroke(red, green, blue);
         }
 
         public static void SetRGBColorStrokeF(this PdfContentByte contentByte, int red, int green, int blue)
         {
-            contentByte.SetRgbColorStrokeF(red, green, blue);
+            contentByte.SetRGBColorStrokeF(red, green, blue);
         }
 #endif        
 
