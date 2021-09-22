@@ -463,7 +463,7 @@ namespace fyiReporting.RdlDesign
     #region WritingMode
     internal class WritingModeConverter : StringConverter
     {
-        static readonly string[] WMList = new string[] { "lr-tb", "tb-rl" };
+        static readonly string[] WMList = new string[] { "lr-tb", "tb-rl", "tb-lr" };
 
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
