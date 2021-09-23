@@ -31,7 +31,7 @@ namespace RdlEngine.Render.ExcelConverter
 			SetFontStyle(fromStyle.FontStyle);
 			SetTextDecoration(fromStyle.TextDecoration);
 			SetFontColor(fromStyle.Color);
-
+			SetWritingMode(fromStyle.WritingMode);
 		}
 
 		public void SetToStyle(XSSFCellStyle style)
@@ -50,6 +50,20 @@ namespace RdlEngine.Render.ExcelConverter
 
 			style.VerticalAlignment = VerticalAlignment;
 			style.Alignment = HorizontalAlignment;
+			switch (_writingMode)
+			{
+				case WritingModeEnum.lr_tb:
+					style.Rotation = 0;
+					break;
+				case WritingModeEnum.tb_rl:
+					style.Rotation = -90;
+					break;
+				case WritingModeEnum.tb_lr:
+					style.Rotation = 90;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException($"Writing mode {_writingMode} is not supported");
+			}
 		}
 
 		public void SetToFont(XSSFFont font)
@@ -272,6 +286,13 @@ namespace RdlEngine.Render.ExcelConverter
 			}
 		}
 
+		private WritingModeEnum _writingMode;
+
+		public void SetWritingMode(WritingModeEnum writingMode)
+		{
+			_writingMode = writingMode;
+		}
+		
 		public bool CompareWithXSSFFont(XSSFFont font)
 		{
 			if(FontName != font.FontName) {
