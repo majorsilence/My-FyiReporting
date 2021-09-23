@@ -407,7 +407,8 @@ namespace fyiReporting.RdlDesign
             this.cbWritingMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWritingMode.Items.AddRange(new object[] {
             resources.GetString("cbWritingMode.Items"),
-            resources.GetString("cbWritingMode.Items1")});
+            resources.GetString("cbWritingMode.Items1"),
+            resources.GetString("cbWritingMode.Items2")});
             resources.ApplyResources(this.cbWritingMode, "cbWritingMode");
             this.cbWritingMode.Name = "cbWritingMode";
             this.cbWritingMode.SelectedIndexChanged += new System.EventHandler(this.cbWritingMode_TextChanged);
