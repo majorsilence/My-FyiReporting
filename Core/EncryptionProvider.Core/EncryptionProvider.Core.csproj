@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <AssemblyName>EncryptionProvider</AssemblyName>
+    <RootNamespace>EncryptionProvider</RootNamespace>
+
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Compile Include="..\..\EncryptionProvider\**\*.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="..\..\EncryptionProvider\Prompt.cs" />
+  </ItemGroup>
+
+</Project>

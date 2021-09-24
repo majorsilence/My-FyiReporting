@@ -45,6 +45,7 @@ namespace fyiReporting.RdlGtkViewer
 		
 		private string connectionString;
 		private bool overwriteSubreportConnection;
+        private OutputPresentationType[] restrictedOutputPresentationTypes;
 
 		public event EventHandler ReportPrinted;
 
@@ -97,29 +98,30 @@ namespace fyiReporting.RdlGtkViewer
 
         public ReportViewer()
         {
-            this.Build();
+            Build();
             Parameters = new ListDictionary();
-			
-            this.errorsAction.Toggled += OnErrorsActionToggled;
+
+            errorsAction.Toggled += OnErrorsActionToggled;
             DisableActions();
             ShowErrors = false;
         }
 
-		/// <summary>
-		/// Loads the report.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-		/// <param name="connectionString">Relace all Connection string in report.</param>
-		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+        /// <summary>
+        /// Loads the report.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+        /// <param name="connectionString">Relace all Connection string in report.</param>
+        /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
 		{
 			SourceFile = filename;
 
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport (filename, parameters);
+			LoadReport (filename, parameters, restrictedOutputPresentationTypes);
 		}
 
 		/// <summary>
@@ -129,40 +131,37 @@ namespace fyiReporting.RdlGtkViewer
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false)
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
 		{
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport(source, parameters);
+			LoadReport(source, parameters, restrictedOutputPresentationTypes);
 		}
 
         /// <summary>
         /// Loads the report.
         /// </summary>
-        /// <param name='filename'>
-        /// Filename.
-        /// </param>
-        public void LoadReport(Uri filename)
+        /// <param name='filename'>Filename.</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(Uri filename, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
-            LoadReport(filename, "");
+            LoadReport(filename, "", restrictedOutputPresentationTypes);
         }
 
         /// <summary>
         /// Loads the report.
         /// </summary>
-        /// <param name='sourcefile'>
-        /// Filename.
-        /// </param>
-        /// <param name='parameters'>
-        /// Example: parameter1=someValue&parameter2=anotherValue
-        /// </param>
-        public void LoadReport(Uri sourcefile, string parameters)
+        /// <param name='sourcefile'>Filename.</param>
+        /// <param name='parameters'>Example: parameter1=someValue&parameter2=anotherValue</param>
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             SourceFile = sourcefile;
 						
             string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-            LoadReport(source, parameters);
+            LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -170,8 +169,11 @@ namespace fyiReporting.RdlGtkViewer
         /// </summary>
         /// <param name="source">Xml source of report</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-        public void LoadReport(string source, string parameters)
+        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        public void LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
+            this.restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
+            
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
             {
@@ -193,7 +195,8 @@ namespace fyiReporting.RdlGtkViewer
 
         void RefreshReport()
         {
-            SetParametersFromControls();
+            if(ShowParameters)
+            	SetParametersFromControls();
             report.RunGetData(Parameters);
             pages = report.BuildPages();
 			
@@ -430,7 +433,6 @@ namespace fyiReporting.RdlGtkViewer
 
         protected void OnPdfActionActivated(object sender, System.EventArgs e)
         {
-
             // *********************************
             object[] param = new object[4];
             param[0] = Strings.ButtonCancel_Text;
@@ -520,7 +522,7 @@ namespace fyiReporting.RdlGtkViewer
                 m.Destroy();
                 return;
             }
-			
+
             if (fc.Run() == (int)Gtk.ResponseType.Accept)
             {
                 try
@@ -545,14 +547,6 @@ namespace fyiReporting.RdlGtkViewer
                         {
                             filename = filename + ".pdf";
                             searchPattern = "*.pdf";
-                        }
-                    }
-                    else if (fc.Filter.Name == "ASP HTML")
-                    {
-                        exportType = OutputPresentationType.ASPHTML;
-                        if (filename.ToLower().Trim().EndsWith(".asphtml") == false)
-                        {
-                            filename = filename + ".asphtml";
                         }
                     }
                     else if (fc.Filter.Name == "Excel 2007 Data")
@@ -742,15 +736,20 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintDrawPage (object o, DrawPageArgs args)
 		{
-			Cairo.Context g = args.Context.CairoContext;
-
-			RenderCairo render = new RenderCairo (g);
-			render.RunPage(pages[args.PageNr]);	
+            using (Cairo.Context g = args.Context.CairoContext)
+            {
+                RenderCairo render = new RenderCairo(g);
+                render.RunPage(pages[args.PageNr]);
+            }
 		}
 
 		void HandlePrintEndPrint (object o, EndPrintArgs args)
 		{
 			ReportPrinted?.Invoke(this, EventArgs.Empty);
+            printing.BeginPrint -= HandlePrintBeginPrint;
+            printing.DrawPage -= HandlePrintDrawPage;
+            printing.EndPrint -= HandlePrintEndPrint;
+            printing.Dispose();
         }
 
         protected void OnRefreshActionActivated(object sender, System.EventArgs e)
@@ -773,6 +772,19 @@ namespace fyiReporting.RdlGtkViewer
                 hpanedWidth = args.Allocation.Width;
                 SetHPanedPosition();
             }
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
+
+        public override void Dispose()
+        {
+            errorsAction.Toggled -= OnErrorsActionToggled;
+            pages?.Dispose();
+            pages = null;
+            report?.Dispose();
         }
     }
 }

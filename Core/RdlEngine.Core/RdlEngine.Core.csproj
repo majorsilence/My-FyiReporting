@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <AssemblyName>RdlEngine</AssemblyName>
+    <RootNamespace>RdlEngine</RootNamespace>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Render\ExcelValet_old.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.6.1" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
+    <PackageReference Include="System.CodeDom" Version="4.6.0" />
+    <PackageReference Include="System.Data.Odbc" Version="4.6.0" />
+    <PackageReference Include="System.Data.OleDb" Version="4.6.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\RdlEngine\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\..\RdlEngine\Render\ExcelValet_old.cs" />
+    
+    <Compile Update="..\..\RdlEngine\Resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>..\..\RdlEngine\Resources\Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\RdlEngine\Resources\Strings.resx" Link="Resources\Strings.resx" />
+    <EmbeddedResource Include="..\..\RdlEngine\Resources\Strings.ru-RU.resx" Link="Resources\Strings.ru-RU.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataProviders.Core\DataProviders.Core.csproj" />
+  </ItemGroup>
+</Project>

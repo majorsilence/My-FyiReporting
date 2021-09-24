@@ -1,12 +1,10 @@
-* Install .net 3.5sp1 sdk http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=11310
 * Install .net 4.0 sdk http://www.microsoft.com/download/en/details.aspx?id=8279
 * Install Gow - choco install gow
 * Install nuget command line - choco install nuget.commandline 
 
 
-1. Build .NET 4.0/3.5 package:
-	* Run build-fyi-release-dot-net-4.bat
-	* Run build-fyi-release-dot-net-3.5.bat
+1. Build .NET 4.0 package:
+	* Run build-fyi-release-dot-net-4.ps1
 2. Build Linux package:
 	* Run build-fyi-release-dot-net-4.sh
 3. Update warsetup project and version number

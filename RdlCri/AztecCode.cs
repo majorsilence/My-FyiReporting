@@ -33,7 +33,11 @@ namespace fyiReporting.CRI
         /// <param name="AztecCode"></param>
         internal void DrawImage(ref System.Drawing.Bitmap bm, string aztecCode)
         {
+#if NETSTANDARD2_0
+            var writer = new ZXing.BarcodeWriter<Bitmap>();
+#else
             var writer = new ZXing.BarcodeWriter();
+#endif
             writer.Format = ZXing.BarcodeFormat.AZTEC;
 
             Graphics g = null;

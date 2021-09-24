@@ -39,7 +39,11 @@ namespace fyiReporting.CRI
 
         public void DrawImage(ref Bitmap bm, string code)
         {
+#if NETSTANDARD2_0
+            var writer = new ZXing.BarcodeWriter<Bitmap>();
+#else
 			var writer = new ZXing.BarcodeWriter();
+#endif
 			writer.Format = ZXing.BarcodeFormat.EAN_8;
 
             Graphics g = null;

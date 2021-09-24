@@ -428,7 +428,7 @@ namespace fyiReporting.RdlPrint
                     im.Dispose();
             }
         }
-        private void DrawImageSized(PageImage pi, Image im, Graphics g, RectangleF r)
+        private void DrawImageSized(PageImage pi, System.Drawing.Image im, Graphics g, RectangleF r)
         {
             float height, width;		// some work variables
             StyleInfo si = pi.SI;
@@ -455,8 +455,8 @@ namespace fyiReporting.RdlPrint
                 r.Height - si.PaddingTop - si.PaddingBottom);
             } 
 
-            Rectangle ir;	// int work rectangle
-            ir = new Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+            System.Drawing.Rectangle ir;	// int work rectangle
+            ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
             switch (pi.Sizing)
             {
@@ -468,7 +468,7 @@ namespace fyiReporting.RdlPrint
                     if (g.DpiX == im.HorizontalResolution &&
                         g.DpiY == im.VerticalResolution)
                     {
-                        ir = new Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                                         im.Width, im.Height);
                     }
                     g.DrawImage(im, ir);
@@ -482,7 +482,7 @@ namespace fyiReporting.RdlPrint
                     if (g.DpiX == im.HorizontalResolution &&
                         g.DpiY == im.VerticalResolution)
                     {
-                        ir = new Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                                         im.Width, im.Height);
                     }
                     g.DrawImage(im, ir);

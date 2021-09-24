@@ -311,11 +311,12 @@ namespace fyiReporting.RDL
 
 		static internal int ApplyCompare(TypeCode tc, object left, object right)
 		{
-			if (left == null)
+			//Because double.NaN = DBNull for numbers
+			if(left == null || (left is double && double.IsNaN((double)left)))
 			{
-				return (right == null)? 0: -1;
+				return (right == null || (right is double && double.IsNaN((double)right))) ? 0: -1;
 			}
-			if (right == null)
+			if (right == null || (right is double && double.IsNaN((double)right)))
 				return 1;
 
 			try
