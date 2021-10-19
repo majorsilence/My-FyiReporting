@@ -44,6 +44,7 @@ namespace fyiReporting.RdlGtkViewer
 		private string connectionString;
 		private bool overwriteSubreportConnection;
         private OutputPresentationType[] restrictedOutputPresentationTypes;
+        private Action<Pages> customPrintAction;
 
 		public event EventHandler ReportPrinted;
 
@@ -112,12 +113,14 @@ namespace fyiReporting.RdlGtkViewer
         /// <param name="connectionString">Relace all Connection string in report.</param>
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        /// <param name="customPrintAction">>For use a custom print action</param>
+        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
 		{
 			SourceFile = filename;
 
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
+			this.customPrintAction = customPrintAction;
 
 			LoadReport (filename, parameters, restrictedOutputPresentationTypes);
 		}
@@ -637,18 +640,25 @@ namespace fyiReporting.RdlGtkViewer
         {
             using (PrintContext context = new PrintContext(GdkWindow.Handle))
             {
-                printing = new PrintOperation();
-                printing.Unit = Unit.Points;
-				printing.UseFullPage = true;
-				printing.DefaultPageSetup = new PageSetup();
-				printing.DefaultPageSetup.Orientation = 
-					report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
+	            if (customPrintAction == null)
+	            {
+		            printing = new PrintOperation();
+		            printing.Unit = Unit.Points;
+		            printing.UseFullPage = true;
+		            printing.DefaultPageSetup = new PageSetup();
+		            printing.DefaultPageSetup.Orientation = 
+			            report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
 
-                printing.BeginPrint += HandlePrintBeginPrint;
-                printing.DrawPage += HandlePrintDrawPage;
-                printing.EndPrint += HandlePrintEndPrint;
-				
-                printing.Run(PrintOperationAction.PrintDialog, null);
+		            printing.BeginPrint += HandlePrintBeginPrint;
+		            printing.DrawPage += HandlePrintDrawPage;
+		            printing.EndPrint += HandlePrintEndPrint;
+
+		            printing.Run(PrintOperationAction.PrintDialog, null);
+	            }
+	            else
+	            {
+		            customPrintAction.Invoke(pages);
+	            }
             }
         }
 
