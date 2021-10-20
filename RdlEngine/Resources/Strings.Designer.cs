@@ -22,7 +22,7 @@ namespace RdlEngine.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace RdlEngine.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RdlEngine.Resources.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace RdlEngine.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,27 @@ namespace RdlEngine.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonCancel_Text {
+            get {
+                return ResourceManager.GetString("ButtonCancel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ButtonSave_Text {
+            get {
+                return ResourceManager.GetString("ButtonSave_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to error : FileReader.UnGet : ungetted first char.
         /// </summary>
-        internal static string CharReader_Error_FileReaderUnGetFirstChar {
+        public static string CharReader_Error_FileReaderUnGetFirstChar {
             get {
                 return ResourceManager.GetString("CharReader_Error_FileReaderUnGetFirstChar", resourceCulture);
             }
@@ -72,7 +90,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Plot area height is less than or equal to 0.
         /// </summary>
-        internal static string ChartLayout_Error_PlotAreaHeightIs0 {
+        public static string ChartLayout_Error_PlotAreaHeightIs0 {
             get {
                 return ResourceManager.GetString("ChartLayout_Error_PlotAreaHeightIs0", resourceCulture);
             }
@@ -81,7 +99,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Plot area width is less than or equal to 0.
         /// </summary>
-        internal static string ChartLayout_Error_PlotAreaWidthIs0 {
+        public static string ChartLayout_Error_PlotAreaWidthIs0 {
             get {
                 return ResourceManager.GetString("ChartLayout_Error_PlotAreaWidthIs0", resourceCulture);
             }
@@ -90,16 +108,25 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No password provided for shared DataSource reference.
         /// </summary>
-        internal static string DataSourceDefn_Error_NoPasswordForDSR {
+        public static string DataSourceDefn_Error_NoPasswordForDSR {
             get {
                 return ResourceManager.GetString("DataSourceDefn_Error_NoPasswordForDSR", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save File As.
+        /// </summary>
+        public static string FileChooser_SaveFileTo_Title {
+            get {
+                return ResourceManager.GetString("FileChooser_SaveFileTo_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter operators TopN and BottomN require an integer value got {0}..
         /// </summary>
-        internal static string Filter_Error_TopNAndBottomNRequireInt {
+        public static string Filter_Error_TopNAndBottomNRequireInt {
             get {
                 return ResourceManager.GetString("Filter_Error_TopNAndBottomNRequireInt", resourceCulture);
             }
@@ -108,7 +135,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to IPmt doesn&apos;t support payments due at beginning of period..
         /// </summary>
-        internal static string Financial_Error_IPmtNotSupportPayments {
+        public static string Financial_Error_IPmtNotSupportPayments {
             get {
                 return ResourceManager.GetString("Financial_Error_IPmtNotSupportPayments", resourceCulture);
             }
@@ -117,7 +144,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} method not found in code.
         /// </summary>
-        internal static string FunctionCode_Error_MethodNotFound {
+        public static string FunctionCode_Error_MethodNotFound {
             get {
                 return ResourceManager.GetString("FunctionCode_Error_MethodNotFound", resourceCulture);
             }
@@ -126,7 +153,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} method not found in class {1}.
         /// </summary>
-        internal static string FunctionCustomInstance_Error_MethodNotFoundInClass {
+        public static string FunctionCustomInstance_Error_MethodNotFoundInClass {
             get {
                 return ResourceManager.GetString("FunctionCustomInstance_Error_MethodNotFoundInClass", resourceCulture);
             }
@@ -135,7 +162,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} method not found in class {1}.
         /// </summary>
-        internal static string FunctionCustomStatic_Error_MethodNotFoundInClass {
+        public static string FunctionCustomStatic_Error_MethodNotFoundInClass {
             get {
                 return ResourceManager.GetString("FunctionCustomStatic_Error_MethodNotFoundInClass", resourceCulture);
             }
@@ -144,7 +171,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Field collection argument {0} is invalid.
         /// </summary>
-        internal static string FunctionFieldCollection_Error_FieldCollectionInvalid {
+        public static string FunctionFieldCollection_Error_FieldCollectionInvalid {
             get {
                 return ResourceManager.GetString("FunctionFieldCollection_Error_FieldCollectionInvalid", resourceCulture);
             }
@@ -153,7 +180,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Field collection argument is null.
         /// </summary>
-        internal static string FunctionFieldCollection_Error_FieldCollectionNull {
+        public static string FunctionFieldCollection_Error_FieldCollectionNull {
             get {
                 return ResourceManager.GetString("FunctionFieldCollection_Error_FieldCollectionNull", resourceCulture);
             }
@@ -162,7 +189,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Globals collection argument is null.
         /// </summary>
-        internal static string FunctionGlobalCollection_Error_GlobalsNull {
+        public static string FunctionGlobalCollection_Error_GlobalsNull {
             get {
                 return ResourceManager.GetString("FunctionGlobalCollection_Error_GlobalsNull", resourceCulture);
             }
@@ -171,7 +198,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Globals collection argument &apos;{0}&apos; is unknown..
         /// </summary>
-        internal static string FunctionGlobalCollection_Error_GlobalsUnknown {
+        public static string FunctionGlobalCollection_Error_GlobalsUnknown {
             get {
                 return ResourceManager.GetString("FunctionGlobalCollection_Error_GlobalsUnknown", resourceCulture);
             }
@@ -180,7 +207,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Parameter collection argument {0} is invalid.
         /// </summary>
-        internal static string FunctionParameterCollection_Error_ParameterCollectionInvalid {
+        public static string FunctionParameterCollection_Error_ParameterCollectionInvalid {
             get {
                 return ResourceManager.GetString("FunctionParameterCollection_Error_ParameterCollectionInvalid", resourceCulture);
             }
@@ -189,7 +216,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Parameter collection argument is null.
         /// </summary>
-        internal static string FunctionParameterCollection_Error_ParameterCollectionNull {
+        public static string FunctionParameterCollection_Error_ParameterCollectionNull {
             get {
                 return ResourceManager.GetString("FunctionParameterCollection_Error_ParameterCollectionNull", resourceCulture);
             }
@@ -198,7 +225,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ReportItem collection argument {0} is invalid.
         /// </summary>
-        internal static string FunctionReportItemCollection_Error_ReportItemCollectionInvalid {
+        public static string FunctionReportItemCollection_Error_ReportItemCollectionInvalid {
             get {
                 return ResourceManager.GetString("FunctionReportItemCollection_Error_ReportItemCollectionInvalid", resourceCulture);
             }
@@ -207,7 +234,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ReportItem collection argument is null.
         /// </summary>
-        internal static string FunctionReportItemCollection_Error_ReportItemCollectionNull {
+        public static string FunctionReportItemCollection_Error_ReportItemCollectionNull {
             get {
                 return ResourceManager.GetString("FunctionReportItemCollection_Error_ReportItemCollectionNull", resourceCulture);
             }
@@ -216,7 +243,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Internal error: unknown Report Parameter method.
         /// </summary>
-        internal static string FunctionReportParameter_Error_UnknownReporParameterMethod {
+        public static string FunctionReportParameter_Error_UnknownReporParameterMethod {
             get {
                 return ResourceManager.GetString("FunctionReportParameter_Error_UnknownReporParameterMethod", resourceCulture);
             }
@@ -225,7 +252,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} method not found in class {1}.
         /// </summary>
-        internal static string FunctionSystem_Error_MethodNotFound {
+        public static string FunctionSystem_Error_MethodNotFound {
             get {
                 return ResourceManager.GetString("FunctionSystem_Error_MethodNotFound", resourceCulture);
             }
@@ -234,7 +261,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User collection argument {0} is invalid..
         /// </summary>
-        internal static string FunctionUserCollection_Error_UserCollectionInvalid {
+        public static string FunctionUserCollection_Error_UserCollectionInvalid {
             get {
                 return ResourceManager.GetString("FunctionUserCollection_Error_UserCollectionInvalid", resourceCulture);
             }
@@ -243,7 +270,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User collection argument is null.
         /// </summary>
-        internal static string FunctionUserCollection_Error_UserCollectionNull {
+        public static string FunctionUserCollection_Error_UserCollectionNull {
             get {
                 return ResourceManager.GetString("FunctionUserCollection_Error_UserCollectionNull", resourceCulture);
             }
@@ -252,7 +279,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid conversion from Language to boolean..
         /// </summary>
-        internal static string FunctionUserLanguage_Error_ConvertToBoolean {
+        public static string FunctionUserLanguage_Error_ConvertToBoolean {
             get {
                 return ResourceManager.GetString("FunctionUserLanguage_Error_ConvertToBoolean", resourceCulture);
             }
@@ -261,7 +288,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid conversion from Language to DateTime..
         /// </summary>
-        internal static string FunctionUserLanguage_Error_ConvertToDateTime {
+        public static string FunctionUserLanguage_Error_ConvertToDateTime {
             get {
                 return ResourceManager.GetString("FunctionUserLanguage_Error_ConvertToDateTime", resourceCulture);
             }
@@ -270,7 +297,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid conversion from Language to Decimal..
         /// </summary>
-        internal static string FunctionUserLanguage_Error_ConvertToDecimal {
+        public static string FunctionUserLanguage_Error_ConvertToDecimal {
             get {
                 return ResourceManager.GetString("FunctionUserLanguage_Error_ConvertToDecimal", resourceCulture);
             }
@@ -279,7 +306,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid conversion from Language to double..
         /// </summary>
-        internal static string FunctionUserLanguage_Error_ConvertToDouble {
+        public static string FunctionUserLanguage_Error_ConvertToDouble {
             get {
                 return ResourceManager.GetString("FunctionUserLanguage_Error_ConvertToDouble", resourceCulture);
             }
@@ -288,7 +315,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid conversion from Language to Int32..
         /// </summary>
-        internal static string FunctionUserLanguage_Error_ConvertToInt32 {
+        public static string FunctionUserLanguage_Error_ConvertToInt32 {
             get {
                 return ResourceManager.GetString("FunctionUserLanguage_Error_ConvertToInt32", resourceCulture);
             }
@@ -297,7 +324,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; should be followed by a number.
         /// </summary>
-        internal static string Lexer_Error_SeparatorMustFollowedNumber {
+        public static string Lexer_Error_SeparatorMustFollowedNumber {
             get {
                 return ResourceManager.GetString("Lexer_Error_SeparatorMustFollowedNumber", resourceCulture);
             }
@@ -306,7 +333,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unterminated comment!.
         /// </summary>
-        internal static string Lexer_Error_UnterminatedComment {
+        public static string Lexer_Error_UnterminatedComment {
             get {
                 return ResourceManager.GetString("Lexer_Error_UnterminatedComment", resourceCulture);
             }
@@ -315,7 +342,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid number constant..
         /// </summary>
-        internal static string Lexer_ErrorP_InvalidNumberConstant {
+        public static string Lexer_ErrorP_InvalidNumberConstant {
             get {
                 return ResourceManager.GetString("Lexer_ErrorP_InvalidNumberConstant", resourceCulture);
             }
@@ -324,7 +351,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unterminated string!.
         /// </summary>
-        internal static string Lexer_ErrorP_UnterminatedString {
+        public static string Lexer_ErrorP_UnterminatedString {
             get {
                 return ResourceManager.GetString("Lexer_ErrorP_UnterminatedString", resourceCulture);
             }
@@ -333,7 +360,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The extension of the filename provided + &apos;{0}&apos;, does not have the expected extension(s) &apos;{1}&apos;.
         /// </summary>
-        internal static string MhtBuilder_Error_Extension {
+        public static string MhtBuilder_Error_Extension {
             get {
                 return ResourceManager.GetString("MhtBuilder_Error_Extension", resourceCulture);
             }
@@ -342,7 +369,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The filename provided, &apos;{0}&apos;, has no extension. If are specifying a folder, make sure it ends in a trailing slash. The expected file extension(s) are &apos;{1}&apos;.
         /// </summary>
-        internal static string MhtBuilder_Error_FilenameNoExtension {
+        public static string MhtBuilder_Error_FilenameNoExtension {
             get {
                 return ResourceManager.GetString("MhtBuilder_Error_FilenameNoExtension", resourceCulture);
             }
@@ -351,7 +378,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to unable to download &apos;{0}&apos;: {1}.
         /// </summary>
-        internal static string MhtBuilder_Error_UnableDownload {
+        public static string MhtBuilder_Error_UnableDownload {
             get {
                 return ResourceManager.GetString("MhtBuilder_Error_UnableDownload", resourceCulture);
             }
@@ -360,7 +387,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Converting references only makes sense for HTML or CSS files; this file is of type &apos;{0}&apos;.
         /// </summary>
-        internal static string MhtWebFile_Error_ConvertOnlyHTMLOrCSS {
+        public static string MhtWebFile_Error_ConvertOnlyHTMLOrCSS {
             get {
                 return ResourceManager.GetString("MhtWebFile_Error_ConvertOnlyHTMLOrCSS", resourceCulture);
             }
@@ -369,7 +396,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No filename was provided, and the HTML title tag was not found, so a filename could not be automatically generated. You&apos;ll need to provide a filename and not a folder..
         /// </summary>
-        internal static string MhtWebFile_Error_NoFilename {
+        public static string MhtWebFile_Error_NoFilename {
             get {
                 return ResourceManager.GetString("MhtWebFile_Error_NoFilename", resourceCulture);
             }
@@ -378,7 +405,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to File {0} already exists..
         /// </summary>
-        internal static string OneFileStreamGen_Error_FileAlreadyExists {
+        public static string OneFileStreamGen_Error_FileAlreadyExists {
             get {
                 return ResourceManager.GetString("OneFileStreamGen_Error_FileAlreadyExists", resourceCulture);
             }
@@ -387,7 +414,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to CurrentPage must be in the list of pages.
         /// </summary>
-        internal static string Pages_Error_CurrentPageMustInList {
+        public static string Pages_Error_CurrentPageMustInList {
             get {
                 return ResourceManager.GetString("Pages_Error_CurrentPageMustInList", resourceCulture);
             }
@@ -396,7 +423,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Build method must be called prior to referencing TotalHeight..
         /// </summary>
-        internal static string PageTextHtml_Error_BuildMethodMustCalledPriorTotalHeight {
+        public static string PageTextHtml_Error_BuildMethodMustCalledPriorTotalHeight {
             get {
                 return ResourceManager.GetString("PageTextHtml_Error_BuildMethodMustCalledPriorTotalHeight", resourceCulture);
             }
@@ -405,7 +432,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Aggregate function &apos;{0}&apos; cannot be nested in another aggregate function..
         /// </summary>
-        internal static string Parser_ErrorP_AggregateCannotNestedInAnotherAggregate {
+        public static string Parser_ErrorP_AggregateCannotNestedInAnotherAggregate {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_AggregateCannotNestedInAnotherAggregate", resourceCulture);
             }
@@ -414,7 +441,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Aggregate function &apos;{0}&apos; cannot be used within a Grouping expression..
         /// </summary>
-        internal static string Parser_ErrorP_AggregateCannotUsedWithinGrouping {
+        public static string Parser_ErrorP_AggregateCannotUsedWithinGrouping {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_AggregateCannotUsedWithinGrouping", resourceCulture);
             }
@@ -423,7 +450,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Aggregate function must have at least one argument..
         /// </summary>
-        internal static string Parser_ErrorP_AggregateMust1Argument {
+        public static string Parser_ErrorP_AggregateMust1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_AggregateMust1Argument", resourceCulture);
             }
@@ -432,7 +459,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AND/OR operations require both sides to be boolean expressions..
         /// </summary>
-        internal static string Parser_ErrorP_AND_OR_RequiresBoolean {
+        public static string Parser_ErrorP_AND_OR_RequiresBoolean {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_AND_OR_RequiresBoolean", resourceCulture);
             }
@@ -441,7 +468,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to   At column {0}.
         /// </summary>
-        internal static string Parser_ErrorP_AtColumn {
+        public static string Parser_ErrorP_AtColumn {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_AtColumn", resourceCulture);
             }
@@ -450,7 +477,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &apos;)&apos; expected but not found..
         /// </summary>
-        internal static string Parser_ErrorP_BracketExpected {
+        public static string Parser_ErrorP_BracketExpected {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_BracketExpected", resourceCulture);
             }
@@ -459,7 +486,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to First argument to Choose function must be numeric..
         /// </summary>
-        internal static string Parser_ErrorP_ChooseFirstArgumentMustNumeric {
+        public static string Parser_ErrorP_ChooseFirstArgumentMustNumeric {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ChooseFirstArgumentMustNumeric", resourceCulture);
             }
@@ -468,7 +495,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Choose function requires at least 2 arguments..
         /// </summary>
-        internal static string Parser_ErrorP_ChooseRequires2Arguments {
+        public static string Parser_ErrorP_ChooseRequires2Arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ChooseRequires2Arguments", resourceCulture);
             }
@@ -477,7 +504,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Class {0} is not known..
         /// </summary>
-        internal static string Parser_ErrorP_ClassUnknown {
+        public static string Parser_ErrorP_ClassUnknown {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ClassUnknown", resourceCulture);
             }
@@ -486,7 +513,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &apos;}&apos; expected but not found..
         /// </summary>
-        internal static string Parser_ErrorP_CurlyBracketExpected {
+        public static string Parser_ErrorP_CurlyBracketExpected {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_CurlyBracketExpected", resourceCulture);
             }
@@ -495,7 +522,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to End of expression expected..
         /// </summary>
-        internal static string Parser_ErrorP_EndExpressionExpected {
+        public static string Parser_ErrorP_EndExpressionExpected {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_EndExpressionExpected", resourceCulture);
             }
@@ -504,7 +531,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Expecting &apos;,&apos; or &apos;)&apos;..
         /// </summary>
-        internal static string Parser_ErrorP_ExpectingComma {
+        public static string Parser_ErrorP_ExpectingComma {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ExpectingComma", resourceCulture);
             }
@@ -513,7 +540,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Field &apos;{0}&apos;  not found..
         /// </summary>
-        internal static string Parser_ErrorP_FieldNotFound {
+        public static string Parser_ErrorP_FieldNotFound {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FieldNotFound", resourceCulture);
             }
@@ -522,7 +549,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Field &apos;{0}&apos; is not in DataSet {1}..
         /// </summary>
-        internal static string Parser_ErrorP_FieldNotInDataSet {
+        public static string Parser_ErrorP_FieldNotInDataSet {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FieldNotInDataSet", resourceCulture);
             }
@@ -531,7 +558,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Fields collection requires exactly 1 argument..
         /// </summary>
-        internal static string Parser_ErrorP_FieldsRequires1Argument {
+        public static string Parser_ErrorP_FieldsRequires1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FieldsRequires1Argument", resourceCulture);
             }
@@ -540,7 +567,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Field &apos;{0}&apos;  only supports &apos;Value&apos; and &apos;IsMissing&apos; properties..
         /// </summary>
-        internal static string Parser_ErrorP_FieldSupportsValueAndIsMissing {
+        public static string Parser_ErrorP_FieldSupportsValueAndIsMissing {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FieldSupportsValueAndIsMissing", resourceCulture);
             }
@@ -549,7 +576,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Format function requires 2 arguments..
         /// </summary>
-        internal static string Parser_ErrorP_FormatRequires2Arguments {
+        public static string Parser_ErrorP_FormatRequires2Arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FormatRequires2Arguments", resourceCulture);
             }
@@ -558,7 +585,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to   Found &apos;{0}&apos;.
         /// </summary>
-        internal static string Parser_ErrorP_FoundValue {
+        public static string Parser_ErrorP_FoundValue {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FoundValue", resourceCulture);
             }
@@ -567,7 +594,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Function &apos;{0}&apos; of class &apos;{1}&apos; is not known..
         /// </summary>
-        internal static string Parser_ErrorP_FunctionOfClassUnknown {
+        public static string Parser_ErrorP_FunctionOfClassUnknown {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FunctionOfClassUnknown", resourceCulture);
             }
@@ -576,7 +603,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Function {0} is not known..
         /// </summary>
-        internal static string Parser_ErrorP_FunctionUnknown {
+        public static string Parser_ErrorP_FunctionUnknown {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_FunctionUnknown", resourceCulture);
             }
@@ -585,7 +612,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Globals &apos;{0}&apos;  not found..
         /// </summary>
-        internal static string Parser_ErrorP_GlobalsNotFound {
+        public static string Parser_ErrorP_GlobalsNotFound {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_GlobalsNotFound", resourceCulture);
             }
@@ -594,7 +621,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Globals collection requires exactly 1 argument..
         /// </summary>
-        internal static string Parser_ErrorP_GlobalsRequires1Argument {
+        public static string Parser_ErrorP_GlobalsRequires1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_GlobalsRequires1Argument", resourceCulture);
             }
@@ -603,7 +630,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Constant or Identifier expected but not found..
         /// </summary>
-        internal static string Parser_ErrorP_IdentifierExpected {
+        public static string Parser_ErrorP_IdentifierExpected {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_IdentifierExpected", resourceCulture);
             }
@@ -612,7 +639,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to iff function requires 3 arguments..
         /// </summary>
-        internal static string Parser_ErrorP_iff_function_requires_3_arguments {
+        public static string Parser_ErrorP_iff_function_requires_3_arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_iff_function_requires_3_arguments", resourceCulture);
             }
@@ -621,7 +648,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid function arguments..
         /// </summary>
-        internal static string Parser_ErrorP_Invalid_function_arguments {
+        public static string Parser_ErrorP_Invalid_function_arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_Invalid_function_arguments", resourceCulture);
             }
@@ -630,7 +657,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ReportItem &apos;{0}&apos;  not found..
         /// </summary>
-        internal static string Parser_ErrorP_ItemNotFound {
+        public static string Parser_ErrorP_ItemNotFound {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ItemNotFound", resourceCulture);
             }
@@ -639,7 +666,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ReportItem &apos;{0}&apos;  only supports &apos;Value&apos; property..
         /// </summary>
-        internal static string Parser_ErrorP_ItemSupportsValue {
+        public static string Parser_ErrorP_ItemSupportsValue {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ItemSupportsValue", resourceCulture);
             }
@@ -648,7 +675,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &apos;-&apos; operator works only on numbers..
         /// </summary>
-        internal static string Parser_ErrorP_MinusNeedNumbers {
+        public static string Parser_ErrorP_MinusNeedNumbers {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_MinusNeedNumbers", resourceCulture);
             }
@@ -657,7 +684,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No scope provided for aggregate function &apos;{0}&apos; but more than one DataSet defined..
         /// </summary>
-        internal static string Parser_ErrorP_NoScope4Aggregate {
+        public static string Parser_ErrorP_NoScope4Aggregate {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_NoScope4Aggregate", resourceCulture);
             }
@@ -666,7 +693,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not a Code method.  Verify the name of the method and its arguments match an existing code function..
         /// </summary>
-        internal static string Parser_ErrorP_NotCodeMethod {
+        public static string Parser_ErrorP_NotCodeMethod {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_NotCodeMethod", resourceCulture);
             }
@@ -675,7 +702,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to NOT requires boolean expression..
         /// </summary>
-        internal static string Parser_ErrorP_NOTRequiresBoolean {
+        public static string Parser_ErrorP_NOTRequiresBoolean {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_NOTRequiresBoolean", resourceCulture);
             }
@@ -684,7 +711,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Report parameter &apos;{0}&apos;  not found..
         /// </summary>
-        internal static string Parser_ErrorP_ParameterNotFound {
+        public static string Parser_ErrorP_ParameterNotFound {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ParameterNotFound", resourceCulture);
             }
@@ -693,7 +720,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Parameters collection requires exactly 1 argument..
         /// </summary>
-        internal static string Parser_ErrorP_ParametersRequires1Argument {
+        public static string Parser_ErrorP_ParametersRequires1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ParametersRequires1Argument", resourceCulture);
             }
@@ -702,7 +729,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Parameter &apos;{0}&apos;  only supports &apos;Value&apos; and &apos;Label&apos; properties..
         /// </summary>
-        internal static string Parser_ErrorP_ParameterSupportsValueAndLabel {
+        public static string Parser_ErrorP_ParameterSupportsValueAndLabel {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ParameterSupportsValueAndLabel", resourceCulture);
             }
@@ -711,7 +738,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ReportItems collection requires exactly 1 argument..
         /// </summary>
-        internal static string Parser_ErrorP_ReportItemsRequires1Argument {
+        public static string Parser_ErrorP_ReportItemsRequires1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ReportItemsRequires1Argument", resourceCulture);
             }
@@ -720,7 +747,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RunningValue takes 2 or 3 arguments..
         /// </summary>
-        internal static string Parser_ErrorP_RunningValue_takes_2_or_3_arguments {
+        public static string Parser_ErrorP_RunningValue_takes_2_or_3_arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_RunningValue_takes_2_or_3_arguments", resourceCulture);
             }
@@ -729,7 +756,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RunningValue &apos;Function&apos; argument is invalid..
         /// </summary>
-        internal static string Parser_ErrorP_RunningValueArgumentInvalid {
+        public static string Parser_ErrorP_RunningValueArgumentInvalid {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_RunningValueArgumentInvalid", resourceCulture);
             }
@@ -738,7 +765,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RunningValue function &apos;{0}&apos; is not supported..
         /// </summary>
-        internal static string Parser_ErrorP_RunningValueNotSupported {
+        public static string Parser_ErrorP_RunningValueNotSupported {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_RunningValueNotSupported", resourceCulture);
             }
@@ -747,7 +774,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Illegal scope identifer specified..
         /// </summary>
-        internal static string Parser_ErrorP_ScopeIdentifer {
+        public static string Parser_ErrorP_ScopeIdentifer {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ScopeIdentifer", resourceCulture);
             }
@@ -756,7 +783,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} function&apos;s scope must be a constant..
         /// </summary>
-        internal static string Parser_ErrorP_ScopeMustConstant {
+        public static string Parser_ErrorP_ScopeMustConstant {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ScopeMustConstant", resourceCulture);
             }
@@ -765,7 +792,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Scope &apos;{0}&apos; does not reference a known DataSet..
         /// </summary>
-        internal static string Parser_ErrorP_ScopeNotKnownDataSet {
+        public static string Parser_ErrorP_ScopeNotKnownDataSet {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ScopeNotKnownDataSet", resourceCulture);
             }
@@ -774,7 +801,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Scope &apos;{0}&apos; is not a known Grouping, DataSet or DataRegion name..
         /// </summary>
-        internal static string Parser_ErrorP_ScopeNotKnownGrouping {
+        public static string Parser_ErrorP_ScopeNotKnownGrouping {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ScopeNotKnownGrouping", resourceCulture);
             }
@@ -783,7 +810,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Scope &apos;{0}&apos; can&apos;t be specified in a Page Header or Footer expression..
         /// </summary>
-        internal static string Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter {
+        public static string Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter", resourceCulture);
             }
@@ -792,7 +819,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Second argument to Format function must be a string..
         /// </summary>
-        internal static string Parser_ErrorP_SecondMustString {
+        public static string Parser_ErrorP_SecondMustString {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_SecondMustString", resourceCulture);
             }
@@ -801,7 +828,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Switch function must have a boolean expression every other argument..
         /// </summary>
-        internal static string Parser_ErrorP_SwitchMustBoolean {
+        public static string Parser_ErrorP_SwitchMustBoolean {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_SwitchMustBoolean", resourceCulture);
             }
@@ -810,7 +837,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Switch function must have an even number of arguments..
         /// </summary>
-        internal static string Parser_ErrorP_SwitchMustEvenArguments {
+        public static string Parser_ErrorP_SwitchMustEvenArguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_SwitchMustEvenArguments", resourceCulture);
             }
@@ -819,7 +846,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Switch function requires at least 2 arguments..
         /// </summary>
-        internal static string Parser_ErrorP_SwitchRequires2Arguments {
+        public static string Parser_ErrorP_SwitchRequires2Arguments {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_SwitchRequires2Arguments", resourceCulture);
             }
@@ -828,7 +855,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; is an unknown identifer..
         /// </summary>
-        internal static string Parser_ErrorP_UnknownIdentifer {
+        public static string Parser_ErrorP_UnknownIdentifer {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_UnknownIdentifer", resourceCulture);
             }
@@ -837,7 +864,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not a known property for {1}..
         /// </summary>
-        internal static string Parser_ErrorP_UnknownProperty {
+        public static string Parser_ErrorP_UnknownProperty {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_UnknownProperty", resourceCulture);
             }
@@ -846,7 +873,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User collection requires exactly 1 argument..
         /// </summary>
-        internal static string Parser_ErrorP_UserRequires1Argument {
+        public static string Parser_ErrorP_UserRequires1Argument {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_UserRequires1Argument", resourceCulture);
             }
@@ -855,7 +882,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User variable &apos;{0}&apos;  not found..
         /// </summary>
-        internal static string Parser_ErrorP_UserVarNotFound {
+        public static string Parser_ErrorP_UserVarNotFound {
             get {
                 return ResourceManager.GetString("Parser_ErrorP_UserVarNotFound", resourceCulture);
             }
@@ -864,7 +891,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to GetObjectNumber must be called before GetOutlineDict.
         /// </summary>
-        internal static string PdfOutline_Error_GetObjectNumberMustBeforeGetOutlineDict {
+        public static string PdfOutline_Error_GetObjectNumberMustBeforeGetOutlineDict {
             get {
                 return ResourceManager.GetString("PdfOutline_Error_GetObjectNumberMustBeforeGetOutlineDict", resourceCulture);
             }
@@ -873,7 +900,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Report has errors.  Cannot be processed..
         /// </summary>
-        internal static string ProcessReport_Error_ReportHasErrors {
+        public static string ProcessReport_Error_ReportHasErrors {
             get {
                 return ResourceManager.GetString("ProcessReport_Error_ReportHasErrors", resourceCulture);
             }
@@ -882,7 +909,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error: XML Data must contain top level rows..
         /// </summary>
-        internal static string Query_Error_XMLMustContainTopLevelRows {
+        public static string Query_Error_XMLMustContainTopLevelRows {
             get {
                 return ResourceManager.GetString("Query_Error_XMLMustContainTopLevelRows", resourceCulture);
             }
@@ -891,7 +918,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} could not be found.
         /// </summary>
-        internal static string RdlEngineConfig_Error_CashModuleNotFound {
+        public static string RdlEngineConfig_Error_CashModuleNotFound {
             get {
                 return ResourceManager.GetString("RdlEngineConfig_Error_CashModuleNotFound", resourceCulture);
             }
@@ -900,7 +927,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} could not be loaded.
         /// </summary>
-        internal static string RdlEngineConfig_Error_CodeModuleNotLoaded {
+        public static string RdlEngineConfig_Error_CodeModuleNotLoaded {
             get {
                 return ResourceManager.GetString("RdlEngineConfig_Error_CodeModuleNotLoaded", resourceCulture);
             }
@@ -909,7 +936,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not a known CustomReportItem type.
         /// </summary>
-        internal static string RdlEngineConfig_Error_NotKnownCustomReportItemType {
+        public static string RdlEngineConfig_Error_NotKnownCustomReportItemType {
             get {
                 return ResourceManager.GetString("RdlEngineConfig_Error_NotKnownCustomReportItemType", resourceCulture);
             }
@@ -918,7 +945,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unable to create instance of &apos;{0}&apos; for provider &apos;{1}&apos;.
         /// </summary>
-        internal static string RdlEngineConfig_Error_UnableCreateInstance {
+        public static string RdlEngineConfig_Error_UnableCreateInstance {
             get {
                 return ResourceManager.GetString("RdlEngineConfig_Error_UnableCreateInstance", resourceCulture);
             }
@@ -927,7 +954,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error: RDL doesn&apos;t contain a report element. .
         /// </summary>
-        internal static string RDLParser_ErrorP__NoReport {
+        public static string RDLParser_ErrorP__NoReport {
             get {
                 return ResourceManager.GetString("RDLParser_ErrorP__NoReport", resourceCulture);
             }
@@ -936,7 +963,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error: XML failed .
         /// </summary>
-        internal static string RDLParser_ErrorP_XMLFailed {
+        public static string RDLParser_ErrorP_XMLFailed {
             get {
                 return ResourceManager.GetString("RDLParser_ErrorP_XMLFailed", resourceCulture);
             }
@@ -945,16 +972,25 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Severity.
         /// </summary>
-        internal static string ReportLog_Error_Severity {
+        public static string ReportLog_Error_Severity {
             get {
                 return ResourceManager.GetString("ReportLog_Error_Severity", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory contains file with the same name, do you want to overwrite it?.
+        /// </summary>
+        public static string SaveToFile_CheckIf_SameFilesInDir {
+            get {
+                return ResourceManager.GetString("SaveToFile_CheckIf_SameFilesInDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subreport {0} doesn&apos;t define parameter {1}..
         /// </summary>
-        internal static string Subreport_Error_SubreportNotParameter {
+        public static string Subreport_Error_SubreportNotParameter {
             get {
                 return ResourceManager.GetString("Subreport_Error_SubreportNotParameter", resourceCulture);
             }
@@ -963,7 +999,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error: Recursive groups must be the only group definition..
         /// </summary>
-        internal static string Table_Error_RecursiveGroupsMustOnlyGroupDefinition {
+        public static string Table_Error_RecursiveGroupsMustOnlyGroupDefinition {
             get {
                 return ResourceManager.GetString("Table_Error_RecursiveGroupsMustOnlyGroupDefinition", resourceCulture);
             }
@@ -972,7 +1008,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Internal error: TableRow not related to a Table.
         /// </summary>
-        internal static string TableRow_Error_TableRowNotRelatedToTable {
+        public static string TableRow_Error_TableRowNotRelatedToTable {
             get {
                 return ResourceManager.GetString("TableRow_Error_TableRowNotRelatedToTable", resourceCulture);
             }
@@ -981,7 +1017,7 @@ namespace RdlEngine.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Internal error.  TableRows must be owned eventually by a table..
         /// </summary>
-        internal static string TableRows_Error_TableRowsMustOwnedTable {
+        public static string TableRows_Error_TableRowsMustOwnedTable {
             get {
                 return ResourceManager.GetString("TableRows_Error_TableRowsMustOwnedTable", resourceCulture);
             }

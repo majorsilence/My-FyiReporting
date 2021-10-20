@@ -25,10 +25,12 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Text;
 using fyiReporting.RDL;
 using Gtk;
+using Strings = RdlEngine.Resources.Strings;
 
 namespace fyiReporting.RdlGtkViewer
 {
@@ -44,6 +46,7 @@ namespace fyiReporting.RdlGtkViewer
 		private string connectionString;
 		private bool overwriteSubreportConnection;
         private OutputPresentationType[] restrictedOutputPresentationTypes;
+        private Action<Pages> customPrintAction;
 
 		public event EventHandler ReportPrinted;
 
@@ -112,12 +115,14 @@ namespace fyiReporting.RdlGtkViewer
         /// <param name="connectionString">Relace all Connection string in report.</param>
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        /// <param name="customPrintAction">>For use a custom print action</param>
+        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
 		{
 			SourceFile = filename;
 
 			this.connectionString = connectionString;
 			this.overwriteSubreportConnection = overwriteSubreportConnection;
+			this.customPrintAction = customPrintAction;
 
 			LoadReport (filename, parameters, restrictedOutputPresentationTypes);
 		}
@@ -433,69 +438,88 @@ namespace fyiReporting.RdlGtkViewer
         {
             // *********************************
             object[] param = new object[4];
-            param[0] = "Cancel";
+            param[0] = Strings.ButtonCancel_Text;
             param[1] = Gtk.ResponseType.Cancel;
-            param[2] = "Save";
+            param[2] = Strings.ButtonSave_Text;
             param[3] = Gtk.ResponseType.Accept;
 
             Gtk.FileChooserDialog fc =
-                new Gtk.FileChooserDialog("Save File As",
+                new Gtk.FileChooserDialog(Strings.FileChooser_SaveFileTo_Title,
                     null,
 					Gtk.FileChooserAction.Save,
                     param);
 
 			fc.CurrentName = DefaultExportFileName??report.Name;
-
+            
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF)) {
                 Gtk.FileFilter pdfFilter = new Gtk.FileFilter { Name = "PDF" };
+                var extensionPDF = ".pdf";
+                pdfFilter.AddPattern($"*{extensionPDF}");
                 fc.AddFilter(pdfFilter);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV)) {
                 Gtk.FileFilter csvFilter = new Gtk.FileFilter { Name = "CSV" };
+                var extensionCSV = ".csv";
+                csvFilter.AddPattern($"*{extensionCSV}");
                 fc.AddFilter(csvFilter);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ExcelTableOnly)) {
                 Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel без форматирования (Быстро)" };
+                var extensionXLSX = ".xlsx";
+                excel2007Data.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007Data);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007)) {
                 Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel с форматированием (Долго)" };
+                var extensionXLSX = ".xlsx";
+                excel2007.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF)) {
                 Gtk.FileFilter tiffFilter = new Gtk.FileFilter { Name = "TIFF" };
+                var extensionTIFF = ".tiff";
+                tiffFilter.AddPattern($"*{extensionTIFF}");
                 fc.AddFilter(tiffFilter);
             }
 
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML)) {
                 Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter { Name = "ASP HTML" };
+                var extensionASPHTML = ".asphtml";
+                asphtmlFilter.AddPattern($"*{extensionASPHTML}");
                 fc.AddFilter(asphtmlFilter);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML)) {
                 Gtk.FileFilter htmlFilter = new Gtk.FileFilter { Name = "HTML" };
+                var extensionHTML = ".html";
+                htmlFilter.AddPattern($"*{extensionHTML}");
                 fc.AddFilter(htmlFilter);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML)) {
                 Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter { Name = "MHTML" };
+                var extensionMHTML = ".mhtml";
+                mhtmlFilter.AddPattern($"*{extensionMHTML}");
                 fc.AddFilter(mhtmlFilter);
             }
 			
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML)) {
                 Gtk.FileFilter xmlFilter = new Gtk.FileFilter { Name = "XML" };
+                var extensionXML = ".xml";
+                xmlFilter.AddPattern($"*{extensionXML}");
                 fc.AddFilter(xmlFilter);
             }
 
-            if(!fc.Filters.Any()) {
+            if (!fc.Filters.Any())
+            {
                 Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                    Gtk.ButtonsType.Ok, false, 
+                    Gtk.ButtonsType.Ok, false,
                     "Export in all document formats is prohibited");
-                
+
                 m.WindowPosition = WindowPosition.Center;
                 m.Run();
                 m.Destroy();
@@ -506,9 +530,8 @@ namespace fyiReporting.RdlGtkViewer
             {
                 try
                 {
-                    // Must use the RunGetData before each export or there is no data.
-                    report.RunGetData(this.Parameters); 
-										
+                    string searchPattern = "*";
+
                     string filename = fc.Filename;		
                     OutputPresentationType exportType = OutputPresentationType.PDF;
                     if (fc.Filter.Name == "CSV")
@@ -517,6 +540,7 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".csv") == false)
                         {
                             filename = filename + ".csv";
+                            searchPattern = "*.csv";
                         }
                     }
                     else if (fc.Filter.Name == "PDF")
@@ -525,6 +549,7 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".pdf") == false)
                         {
                             filename = filename + ".pdf";
+                            searchPattern = "*.pdf";
                         }
                     }
                     else if (fc.Filter.Name == "Excel без форматирования (Быстро)")
@@ -533,24 +558,28 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
                         {
                             filename = filename + ".xlsx";
+                            searchPattern = "*.xlsx";
                         }
                     }
 					else if(fc.Filter.Name == "Excel с форматированием (Долго)") {
 						exportType = OutputPresentationType.Excel2007;
 						if(filename.ToLower().Trim().EndsWith(".xlsx") == false) {
 							filename = filename + ".xlsx";
+                            searchPattern = "*.xlsx";
 						}
 					}
 					else if(fc.Filter.Name == "TIFF") {
 						exportType = OutputPresentationType.TIF;
 						if(filename.ToLower().Trim().EndsWith(".tif") == false) {
 							filename = filename + ".tif";
+                            searchPattern = "*.tif";
 						}
 					}
 					else if(fc.Filter.Name == "ASP HTML") {
 						exportType = OutputPresentationType.ASPHTML;
 						if(filename.ToLower().Trim().EndsWith(".asphtml") == false) {
 							filename = filename + ".asphtml";
+                            searchPattern = "*.asphtml";
 						}
 					}
 					else if (fc.Filter.Name == "HTML")
@@ -559,6 +588,7 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".html") == false)
                         {
                             filename = filename + ".html";
+                            searchPattern = "*.html";
                         }
                     }
                     else if (fc.Filter.Name == "MHTML")
@@ -567,6 +597,7 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".mhtml") == false)
                         {
                             filename = filename + ".mhtml";
+                            searchPattern = "*.mhtml";
                         }
                     }
                     else if (fc.Filter.Name == "XML")
@@ -575,10 +606,60 @@ namespace fyiReporting.RdlGtkViewer
                         if (filename.ToLower().Trim().EndsWith(".xml") == false)
                         {
                             filename = filename + ".xml";
+                            searchPattern = "*.xml";
                         }
                     }
-					
-                    ExportReport(report, filename, exportType);				
+
+
+                    string directory = filename.Remove(filename.LastIndexOf(@"\")+1);
+
+                    var files = Directory.GetFiles(directory, searchPattern);
+
+                    //Check for files with same name in directory
+                    if (files.Any())
+                    {
+                        for(int i = 0; i < files.Length; i++)
+                        {
+                            if (files[i] == filename)
+                            {
+                                //If found files with the same name in directory
+                                MessageDialog m = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Question,
+                                    Gtk.ButtonsType.YesNo, false, 
+                                 Strings.SaveToFile_CheckIf_SameFilesInDir);
+
+                                m.SetPosition(WindowPosition.Center);
+                                ResponseType result = (ResponseType)m.Run();
+                                m.Destroy();
+                                if(result == ResponseType.Yes)
+                                {
+                                    // Must use the RunGetData before each export or there is no data.
+                                    report.RunGetData(this.Parameters);
+                                    ExportReport(report, filename, exportType);
+                                    break;
+                                } 
+                                else 
+                                {
+                                    break;  
+                                }
+                            }
+
+                            if (i+1 == files.Length && files[i] != filename)
+                            {
+                                //If no files with the same name found in directory
+                                // Must use the RunGetData before each export or there is no data.
+                                report.RunGetData(this.Parameters);
+                                ExportReport(report, filename, exportType);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //If no files found in directory
+                        // Must use the RunGetData before each export or there is no data.
+                        report.RunGetData(this.Parameters);
+                        ExportReport(report, filename, exportType);	
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -592,8 +673,7 @@ namespace fyiReporting.RdlGtkViewer
             }
             //Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
             fc.Destroy();
-			
-			
+            
         }
 
         /// <summary>
@@ -637,18 +717,25 @@ namespace fyiReporting.RdlGtkViewer
         {
             using (PrintContext context = new PrintContext(GdkWindow.Handle))
             {
-                printing = new PrintOperation();
-                printing.Unit = Unit.Points;
-				printing.UseFullPage = true;
-				printing.DefaultPageSetup = new PageSetup();
-				printing.DefaultPageSetup.Orientation = 
-					report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
+	            if (customPrintAction == null)
+	            {
+		            printing = new PrintOperation();
+		            printing.Unit = Unit.Points;
+		            printing.UseFullPage = true;
+		            printing.DefaultPageSetup = new PageSetup();
+		            printing.DefaultPageSetup.Orientation = 
+			            report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
 
-                printing.BeginPrint += HandlePrintBeginPrint;
-                printing.DrawPage += HandlePrintDrawPage;
-                printing.EndPrint += HandlePrintEndPrint;
-				
-                printing.Run(PrintOperationAction.PrintDialog, null);
+		            printing.BeginPrint += HandlePrintBeginPrint;
+		            printing.DrawPage += HandlePrintDrawPage;
+		            printing.EndPrint += HandlePrintEndPrint;
+
+		            printing.Run(PrintOperationAction.PrintDialog, null);
+	            }
+	            else
+	            {
+		            customPrintAction.Invoke(pages);
+	            }
             }
         }
 
