@@ -466,14 +466,14 @@ namespace fyiReporting.RdlGtkViewer
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ExcelTableOnly)) {
-                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel без форматирования (Быстро)" };
+                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel no formatting (Fast)" };
                 var extensionXLSX = ".xlsx";
                 excel2007Data.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007Data);
             }
             
             if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007)) {
-                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel с форматированием (Долго)" };
+                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel with formatting (Slow)" };
                 var extensionXLSX = ".xlsx";
                 excel2007.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007);
