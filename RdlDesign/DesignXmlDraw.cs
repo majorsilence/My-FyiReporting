@@ -3105,28 +3105,7 @@ namespace fyiReporting.RdlDesign
 
 		}
 
-		private void DrawString(string text, StyleInfo si, RectangleF r)
-		{
-			DrawString(text, si, r, true);
-		}
-
-		private void DrawString(string text, StyleInfo si, RectangleF r, bool bWrap)
-		{
-			switch (si.WritingMode)
-			{
-				case WritingModeEnum.lr_tb:
-				case WritingModeEnum.tb_rl:
-					DrawStringLRTBandTBRL(text, si, r, bWrap);
-					break;
-				case WritingModeEnum.tb_lr:
-					DrawStringTBLR(text, si, r, bWrap);
-					break;
-				default:
-					throw new NotSupportedException($"Writing mode {si.WritingMode} is not supported");
-			}
-		}
-
-		private void DrawStringLRTBandTBRL(string text, StyleInfo si, RectangleF r, bool bWrap)
+		private void DrawString(string text, StyleInfo si, RectangleF r, bool bWrap = true)
 		{
 			if (!r.IntersectsWith(_clip))
 				return;
@@ -3134,6 +3113,8 @@ namespace fyiReporting.RdlDesign
 			Font drawFont = null;
 			StringFormat drawFormat = null;
 			Brush drawBrush = null;
+			var graphicsState = g.Save();
+
 			try
 			{
 				// STYLE
@@ -3166,8 +3147,6 @@ namespace fyiReporting.RdlDesign
 					case FontWeightEnum.W900:
 						fs |= FontStyle.Bold;
 						break;
-					default:
-						break;
 				}
 
 				if (si.FontSize <= 0) // can't have zero length font; force to default
@@ -3188,17 +3167,31 @@ namespace fyiReporting.RdlDesign
 					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
 				switch (si.TextAlign)
 				{
-					case TextAlignEnum.Right:
-						drawFormat.Alignment = StringAlignment.Far;
+					case TextAlignEnum.Left:
+						drawFormat.Alignment = StringAlignment.Near;
 						break;
 					case TextAlignEnum.Center:
 						drawFormat.Alignment = StringAlignment.Center;
 						break;
-					case TextAlignEnum.Left:
-					default:
-						drawFormat.Alignment = StringAlignment.Near;
+					case TextAlignEnum.Right:
+						drawFormat.Alignment = StringAlignment.Far;
 						break;
 				}
+
+				switch (si.VerticalAlign)
+				{
+					case VerticalAlignEnum.Top:
+						drawFormat.LineAlignment = StringAlignment.Near;
+						break;
+					case VerticalAlignEnum.Middle:
+						drawFormat.LineAlignment = StringAlignment.Center;
+						break;
+					case VerticalAlignEnum.Bottom:
+						drawFormat.LineAlignment = StringAlignment.Far;
+						break;
+				}
+
+				DrawBackground(r, si);
 
 				if (si.WritingMode == WritingModeEnum.tb_rl)
 				{
@@ -3206,160 +3199,44 @@ namespace fyiReporting.RdlDesign
 					drawFormat.FormatFlags |= StringFormatFlags.DirectionVertical;
 				}
 
-				switch (si.VerticalAlign)
+				RectangleF drawRectangle;
+				switch(si.WritingMode)
 				{
-					case VerticalAlignEnum.Bottom:
-						drawFormat.LineAlignment = StringAlignment.Far;
+					case WritingModeEnum.lr_tb:
+					case WritingModeEnum.tb_rl:
+						drawRectangle = new RectangleF(
+							r.Left + si.PaddingLeft - _hScroll,
+							r.Top + si.PaddingTop - _vScroll,
+							r.Width - si.PaddingLeft - si.PaddingRight,
+							r.Height - si.PaddingTop - si.PaddingBottom
+						);
 						break;
-					case VerticalAlignEnum.Middle:
-						drawFormat.LineAlignment = StringAlignment.Center;
+					case WritingModeEnum.tb_lr:
+						drawRectangle = new RectangleF(
+							-r.Top - r.Height + si.PaddingBottom,
+							r.Left + si.PaddingLeft,
+							r.Height - si.PaddingTop - si.PaddingBottom,
+							r.Width - si.PaddingLeft - si.PaddingRight
+						);
 						break;
-					case VerticalAlignEnum.Top:
 					default:
-						drawFormat.LineAlignment = StringAlignment.Near;
-						break;
+						throw new NotSupportedException($"Writing mode {si.WritingMode} is not supported");
 				}
 
-				// draw the background 
-				DrawBackground(r, si);
-
-				// adjust drawing rectangle based on padding and adjusted for scrolling
-				RectangleF r2 = new RectangleF(r.Left + si.PaddingLeft - _hScroll,
-					r.Top + si.PaddingTop - _vScroll,
-					r.Width - si.PaddingLeft - si.PaddingRight,
-					r.Height - si.PaddingTop - si.PaddingBottom);
-
+				if(si.WritingMode == WritingModeEnum.tb_lr)
+				{
+					g.RotateTransform(270);
+				}
 
 				drawBrush = new SolidBrush(si.Color);
-				g.DrawString(text, drawFont, drawBrush, r2, drawFormat);
+				g.DrawString(text, drawFont, drawBrush, drawRectangle, drawFormat);
+				g.Restore(graphicsState);
 			}
 			finally
 			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawFormat != null)
-					drawFont.Dispose();
-				if (drawBrush != null)
-					drawBrush.Dispose();
-			}
-
-			DrawBorder(si, r); // Draw the border if needed
-		}
-
-		private void DrawStringTBLR(string text, StyleInfo si, RectangleF r, bool bWrap)
-		{
-			if (!r.IntersectsWith(_clip))
-				return;
-
-			var restoreG = g.Save();
-			Font drawFont = null;
-			StringFormat drawFormat = null;
-			Brush drawBrush = null;
-			try
-			{
-				// STYLE
-				FontStyle fs = 0;
-				if (si.FontStyle == FontStyleEnum.Italic)
-					fs |= FontStyle.Italic;
-
-				switch (si.TextDecoration)
-				{
-					case TextDecorationEnum.Underline:
-						fs |= FontStyle.Underline;
-						break;
-					case TextDecorationEnum.LineThrough:
-						fs |= FontStyle.Strikeout;
-						break;
-					case TextDecorationEnum.Overline:
-					case TextDecorationEnum.None:
-						break;
-				}
-
-				// WEIGHT
-				switch (si.FontWeight)
-				{
-					case FontWeightEnum.Bold:
-					case FontWeightEnum.Bolder:
-					case FontWeightEnum.W500:
-					case FontWeightEnum.W600:
-					case FontWeightEnum.W700:
-					case FontWeightEnum.W800:
-					case FontWeightEnum.W900:
-						fs |= FontStyle.Bold;
-						break;
-					default:
-						break;
-				}
-
-				if (si.FontSize <= 0) // can't have zero length font; force to default
-					si.FontSize = 10;
-
-				try
-				{
-					drawFont = new Font(si.FontFamily, si.FontSize, fs); // si.FontSize already in points
-				}
-				catch (ArgumentException ae) // fonts that don't exist can throw exception; but we don't want it to
-				{
-					text = ae.Message; // show the error msg (allows report designer to see error)
-					drawFont = new Font("Arial", si.FontSize, fs); // if this throws exception; we'll let it
-				}
-
-				float fontsize = drawFont.Height / 96.0F * 72;
-
-				// ALIGNMENT
-				drawFormat = new StringFormat();
-				if (!bWrap)
-					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
-
-				float x = 0;
-
-				switch (si.VerticalAlign)
-				{
-					case VerticalAlignEnum.Top:
-						x = r.X + si.PaddingLeft;
-						break;
-					case VerticalAlignEnum.Middle:
-						x = r.X + (r.Width - fontsize) / 2;
-						break;
-					case VerticalAlignEnum.Bottom:
-						x = r.X + r.Width - fontsize - si.PaddingRight;
-						break;
-				}
-
-				var size = g.MeasureString(text, drawFont, r.Size, drawFormat);
-				float y = 0;
-				switch (si.TextAlign)
-				{
-					case TextAlignEnum.Left:
-						y = r.Y + r.Height - si.PaddingBottom;
-						break;
-					case TextAlignEnum.Center:
-						y = r.Y + (r.Height + size.Width - si.PaddingBottom + si.PaddingTop) / 2;
-						break;
-					case TextAlignEnum.Right:
-						y = r.Y + si.PaddingTop + size.Width;
-						break;
-				}
-
-				// draw the background 
-				DrawBackground(r, si);
-
-				RectangleF r2 = new RectangleF(-y, x, r.Height - si.PaddingBottom - si.PaddingTop,
-					r.Width - si.PaddingLeft + si.PaddingRight);
-
-				drawBrush = new SolidBrush(si.Color);
-				g.RotateTransform(270.0F);
-				g.DrawString(text, drawFont, drawBrush, r2, drawFormat);
-				g.Restore(restoreG);
-			}
-			finally
-			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawFormat != null)
-					drawFont.Dispose();
-				if (drawBrush != null)
-					drawBrush.Dispose();
+				drawFont?.Dispose();
+				drawFormat?.Dispose();
+				drawBrush?.Dispose();
 			}
 
 			DrawBorder(si, r); // Draw the border if needed
