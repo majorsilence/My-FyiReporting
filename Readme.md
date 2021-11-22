@@ -6,7 +6,7 @@ https://groups.google.com/d/forum/myfyireporting
 
 
 |         |Linux |Win(Deploy) |
-|---------|:------:|:------:|:------:|
+|---------|:------:|:------:|
 |**Release**|NA | [![Build status appveyor](https://ci.appveyor.com/api/projects/status/a44n015bli95rmpw?svg=true)](https://ci.appveyor.com/project/majorsilence/my-fyireporting) | 
 
 # Documentation
