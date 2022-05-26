@@ -167,14 +167,14 @@ namespace fyiReporting.RDL
 																				colIndex + rightAttach);
 							worksheet.AddMergedRegion(mergeRegion);
 
-							RegionUtil.SetBorderTop((int)xssfStyle.BorderTop, mergeRegion, worksheet, workbook);
-							RegionUtil.SetTopBorderColor(xssfStyle.TopBorderColor, mergeRegion, worksheet, workbook);
-							RegionUtil.SetBorderRight((int)xssfStyle.BorderRight, mergeRegion, worksheet, workbook);
-							RegionUtil.SetRightBorderColor(xssfStyle.RightBorderColor, mergeRegion, worksheet, workbook);
-							RegionUtil.SetBorderBottom((int)xssfStyle.BorderBottom, mergeRegion, worksheet, workbook);
-							RegionUtil.SetBottomBorderColor(xssfStyle.BottomBorderColor, mergeRegion, worksheet, workbook);
-							RegionUtil.SetBorderLeft((int)xssfStyle.BorderLeft, mergeRegion, worksheet, workbook);
-							RegionUtil.SetLeftBorderColor(xssfStyle.LeftBorderColor, mergeRegion, worksheet, workbook);
+							RegionUtil.SetBorderTop((int)xssfStyle.BorderTop, mergeRegion, worksheet);
+							RegionUtil.SetTopBorderColor(xssfStyle.TopBorderColor, mergeRegion, worksheet);
+							RegionUtil.SetBorderRight((int)xssfStyle.BorderRight, mergeRegion, worksheet);
+							RegionUtil.SetRightBorderColor(xssfStyle.RightBorderColor, mergeRegion, worksheet);
+							RegionUtil.SetBorderBottom((int)xssfStyle.BorderBottom, mergeRegion, worksheet);
+							RegionUtil.SetBottomBorderColor(xssfStyle.BottomBorderColor, mergeRegion, worksheet);
+							RegionUtil.SetBorderLeft((int)xssfStyle.BorderLeft, mergeRegion, worksheet);
+							RegionUtil.SetLeftBorderColor(xssfStyle.LeftBorderColor, mergeRegion, worksheet);
 						}
 
 						xssfStyle.WrapText = true;
