@@ -179,14 +179,10 @@ namespace fyiReporting.RdlGtkViewer
             
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
-            {
                 this.Parameters = this.GetParmeters(parameters);
-            }
             else
-            {
-                this.Parameters = null;
-            }
-			
+                this.Parameters = new ListDictionary();
+
             // Compile the report 
             report = this.GetReport(source);
 			if (report == null)
