@@ -174,9 +174,14 @@ namespace fyiReporting.RdlReader
             bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
 
-            string reportFile = string.Empty;
-            string parameters = string.Empty;
-            string printerName = string.Empty;
+            string reportFile   = string.Empty;
+            string parameters   = string.Empty;
+            string printerName  = string.Empty;
+
+            string exportFile   = string.Empty;
+            string exportFormat = string.Empty;
+
+            bool   printAndExit = false;
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -186,29 +191,42 @@ namespace fyiReporting.RdlReader
                     // user want to run with mono simplifications
                     bMono = true;
                 }
-                else if (argValue == "-r")
-                {
+                else if (argValue == "-x") {
+                    // user want exit after print
+                    printAndExit = true;
+                }
+                else if (argValue == "-r") {
                     reportFile = args[i + 1];
-                    if (System.IO.Path.GetDirectoryName(reportFile) == string.Empty)
-                    {
+                    if (System.IO.Path.GetDirectoryName(reportFile) == string.Empty) {
                         // Try to find the file in the current working directory
                         reportFile = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), System.IO.Path.GetFileName(reportFile));
                     }
-                }
+                } 
                 else if (argValue == "-p")
                 {
                     parameters = args[i + 1];
                 }
                 // if we have nothing or key after -print then we have to set printer by default
-                else if (argValue == "-print")
-                {
-                    if (args.Length > i + 1 && !args[i + 1].StartsWith("-"))
-                    {
+                else if (argValue == "-print") {
+                    if (args.Length > i + 1 && !args[i + 1].StartsWith("-")) {
                         printerName = args[i + 1];
-                    }
-                    else
-                    {
+                    } else {
                         printerName = SET_DEFAULT_PRINTER;
+                    }
+                }
+                // added export file, can be  PDF XML CSV
+                // ex: -e foo.pdf
+
+                else if (argValue == "-e") {
+                    if (args.Length > i + 1 && !args[i + 1].StartsWith("-")) {
+                        exportFile      = args[i + 1].ToLower();
+                        exportFormat    = Path.GetExtension(exportFile).Substring(1);
+                        string[] fmts = { "pdf", "csv", "xml"};
+                        if (!fmts.Any(s => s==exportFormat)){
+                            exportFormat    = string.Empty;
+                            exportFile      = string.Empty;
+                        }
+
                     }
                 }
             }
@@ -235,11 +253,17 @@ namespace fyiReporting.RdlReader
             {
                 if (File.Exists(reportFile))
                 {
-                    if (!string.IsNullOrWhiteSpace(printerName))
-                    {
+                    bool exit = false;
+                    if (!string.IsNullOrWhiteSpace(printerName)) {
                         SilentPrint(reportFile, parameters, printerName);
-                        return;
+                        exit = true;
                     }
+                    // User has requested an export file
+                    if (!string.IsNullOrWhiteSpace(exportFile)) {
+                        SilentPrint(reportFile, parameters, "", exportFile, exportFormat);
+                        exit = true;
+                    }
+                    if (exit) return;
 
                     _startUpFiles = new Dictionary<Uri, string>();
                     _startUpFiles.Add(new Uri(reportFile), parameters);
@@ -249,18 +273,17 @@ namespace fyiReporting.RdlReader
                     MessageBox.Show(string.Format(Strings.RdlReader_ShowD_ReportNotLoaded, reportFile), Strings.RdlReader_Show_MyFyiReporting, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            if (!printAndExit) {
+                if (bMono == false) {
+                    Application.EnableVisualStyles();
+                    Application.DoEvents();             // when Mono this goes into a loop
+                }
 
-            if (bMono == false)
-            {
-                Application.EnableVisualStyles();
-                Application.DoEvents();				// when Mono this goes into a loop
+                Application.Run(new RdlReader(bMono));
             }
-
-            Application.Run(new RdlReader(bMono));
-
         }
 
-        public static void SilentPrint(string reportPath, string parameters, string printerName = null)
+        public static void SilentPrint(string reportPath, string parameters, string printerName = null, string exportfile = null, string exportformat = null)
         {
             var rdlViewer = new fyiReporting.RdlViewer.RdlViewer();
             rdlViewer.Visible = false;
@@ -293,8 +316,32 @@ namespace fyiReporting.RdlReader
                 {
                     pd.PrinterSettings.FromPage = rdlViewer.PageCurrent;
                 }
+                if (!String.IsNullOrEmpty(exportformat)) {
+                    OutputPresentationType opt;
+                    opt = OutputPresentationType.PDF;
+                    bool execSaveAs = true;
+                    switch (exportformat) {
+                        case "pdf":
+                               opt = OutputPresentationType.PDF;
+                            break;
+                        case "csv":
+                            opt = OutputPresentationType.CSV;
+                            break;
+                        case "xml":
+                            opt = OutputPresentationType.XML;
+                            break;
+                        default:
+                            execSaveAs = false;
+                            break;
+                    }
 
-                rdlViewer.Print(pd);
+                    if (execSaveAs) {
+                        rdlViewer.SaveAs(exportfile, opt);
+                    }
+                } else { 
+                    rdlViewer.Print(pd);
+                }
+                
             }
             catch (Exception ex)
             {
