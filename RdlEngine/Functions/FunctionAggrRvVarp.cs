@@ -93,7 +93,7 @@ namespace fyiReporting.RDL
 
 			double result;
 			if (wc.Count > 0)
-				result = (wc.Count * wc.Sum2 - wc.Sum*wc.Sum) / (wc.Count * wc.Count);
+				result = ((wc.Count * wc.Sum2) - (wc.Sum*wc.Sum)) / (wc.Count * wc.Count);
 			else		
 				result = double.NaN;
 

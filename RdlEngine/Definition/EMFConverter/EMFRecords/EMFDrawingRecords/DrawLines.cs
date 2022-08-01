@@ -60,11 +60,12 @@ namespace fyiReporting.RDL
                 // if P = 1 Points are Relative to previous point (Ignore C)
                 // if C = 1 Points are int16, 0 = Points are Float (ignore P)
                 // if L = 1 Draw a line between last and first points
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
                 bool Relative = false;
                 if (!Compressed)                
-                    Relative = ((RealFlags & (int)Math.Pow(2, 3)) == (int)Math.Pow(2, 3));
-                bool CloseShape = ((RealFlags & (int)Math.Pow(2, 5)) == (int)Math.Pow(2, 5)); 
+                    Relative = ((RealFlags >> 3) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 3)) == (int)Math.Pow(2, 3));
+                bool CloseShape = ((RealFlags >> 5) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 5)) == (int)Math.Pow(2, 5)); 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
                 UInt32 NumberOfPoints = _br.ReadUInt32(); 
@@ -168,10 +169,10 @@ namespace fyiReporting.RDL
                 case "SolidBrush":
                     System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
                     PageLine pl = new PageLine();
-                    pl.X = X + Xa * SCALEFACTOR;
-                    pl.Y = Y + Ya * SCALEFACTOR;
-                    pl.X2 = X + Xb * SCALEFACTOR;
-                    pl.Y2 = Y + Yb * SCALEFACTOR;                    
+                    pl.X = X + (Xa * SCALEFACTOR);
+                    pl.Y = Y + (Ya * SCALEFACTOR);
+                    pl.X2 = X + (Xb * SCALEFACTOR);
+                    pl.Y2 = Y + (Yb * SCALEFACTOR);                    
                     
                     StyleInfo SI = new StyleInfo();
                     SI.Color = theBrush.Color;

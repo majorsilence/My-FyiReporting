@@ -66,8 +66,6 @@ namespace fyiReporting.CRI
             }
 
             return bcp;
-
-            return bcp;
         }
 
         public bool IsDataRegion()

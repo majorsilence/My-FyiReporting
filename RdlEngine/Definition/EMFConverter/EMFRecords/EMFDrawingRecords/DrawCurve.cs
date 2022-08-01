@@ -58,9 +58,10 @@ namespace fyiReporting.RDL
                 // 0 1 2 3 4 5 6 7
                 // X X X X X X C X            
                 // if C = 1 Points are int16, 0 = Points are Float
-              
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
-                             
+
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));                             
+
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
 
@@ -132,8 +133,8 @@ namespace fyiReporting.RDL
                     PageCurve pc = new PageCurve();
                     for (int i = 0; i < points.Length; i++)
                     {
-                        points[i].X = X + points[i].X * SCALEFACTOR;
-                        points[i].Y = Y + points[i].Y * SCALEFACTOR;
+                        points[i].X = X + (points[i].X * SCALEFACTOR);
+                        points[i].Y = Y + (points[i].Y * SCALEFACTOR);
                     }
                     pc.Points = points;
                     pc.Offset = (int) Offset;

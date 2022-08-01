@@ -296,7 +296,7 @@ namespace fyiReporting.RDL
             if (Math.Abs(diff) < 1e-9d)     // very small difference between max and min?
                 return diameter;            // just use the smallest 
 
-            diameter = (int) ((vdiff / diff) * (bubbleMax - bubbleMin) + bubbleMin); 
+            diameter = (int) (((vdiff / diff) * (bubbleMax - bubbleMin)) + bubbleMin); 
 
             return diameter;
         }
@@ -374,14 +374,14 @@ namespace fyiReporting.RDL
                 {
                     Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left + tSize.Width, rect.Top + rect.Height - h - size.Height / 2, rect.Width - tSize.Width, size.Height);
+                        new System.Drawing.Rectangle(rect.Left + tSize.Width, rect.Top + rect.Height - h - (size.Height / 2), rect.Width - tSize.Width, size.Height);
                     s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
                 }
                 else
                 {
                     Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left + tSize.Width, rect.Top + rect.Height - h - size.Height / 2, rect.Width - tSize.Width, size.Height);
+                        new System.Drawing.Rectangle(rect.Left + tSize.Width, rect.Top + rect.Height - h - (size.Height / 2), rect.Width - tSize.Width, size.Height);
                     Style.DrawStringDefaults(g, v, vRect);
                 }
 
@@ -484,14 +484,14 @@ namespace fyiReporting.RDL
                 {
                     size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left + x - size.Width / 2, rect.Top + tickSize, size.Width, size.Height);
+                        new System.Drawing.Rectangle(rect.Left + x - (size.Width / 2), rect.Top + tickSize, size.Width, size.Height);
                     s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
                 }
                 else
                 {
                     size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left + x - size.Width / 2, rect.Top + tickSize, size.Width, size.Height);
+                        new System.Drawing.Rectangle(rect.Left + x - (size.Width / 2), rect.Top + tickSize, size.Width, size.Height);
                     Style.DrawStringDefaults(g, v, vRect);
                 }
                 if (size.Height > maxValueHeight)		// Need to keep track of the maximum height

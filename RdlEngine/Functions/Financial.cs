@@ -95,11 +95,11 @@ namespace fyiReporting.RDL
 
 			double fv;
 			if (rate == 0)
-				fv = -(pmt*periods+presentValue);
+				fv = -((pmt*periods)+presentValue);
 			else
 			{
 				double temp = Math.Pow(1+rate, periods);
-				fv = -(presentValue*temp + pmt*(1+rate*type)*((temp -1)/rate));
+				fv = -((presentValue*temp) + (pmt*(1+(rate*type))*((temp -1)/rate)));
 			}
 
 			return fv;
@@ -158,7 +158,7 @@ namespace fyiReporting.RDL
 				nper = -(presentValue + futureValue)/pmt;
 			else
 			{
-				double r1 = 1 + rate*type;
+				double r1 = 1 + (rate*type);
 				double pmtr1 = pmt * r1 / rate;
 				double y = (pmtr1 - futureValue) / (presentValue + pmtr1);
 
@@ -190,7 +190,7 @@ namespace fyiReporting.RDL
 			else
 			{
 				double temp = Math.Pow(1+rate, periods);
-				pmt = -(presentValue*temp + futureValue) / ((1+rate*type)*(temp-1)/rate);
+				pmt = -((presentValue*temp) + futureValue) / ((1+(rate*type))*(temp-1)/rate);
 			}
 
 			return pmt;
@@ -211,11 +211,11 @@ namespace fyiReporting.RDL
 
 			double pv;
 			if (rate == 0)
-				pv = -(pmt*periods+futureValue);
+				pv = -((pmt*periods)+futureValue);
 			else
 			{
 				double temp = Math.Pow(1+rate, periods);
-				pv = -(pmt*(1+rate*type)*((temp-1)/rate) + futureValue)/temp;
+				pv = -((pmt*(1+(rate*type))*((temp-1)/rate)) + futureValue)/temp;
 			}
 
 			return pv;
@@ -282,9 +282,9 @@ namespace fyiReporting.RDL
 		{
 			// When the guess is close the result should almost be 0
 			if (rate == 0)
-				return pmt*periods + pv + fv;
+				return (pmt*periods) + pv + fv;
 			double temp = Math.Pow(1+rate, periods);
-			return pv*temp + pmt*(1 + rate*type)*((temp - 1)/rate) + fv;
+			return (pv*temp) + (pmt*(1 + (rate*type))*((temp - 1)/rate)) + fv;
 		}
 
 		/// <summary>

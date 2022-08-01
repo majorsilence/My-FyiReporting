@@ -55,7 +55,9 @@ namespace fyiReporting.RDL
                 // 0 1 2 3 4 5 6 7
                 // X X X X X X C X                
                 // if C = 1 Data int16 else float!
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                                
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
 
@@ -116,8 +118,8 @@ namespace fyiReporting.RDL
                     PagePie pl = new PagePie();
                     pl.StartAngle = StartAngle;
                     pl.SweepAngle = SweepAngle;
-                    pl.X = X + recX * SCALEFACTOR;
-                    pl.Y = Y + recY * SCALEFACTOR;
+                    pl.X = X + (recX * SCALEFACTOR);
+                    pl.Y = Y + (recY * SCALEFACTOR);
                     pl.W = recWidth * SCALEFACTOR;
                     pl.H = recHeight * SCALEFACTOR;
 

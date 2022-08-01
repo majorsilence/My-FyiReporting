@@ -53,8 +53,10 @@ namespace fyiReporting.RDL
                 // 0 1 2 3 4 5 6 7
                 // X X X X X X C S                
                 // if C = 1 Data int16 else float!
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
-                bool BrushIsARGB = ((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
                 Brush b;
@@ -103,8 +105,8 @@ namespace fyiReporting.RDL
             for (int i = 0; i < NumberOfPoints; i++)
             {
                   
-                Ps[i].X = (float)(X +_br.ReadSingle() * SCALEFACTOR);
-                Ps[i].Y = (float)(Y + _br.ReadSingle() * SCALEFACTOR);  
+                Ps[i].X = (float)(X +(_br.ReadSingle() * SCALEFACTOR));
+                Ps[i].Y = (float)(Y + (_br.ReadSingle() * SCALEFACTOR));  
             }
             DoInstructions(Ps, b);
         }
@@ -116,8 +118,8 @@ namespace fyiReporting.RDL
             { 
                 Int16 px = _br.ReadInt16();
                 Int16 py = _br.ReadInt16();
-                Ps[i].X = X + px * SCALEFACTOR;//X + px * SCALEFACTOR;
-                Ps[i].Y = Y + py * SCALEFACTOR;//Y + py * SCALEFACTOR;
+                Ps[i].X = X + (px * SCALEFACTOR);//X + px * SCALEFACTOR;
+                Ps[i].Y = Y + (py * SCALEFACTOR);//Y + py * SCALEFACTOR;
             } 
             DoInstructions(Ps, b);
         }

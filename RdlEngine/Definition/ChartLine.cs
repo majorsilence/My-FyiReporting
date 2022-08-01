@@ -131,7 +131,7 @@ namespace fyiReporting.RDL
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
 
-					int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat);
+					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
 					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = p;
@@ -160,7 +160,7 @@ namespace fyiReporting.RDL
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat);
+				int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 				double sum=0;
 				for (int iCol = 1; iCol <= SeriesCount; iCol++)
 				{
@@ -186,7 +186,7 @@ namespace fyiReporting.RDL
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
 
-					int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat);
+					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) ((Math.Min(v,max) / max) * maxPointHeight);
 					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = saveAllP[iRow-1, iCol-1];
@@ -217,7 +217,7 @@ namespace fyiReporting.RDL
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat);
+				int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 				double v=0;
 				for (int iCol = 1; iCol <= SeriesCount; iCol++)
 				{
@@ -237,7 +237,7 @@ namespace fyiReporting.RDL
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
 
-					int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat);
+					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
 					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = saveAllP[iRow-1, iCol-1];
@@ -271,7 +271,7 @@ namespace fyiReporting.RDL
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
 
-					int x = (int) (Layout.PlotArea.Left + (iRow-1) * widthCat + widthCat/2 );
+					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat) + (widthCat/2) );
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
 					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = p;
@@ -332,7 +332,7 @@ namespace fyiReporting.RDL
 				}
 				else
 				{	// The bottom is the previous line
-					poly = new PointF[points.Length * 2 + 1];
+					poly = new PointF[(points.Length * 2) + 1];
 					int i=0;
 					foreach (Point pt in points)
 					{
