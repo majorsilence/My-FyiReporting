@@ -93,7 +93,7 @@ namespace fyiReporting.RDL
 
 			double result;
 			if (wc.Count > 1)
-				result = Math.Sqrt((wc.Count * wc.Sum2 - wc.Sum*wc.Sum) / (wc.Count * (wc.Count-1)));
+				result = Math.Sqrt(((wc.Count * wc.Sum2) - (wc.Sum*wc.Sum)) / (wc.Count * (wc.Count-1)));
 			else
 				result = double.NaN;
 

@@ -581,7 +581,7 @@ namespace fyiReporting.RDL
         internal override void Draw(Graphics g, float scale, float offX, float offY)
         {
             Font f = this.GetFont(scale);
-            g.DrawString(this.Text, f, Brushes.Black, new PointF(offX + this.Location.X * scale, offY + this.Location.Y * scale));
+            g.DrawString(this.Text, f, Brushes.Black, new PointF(offX + (this.Location.X * scale), offY + (this.Location.Y * scale)));
             f.Dispose();
         }
     }

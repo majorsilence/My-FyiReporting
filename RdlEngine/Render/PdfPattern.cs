@@ -374,7 +374,7 @@ namespace fyiReporting.RDL
             }
             for (int i = 0; i <= 25; i++)
             {
-            	stream.AppendFormat("\r\n\t .5 w\t[] 0 d\t {0} 53 m\t{0} 56 l\tS\t\t",i*4 + 2,i*4 + 2);
+            	stream.AppendFormat("\r\n\t .5 w\t[] 0 d\t {0} 53 m\t{0} 56 l\tS\t\t",(i*4) + 2,(i*4) + 2);
             }
            	stream.Append("\r\n\t .5 w\t[] 0 d\t 0 50 m\t100 50 l\tS\t\t");
             stream.Append("\r\n\t .5 w\t[] 0 d\t 0 53 m\t100 53 l\tS\t\t");
@@ -407,7 +407,7 @@ namespace fyiReporting.RDL
             }
             for (int i = 0; i <= 25; i++)
             {
-            	stream.AppendFormat("\r\n\t .5 w\t[] 0 d\t {0} 53 m\t{0} 56 l\tS\t\t",i*4 + 2,i*4 + 2);
+            	stream.AppendFormat("\r\n\t .5 w\t[] 0 d\t {0} 53 m\t{0} 56 l\tS\t\t",(i*4) + 2,(i*4) + 2);
             }
            	stream.Append("\r\n\t .5 w\t[] 0 d\t 0 50 m\t100 50 l\tS\t\t");
             stream.Append("\r\n\t .5 w\t[] 0 d\t 0 53 m\t100 53 l\tS\t\t");

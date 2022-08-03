@@ -51,7 +51,10 @@ namespace fyiReporting.RDL
                 UInt16 RealFlags = _fr.ReadByte();
                 //XXXXXAXX - if A = 1 the transform matrix is post-multiplied else pre-multiplied...
                 //01234567
-                postMultiplyTransform = ((RealFlags & (UInt16)Math.Pow(2, 5)) == Math.Pow(2, 5));
+
+                //PJR20220801 - (int) Math.Pow(2,5) !=32 it's 31!!! Argh!!!
+                postMultiplyTransform = ((RealFlags >> 5) & 1) == 1;//((RealFlags & (UInt16)Math.Pow(2, 5)) == Math.Pow(2, 5));
+
                 PageScale = BitConverter.ToSingle(RecordData, 0);
                 
             }

@@ -94,7 +94,7 @@ namespace fyiReporting.RDL
 			double result;
 			if (count > 1)
 			{
-				result = (count * sum2 - sum*sum) / (count * (count-1));
+				result = ((count * sum2) - (sum*sum)) / (count * (count-1));
 			}
 			else
 				result = double.NaN;

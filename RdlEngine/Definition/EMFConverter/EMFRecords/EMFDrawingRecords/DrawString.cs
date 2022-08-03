@@ -61,7 +61,8 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                bool BrushIsARGB = ((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+                //PJR20220801 - (int) Math.Pow(2,7) !=128 it's 127!!! Argh!!!
+                bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
                 Brush b;
                 if (BrushIsARGB)
                 {
@@ -130,8 +131,8 @@ namespace fyiReporting.RDL
 
             PageText pt = new PageText(Text);
 
-            pt.X = X + recX * SCALEFACTOR;
-            pt.Y = Y + recY * SCALEFACTOR;
+            pt.X = X + (recX * SCALEFACTOR);
+            pt.Y = Y + (recY * SCALEFACTOR);
             pt.W = recWidth * SCALEFACTOR;
             pt.H = recHeight * SCALEFACTOR;          
             StyleInfo SI = new StyleInfo();

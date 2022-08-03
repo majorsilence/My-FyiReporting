@@ -256,7 +256,7 @@ namespace fyiReporting.RDL
                         const int horzLineHeight = 10;
                         pl.SI = cs.Clone() as StyleInfo;
                         pl.SI.BStyleLeft = BorderStyleEnum.Ridge;
-                        pl.Y = pl.Y2 = this.Y + yPos + horzLineHeight / 2;
+                        pl.Y = pl.Y2 = this.Y + yPos + (horzLineHeight / 2);
                         pl.X = this.X;
                         pl.X2 = pl.X + this.W;
                         _items.Add(pl);
