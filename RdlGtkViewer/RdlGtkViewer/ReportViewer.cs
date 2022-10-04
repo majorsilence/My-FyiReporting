@@ -661,7 +661,7 @@ namespace fyiReporting.RdlGtkViewer
                 {
                     Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
                                Gtk.ButtonsType.Ok, false, 
-                               "Error Saving Copy of PDF." + System.Environment.NewLine + ex.Message);
+                               $"Error Saving Copy of {fc.Filter?.Name}." + System.Environment.NewLine + ex.Message);
 						
                     m.Run();
                     m.Destroy();
