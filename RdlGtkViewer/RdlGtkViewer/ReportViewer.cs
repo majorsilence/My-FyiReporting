@@ -606,8 +606,7 @@ namespace fyiReporting.RdlGtkViewer
                         }
                     }
 
-
-                    string directory = filename.Remove(filename.LastIndexOf(@"\")+1);
+                    string directory = System.IO.Path.GetDirectoryName(filename);
 
                     var files = Directory.GetFiles(directory, searchPattern);
 
