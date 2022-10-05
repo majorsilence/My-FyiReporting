@@ -749,7 +749,7 @@ namespace fyiReporting.RDL
 
         string ColumnIndexToName(int columnIndex)
         {
-            char second = (char)(((int)'A') + columnIndex % 26);
+            char second = (char)(((int)'A') + (columnIndex % 26));
             columnIndex /= 26;
             if (columnIndex == 0)
                 return second.ToString();

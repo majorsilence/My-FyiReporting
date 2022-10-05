@@ -147,13 +147,13 @@ namespace fyiReporting.RDL
 			// Draw Plot area data
 			double max = 1;
 
-			int widthBar = (int) ((Layout.PlotArea.Width - gapsNeeded*_GapSize) / barsNeeded);
+			int widthBar = (int) ((Layout.PlotArea.Width - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarHeight = (int) (Layout.PlotArea.Height);	
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Left + (iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Left + ((iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount)));
 				barLoc += _GapSize;	// space before series
 
 				double sum=0;
@@ -228,7 +228,7 @@ namespace fyiReporting.RDL
 			int gapsNeeded = CategoryCount * 2;
 
 			// Draw Plot area data
-			int widthBar = (int) ((Layout.PlotArea.Width - gapsNeeded*_GapSize) / barsNeeded);
+			int widthBar = (int) ((Layout.PlotArea.Width - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarHeight = (int) (Layout.PlotArea.Height);
             /* The following list has been added to keep track of the
              * previous point for drawing a line intead of a column
@@ -239,10 +239,10 @@ namespace fyiReporting.RDL
             int lineLoc;
 			for (int iRow=1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Left + (iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Left + ((iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount)));
 
 				barLoc += _GapSize;	// space before series
-                lineLoc = barLoc + widthBar * ColumnCount / 2;
+                lineLoc = barLoc + (widthBar * ColumnCount / 2);
                 for (int z = 0; z < 2; z++) 
                 {
                     for (int iCol = 1; iCol <= SeriesCount; iCol++)
@@ -384,20 +384,20 @@ namespace fyiReporting.RDL
                 case ChartMarkerEnum.Plus:                
                    
                     p2 = new Pen(b, 2.0f);
-                    g.DrawLine(p2, new Point(x + (mSize + 1) / 2, y), new Point(x + (mSize + 1) / 2, y + mSize));
+                    g.DrawLine(p2, new Point(x + ((mSize + 1) / 2), y), new Point(x + ((mSize + 1) / 2), y + mSize));
                     //g.DrawLine(p2, new Point(x + (mSize + 1) / 2, y + (mSize + 1) / 2), new Point(x + mSize, y + (mSize + 1) / 2));
                     break;
                 case ChartMarkerEnum.Diamond:
                     points = new PointF[5];
-                    points[0] = points[4] = new PointF(x + (mSize + 1) / 2, y);	// starting and ending point
-                    points[1] = new PointF(x, y + (mSize + 1) / 2);
-                    points[2] = new PointF(x + (mSize + 1) / 2, y + mSize);
-                    points[3] = new PointF(x + mSize, y + (mSize + 1) / 2);
+                    points[0] = points[4] = new PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
+                    points[1] = new PointF(x, y + ((mSize + 1) / 2));
+                    points[2] = new PointF(x + ((mSize + 1) / 2), y + mSize);
+                    points[3] = new PointF(x + mSize, y + ((mSize + 1) / 2));
                     g.FillPolygon(b, points);
                     break;
                 case ChartMarkerEnum.Triangle:
                     points = new PointF[4];
-                    points[0] = points[3] = new PointF(x + (mSize + 1) / 2, y);	// starting and ending point
+                    points[0] = points[3] = new PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
                     points[1] = new PointF(x, y + mSize);
                     points[2] = new PointF(x + mSize, y + mSize);
                     g.FillPolygon(b, points);
@@ -458,13 +458,13 @@ namespace fyiReporting.RDL
 			int barsNeeded = CategoryCount; 
 			int gapsNeeded = CategoryCount * 2;
 
-			int widthBar = (int) ((Layout.PlotArea.Width - gapsNeeded*_GapSize) / barsNeeded);
+			int widthBar = (int) ((Layout.PlotArea.Width - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarHeight = (int) (Layout.PlotArea.Height);	
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Left + (iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Left + ((iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount)));
 				barLoc += _GapSize;	// space before series
 
 				double v=0;
@@ -635,7 +635,7 @@ namespace fyiReporting.RDL
                     CurrentDate = (DateTime)v;
                               
                 }
-                int drawLoc=(int) (rect.Left + (iRow-1) * ((double) rect.Width / catCount));
+                int drawLoc=(int) (rect.Left + ((iRow-1) * ((double) rect.Width / catCount)));
                
 				// Draw the category text
                 int skip = 0;
@@ -659,7 +659,7 @@ namespace fyiReporting.RDL
 					if (ChartDefn.Type == ChartTypeEnum.Area)
 					{	// Area chart - value is centered under the tick mark
 						drawRect = 
-								new System.Drawing.Rectangle(drawLoc - size.Width/2, rect.Top+tickSize, size.Width, size.Height);
+								new System.Drawing.Rectangle(drawLoc - (size.Width/2), rect.Top+tickSize, size.Width, size.Height);
 					}
 					else	// Column/Line charts are just centered in the region.
 						drawRect = new System.Drawing.Rectangle(drawLoc, rect.Top+tickSize, drawWidth, rect.Height-tSize.Height);
@@ -687,7 +687,7 @@ namespace fyiReporting.RDL
                         CurrentDate = CurrentDate.AddMonths(OldDate.Month - CurrentDate.Month); // get previous category month value
                         string MonthString = CurrentDate.ToString("MMMM");
                         Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
-                        int catlabelLoc = (int)((drawLoc - PreviousLocation) / 2) + PreviousLocation - lSize.Width / 2;
+                        int catlabelLoc = (int)((drawLoc - PreviousLocation) / 2) + PreviousLocation - (lSize.Width / 2);
                         DrawCategoryLabel(rpt, g, MonthString, a.Style, new System.Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
                         PreviousLocation = drawLoc;
                         OldDate = TempDate;
@@ -708,7 +708,7 @@ namespace fyiReporting.RDL
             {
                 string MonthString = OldDate.ToString("MMMM");
                 Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
-                int catlabelLoc = (int)((rect.Right - PreviousLocation) / 2) + PreviousLocation - lSize.Width / 2;
+                int catlabelLoc = (int)((rect.Right - PreviousLocation) / 2) + PreviousLocation - (lSize.Width / 2);
                 DrawCategoryLabel(rpt, g, MonthString, a.Style, new System.Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
             }
                     
@@ -816,14 +816,14 @@ namespace fyiReporting.RDL
 				{
 					Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
 					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - size.Height/2, rect.Width-tSize.Width, size.Height);
+						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
 					s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
 				}
 				else
 				{
 					Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
 					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - size.Height/2, rect.Width-tSize.Width, size.Height);
+						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
 					Style.DrawStringDefaults(g, v, vRect);
 				}
 
@@ -873,7 +873,7 @@ namespace fyiReporting.RDL
 
 
             double logPow = Math.Pow(10, log) * Math.Sign(thisMax);
-            double logDig = (int)(incr / logPow + .5);
+            double logDig = (int)((incr / logPow) + .5);
 
             // promote the MSD to either 1, 2, or 5
             if (logDig > 5.0)
@@ -896,7 +896,7 @@ namespace fyiReporting.RDL
             }
 
             double tmpMax = thisMax;
-            thisMax = (int)(logDig * logPow * _gridIncrs + 0.5);
+            thisMax = (int)((logDig * logPow * _gridIncrs) + 0.5);
             if (tmpMax > thisMax - ((thisMax / _gridIncrs) * .5))
             {
 
@@ -1007,14 +1007,14 @@ namespace fyiReporting.RDL
                 {
                     Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - size.Height / 2, rect.Width - tSize.Width, size.Height);
+                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - tSize.Width, size.Height);
                     s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
                 }
                 else
                 {
                     Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
                     System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - size.Height / 2, rect.Width - tSize.Width * 2, size.Height);
+                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - (tSize.Width * 2), size.Height);
                     Style.DrawStringDefaults(g, v, vRect);
                 }          
 

@@ -244,18 +244,18 @@ namespace fyiReporting.RDL
 						}
 						totalHeight = (int) (maxTextHeight + (maxTextHeight * .1));
 						h = totalHeight;
-						totalItemWidth = maxTextWidth + boxSize * 2; 
+						totalItemWidth = maxTextWidth + (boxSize * 2); 
 						drawFormat.Alignment = StringAlignment.Near;	// Force alignment to near
 						break;
 					case LegendLayoutEnum.Table:
                         // for table we simplify to have TWO columns (i.e. don't do anything too tricky
-                        totalWidth = totalItemWidth = (maxTextWidth + boxSize * 2) * 2;     // make width twice as big as longest entry
+                        totalWidth = totalItemWidth = (maxTextWidth + (boxSize * 2)) * 2;     // make width twice as big as longest entry
                         h = (int)(maxTextHeight + (maxTextHeight * .1));
-                        totalHeight = h * (SeriesCount + SeriesCount % 2) / 2;
+                        totalHeight = h * (SeriesCount + (SeriesCount % 2)) / 2;
                         break;
 					case LegendLayoutEnum.Column:
 					default:
-						totalWidth = totalItemWidth = maxTextWidth + boxSize * 2; 
+						totalWidth = totalItemWidth = maxTextWidth + (boxSize * 2); 
 						h = (int) (maxTextHeight + (maxTextHeight * .1));
 						totalHeight = h * SeriesCount;
 						break;
@@ -402,7 +402,7 @@ namespace fyiReporting.RDL
 					switch (l.Layout)
 					{
 						case LegendLayoutEnum.Row:
-							rect = new System.Drawing.Rectangle(x + boxSize + boxSize/2, y, totalItemWidth - boxSize - boxSize/2, h);
+							rect = new System.Drawing.Rectangle(x + boxSize + (boxSize/2), y, totalItemWidth - boxSize - (boxSize/2), h);
                                 if (c != "") //14052008WRP to cater for empty strings in the legend
                                 {
 							g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
@@ -422,11 +422,11 @@ namespace fyiReporting.RDL
                                     }
 
 
-							x += (sizes[iCol-1].Width + boxSize*2); 
+							x += (sizes[iCol-1].Width + (boxSize*2)); 
                                 }
 							break;
 						case LegendLayoutEnum.Table:
-                            rect = new System.Drawing.Rectangle(x + boxSize + boxSize / 2, y, maxTextWidth, h);
+                            rect = new System.Drawing.Rectangle(x + boxSize + (boxSize / 2), y, maxTextWidth, h);
                             g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
 
                                 if (cm != ChartMarkerEnum.None && (t == typeof(System.Drawing.Drawing2D.HatchBrush))) //GJL 110208 - Don't draw pattern for lines
@@ -453,7 +453,7 @@ namespace fyiReporting.RDL
                             break;
                         case LegendLayoutEnum.Column:
 						default:
-							rect = new System.Drawing.Rectangle(x + boxSize + boxSize/2, y, maxTextWidth, h);
+							rect = new System.Drawing.Rectangle(x + boxSize + (boxSize/2), y, maxTextWidth, h);
 							g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
 
 
@@ -508,10 +508,10 @@ namespace fyiReporting.RDL
 					p = new Pen(b,intLineSize);
                     if (this.ChartDefn.Type != ChartTypeEnum.Scatter)
                     {
-					g.DrawLine(p,  new Point(x, y + (boxSize + 1)/2), new Point(x + boxSize, y + (boxSize + 1)/2));
+					g.DrawLine(p,  new Point(x, y + ((boxSize + 1)/2)), new Point(x + boxSize, y + ((boxSize + 1)/2)));
                     }
-					x = x + (boxSize - mSize)/2;
-					y = y + (boxSize - mSize)/2;
+					x = x + ((boxSize - mSize)/2);
+					y = y + ((boxSize - mSize)/2);
 					if (mSize % 2 == 0)		
 						mSize++;
 				}
@@ -528,7 +528,7 @@ namespace fyiReporting.RDL
                 {
                     // this is only to draw lines for line plot types on scatter charts
                     p = new Pen(b, intLineSize);
-                    g.DrawLine(p, new Point(x, y + (boxSize + 1) / 2), new Point(x + boxSize, y + (boxSize + 1) / 2));
+                    g.DrawLine(p, new Point(x, y + ((boxSize + 1) / 2)), new Point(x + boxSize, y + ((boxSize + 1) / 2)));
                 }
 				else
 				{
@@ -557,20 +557,20 @@ namespace fyiReporting.RDL
 				case ChartMarkerEnum.Plus:
 					// 20022008 AJM GJL - Changed to line - plus is hard to see
                     p = new Pen(p.Brush, 2);
-					g.DrawLine(p, new Point(x + (mSize + 1)/2, y), new Point(x + (mSize + 1)/2, y + mSize));
+					g.DrawLine(p, new Point(x + ((mSize + 1)/2), y), new Point(x + ((mSize + 1)/2), y + mSize));
 					//g.DrawLine(p, new Point(x + (mSize + 1)/2, y + (mSize+1)/2), new Point(x + mSize, y + (mSize+1)/2));
 					break;
 				case ChartMarkerEnum.Diamond:
 					points = new PointF[5];
-					points[0] = points[4] = new Point(x + (mSize + 1)/2, y);	// starting and ending point
-					points[1] = new PointF(x, y + (mSize+1)/2);
-					points[2] = new PointF(x + (mSize+1)/2, y+mSize);
-					points[3] = new PointF(x + mSize, y + (mSize+1)/2);
+					points[0] = points[4] = new Point(x + ((mSize + 1)/2), y);	// starting and ending point
+					points[1] = new PointF(x, y + ((mSize+1)/2));
+					points[2] = new PointF(x + ((mSize+1)/2), y+mSize);
+					points[3] = new PointF(x + mSize, y + ((mSize+1)/2));
 					g.FillPolygon(b, points);
 					break;
 				case ChartMarkerEnum.Triangle:
 					points = new PointF[4];
-					points[0] = points[3] = new PointF(x + (mSize + 1)/2, y);	// starting and ending point
+					points[0] = points[3] = new PointF(x + ((mSize + 1)/2), y);	// starting and ending point
 					points[1] = new PointF(x, y + mSize);
 					points[2] = new PointF(x + mSize, y + mSize);
 					g.FillPolygon(b, points);
@@ -1390,7 +1390,7 @@ namespace fyiReporting.RDL
 
 
 				double logPow = Math.Pow(10, log) * Math.Sign(max);
-                double logDig = (int) (incr / logPow + .5);
+                double logDig = (int) ((incr / logPow) + .5);
 
 				// promote the MSD to either 1, 2, or 5
                 if (logDig > 5.0)
@@ -1461,8 +1461,8 @@ namespace fyiReporting.RDL
 			// Force some margins; if any are too small
 			int min = new RSize(ChartDefn.OwnerReport, ".2 in").PixelsX;
 
-			if (Layout.RightMargin < min + this._LastCategoryWidth/2)
-				Layout.RightMargin = min + this._LastCategoryWidth/2;
+			if (Layout.RightMargin < min + (this._LastCategoryWidth/2))
+				Layout.RightMargin = min + (this._LastCategoryWidth/2);
 			if (Layout.LeftMargin < min)
 				Layout.LeftMargin = min;
 			if (Layout.TopMargin < min)

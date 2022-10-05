@@ -618,7 +618,7 @@ namespace fyiReporting.RDL
                         case TextAlignEnum.Center:
                             if (width > 0)
                             {
-                                startX = x + si.PaddingLeft + (width - si.PaddingLeft - si.PaddingRight) / 2 - textwidth / 2;
+                                startX = x + si.PaddingLeft + ((width - si.PaddingLeft - si.PaddingRight) / 2) - (textwidth / 2);
                                 align = Element.ALIGN_CENTER;
                             }
                             break;
@@ -643,17 +643,17 @@ namespace fyiReporting.RDL
                                 break;
 
                             // calculate the middle of the region
-                            startY = y + si.PaddingTop + (height - si.PaddingTop - si.PaddingBottom) / 2 - si.FontSize / 2;
+                            startY = y + si.PaddingTop + ((height - si.PaddingTop - si.PaddingBottom) / 2) - (si.FontSize / 2);
                             // now go up or down depending on which line
                             if (sa.Length == 1)
                                 break;
                             if (sa.Length % 2 == 0)	// even number
                             {
-                                startY = startY - ((sa.Length / 2 - i) * si.FontSize) + si.FontSize / 2;
+                                startY = startY - (((sa.Length / 2) - i) * si.FontSize) + (si.FontSize / 2);
                             }
                             else
                             {
-                                startY = startY - ((sa.Length / 2 - i) * si.FontSize);
+                                startY = startY - (((sa.Length / 2) - i) * si.FontSize);
                             }
                             break;
                         case VerticalAlignEnum.Bottom:
@@ -676,7 +676,7 @@ namespace fyiReporting.RDL
                     {
                         case TextAlignEnum.Center:
                             if (height > 0)
-                                startY = y + si.PaddingLeft + (height - si.PaddingLeft - si.PaddingRight) / 2 - textwidth / 2;
+                                startY = y + si.PaddingLeft + ((height - si.PaddingLeft - si.PaddingRight) / 2) - (textwidth / 2);
                             break;
                         case TextAlignEnum.Right:
                             if (width > 0)

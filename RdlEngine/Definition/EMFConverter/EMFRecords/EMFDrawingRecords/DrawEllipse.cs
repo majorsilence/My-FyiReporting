@@ -55,7 +55,8 @@ namespace fyiReporting.RDL
                 // 0 1 2 3 4 5 6 7
                 // X X X X X X C X
                 // if C = 1 int16, 0 = Points are Float (ignore P)              
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
@@ -106,8 +107,8 @@ namespace fyiReporting.RDL
             }
 
             PageEllipse pl = new PageEllipse();
-            pl.X = X + Xp * SCALEFACTOR;
-            pl.Y = Y + Yp * SCALEFACTOR;
+            pl.X = X + (Xp * SCALEFACTOR);
+            pl.Y = Y + (Yp * SCALEFACTOR);
             pl.W = Wid * SCALEFACTOR;
             pl.H = Hgt * SCALEFACTOR;
 

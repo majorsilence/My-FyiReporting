@@ -234,8 +234,8 @@ namespace fyiReporting.RDL
                     {
                         for (int j = 0; j < repeatY; j++)
                         {
-                            currX = startX + i * imW;
-                            currY = startY + j * imH;
+                            currX = startX + (i * imW);
+                            currY = startY + (j * imH);
                        
                            
 

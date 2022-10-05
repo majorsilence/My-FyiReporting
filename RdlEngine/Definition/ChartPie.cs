@@ -130,7 +130,7 @@ namespace fyiReporting.RDL
 				for (int iCol=1; iCol <= SeriesCount; iCol++)
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
-					endAngle = (float) (startAngle + v / total * 360);
+					endAngle = (float) (startAngle + (v / total * 360));
 
                     DrawPie(g, rpt, GetSeriesBrush(rpt, iRow, iCol), 
 						new System.Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
@@ -159,10 +159,10 @@ namespace fyiReporting.RDL
 			int gapSize=13;
 
 			// Draw Plot area data
-			int widthPie = (int) ((Layout.PlotArea.Width - gapsNeeded*gapSize) / piesNeeded);
+			int widthPie = (int) ((Layout.PlotArea.Width - (gapsNeeded*gapSize)) / piesNeeded);
 			int maxHeight = (int) (Layout.PlotArea.Height);	
 			int maxPieSize = Math.Min(widthPie, maxHeight);
-			int pieLocY = Layout.PlotArea.Top + (maxHeight - maxPieSize) / 2;
+			int pieLocY = Layout.PlotArea.Top + ((maxHeight - maxPieSize) / 2);
 
 			float startAngle;
 			float endAngle;
@@ -184,7 +184,7 @@ namespace fyiReporting.RDL
 			// Go and draw the pies
 			for (int iRow=1; iRow <= CategoryCount; iRow++)
 			{
-				int pieLocX=(int) (Layout.PlotArea.Left + (iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount));
+				int pieLocX=(int) (Layout.PlotArea.Left + ((iRow-1) * ((double) (Layout.PlotArea.Width) / CategoryCount)));
 
 				pieLocX += gapSize;	// space before series
 				double total=0;
@@ -199,7 +199,7 @@ namespace fyiReporting.RDL
 				for (int iCol=1; iCol <= SeriesCount; iCol++)
 				{
 					double v = this.GetDataValue(rpt, iRow, iCol);
-					endAngle = (float) (startAngle + v / total * 360);
+					endAngle = (float) (startAngle + (v / total * 360));
 
                     DrawPie(g, rpt, GetSeriesBrush(rpt, iRow, iCol), 
 						new System.Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
@@ -268,7 +268,7 @@ namespace fyiReporting.RDL
 			{
 				object v = this.GetCategoryValue(rpt, iRow, out tc);
 
-				int drawLoc=(int) (rect.Left + (iRow-1) * ((double) rect.Width / CategoryCount));
+				int drawLoc=(int) (rect.Left + ((iRow-1) * ((double) rect.Width / CategoryCount)));
 
 				// Draw the category text
 				if (a.Visible)
@@ -294,7 +294,7 @@ namespace fyiReporting.RDL
 				int adjX, adjY;
 				adjX = adjY = (int) (side * .1);
 
-				float midAngle = startAngle + (endAngle - startAngle)/2;
+				float midAngle = startAngle + ((endAngle - startAngle)/2);
 
 				if (midAngle < 90)
 				{

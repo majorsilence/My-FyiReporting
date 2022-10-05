@@ -62,8 +62,8 @@ namespace fyiReporting.RDL
                     //si.BackgroundColor = Color.Blue;// Just a test to see where the tooltip is being drawn
                     string[] ttd = PData.Split('|');
                     pr.Tooltip = ttd[0].Split(':')[1];
-                    pr.X = X + Single.Parse(ttd[1].Split(':')[1]) * SCALEFACTOR;
-                    pr.Y = Y + Single.Parse(ttd[2].Split(':')[1]) * SCALEFACTOR;
+                    pr.X = X + (Single.Parse(ttd[1].Split(':')[1]) * SCALEFACTOR);
+                    pr.Y = Y + (Single.Parse(ttd[2].Split(':')[1]) * SCALEFACTOR);
                     pr.W = Single.Parse(ttd[3].Split(':')[1]) * SCALEFACTOR;
                     pr.H = Single.Parse(ttd[4].Split(':')[1]) * SCALEFACTOR;
                     items.Add(pr);
@@ -80,8 +80,8 @@ namespace fyiReporting.RDL
                     pp.Tooltip = ttd[0].Split(':')[1];
                     for (int i = 0; i < pts.Length; i++)
                     {
-                        pts[i].X = X + Single.Parse(ttd[i*2 +1]) * SCALEFACTOR;
-                        pts[i].Y = Y + Single.Parse(ttd[i*2 +2]) * SCALEFACTOR;
+                        pts[i].X = X + (Single.Parse(ttd[(i*2) +1]) * SCALEFACTOR);
+                        pts[i].Y = Y + (Single.Parse(ttd[(i*2) +2]) * SCALEFACTOR);
                     }
                     items.Add(pp);
                 }

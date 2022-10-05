@@ -53,8 +53,10 @@ namespace fyiReporting.RDL
                 // 0 1 2 3 4 5 6 7
                 // X X X X X X C S                
                 // if C = 1 Data int16 else float!
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
-                bool BrushIsARGB = ((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
                 Brush b;
@@ -124,8 +126,8 @@ namespace fyiReporting.RDL
             pl.SweepAngle = SweepAngle;
 
             StyleInfo SI = new StyleInfo();
-            pl.X = X + recX * SCALEFACTOR;
-            pl.Y = Y + recY * SCALEFACTOR;
+            pl.X = X + (recX * SCALEFACTOR);
+            pl.Y = Y + (recY * SCALEFACTOR);
             pl.W = recWidth * SCALEFACTOR;
             pl.H = recHeight * SCALEFACTOR;
 

@@ -92,7 +92,7 @@ namespace fyiReporting.RDL
 			// n % d = n - d*INT(n/d)  where INT rounds a number down to the nearest integer
 			double temp = (int) (lhs/rhs);
 
-			return lhs - rhs*temp;
+			return lhs - (rhs*temp);
 		}
         
         public int EvaluateInt32(Report rpt, Row row)

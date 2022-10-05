@@ -57,8 +57,10 @@ namespace fyiReporting.RDL
                 // X X X X X X C S
                 // if S = 1 brushID is an ARGBobject, else its an Index to object table
                 // if C = 1 int16, 0 = Points are Float (ignore P)              
-                bool Compressed = ((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
-                bool BrushIsARGB = ((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+                //PJR20220801 - (int) Math.Pow(2,6) !=64 it's 63!!! Argh!!!
+                bool Compressed = ((RealFlags >> 6) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 6)) == (int)Math.Pow(2, 6));
+                bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
+
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
                 Brush b;
@@ -116,8 +118,8 @@ namespace fyiReporting.RDL
                     System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)b;
                     Color col = theBrush.Color;  
                     PageEllipse pl = new PageEllipse();
-                    pl.X = X + Xp * SCALEFACTOR;
-                    pl.Y = Y + Yp * SCALEFACTOR;
+                    pl.X = X + (Xp * SCALEFACTOR);
+                    pl.Y = Y + (Yp * SCALEFACTOR);
                     pl.W = Wid * SCALEFACTOR;
                     pl.H = Hgt * SCALEFACTOR;
 

@@ -117,13 +117,13 @@ namespace fyiReporting.RDL
 			// Draw Plot area data
 			double max = 1;
 
-			int heightBar = (int) ((Layout.PlotArea.Height - gapsNeeded*_GapSize) / barsNeeded);
+			int heightBar = (int) ((Layout.PlotArea.Height - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarWidth = (int) (Layout.PlotArea.Width);	
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Top  + (iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Top  + ((iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount)));
 				barLoc += _GapSize;	// space before series
 
 				double sum=0;
@@ -168,13 +168,13 @@ namespace fyiReporting.RDL
 			int gapsNeeded = CategoryCount * 2;
 
 			// Draw Plot area data
-			int heightBar = (int) ((Layout.PlotArea.Height - gapsNeeded*_GapSize) / barsNeeded);
+			int heightBar = (int) ((Layout.PlotArea.Height - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarWidth = (int) (Layout.PlotArea.Width);	
 
 			//int barLoc=Layout.LeftMargin;
 			for (int iRow=1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Top  + (iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Top  + ((iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount)));
 				barLoc += _GapSize;	// space before series
 				for (int iCol=1; iCol <= SeriesCount; iCol++)
 				{
@@ -201,13 +201,13 @@ namespace fyiReporting.RDL
 			int barsNeeded = CategoryCount; 
 			int gapsNeeded = CategoryCount * 2;
 
-			int heightBar = (int) ((Layout.PlotArea.Height - gapsNeeded*_GapSize) / barsNeeded);
+			int heightBar = (int) ((Layout.PlotArea.Height - (gapsNeeded*_GapSize)) / barsNeeded);
 			int maxBarWidth = (int) (Layout.PlotArea.Width);	
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
 			{
-				int barLoc=(int) (Layout.PlotArea.Top  + (iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount));
+				int barLoc=(int) (Layout.PlotArea.Top  + ((iRow-1) * ((double) (Layout.PlotArea.Height) / CategoryCount)));
 				barLoc += _GapSize;	// space before series
 
 				double v=0;
@@ -301,7 +301,7 @@ namespace fyiReporting.RDL
 			{
 				object v = this.GetCategoryValue(rpt, iRow, out tc);
 
-				int drawLoc=(int) (rect.Top + (iRow-1) * ((double) rect.Height / CategoryCount));
+				int drawLoc=(int) (rect.Top + ((iRow-1) * ((double) rect.Height / CategoryCount)));
 
 				// Draw the category text
 				if (a.Visible)
@@ -402,14 +402,14 @@ namespace fyiReporting.RDL
 				{
 					size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
 					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left + x - size.Width/2, rect.Top+tickSize, size.Width, size.Height);
+						new System.Drawing.Rectangle(rect.Left + x - (size.Width/2), rect.Top+tickSize, size.Width, size.Height);
 					s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
 				}
 				else
 				{
 					size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
 					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left + x - size.Width/2, rect.Top+tickSize, size.Width, size.Height);
+						new System.Drawing.Rectangle(rect.Left + x - (size.Width/2), rect.Top+tickSize, size.Width, size.Height);
 					Style.DrawStringDefaults(g, v, vRect);
 				}
 				if (size.Height > maxValueHeight)		// Need to keep track of the maximum height
