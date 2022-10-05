@@ -117,24 +117,6 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|AnyCPU'">
-    <OutputPath>bin\BundleLinux\</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|x86'">
-    <OutputPath>bin\x86\BundleLinux\</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BundleLinux|x64'">
-    <OutputPath>bin\x64\BundleLinux\</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
@@ -149,106 +131,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BaseDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GedcomCommand.cs" />
-    <Compile Include="GedcomConnection.cs" />
-    <Compile Include="GedcomDataParameter.cs" />
-    <Compile Include="GedcomDataReader.cs" />
-    <Compile Include="iTunesCommand.cs" />
-    <Compile Include="iTunesConnection.cs" />
-    <Compile Include="iTunesDataParameter.cs" />
-    <Compile Include="iTunesDataReader.cs" />
-    <Compile Include="DataParameterCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FileDirCommand.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FileDirConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FileDirDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FileDirDataReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LexCharReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Lexer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LexToken.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LexTokenList.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LexTokenTypes.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogCommand.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogDataReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MultipleStreamReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TxtCommand.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TxtConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TxtDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TxtDataReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WebServiceCommand.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WebServiceConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WebServiceDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WebServiceDataReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="WebServiceWsdl.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XmlCommand.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XmlConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XmlDataParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="XmlDataReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -278,10 +160,4 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>
