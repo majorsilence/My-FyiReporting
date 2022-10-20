@@ -111,11 +111,15 @@ namespace RdlEngine.Render.ExcelConverter
 
 			var currentRow = AddRow(rowPosition, rowHeight);
 			foreach(var cell in tr.TableCells.Items) {
-
 				var column = CurrentExcelTable.Table.TableColumns.Items[cell.ColIndex];
+				if(column.IsHidden(Report, row))
+					continue;
 				var xPosition = CurrentExcelTable.Table.Left.Points;
 				for(int i = 0; i < cell.ColIndex; i++) {
-					xPosition += CurrentExcelTable.Table.TableColumns.Items[i].Width.Points;
+					var columnBefore = CurrentExcelTable.Table.TableColumns.Items[i];
+					if(columnBefore.IsHidden(Report, row))
+						continue;
+					xPosition += columnBefore.Width.Points;
 				}
 				var currentColumn = AddColumn(xPosition, column.Width.Points);
 				var cellTextBox = cell.ReportItems.Items.FirstOrDefault();
