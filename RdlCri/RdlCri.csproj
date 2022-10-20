@@ -203,7 +203,6 @@
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.8" />
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
