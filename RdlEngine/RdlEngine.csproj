@@ -745,6 +745,16 @@
       <DependentUpon>Strings.ru-RU.resx</DependentUpon>
     </Compile>
     <Compile Include="Runtime\ImageQualityManager.cs" />
+    <Compile Include="Runtime\Page.cs" />
+    <Compile Include="Runtime\PageItems\PageCurve.cs" />
+    <Compile Include="Runtime\PageItems\PageEllipse.cs" />
+    <Compile Include="Runtime\PageItems\PageImage.cs" />
+    <Compile Include="Runtime\PageItems\PageItem.cs" />
+    <Compile Include="Runtime\PageItems\PageLine.cs" />
+    <Compile Include="Runtime\PageItems\PagePie.cs" />
+    <Compile Include="Runtime\PageItems\PagePolygon.cs" />
+    <Compile Include="Runtime\PageItems\PageRectangle.cs" />
+    <Compile Include="Runtime\PageItems\PageText.cs" />
     <Compile Include="Runtime\ZipWrap.cs" />
     <Compile Include="Runtime\ParameterLexer.cs" />
     <Compile Include="Render\HtmlConverter\RenderHtmlTable.cs" />
