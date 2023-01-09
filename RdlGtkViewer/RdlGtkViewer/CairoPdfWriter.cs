@@ -44,15 +44,13 @@ namespace fyiReporting.RdlGtkViewer
 			
             try
             {
-                using (Cairo.PdfSurface pdf = new Cairo.PdfSurface(filename, width, height))
+                using(var pdf = new Cairo.PdfSurface(filename, width, height))
+				using(var g = new Cairo.Context(pdf))
+				using(var render = new RenderCairo(g))
                 {
-                    using (Cairo.Context g = new Cairo.Context(pdf))
-                    {
-						
-                        var render = new  fyiReporting.RdlGtkViewer.RenderCairo(g);
-                        render.RunPages(pages);
-                    }
+					render.RunPages(pages);
                 }
+                
                 byte[] bytes = File.ReadAllBytes(filename);
                 return bytes;
 				

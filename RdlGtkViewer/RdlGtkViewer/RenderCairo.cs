@@ -396,6 +396,7 @@ namespace fyiReporting.RdlGtkViewer
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
+			font.Dispose();
             g.Restore();
         }
 
@@ -487,6 +488,7 @@ namespace fyiReporting.RdlGtkViewer
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
+			font.Dispose();
             g.Restore();
         }
 
@@ -578,6 +580,7 @@ namespace fyiReporting.RdlGtkViewer
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
+			font.Dispose();
             g.Restore();
         }
         
@@ -635,11 +638,11 @@ namespace fyiReporting.RdlGtkViewer
                 gradient.AddColorStop(1, ec);
             }
 
-            if (gradient != null)
+            if(gradient != null)
             {
 ////                    g.FillRectangle(linGrBrush, rect);
                 g.FillRectangle(rect, gradient);
-                gradient.Destroy();	
+                gradient.Dispose();	
             }
             else if (!si.BackgroundColor.IsEmpty)
             {
