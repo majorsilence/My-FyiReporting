@@ -741,10 +741,14 @@ namespace fyiReporting.RdlGtkViewer
 
 		void HandlePrintDrawPage (object o, DrawPageArgs args)
 		{
-            using (Cairo.Context g = args.Context.CairoContext)
+            if(args?.Context == null || pages == null) {
+                return;
+            }
+            
+            using(var g = args.Context.CairoContext)
+			using(var render = new RenderCairo(g))
             {
-                RenderCairo render = new RenderCairo(g);
-                render.RunPage(pages[args.PageNr]);
+				render.RunPage(pages[args.PageNr]);
             }
 		}
 
@@ -754,6 +758,7 @@ namespace fyiReporting.RdlGtkViewer
             printing.BeginPrint -= HandlePrintBeginPrint;
             printing.DrawPage -= HandlePrintDrawPage;
             printing.EndPrint -= HandlePrintEndPrint;
+			printing.DefaultPageSetup.Dispose();
             printing.Dispose();
         }
 
