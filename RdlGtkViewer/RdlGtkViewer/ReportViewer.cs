@@ -748,10 +748,10 @@ namespace fyiReporting.RdlGtkViewer
                 return;
             }
             
-            using (Cairo.Context g = args.Context.CairoContext)
+            using(var g = args.Context.CairoContext)
+			using(var render = new RenderCairo(g))
             {
-                RenderCairo render = new RenderCairo(g);
-                render.RunPage(pages[args.PageNr]);
+				render.RunPage(pages[args.PageNr]);
             }
 		}
 
@@ -761,6 +761,7 @@ namespace fyiReporting.RdlGtkViewer
             printing.BeginPrint -= HandlePrintBeginPrint;
             printing.DrawPage -= HandlePrintDrawPage;
             printing.EndPrint -= HandlePrintEndPrint;
+			printing.DefaultPageSetup.Dispose();
             printing.Dispose();
         }
 

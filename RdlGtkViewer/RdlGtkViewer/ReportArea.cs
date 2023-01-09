@@ -244,43 +244,56 @@ namespace fyiReporting.RdlGtkViewer
 
 			int width = (int)(report.PageWidthPoints * Scale);
 			int height = (int)(report.PageHeightPoints * Scale);
-			Cairo.Rectangle rep_r = new Cairo.Rectangle(1, 1, width - 1, height - 1);
+			Rectangle rep_r = new Rectangle(1, 1, width - 1, height - 1);
 
 			int widgetWidth, widgetHeight;
 			ev.Window.GetSize(out widgetWidth, out widgetHeight);
 
-			using(Context g = Gdk.CairoHelper.Create(this.GdkWindow))
-			using(ImageSurface rep_s = new ImageSurface(Format.Argb32, width, height))
-			using(Context rep_g = new Context(rep_s))
-			using(ImageSurface shadow_s = rep_s.Clone())
-			using(Context shadow_g = new Context(shadow_s)) {
-
+			using(var g = Gdk.CairoHelper.Create(this.GdkWindow))
+			using(var repS = new ImageSurface(Format.Argb32, width, height))
+			using(var repG = new Context(repS))
+			using(var shadowS = repS.Clone())
+			using(var shadowG = new Context(shadowS))
+			{
 				g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
-				shadow_g.Pattern = new SolidPattern(new Color(0.6, 0.6, 0.6));
-				shadow_g.Paint();
-				g.SetSourceSurface(shadow_s, shadow_padding, shadow_padding);
-				g.Paint();
 
-				rep_g.Pattern = new SolidPattern(new Color(1, 1, 1));
-				rep_g.Paint();
+				using(var shadowGPattern = new SolidPattern(new Color(0.6, 0.6, 0.6)))
+				{
+					shadowG.SetSource(shadowGPattern);
+					shadowG.Paint();
+					g.SetSourceSurface(shadowS, shadow_padding, shadow_padding);
+					g.Paint();
 
-				rep_g.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
+					using(var repGPattern = new SolidPattern(new Color(1, 1, 1)))
+					{
+						repG.SetSource(repGPattern);
+						repG.Paint();
+						repG.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
 
-				SetItemsHitArea();
+						SetItemsHitArea();
 
-				if(selectedItem != null) {
-					rep_g.Pattern = new SolidPattern(new Color(0.4, 0.4, 1));
-					rep_g.Rectangle(GetSelectedItemRectangle());
-					rep_g.Fill();
+						Pattern currentRepGPattern = null;
+						if(selectedItem != null)
+						{
+							currentRepGPattern = new SolidPattern(new Color(0.4, 0.4, 1));
+							repG.SetSource(currentRepGPattern);
+							repG.Rectangle(GetSelectedItemRectangle());
+							repG.Fill();
+						}
+
+						using(var render = new RenderCairo(repG, Scale))
+						{
+							render.RunPage(pages);
+						}
+
+						g.SetSourceSurface(repS, rep_padding, rep_padding);
+						g.Paint();
+						
+						currentRepGPattern?.Dispose();
+					}
 				}
-				using(var render = new RenderCairo(rep_g, Scale)) {
-					render.RunPage(pages);
-				}
-
-				g.SetSourceSurface(rep_s, rep_padding, rep_padding);
-				g.Paint();
-
 			}
+
 			return true;
 		}
 
