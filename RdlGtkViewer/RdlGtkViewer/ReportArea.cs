@@ -259,14 +259,14 @@ namespace fyiReporting.RdlGtkViewer
 
 				using(var shadowGPattern = new SolidPattern(new Color(0.6, 0.6, 0.6)))
 				{
-					shadowG.SetSource(shadowGPattern);
+					shadowG.Pattern = shadowGPattern;
 					shadowG.Paint();
 					g.SetSourceSurface(shadowS, shadow_padding, shadow_padding);
 					g.Paint();
 
 					using(var repGPattern = new SolidPattern(new Color(1, 1, 1)))
 					{
-						repG.SetSource(repGPattern);
+						repG.Pattern = repGPattern;
 						repG.Paint();
 						repG.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
 
@@ -276,7 +276,7 @@ namespace fyiReporting.RdlGtkViewer
 						if(selectedItem != null)
 						{
 							currentRepGPattern = new SolidPattern(new Color(0.4, 0.4, 1));
-							repG.SetSource(currentRepGPattern);
+							repG.Pattern = currentRepGPattern;
 							repG.Rectangle(GetSelectedItemRectangle());
 							repG.Fill();
 						}
