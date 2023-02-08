@@ -1750,7 +1750,7 @@ namespace fyiReporting.RdlViewer
                         continue;
                     if (rp.Value == null && !rp.Nullable)
                     {
-                        MessageBox.Show(string.Format(Strings.RdlViewer_ParametersViewClick_RequiredParameterNotProvided, rp.Prompt), Strings.RdlViewer_ParametersViewClick_ReportParameterMissing);
+                        MessageBox.Show(string.Format(Strings.RdlViewer_ParametersViewClick_RequiredParameterNotProvided, String.IsNullOrEmpty(rp.Prompt) ? rp.Name : rp.Prompt), Strings.RdlViewer_ParametersViewClick_ReportParameterMissing);
                         bFail = true;
                     }
                 }
