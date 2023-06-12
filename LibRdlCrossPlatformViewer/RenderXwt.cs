@@ -146,7 +146,7 @@ namespace LibRdlCrossPlatformViewer
 
         private void DrawImage(PageImage pi, Xwt.Drawing.Context g, Xwt.Rectangle r)
         {
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(pi.ImageData);
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(pi.GetImageData((int)r.Width, (int)r.Height));
             Xwt.Drawing.Image im = null;
             try
             {

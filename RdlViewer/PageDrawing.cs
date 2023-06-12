@@ -151,7 +151,7 @@ namespace fyiReporting.RdlViewer
                 System.Drawing.Image im = null;
                 try
                 {
-                    strm = new MemoryStream(pi.ImageData);
+                    strm = new MemoryStream(pi.GetImageData());
                     im = System.Drawing.Image.FromStream(strm);
                 }
                 finally
@@ -910,7 +910,7 @@ namespace fyiReporting.RdlViewer
             System.Drawing.Image im = null;
             try
             {
-                strm = new MemoryStream(pi.ImageData);
+                strm = new MemoryStream(pi.GetImageData(((int)r.Width, (int)r.Height)));
                 im = System.Drawing.Image.FromStream(strm);
                 DrawImageSized(pi, im, g, r);
             }
@@ -929,9 +929,6 @@ namespace fyiReporting.RdlViewer
             System.Drawing.Image im = null;
             try
             {
-                strm = new MemoryStream(pi.ImageData);
-                im = System.Drawing.Image.FromStream(strm);
-
                 // http://www.fyireporting.com/forum/viewtopic.php?t=892
                 //A.S.> convert pt to px if needed(when printing we need px, when draw preview - pt) 
 
@@ -952,6 +949,8 @@ namespace fyiReporting.RdlViewer
                     r.Height - si.PaddingTop - si.PaddingBottom);
                 }
 
+                strm = new MemoryStream(pi.GetImageData((int)r2.Width, (int)r2.Height));
+                im = System.Drawing.Image.FromStream(strm);
 
                 int repeatX = 0;
                 int repeatY = 0;

@@ -1103,13 +1103,13 @@ namespace fyiReporting.RDL
 
                                 iAddImage(images, bgImg.Name,
                                                 content.objectNum, bgImg.SI, bgImg.ImgFormat,
-                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
                             }
                             else
                             {
                                 elements.AddImage(images, bgImg.Name,
                                            content.objectNum, bgImg.SI, bgImg.ImgFormat,
-                                           currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                           currX, currY, imW, imH, RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
 
                             }
                            
@@ -1248,15 +1248,14 @@ namespace fyiReporting.RDL
                         if (r.ItextPDF)
                         {
                             iAddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
-                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData(), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
                         }
                         else
                         {
                             elements.AddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
-                           adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+                           adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData(), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
 
                         }
-                       
                     }
                     continue;
                 }

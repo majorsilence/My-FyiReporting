@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace fyiReporting.RDL
 {
@@ -175,7 +176,6 @@ namespace fyiReporting.RDL
                 if (cri != null)
                     cri.Dispose();
             }
-            return;
         }
 
         override internal void RunPage(Pages pgs, Row row)
@@ -190,46 +190,17 @@ namespace fyiReporting.RDL
             // Build the Chart bitmap, along with data regions
             Page p = pgs.CurrentPage;
             ICustomReportItem cri = null;
-            Bitmap bm = null;
             try
             {
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
                 SetProperties(pgs.Report, row, cri);
                 
-                int width = WidthCalc(rpt, pgs.G) - 
-                    (Style == null? 0 :
-                        (Style.EvalPaddingLeftPx(rpt, row) + Style.EvalPaddingRightPx(rpt, row)));
-                int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
-                    (Style == null? 0 :
-                        (Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
-                bm = new Bitmap(width, height);
-                cri.DrawImage(ref bm);
-
-                MemoryStream ostrm = new MemoryStream();
-                // 06122007AJM Changed to use high quality JPEG encoding
-                //bm.Save(ostrm, IMAGEFORMAT);	// generate a jpeg   TODO: get png to work with pdf
-                System.Drawing.Imaging.ImageCodecInfo[] info;
-                info = ImageCodecInfo.GetImageEncoders();
-                EncoderParameters encoderParameters;
-                encoderParameters = new EncoderParameters(1);
+                EncoderParameters encoderParameters = new EncoderParameters(1);
                 // 20022008 AJM GJL - Using centralised image quality
                 encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.CustomImageQuality);
-                System.Drawing.Imaging.ImageCodecInfo codec = null;
-                for (int i = 0; i < info.Length; i++)
-                {
-                    if (info[i].FormatDescription == "JPEG")
-                    {
-                        codec = info[i];
-                        break;
-                    }
-                }
-                bm.Save(ostrm, codec, encoderParameters);
+                ImageCodecInfo codec = ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
 
-                byte[] ba = ostrm.ToArray();
-                ostrm.Close();
-                PageImage pi = new PageImage(IMAGEFORMAT, ba, width, height);	// Create an image
-                pi.Sizing = ImageSizingEnum.Clip;
-//                RunPageRegionBegin(pgs);
+                PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
 
                 SetPagePositionAndStyle(rpt, pi, row);
 
@@ -244,15 +215,6 @@ namespace fyiReporting.RDL
                 p = pgs.CurrentPage;
 
                 p.AddObject(pi);	// Put image onto the current page
-
-  //              RunPageRegionEnd(pgs);
-// I don't know why we need move offset after draw. If we do it, barcode if it first in list all text shifted.
-// If it broken something, write to Gankov
-/*                if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
-                {
-                    float newY = pi.Y + pi.H;
-                    p.YOffset += newY;	// bump the y location
-                } */
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
             }
             catch (Exception ex)
@@ -264,9 +226,19 @@ namespace fyiReporting.RDL
                 if (cri != null)
                     cri.Dispose();
             }
-
-            return;
         }
+
+        byte[] GenerateImage(ImageCodecInfo codec, EncoderParameters parameters, int width, int height, ICustomReportItem cri)
+		{
+			Bitmap bm = new Bitmap(width, height);
+			cri.DrawImage(ref bm);
+
+			MemoryStream ostrm = new MemoryStream();
+			bm.Save(ostrm, codec, parameters);
+			byte[] ba = ostrm.ToArray();
+			ostrm.Close();
+			return ba;
+		}
 
         void SetProperties(Report rpt, Row row, ICustomReportItem cri)
         {
