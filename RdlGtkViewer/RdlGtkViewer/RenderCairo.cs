@@ -196,7 +196,9 @@ namespace fyiReporting.RdlGtkViewer
             StyleInfo si = pi.SI;
 
             float imageScale = scale;
-            if (g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.Pdf)
+            if (g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.Pdf 
+                || g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.PS 
+                || (int)g.GetGroupTarget().SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
                 imageScale = (300/dpiX) * scale; // PDFs and printers are always 300dpi
             
             // adjust drawing rectangle based on padding 
