@@ -24,7 +24,6 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
-
 using fyiReporting.RDL;
 using Pango;
 
@@ -196,13 +195,17 @@ namespace fyiReporting.RdlGtkViewer
             double height, width;
             StyleInfo si = pi.SI;
 
+            float imageScale = scale;
+            if (g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.Pdf)
+                imageScale = (300/dpiX) * scale; // PDFs and printers are always 300dpi
+            
             // adjust drawing rectangle based on padding 
             Cairo.Rectangle r2 = new Cairo.Rectangle(r.X + PixelsX(si.PaddingLeft),
                                      r.Y + PixelsY(si.PaddingTop),
                                      r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
                                      r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
             
-            using (Gdk.Pixbuf im = new Gdk.Pixbuf(pi.GetImageData((int)(r2.Width * scale), (int)(r2.Height * scale))))
+            using (Gdk.Pixbuf im = new Gdk.Pixbuf(pi.GetImageData((int)(r2.Width * imageScale), (int)(r2.Height * imageScale))))
             {
                 switch (pi.Sizing)
                 {
