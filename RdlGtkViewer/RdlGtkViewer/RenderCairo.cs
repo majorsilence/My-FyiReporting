@@ -24,7 +24,6 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
-
 using fyiReporting.RDL;
 using Pango;
 
@@ -193,105 +192,64 @@ namespace fyiReporting.RdlGtkViewer
 
         private void DrawImage(PageImage pi, Cairo.Context g, Cairo.Rectangle r)
         {
-//            Stream strm = null;
-//            System.Drawing.Image im = null;
-            Gdk.Pixbuf im = null;
-            try
-            {
-//                strm = new MemoryStream (pi.ImageData);
-//                im = System.Drawing.Image.FromStream (strm);
-                im = new Gdk.Pixbuf(pi.ImageData);
-                DrawImageSized(pi, im, g, r);
-            }
-            finally
-            {
-//                if (strm != null)
-//                    strm.Close();
-                if (im != null)
-                    im.Dispose();
-            }
-
-        }
-
-        private void DrawImageSized(PageImage pi, Gdk.Pixbuf im, Cairo.Context g, Cairo.Rectangle r)
-        {
-            double height, width;      // some work variables 
+            double height, width;
             StyleInfo si = pi.SI;
 
+            float imageScale = scale;
+            if (g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.Pdf 
+                || g.GetGroupTarget().SurfaceType == Cairo.SurfaceType.PS 
+                || (int)g.GetGroupTarget().SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
+                imageScale = (300/dpiX) * scale; // PDFs and printers are always 300dpi
+            
             // adjust drawing rectangle based on padding 
-//            System.Drawing.RectangleF r2 = new System.Drawing.RectangleF(r.Left + PixelsX(si.PaddingLeft),
-//                r.Top + PixelsY(si.PaddingTop),
-//                r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
-//                r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
             Cairo.Rectangle r2 = new Cairo.Rectangle(r.X + PixelsX(si.PaddingLeft),
                                      r.Y + PixelsY(si.PaddingTop),
                                      r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
                                      r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
-
-            Cairo.Rectangle ir;   // int work rectangle 
-            switch (pi.Sizing)
+            
+            using (Gdk.Pixbuf im = new Gdk.Pixbuf(pi.GetImageData((int)(r2.Width * imageScale), (int)(r2.Height * imageScale))))
             {
-                case ImageSizingEnum.AutoSize:
-//                    // Note: GDI+ will stretch an image when you only provide 
-//                    //  the left/top coordinates.  This seems pretty stupid since 
-//                    //  it results in the image being out of focus even though 
-//                    //  you don't want the image resized. 
-//                    if (g.DpiX == im.HorizontalResolution &&
-//                        g.DpiY == im.VerticalResolution)
-                    float imwidth = PixelsX(im.Width);
-                    float imheight = PixelsX(im.Height);
-                    ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
-                        imwidth, imheight);
-//                    else
-//                        ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
-//                                           Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
-                    //g.DrawImage(im, ir);
-                    im = im.ScaleSimple((int)r2.Width, (int)r2.Height, Gdk.InterpType.Hyper);
-                    g.DrawPixbufRect(im, ir, scale);
-                    break;
-                case ImageSizingEnum.Clip:
-//                    Region saveRegion = g.Clip;
-                    g.Save();
-//                    Region clipRegion = new Region(g.Clip.GetRegionData());
-//                    clipRegion.Intersect(r2);
-//                    g.Clip = clipRegion;
-                    g.Rectangle(r2);
-                    g.Clip();
-				
-//                    if (dpiX == im.HorizontalResolution &&
-//                        dpiY == im.VerticalResolution) 
-                    ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
-                        im.Width, im.Height);
-//                    else
-//                        ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
-//                                           Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
-//                    g.DrawImage(im, ir);
-					g.DrawPixbufRect(im, r2, scale);
-//                    g.Clip = saveRegion;
-                    g.Restore();
-                    break;
-                case ImageSizingEnum.FitProportional:
-                    double ratioIm = (float)im.Height / (float)im.Width;
-                    double ratioR = r2.Height / r2.Width;
-                    height = r2.Height;
-                    width = r2.Width;
-                    if (ratioIm > ratioR)
-                    { 
-                        // this means the rectangle width must be corrected 
-                        width = height * (1 / ratioIm);
-                    }
-                    else if (ratioIm < ratioR)
-                    {  
-                        // this means the ractangle height must be corrected 
-                        height = width * ratioIm;
-                    }
-                    r2 = new Cairo.Rectangle(r2.X, r2.Y, width, height);
-                    g.DrawPixbufRect(im, r2, scale);
-                    break;
-                case ImageSizingEnum.Fit:
-                default:
-                    g.DrawPixbufRect(im, r2, scale);
-                    break;
+                switch (pi.Sizing)
+                {
+                    case ImageSizingEnum.AutoSize:
+                        float imwidth = PixelsX(im.Width);
+                        float imheight = PixelsX(im.Height);
+                        var ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
+                            imwidth, imheight);
+                        var im2 = im.ScaleSimple((int)r2.Width, (int)r2.Height, Gdk.InterpType.Hyper);
+                        g.DrawPixbufRect(im2, ir, scale);
+                        break;
+                    case ImageSizingEnum.Clip:
+                        g.Save();
+                        g.Rectangle(r2);
+                        g.Clip();
+
+                        g.DrawPixbufRect(im, r2, scale);
+                        g.Restore();
+                        break;
+                    case ImageSizingEnum.FitProportional:
+                        double ratioIm = (float)im.Height / (float)im.Width;
+                        double ratioR = r2.Height / r2.Width;
+                        height = r2.Height;
+                        width = r2.Width;
+                        if (ratioIm > ratioR)
+                        {
+                            // this means the rectangle width must be corrected 
+                            width = height * (1 / ratioIm);
+                        } else if (ratioIm < ratioR)
+                        {
+                            // this means the ractangle height must be corrected 
+                            height = width * ratioIm;
+                        }
+
+                        r2 = new Cairo.Rectangle(r2.X, r2.Y, width, height);
+                        g.DrawPixbufRect(im, r2, scale);
+                        break;
+                    case ImageSizingEnum.Fit:
+                    default:
+                        g.DrawPixbufRect(im, r2, scale);
+                        break;
+                }
             }
         }
 

@@ -2921,13 +2921,13 @@ namespace fyiReporting.RdlDesign
             System.Drawing.Image im = null;
             try
             {
-                strm = new MemoryStream(pi.ImageData);
-                im = System.Drawing.Image.FromStream(strm);
-
                 RectangleF r2 = new RectangleF(r.Left + si.PaddingLeft,
                     r.Top + si.PaddingTop,
                     r.Width - (si.PaddingLeft + si.PaddingRight),
                     r.Height - (si.PaddingTop + si.PaddingBottom));
+
+                strm = new MemoryStream(pi.GetImageData((int)r2.Width, (int)r2.Height));
+                im = System.Drawing.Image.FromStream(strm);
 
                 int repeatX = 0;
                 int repeatY = 0;

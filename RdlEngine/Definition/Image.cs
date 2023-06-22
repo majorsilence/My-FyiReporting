@@ -183,7 +183,7 @@ namespace fyiReporting.RDL
 			SetPagePositionBegin(pgs);
             if (bHidden)
             {
-                PageImage pi = new PageImage(ImageFormat.Jpeg, null, 0, 0);
+                PageImage pi = new PageImage(ImageFormat.Jpeg, (byte[])null, 0, 0);
                 this.SetPagePositionAndStyle(r, pi, row);
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
                 return;
@@ -192,7 +192,7 @@ namespace fyiReporting.RDL
 			if (wc.PgImage != null)
 			{	// have we already generated this one
 				// reuse most of the work; only position will likely change
-				PageImage pi = new PageImage(wc.PgImage.ImgFormat, wc.PgImage.ImageData, wc.PgImage.SamplesW, wc.PgImage.SamplesH);
+				PageImage pi = new PageImage(wc.PgImage.ImgFormat, wc.PgImage.GetImageData(), wc.PgImage.SamplesW, wc.PgImage.SamplesH);
 				pi.Name = wc.PgImage.Name;				// this is name it will be shared under
 				pi.Sizing = this._Sizing;
 				this.SetPagePositionAndStyle(r, pi, row);

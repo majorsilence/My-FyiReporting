@@ -500,7 +500,7 @@ namespace fyiReporting.RDL
             System.Drawing.Image im = null;
             try
             {
-                strm = new MemoryStream(pi.ImageData);
+                strm = new MemoryStream(pi.GetImageData((int)r.Width, (int)r.Height));
                 im = System.Drawing.Image.FromStream(strm);
                 DrawImageSized(pi, im, g, r);
             }
