@@ -796,7 +796,7 @@ namespace fyiReporting.RDL
 
 			foreach (ReportItem ri in this._YParents)
 			{
-				if(ri.ZIndex <= this.ZIndex)
+				if(ri.ZIndex > this.ZIndex)
 					continue;
 				WorkClass wc = ri.GetWC(rpt);
 				if (wc.BottomPosition.CompareTo(float.NaN) == 0 ||
