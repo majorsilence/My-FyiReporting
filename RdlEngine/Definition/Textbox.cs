@@ -276,7 +276,7 @@ namespace fyiReporting.RDL
 			SetPagePositionAndStyle(r, pt, row);
 			if (this.CanGrow && tbr.RunHeight == 0)	// when textbox is in a DataRegion this will already be called
 			{
-				this.RunTextCalcHeight(r, pgs.G, row, pt is PageTextHtml? pt as PageTextHtml: null);
+				this.RunTextCalcHeight(r, pgs.G, row, pt as PageTextHtml);
 			}
 			pt.H = Math.Max(pt.H, tbr.RunHeight);		// reset height
 			if (pt.SI.BackgroundImage != null)
