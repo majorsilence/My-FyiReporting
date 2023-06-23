@@ -23,7 +23,6 @@
 
 using System;
 using System.Xml;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -377,6 +376,11 @@ namespace fyiReporting.RDL
                             p = RunPageNew(pgs, p);					// yes; if at end this page is empty
 
                         float saveYoffset = p.YOffset;              // this can be affected by other page items
+                        if (Style != null) {
+	                        var border = new PageRectangle();
+	                        SetPagePositionAndStyle(rpt, border, row);
+	                        p.AddObject(border);
+                        }
 
                         if (_ReportItems != null)
 						    _ReportItems.RunPage(pgs, row, listoffset);
