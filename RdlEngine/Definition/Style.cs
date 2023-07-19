@@ -366,12 +366,11 @@ namespace fyiReporting.RDL
 					string bgc = this.BackgroundColor.EvaluateString(rpt, r);
 					Color c = XmlUtil.ColorFromHtml(bgc, System.Drawing.Color.White, rpt);
 
-					SolidBrush sb = new SolidBrush(c);
-					g.FillRectangle(sb, rect);
-					sb.Dispose();
+					using (SolidBrush sb = new SolidBrush(c)) {
+						g.FillRectangle(sb, rect);
+					}
 				}
 			}
-			return;
 		}
  
 		internal void DrawBackgroundCircle(Report rpt, Graphics g, Row r, System.Drawing.Rectangle rect)
@@ -383,12 +382,11 @@ namespace fyiReporting.RDL
 				string bgc = this.BackgroundColor.EvaluateString(rpt, r);
 				Color c = XmlUtil.ColorFromHtml(bgc, System.Drawing.Color.White, rpt);
 
-				SolidBrush sb = new SolidBrush(c);
-				g.FillEllipse(sb, rect);
-				g.DrawEllipse(Pens.Black, rect);
-				sb.Dispose();
+				using (SolidBrush sb = new SolidBrush(c)) {
+					g.FillEllipse(sb, rect);
+					g.DrawEllipse(Pens.Black, rect);
+				}
 			}
-			return;
 		}
 
 		// Draw a border using the current style
@@ -495,57 +493,45 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			Pen p = null;
-			Brush b = null;
-			try
+			// top line
+			if (topBS != BorderStyleEnum.None)
 			{
-				// top line
-				if (topBS != BorderStyleEnum.None)
+				using (Brush b = new SolidBrush(topColor))
+				using (Pen p = new Pen(b, topWidth))
 				{
-					b = new SolidBrush(topColor);
-					p = new Pen(b, topWidth);
 					DrawBorderDashStyle(p, topBS);
 					g.DrawLine(p, tl, tr);
-					b.Dispose();  b = null;
-					p.Dispose();  p = null;
-				}
-				// right line
-				if (rightBS != BorderStyleEnum.None)
-				{
-					b = new SolidBrush(rightColor);
-					p = new Pen(b, rightWidth);
-					DrawBorderDashStyle(p, rightBS);
-					g.DrawLine(p, tr, br);
-					b.Dispose();  b = null;
-					p.Dispose();  p = null;
-				}
-				// bottom line
-				if (bottomBS != BorderStyleEnum.None)
-				{
-					b = new SolidBrush(bottomColor);
-					p = new Pen(b, bottomWidth);
-					DrawBorderDashStyle(p, bottomBS);
-					g.DrawLine(p, br, bl);		// bottom line
-					b.Dispose();  b = null;
-					p.Dispose();  p = null;
-				}
-				// left line
-				if (leftBS != BorderStyleEnum.None)
-				{
-					b = new SolidBrush(leftColor);
-					p = new Pen(b, leftWidth);
-					DrawBorderDashStyle(p, leftBS);
-					g.DrawLine(p, bl, tl);
-					b.Dispose();  b = null;
-					p.Dispose();  p = null;
 				}
 			}
-			finally
+			// right line
+			if (rightBS != BorderStyleEnum.None)
 			{
-				if (p != null)
-					p.Dispose();
-				if (b != null)
-					b.Dispose();
+				using (Brush b = new SolidBrush(rightColor))
+				using (Pen p = new Pen(b, rightWidth))
+				{
+					DrawBorderDashStyle(p, rightBS);
+					g.DrawLine(p, tr, br);
+				}
+			}
+			// bottom line
+			if (bottomBS != BorderStyleEnum.None)
+			{
+				using (Brush b = new SolidBrush(bottomColor))
+				using (Pen p = new Pen(b, bottomWidth))
+				{
+					DrawBorderDashStyle(p, bottomBS);
+					g.DrawLine(p, br, bl);
+				}
+			}
+			// left line
+			if (leftBS != BorderStyleEnum.None)
+			{
+				using (Brush b = new SolidBrush(leftColor))
+				using (Pen p = new Pen(b, leftWidth))
+				{
+					DrawBorderDashStyle(p, leftBS);
+					g.DrawLine(p, bl, tl);
+				}
 			}
 		}
 
@@ -587,55 +573,43 @@ namespace fyiReporting.RDL
 					p.DashStyle = DashStyle.Solid;		// really an error
 					break;
 			}
-			return;
 		}
 
 		// Draw a line into the specified graphics object using the current style
 		internal void DrawStyleLine(Report rpt, Graphics g, Row r, Point s, Point e)
 		{
-			Pen p = null;
-			Brush b = null;
-			try
+			int width;
+			Color color;
+			BorderStyleEnum bs;
+
+			// Border Width default is used for the line width
+			if (BorderWidth != null && BorderWidth.Default != null)
+				width = (int) new RSize(this.OwnerReport, BorderWidth.Default.EvaluateString(rpt, r)).PixelsX;
+			else
+				width = 1;
+
+			// Border Color default is used for the line color
+			if (BorderColor != null && BorderColor.Default != null)
 			{
-				int width;
-				System.Drawing.Color color;
-				BorderStyleEnum bs;
+				string v = BorderColor.Default.EvaluateString(rpt, r);
+				color = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+			}
+			else
+				color = System.Drawing.Color.Black;
+			
+			if (BorderStyle != null && BorderStyle.Default != null)
+			{
+				string v = BorderStyle.Default.EvaluateString(rpt, r);
+				bs = StyleBorderStyle.GetBorderStyle(v, BorderStyleEnum.None);
+			}
+			else
+				bs = BorderStyleEnum.Solid;
 
-				// Border Width default is used for the line width
-				if (BorderWidth != null && BorderWidth.Default != null)
-					width = (int) new RSize(this.OwnerReport, BorderWidth.Default.EvaluateString(rpt, r)).PixelsX;
-				else
-					width = 1;
-
-				// Border Color default is used for the line color
-				if (BorderColor != null && BorderColor.Default != null)
-				{
-					string v = BorderColor.Default.EvaluateString(rpt, r);
-					color = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
-				}
-				else
-					color = System.Drawing.Color.Black;
-
-				//
-				if (BorderStyle != null && BorderStyle.Default != null)
-				{
-					string v = BorderStyle.Default.EvaluateString(rpt, r);
-					bs = StyleBorderStyle.GetBorderStyle(v, BorderStyleEnum.None);
-				}
-				else
-					bs = BorderStyleEnum.Solid;
-
-				b = new SolidBrush(color);
-				p = new Pen(b, width);
+			using (var b = new SolidBrush(color))
+			using (var p = new Pen(b, width))
+			{
 				DrawBorderDashStyle(p, bs);
 				g.DrawLine(p, s, e);
-			}
-			finally
-			{
-				if (p != null)
-					p.Dispose();
-				if (b != null)
-					b.Dispose();
 			}
 		}
 
@@ -643,127 +617,73 @@ namespace fyiReporting.RDL
 		//  information
 		internal void DrawString(Report rpt, Graphics g, object o, TypeCode tc, Row r, System.Drawing.Rectangle rect)
 		{
-			Font drawFont=null;				// Font we'll draw with
-			Brush drawBrush=null;			// Brush we'll draw with
-			StringFormat drawFormat=null;	// StringFormat we'll draw with
-			string s;						// the string to draw
-
-			try			// Want to make sure we dispose of the font and brush (no matter what)
+			// the string to draw
+			var s = Style.GetFormatedString(rpt, this, r, o, tc);
+				
+			using (Font drawFont = GetFont(rpt, r)) // Font we'll draw with
+			using (Brush drawBrush = GetBrush(rpt, r)) // Brush we'll draw with
+			using (StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
-				s = Style.GetFormatedString(rpt, this, r, o, tc);
-
-				drawFont = GetFont(rpt, r);
-
-				drawBrush = GetBrush(rpt, r);
-
-				drawFormat = GetStringFormat(rpt, r);
-
 				// Draw string
 				drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
 				g.DrawString(s, drawFont, drawBrush, rect, drawFormat);
-			}
-			finally
-			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawBrush != null)
-					drawBrush.Dispose();
-				if (drawFormat != null)
-					drawFormat.Dispose();
 			}
 		}
 
 		static internal void DrawStringDefaults(Graphics g, object o, System.Drawing.Rectangle rect)
 		{
-			Font drawFont=null;
-			SolidBrush drawBrush=null;
-			StringFormat drawFormat=null;
-			try
+			// Just use defaults to Create font and brush.
+			using (var drawFont = new Font("Arial", 10))
+			using (var drawBrush = new SolidBrush(System.Drawing.Color.Black)) 
+			// Set format of string.
+			using (var drawFormat = new StringFormat())
 			{
-				// Just use defaults to Create font and brush.
-				drawFont = new Font("Arial", 10);
-				drawBrush = new SolidBrush(System.Drawing.Color.Black);
-				// Set format of string.
-				drawFormat = new StringFormat();
 				drawFormat.Alignment = StringAlignment.Center;
 
-                
-                // 06122007AJM Fixed so that long names are written vertically
-                // need to add w to make slightly bigger
-                SizeF len = g.MeasureString(o.ToString()+ "w", drawFont);
-                if (len.Width > rect.Width)
-                {
-                    drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
-                    rect = (new System.Drawing.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
-                    drawFormat.Alignment = StringAlignment.Near;
-                }
- 
-                // Draw string to image
+				// 06122007AJM Fixed so that long names are written vertically
+				// need to add w to make slightly bigger
+				SizeF len = g.MeasureString(o.ToString() + "w", drawFont);
+				if (len.Width > rect.Width)
+				{
+					drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+					rect = (new System.Drawing.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
+					drawFormat.Alignment = StringAlignment.Near;
+				}
+
+				// Draw string to image
 				g.DrawString(o.ToString(), drawFont, drawBrush, rect, drawFormat);
 			}
-			finally
-			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawBrush != null)
-					drawBrush.Dispose();
-				if (drawFormat != null)
-					drawFormat.Dispose();
-			}
-
 		}
 
 		// Calc size of a string with the specified graphics object using the current style
 		//  information
 		internal Size MeasureString(Report rpt, Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
-			Font drawFont=null;				// Font we'll draw with
-			StringFormat drawFormat=null;	// StringFormat we'll draw with
-			string s;						// the string to draw
+			string s = Style.GetFormatedString(rpt, this, r, o, tc); // the string to draw
 
-			Size size = Size.Empty;
-			try			// Want to make sure we dispose of the font and brush (no matter what)
+			using (Font drawFont = GetFont(rpt, r)) // Font we'll draw with
+			using (StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
-				s = Style.GetFormatedString(rpt, this, r, o, tc);
-
-				drawFont = GetFont(rpt, r);
-
-				drawFormat = GetStringFormat(rpt, r);
-
 				// Measure string
 				if (maxWidth == int.MaxValue)
 					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
 
-                // 06122007AJM need to add w to make slightly bigger
-                SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				size = new Size((int) Math.Ceiling(ms.Width), 
+				// 06122007AJM need to add w to make slightly bigger
+				SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
+				return new Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
-			finally
-			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawFormat != null)
-					drawFormat.Dispose();
-			}
-
-			return size;
 		}
 
 		// Measure a string using the defaults for a Style font
 		static internal Size MeasureStringDefaults(Report rpt, Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
-			Font drawFont=null;				// Font we'll draw with
-			StringFormat drawFormat=null;	// StringFormat we'll draw with
-			string s;						// the string to draw
+			string s = Style.GetFormatedString(rpt, null, r, o, tc); // the string to draw
 
 			Size size = Size.Empty;
-			try			// Want to make sure we dispose of the font and brush (no matter what)
+			using (Font drawFont = new Font("Arial", 10)) // Font we'll draw with
+			using (StringFormat drawFormat = new StringFormat()) // StringFormat we'll draw with
 			{
-				s = Style.GetFormatedString(rpt, null, r, o, tc);
-
-				drawFont = new Font("Arial", 10);
-				drawFormat = new StringFormat();
 				drawFormat.Alignment = StringAlignment.Near;
 
 				// Measure string
@@ -771,18 +691,9 @@ namespace fyiReporting.RDL
 					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
                 // 06122007AJM need to add w to make slightly bigger
                 SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				size = new Size((int) Math.Ceiling(ms.Width), 
+				return new Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
-			finally
-			{
-				if (drawFont != null)
-					drawFont.Dispose();
-				if (drawFormat != null)
-					drawFormat.Dispose();
-			}
-
-			return size;
 		}
 
 		internal Brush GetBrush(Report rpt, Row r)
