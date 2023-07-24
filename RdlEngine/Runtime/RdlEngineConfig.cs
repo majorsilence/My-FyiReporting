@@ -1,4 +1,4 @@
-/* ==================================================================== 
+﻿/* ==================================================================== 
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com> 
 
@@ -422,7 +422,10 @@ namespace fyiReporting.RDL
                 case "oledb":
                     cn = new OleDbConnection(cstring);
                     break;
-                case "filedirectory":
+				case "mysqlconnector":
+					cn = new MySqlConnector.MySqlConnection(cstring);
+					break;
+				case "filedirectory":
                     cn = new fyiReporting.Data.FileDirConnection(cstring);
                     break;
                 case "xml":
