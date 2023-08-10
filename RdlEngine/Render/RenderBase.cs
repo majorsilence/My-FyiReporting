@@ -304,7 +304,7 @@ namespace fyiReporting.RDL
                         case ImageSizingEnum.Clip:
 
 							//Set samples size
-							i.GetImageData((int)clipRect.Width, (int)clipRect.Height);
+							i.GetImageData((int)r2.Width, (int)r2.Height);
 
 							adjustedRect = new RectangleF(r2.Left, r2.Top,
                                             Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
