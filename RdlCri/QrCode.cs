@@ -5,6 +5,7 @@ using fyiReporting.RDL;
 using System.Drawing;
 using System.ComponentModel;
 using System.Xml;
+using ZXing;
 
 namespace fyiReporting.CRI
 {
@@ -39,6 +40,8 @@ namespace fyiReporting.CRI
 			var writer = new ZXing.BarcodeWriter();
 #endif
 			writer.Format = ZXing.BarcodeFormat.QR_CODE;
+
+			writer.Options.Hints.Add(new KeyValuePair<EncodeHintType, object>(EncodeHintType.CHARACTER_SET, "UTF-8"));
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
