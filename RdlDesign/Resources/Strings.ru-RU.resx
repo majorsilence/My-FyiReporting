@@ -631,7 +631,7 @@
     <value>Пожалуйста, заполните выражение Y-координаты.</value>
   </data>
   <data name="DialogToolOptions_Show_ConfigError" xml:space="preserve">
-    <value>Ошибка обработки конфикурации сервера; используется конфигурация по умолчанию.
+    <value>Ошибка обработки файла конфигурации; используется конфигурация по умолчанию.
 {0}</value>
   </data>
   <data name="DialogToolOptions_Show_Options" xml:space="preserve">
