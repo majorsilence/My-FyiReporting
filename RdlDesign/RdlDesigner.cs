@@ -36,9 +36,7 @@ using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
 using fyiReporting.RdlViewer;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -46,9 +44,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -74,6 +69,7 @@ namespace fyiReporting.RdlDesign
         // The version should match what is set in program.cs
         static readonly string IpcFileName = string.Format("\\fyiIpcData{0}.txt", typeof(Program).Assembly.GetName().Version.ToString().Replace(".", ""));
 
+        static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "designerstate.xml");
         SortedList<DateTime, string> _RecentFiles = null;
         List<Uri> _CurrentFiles = null;		// temporary variable for current files
         List<string> _Toolbar = null;			// temporary variable for toolbar entries
@@ -2387,7 +2383,6 @@ namespace fyiReporting.RdlDesign
 
         private void GetStartupState()
         {
-            Uri optFileName = new Uri(AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml");
             _RecentFiles = new SortedList<DateTime, string>();
             _CurrentFiles = new List<Uri>();
             _HelpUrl = DefaultHelpUrl;				// set as default
@@ -2397,7 +2392,7 @@ namespace fyiReporting.RdlDesign
             {
                 XmlDocument xDoc = new XmlDocument();
                 xDoc.PreserveWhitespace = false;
-                xDoc.Load(optFileName.AbsoluteUri);
+                xDoc.Load(optFileName);
                 XmlNode xNode;
                 xNode = xDoc.SelectSingleNode("//designerstate");
 
@@ -2637,8 +2632,7 @@ namespace fyiReporting.RdlDesign
                 xDS.AppendChild(xN);
 
                 // Save the file
-                string optFileName = AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml";
-
+                Directory.CreateDirectory(Path.GetDirectoryName(optFileName)); //Create directory if not exist
                 xDoc.Save(optFileName);
             }
             catch { }		// still want to leave even on error
@@ -2648,7 +2642,6 @@ namespace fyiReporting.RdlDesign
 
         static internal int[] GetCustomColors()
         {
-            string optFileName = AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml";
             int white = 16777215;	// default to white (magic number)
             int[] cArray = new int[] {white, white, white, white,white, white, white, white,
 								    white, white, white, white, white, white, white, white};
@@ -2689,8 +2682,6 @@ namespace fyiReporting.RdlDesign
 
         static internal void SetCustomColors(int[] colors)
         {
-            string optFileName = AppDomain.CurrentDomain.BaseDirectory + "designerstate.xml";
-
             StringBuilder sb = new StringBuilder();
             foreach (int c in colors)
             {
@@ -2726,6 +2717,7 @@ namespace fyiReporting.RdlDesign
 
                 cNode.InnerText = sb.ToString();
 
+                Directory.CreateDirectory(Path.GetDirectoryName(optFileName)); //Create directory if not exist
                 xDoc.Save(optFileName);
             }
             catch (Exception e)

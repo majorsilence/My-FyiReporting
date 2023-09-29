@@ -170,7 +170,7 @@ namespace fyiReporting.RdlDesktop
 		private void GetConfigInfo()
 		{
 			_mimes = new Hashtable();
-			string optFileName = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
+			string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "config.xml");
 			
 			try
 			{
