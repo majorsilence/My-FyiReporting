@@ -235,3 +235,10 @@ obj/
 /Examples/SampleApp/SampleReportApp/RdlEngineConfig.xml
 /Examples/SampleApp2-SetData/SampleApp2-SetData/RdlEngineConfig.Linux.xml
 /.vs
+
+#Installer
+WinInstall/*
+!WinInstall/NsisDotNetChecker/
+!WinInstall/NsisDotNetChecker/bin
+!*.nsi
+!*.sh

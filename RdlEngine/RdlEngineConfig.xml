@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
    <DataSources>
       <DataSource>
@@ -39,6 +39,14 @@
          <Interface>SQL</Interface>
          <ReplaceParameters>true</ReplaceParameters>
       </DataSource>
+		<DataSource>
+			<DataProvider>MySqlConnector</DataProvider>
+			<CodeModule>MySqlConnector.dll</CodeModule>
+			<ClassName>MySqlConnector.MySqlConnection</ClassName>
+			<TableSelect>show tables</TableSelect>
+			<Interface>SQL</Interface>
+			<ReplaceParameters>true</ReplaceParameters>
+		</DataSource>
       <DataSource>
          <DataProvider>Firebird.NET</DataProvider>
          <CodeModule>C:\Program Files\FirebirdNETProvider1.7\FirebirdSql.Data.Firebird.dll</CodeModule>

@@ -780,6 +780,12 @@ namespace fyiReporting.RDL
                 }
                 bFirst = false;
             }
+
+			if(sb.Length == 0)
+			{
+				sb.Append("null");
+			}
+
             return sb.ToString();
         }
 

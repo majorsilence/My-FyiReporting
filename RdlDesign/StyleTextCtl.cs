@@ -727,17 +727,20 @@ namespace fyiReporting.RdlDesign
 
 			if (fFontSize)
 			{
-				float size=10;
-				size = DesignXmlDraw.GetSize(cbFontSize.Text);
-				if (size <= 0)
-				{
-					size = DesignXmlDraw.GetSize(cbFontSize.Text+"pt");	// Try assuming pt
-					if (size <= 0)	// still no good
-						size = 10;	// just set default value
-				}
-				string rs = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.#}pt", size);
+				if(cbFontSize.Text.StartsWith("="))
+                    _Draw.SetElement(sNode, "FontSize", cbFontSize.Text);
+                else
+                {
+                    float size = DesignXmlDraw.GetSize(cbFontSize.Text);
+				    if (size <= 0){
+					    size = DesignXmlDraw.GetSize(cbFontSize.Text+"pt");	// Try assuming pt
+					    if (size <= 0)	// still no good
+						    size = 10;	// just set default value
+				    }
+				    string rs = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.#}pt", size);
 
-				_Draw.SetElement(sNode, "FontSize", rs);	// force to string
+				    _Draw.SetElement(sNode, "FontSize", rs);	// force to string
+                }
 			}
 			if (fTextDecoration)
 				_Draw.SetElement(sNode, "TextDecoration", cbTextDecoration.Text);    

@@ -13,6 +13,7 @@ namespace fyiReporting.RDL
 		int samplesH;
 		ImageRepeat repeat;
 		ImageSizingEnum sizing;
+		private Func<ImageFormat, int, int, byte[]> imageGenerator;
 
 		public PageImage(ImageFormat im, byte[] image, int w, int h)
 		{
@@ -25,11 +26,36 @@ namespace fyiReporting.RDL
 			repeat = ImageRepeat.NoRepeat;
 			sizing = ImageSizingEnum.AutoSize;
 		}
-
-		public byte[] ImageData
+		
+		public PageImage(ImageFormat im, Func<ImageFormat, int, int, byte[]> imageGenerator, ImageSizingEnum sizing = ImageSizingEnum.AutoSize)
 		{
-			get { return imageData; }
+			Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif || im == ImageFormat.Wmf,
+				"PageImage only supports Jpeg, Gif and Png and WMF image formats (Thanks HYNE!).");
+			imf = im;
+			this.imageGenerator = imageGenerator;
+			repeat = ImageRepeat.NoRepeat;
+			this.sizing = sizing;
 		}
+
+		/// <summary>
+		/// if PageImage contain static image, method return original ImageData.
+		/// if PageImage created by CustomReportItem, method regenerate image for wanted resolution.
+		/// </summary>
+		/// <param name="wantedWidth">Desired width for image generation</param>
+		/// <param name="wantedHeight">Desired height for image generation</param>
+		public byte[] GetImageData(int wantedWidth, int wantedHeight)
+		{
+			if (imageGenerator == null)
+				return imageData;
+			if (imageData == null || wantedHeight != SamplesH || wantedWidth != SamplesW) {
+				imageData = imageGenerator(ImgFormat, wantedWidth, wantedHeight);
+				samplesW = wantedWidth;
+				samplesH = wantedHeight;
+			}
+			return imageData;
+		}
+
+		public byte[] GetImageData() => imageData ?? GetImageData(SamplesW, samplesH);
 
 		public ImageFormat ImgFormat
 		{

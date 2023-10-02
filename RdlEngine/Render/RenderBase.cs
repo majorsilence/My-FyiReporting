@@ -1,4 +1,4 @@
-
+﻿
 /*
  * 
  Copyright (C) 2004-2008  fyiReporting Software, LLC
@@ -240,7 +240,7 @@ namespace fyiReporting.RDL
                            
 
                                 AddImage( bgImg.Name,bgImg.SI, bgImg.ImgFormat,
-                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.ImageData, bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
                            
                         }
                     }
@@ -302,7 +302,11 @@ namespace fyiReporting.RDL
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.Clip:
-                            adjustedRect = new RectangleF(r2.Left, r2.Top,
+
+							//Set samples size
+							i.GetImageData((int)r2.Width, (int)r2.Height);
+
+							adjustedRect = new RectangleF(r2.Left, r2.Top,
                                             Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
                             clipRect = new RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
@@ -337,7 +341,7 @@ namespace fyiReporting.RDL
                     {
                        
                             AddImage(i.Name,  i.SI, i.ImgFormat,
-                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.ImageData, i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData((int)clipRect.Width, (int)clipRect.Height), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
                        
                     }
                     continue;

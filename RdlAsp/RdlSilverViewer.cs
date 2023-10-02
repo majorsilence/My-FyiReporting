@@ -622,9 +622,10 @@ namespace fyiReporting.RdlAsp
             System.Drawing.Image im = null;
             try
             {
-                strm = new MemoryStream(pi.ImageData);
+                var imageData = pi.GetImageData(pi.SamplesW, pi.SamplesH);
+                strm = new MemoryStream(imageData);
                 im = System.Drawing.Image.FromStream(strm);
-                ms = new MemoryStream(pi.ImageData.Length);
+                ms = new MemoryStream(imageData.Length);
                 im.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] ba = ms.ToArray();
 
@@ -676,7 +677,7 @@ namespace fyiReporting.RdlAsp
             }
             else
             {
-                url = ImageHelper.SaveImage(this.MapPathSecure(this.ImageDirectory), pi.ImageData, this.Context.Cache);
+                url = ImageHelper.SaveImage(this.MapPathSecure(this.ImageDirectory), pi.GetImageData((int)r2.Width, (int)r2.Height), this.Context.Cache);
 
                 url = this.ImageDirectory + "/" + url;
             }
@@ -1210,7 +1211,7 @@ namespace fyiReporting.RdlAsp
 
             ZipEntry ze = new ZipEntry(imgname);
             _ZipStream.PutNextEntry(ze);
-            _ZipStream.Write(pi.ImageData, 0, pi.ImageData.Length);
+            _ZipStream.Write(pi.GetImageData(), 0, pi.GetImageData().Length);
 
             return imgname; 
         }
