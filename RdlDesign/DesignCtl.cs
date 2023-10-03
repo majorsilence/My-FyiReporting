@@ -70,6 +70,7 @@ namespace fyiReporting.RdlDesign
 		private bool _AdjustScroll = false;	// when adjusting band height we may need to adjust scroll bars
 
 		private DesignXmlDraw _DrawPanel;		// the main drawing panel
+        public RdlDesigner RdlDesigner;
 
 		public DesignCtl()
 		{
@@ -212,13 +213,16 @@ namespace fyiReporting.RdlDesign
 				{
 					// Convert the document into a string
 					StringWriter sw = new StringWriter();
-					XmlTextWriter xtw = new XmlTextWriter(sw);
-					xtw.IndentChar = ' ';
-					xtw.Indentation = 2;
-					xtw.Formatting = Formatting.Indented;
+                    var settings = new XmlWriterSettings
+                    {
+                        NewLineChars = RdlDesigner.XmlNewLine == NewLineChar.Unix ? "\n" : "\r\n",
+                        Indent = true,
+                        IndentChars = "  "
+                    };
+                    var xw = XmlWriter.Create(sw, settings);
 			
-					_ReportDoc.WriteContentTo(xtw);
-					xtw.Close();
+                    _ReportDoc.WriteContentTo(xw);
+                    xw.Close();
 					sw.Close();	
 					result = sw.ToString();
 					result = result.Replace("xmlns=\"\"", "");

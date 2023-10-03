@@ -101,6 +101,9 @@ namespace fyiReporting.RdlDesign
                     break;
             }
 
+            comboXmlEndingLine.DataSource = Enum.GetValues(typeof(NewLineChar));
+            comboXmlEndingLine.SelectedItem = _RdlDesigner.XmlNewLine;
+
 			InitLanguages();
 
             InitOperations();
@@ -273,6 +276,7 @@ namespace fyiReporting.RdlDesign
 
             _RdlDesigner.PropertiesLocation = ds;
             _RdlDesigner.PropertiesAutoHide = chkPBAutoHide.Checked;
+            _RdlDesigner.XmlNewLine = (NewLineChar)comboXmlEndingLine.SelectedItem;
         }
 
         private void HandleDesktop()

@@ -92,6 +92,7 @@ namespace fyiReporting.RdlDesign
         private bool _ShowTabbedInterface = true;
         private bool _ShowProperties = true;
 
+        private NewLineChar _XmlNewLine = NewLineChar.Windows;
         private bool _PropertiesAutoHide = true;
         private readonly string TEMPRDL = "_tempfile_.rdl";
         private int TEMPRDL_INC = 0;
@@ -508,6 +509,11 @@ namespace fyiReporting.RdlDesign
             set { _ShowTabbedInterface = value; }
         }
 
+        internal NewLineChar XmlNewLine {
+            get => _XmlNewLine;
+            set => _XmlNewLine = value;
+        }
+
         internal string SupportUrl
         {
             get
@@ -885,6 +891,7 @@ namespace fyiReporting.RdlDesign
                     mc.OnHeightChanged += new DesignCtl.HeightEventHandler(HeightChanged);
 
                     mc.MdiParent = this;
+                    mc.Editor.DesignCtl.RdlDesigner = this;
                     if (this._ShowTabbedInterface)
                         mc.WindowState = FormWindowState.Maximized;
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
@@ -2483,6 +2490,10 @@ namespace fyiReporting.RdlDesign
                         case "PropertiesAutoHide":
                             this._PropertiesAutoHide = (xNodeLoop.InnerText.ToLower() == "true");
                             break;
+                        case "XmlNewLine":
+                            if(Enum.TryParse<NewLineChar>(xNodeLoop.InnerText, out NewLineChar newLine))
+                                this._XmlNewLine = newLine;
+                            break;
                         case "MapSubtypes":
                             RdlDesigner.MapSubtypes = xNodeLoop.InnerText.Split(new char[] { ',' });
                             break;
@@ -2589,6 +2600,11 @@ namespace fyiReporting.RdlDesign
                 XmlNode pah = xDoc.CreateElement("PropertiesAutoHide");
                 xDS.AppendChild(pah);
                 pah.InnerText = this._PropertiesAutoHide ? "true" : "false";
+
+                // XmlNewLine
+                XmlNode xnl = xDoc.CreateElement("XmlNewLine");
+                xDS.AppendChild(xnl);
+                xnl.InnerText = this._XmlNewLine.ToString();
 
                 // PropertiesLocation
                 string loc = "right";
@@ -3817,5 +3833,13 @@ namespace fyiReporting.RdlDesign
             return null;
         }
 
+    }
+
+    public enum NewLineChar
+    {
+        [LocalizedDescription("Windows (CR LF)")]
+        Windows,
+        [LocalizedDescription("Unix (LF)")]
+        Unix
     }
 }
