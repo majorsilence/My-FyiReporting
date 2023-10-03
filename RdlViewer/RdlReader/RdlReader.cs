@@ -23,7 +23,6 @@
 using System;
 using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Xml;
@@ -37,13 +36,13 @@ using System.Collections.Generic;
 namespace fyiReporting.RdlReader
 {
     using System.Diagnostics;
-    using System.Linq;
 
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
     /// </summary>
     public partial class RdlReader : IMessageFilter
     {
+        static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "readerstate.xml");
         SortedList _RecentFiles = null;
 
         /// <summary>
@@ -795,7 +794,6 @@ namespace fyiReporting.RdlReader
 
         private void GetStartupState()
         {
-            string optFileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "readerstate.xml");
             _RecentFiles = new SortedList();
             _CurrentFiles = new Dictionary<Uri, string>();
 
@@ -896,8 +894,7 @@ namespace fyiReporting.RdlReader
                     xFiles.AppendChild(xN);
                 }
 
-                string optFileName = AppDomain.CurrentDomain.BaseDirectory + "readerstate.xml";
-
+                Directory.CreateDirectory(Path.GetDirectoryName(optFileName)); //Create directory if not exist
                 xDoc.Save(optFileName);
             }
             catch { }		// still want to leave even on error

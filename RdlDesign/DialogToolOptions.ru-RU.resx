@@ -304,4 +304,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Окончание строки в XML</value>
+  </data>
 </root>

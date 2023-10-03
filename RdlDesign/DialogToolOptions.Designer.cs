@@ -63,6 +63,8 @@ private System.ComponentModel.Container components = null;
 			this.bCancel = new System.Windows.Forms.Button();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tpGeneral = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboXmlEndingLine = new System.Windows.Forms.ComboBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.tbLanguage = new System.Windows.Forms.ComboBox();
 			this.cbShowReportWaitDialog = new System.Windows.Forms.CheckBox();
@@ -138,6 +140,8 @@ private System.ComponentModel.Container components = null;
 			// 
 			// tpGeneral
 			// 
+            this.tpGeneral.Controls.Add(this.label12);
+            this.tpGeneral.Controls.Add(this.comboXmlEndingLine);
 			this.tpGeneral.Controls.Add(this.label11);
 			this.tpGeneral.Controls.Add(this.tbLanguage);
 			this.tpGeneral.Controls.Add(this.cbShowReportWaitDialog);
@@ -154,6 +158,18 @@ private System.ComponentModel.Container components = null;
 			this.tpGeneral.Name = "tpGeneral";
 			this.tpGeneral.Tag = "general";
 			// 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // comboXmlEndingLine
+            // 
+            this.comboXmlEndingLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboXmlEndingLine.FormattingEnabled = true;
+            resources.ApplyResources(this.comboXmlEndingLine, "comboXmlEndingLine");
+            this.comboXmlEndingLine.Name = "comboXmlEndingLine";
+            // 
 			// label11
 			// 
 			resources.ApplyResources(this.label11, "label11");
@@ -469,5 +485,7 @@ private System.ComponentModel.Container components = null;
 
 		private Label label11;
 		private ComboBox tbLanguage;
+        private Label label12;
+        private ComboBox comboXmlEndingLine;
 	}
 }

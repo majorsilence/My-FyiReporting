@@ -22,8 +22,6 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -52,6 +50,8 @@ namespace fyiReporting.RdlDesign
 	    private XmlNode _DesktopDirectory;
 	    private XmlNode _DesktopLocal;
 	    private XmlNode _DesktopLanguage;
+
+        static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "config.xml");
 
         public DialogToolOptions(RdlDesigner rdl)
         {
@@ -101,6 +101,9 @@ namespace fyiReporting.RdlDesign
                     break;
             }
 
+            comboXmlEndingLine.DataSource = Enum.GetValues(typeof(NewLineChar));
+            comboXmlEndingLine.SelectedItem = _RdlDesigner.XmlNewLine;
+
 			InitLanguages();
 
             InitOperations();
@@ -124,8 +127,6 @@ namespace fyiReporting.RdlDesign
 
         private void InitDesktop()
         {
-            string optFileName = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
-
             try
             {
                 XmlDocument xDoc = _DesktopDocument = new XmlDocument();
@@ -275,6 +276,7 @@ namespace fyiReporting.RdlDesign
 
             _RdlDesigner.PropertiesLocation = ds;
             _RdlDesigner.PropertiesAutoHide = chkPBAutoHide.Checked;
+            _RdlDesigner.XmlNewLine = (NewLineChar)comboXmlEndingLine.SelectedItem;
         }
 
         private void HandleDesktop()
@@ -322,8 +324,7 @@ namespace fyiReporting.RdlDesign
             }
             _DesktopLocal.InnerText = this.ckLocal.Checked ? "true" : "false";
 
-            string optFileName = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
-
+            Directory.CreateDirectory(Path.GetDirectoryName(optFileName)); //Create directory if not exist
             _DesktopDocument.Save(optFileName);
             this._RdlDesigner.menuToolsCloseProcess(false);		// close the server
         }
@@ -509,8 +510,6 @@ namespace fyiReporting.RdlDesign
         {
             get
             {
-                string optFileName = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
-
                 DesktopConfig dc = new DesktopConfig();
                 try
                 {
