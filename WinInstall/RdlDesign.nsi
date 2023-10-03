@@ -1,6 +1,6 @@
 Unicode true
 ;--------------------------------
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "1.1"
 !define NET_VERSION "4.6.1"
 !define EXE_NAME "RdlDesigner"
 !define PRODUCT_NAME "QS: RdlDesigner"
@@ -32,7 +32,7 @@ RequestExecutionLevel admin
 ;--------------------------------
 ; Pages
 
-;!insertmacro MUI_PAGE_LICENSE "License.txt"
+!insertmacro MUI_PAGE_LICENSE "news.txt"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
