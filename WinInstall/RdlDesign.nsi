@@ -7,7 +7,7 @@ Unicode true
 !define SHORTCUT_NAME "QS RdlDesigner"
 !define MENU_DIR_NAME "RdlDesigner"
 !define APP_DIR_NAME "RdlDesigner"
-!define UNINSTAL_KEY "workwear"
+!define UNINSTAL_KEY "RdlDesigner"
 !define SETUP_POSTFIX ""
 
 
