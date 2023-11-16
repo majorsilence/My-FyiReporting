@@ -104,7 +104,6 @@ SectionEnd
   !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
     !insertmacro MUI_DESCRIPTION_TEXT ${SecProgram} $(DESC_SecProgram)
     !insertmacro MUI_DESCRIPTION_TEXT ${SecFramework} $(DESC_SecFramework)
-    !insertmacro MUI_DESCRIPTION_TEXT ${SecGTK} $(DESC_SecGTK)
     !insertmacro MUI_DESCRIPTION_TEXT ${SecDesktop} $(DESC_SecDesktop)
   !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
