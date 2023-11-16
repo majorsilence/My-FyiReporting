@@ -155,7 +155,7 @@ namespace fyiReporting.RdlDesign
 
         private void SetupScintilla()
         {
-            ScintillaSqlStyle.ConfigureSQLStyle(scintillaSQL);
+            new ScintillaSqlStyle(scintillaSQL);
         }
 
         public bool IsValid()

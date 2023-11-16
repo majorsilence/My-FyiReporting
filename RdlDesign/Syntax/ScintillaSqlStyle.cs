@@ -3,11 +3,12 @@ using System.Drawing;
 
 namespace fyiReporting.RdlDesign.Syntax
 {
-    public static class ScintillaSqlStyle
+    public class ScintillaSqlStyle
     {
-        public static void ConfigureSQLStyle(ScintillaNET.Scintilla scintilla)
+        private Scintilla scintilla;
+        public ScintillaSqlStyle(Scintilla scintilla)
         {
-
+            this.scintilla = scintilla;
             // Reset the styles
             scintilla.StyleResetDefault();
             scintilla.Styles[Style.Default].Font = "Courier New";
@@ -34,6 +35,13 @@ namespace fyiReporting.RdlDesign.Syntax
             scintilla.Styles[Style.Sql.String].ForeColor = Color.Red;
             scintilla.Styles[Style.Sql.Character].ForeColor = Color.Red;
             scintilla.Styles[Style.Sql.Operator].ForeColor = Color.Black;
+
+            //Brace Matching
+            scintilla.IndentationGuides = IndentView.LookBoth;
+            scintilla.Styles[Style.BraceLight].BackColor = Color.LightGray;
+            scintilla.Styles[Style.BraceLight].ForeColor = Color.BlueViolet;
+            scintilla.Styles[Style.BraceBad].ForeColor = Color.Red;
+            scintilla.UpdateUI += scintilla_UpdateUI;
 
             // Set keyword lists
             // This keywords base on MSSQL recept with adding MariaDB\MySQL function lists.
@@ -67,7 +75,66 @@ namespace fyiReporting.RdlDesign.Syntax
             scintilla.SetKeywords(4, @"all and any between cross div exists in inner is join left like mod not null or outer pivot right separator some unpivot ( ) * ");
             // User2 = 5
             scintilla.SetKeywords(5, @"sys objects sysobjects ");
+        }
+        
+        private static bool IsBrace(int c)
+        {
+            switch (c)
+            {
+                case '(':
+                case ')':
+                case '[':
+                case ']':
+                case '{':
+                case '}':
+                case '<':
+                case '>':
+                    return true;
+            }
 
+            return false;
+        }
+
+        int lastCaretPos = 0;
+
+        private void scintilla_UpdateUI(object sender, UpdateUIEventArgs e)
+        {
+            // Has the caret changed position?
+            var caretPos = scintilla.CurrentPosition;
+            if (lastCaretPos != caretPos)
+            {
+                lastCaretPos = caretPos;
+                var bracePos1 = -1;
+                var bracePos2 = -1;
+
+                // Is there a brace to the left or right?
+                if (caretPos > 0 && IsBrace(scintilla.GetCharAt(caretPos - 1)))
+                    bracePos1 = (caretPos - 1);
+                else if (IsBrace(scintilla.GetCharAt(caretPos)))
+                    bracePos1 = caretPos;
+
+                if (bracePos1 >= 0)
+                {
+                    // Find the matching brace
+                    bracePos2 = scintilla.BraceMatch(bracePos1);
+                    if (bracePos2 == Scintilla.InvalidPosition)
+                    {
+                        scintilla.BraceBadLight(bracePos1);
+                        scintilla.HighlightGuide = 0;
+                    }
+                    else
+                    {
+                        scintilla.BraceHighlight(bracePos1, bracePos2);
+                        scintilla.HighlightGuide = scintilla.GetColumn(bracePos1);
+                    }
+                }
+                else
+                {
+                    // Turn off brace matching
+                    scintilla.BraceHighlight(Scintilla.InvalidPosition, Scintilla.InvalidPosition);
+                    scintilla.HighlightGuide = 0;
+                }
+            }
         }
     }
 }
