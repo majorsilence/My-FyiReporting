@@ -184,15 +184,24 @@ namespace RdlEngine
 
 			report.RunGetData(GetParmeters(parameters));
 
-			MemoryStreamGen ms = null;
-			try {
-				ms = new MemoryStreamGen();
-				report.RunRender(ms, exportType);
-			} catch(Exception ex) {
-				ms.CloseMainStream();
-				throw ex;
+			using(MemoryStreamGen ms = new MemoryStreamGen())
+			{
+				try
+				{
+					report.RunRender(ms, exportType);
+					return ms.GetStream() as MemoryStream;
+				}
+				catch(Exception ex)
+				{
+					throw ex;
+				}
+				finally
+				{
+					ms.CloseMainStream();
+					report.Dispose();
+					report = null;
+				}
 			}
-			return ms.GetStream() as MemoryStream;
 		}
 
 		#endregion
