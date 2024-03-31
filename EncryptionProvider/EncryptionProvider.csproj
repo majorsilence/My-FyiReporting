@@ -2,9 +2,16 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<AssemblyTitle>EncryptionProvider</AssemblyTitle>
+	<Description></Description>
+	<Company></Company>
+	<Product>EncryptionProvider</Product>
+	<Copyright>Copyright ©  2015</Copyright>
+	<AssemblyVersion>4.16.0</AssemblyVersion>
+	<Version>4.16.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

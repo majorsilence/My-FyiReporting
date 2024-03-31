@@ -24,8 +24,15 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	 <Deterministic>false</Deterministic>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyTitle>RDL Data Providers</AssemblyTitle>
+    <Description></Description>
+    <Company>fyiReporting Software, LLC</Company>
+    <Product>RDL Project</Product>
+    <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
+    <AssemblyVersion>4.16.0</AssemblyVersion> 
+	<Version>4.16.0</Version>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System">

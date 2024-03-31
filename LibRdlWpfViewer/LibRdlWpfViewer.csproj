@@ -2,11 +2,18 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<Deterministic>false</Deterministic>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<AssemblyTitle>RDL Data WPF Library</AssemblyTitle>
+	<Description></Description>
+	<Company></Company>
+	<Product>RDL Data WPF Library</Product>
+	<Copyright>Copyright © 2012 Peter Gill</Copyright>
+	<AssemblyVersion>4.16.0</AssemblyVersion>
+	<Version>4.16.0</Version>
+	<DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">

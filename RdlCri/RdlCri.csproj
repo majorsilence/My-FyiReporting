@@ -18,8 +18,15 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<Deterministic>false</Deterministic>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<AssemblyTitle>RdlCri</AssemblyTitle>
+	<Description>RDL Project CustomReportItem Library</Description>
+	<Company>fyiReporting Software, LLC</Company>
+	<Product>CRI</Product>
+	<Copyright>Copyright ©  2006-2008</Copyright>
+	<AssemblyVersion>4.16.0</AssemblyVersion>
+	<Version>4.16.0</Version>
+	<DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Security" />
@@ -40,5 +47,8 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
