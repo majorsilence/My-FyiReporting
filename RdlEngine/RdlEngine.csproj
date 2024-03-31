@@ -63,11 +63,6 @@
     <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\References\dot net 4\32bit\System.Data.SQLite.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="RdlEngineConfig.Linux.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
