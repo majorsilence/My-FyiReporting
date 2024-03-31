@@ -1,13 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
     <ProjectType>Local</ProjectType>
-    <ProjectGuid>{D99145B1-CB6C-41F5-BA86-723325145FB5}</ProjectGuid>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
-    <AssemblyName>RdlViewer</AssemblyName>
+    <AssemblyKeyContainerName></AssemblyKeyContainerName>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -15,12 +10,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>fyiReporting.RdlViewer</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <SignAssembly>false</SignAssembly>
-    <OldToolsVersion>3.5</OldToolsVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -36,197 +25,36 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugSymbols>true</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <Optimize>false</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>TRACE</DefineConstants>
-    <FileAlignment>4096</FileAlignment>
-    <Optimize>true</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>none</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\Release\RdlViewer.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <FileAlignment>4096</FileAlignment>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <Optimize>true</Optimize>
-    <FileAlignment>4096</FileAlignment>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <FileAlignment>4096</FileAlignment>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <Optimize>true</Optimize>
-    <FileAlignment>4096</FileAlignment>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<Deterministic>false</Deterministic>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
+    <Reference Update="System">
       <Name>System</Name>
     </Reference>
-    <Reference Include="System.Data">
+    <Reference Update="System.Data">
       <Name>System.Data</Name>
     </Reference>
-    <Reference Include="System.Drawing">
+    <Reference Update="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
-    </Reference>
-    <Reference Include="System.Xml">
+    <Reference Update="System.Xml">
       <Name>System.XML</Name>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataSourcePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataSourcePassword.Designer.cs">
-      <DependentUpon>DataSourcePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DialogMessages.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DialogMessages.Designer.cs">
-      <DependentUpon>DialogMessages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DialogWait.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DialogWait.Designer.cs">
-      <DependentUpon>DialogWait.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="PageDrawing.cs">
+    <Compile Update="PageDrawing.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RdlViewer.cs">
+    <Compile Update="RdlViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RdlViewer.Designer.cs">
-      <DependentUpon>RdlViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RdlViewerFind.cs">
+    <Compile Update="RdlViewerFind.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <EmbeddedResource Include="DataSourcePassword.resx">
-      <DependentUpon>DataSourcePassword.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataSourcePassword.ru-RU.resx">
-      <DependentUpon>DataSourcePassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DialogMessages.resx">
-      <DependentUpon>DialogMessages.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DialogMessages.ru-RU.resx">
-      <DependentUpon>DialogMessages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DialogWait.resx">
-      <DependentUpon>DialogWait.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DialogWait.ru-RU.resx">
-      <DependentUpon>DialogWait.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
-    <EmbeddedResource Include="PageDrawing.resx">
-      <DependentUpon>PageDrawing.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RdlViewer.resx">
-      <DependentUpon>RdlViewer.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RdlViewer.ru-RU.resx">
-      <DependentUpon>RdlViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RdlViewerFind.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>RdlViewerFind.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RdlViewerFind.ru-RU.resx">
-      <DependentUpon>RdlViewerFind.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="ViewerToolstrip.cs">
+    <Compile Update="ViewerToolstrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Resources\document-print.png" />
@@ -234,58 +62,39 @@
     <EmbeddedResource Include="Resources\document-save.png" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
+    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj">
-      <Project>{83d67c75-ce23-4141-8bfe-3ac52f53310e}</Project>
-      <Name>EncryptionProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj">
-      <Project>{C97E91F4-B310-44E2-9B6C-96775395722D}</Project>
-      <Name>RdlEngine</Name>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
+    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <Compile Remove="RdlReader\AssemblyInfo.cs" />
+    <Compile Remove="RdlReader\DialogAbout.cs" />
+    <Compile Remove="RdlReader\DialogAbout.Designer.cs" />
+    <Compile Remove="RdlReader\MDIChild.cs" />
+    <Compile Remove="RdlReader\MDIChild.Designer.cs" />
+    <Compile Remove="RdlReader\obj\Debug\net48\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="RdlReader\obj\x86\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="RdlReader\obj\x86\Debug\net48\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Remove="RdlReader\Properties\Resources.Designer.cs" />
+    <Compile Remove="RdlReader\RdlReader.cs" />
+    <Compile Remove="RdlReader\RdlReader.Designer.cs" />
+    <Compile Remove="RdlReader\Resources\Strings.Designer.cs" />
+    <Compile Remove="RdlReader\ZoomTo.cs" />
+    <Compile Remove="RdlReader\ZoomTo.Designer.cs" />
+    <EmbeddedResource Remove="RdlReader\DialogAbout.resx" />
+    <EmbeddedResource Remove="RdlReader\DialogAbout.ru-RU.resx" />
+    <EmbeddedResource Remove="RdlReader\MDIChild.resx" />
+    <EmbeddedResource Remove="RdlReader\Properties\Resources.resx" />
+    <EmbeddedResource Remove="RdlReader\RdlReader.resx" />
+    <EmbeddedResource Remove="RdlReader\RdlReader.ru-RU.resx" />
+    <EmbeddedResource Remove="RdlReader\Resources\Strings.resx" />
+    <EmbeddedResource Remove="RdlReader\Resources\Strings.ru-RU.resx" />
+    <EmbeddedResource Remove="RdlReader\ZoomTo.resx" />
+    <EmbeddedResource Remove="RdlReader\ZoomTo.ru-RU.resx" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
+  <PropertyGroup />
 </Project>
