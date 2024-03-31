@@ -28,7 +28,14 @@ namespace fyiReporting.RdlDesign
 
 				try
 	            {
-					thread.CurrentCulture = new CultureInfo(DialogToolOptions.DesktopConfiguration.Language);
+                    if (DialogToolOptions.DesktopConfiguration.Language != null)
+                    {
+                        thread.CurrentCulture = new CultureInfo(DialogToolOptions.DesktopConfiguration.Language);
+                    }
+                    else
+                    {
+                        thread.CurrentCulture = new CultureInfo(thread.CurrentCulture.Name);
+                    }
 				}
 	            catch
 	            {
