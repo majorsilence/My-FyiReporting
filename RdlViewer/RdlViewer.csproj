@@ -31,6 +31,14 @@
 	<Deterministic>false</Deterministic>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="RdlReader\bin\**" />
+    <Compile Remove="RdlReader\obj\**" />
+    <EmbeddedResource Remove="RdlReader\bin\**" />
+    <EmbeddedResource Remove="RdlReader\obj\**" />
+    <None Remove="RdlReader\bin\**" />
+    <None Remove="RdlReader\obj\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Update="System">
       <Name>System</Name>
     </Reference>
@@ -76,9 +84,6 @@
     <Compile Remove="RdlReader\DialogAbout.Designer.cs" />
     <Compile Remove="RdlReader\MDIChild.cs" />
     <Compile Remove="RdlReader\MDIChild.Designer.cs" />
-    <Compile Remove="RdlReader\obj\Debug\net48\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
-    <Compile Remove="RdlReader\obj\x86\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
-    <Compile Remove="RdlReader\obj\x86\Debug\net48\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Remove="RdlReader\Properties\Resources.Designer.cs" />
     <Compile Remove="RdlReader\RdlReader.cs" />
     <Compile Remove="RdlReader\RdlReader.Designer.cs" />

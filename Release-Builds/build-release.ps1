@@ -47,149 +47,63 @@ function GetVersions([ref]$theVersion)
 	} | Set-Content $path
 }
 
+Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
+
 $Version=""
 GetVersions([ref]$Version)
 Write-Host $Version
-nuget restore "../MajorsilenceReporting.sln"
+dotnet restore "../MajorsilenceReporting.sln"
 
-# ************* Begin x64 *********************************************
+# ************* Begin net48 anycpu *********************************************
 
-& "$msbuildpath" "$CURRENTPATH\..\MajorsilenceReporting.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="x64" /target:clean /target:rebuild
+& "$msbuildpath" "$CURRENTPATH\..\MajorsilenceReporting.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU" /target:clean /target:rebuild
 
-$buildoutputpath_x64="$CURRENTPATH\build-output\majorsilence-reporting-x64"
-Remove-Item "$buildoutputpath_x64" -Recurse -ErrorAction Ignore
-mkdir "$buildoutputpath_x64"
+$buildoutputpath_designer="$CURRENTPATH\build-output\majorsilence-reporting-designer-net48-anycpu"
+$buildoutputpath_desktop="$CURRENTPATH\build-output\majorsilence-reporting-desktop-net48-anycpu"
+$buildoutputpath_rdlcmd="$CURRENTPATH\build-output\majorsilence-reporting-rdlcmd-net48-anycpu"
+$buildoutputpath_viewer="$CURRENTPATH\build-output\majorsilence-reporting-viewer-net48-anycpu"
+$buildoutputpath_mapfile="$CURRENTPATH\build-output\majorsilence-reporting-mapfile-net48-anycpu"
+Remove-Item "$buildoutputpath_designer" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_designer"
+Remove-Item "$buildoutputpath_desktop" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_desktop"
+Remove-Item "$buildoutputpath_rdlcmd" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_rdlcmd"
+Remove-Item "$buildoutputpath_viewer" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_viewer"
+Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_mapfile"
 
-
-
-
-Copy-Item ..\DataProviders\bin\Release\DataProviders.dll "$buildoutputpath_x64\DataProviders.dll"
-Copy-Item ..\DataProviders\bin\Release\DataProviders.xml "$buildoutputpath_x64\DataProviders.xml"
-# Copy-Item ..\OracleSp\bin\x64\Release\OracleSp.dll "$buildoutputpath_x64\OracleSp.dll"
-Copy-Item ..\RdlAsp\bin\Release\RdlAsp.dll "$buildoutputpath_x64\RdlAsp.dll"
-Copy-Item ..\RdlAsp\bin\Release\RdlAsp.xml "$buildoutputpath_x64\RdlAsp.xml"
-Copy-Item ..\RdlCmd\bin\x64\Release\RdlCmd.exe "$buildoutputpath_x64\RdlCmd.exe"
-Copy-Item ..\RdlCri\bin\Release\RdlCri.dll "$buildoutputpath_x64\RdlCri.dll"
-Copy-Item ..\RdlCri\bin\Release\RdlCri.xml "$buildoutputpath_x64\RdlCri.xml"
-Copy-Item ..\RdlDesign\bin\x64\Release\RdlDesigner.exe "$buildoutputpath_x64\RdlDesigner.exe"
-Copy-Item ..\RdlDesktop\bin\x64\Release\RdlDesktop.exe "$buildoutputpath_x64\RdlDesktop.exe"
-Copy-Item ..\RdlDesktop\bin\x64\Release\config.xml "$buildoutputpath_x64\config.xml"
-Copy-Item ..\packages\jacobslusser.ScintillaNET.3.5.6\lib\net40\ScintillaNET.dll "$buildoutputpath_x64\ScintillaNET.dll"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngine.dll "$buildoutputpath_x64\RdlEngine.dll"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngine.xml "$buildoutputpath_x64\RdlEngine.xml"
-Copy-Item ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll "$buildoutputpath_x64\ICSharpCode.SharpZipLib.dll"
-Copy-Item "..\References\dot net 4\64bit\System.Data.SQLite.dll" "$buildoutputpath_x64\System.Data.SQLite.dll"
-Copy-Item "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" "$buildoutputpath_x64\iTextSharp.dll"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_x64\RdlEngineConfig.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml "$buildoutputpath_x64\RdlEngineConfig.Linux.xml"
-Copy-Item ..\RdlMapFile\bin\x64\Release\RdlMapFile.exe "$buildoutputpath_x64\RdlMapFile.exe"
-Copy-Item ..\RdlViewer\bin\Release\RdlViewer.dll "$buildoutputpath_x64\RdlViewer.dll"
-Copy-Item ..\RdlViewer\bin\Release\RdlViewer.xml "$buildoutputpath_x64\RdlViewer.xml"
-Copy-Item ..\RdlViewer\bin\Release\EncryptionProvider.dll "$buildoutputpath_x64\EncryptionProvider.dll"
-Copy-Item ..\RdlViewer\RdlReader\bin\x64\Release\RdlReader.exe "$buildoutputpath_x64\RdlReader.exe"
-Copy-Item ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll "$buildoutputpath_x64\LibRdlWpfViewer.dll"
-Copy-Item ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.xml "$buildoutputpath_x64\LibRdlWpfViewer.xml"
-Copy-Item ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll "$buildoutputpath_x64\LibRdlCrossPlatformViewer.dll"
-Copy-Item ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.xml "$buildoutputpath_x64\LibRdlCrossPlatformViewer.xml"
-Copy-Item "..\References\dot net 4\Xwt.dll" "$buildoutputpath_x64\Xwt.dll"
-Copy-Item "..\References\dot net 4\Xwt.Gtk.dll" "$buildoutputpath_x64\Xwt.Gtk.dll"
-Copy-Item "..\References\dot net 4\Xwt.WPF.dll" "$buildoutputpath_x64\Xwt.WPF.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_x64\zxing.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.presentation.dll" "$buildoutputpath_x64\zxing.presentation.dll"
-
-mkdir "$buildoutputpath_x64\ru-RU"
-Copy-Item ..\RdlDesign\bin\x64\Release\ru-RU\RdlDesigner.resources.dll "$buildoutputpath_x64\ru-RU\RdlDesigner.resources.dll"
-Copy-Item ..\RdlDesktop\bin\x64\Release\ru-RU\RdlDesktop.resources.dll "$buildoutputpath_x64\ru-RU\RdlDesktop.resources.dll"
-Copy-Item ..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll "$buildoutputpath_x64\ru-RU\RdlEngine.resources.dll"
-Copy-Item ..\RdlMapFile\bin\x64\Release\ru-RU\RdlMapFile.resources.dll "$buildoutputpath_x64\ru-RU\RdlMapFile.resources.dll"
-Copy-Item ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll "$buildoutputpath_x64\ru-RU\RdlViewer.resources.dll"
-Copy-Item ..\RdlViewer\RdlReader\bin\x64\Release\ru-RU\RdlReader.resources.dll "$buildoutputpath_x64\ru-RU\RdlReader.resources.dll"
+Copy-Item ..\RdlDesign\bin\Release\net48\ -Destination "$buildoutputpath_designer\" -Recurse
+Copy-Item ..\RdlDesktop\bin\Release\net48\ -Destination "$buildoutputpath_desktop\" -Recurse
+Copy-Item ..\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
+Copy-Item ..\RdlViewer\bin\Release\net48\ -Destination "$buildoutputpath_viewer\" -Recurse
+Copy-Item ..\RdlMapFile\bin\Release\net48\ -Destination "$buildoutputpath_mapfile\" -Recurse
 
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-x64.zip majorsilence-reporting-build-x64\
+..\7za.exe a $Version-majorsilence-reporting-designer-net48-anycpu.zip majorsilence-reporting-designer-net48-anycpu\
+..\7za.exe a $Version-majorsilence-reporting-desktop-net48-anycpu.zip majorsilence-reporting-desktop-net48-anycpu\
+..\7za.exe a $Version-majorsilence-reporting-rdlcmd-net48-anycpu.zip majorsilence-reporting-rdlcmd-net48-anycpu\
+..\7za.exe a $Version-majorsilence-reporting-viewer-net48-anycpu.zip majorsilence-reporting-viewer-net48-anycpu\
+..\7za.exe a $Version-majorsilence-reporting-mapfile-net48-anycpu.zip majorsilence-reporting-mapfile-net48-anycpu\
 cd ..
 
 # ************* End x64 *********************************************
 
 
-# ************* Begin x86 *********************************************
-
-& "$msbuildpath" "$CURRENTPATH\..\MajorsilenceReporting.sln" /verbosity:minimal /property:Configuration="Release" /property:Platform="x86" /target:clean /target:rebuild
-
-$buildoutputpath_x86="$CURRENTPATH\build-output\majorsilence-reporting-x86"
-Remove-Item "$buildoutputpath_x86" -Recurse -ErrorAction Ignore
-mkdir "$buildoutputpath_x86"
-
-Copy-Item ..\DataProviders\bin\Release\DataProviders.dll "$buildoutputpath_x86\DataProviders.dll"
-Copy-Item ..\DataProviders\bin\Release\DataProviders.xml "$buildoutputpath_x86\DataProviders.xml"
-# Copy-Item ..\OracleSp\bin\x86\Release\OracleSp.dll "$buildoutputpath_x86\OracleSp.dll"
-Copy-Item ..\RdlAsp\bin\Release\RdlAsp.dll "$buildoutputpath_x86\RdlAsp.dll"
-Copy-Item ..\RdlAsp\bin\Release\RdlAsp.xml "$buildoutputpath_x86\RdlAsp.xml"
-Copy-Item ..\RdlCmd\bin\x86\Release\RdlCmd.exe "$buildoutputpath_x86\RdlCmd.exe"
-Copy-Item ..\RdlCri\bin\Release\RdlCri.dll "$buildoutputpath_x86\RdlCri.dll"
-Copy-Item ..\RdlCri\bin\Release\RdlCri.xml "$buildoutputpath_x86\RdlCri.xml"
-Copy-Item ..\RdlDesign\bin\x86\Release\RdlDesigner.exe "$buildoutputpath_x86\RdlDesigner.exe"
-Copy-Item ..\RdlDesktop\bin\x86\Release\RdlDesktop.exe "$buildoutputpath_x86\RdlDesktop.exe"
-Copy-Item ..\packages\jacobslusser.ScintillaNET.3.5.6\lib\net40\ScintillaNET.dll "$buildoutputpath_x86\ScintillaNET.dll"
-Copy-Item ..\RdlDesktop\bin\x86\Release\config.xml "$buildoutputpath_x86\config.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngine.dll "$buildoutputpath_x86\RdlEngine.dll"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngine.xml "$buildoutputpath_x86\RdlEngine.xml"
-Copy-Item ..\RdlEngine\bin\Release\ICSharpCode.SharpZipLib.dll "$buildoutputpath_x86\ICSharpCode.SharpZipLib.dll"
-Copy-Item "..\References\dot net 4\32bit\System.Data.SQLite.dll" "$buildoutputpath_x86\System.Data.SQLite.dll"
-Copy-Item "..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll" "$buildoutputpath_x86\iTextSharp.dll"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_x86\RdlEngineConfig.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.Linux.xml "$buildoutputpath_x86\RdlEngineConfig.Linux.xml"
-Copy-Item ..\RdlMapFile\bin\x86\Release\RdlMapFile.exe "$buildoutputpath_x86\RdlMapFile.exe"
-Copy-Item ..\RdlViewer\bin\Release\RdlViewer.dll "$buildoutputpath_x86\RdlViewer.dll"
-Copy-Item ..\RdlViewer\bin\Release\RdlViewer.xml "$buildoutputpath_x86\RdlViewer.xml"
-Copy-Item ..\RdlViewer\bin\Release\EncryptionProvider.dll "$buildoutputpath_x86\EncryptionProvider.dll"
-Copy-Item ..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe "$buildoutputpath_x86\RdlReader.exe"
-Copy-Item ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.dll "$buildoutputpath_x86\LibRdlWpfViewer.dll"
-Copy-Item ..\LibRdlWpfViewer\bin\Release\LibRdlWpfViewer.xml "$buildoutputpath_x86\LibRdlWpfViewer.xml"
-Copy-Item ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.dll "$buildoutputpath_x86\LibRdlCrossPlatformViewer.dll"
-Copy-Item ..\LibRdlCrossPlatformViewer\bin\Release\LibRdlCrossPlatformViewer.xml "$buildoutputpath_x86\LibRdlCrossPlatformViewer.xml"
-Copy-Item "..\References\dot net 4\Xwt.dll" "$buildoutputpath_x86\Xwt.dll"
-Copy-Item "..\References\dot net 4\Xwt.Gtk.dll" "$buildoutputpath_x86\Xwt.Gtk.dll"
-Copy-Item "..\References\dot net 4\Xwt.WPF.dll" "$buildoutputpath_x86\Xwt.WPF.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_x86\zxing.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.presentation.dll" "$buildoutputpath_x86\zxing.presentation.dll"
-
-mkdir "$buildoutputpath_x86\ru-RU"
-Copy-Item ..\RdlDesign\bin\x86\Release\ru-RU\RdlDesigner.resources.dll "$buildoutputpath_x86\ru-RU\RdlDesigner.resources.dll"
-Copy-Item ..\RdlDesktop\bin\x86\Release\ru-RU\RdlDesktop.resources.dll "$buildoutputpath_x86\ru-RU\RdlDesktop.resources.dll"
-Copy-Item ..\RdlEngine\bin\Release\ru-RU\RdlEngine.resources.dll "$buildoutputpath_x86\ru-RU\RdlEngine.resources.dll"
-Copy-Item ..\RdlMapFile\bin\x86\Release\ru-RU\RdlMapFile.resources.dll "$buildoutputpath_x86\ru-RU\RdlMapFile.resources.dll"
-Copy-Item ..\RdlViewer\bin\Release\ru-RU\RdlViewer.resources.dll "$buildoutputpath_x86\ru-RU\RdlViewer.resources.dll"
-Copy-Item ..\RdlViewer\RdlReader\bin\x86\Release\ru-RU\RdlReader.resources.dll "$buildoutputpath_x86\ru-RU\RdlReader.resources.dll"
-
-cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-x86.zip majorsilence-reporting-x86\
-cd ..
-
-# ************* End x86 *********************************************
-
-
-
 # ************* Begin PHP *********************************************
-$buildoutputpath_php_x86="$CURRENTPATH\build-output\majorsilence-reporting-php-x86"
-delete_files "$buildoutputpath_php_x86"
-mkdir "$buildoutputpath_php_x86"
+$buildoutputpath_php="$CURRENTPATH\build-output\majorsilence-reporting-php"
+delete_files "$buildoutputpath_php"
+mkdir "$buildoutputpath_php"
 
-Copy-Item ..\RdlDesktop\bin\x86\Release\config.xml "$buildoutputpath_php_x86\config.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_php_x86\RdlEngineConfig.xml"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" "$buildoutputpath_php_x86\RdlCri.dll"
-Copy-Item ..\RdlCmd\bin\x86\Release\RdlCmd.exe "$buildoutputpath_php_x86\RdlCmd.exe"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" "$buildoutputpath_php_x86\DataProviders.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" "$buildoutputpath_php_x86\RdlEngine.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" "$buildoutputpath_php_x86\ICSharpCode.SharpZipLib.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" "$buildoutputpath_php_x86\RdlViewer.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_php_x86\zxing.dll"
+Copy-Item ..\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_php\config.xml"
+Copy-Item ..\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_php\" -Recurse
 
-Copy-Item "..\LanguageWrappers\php\config.php" "$buildoutputpath_php_x86\config.php"
-Copy-Item "..\LanguageWrappers\php\report.php" "$buildoutputpath_php_x86\report.php"
+Copy-Item "..\LanguageWrappers\php\config.php" "$buildoutputpath_php\config.php"
+Copy-Item "..\LanguageWrappers\php\report.php" "$buildoutputpath_php\report.php"
 
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-build-php-x86.zip majorsilence-reporting-php-x86\
+..\7za.exe a $Version-majorsilence-reporting-build-php.zip majorsilence-reporting-php\
 cd ..
 
 # ************* End PHP *********************************************
@@ -197,70 +111,34 @@ cd ..
 
 
 # ************* Begin Python *********************************************
-$buildoutputpath_python_x86="$CURRENTPATH\build-output\majorsilence-reporting-python-x86"
-delete_files "$buildoutputpath_python_x86"
-mkdir "$buildoutputpath_python_x86"
+$buildoutputpath_python="$CURRENTPATH\build-output\majorsilence-reporting-python"
+delete_files "$buildoutputpath_python"
+mkdir "$buildoutputpath_python"
 
-Copy-Item ..\RdlDesktop\bin\x86\Release\config.xml "$buildoutputpath_python_x86\config.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_python_x86\RdlEngineConfig.xml"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" "$buildoutputpath_python_x86\RdlCri.dll"
-Copy-Item ..\RdlCmd\bin\x86\Release\RdlCmd.exe "$buildoutputpath_python_x86\RdlCmd.exe"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" "$buildoutputpath_python_x86\DataProviders.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" "$buildoutputpath_python_x86\RdlEngine.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" "$buildoutputpath_python_x86\ICSharpCode.SharpZipLib.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" "$buildoutputpath_python_x86\RdlViewer.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_python_x86\zxing.dll"
-
-Copy-Item "..\LanguageWrappers\python\config.py" "$buildoutputpath_python_x86\config.py"
-Copy-Item "..\LanguageWrappers\python\report.py" "$buildoutputpath_python_x86\report.py"
+Copy-Item ..\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_python\config.xml"
+Copy-Item ..\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_python\" -Recurse
+Copy-Item "..\LanguageWrappers\python\config.py" "$buildoutputpath_python\config.py"
+Copy-Item "..\LanguageWrappers\python\report.py" "$buildoutputpath_python\report.py"
 
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-python-x86.zip majorsilence-reporting-python-x86\
+..\7za.exe a $Version-majorsilence-reporting-python.zip majorsilence-reporting-python\
 cd ..
 # ************* End Python *********************************************
 
 
 # ************* Begin Ruby *********************************************
-$buildoutputpath_ruby_x86="$CURRENTPATH\build-output\majorsilence-reporting-ruby-x86"
-delete_files "$buildoutputpath_ruby_x86"
-mkdir "$buildoutputpath_ruby_x86"
+$buildoutputpath_ruby="$CURRENTPATH\build-output\majorsilence-reporting-ruby"
+delete_files "$buildoutputpath_ruby"
+mkdir "$buildoutputpath_ruby"
 
-Copy-Item ..\RdlDesktop\bin\x86\Release\config.xml "$buildoutputpath_ruby_x86\config.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_ruby_x86\RdlEngineConfig.xml"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" "$buildoutputpath_ruby_x86\RdlCri.dll"
-Copy-Item ..\RdlCmd\bin\x86\Release\RdlCmd.exe "$buildoutputpath_ruby_x86\RdlCmd.exe"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" "$buildoutputpath_ruby_x86\DataProviders.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" "$buildoutputpath_ruby_x86\RdlEngine.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" "$buildoutputpath_ruby_x86\ICSharpCode.SharpZipLib.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" "$buildoutputpath_ruby_x86\RdlViewer.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_ruby_x86\zxing.dll"
+Copy-Item ..\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_ruby\config.xml"
+Copy-Item ..\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_ruby\" -Recurse
 
-Copy-Item "..\LanguageWrappers\ruby\config.rb" "$buildoutputpath_ruby_x86\config.rb"
-Copy-Item "..\LanguageWrappers\ruby\report.rb" "$buildoutputpath_ruby_x86\report.rb"
+Copy-Item "..\LanguageWrappers\ruby\config.rb" "$buildoutputpath_ruby\config.rb"
+Copy-Item "..\LanguageWrappers\ruby\report.rb" "$buildoutputpath_ruby\report.rb"
 
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-ruby-x86.zip majorsilence-reporting-ruby-x86\
+..\7za.exe a $Version-majorsilence-reporting-ruby.zip majorsilence-reporting-ruby\
 cd ..
 
 # ************* End Ruby *********************************************
-
-$buildoutputpath_viewer_x86="$CURRENTPATH\build-output\majorsilence-reporting-viewer-x86"
-delete_files "$buildoutputpath_viewer_x86"
-mkdir "$buildoutputpath_viewer_x86"
-
-Copy-Item ..\RdlDesktop\bin\x86\Release\config.xml "$buildoutputpath_viewer_x86\config.xml"
-Copy-Item ..\RdlEngine\bin\Release\RdlEngineConfig.xml "$buildoutputpath_viewer_x86\RdlEngineConfig.xml"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlCri.dll" "$buildoutputpath_viewer_x86\RdlCri.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlReader.exe" "$buildoutputpath_viewer_x86\RdlReader.exe"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\DataProviders.dll" "$buildoutputpath_viewer_x86\DataProviders.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlEngine.dll" "$buildoutputpath_viewer_x86\RdlEngine.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\ICSharpCode.SharpZipLib.dll" "$buildoutputpath_viewer_x86\ICSharpCode.SharpZipLib.dll"
-Copy-Item "$CURRENTPATH\..\RdlViewer\RdlReader\bin\x86\Release\RdlViewer.dll" "$buildoutputpath_viewer_x86\RdlViewer.dll"
-Copy-Item "..\packages\ZXing.Net.0.16.8\lib\net40\zxing.dll" "$buildoutputpath_viewer_x86\zxing.dll"
-delete_files "$buildoutputpath_viewer_x86\RdlViewerSC.pdb"
-
-cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-viewer-x86.zip majorsilence-reporting-viewer-x86\
-cd ..
-
-
