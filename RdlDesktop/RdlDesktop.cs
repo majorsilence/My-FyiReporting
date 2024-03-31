@@ -170,8 +170,21 @@ namespace fyiReporting.RdlDesktop
 		private void GetConfigInfo()
 		{
 			_mimes = new Hashtable();
-			string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "config.xml");
-			
+			string majorsilenceReporting = Path.Combine(Environment.GetFolderPath(
+				Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting");
+			string optFileName = Path.Combine(majorsilenceReporting, "config.xml");
+			if (!File.Exists(optFileName))
+			{
+				if (File.Exists("config.xml"))
+				{
+					if (!Directory.Exists(majorsilenceReporting))
+					{
+						Directory.CreateDirectory(majorsilenceReporting);
+					}
+					File.Copy("config.xml", optFileName);
+				}
+			}
+
 			try
 			{
 				XmlDocument xDoc = new XmlDocument();
@@ -256,7 +269,7 @@ namespace fyiReporting.RdlDesktop
 			catch (Exception ex)
 			{		// Didn't sucessfully get the startup state don't use
 				Console.WriteLine("Error processing config.xml. {0}", ex.Message);
-				throw ex;
+				throw;
 			}
 
 			return;
