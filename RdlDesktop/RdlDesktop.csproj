@@ -64,7 +64,7 @@
   </ItemGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+	<TargetFrameworks>net48;net6.0</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 </Project>

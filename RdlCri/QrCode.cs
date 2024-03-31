@@ -34,10 +34,10 @@ namespace fyiReporting.CRI
         /// <param name="qrcode"></param>
         internal void DrawImage(ref System.Drawing.Bitmap bm, string qrcode)
         {
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET5_0_OR_GREATER
             var writer = new ZXing.BarcodeWriter<Bitmap>();
 #else
-			var writer = new ZXing.BarcodeWriter();
+            var writer = new ZXing.BarcodeWriter();
 #endif
 			writer.Format = ZXing.BarcodeFormat.QR_CODE;
 

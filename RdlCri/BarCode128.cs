@@ -38,10 +38,10 @@ namespace fyiReporting.CRI
 
 		public void DrawImage(ref Bitmap bm, string code128)
 		{
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET5_0_OR_GREATER
             var writer = new ZXing.BarcodeWriter<Bitmap>();
 #else
-			var writer = new ZXing.BarcodeWriter();
+            var writer = new ZXing.BarcodeWriter();
 #endif
 			writer.Format = ZXing.BarcodeFormat.CODE_128;
 
