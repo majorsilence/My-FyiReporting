@@ -227,8 +227,6 @@
   <ItemGroup>
     <PackageReference Include="dotConnect.Express.for.PostgreSQL" />
     <PackageReference Include="jacobslusser.ScintillaNET" />
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
     <PackageReference Include="Microsoft.Data.Edm" />
     <PackageReference Include="Microsoft.Data.OData" />
     <PackageReference Include="Microsoft.Data.Services.Client" />

@@ -69,8 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" />
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="SharpZipLib" />

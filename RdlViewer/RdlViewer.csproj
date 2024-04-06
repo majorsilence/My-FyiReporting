@@ -81,8 +81,6 @@
     <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>

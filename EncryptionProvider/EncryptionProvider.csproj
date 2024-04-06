@@ -19,7 +19,5 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" />
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
   </ItemGroup>
 </Project>

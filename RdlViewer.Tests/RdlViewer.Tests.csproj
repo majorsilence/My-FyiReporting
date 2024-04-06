@@ -19,8 +19,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
     <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="NUnit" />

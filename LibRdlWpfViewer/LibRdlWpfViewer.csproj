@@ -39,8 +39,6 @@
     <ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl" />
-    <PackageReference Include="Microsoft.Bcl.Build" />
     <PackageReference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
 </Project>
