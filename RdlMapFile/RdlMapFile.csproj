@@ -21,7 +21,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	  <Deterministic>false</Deterministic>
+	<Deterministic>false</Deterministic>
+	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="DesignXmlDraw.cs">
@@ -34,5 +35,62 @@
     <Content Include="poly.gif" />
     <Content Include="selection.gif" />
     <Content Include="text.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DialogAbout.ru-RU.resx">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogFindByKey.resx">
+      <DependentUpon>DialogFindByKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesignXmlDraw.resx">
+      <DependentUpon>DesignXmlDraw.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogAbout.resx">
+      <DependentUpon>DialogAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogFindByKey.ru-RU.resx">
+      <DependentUpon>DialogFindByKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Categories.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Categories.ru-RU.resx" />
+    <EmbeddedResource Include="RdlProperties\Descriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Descriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\Descriptions.ru-RU.resx" />
+    <EmbeddedResource Include="RdlProperties\DisplayNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RdlProperties\DisplayNames.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru-RU.resx" />
+    <EmbeddedResource Include="MapFile.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapFile.ru-RU.resx">
+      <DependentUpon>MapFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>
