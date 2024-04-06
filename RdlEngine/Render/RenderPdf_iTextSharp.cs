@@ -178,7 +178,7 @@ namespace fyiReporting.RDL
         protected internal override void AddLine(float x, float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
         {
             // Get the line color			
-            _contentByte.SetRGBColorStroke(c.R, c.G, c.B);
+            _contentByte.SetRgbColorStroke(c.R, c.G, c.B);
             _contentByte.SetLineWidth(width);
             // Get the line style Dotted - Dashed - Solid
 
@@ -225,7 +225,7 @@ namespace fyiReporting.RDL
             // Get the fill color - could be a gradient or pattern etc...
             System.Drawing.Color c = si.BackgroundColor;
             iAddPoints(pts);
-            _contentByte.SetRGBColorFill(c.R, c.G, c.B);
+            _contentByte.SetRgbColorFill(c.R, c.G, c.B);
             _contentByte.ClosePathFillStroke();
 
 
@@ -297,14 +297,14 @@ namespace fyiReporting.RDL
                         _contentByte.SetLineDash(new float[] { }, 0);
                         break;
                 }
-                _contentByte.SetRGBColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
+                _contentByte.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
             float RadiusX = (width / 2.0f);
             float RadiusY = (height / 2.0f);
             _contentByte.Ellipse(x, PageSize.yHeight - y, x + RadiusX, y + RadiusY);
             if (!si.BackgroundColor.IsEmpty)
             {
-                _contentByte.SetRGBColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
+                _contentByte.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
             if (si.BackgroundColor.IsEmpty)
                 _contentByte.ClosePathStroke();
@@ -698,7 +698,7 @@ namespace fyiReporting.RDL
                 // Set the clipping path, (Itext have no clip)
                 if (height > 0 && width > 0)
                 {
-                    _contentByte.SetRGBColorFill(si.Color.R, si.Color.G, si.Color.B);
+                    _contentByte.SetRgbColorFill(si.Color.R, si.Color.G, si.Color.B);
 
                     if (si.WritingMode == WritingModeEnum.lr_tb)
                     {
@@ -775,7 +775,7 @@ namespace fyiReporting.RDL
         private void iAddFillRect(float x, float y, float width, float height, System.Drawing.Color c)
         {
             // Get the fill color
-            _contentByte.SetRGBColorFill(c.R, c.G, c.B);
+            _contentByte.SetRgbColorFill(c.R, c.G, c.B);
             _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
             _contentByte.Fill();
         }
@@ -822,7 +822,7 @@ namespace fyiReporting.RDL
             System.Drawing.Color c;
             // Get the fill color - could be a gradient or pattern etc...
             c = si.BackgroundColor;
-            _contentByte.SetRGBColorFill(c.R, c.G, c.B);
+            _contentByte.SetRgbColorFill(c.R, c.G, c.B);
             _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
             //_contentByte.ClosePathFillStroke();
             _contentByte.Fill();
@@ -847,12 +847,12 @@ namespace fyiReporting.RDL
                         _contentByte.SetLineDash(new float[] { }, 0);
                         break;
                 }
-                _contentByte.SetRGBColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
+                _contentByte.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
 
             if (!si.BackgroundColor.IsEmpty)
             {
-                _contentByte.SetRGBColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
+                _contentByte.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
             _contentByte.CurveTo(X1, PageSize.yHeight - Y1, X2, PageSize.yHeight - Y1, X3, PageSize.yHeight - Y3);
             if (si.BackgroundColor.IsEmpty)

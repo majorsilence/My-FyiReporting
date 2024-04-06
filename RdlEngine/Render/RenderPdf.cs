@@ -96,7 +96,7 @@ namespace fyiReporting.RDL
         private void iAddLine(float x, float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
         {
             // Get the line color			
-            cb.SetRGBColorStroke(c.R, c.G, c.B);
+            cb.SetRgbColorStroke(c.R, c.G, c.B);
             cb.SetLineWidth(width);
             // Get the line style Dotted - Dashed - Solid
             
@@ -124,7 +124,7 @@ namespace fyiReporting.RDL
         private void iAddFillRect(float x, float y, float width, float height, System.Drawing.Color c)
         {
             // Get the fill color
-            cb.SetRGBColorFill(c.R, c.G, c.B);
+            cb.SetRgbColorFill(c.R, c.G, c.B);
             cb.Rectangle(x, _pSize.yHeight - y - height, width, height);
             //cb.ClosePathFillStroke();
             cb.Fill();
@@ -154,7 +154,7 @@ namespace fyiReporting.RDL
             }
             // Get the fill color - could be a gradient or pattern etc...
             c = si.BackgroundColor;
-            cb.SetRGBColorFill(c.R, c.G, c.B);
+            cb.SetRgbColorFill(c.R, c.G, c.B);
             cb.Rectangle(x, _pSize.yHeight - y - height, width, height);
             //cb.ClosePathFillStroke();
             cb.Fill();
@@ -223,7 +223,7 @@ namespace fyiReporting.RDL
             // Get the fill color - could be a gradient or pattern etc...
             System.Drawing.Color c = si.BackgroundColor;
             iAddPoints(pts);
-            cb.SetRGBColorFill(c.R, c.G, c.B);
+            cb.SetRgbColorFill(c.R, c.G, c.B);
             cb.ClosePathFillStroke();
 
             //Not sure about iTextSharp Pattern => Need check
@@ -398,12 +398,12 @@ namespace fyiReporting.RDL
                         cb.SetLineDash(new float[] { }, 0);
                         break;
                 }
-                cb.SetRGBColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
+                cb.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
 
             if (!si.BackgroundColor.IsEmpty)
             {
-                cb.SetRGBColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
+                cb.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
             cb.CurveTo(X1, _pSize.yHeight - Y1, X2, _pSize.yHeight - Y1, X3, _pSize.yHeight - Y3);
             if (si.BackgroundColor.IsEmpty)
@@ -430,14 +430,14 @@ namespace fyiReporting.RDL
                         cb.SetLineDash(new float[] { }, 0);
                         break;
                 }
-                cb.SetRGBColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
+                cb.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
             float RadiusX = (width / 2.0f);
             float RadiusY = (height / 2.0f);
             cb.Ellipse(x, _pSize.yHeight - y, x + RadiusX, y + RadiusY);
             if (!si.BackgroundColor.IsEmpty)
             {
-                cb.SetRGBColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
+                cb.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
             if (si.BackgroundColor.IsEmpty)
                 cb.ClosePathStroke();
@@ -790,7 +790,7 @@ namespace fyiReporting.RDL
                 // Set the clipping path, (Itext have no clip)
                 if (height > 0 && width > 0)
                 {
-                    cb.SetRGBColorFill(si.Color.R, si.Color.G, si.Color.B);
+                    cb.SetRgbColorFill(si.Color.R, si.Color.G, si.Color.B);
 
                     if (si.WritingMode == WritingModeEnum.lr_tb)
                     {

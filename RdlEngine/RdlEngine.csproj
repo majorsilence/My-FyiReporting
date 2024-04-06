@@ -101,7 +101,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="iTextSharp-LGPL" />
+	<PackageReference Include="iTextSharp.LGPLv2.Core" />
     <PackageReference Include="NPOI" />
     <PackageReference Include="SharpZipLib" />
   </ItemGroup>
