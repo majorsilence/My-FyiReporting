@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <!-- Add your item references here -->
-	<PackageReference Include="System.Data.Odbc" Version="6.0.0" />
-	<PackageReference Include="System.Data.OleDb" Version="6.0.0" />
+	<PackageReference Include="System.Data.Odbc" />
+	<PackageReference Include="System.Data.OleDb" />
   </ItemGroup>
 </Project>

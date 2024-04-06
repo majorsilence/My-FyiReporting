@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 	<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
@@ -14,12 +14,12 @@
 	<Version>4.16.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Microsoft.CSharp" />
+    <PackageReference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="4.1.1" />
-    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Microsoft.Bcl" />
+    <PackageReference Include="Microsoft.Bcl.Build" />
   </ItemGroup>
 </Project>

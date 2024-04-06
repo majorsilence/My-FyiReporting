@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 	<TargetFrameworks>net48;netstandard2.0;net6.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
@@ -35,21 +35,21 @@
     <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BarcodeLib" Version="2.4.0" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
-    <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="5.0.1" />
-    <PackageReference Include="System.Text.Json" Version="5.0.2" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="ZXing.Net" Version="0.16.8" />
+    <PackageReference Include="BarcodeLib" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+    <PackageReference Include="System.Buffers" />
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="System.Numerics.Vectors" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
+    <PackageReference Include="System.Text.Encodings.Web" />
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" />
+    <PackageReference Include="System.ValueTuple" />
+    <PackageReference Include="ZXing.Net" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 	<!-- Add your item references here -->
-	<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+	<PackageReference Include="System.Drawing.Common" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
