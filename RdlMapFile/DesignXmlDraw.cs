@@ -33,6 +33,7 @@ using System.Globalization;
 using System.Net;
 using System.Text;
 using RdlMapFile.Resources;
+using System.ComponentModel;
 
 namespace fyiReporting.RdlMapFile
 {
@@ -67,8 +68,8 @@ namespace fyiReporting.RdlMapFile
         private float _Zoom = 1;
         private List<XmlNode> _SelectedList = new List<XmlNode>();
         private bool _Modified=false;
-        private MenuItem _menuCopy=null;
-        private MenuItem _menuPaste=null;
+        private ToolStripMenuItem _menuCopy=null;
+        private ToolStripMenuItem _menuPaste =null;
 
         private ToolMode _Tool = ToolMode.Selection;
         internal enum ToolMode                  // The tool mode affect how mouse processing is handled
@@ -812,31 +813,31 @@ namespace fyiReporting.RdlMapFile
 
         private void MouseDownContext(MouseEventArgs e)
         {
-            ContextMenu mc = new ContextMenu();
-            mc.Popup += new EventHandler(mc_Popup);
+            ContextMenuStrip mc = new ContextMenuStrip();
+            mc.Opening += new System.ComponentModel.CancelEventHandler(mc_Popup);
             if (_menuCopy == null)
-                _menuCopy = new MenuItem("&Copy", new EventHandler(mc_Copy));
+                _menuCopy = new ToolStripMenuItem("&Copy", null, new EventHandler(mc_Copy));
             if (_menuPaste == null)
-                _menuPaste = new MenuItem("&Paste", new EventHandler(mc_Paste));
+                _menuPaste = new ToolStripMenuItem("&Paste", null, new EventHandler(mc_Paste));
 
-            mc.MenuItems.AddRange(
-                new MenuItem[] {_menuCopy, _menuPaste});
+            mc.Items.AddRange(
+                new ToolStripMenuItem[] {_menuCopy, _menuPaste});
             if (_SelectedList.Count == 1)
             {
                 // add in the select by key options
-                mc.MenuItems.Add(new MenuItem("-"));
+                mc.Items.Add(new ToolStripMenuItem("-"));
                 string[] keys = GetKeysInPolygon(_SelectedList[0]);
                 foreach (string k in keys)
                 {
-                    MenuItem mi = new MenuItem(string.Format("Select by key = {0}", k), new EventHandler(mc_Keys));
+                    ToolStripMenuItem mi = new ToolStripMenuItem(string.Format("Select by key = {0}", k), null, new EventHandler(mc_Keys));
                     mi.Tag = k;
-                    mc.MenuItems.Add(mi);
+                    mc.Items.Add(mi);
                 }
             }
             mc.Show(this, e.Location);
         }
 
-        void mc_Popup(object sender, EventArgs e)
+        void mc_Popup(object sender, CancelEventArgs e)
         {
             _menuPaste.Enabled = CanPaste();
             _menuCopy.Enabled = _SelectedList.Count > 0;
@@ -848,7 +849,7 @@ namespace fyiReporting.RdlMapFile
         
         void mc_Keys(object sender, EventArgs e)
         {
-            MenuItem mi = sender as MenuItem;
+            ToolStripMenuItem mi = sender as ToolStripMenuItem;
             if (mi == null)
                 return;
             string key = mi.Tag as string;

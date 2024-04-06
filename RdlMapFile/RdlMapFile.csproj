@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <ApplicationIcon>App.ico</ApplicationIcon>
     <PublishUrl>publish\</PublishUrl>
@@ -92,5 +92,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'netstandard2.0' ">
+    <!-- Add your item references here -->
+	<PackageReference Include="System.Data.Odbc" Version="6.0.0" />
+	<PackageReference Include="System.Data.OleDb" Version="6.0.0" />
   </ItemGroup>
 </Project>
