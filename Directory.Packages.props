@@ -34,10 +34,7 @@
     <PackageVersion Include="WindowsAzure.Storage" Version="4.3.0" />
     <PackageVersion Include="ZXing.Net" Version="0.16.8" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageVersion Include="System.Drawing.Common" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'netstandard2.0' ">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageVersion Include="System.CodeDom" Version="6.0.0" />
     <PackageVersion Include="System.Data.Odbc" Version="6.0.0" />
     <PackageVersion Include="System.Data.OleDb" Version="6.0.0" />

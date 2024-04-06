@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFrameworks>net48;netstandard2.0;net6.0-windows</TargetFrameworks>
+	<TargetFrameworks>net48;netstandard2.0;net6.0;net6.0-windows</TargetFrameworks>
     <ProjectType>Local</ProjectType>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -105,7 +105,7 @@
     <PackageReference Include="NPOI" />
     <PackageReference Include="SharpZipLib" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'netstandard2.0' ">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <!-- Add your item references here -->
 	<PackageReference Include="System.Drawing.Common" />
 	<PackageReference Include="System.Data.SqlClient" />

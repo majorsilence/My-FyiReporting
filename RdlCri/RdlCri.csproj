@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFrameworks>net48;netstandard2.0;net6.0-windows</TargetFrameworks>
+	<TargetFrameworks>net48;netstandard2.0;net6.0;net6.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>fyiReporting.CRI</RootNamespace>
     <PublishUrl>publish\</PublishUrl>
@@ -47,7 +47,7 @@
     <PackageReference Include="System.ValueTuple" />
     <PackageReference Include="ZXing.Net" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net6.0'">
 	<!-- Add your item references here -->
 	<PackageReference Include="System.Drawing.Common" />
   </ItemGroup>

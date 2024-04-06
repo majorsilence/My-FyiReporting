@@ -24,7 +24,7 @@ using System;
 using System.Xml;
 using System.Data;
 using System.Collections;
-#if !NETSTANDARD2_0
+#if !NETSTANDARD2_0 && !NET6_0_OR_GREATER
 using System.Web.Services;
 using System.Web.Services.Description;
 using System.Web.Services.Protocols;
@@ -111,8 +111,8 @@ namespace fyiReporting.Data
 					args[ai] = Convert.ChangeType(dp.Value, pi.ParameterType);
 				ai++;
 			}
-#if !NETSTANDARD2_0
-			SoapHttpClientProtocol so = o as SoapHttpClientProtocol;
+#if !NETSTANDARD2_0 && !NET6_0_OR_GREATER
+            SoapHttpClientProtocol so = o as SoapHttpClientProtocol;
 			if (so != null && timeout != 0)
 				so.Timeout = timeout;
 			return mi.Invoke(o, args);
@@ -131,8 +131,8 @@ namespace fyiReporting.Data
 
 		private Assembly GetAssembly()
 		{
-#if !NETSTANDARD2_0
-			ServiceDescription sd = GetServiceDescription();
+#if !NETSTANDARD2_0 && !NET6_0_OR_GREATER
+            ServiceDescription sd = GetServiceDescription();
 
 			// ServiceDescriptionImporter provide means for generating client proxy classes for XML Web services 
 			CodeNamespace cns = new CodeNamespace(_Namespace);
@@ -181,8 +181,8 @@ namespace fyiReporting.Data
 #endif
 		}
 
-#if !NETSTANDARD2_0
-		public ServiceDescription GetServiceDescription()
+#if !NETSTANDARD2_0 && !NET6_0_OR_GREATER
+        public ServiceDescription GetServiceDescription()
 		{
 			ServiceDescription sd = new ServiceDescription();
 			Stream sr=null;
