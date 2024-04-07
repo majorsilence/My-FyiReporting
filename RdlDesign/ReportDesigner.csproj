@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <ProjectType>Local</ProjectType>
     <ApplicationIcon>App.ico</ApplicationIcon>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -225,12 +225,15 @@
     <PackageReference Include="dotConnect.Express.for.PostgreSQL" />
     <PackageReference Include="jacobslusser.ScintillaNET" />
     <PackageReference Include="Microsoft.Data.Edm" />
-    <PackageReference Include="Microsoft.Data.OData" />
-    <PackageReference Include="Microsoft.Data.Services.Client" />
-    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" />
+    <PackageReference Include="Microsoft.Data.OData" />   
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.Spatial" />
-    <PackageReference Include="WindowsAzure.Storage" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48' ">
+	<PackageReference Include="Microsoft.Data.Services.Client" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
+	<PackageReference Include="Microsoft.Data.SqlClient" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ChartCtl - Copy.cs" />

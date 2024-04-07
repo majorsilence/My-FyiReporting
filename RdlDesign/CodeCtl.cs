@@ -285,7 +285,7 @@ namespace fyiReporting.RdlDesign
                 }
             }
             else
-                MessageBox.Show(Strings.CodeCtl_Show_NoErrors, Strings.CodeCtl_Show_CodeVerification);
+                MessageBox.Show(Resources.Strings.CodeCtl_Show_NoErrors, Resources.Strings.CodeCtl_Show_CodeVerification);
 
             return ;
         }
