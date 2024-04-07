@@ -56,7 +56,6 @@ namespace fyiReporting.RdlDesign
             this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgtbTypeName = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -252,11 +251,6 @@ namespace fyiReporting.RdlDesign
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // dataGridTableStyle1
-            // 
-            this.dataGridTableStyle1.DataGrid = null;
-            this.dataGridTableStyle1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            // 
             // DataSetsCtl
             // 
             this.Controls.Add(this.splitContainer1);
@@ -278,7 +272,6 @@ namespace fyiReporting.RdlDesign
         }
         #endregion
 
-        private System.Windows.Forms.DataGridTableStyle dataGridTableStyle1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.NumericUpDown tbTimeout;
         private System.Windows.Forms.Label label3;

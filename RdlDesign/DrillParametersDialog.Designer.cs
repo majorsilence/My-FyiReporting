@@ -9,14 +9,10 @@ namespace fyiReporting.RdlDesign
     internal partial class DrillParametersDialog : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		private DataGridTextBoxColumn dgtbName;
-private DataGridTextBoxColumn dgtbValue;
-private DataGridTextBoxColumn dgtbOmit;
-private System.Windows.Forms.DataGridTableStyle dgTableStyle;
 private System.Windows.Forms.Label label1;
 private System.Windows.Forms.Button bFile;
 private System.Windows.Forms.TextBox tbReportFile;
-private System.Windows.Forms.DataGrid dgParms;
+private System.Windows.Forms.DataGridView dgParms;
 private System.Windows.Forms.Button bRefreshParms;
 private System.Windows.Forms.Button bOK;
 private System.Windows.Forms.Button bCancel;
@@ -25,8 +21,7 @@ private System.ComponentModel.Container components = null;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrillParametersDialog));
-			this.dgParms = new System.Windows.Forms.DataGrid();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+			this.dgParms = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbReportFile = new System.Windows.Forms.TextBox();
 			this.bFile = new System.Windows.Forms.Button();
@@ -39,19 +34,8 @@ private System.ComponentModel.Container components = null;
 			// dgParms
 			// 
 			resources.ApplyResources(this.dgParms, "dgParms");
-			this.dgParms.CaptionVisible = false;
 			this.dgParms.DataMember = "";
-			this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgParms.Name = "dgParms";
-			this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyle});
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.AllowSorting = false;
-			this.dgTableStyle.DataGrid = this.dgParms;
-			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// label1
 			// 

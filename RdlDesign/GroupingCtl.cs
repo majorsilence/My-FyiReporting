@@ -40,8 +40,6 @@ namespace fyiReporting.RdlDesign
 		private DesignXmlDraw _Draw;
 		private XmlNode _GroupingParent;
 		private DataTable _DataTable;
-//		private DGCBColumn dgtbGE;
-		private DataGridTextBoxColumn dgtbGE;
 
 		private System.Windows.Forms.Button bDelete;
 		private System.Windows.Forms.Button bUp;
@@ -81,15 +79,6 @@ namespace fyiReporting.RdlDesign
 
 		private void InitValues()
 		{
-			// Initialize the DataGrid columns
-			//			dgtbGE = new DGCBColumn(ComboBoxStyle.DropDown);
-			dgtbGE = new DataGridTextBoxColumn();
-			// 
-			// dgtbGE
-			// 
-			dgtbGE.HeaderText = "Expression";
-			dgtbGE.MappingName = "Expression";
-			dgtbGE.Width = 175;
 			// Get the parent's dataset name
 //			string dataSetName = _Draw.GetDataSetNameValue(_GroupingParent);
 //

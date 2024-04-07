@@ -81,26 +81,6 @@ namespace fyiReporting.RdlDesign
 
         private void InitValues(List<ParameterValueItem> list)
         {
-            // Initialize the DataGrid columns
-            dgtbLabel = new DataGridTextBoxColumn();
-            dgtbValue = new DataGridTextBoxColumn();
-
-            this.dgTableStyle.GridColumnStyles.AddRange(new DataGridColumnStyle[] {
-															this.dgtbValue,
-															this.dgtbLabel});
-            // 
-            // dgtbFE
-            // 
-            dgtbValue.HeaderText = "Value";
-            dgtbValue.MappingName = "Value";
-            dgtbValue.Width = 75;
-            // 
-            // dgtbValue
-            // 
-            this.dgtbLabel.HeaderText = "Label";
-            this.dgtbLabel.MappingName = "Label";
-            this.dgtbLabel.Width = 75;
-
             // Initialize the DataGrid
             //this.dgParms.DataSource = _dsv.QueryParameters;
 
@@ -121,14 +101,13 @@ namespace fyiReporting.RdlDesign
             this.dgParms.DataSource = _DataTable;
 
             ////
-            DataGridTableStyle ts = dgParms.TableStyles[0];
-            ts.GridColumnStyles[0].Width = 140;
-            ts.GridColumnStyles[1].Width = 140;
+            dgParms.Columns[0].Width = 140;
+            dgParms.Columns[1].Width = 140;
         }
 
         private void bDelete_Click(object sender, System.EventArgs e)
         {
-            this._DataTable.Rows.RemoveAt(this.dgParms.CurrentRowIndex);
+            this._DataTable.Rows.RemoveAt(this.dgParms.CurrentRow.Index);
         }
 
 

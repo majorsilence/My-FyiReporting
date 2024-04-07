@@ -33,7 +33,6 @@ namespace fyiReporting.RdlDesign
             this.dgParms = new System.Windows.Forms.DataGridView();
             this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
             this.bValueExpr = new System.Windows.Forms.Button();
             this.bDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgParms)).BeginInit();
@@ -59,11 +58,6 @@ namespace fyiReporting.RdlDesign
             this.dgtbValue.DataPropertyName = "Value";
             resources.ApplyResources(this.dgtbValue, "dgtbValue");
             this.dgtbValue.Name = "dgtbValue";
-            // 
-            // dgTableStyle
-            // 
-            this.dgTableStyle.DataGrid = null;
-            this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
             // 
             // bValueExpr
             // 
@@ -91,7 +85,6 @@ namespace fyiReporting.RdlDesign
 		}
 		#endregion
 				
-		private System.Windows.Forms.DataGridTableStyle dgTableStyle;
 		private System.Windows.Forms.DataGridView dgParms;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dgtbValue;

@@ -30,8 +30,7 @@ namespace fyiReporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetRowsCtl));
-			this.dgRows = new System.Windows.Forms.DataGrid();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+			this.dgRows = new System.Windows.Forms.DataGridView();
 			this.bDelete = new System.Windows.Forms.Button();
 			this.bUp = new System.Windows.Forms.Button();
 			this.bDown = new System.Windows.Forms.Button();
@@ -47,19 +46,8 @@ namespace fyiReporting.RdlDesign
 			// dgRows
 			// 
 			resources.ApplyResources(this.dgRows, "dgRows");
-			this.dgRows.CaptionVisible = false;
 			this.dgRows.DataMember = "";
-			this.dgRows.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgRows.Name = "dgRows";
-			this.dgRows.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyle});
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.AllowSorting = false;
-			this.dgTableStyle.DataGrid = this.dgRows;
-			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// bDelete
 			// 
@@ -137,12 +125,11 @@ namespace fyiReporting.RdlDesign
 		#endregion
 		
 		private System.Windows.Forms.Button bDelete;
-		private System.Windows.Forms.DataGridTableStyle dgTableStyle;
 		private System.Windows.Forms.Button bUp;
 		private System.Windows.Forms.Button bDown;
 		private System.Windows.Forms.CheckBox chkRowsFile;
 		private System.Windows.Forms.Button bRowsFile;
-		private System.Windows.Forms.DataGrid dgRows;
+		private System.Windows.Forms.DataGridView dgRows;
 		private System.Windows.Forms.TextBox tbRowsFile;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button bLoad;

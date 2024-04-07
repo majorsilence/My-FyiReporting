@@ -58,34 +58,6 @@ namespace fyiReporting.RdlDesign
         {
             this.tbReportFile.Text = _DrillReport;
 
-            // Initialize the DataGrid columns
-            dgtbName = new DataGridTextBoxColumn();
-            dgtbValue = new DataGridTextBoxColumn();
-            dgtbOmit = new DataGridTextBoxColumn();
-
-            this.dgTableStyle.GridColumnStyles.AddRange(new DataGridColumnStyle[] {
-															this.dgtbName,
-															this.dgtbValue,
-															this.dgtbOmit});
-            // 
-            // dgtbFE
-            // 
-            dgtbName.HeaderText = "Parameter Name";
-            dgtbName.MappingName = "ParameterName";
-            dgtbName.Width = 75;
-            // 
-            // dgtbValue
-            // 
-            this.dgtbValue.HeaderText = "Value";
-            this.dgtbValue.MappingName = "Value";
-            this.dgtbValue.Width = 75;
-            // 
-            // dgtbOmit
-            // 
-            this.dgtbOmit.HeaderText = "Omit";
-            this.dgtbOmit.MappingName = "Omit";
-            this.dgtbOmit.Width = 75;
-
             // Initialize the DataTable
             _DataTable = new DataTable();
 
@@ -109,13 +81,10 @@ namespace fyiReporting.RdlDesign
             //			dv.AllowNew = false;
             this.dgParms.DataSource = _DataTable;
 
-            DataGridTableStyle ts = dgParms.TableStyles[0];
-
-            ts.GridColumnStyles[0].Width = 140;
-            ts.GridColumnStyles[0].ReadOnly = true;
-            ts.GridColumnStyles[1].Width = 140;
-            ts.GridColumnStyles[2].Width = 70;
-
+            dgParms.Columns[0].Width = 140;
+            dgParms.Columns[0].ReadOnly = true;
+            dgParms.Columns[1].Width = 140;
+            dgParms.Columns[2].Width = 70;
         }
 
         public string DrillthroughReport

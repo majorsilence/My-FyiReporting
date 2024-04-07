@@ -42,12 +42,10 @@ namespace fyiReporting.RdlDesign
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button bDeleteCM;
-		private System.Windows.Forms.DataGrid dgCodeModules;
+		private System.Windows.Forms.DataGridView dgCodeModules;
 		private System.Windows.Forms.Button bDeleteClass;
-		private System.Windows.Forms.DataGrid dgClasses;
+		private System.Windows.Forms.DataGridView dgClasses;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.DataGridTableStyle dgTableStyleCM;
-		private System.Windows.Forms.DataGridTableStyle dgTableStyleCL;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -73,17 +71,6 @@ namespace fyiReporting.RdlDesign
 		{
 			XmlNode rNode = _Draw.GetReportNode();
 
-			// Initialize the DataGrid columns
-			DataGridTextBoxColumn dgtbCM = new DataGridTextBoxColumn();
-
-			this.dgTableStyleCM.GridColumnStyles.AddRange(new DataGridColumnStyle[] {dgtbCM});
-			// 
-			// dgtbGE
-			// 
-			dgtbCM.HeaderText = "Code Module";
-			dgtbCM.MappingName = "Code Module";
-			dgtbCM.Width = 175;
-
 			// Initialize the DataTable
 			_DTCM = new DataTable();
 			_DTCM.Columns.Add(new DataColumn("Code Module", typeof(string)));
@@ -102,27 +89,11 @@ namespace fyiReporting.RdlDesign
 					_DTCM.Rows.Add(rowValues);
 				}
 			this.dgCodeModules.DataSource = _DTCM;
-			DataGridTableStyle ts = dgCodeModules.TableStyles[0];
-			ts.GridColumnStyles[0].Width = 330;
 		}
 
 		private void BuildClasses()
 		{
 			XmlNode rNode = _Draw.GetReportNode();
-
-			// Initialize the DataGrid columns
-			DataGridTextBoxColumn dgtbCL = new DataGridTextBoxColumn();
-			DataGridTextBoxColumn dgtbIn = new DataGridTextBoxColumn();
-
-			this.dgTableStyleCL.GridColumnStyles.AddRange(new DataGridColumnStyle[] {dgtbCL, dgtbIn});
-
-			dgtbCL.HeaderText = "Class Name";
-			dgtbCL.MappingName = "Class Name";
-			dgtbCL.Width = 80;
-
-			dgtbIn.HeaderText = "Instance Name";
-			dgtbIn.MappingName = "Instance Name";
-			dgtbIn.Width = 80;
 
 			// Initialize the DataTable
 			_DTCL = new DataTable();
@@ -150,9 +121,6 @@ namespace fyiReporting.RdlDesign
 					_DTCL.Rows.Add(rowValues);
 				}
 			this.dgClasses.DataSource = _DTCL;
-			DataGridTableStyle ts = dgClasses.TableStyles[0];
-			ts.GridColumnStyles[0].Width = 200;
-			ts.GridColumnStyles[1].Width = 130;
 		}
 
 		/// <summary> 
@@ -180,11 +148,9 @@ namespace fyiReporting.RdlDesign
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulesClassesCtl));
 			this.label1 = new System.Windows.Forms.Label();
 			this.bDeleteCM = new System.Windows.Forms.Button();
-			this.dgCodeModules = new System.Windows.Forms.DataGrid();
-			this.dgTableStyleCM = new System.Windows.Forms.DataGridTableStyle();
+			this.dgCodeModules = new System.Windows.Forms.DataGridView();
 			this.bDeleteClass = new System.Windows.Forms.Button();
-			this.dgClasses = new System.Windows.Forms.DataGrid();
-			this.dgTableStyleCL = new System.Windows.Forms.DataGridTableStyle();
+			this.dgClasses = new System.Windows.Forms.DataGridView();
 			this.label2 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgCodeModules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgClasses)).BeginInit();
@@ -204,18 +170,8 @@ namespace fyiReporting.RdlDesign
 			// dgCodeModules
 			// 
 			resources.ApplyResources(this.dgCodeModules, "dgCodeModules");
-			this.dgCodeModules.CaptionVisible = false;
 			this.dgCodeModules.DataMember = "";
-			this.dgCodeModules.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgCodeModules.Name = "dgCodeModules";
-			this.dgCodeModules.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyleCM});
-			// 
-			// dgTableStyleCM
-			// 
-			this.dgTableStyleCM.DataGrid = this.dgCodeModules;
-			resources.ApplyResources(this.dgTableStyleCM, "dgTableStyleCM");
-			this.dgTableStyleCM.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// bDeleteClass
 			// 
@@ -226,18 +182,8 @@ namespace fyiReporting.RdlDesign
 			// dgClasses
 			// 
 			resources.ApplyResources(this.dgClasses, "dgClasses");
-			this.dgClasses.CaptionVisible = false;
 			this.dgClasses.DataMember = "";
-			this.dgClasses.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgClasses.Name = "dgClasses";
-			this.dgClasses.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyleCL});
-			// 
-			// dgTableStyleCL
-			// 
-			this.dgTableStyleCL.DataGrid = this.dgClasses;
-			resources.ApplyResources(this.dgTableStyleCL, "dgTableStyleCL");
-			this.dgTableStyleCL.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// label2
 			// 
@@ -342,7 +288,7 @@ namespace fyiReporting.RdlDesign
 
 		private void bDeleteCM_Click(object sender, System.EventArgs e)
 		{
-			int cr = this.dgCodeModules.CurrentRowIndex;
+			int cr = this.dgCodeModules.CurrentRow.Index;
 			if (cr < 0)		// already at the top
 				return;
 
@@ -352,7 +298,7 @@ namespace fyiReporting.RdlDesign
 
 		private void bDeleteClass_Click(object sender, System.EventArgs e)
 		{
-			int cr = this.dgClasses.CurrentRowIndex;
+			int cr = this.dgClasses.CurrentRow.Index;
 			if (cr < 0)		// already at the top
 				return;
 

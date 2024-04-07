@@ -84,7 +84,6 @@ namespace fyiReporting.RdlDesign
 		private void CreateDataTable()
 		{
 			_DataTable = new DataTable();
-			dgTableStyle.GridColumnStyles.Clear();	// reset the grid column styles
 
 			foreach (DataRow dr in _dsv.Fields.Rows)
 			{
@@ -95,11 +94,7 @@ namespace fyiReporting.RdlDesign
 				else if (((string) dr[2]).Length > 0)
 					continue;
 				string name = (string) dr[0];
-				DataGridTextBoxColumn dgc = new DataGridTextBoxColumn();
-				dgTableStyle.GridColumnStyles.Add(dgc);
-				dgc.HeaderText = name;
-				dgc.MappingName = name;
-				dgc.Width = 75;
+
                 string type = dr["TypeName"] as string;
                 Type t = type == null || type.Length == 0? typeof(string): 
                     fyiReporting.RDL.DataType.GetStyleType(type);
@@ -205,30 +200,36 @@ namespace fyiReporting.RdlDesign
 
 		private void bDelete_Click(object sender, System.EventArgs e)
 		{
-			this._DataTable.Rows.RemoveAt(this.dgRows.CurrentRowIndex);
+			this._DataTable.Rows.RemoveAt(this.dgRows.CurrentRow.Index);
 		}
 
 		private void bUp_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgRows.CurrentRowIndex;
+			int cr = dgRows.CurrentRow.Index;
 			if (cr <= 0)		// already at the top
 				return;
 			
 			SwapRow(_DataTable.Rows[cr-1], _DataTable.Rows[cr]);
-			dgRows.CurrentRowIndex = cr-1;
-		}
+            if (cr >= 0 && cr < dgRows.Rows.Count)
+            {
+                dgRows.CurrentCell = dgRows.Rows[cr - 1].Cells[0];
+            }
+        }
 
 		private void bDown_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgRows.CurrentRowIndex;
+			int cr = dgRows.CurrentRow.Index;
 			if (cr < 0)			// invalid index
 				return;
 			if (cr + 1 >= _DataTable.Rows.Count)
 				return;			// already at end
 			
 			SwapRow(_DataTable.Rows[cr+1], _DataTable.Rows[cr]);
-			dgRows.CurrentRowIndex = cr+1;
-		}
+            if (cr >= 0 && cr < dgRows.Rows.Count)
+            {
+                dgRows.CurrentCell = dgRows.Rows[cr + 1].Cells[0];
+            }
+        }
 
 		private void SwapRow(DataRow tdr, DataRow fdr)
 		{

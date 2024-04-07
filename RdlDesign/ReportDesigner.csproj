@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows</TargetFrameworks>
     <ProjectType>Local</ProjectType>
     <ApplicationIcon>App.ico</ApplicationIcon>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -135,9 +135,6 @@
     </Compile>
     <Compile Update="DesignXmlDraw.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DGCBColumn.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Update="FiltersCtl.cs">
       <SubType>UserControl</SubType>

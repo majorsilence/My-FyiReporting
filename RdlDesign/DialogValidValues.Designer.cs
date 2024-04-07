@@ -9,10 +9,7 @@ namespace fyiReporting.RdlDesign
     internal partial class DialogValidValues : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		private DataGridTextBoxColumn dgtbLabel;
-private DataGridTextBoxColumn dgtbValue;
-private System.Windows.Forms.DataGridTableStyle dgTableStyle;
-private System.Windows.Forms.DataGrid dgParms;
+private System.Windows.Forms.DataGridView dgParms;
 private System.Windows.Forms.Button bOK;
 private System.Windows.Forms.Button bCancel;
 private System.Windows.Forms.Button bDelete;
@@ -21,8 +18,7 @@ private System.ComponentModel.Container components = null;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogValidValues));
-			this.dgParms = new System.Windows.Forms.DataGrid();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+			this.dgParms = new System.Windows.Forms.DataGridView();
 			this.bOK = new System.Windows.Forms.Button();
 			this.bCancel = new System.Windows.Forms.Button();
 			this.bDelete = new System.Windows.Forms.Button();
@@ -32,19 +28,8 @@ private System.ComponentModel.Container components = null;
 			// dgParms
 			// 
 			resources.ApplyResources(this.dgParms, "dgParms");
-			this.dgParms.CaptionVisible = false;
 			this.dgParms.DataMember = "";
-			this.dgParms.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgParms.Name = "dgParms";
-			this.dgParms.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyle});
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.AllowSorting = false;
-			this.dgTableStyle.DataGrid = this.dgParms;
-			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// bOK
 			// 
