@@ -44,10 +44,9 @@ namespace fyiReporting.RdlDesign
 		private DataGridTextBoxColumn dgtbGE;
 
 		private System.Windows.Forms.Button bDelete;
-		private System.Windows.Forms.DataGridTableStyle dgTableStyle;
 		private System.Windows.Forms.Button bUp;
 		private System.Windows.Forms.Button bDown;
-		private System.Windows.Forms.DataGrid dgGroup;
+		private System.Windows.Forms.DataGridView dgGroup;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox tbName;
 		private System.Windows.Forms.Label label2;
@@ -85,9 +84,6 @@ namespace fyiReporting.RdlDesign
 			// Initialize the DataGrid columns
 			//			dgtbGE = new DGCBColumn(ComboBoxStyle.DropDown);
 			dgtbGE = new DataGridTextBoxColumn();
-
-			this.dgTableStyle.GridColumnStyles.AddRange(new DataGridColumnStyle[] {
-															this.dgtbGE});
 			// 
 			// dgtbGE
 			// 
@@ -122,9 +118,7 @@ namespace fyiReporting.RdlDesign
 				_DataTable.Rows.Add(rowValues);
 			}
 			this.dgGroup.DataSource = _DataTable;
-			DataGridTableStyle ts = dgGroup.TableStyles[0];
-		//	ts.PreferredRowHeight = dgtbGE.CB.Height;
-			ts.GridColumnStyles[0].Width = 330;
+			dgGroup.Columns[0].Width = 330;
 
 			//
 			if (grouping == null)
@@ -212,8 +206,7 @@ namespace fyiReporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupingCtl));
-			this.dgGroup = new System.Windows.Forms.DataGrid();
-			this.dgTableStyle = new System.Windows.Forms.DataGridTableStyle();
+			this.dgGroup = new System.Windows.Forms.DataGridView();
 			this.bDelete = new System.Windows.Forms.Button();
 			this.bUp = new System.Windows.Forms.Button();
 			this.bDown = new System.Windows.Forms.Button();
@@ -239,19 +232,8 @@ namespace fyiReporting.RdlDesign
 			// dgGroup
 			// 
 			resources.ApplyResources(this.dgGroup, "dgGroup");
-			this.dgGroup.CaptionVisible = false;
 			this.dgGroup.DataMember = "";
-			this.dgGroup.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			this.dgGroup.Name = "dgGroup";
-			this.dgGroup.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-            this.dgTableStyle});
-			// 
-			// dgTableStyle
-			// 
-			this.dgTableStyle.AllowSorting = false;
-			this.dgTableStyle.DataGrid = this.dgGroup;
-			resources.ApplyResources(this.dgTableStyle, "dgTableStyle");
-			this.dgTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
 			// 
 			// bDelete
 			// 
@@ -557,7 +539,7 @@ namespace fyiReporting.RdlDesign
 
 		private void bDelete_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgGroup.CurrentRowIndex;
+			int cr = dgGroup.CurrentRow.Index;
 			if (cr < 0)		// already at the top
 				return;
 			else if (cr == 0)
@@ -571,52 +553,59 @@ namespace fyiReporting.RdlDesign
 
 		private void bUp_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgGroup.CurrentRowIndex;
+			int cr = dgGroup.CurrentRow.Index;
 			if (cr <= 0)		// already at the top
 				return;
 			
 			SwapRow(_DataTable.Rows[cr-1], _DataTable.Rows[cr]);
-			dgGroup.CurrentRowIndex = cr-1;
-		}
+
+            if (cr >= 0 && cr < dgGroup.Rows.Count)
+            {
+                dgGroup.CurrentCell = dgGroup.Rows[cr-1].Cells[0];
+            }
+        }
 
 		private void bDown_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgGroup.CurrentRowIndex;
+			int cr = dgGroup.CurrentRow.Index;
 			if (cr < 0)			// invalid index
 				return;
 			if (cr + 1 >= _DataTable.Rows.Count)
 				return;			// already at end
 			
 			SwapRow(_DataTable.Rows[cr+1], _DataTable.Rows[cr]);
-			dgGroup.CurrentRowIndex = cr+1;
-		}
+            if (cr >= 0 && cr < dgGroup.Rows.Count)
+            {
+                dgGroup.CurrentCell = dgGroup.Rows[cr + 1].Cells[0];
+            }
+        }
 
-		private void SwapRow(DataRow tdr, DataRow fdr)
-		{
-			// column 1
-			object save = tdr[0];
-			tdr[0] = fdr[0];
-			fdr[0] = save;
+        private void SwapRow(DataRow tdr, DataRow fdr)
+        {
+            // column 1
+            object save = tdr[0];
+            tdr[0] = fdr[0];
+            fdr[0] = save;
 
-			int columnCount = _DataTable.Columns.Count;
-			// column 2
-			if (columnCount > 1)
-			{
-				save = tdr[1];
-				tdr[1] = fdr[1];
-				fdr[1] = save;
-			}
-			// column 3
-			if (columnCount > 2)
-			{
-				save = tdr[2];
-				tdr[2] = fdr[2];
-				fdr[2] = save;
-			}
-			return;
-		}
+            int columnCount = _DataTable.Columns.Count;
+            // column 2
+            if (columnCount > 1)
+            {
+                save = tdr[1];
+                tdr[1] = fdr[1];
+                fdr[1] = save;
+            }
+            // column 3
+            if (columnCount > 2)
+            {
+                save = tdr[2];
+                tdr[2] = fdr[2];
+                fdr[2] = save;
+            }
+            return;
+        }
 
-		private void tbName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void tbName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			bool bRows=HasRows();
 
@@ -633,7 +622,7 @@ namespace fyiReporting.RdlDesign
 
 		private void bValueExpr_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgGroup.CurrentRowIndex;
+			int cr = dgGroup.CurrentRow.Index;
 			if (cr < 0)
 			{	// No rows yet; create one
 				string[] rowValues = new string[1];
@@ -642,8 +631,9 @@ namespace fyiReporting.RdlDesign
 				_DataTable.Rows.Add(rowValues);
 				cr = 0;
 			}
-			DataGridCell dgc = dgGroup.CurrentCell;
-			int cc = dgc.ColumnNumber;
+
+            DataGridViewCell dgc = dgGroup.CurrentCell;
+			int cc = dgc.ColumnIndex;
 			DataRow dr = _DataTable.Rows[cr];
 			string cv = dr[cc] as string;
 
