@@ -597,14 +597,22 @@ namespace fyiReporting.RdlDesign
 			object save = tdr[0];
 			tdr[0] = fdr[0];
 			fdr[0] = save;
+
+			int columnCount = _DataTable.Columns.Count;
 			// column 2
-			save = tdr[1];
-			tdr[1] = fdr[1];
-			fdr[1] = save;
+			if (columnCount > 1)
+			{
+				save = tdr[1];
+				tdr[1] = fdr[1];
+				fdr[1] = save;
+			}
 			// column 3
-			save = tdr[2];
-			tdr[2] = fdr[2];
-			fdr[2] = save;
+			if (columnCount > 2)
+			{
+				save = tdr[2];
+				tdr[2] = fdr[2];
+				fdr[2] = save;
+			}
 			return;
 		}
 
