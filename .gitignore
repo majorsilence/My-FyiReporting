@@ -235,3 +235,4 @@ obj/
 /Examples/SampleApp/SampleReportApp/RdlEngineConfig.xml
 /Examples/SampleApp2-SetData/SampleApp2-SetData/RdlEngineConfig.Linux.xml
 /.vs
+/RdlGtk3/.vs
