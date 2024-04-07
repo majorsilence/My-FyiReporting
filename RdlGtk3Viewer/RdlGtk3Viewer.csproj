@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net48</TargetFramework>
+	<OutputType>WinExe</OutputType>
+	<RootNamespace>fyiReporting.RdlGtk3Viewer</RootNamespace>
+	<AssemblyName>RdlGtk3Viewer</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RdlGtk3\RdlGtk3.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GtkSharp" />
+	</ItemGroup>
+
+</Project>

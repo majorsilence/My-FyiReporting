@@ -35,6 +35,8 @@
     <PackageVersion Include="ZXing.Net" Version="0.16.8" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
     <PackageVersion Include="coverlet.collector" Version="6.0.2"/>
+    <PackageVersion Include="GtkSharp" Version="3.24.24.95" />
+    <PackageVersion Include="Mono.Posix" Version="7.1.0-final.1.21458.1" />    
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageVersion Include="System.CodeDom" Version="6.0.0" />

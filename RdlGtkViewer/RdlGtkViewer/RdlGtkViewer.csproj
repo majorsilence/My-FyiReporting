@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{921488F1-F4FC-4438-920E-86E57442B253}</ProjectGuid>
+    <ProjectGuid>{C16E59AC-EB88-41EA-BFC6-739EF9D4BBB6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlGtkViewer</RootNamespace>
     <AssemblyName>RdlGtkViewer</AssemblyName>
