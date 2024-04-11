@@ -50,7 +50,7 @@ namespace fyiReporting.RdlGtk3
                     scale = value;
 
                     this.QueueResize();
-                    GdkWindow.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
+                    //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 }
             }
         }
@@ -61,13 +61,18 @@ namespace fyiReporting.RdlGtk3
             AddEvents((int)Gdk.EventMask.ButtonPressMask);
         }
 
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+        }
+
         public void SetReport(Report report, Page pages)
         {
             this.pages = pages;
             this.report = report;
 
             this.QueueResize();
-            GdkWindow.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
+            //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
         }
 
         PageItem selectedItem;
@@ -102,7 +107,7 @@ namespace fyiReporting.RdlGtk3
                 }
                 selectedItem = hitAreaItem.pi;
                 QueueDraw();
-                GdkWindow.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
+                //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 Menu popupMenu = new Menu();
                 MenuItem menuItem = new MenuItem("Копировать");
                 menuItem.Activated += (sender, e) =>
@@ -111,7 +116,7 @@ namespace fyiReporting.RdlGtk3
                     clipboard.Text = text;
                     selectedItem = null;
                     QueueDraw();
-                    GdkWindow.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
+                    //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 };
                 popupMenu.Add(menuItem);
                 popupMenu.ShowAll();
@@ -120,7 +125,7 @@ namespace fyiReporting.RdlGtk3
                 {
                     selectedItem = null;
                     QueueDraw();
-                    GdkWindow.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
+                    //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 };
             }
             // Insert button press handling code here.

@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using fyiReporting.RDL;
+using GLib;
 using Gtk;
 using Strings = RdlEngine.Resources.Strings;
 
@@ -49,6 +50,22 @@ namespace fyiReporting.RdlGtk3
         private Action<Pages> customPrintAction;
 
 		public event EventHandler ReportPrinted;
+
+        private Toolbar actionGroup { get; set; }
+        private Gtk.Action refreshAction;
+        private Gtk.Action saveAsAction;
+        private Gtk.Action printAction;
+        private Gtk.Action zoomOutAction;
+        private Gtk.Action zoomInAction;
+        private Gtk.ToggleAction errorsAction;
+        private Gtk.Box vbox;
+        private Gtk.Box hbox;
+        private Gtk.Box vboxParameters;
+        private Gtk.Paned hpanedReport;
+        private Gtk.ScrolledWindow scrolledwindowPages;
+        private Gtk.Box vboxPages;
+        private Gtk.ScrolledWindow scrolledwindowErrors;
+        private Gtk.TextView textviewErrors;
 
         public ListDictionary Parameters { get; private set; }
 
@@ -105,6 +122,88 @@ namespace fyiReporting.RdlGtk3
             errorsAction.Toggled += OnErrorsActionToggled;
             DisableActions();
             ShowErrors = false;
+        }
+
+        protected virtual void Build()
+        {
+            actionGroup = new Toolbar();
+
+            refreshAction = new Gtk.Action("refresh", "Refresh", "gtk-refresh", Stock.Refresh);
+            refreshAction.IsImportant = true;
+            refreshAction.Tooltip = "Refresh the report";
+            actionGroup.Add(refreshAction.CreateToolItem());
+
+            saveAsAction = new Gtk.Action("export", "Export", "gtk-save-as", Stock.SaveAs);
+            saveAsAction.Tooltip = "Export as PDF, CSV, ASP, HTML, MHTML, XML, Excel";
+            actionGroup.Add(saveAsAction.CreateToolItem());
+
+            printAction = new Gtk.Action("print", "Print", "gtk-print", Stock.Print);
+            printAction.Tooltip = "Print the report";
+            actionGroup.Add(printAction.CreateToolItem());
+
+            zoomOutAction = new Gtk.Action("zoom-out", "Zoom Out", "gtk-zoom-out", Stock.ZoomOut);
+            zoomOutAction.IsImportant = true;
+            zoomOutAction.Tooltip = "Zoom out the report";
+            actionGroup.Add(zoomOutAction.CreateToolItem());
+
+            zoomInAction = new Gtk.Action("zoom-in", "Zoom In", "gtk-zoom-in", Stock.ZoomIn);
+            zoomInAction.IsImportant = true;
+            zoomInAction.Tooltip = "Zoom in the report";
+            actionGroup.Add(zoomInAction.CreateToolItem());
+
+            errorsAction = new ToggleAction(null, null, "gtk-dialog-warning", Stock.DialogWarning);
+            errorsAction.IsImportant = true;
+            errorsAction.DrawAsRadio = true;
+            actionGroup.Add(errorsAction.CreateToolItem());
+
+            vbox = new Box(Orientation.Vertical, 6);
+            vbox.Homogeneous = false;
+            vbox.Expand = true;
+            
+
+            hbox = new Box(Orientation.Horizontal, 6);
+            hbox.Homogeneous = false;
+            hbox.Expand = true;
+            vboxParameters = new Box(Orientation.Horizontal, 6);
+            vboxParameters.Homogeneous = false;
+            hbox.PackStart(vboxParameters, false, false, 0);
+            vbox.Add(actionGroup);
+
+            hpanedReport = new Paned(Orientation.Horizontal);
+            hpanedReport.Expand = true;
+            scrolledwindowPages = new ScrolledWindow();
+            scrolledwindowPages.Expand = true;
+            
+            var gtkViewport = new Viewport();
+            gtkViewport.Expand = true;
+            vboxPages = new Box(Orientation.Vertical, 6);
+            vboxPages.Homogeneous = false;
+            vboxPages.Expand = true;
+            gtkViewport.Add(vboxPages);
+            scrolledwindowPages.Add(gtkViewport);
+            hpanedReport.Pack1(scrolledwindowPages, true, true); // Set the second parameter to true to make the widget fill the available space
+
+            scrolledwindowErrors = new ScrolledWindow();
+            textviewErrors = new TextView();
+            textviewErrors.WidthRequest = 200;
+            textviewErrors.Visible = false;
+            textviewErrors.Editable = false;
+            textviewErrors.WrapMode = WrapMode.WordChar;
+            scrolledwindowErrors.Add(textviewErrors);
+            hpanedReport.Pack2(scrolledwindowErrors, true, true);
+
+            hbox.PackEnd(hpanedReport, true, true, 0);
+            vbox.PackEnd(hbox, true, true, 0);
+
+            Add(vbox);
+            vbox.ShowAll();
+
+            this.refreshAction.Activated += new global::System.EventHandler(this.OnRefreshActionActivated);
+            this.saveAsAction.Activated += new global::System.EventHandler(this.OnPdfActionActivated);
+            this.printAction.Activated += new global::System.EventHandler(this.OnPrintActionActivated);
+            this.zoomOutAction.Activated += new global::System.EventHandler(this.OnZoomOutActionActivated);
+            this.zoomInAction.Activated += new global::System.EventHandler(this.OnZoomInActionActivated);
+            this.hpanedReport.SizeAllocated += new global::Gtk.SizeAllocatedHandler(this.OnHpanedReportSizeAllocated);
         }
 
         /// <summary>
@@ -348,8 +447,8 @@ namespace fyiReporting.RdlGtk3
 			saveAsAction.Sensitive = false;
             refreshAction.Sensitive = false;
             printAction.Sensitive = false;
-            ZoomInAction.Sensitive = false;
-            ZoomOutAction.Sensitive = false;
+            zoomInAction.Sensitive = false;
+            zoomOutAction.Sensitive = false;
         }
 
         void EnableActions()
@@ -357,8 +456,8 @@ namespace fyiReporting.RdlGtk3
 			saveAsAction.Sensitive = true;
             refreshAction.Sensitive = true;
             printAction.Sensitive = true;
-            ZoomInAction.Sensitive = true;
-            ZoomOutAction.Sensitive = true;
+            zoomInAction.Sensitive = true;
+            zoomOutAction.Sensitive = true;
         }
 
         void AddParameterControls()
@@ -795,7 +894,7 @@ namespace fyiReporting.RdlGtk3
             pages?.Dispose();
             pages = null;
             report?.Dispose();
-            Application.Quit();
+            Gtk.Application.Quit();
             a.RetVal = true;
         }
     }
