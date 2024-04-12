@@ -5,30 +5,10 @@
     <ApplicationIcon>App.ico</ApplicationIcon>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
     <AssemblyName>RdlDesigner</AssemblyName>
-    <AssemblyOriginatorKeyFile>..\mykey.snk</AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>WinExe</OutputType>
     <RootNamespace>fyiReporting.RdlDesign</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject></StartupObject>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -40,6 +20,7 @@
 	<AssemblyVersion>4.16.0</AssemblyVersion>
 	<Version>4.16.0</Version>
 	<DelaySign>false</DelaySign>
+	<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System">

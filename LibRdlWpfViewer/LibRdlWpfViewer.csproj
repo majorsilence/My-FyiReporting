@@ -14,6 +14,7 @@
 	<AssemblyVersion>4.16.0</AssemblyVersion>
 	<Version>4.16.0</Version>
 	<DelaySign>false</DelaySign>
+	<PackageId>Majorsilence.Reporting.LibRdlWpfViewer</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">

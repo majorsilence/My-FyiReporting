@@ -3,21 +3,6 @@
 	<TargetFrameworks>net48;netstandard2.0;net6.0;net6.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>fyiReporting.CRI</RootNamespace>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<AssemblyTitle>RdlCri</AssemblyTitle>
 	<Description>RDL Project CustomReportItem Library</Description>
@@ -27,6 +12,7 @@
 	<AssemblyVersion>4.16.0</AssemblyVersion>
 	<Version>4.16.0</Version>
 	<DelaySign>false</DelaySign>
+	<PackageId>Majorsilence.Reporting.RdlCri</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Security" />

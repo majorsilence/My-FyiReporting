@@ -3,27 +3,9 @@
 	<TargetFrameworks>net48;netstandard2.0;net6.0;net6.0-windows</TargetFrameworks>
     <ProjectType>Local</ProjectType>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<AssemblyTitle>RDL Engine</AssemblyTitle>
 	<Description></Description>
@@ -33,6 +15,7 @@
 	<AssemblyVersion>4.16.0</AssemblyVersion>
 	<Version>4.16.0</Version>
 	<DelaySign>false</DelaySign>
+	<PackageId>Majorsilence.Reporting.RdlEngine</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System">
