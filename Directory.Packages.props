@@ -10,11 +10,14 @@
     <PackageVersion Include="dotConnect.Express.for.PostgreSQL" Version="7.4.506" />
     <PackageVersion Include="iTextSharp.LGPLv2.Core" Version="3.4.18" />
     <PackageVersion Include="jacobslusser.ScintillaNET" Version="3.5.6" />
+    <PackageVersion Include="MajorsilenceReporting-Core" Version="4.15" />
+    <PackageVersion Include="MajorsilenceReporting-Viewer" Version="4.15" />
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.Data.Edm" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.OData" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.Services.Client" Version="5.8.5" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.4" />
     <PackageVersion Include="Microsoft.WindowsAzure.ConfigurationManager" Version="1.8.0" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="NPOI" Version="2.4.1" />
