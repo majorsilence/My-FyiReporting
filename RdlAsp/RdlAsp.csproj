@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -12,8 +12,8 @@
 	<Company>fyiReporting Software, LLC</Company>
 	<Product>RDL Project</Product>
 	<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-	<AssemblyVersion>4.16.0</AssemblyVersion>
-	<Version>4.16.0</Version>
+	<AssemblyVersion>4.17.0</AssemblyVersion>
+	<Version>4.17.0</Version>
 	<DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.RdlAsp</PackageId>
   </PropertyGroup>

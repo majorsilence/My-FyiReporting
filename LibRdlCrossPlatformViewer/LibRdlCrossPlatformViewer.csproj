@@ -8,8 +8,8 @@
 	<Company></Company>
 	<Product>LibRdlCrossPlatformViewer</Product>
 	<Copyright>Copyright ©  2012</Copyright>
-	<AssemblyVersion>4.16.0</AssemblyVersion>
-	<Version>4.16.0</Version>
+	<AssemblyVersion>4.17.0</AssemblyVersion>
+	<Version>4.17.0</Version>
 	<DelaySign>false</DelaySign>
 	<PackageId>Majorsilence.Reporting.LibRdlCrossPlatformViewer</PackageId>
   </PropertyGroup>

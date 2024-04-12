@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net48;netstandard2.0;net6.0</TargetFrameworks>
     <ProjectType>Local</ProjectType>
@@ -12,8 +12,8 @@
     <Company>fyiReporting Software, LLC</Company>
     <Product>RDL Project</Product>
     <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-    <AssemblyVersion>4.16.0</AssemblyVersion> 
-	<Version>4.16.0</Version>
+    <AssemblyVersion>4.17.0</AssemblyVersion> 
+	<Version>4.17.0</Version>
     <DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.DataProviders</PackageId>
   </PropertyGroup>
