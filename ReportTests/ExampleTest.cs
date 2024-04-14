@@ -11,7 +11,7 @@ namespace ReportTests
 		{
 
 			var conn = new fyiReporting.Data.XmlConnection("RdlEngineconfig.Linux.xml");
-			Assert.True(conn.Database == null);
+			Assert.That(conn.Database == null);
 
 		}
 

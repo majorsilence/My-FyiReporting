@@ -28,9 +28,9 @@ namespace RdlViewer.Tests
 
             var result = sut.Parameters;
 
-            Assert.IsTrue(result.Contains("testvalue1"));
-            Assert.IsTrue(result.Contains("test & value1"));
-            Assert.IsTrue(result.Contains("{}[]?*!\\\""));
+            Assert.That(result.Contains("testvalue1"));
+            Assert.That(result.Contains("test & value1"));
+            Assert.That(result.Contains("{}[]?*!\\\""));
         }
 
         [TestCase("normaltest", "normalvalue", ExpectedResult = true)] // this is how it works

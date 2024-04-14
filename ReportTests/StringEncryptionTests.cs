@@ -32,10 +32,10 @@ namespace ReportTests
             var decryptedString4 = subject2.Decrypt(encryptedString4);
 
             // Assert
-            Assert.AreEqual(originalString, decryptedString1, "Decrypted string should match original string");
-            Assert.AreEqual(originalString, decryptedString2, "Decrypted string should match original string");
-            Assert.AreEqual(originalString, decryptedString3, "Decrypted string should match original string");
-            Assert.AreEqual(originalString, decryptedString4, "Decrypted string should match original string");
+            Assert.That(originalString, Is.EqualTo(decryptedString1), "Decrypted string should match original string");
+            Assert.That(originalString, Is.EqualTo(decryptedString2), "Decrypted string should match original string");
+            Assert.That(originalString, Is.EqualTo(decryptedString3), "Decrypted string should match original string");
+            Assert.That(originalString, Is.EqualTo(decryptedString4), "Decrypted string should match original string");
 
 
         }
@@ -55,10 +55,10 @@ namespace ReportTests
             var encryptedString3 = subject.Encrypt(originalString);
             var encryptedString4 = subject.Encrypt(originalString);
 
-            Assert.AreNotEqual(originalString, encryptedString1, "Encrypted string should not match original string");
-            Assert.AreNotEqual(encryptedString1, encryptedString2, "String should never be encrypted the same twice");
-            Assert.AreNotEqual(originalString, encryptedString3, "Encrypted string should not match original string");
-            Assert.AreNotEqual(encryptedString3, encryptedString4, "String should never be encrypted the same twice");
+            Assert.That(originalString, Is.Not.EqualTo(encryptedString1), "Encrypted string should not match original string");
+            Assert.That(encryptedString1, Is.Not.EqualTo(encryptedString2), "String should never be encrypted the same twice");
+            Assert.That(originalString, Is.Not.EqualTo(encryptedString3), "Encrypted string should not match original string");
+            Assert.That(encryptedString3, Is.Not.EqualTo(encryptedString4), "String should never be encrypted the same twice");
         }
     }
 }

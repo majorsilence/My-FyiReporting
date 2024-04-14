@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Xml;
 using System.Xml.XPath;
 using System.ComponentModel;
+using SkiaSharp;
 
 namespace fyiReporting.CRI
 {
@@ -25,12 +26,16 @@ namespace fyiReporting.CRI
 
         public void DrawDesignerImage(ref Bitmap bm)
         {
-            bm = new Bitmap(BarcodeLib.Barcode.DoEncode(BarcodeLib.TYPE.ITF14, "1234567891011"));
+            var barcodeImage = BarcodeStandard.Barcode.DoEncode(BarcodeStandard.Type.Itf14, "1234567891011");
+            var img = Image.FromStream(barcodeImage.EncodedData.AsStream());
+            bm = new Bitmap(img);
         }
 
         public void DrawImage(ref Bitmap bm)
         {
-            bm = new Bitmap(BarcodeLib.Barcode.DoEncode(BarcodeLib.TYPE.ITF14, _Itf14Data));
+            var barcodeImage = BarcodeStandard.Barcode.DoEncode(BarcodeStandard.Type.Itf14, _Itf14Data);
+            var img = Image.FromStream(barcodeImage.EncodedData.AsStream());
+            bm = new Bitmap(img);
         }
 
         public string GetCustomReportItemXml()

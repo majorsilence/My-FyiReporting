@@ -203,17 +203,18 @@
     <ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="dotConnect.Express.for.PostgreSQL" />
-    <PackageReference Include="jacobslusser.ScintillaNET" />
+    <PackageReference Include="dotConnect.Express.for.PostgreSQL" />  
     <PackageReference Include="Microsoft.Data.Edm" />
     <PackageReference Include="Microsoft.Data.OData" />   
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.Spatial" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net48' ">
+	<PackageReference Include="jacobslusser.ScintillaNET" />
 	<PackageReference Include="Microsoft.Data.Services.Client" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
+	<PackageReference Include="fernandreu.ScintillaNET" />
 	<PackageReference Include="Microsoft.Data.SqlClient" />
   </ItemGroup>
   <ItemGroup>

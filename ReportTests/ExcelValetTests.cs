@@ -115,7 +115,7 @@ namespace ReportTests
 
 
             
-            Assert.IsTrue(OpenXmlUtils.ValidateSpreadsheetDocument(fullOutputPath));
+            Assert.That(OpenXmlUtils.ValidateSpreadsheetDocument(fullOutputPath));
             
 
             
