@@ -9,14 +9,15 @@ using System.Xml;
 using System.Xml.XPath;
 using System.ComponentModel;
 using SkiaSharp;
+using System.IO;
 
 namespace fyiReporting.CRI
 {
     public class BarCodeITF14 : ICustomReportItem
     {
-        
+
         static public readonly float OptimalWidth = 78f;                    // Optimal width at mag 1
-        static public readonly float OptimalHeight = 39f;      // use ratio of 2.5
+        static public readonly float OptimalHeight = 39f;        // use ratio of 2.5
         private string _Itf14Data;
 
         public void Dispose()
@@ -26,15 +27,27 @@ namespace fyiReporting.CRI
 
         public void DrawDesignerImage(ref Bitmap bm)
         {
-            var barcodeImage = BarcodeStandard.Barcode.DoEncode(BarcodeStandard.Type.Itf14, "1234567891011");
-            var img = Image.FromStream(barcodeImage.EncodedData.AsStream());
-            bm = new Bitmap(img);
+            InternalDraw(ref bm, "1234567891011");
         }
 
         public void DrawImage(ref Bitmap bm)
         {
-            var barcodeImage = BarcodeStandard.Barcode.DoEncode(BarcodeStandard.Type.Itf14, _Itf14Data);
-            var img = Image.FromStream(barcodeImage.EncodedData.AsStream());
+            InternalDraw(ref bm, _Itf14Data);
+        }
+
+        private void InternalDraw(ref Bitmap bm, string value)
+        {
+            var barcode = new BarcodeStandard.Barcode()
+            {
+                EncodedType = BarcodeStandard.Type.Itf14,
+                IncludeLabel = true,
+               // Width = (int)OptimalWidth,
+               // Height = (int)OptimalHeight
+            };
+            var v = barcode.Encode(value);
+ 
+            var img = Image.FromStream(v.Encode().AsStream());
+
             bm = new Bitmap(img);
         }
 
