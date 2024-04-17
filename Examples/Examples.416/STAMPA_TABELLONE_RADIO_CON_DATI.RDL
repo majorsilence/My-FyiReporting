@@ -1,0 +1,2016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>turni di un anno</Description>
+  <Author>alberti</Author>
+  <PageHeight>8.3in</PageHeight>
+  <PageWidth>11.7in</PageWidth>
+  <Width>18.0in</Width>
+  <TopMargin>0.5in</TopMargin>
+  <LeftMargin>0.25in</LeftMargin>
+  <RightMargin>0.25in</RightMargin>
+  <BottomMargin>0.25in</BottomMargin>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <CommandText></CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CBASEGIORNI1">
+          <DataField>CBASEGIORNI1</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI1">
+          <DataField>CBASETURNI1</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE1">
+          <DataField>CBASECOLORE1</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI2">
+          <DataField>CBASEGIORNI2</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI2">
+          <DataField>CBASETURNI2</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE2">
+          <DataField>CBASECOLORE2</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI3">
+          <DataField>CBASEGIORNI3</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI3">
+          <DataField>CBASETURNI3</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE3">
+          <DataField>CBASECOLORE3</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI4">
+          <DataField>CBASEGIORNI4</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI4">
+          <DataField>CBASETURNI4</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE4">
+          <DataField>CBASECOLORE4</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI5">
+          <DataField>CBASEGIORNI5</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI5">
+          <DataField>CBASETURNI5</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE5">
+          <DataField>CBASECOLORE5</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI6">
+          <DataField>CBASEGIORNI6</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI6">
+          <DataField>CBASETURNI6</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE6">
+          <DataField>CBASECOLORE6</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI7">
+          <DataField>CBASEGIORNI7</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI7">
+          <DataField>CBASETURNI7</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE7">
+          <DataField>CBASECOLORE7</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI8">
+          <DataField>CBASEGIORNI8</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI8">
+          <DataField>CBASETURNI8</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE8">
+          <DataField>CBASECOLORE8</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI9">
+          <DataField>CBASEGIORNI9</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI9">
+          <DataField>CBASETURNI9</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE9">
+          <DataField>CBASECOLORE9</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI10">
+          <DataField>CBASEGIORNI10</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI10">
+          <DataField>CBASETURNI10</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE10">
+          <DataField>CBASECOLORE10</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI11">
+          <DataField>CBASEGIORNI11</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI11">
+          <DataField>CBASETURNI11</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE11">
+          <DataField>CBASECOLORE11</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI12">
+          <DataField>CBASEGIORNI12</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI12">
+          <DataField>CBASETURNI12</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE12">
+          <DataField>CBASECOLORE12</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI13">
+          <DataField>CBASEGIORNI13</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI13">
+          <DataField>CBASETURNI13</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE13">
+          <DataField>CBASECOLORE13</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI14">
+          <DataField>CBASEGIORNI14</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI14">
+          <DataField>CBASETURNI14</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE14">
+          <DataField>CBASECOLORE14</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI15">
+          <DataField>CBASEGIORNI15</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI15">
+          <DataField>CBASETURNI15</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE15">
+          <DataField>CBASECOLORE15</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI16">
+          <DataField>CBASEGIORNI16</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI16">
+          <DataField>CBASETURNI16</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE16">
+          <DataField>CBASECOLORE16</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI17">
+          <DataField>CBASEGIORNI17</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI17">
+          <DataField>CBASETURNI17</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE17">
+          <DataField>CBASECOLORE17</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI18">
+          <DataField>CBASEGIORNI18</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI18">
+          <DataField>CBASETURNI18</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE18">
+          <DataField>CBASECOLORE18</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI19">
+          <DataField>CBASEGIORNI19</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI19">
+          <DataField>CBASETURNI19</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE19">
+          <DataField>CBASECOLORE19</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI20">
+          <DataField>CBASEGIORNI20</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI20">
+          <DataField>CBASETURNI20</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE20">
+          <DataField>CBASECOLORE20</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI21">
+          <DataField>CBASEGIORNI21</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI21">
+          <DataField>CBASETURNI21</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE21">
+          <DataField>CBASECOLORE21</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI22">
+          <DataField>CBASEGIORNI22</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI22">
+          <DataField>CBASETURNI22</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE22">
+          <DataField>CBASECOLORE22</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI23">
+          <DataField>CBASEGIORNI23</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI23">
+          <DataField>CBASETURNI23</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE23">
+          <DataField>CBASECOLORE23</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI24">
+          <DataField>CBASEGIORNI24</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI24">
+          <DataField>CBASETURNI24</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE24">
+          <DataField>CBASECOLORE24</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI25">
+          <DataField>CBASEGIORNI25</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI25">
+          <DataField>CBASETURNI25</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE25">
+          <DataField>CBASECOLORE25</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI26">
+          <DataField>CBASEGIORNI26</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI26">
+          <DataField>CBASETURNI26</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE26">
+          <DataField>CBASECOLORE26</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI27">
+          <DataField>CBASEGIORNI27</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI27">
+          <DataField>CBASETURNI27</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE27">
+          <DataField>CBASECOLORE27</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI28">
+          <DataField>CBASEGIORNI28</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI28">
+          <DataField>CBASETURNI28</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE28">
+          <DataField>CBASECOLORE28</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI29">
+          <DataField>CBASEGIORNI29</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI29">
+          <DataField>CBASETURNI29</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE29">
+          <DataField>CBASECOLORE29</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI30">
+          <DataField>CBASEGIORNI30</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI30">
+          <DataField>CBASETURNI30</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE30">
+          <DataField>CBASECOLORE30</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CBASEGIORNI31">
+          <DataField>CBASEGIORNI31</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASETURNI31">
+          <DataField>CBASETURNI31</DataField>
+          <rd:TypeName> System.String</rd:TypeName>
+        </Field>
+        <Field Name="CBASECOLORE31">
+          <DataField>CBASECOLORE31</DataField>
+          <rd:TypeName> System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="GPIANIF">
+          <DataField>GPIANIF</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MATRICOLA">
+          <DataField>MATRICOLA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOME">
+          <DataField>NOME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TIPOCOLONNA">
+          <DataField>TIPOCOLONNA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NUMLP">
+          <DataField>NUMLP</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <fyi:Rows File="datI_RADIO.xml" xmlns:fyi="http://www.fyireporting.com/schemas" />
+    </DataSet>
+  </DataSets>
+  <PageHeader>
+    <Height>51.6pt</Height>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <ReportItems>
+      <Textbox Name="Textbox74">
+        <Height>46.41pt</Height>
+        <Width>161.91pt</Width>
+        <Value>="Stampato il " &amp; "\r\n" &amp; {@ExecutionTime}</Value>
+        <ZIndex>1</ZIndex>
+        <Left>601.70pt</Left>
+        <Top>2.20pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <Format>MM/dd/yyyy</Format>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox31">
+        <Height>20.99pt</Height>
+        <Width>476.54pt</Width>
+        <Value>TABELLONE MENSILE</Value>
+        <ZIndex>1</ZIndex>
+        <Left>108.4pt</Left>
+        <Top>3.8pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+          <FontSize>14pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox33">
+        <Height>20.99pt</Height>
+        <Width>476.54pt</Width>
+        <Value>={?REPARTO}</Value>
+        <ZIndex>1</ZIndex>
+        <Left>108.4pt</Left>
+        <Top>24.79pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>1pt</Default>
+            <Left>1pt</Left>
+            <Right>1pt</Right>
+            <Top>1pt</Top>
+            <Bottom>1pt</Bottom>
+          </BorderWidth>
+          <FontSize>14pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+        </Style>
+      </Textbox>
+    </ReportItems>
+  </PageHeader>
+  <Body>
+    <Height>49.3pt</Height>
+    <ReportItems>
+      <Table Name="Table1">
+        <DataSetName>Data</DataSetName>
+        <NoRows>Query returned no rows!</NoRows>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>98.9pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>21.5pt</Width>
+          </TableColumn>
+        </TableColumns>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <Height>19.4pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox67">
+                      <Value>Dipendenti</Value>
+                      <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox69">
+                      <Value>Lp</Value>
+                      <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE1}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox1">
+                      <Value>=1 + "\r\n" + {CBASEGIORNI1}</Value>
+                      <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE1}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox2">
+                      <Value>="2" +  "\r\n" + {CBASEGIORNI2}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE2}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox3">
+                      <Value>="3" +  "\r\n" + {CBASEGIORNI3}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE3}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox4">
+                      <Value>="4" +  "\r\n" + {CBASEGIORNI4}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE4}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox5">
+                      <Value>="5" +  "\r\n" + {CBASEGIORNI5}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE5}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox6">
+                      <Value>="6" +  "\r\n" + {CBASEGIORNI6}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE6}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox7">
+                      <Value>="7" +  "\r\n" + {CBASEGIORNI7}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE7}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox8">
+                      <Value>="8" +  "\r\n" + {CBASEGIORNI8}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE8}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox9">
+                      <Value>="9" +  "\r\n" + {CBASEGIORNI9}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE9}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox10">
+                      <Value>="10" +  "\r\n" + {CBASEGIORNI10}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE10}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox11">
+                      <Value>="11" +  "\r\n" + {CBASEGIORNI11}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE11}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox12">
+                      <Value>="12" +  "\r\n" + {CBASEGIORNI12}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE12}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox13">
+                      <Value>="13" +  "\r\n" + {CBASEGIORNI13}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE13}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox14">
+                      <Value>="14" +  "\r\n" + {CBASEGIORNI14}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE14}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox15">
+                      <Value>="15" +  "\r\n" + {CBASEGIORNI15}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE15}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox16">
+                      <Value>="16" +  "\r\n" + {CBASEGIORNI16}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE16}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox17">
+                      <Value>="17" +  "\r\n" + {CBASEGIORNI17}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE17}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox18">
+                      <Value>="18" +  "\r\n" + {CBASEGIORNI18}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE18}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox19">
+                      <Value>="19" +  "\r\n" + {CBASEGIORNI19}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE19}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox20">
+                      <Value>="20" +  "\r\n" + {CBASEGIORNI20}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE20}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox21">
+                      <Value>="21" +  "\r\n" + {CBASEGIORNI21}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE21}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox22">
+                      <Value>="22" +  "\r\n" + {CBASEGIORNI22}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE22}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox23">
+                      <Value>="23" +  "\r\n" + {CBASEGIORNI23}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE23}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox24">
+                      <Value>="24" +  "\r\n" + {CBASEGIORNI24}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE24}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox25">
+                      <Value>="25" +  "\r\n" + {CBASEGIORNI25}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE25}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox26">
+                      <Value>="26" +  "\r\n" + {CBASEGIORNI26}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE26}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox27">
+                      <Value>="27" +  "\r\n" + {CBASEGIORNI27}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE27}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox28">
+                      <Value>="28" +  "\r\n" + {CBASEGIORNI28}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE28}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox29">
+                      <Value>="29" +  "\r\n" + {CBASEGIORNI29}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE29}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="TextBox30">
+                      <Value>="30" +  "\r\n" + {CBASEGIORNI30}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE30}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox32">
+                      <Value>="31" +  "\r\n" + {CBASEGIORNI31}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE31}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <Height>11.5pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox68">
+                      <Value>={NOME}</Value>
+                      <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox70">
+                      <Value>={NUMLP}</Value>
+                      <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <Format>#</Format>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox34">
+                      <Value>={CBASETURNI1}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE1}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox35">
+                      <Value>={CBASETURNI2}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE2}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox36">
+                      <Value>={CBASETURNI3}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE3}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox37">
+                      <Value>={CBASETURNI4}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE4}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox38">
+                      <Value>={CBASETURNI5}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE5}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox39">
+                      <Value>={CBASETURNI6}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE6}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox40">
+                      <Value>={CBASETURNI7}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE7}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox41">
+                      <Value>={CBASETURNI8}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE8}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox42">
+                      <Value>={CBASETURNI9}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE9}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox43">
+                      <Value>={CBASETURNI10}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE10}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox44">
+                      <Value>={CBASETURNI11}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE11}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox45">
+                      <Value>={CBASETURNI12}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE12}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox46">
+                      <Value>={CBASETURNI13}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE13}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox47">
+                      <Value>={CBASETURNI14}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE14}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox48">
+                      <Value>={CBASETURNI15}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE15}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox49">
+                      <Value>={CBASETURNI16}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE16}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox50">
+                      <Value>={CBASETURNI17}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE17}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox51">
+                      <Value>={CBASETURNI18}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE18}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox52">
+                      <Value>={CBASETURNI19}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE19}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox53">
+                      <Value>={CBASETURNI20}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE20}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox54">
+                      <Value>={CBASETURNI21}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE21}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox55">
+                      <Value>={CBASETURNI22}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE22}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox56">
+                      <Value>={CBASETURNI23}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE23}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox57">
+                      <Value>={CBASETURNI24}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE24}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox58">
+                      <Value>={CBASETURNI25}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE25}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox59">
+                      <Value>={CBASETURNI26}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE26}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox60">
+                      <Value>={CBASETURNI27}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE27}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox61">
+                      <Value>={CBASETURNI28}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE28}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox62">
+                      <Value>={CBASETURNI29}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE29}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox63">
+                      <Value>={CBASETURNI30}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE30}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox64">
+                      <Value>={CBASETURNI31}</Value>
+                      <Style>
+                        <FontFamily>Arial Narrow</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <BorderColor />
+                        <BorderWidth />
+                        <BackgroundColor>={CBASECOLORE31}</BackgroundColor>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Left>1.6pt</Left>
+        <Top>0.0pt</Top>
+        <TableGroups>
+          <TableGroup>
+            <Grouping Name="TIPO_COLONNA">
+              <PageBreakAtStart>true</PageBreakAtStart>
+              <PageBreakAtEnd>false</PageBreakAtEnd>
+              <GroupExpressions>
+                <GroupExpression>={TIPOCOLONNA}</GroupExpression>
+              </GroupExpressions>
+              <PageBreakCondition>=Iif({TIPOCOLONNA}&lt;&gt;3,false,true)</PageBreakCondition>
+            </Grouping>
+          </TableGroup>
+          <TableGroup>
+            <Grouping Name="GPIANIF">
+              <PageBreakAtStart>true</PageBreakAtStart>
+              <PageBreakAtEnd>false</PageBreakAtEnd>
+              <GroupExpressions>
+                <GroupExpression>={GPIANIF}</GroupExpression>
+              </GroupExpressions>
+              <PageBreakCondition>=false</PageBreakCondition>
+            </Grouping>
+            <Header>
+              <RepeatOnNewPage>false</RepeatOnNewPage>
+              <TableRows>
+                <TableRow>
+                  <Height>11.6pt</Height>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Textbox104">
+                          <Value>={GPIANIF}</Value>
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor />
+                            <BorderWidth />
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Textbox71">
+                          <Value></Value>
+                          <Style xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor />
+                            <BorderWidth />
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Textbox105">
+                          <Style>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor />
+                            <BorderWidth />
+                          </Style>
+                          <Value></Value>
+                        </Textbox>
+                      </ReportItems>
+                      <ColSpan>31</ColSpan>
+                    </TableCell>
+                  </TableCells>
+                </TableRow>
+              </TableRows>
+            </Header>
+          </TableGroup>
+        </TableGroups>
+        <DetailDataElementOutput>NoOutput</DetailDataElementOutput>
+      </Table>
+    </ReportItems>
+    <Columns>1</Columns>
+  </Body>
+  <PageFooter>
+    <Height>30.8pt</Height>
+    <PrintOnFirstPage>false</PrintOnFirstPage>
+    <PrintOnLastPage>false</PrintOnLastPage>
+  </PageFooter>
+  <DataElementName>Report</DataElementName>
+  <DataElementStyle>AttributeNormal</DataElementStyle>
+  <Code>Function GetRagName(F as string) as string
+if F="zJ1" then
+	getRagName="JOLLY"
+elseif trim(F)="" then
+	getRagName="TOTALI"
+else
+	getRagName=F
+end if
+end function
+
+
+
+FUNCTION CONTEGGIO_VERO(C AS STRING) AS BOOLEAN
+STATIC CONTEGGIO AS INTEGER=0
+CONTEGGIO_VERO=TRUE
+if C="C" then
+    if CONTEGGIO=0 then
+        CONTEGGIO_VERO=FALSE
+    end if
+    CONTEGGIO = CONTEGGIO+1
+end if
+END FUNCTION</Code>
+  <ReportParameters>
+    <ReportParameter Name="PICTURE">
+      <DataType>String</DataType>
+      <Nullable>false</Nullable>
+      <AllowBlank>false</AllowBlank>
+      <MultiValue>false</MultiValue>
+      <Prompt>IMMAGINE</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="REPARTO">
+      <DataType>String</DataType>
+      <Nullable>false</Nullable>
+      <AllowBlank>false</AllowBlank>
+      <MultiValue>false</MultiValue>
+      <Prompt></Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <DataProvider></DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>false</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+</Report>

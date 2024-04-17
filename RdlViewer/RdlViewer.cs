@@ -623,6 +623,29 @@ namespace fyiReporting.RdlViewer
         }
 
         /// <summary>
+        /// Do not force report loading 
+        /// </summary>
+        public string SourceRdlNoLoad
+        {
+            get { return _SourceRdl; }
+            set
+            {
+                _SourceRdl = value;
+                if (value != null)
+                    _SourceFileName = null;
+                _pgs = null;                // reset pages
+                _DrawPanel.Pgs = null;
+                _loadFailed = false;            // attempt to load the report	
+                _vScroll.Value = _hScroll.Value = 0;
+                //if (this.Visible)
+                //{
+                //    LoadPageIfNeeded();         // force load of report
+                //    this._DrawPanel.Invalidate();
+                //}
+            }
+        }
+
+        /// <summary>
         /// Holds the folder to data source reference files when SourceFileName not available.
         /// </summary>
         public string Folder
