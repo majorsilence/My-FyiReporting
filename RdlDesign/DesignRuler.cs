@@ -60,9 +60,9 @@ namespace fyiReporting.RdlDesign
             //editor.Resize += new System.EventHandler(editor_Resize);
             //editor.VScroll += new System.EventHandler(editor_VScroll);
 
-            RegionInfo rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
-            _IsMetric = rinfo.IsMetric;
-            _Intervals = _IsMetric ? 4 : 8;
+            //RegionInfo rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
+            //_IsMetric = rinfo.IsMetric;
+            //_Intervals = _IsMetric ? 4 : 8;
 
             this.Paint += new PaintEventHandler(DesignRulerPaint);
         }
@@ -110,6 +110,9 @@ namespace fyiReporting.RdlDesign
         
 		private void DesignRulerPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
+
+            _IsMetric = RdlDesign.RdlDesigner.MeasureUnits == "cm" ? true : false;
+            _Intervals = _IsMetric ? 4 : 8;
             if (_Vertical)
                 Ruler_DrawVert(e.Graphics);
             else
@@ -133,6 +136,7 @@ namespace fyiReporting.RdlDesign
         private void ScrollChanged(object sender, System.EventArgs e)
         {
             this.Invalidate();
+            _Design.Invalidate();
         }
         
         private void Ruler_DrawHorz(Graphics g)
@@ -153,7 +157,10 @@ namespace fyiReporting.RdlDesign
                 mod = g.DpiX;
                 if (_IsMetric)
                     mod = mod / 2.54f;
-                xinc = mod / _Intervals;
+                mod *= _Design.SCALEX;
+                xinc = mod / (_Intervals * _Design.SCALEX);
+                xinc *= _Design.SCALEX;
+
                 float scroll = ScrollPosition;
                 if (scroll == 0)
                     xoff = 0;
@@ -224,22 +231,29 @@ namespace fyiReporting.RdlDesign
 
         private void Ruler_DrawVert(Graphics g)
         {
-            StringFormat df = null;
-            Font f = null;
+            StringFormat strFormat = null;
+            Font fontOutput = null;
             SolidBrush sb = null;           // brush for non-ruler portions of ruler
             SolidBrush bb = null;           // brush for drawing the areas next to band separator
+            float SectionHeigth = 0f;
+
+            g.ScaleTransform(1f, 1f);
+            g.PageUnit = GraphicsUnit.Point;
+
             try
             {
-                g.PageUnit = GraphicsUnit.Point;
                 // create some drawing resources
-                df = new StringFormat();
-                df.FormatFlags |= StringFormatFlags.NoWrap;
-                df.Alignment = StringAlignment.Near;
-                f = new Font("Arial", 8, FontStyle.Regular);
+                strFormat = new StringFormat();
+                strFormat.FormatFlags |= StringFormatFlags.NoWrap;
+                strFormat.Alignment = StringAlignment.Near;
+                fontOutput = new Font("Arial", 8, FontStyle.Regular);
                 sb = new SolidBrush(GAPCOLOR);
                 bb = new SolidBrush(Design.SepColor);
                 // Go thru the regions
-                float sp = Design.PointsY(this.ScrollPosition);
+
+                float sp = Design.PointsY(this.ScrollPosition) * _Design.SCALEY;
+
+
                 // 1) Offset
                 RectangleF rf;
                 float off = 0;
@@ -258,39 +272,54 @@ namespace fyiReporting.RdlDesign
                     }
                     off = offset;
                 }
+
+
                 // 2) PageHeader
                 if (Design.PageHeaderHeight > 0)
                 {
-                    Ruler_DrawVertPart(g, f, df, off, Design.PageHeaderHeight);
-                    off += Design.PageHeaderHeight;
+                    SectionHeigth = Design.PageHeaderHeight * _Design.SCALEY;
+                    Ruler_DrawVertPart(g, fontOutput, strFormat, off, SectionHeigth);
+                    off += SectionHeigth;
                 }
+
                 // 3) PageHeader separator
-                rf = new RectangleF(0, off-sp, width, Design.SepHeight);
+                SectionHeigth = Design.SepHeight * _Design.SCALEY;
+                rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(bb, rf);
-                off += Design.SepHeight;
+                    g.FillRectangle(Brushes.Yellow, rf);
+                off += SectionHeigth;
+
                 // 4) Body
                 if (Design.BodyHeight > 0)
                 {
-                    Ruler_DrawVertPart(g, f, df, off, Design.BodyHeight);
-                    off += Design.BodyHeight;
+                    SectionHeigth = Design.BodyHeight * _Design.SCALEY;
+                    Ruler_DrawVertPart(g, fontOutput, strFormat, off, SectionHeigth);
+                    off += SectionHeigth;
                 }
+
                 // 5) Body separator
-                rf = new RectangleF(0, off - sp, width, Design.SepHeight);
+                SectionHeigth = Design.SepHeight * _Design.SCALEY;
+                rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(bb, rf);
-                off += Design.SepHeight;
+                    g.FillRectangle(Brushes.Yellow, rf);
+                off += SectionHeigth;
+
+
                 // 6) PageFooter
                 if (Design.PageFooterHeight > 0)
                 {
-                    Ruler_DrawVertPart(g, f, df, off, Design.PageFooterHeight);
-                    off += Design.PageFooterHeight;
+                    SectionHeigth = Design.PageFooterHeight * _Design.SCALEY;
+                    Ruler_DrawVertPart(g, fontOutput, strFormat, off, SectionHeigth);
+                    off += SectionHeigth;
                 }
+
                 // 7) PageFooter separator
-                rf = new RectangleF(0, off - sp, width, Design.SepHeight);
+                SectionHeigth = Design.SepHeight * _Design.SCALEY;
+                rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(bb, rf);
-                off += Design.SepHeight;
+                    g.FillRectangle(Brushes.Yellow, rf);
+                off += SectionHeigth;
+
                 // 8) The rest to end
                 rf = new RectangleF(0, off - sp, width, Design.PointsY(this.Height) - (off - sp));
                 if (rf.IntersectsWith(g.ClipBounds))
@@ -298,10 +327,10 @@ namespace fyiReporting.RdlDesign
             }
             finally
             {
-                if (df != null)
-                    df.Dispose();
-                if (f != null)
-                    f.Dispose();
+                if (strFormat != null)
+                    strFormat.Dispose();
+                if (fontOutput != null)
+                    fontOutput.Dispose();
                 if (sb != null)
                     sb.Dispose();
                 if (bb != null)

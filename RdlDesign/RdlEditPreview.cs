@@ -64,8 +64,8 @@ namespace fyiReporting.RdlDesign
 		// When toggling between the items we need to track who has latest changes
 		DesignTabs _DesignChanged;			// last designer that triggered change
 		DesignTabs _CurrentTab = DesignTabs.Design;
-        private DesignRuler dcTopRuler;
-		private DesignRuler dcLeftRuler;
+        public DesignRuler dcTopRuler;
+		public DesignRuler dcLeftRuler;
 
 		private Scintilla scintilla1;				// file position; for use with search
 		private bool noFireRDLTextChanged;
