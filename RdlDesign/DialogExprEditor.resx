@@ -132,7 +132,7 @@
     <value>0, 29</value>
   </data>
   <data name="tvOp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 171</value>
+    <value>261, 235</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tvOp.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +154,7 @@
     <value>Top, Right</value>
   </data>
   <data name="bCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 0</value>
+    <value>229, 0</value>
   </data>
   <data name="bCopy.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 23</value>
@@ -220,7 +220,7 @@
     <value>3, 29</value>
   </data>
   <data name="scintilla1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 171</value>
+    <value>522, 235</value>
   </data>
   <data name="scintilla1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -229,7 +229,7 @@
     <value>scintilla1</value>
   </data>
   <data name="&gt;&gt;scintilla1.Type" xml:space="preserve">
-    <value>ScintillaNET.Scintilla, ScintillaNET, Version=3.5.6.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>ScintillaNET.Scintilla, ScintillaNET, Version=3.6.3.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;scintilla1.Parent" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
@@ -274,10 +274,10 @@
     <value>1</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 203</value>
+    <value>796, 267</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>154</value>
+    <value>264</value>
   </data>
   <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -301,7 +301,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 9</value>
+    <value>707, 9</value>
   </data>
   <data name="bCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -328,7 +328,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 9</value>
+    <value>626, 9</value>
   </data>
   <data name="bOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -352,10 +352,10 @@
     <value>1</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 208</value>
+    <value>0, 272</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 40</value>
+    <value>796, 40</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -379,7 +379,7 @@
     <value>5, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>463, 248</value>
+    <value>796, 312</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

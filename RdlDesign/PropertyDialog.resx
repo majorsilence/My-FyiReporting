@@ -151,7 +151,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>376, 8</value>
+    <value>377, 8</value>
   </data>
   <data name="bApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -178,7 +178,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 8</value>
+    <value>217, 8</value>
   </data>
   <data name="bOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -205,7 +205,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="bCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 8</value>
+    <value>297, 8</value>
   </data>
   <data name="bCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -232,10 +232,10 @@
     <value>Bottom</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 372</value>
+    <value>0, 430</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 40</value>
+    <value>585, 40</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -259,7 +259,7 @@
     <value>0, 0</value>
   </data>
   <data name="tcProps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 372</value>
+    <value>585, 430</value>
   </data>
   <data name="tcProps.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -283,7 +283,7 @@
     <value>5, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 412</value>
+    <value>585, 470</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>1800, 1000</value>
