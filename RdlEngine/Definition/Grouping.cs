@@ -82,9 +82,10 @@ namespace fyiReporting.RDL
 		DataElementOutputEnum _DataElementOutput;	// Indicates whether the group should appear
 						// in a data rendering.  Default: Output
 		List<Textbox> _HideDuplicates;	// holds any textboxes that use this as a hideduplicate scope
-		bool _InMatrix;	// true if grouping is in a matrix
+		bool _InMatrix; // true if grouping is in a matrix
+        Expression _PageBreakCondition;
 
-		internal Grouping(ReportDefn r, ReportLink p, XmlNode xNode) : base(r, p)
+        internal Grouping(ReportDefn r, ReportLink p, XmlNode xNode) : base(r, p)
 		{
 			_Name=null;
 			_Label=null;
@@ -98,8 +99,9 @@ namespace fyiReporting.RDL
 			_DataCollectionName=null;
 			_DataElementOutput=DataElementOutputEnum.Output;
 			_HideDuplicates=null;
-			// Run thru the attributes
-			foreach(XmlAttribute xAttr in xNode.Attributes)
+            _PageBreakCondition = null;
+            // Run thru the attributes
+            foreach (XmlAttribute xAttr in xNode.Attributes)
 			{
 				switch (xAttr.Name)
 				{
@@ -127,7 +129,10 @@ namespace fyiReporting.RDL
 					case "PageBreakAtEnd":
 						_PageBreakAtEnd = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Custom":
+                    case "PageBreakCondition":
+                        _PageBreakCondition = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Boolean);
+                        break;
+                    case "Custom":
 						_Custom = new Custom(r, this, xNodeLoop);
 						break;
 					case "Filters":
@@ -179,10 +184,12 @@ namespace fyiReporting.RDL
 				_Filters.FinalPass();
 			if (_ParentGroup != null)
 				_ParentGroup.FinalPass();
+            if (_PageBreakCondition != null)
+                _PageBreakCondition.FinalPass();
 
-			// Determine if group is defined inside of a Matrix;  these get
-			//   different runtime expression handling in FunctionAggr
-			_InMatrix = false;
+            // Determine if group is defined inside of a Matrix;  these get
+            //   different runtime expression handling in FunctionAggr
+            _InMatrix = false;
 			for (ReportLink rl = this.Parent; rl != null; rl = rl.Parent)
 			{
 				if (rl is Matrix)
@@ -248,7 +255,17 @@ namespace fyiReporting.RDL
 			set {  _PageBreakAtEnd = value; }
 		}
 
-		internal Custom Custom
+        internal bool PageBreakCondition(Report r, Row row, bool SeMancaDefinizione)
+        {
+            bool result;
+            if (_PageBreakCondition != null)
+                result = _PageBreakCondition.EvaluateBoolean(r, row);
+            else
+                result = SeMancaDefinizione;
+            return result;
+        }
+
+        internal Custom Custom
 		{
 			get { return  _Custom; }
 			set {  _Custom = value; }

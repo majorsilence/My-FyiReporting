@@ -815,8 +815,10 @@ namespace fyiReporting.RDL
 				if (ge.Group != null)
 				{
 					TableGroup tg = ge.Group.Parent as TableGroup;
-					if (ge.Group.PageBreakAtStart && !pgs.CurrentPage.IsEmpty())
-					{
+                     //   if (ge.Group.PageBreakAtStart && !pgs.CurrentPage.IsEmpty())
+					 // Add check PageBreakCondition not only PageBreakAtStart
+                    if (ge.Group.PageBreakAtStart && ge.Group.PageBreakCondition(rpt, wc.Data.Data[ge.StartRow], ge.Group.PageBreakAtStart) && !pgs.CurrentPage.IsEmpty())
+                    {
 						RunPageNew(pgs, pgs.CurrentPage);
 						RunPageHeader(pgs, wc.Data.Data[ge.StartRow], false, tg);
 					}
