@@ -52,8 +52,8 @@ namespace fyiReporting.RdlDesign
         public event HeightEventHandler HeightChanged;
         bool _InPaint;						// to prevent recursively invoking paint
 		// Scrollbars
-		private VScrollBar _vScroll;
-		private HScrollBar _hScroll;
+		public VScrollBar _vScroll;
+		public HScrollBar _hScroll;
 		private float _DpiX;
 		private float _DpiY;
 		private XmlDocument _ReportDoc;		// the xml document we're editting
@@ -69,10 +69,13 @@ namespace fyiReporting.RdlDesign
 		private bool _bHaveMouse;			// flag indicates we're rubber banding
 		private bool _AdjustScroll = false;	// when adjusting band height we may need to adjust scroll bars
 
-		private DesignXmlDraw _DrawPanel;		// the main drawing panel
+		public DesignXmlDraw _DrawPanel;		// the main drawing panel
         public RdlDesigner RdlDesigner;
 
-		public DesignCtl()
+        public float SCALEX = 1;
+        public float SCALEY = 1;
+
+        public DesignCtl()
 		{
 			InitializeComponent();
 			// Get our graphics DPI					   
@@ -1093,7 +1096,7 @@ namespace fyiReporting.RdlDesign
 		private void SetScrollControlsH()
 		{
 			int w = PixelsX(_DrawPanel.HorizontalMax);
-			int sw = this.Width - _vScroll.Width;
+			int sw = this.Width - _hScroll.Width;
 			if (sw > w)
 			{
 				_hScroll.Enabled = false;
@@ -1117,11 +1120,11 @@ namespace fyiReporting.RdlDesign
 			_hScroll.LargeChange = sw;
 			_hScroll.SmallChange = _hScroll.LargeChange / 5;
 			_hScroll.Enabled = true;
-
+			_hScroll.Visible=true;
 			return;
 		}
 
-		private void HorizontalScroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+		private new void HorizontalScroll(object sender, System.Windows.Forms.ScrollEventArgs e)
 		{
 			if (e.NewValue == _hScroll.Value)	// don't need to scroll if already there
 				return;
@@ -1131,7 +1134,7 @@ namespace fyiReporting.RdlDesign
                 HorizontalScrollChanged(this, new EventArgs());
         }
 
-		private void VerticalScroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+		private new void VerticalScroll(object sender, System.Windows.Forms.ScrollEventArgs e)
 		{
 			if (e.NewValue == _vScroll.Value)	// don't need to scroll if already there
 				return;
@@ -1141,9 +1144,11 @@ namespace fyiReporting.RdlDesign
                 VerticalScrollChanged(this, new EventArgs());
 		}
 
-		private void DrawPanelMouseUp(object sender, MouseEventArgs e)
+		private void DrawPanelMouseUp(object sender, MouseEventArgs E)
 		{
-			if (e.Button == MouseButtons.Left)
+            MouseEventArgsE e = new MouseEventArgsE(E, SCALEX, SCALEY);
+
+            if (e.Button == MouseButtons.Left)
 				_Undo.EndUndoGroup(true);
 
             if (_MouseDownNode != null && _MouseDownNode.Name == "Height")
@@ -1340,8 +1345,10 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 
-		private void DrawPanelMouseMove(object sender, MouseEventArgs e)
+		private void DrawPanelMouseMove(object sender, MouseEventArgs E)
 		{
+            MouseEventArgsE e = new MouseEventArgsE(E, SCALEX, SCALEY);
+
             XmlNode b=null;					
 			HitLocationEnum hle = HitLocationEnum.Inside;
 			Point newMousePosition = new Point(e.X, e.Y);
@@ -1490,8 +1497,10 @@ namespace fyiReporting.RdlDesign
 			DrawPanelSetCursor(b, hle);
 		}
 
-		private void DrawPanelMouseDown(object sender, MouseEventArgs e)
+		private void DrawPanelMouseDown(object sender, MouseEventArgs E)
 		{
+            MouseEventArgsE e = new MouseEventArgsE(E, SCALEX, SCALEY);
+
             bool baseOnly = false; //Josh: Added so base form can be force selected for inserting/selecting
             //Hold shift to select the base form instead of the control the mouse is over.
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
@@ -1548,9 +1557,9 @@ namespace fyiReporting.RdlDesign
             SelectionChanged(this, new EventArgs());
         }
 
-		private bool DrawPanelMouseDownRubberBand(object sender, MouseEventArgs e)
+		private bool DrawPanelMouseDownRubberBand(object sender, MouseEventArgsE e)
 		{
-			if (_MouseDownLoc != HitLocationEnum.Inside)
+            if (_MouseDownLoc != HitLocationEnum.Inside)
 				return false;				// must hit inside a region
 
 			// Now determine if object hit allows for rubber banding
@@ -1604,27 +1613,27 @@ namespace fyiReporting.RdlDesign
 			return true;
 		}
 
-		private bool DrawPanelMouseDownTableColumnResize(object sender, MouseEventArgs e)
+		private bool DrawPanelMouseDownTableColumnResize(object sender, MouseEventArgsE e)
 		{
-			if (_MouseDownNode == null ||							
+            if (_MouseDownNode == null ||							
 				_MouseDownLoc != HitLocationEnum.TableColumnResize)
 				return false;
 			this.Cursor = Cursors.VSplit;
 			return true;
 		}
 
-		private bool DrawPanelMouseDownTableRowResize(object sender, MouseEventArgs e)
+		private bool DrawPanelMouseDownTableRowResize(object sender, MouseEventArgsE e)
 		{
-			if (_MouseDownNode == null ||							
+            if (_MouseDownNode == null ||							
 				_MouseDownLoc != HitLocationEnum.TableRowResize)
 				return false;
 			this.Cursor = Cursors.HSplit;
 			return true;
 		}
 
-		private bool DrawPanelMouseDownInsert(HitLocation hl, object sender, MouseEventArgs e)
+		private bool DrawPanelMouseDownInsert(HitLocation hl, object sender, MouseEventArgsE e)
 		{
-			if (!(_CurrentInsert != null &&		// should we be inserting?
+            if (!(_CurrentInsert != null &&		// should we be inserting?
 				_MouseDownNode != null &&			
 				(_MouseDownNode.Name == "List" ||
 				_MouseDownNode.Name == "Rectangle" ||
@@ -1786,8 +1795,10 @@ namespace fyiReporting.RdlDesign
 				this.Cursor = c;
 		}
 
-		private void DrawPanelMouseWheel(object sender, MouseEventArgs e)
+		private void DrawPanelMouseWheel(object sender, MouseEventArgs E)
 		{
+            MouseEventArgsE e = new MouseEventArgsE(E, SCALEX, SCALEY);
+
             if (!_vScroll.Enabled)
                 return;                 // scroll not enabled
 			int wvalue;
@@ -3344,6 +3355,42 @@ namespace fyiReporting.RdlDesign
         public string Height
         {
             get { return _height; }
+        }
+    }
+    /// <summary>
+    /// Nuova classe embbedded nel controllo per passare gli eventi del mouse e i fattori di scala correnti
+    /// </summary>
+
+    public class MouseEventArgsE : EventArgs
+    {
+        private MouseButtons button;
+        private int clicks;
+        private int x;
+        private int y;
+        private int delta;
+        private Point location;
+        private float scale;
+        public MouseButtons Button => button;
+        public int Clicks => clicks;
+        public int X => x;
+        public int Y => y;
+        public int Delta => delta;
+        public Point Location => location;
+
+        /// <summary>
+        /// Costruttore
+        /// </summary>
+        /// <param name="B"></param>
+        /// <param name="ScaleX"></param>
+        /// <param name="ScaleY"></param>
+        public MouseEventArgsE(MouseEventArgs B, float ScaleX, float ScaleY)
+        {
+            this.button = B.Button;
+            this.clicks = B.Clicks;
+            this.x = (int)(B.X / ScaleX);
+            this.y = (int)(B.Y / ScaleY);
+            this.location = new Point(x, y);
+            this.delta = B.Delta;
         }
     }
 }
