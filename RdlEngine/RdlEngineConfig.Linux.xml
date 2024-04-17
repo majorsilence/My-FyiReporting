@@ -6,6 +6,13 @@
          <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
          <Interface>SQL</Interface>
       </DataSource>
+	  <DataSource>
+		   <DataProvider>Microsoft.Data.SqlClient</DataProvider>
+		   <CodeModule>Microsoft.Data.SqlClient.dll</CodeModule>
+		   <ClassName>Microsoft.Data.SqlClient.SqlConnection</ClassName>
+		   <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
+		   <Interface>SQL</Interface>
+	  </DataSource>
       <DataSource>
          <DataProvider>ODBC</DataProvider>
          <TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
@@ -53,6 +60,13 @@
          <TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect>
          <Interface>SQL</Interface>
       </DataSource>
+	  <DataSource>
+		   <DataProvider>Microsoft.Data.Sqlite</DataProvider>
+		   <CodeModule>Microsoft.Data.Sqlite.dll</CodeModule>
+		   <ClassName>Microsoft.Data.Sqlite.SqliteConnection</ClassName>
+		   <TableSelect>SELECT name FROM sqlite_master WHERE type = 'table'</TableSelect>
+		   <Interface>SQL</Interface>
+	   </DataSource>
       <DataSource>
          <DataProvider>iAnywhere.NET</DataProvider>
          <CodeModule>F:\Sybase\SQL Anywhere Studio 9\win32\iAnywhere.Data.AsaClient.dll</CodeModule>
