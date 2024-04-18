@@ -85,11 +85,11 @@ namespace RdlCreator.Tests
                         Fields = new Fields
                         {
                             Field = new List<Field>
-                        {
-                            new Field { Name = "CategoryID", DataField = "CategoryID", TypeName = "System.Int64" },
-                            new Field { Name = "CategoryName", DataField = "CategoryName", TypeName = "System.String" },
-                            new Field { Name = "Description", DataField = "Description", TypeName = "System.String" }
-                        }
+                            {
+                                new Field { Name = "CategoryID", DataField = "CategoryID", TypeName = "System.Int64" },
+                                new Field { Name = "CategoryName", DataField = "CategoryName", TypeName = "System.String" },
+                                new Field { Name = "Description", DataField = "Description", TypeName = "System.String" }
+                            }
                         }
                     }
                 },
