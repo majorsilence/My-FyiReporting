@@ -103,9 +103,30 @@ namespace fyiReporting.RdlDesign
        
         private ToolStripButton ctlInsertCurrent = null;
         private ToolStripMenuItem ctlMenuInsertCurrent = null;
+        static string _MeasureUnits;
 
         private RdlDesigner()
         {
+        }
+
+        /// <summary>
+        /// To retrieve / pass MeasureUnits parameter (see config file)
+        /// </summary>
+        public static string MeasureUnits
+        {
+            get { return _MeasureUnits; }
+            set { _MeasureUnits = value; }
+        }
+        /// <summary>
+        /// Get units measure from parameters and not from culture info
+        /// </summary>
+        /// <returns></returns>
+        private bool IsMetric()
+        {
+            if (MeasureUnits == "cm")
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
@@ -1335,11 +1356,11 @@ namespace fyiReporting.RdlDesign
                 return;
             }
 
-            var rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
-	        var unit = rinfo.IsMetric ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
+         //   var rinfo = new RegionInfo(CultureInfo.CurrentCulture.Name);
+	        var unit = IsMetric() ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
 			var h = DesignXmlDraw.GetSize(e.Height) / DesignXmlDraw.POINTSIZED;
 
-			if (rinfo.IsMetric)
+			if (IsMetric())
 			{
 				h *= 2.54f;
 			}
@@ -2243,9 +2264,23 @@ namespace fyiReporting.RdlDesign
 
         private void menuToolsOptions_Click(object sender, EventArgs e)
         {
+            string SaveUnits = MeasureUnits;
             using (DialogToolOptions dlg = new DialogToolOptions(this))
             {
                 DialogResult rc = dlg.ShowDialog();
+                if (SaveUnits != MeasureUnits)
+                {
+                    MDIChild mc = this.ActiveMdiChild as MDIChild;
+                    if (mc == null)
+                        return;
+                    if (mc.Editor == null)
+                    {
+                        return;
+                    }
+                    mc.Editor.DesignCtl._DrawPanel.Invalidate();
+                    mc.Editor.dcTopRuler.Invalidate();
+                    mc.Editor.dcLeftRuler.Invalidate();
+                }
             }
         }
 
@@ -2499,6 +2534,9 @@ namespace fyiReporting.RdlDesign
                             break;
                         case "CustomColors":
                             break;
+                        case "units":
+                            MeasureUnits = xNodeLoop.InnerText;
+                            break;
                         default:
                             break;
                     }
@@ -2645,6 +2683,13 @@ namespace fyiReporting.RdlDesign
 
                 xN = xDoc.CreateElement("CustomColors");
                 xN.InnerText = sb.ToString();
+                xDS.AppendChild(xN);
+
+                //
+                // Save Current Units used
+                //
+                xN = xDoc.CreateElement("units");
+                xN.InnerText = MeasureUnits;
                 xDS.AppendChild(xN);
 
                 // Save the file
@@ -3002,9 +3047,9 @@ namespace fyiReporting.RdlDesign
 
 		        var x = pos.X/m72;
 		        var y = pos.Y/m72;
-		        var unit = rinfo.IsMetric ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
+		        var unit = IsMetric() ? Strings.RdlDesigner_Status_cm : Strings.RdlDesigner_Status_in;
 
-				if (rinfo.IsMetric)
+				if (IsMetric())
 				{
 					x *= 2.54d;
 					y *= 2.54d;
@@ -3020,7 +3065,7 @@ namespace fyiReporting.RdlDesign
 			        var w = sz.Width/m72;
 			        var h = sz.Height/m72;
 
-			        if (rinfo.IsMetric)
+			        if (IsMetric())
 			        {
 				        w *= 2.54d;
 				        h *= 2.54d;
@@ -3803,7 +3848,96 @@ namespace fyiReporting.RdlDesign
             mc.Export(fyiReporting.RDL.OutputPresentationType.Excel2007);
             return;
         }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuFileExit_Click(sender, e);
+
+        }
+
+        private void ZoomControl1_ValueChanged(object sender, UserZoomControl.CambiaValori e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+
+            if (mc.Editor == null)
+            {
+                return;
+            }
+
+
+            mc.Editor.DesignCtl.SCALEX = e.ValoreZoom;
+            mc.Editor.DesignCtl.SCALEY = e.ValoreZoom;
+
+            mc.Editor.DesignCtl._DrawPanel.SCALAX = e.ValoreZoom;
+            mc.Editor.DesignCtl._DrawPanel.SCALAY = e.ValoreZoom;
+
+            // Applicare la scala anche alla dimensione del disegno
+
+            mc.Editor.DesignCtl._DrawPanel.ReportVisualSize = mc.Editor.DesignCtl._DrawPanel.ReportVisualSizeBase * mc.Editor.DesignCtl._DrawPanel.SCALAX;
+            mc.Editor.DesignCtl._DrawPanel.Invalidate();
+
+            mc.Editor.DesignCtl.HorizontalScroll.Visible = true;
+            mc.Editor.DesignCtl.VerticalScroll.Visible = true;
+            mc.Editor.DesignCtl.VerticalScroll.Enabled = true;
+
+            mc.Editor.dcTopRuler.Invalidate();
+            mc.Editor.dcLeftRuler.Invalidate();
+            mc.Editor.DesignCtl._hScroll.Maximum = (int)mc.Editor.DesignCtl._DrawPanel.ReportVisualSize;
+
+            mc.Editor.DesignCtl._vScroll.Maximum = (int)(mc.Editor.DesignCtl._DrawPanel.VerticalMax * mc.Editor.DesignCtl._DrawPanel.SCALAY);
+
+
+
+
+        }
+
+        private void menuFormat_Popup(object sender, UserZoomControl.CambiaValori e)
+        {
+
+        }
+        /// <summary>
+        /// Abilita Flag per allineamento griglia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //private void AlignmentGridEnable_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    MDIChild mc = this.ActiveMdiChild as MDIChild;
+        //    if (mc == null)
+        //        return;
+        //    if (mc.Editor == null)
+        //    {
+        //        return;
+        //    }
+        //    mc.Editor.DesignCtl._DrawPanel.EnableDrawGriglia = AlignmentGridEnable.Checked;
+        //    mc.Editor.DesignCtl._DrawPanel.Invalidate();
+        //    mc.Editor.dcTopRuler.Invalidate();
+        //    mc.Editor.dcLeftRuler.Invalidate();
+
+        //}
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class RdlIpcObject : MarshalByRefObject
     {

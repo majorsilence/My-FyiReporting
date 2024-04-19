@@ -50,6 +50,7 @@ namespace fyiReporting.RdlDesign
 	    private XmlNode _DesktopDirectory;
 	    private XmlNode _DesktopLocal;
 	    private XmlNode _DesktopLanguage;
+        private XmlNode _DesktopUnits;
 
         static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "config.xml");
 
@@ -176,6 +177,13 @@ namespace fyiReporting.RdlDesign
                             break;
                         case "mimetypes":
                             break;
+                        case "units":
+                            _DesktopUnits = xNodeLoop;
+                            if (xNodeLoop.InnerText.ToLower() == "inches")
+                                this.radioButtonInches.Checked = true;
+                            else
+                                this.radioButtonCm.Checked = true;
+                            break;
                         default:
                             break;
                     }
@@ -245,6 +253,10 @@ namespace fyiReporting.RdlDesign
                         return false;
                     HandleRecentFilesMax();
                     _RdlDesigner.HelpUrl = this.tbHelpUrl.Text;
+                    if (this.radioButtonInches.Checked == true)
+                        RdlDesigner.MeasureUnits = "inches";
+                    else
+                        RdlDesigner.MeasureUnits = "cm";
                     HandleShows();
                     HandleProperties();
                     if (bToolbar)
@@ -323,6 +335,15 @@ namespace fyiReporting.RdlDesign
 				_DesktopConfig.AppendChild(_DesktopLocal);
             }
             _DesktopLocal.InnerText = this.ckLocal.Checked ? "true" : "false";
+
+
+            if (_DesktopUnits == null)
+            {
+                _DesktopUnits = _DesktopDocument.CreateElement("units");
+                _DesktopConfig.AppendChild(_DesktopUnits);
+            }
+
+            _DesktopUnits.InnerText = this.radioButtonInches.Checked == true ? "inches" : "cm";
 
             Directory.CreateDirectory(Path.GetDirectoryName(optFileName)); //Create directory if not exist
             _DesktopDocument.Save(optFileName);
@@ -534,6 +555,9 @@ namespace fyiReporting.RdlDesign
 							case "language":
 		                        dc.Language = xNodeLoop.InnerText;
 		                        break;
+                            case "units":
+                                dc.Units = xNodeLoop.InnerText;
+                                break;
                         }
                     }
                     return dc;
@@ -639,12 +663,26 @@ namespace fyiReporting.RdlDesign
 			}
 			return list.AsReadOnly();
 		}
+
+
+        private void RadioButtonInches_CheckedChanged(object sender, EventArgs e)
+        {
+            bDesktop = true;
+        }
+
+        private void RadioButtonCm_CheckedChanged(object sender, EventArgs e)
+        {
+            bDesktop = true;
+        }
+
     }
+
 
     internal class DesktopConfig
     {
         internal string Directory;
         internal string Port;
 	    internal string Language;
+        internal string Units;
     }
 }

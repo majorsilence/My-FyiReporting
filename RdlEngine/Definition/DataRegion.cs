@@ -61,9 +61,10 @@ namespace fyiReporting.RDL
 		bool _PageBreakAtEnd;	// Indicates the report should page break
 								// at the end of the data region.
 		Filters _Filters;		// Filters to apply to each row of data in the data region.
-		DataRegion _ParentDataRegion;	// when DataRegions are nested; the nested regions have the parent set 
-	
-		internal DataRegion(ReportDefn r, ReportLink p, XmlNode xNode):base(r,p,xNode)
+		DataRegion _ParentDataRegion;   // when DataRegions are nested; the nested regions have the parent set 
+        Expression _PageBreakCondition;
+        ReportDefn MyReport;
+        internal DataRegion(ReportDefn r, ReportLink p, XmlNode xNode):base(r,p,xNode)
 		{
 			_KeepTogether=false;
 			_NoRows=null;
@@ -72,7 +73,9 @@ namespace fyiReporting.RDL
 			_PageBreakAtStart=false;
 			_PageBreakAtEnd=false;
 			_Filters=null;
-		}
+            _PageBreakCondition = null;
+            MyReport = r;
+        }
 
 		internal bool DataRegionElement(XmlNode xNodeLoop)
 		{
@@ -93,7 +96,10 @@ namespace fyiReporting.RDL
 				case "PageBreakAtEnd":
 					_PageBreakAtEnd = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
-				case "Filters":
+                case "PageBreakCondition":
+                    _PageBreakCondition = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Boolean);
+                    break;
+                case "Filters":
 					_Filters = new Filters(OwnerReport, this, xNodeLoop);
 					break;
 				default:	// Will get many that are handled by the specific
@@ -155,8 +161,10 @@ namespace fyiReporting.RDL
 				_NoRows.FinalPass();
 			if (_Filters != null) 
 				_Filters.FinalPass();
+            if (_PageBreakCondition != null)
+                _PageBreakCondition.FinalPass();
 
-			return;
+            return;
 		}
 
 		void ResolveNestedDataRegions()
@@ -181,7 +189,7 @@ namespace fyiReporting.RDL
 
 		internal void RunPageRegionBegin(Pages pgs)
 		{
-			if (this.TC == null && this.PageBreakAtStart && !pgs.CurrentPage.IsEmpty())
+			if (this.TC == null && this.PageBreakAtStart && PageBreakCondition && !pgs.CurrentPage.IsEmpty())
 			{	// force page break at beginning of dataregion
 				pgs.NextOrNew();
 				pgs.CurrentPage.YOffset = OwnerReport.TopOfPage;
@@ -368,7 +376,16 @@ namespace fyiReporting.RDL
 			set {  _NoRows = value; }
 		}
 
-		internal string DataSetName
+        internal bool PageBreakCondition
+        {
+            get
+            {
+                return false;
+            }
+            //set { _PageBreakCondition = value; }	
+        }
+
+        internal string DataSetName
 		{
 			get { return  _DataSetName; }
 			set {  _DataSetName = value; }

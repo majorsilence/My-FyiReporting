@@ -42,7 +42,7 @@ namespace fyiReporting.RdlDesign
 	/// <summary>
 	/// Control for providing a designer image of RDL.   Works directly off the RDL XML.
 	/// </summary>
-	internal class DesignXmlDraw: UserControl
+	public class DesignXmlDraw: UserControl
 	{
 		static internal readonly float POINTSIZED = 72.27f;
 		static internal readonly decimal POINTSIZEM = 72.27m;
@@ -57,8 +57,11 @@ namespace fyiReporting.RdlDesign
         readonly Color BANDCOLOR = Color.LightGray;
 		const int BANDHEIGHT = 12;              // height of band (e.g. body, pageheader, pagefooter) in pts
 		const float LEFTGAP = 0f; // keep a gap on the left size of the screen
-		// Various page measurements that we keep
-		float rWidth, pHeight, pWidth;
+        // Various page measurements that we keep
+        public float ReportVisualSize;
+        public float ReportVisualSizeBase;
+        // rWidth is now ReportVisualSizeBase i.e. the report real w size
+        float pHeight, pWidth;
 		float lMargin, rMargin, tMargin, bMargin;
 		XmlNode bodyNode;
 		XmlNode phNode;
@@ -88,7 +91,10 @@ namespace fyiReporting.RdlDesign
 
         bool _ShowReportItemOutline=false;
 
-		internal DesignXmlDraw():base()
+        public float SCALAX = 1;
+        public float SCALAY = 1;
+
+        internal DesignXmlDraw():base()
 		{
 			// Get our graphics DPI					   
 			Graphics ga = null;				
@@ -781,24 +787,26 @@ namespace fyiReporting.RdlDesign
 			get {return _SelectedReportItems;}
 		}
 
+		// Adjust for scale
 		internal float VerticalMax
 		{
 			get 
 			{
-				return GetSize(bodyNode, "Height") +
+				float TotaleH= GetSize(bodyNode, "Height") +
 						GetSize(phNode, "Height") +
 						GetSize(pfNode, "Height") +
 					    BANDHEIGHT * 3 +
-						3 * 10;		// plus about 3 lines
-			}
+						3 * 10;     // plus about 3 lines
+                return TotaleH * SCALAY;
+            }
 		}
 
 		internal float HorizontalMax
 		{
 			get 
 			{
-                ProcessReport(rDoc.LastChild);                      // make sure pWidth and rWidth are up to date
-				float hm = Math.Max(pWidth, rWidth);
+                ProcessReport(rDoc.LastChild);                      // make sure pWidth and ReportVisualSize are up to date
+				float hm = Math.Max(pWidth, ReportVisualSize);
 				return Math.Max(hm, RightMost(rDoc.LastChild)+90);  // 90: just to give a little extra room on right
 			}
 		}
@@ -959,7 +967,8 @@ namespace fyiReporting.RdlDesign
 			_vScroll = vScroll;
 
 			g.PageUnit = GraphicsUnit.Point;
-			g.ScaleTransform(1, 1);
+            // Now use scale value
+            g.ScaleTransform(SCALAX, SCALAY);
 
 			_clip = new RectangleF(PointsX(clipRectangle.X) + _hScroll, 
 				PointsY(clipRectangle.Y) + _vScroll, 
@@ -992,7 +1001,7 @@ namespace fyiReporting.RdlDesign
 			phNode=null;
 			pfNode=null;
 
-			rWidth = pHeight = pWidth = lMargin = rMargin = tMargin = bMargin = 0;
+			ReportVisualSize = pHeight = pWidth = lMargin = rMargin = tMargin = bMargin = 0;
 
 			// Loop thru all the child nodes
 			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
@@ -1011,7 +1020,8 @@ namespace fyiReporting.RdlDesign
 						pfNode = xNodeLoop;
 						break;
 					case "Width":
-						rWidth = GetSize(xNodeLoop.InnerText);
+                        ReportVisualSizeBase = GetSize(xNodeLoop.InnerText);
+                        ReportVisualSize = ReportVisualSizeBase;
 						break;
 					case "PageHeight":
 						pHeight = GetSize(xNodeLoop.InnerText);
@@ -1039,8 +1049,8 @@ namespace fyiReporting.RdlDesign
 				pWidth = GetSize("8.5in");
 			if (pHeight == 0)
 				pHeight = GetSize("11in");
-			if (rWidth == 0)
-				rWidth = pWidth;
+			if (ReportVisualSize == 0)
+				ReportVisualSize = pWidth;
 
 			if (phNode == null)
 				phNode = CreatePrimaryRegion("PageHeader");
@@ -1074,7 +1084,7 @@ namespace fyiReporting.RdlDesign
 				return yLoc;
 
 			XmlNode items=null;
-			float height=float.MinValue;
+			float CurrentSectionheight=float.MinValue;
 			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
@@ -1082,17 +1092,17 @@ namespace fyiReporting.RdlDesign
 				switch (xNodeLoop.Name)
 				{
 					case "Height":
-						height = GetSize(xNodeLoop.InnerText);
+						CurrentSectionheight = GetSize(xNodeLoop.InnerText);
 						break;
 					case "ReportItems":
 						items = xNodeLoop;
 						break;
 				}
 			}
-			if (height == float.MinValue)	
+			if (CurrentSectionheight == float.MinValue)	
 			{	// Shouldn't happen with correctly defined report; so create a Height element for the region
 				this.CreateElement(xNode, "Height", "0pt");
-				height = 0;
+				CurrentSectionheight = 0;
 			}
 
             // Josh:
@@ -1108,16 +1118,16 @@ namespace fyiReporting.RdlDesign
 
 			// Entire Paper
 			si.BackgroundColor = OUTWORKAREACOLOR;
-			RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
+			RectangleF b = new RectangleF(xLoc, yLoc + 1, /*PointsX(Width)*/(pWidth) /*+ _hScroll*/, /*height*/ ((CurrentSectionheight > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : CurrentSectionheight));//displayHeight > 0 ? displayHeight : 0);
 			DrawBackground(b, si);
 
 			// Work area
 			si.BackgroundColor = Color.White;
-			b = new RectangleF(xLoc + lMargin, yLoc + 1, /*PointsX(Width)*/(pWidth - lMargin - rMargin) /*+ _hScroll*/, /*height*/ ((height > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : height));//displayHeight > 0 ? displayHeight : 0);
+			b = new RectangleF(xLoc + lMargin, yLoc + 1, /*PointsX(Width)*/(pWidth - lMargin - rMargin) /*+ _hScroll*/, /*height*/ ((CurrentSectionheight > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : CurrentSectionheight));//displayHeight > 0 ? displayHeight : 0);
             DrawBackground(b, si);
 
 			//Edge of paper
-			DrawLine(Color.Gray, BorderStyleEnum.Solid, 1, pWidth, yLoc + 1, pWidth, yLoc + height);
+			DrawLine(Color.Gray, BorderStyleEnum.Solid, 1, pWidth, yLoc + 1, pWidth, yLoc + CurrentSectionheight);
             //End "Paper"
 
             // Josh:
@@ -1128,7 +1138,7 @@ namespace fyiReporting.RdlDesign
             //End Items 
 
             //Band and Text 
-			RectangleF bm = new RectangleF(_hScroll,yLoc+height, PointsX(Width)+_hScroll, BANDHEIGHT);
+			RectangleF bm = new RectangleF(_hScroll,yLoc+CurrentSectionheight, PointsX(Width)+_hScroll, BANDHEIGHT);
 			si.BackgroundColor = BANDCOLOR;
 			si.FontFamily = "Arial";
 			si.FontSize = 8;
@@ -1140,11 +1150,11 @@ namespace fyiReporting.RdlDesign
             si.BStyleBottom = si.BStyleLeft = si.BStyleRight = si.BStyleTop = BANDBORDERSTYLE;
             si.BWidthBottom = si.BWidthLeft = si.BWidthRight = si.BWidthTop = BANDBORDERWIDTH;
             si.BColorBottom = si.BColorLeft = si.BColorRight = si.BColorTop = BANDBORDERCOLOR;
-            si.PaddingLeft = BANDBORDERWIDTH + 1f; 
+            si.PaddingLeft = BANDBORDERWIDTH + SCALAY*1f; 
 			DrawString(title, si, bm);
             //End Band and Text 
 
-			return height+BANDHEIGHT;
+			return CurrentSectionheight+BANDHEIGHT;
 		}
 
 		private void DrawReportItems(XmlNode xNode, RectangleF r)
@@ -1962,7 +1972,8 @@ namespace fyiReporting.RdlDesign
                 {
                     float h = GetSize(GetNamedChildNode(p, "Height").InnerText);
                     si = (StyleInfo)siDefault.Clone();
-                    bandPos.Height = h;
+					// Scale Band Height
+                    bandPos.Height = h*SCALAY;
                     if (s.Key.StartsWith("G"))
                     {
                         int sepGroup = s.Key.IndexOf('_');

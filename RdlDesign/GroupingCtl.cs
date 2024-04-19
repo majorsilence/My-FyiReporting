@@ -61,10 +61,14 @@ namespace fyiReporting.RdlDesign
 		private System.Windows.Forms.Button bValueExpr;
 		private System.Windows.Forms.Button bLabelExpr;
 		private System.Windows.Forms.Button bParentExpr;
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private Button BtnCercaFormulaEsclusione;
+        private TextBox TxtPageBreakCondition;
+        private Label label4;
+
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
 		internal GroupingCtl(DesignXmlDraw dxDraw, XmlNode groupingParent)
 		{
@@ -124,7 +128,8 @@ namespace fyiReporting.RdlDesign
 				this.tbName.Text = _Draw.GetElementAttribute(grouping, "Name", "");
 				this.cbParentExpr.Text =  _Draw.GetElementValue(grouping, "Parent", "");
 				this.cbLabelExpr.Text =  _Draw.GetElementValue(grouping, "Label", "");
-			}
+                this.TxtPageBreakCondition.Text = _Draw.GetElementValue(grouping, "PageBreakCondition", "");
+            }
 
 			if (_GroupingParent.Name == "TableGroup")
 			{
@@ -156,7 +161,8 @@ namespace fyiReporting.RdlDesign
 				this.chkPBE.Visible = this.chkPBS.Visible = false;
 				this.cbParentExpr.Visible = this.lParent.Visible = false;
 				this.cbLabelExpr.Text =  _Draw.GetElementValue(_GroupingParent, "Label", "");
-			}
+                this.TxtPageBreakCondition.Text = _Draw.GetElementValue(grouping, "PageBreakCondition", "");
+            }
 
 			// load label and parent controls with fields
 			string dsn = _Draw.GetDataSetNameValue(_GroupingParent);
@@ -194,168 +200,190 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupingCtl));
-			this.dgGroup = new System.Windows.Forms.DataGridView();
-			this.bDelete = new System.Windows.Forms.Button();
-			this.bUp = new System.Windows.Forms.Button();
-			this.bDown = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.tbName = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.cbLabelExpr = new System.Windows.Forms.ComboBox();
-			this.cbParentExpr = new System.Windows.Forms.ComboBox();
-			this.lParent = new System.Windows.Forms.Label();
-			this.chkPBS = new System.Windows.Forms.CheckBox();
-			this.chkPBE = new System.Windows.Forms.CheckBox();
-			this.chkRepeatHeader = new System.Windows.Forms.CheckBox();
-			this.chkGrpHeader = new System.Windows.Forms.CheckBox();
-			this.chkRepeatFooter = new System.Windows.Forms.CheckBox();
-			this.chkGrpFooter = new System.Windows.Forms.CheckBox();
-			this.bValueExpr = new System.Windows.Forms.Button();
-			this.bLabelExpr = new System.Windows.Forms.Button();
-			this.bParentExpr = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.dgGroup)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// dgGroup
-			// 
-			resources.ApplyResources(this.dgGroup, "dgGroup");
-			this.dgGroup.DataMember = "";
-			this.dgGroup.Name = "dgGroup";
-			// 
-			// bDelete
-			// 
-			resources.ApplyResources(this.bDelete, "bDelete");
-			this.bDelete.Name = "bDelete";
-			this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
-			// 
-			// bUp
-			// 
-			resources.ApplyResources(this.bUp, "bUp");
-			this.bUp.Name = "bUp";
-			this.bUp.Click += new System.EventHandler(this.bUp_Click);
-			// 
-			// bDown
-			// 
-			resources.ApplyResources(this.bDown, "bDown");
-			this.bDown.Name = "bDown";
-			this.bDown.Click += new System.EventHandler(this.bDown_Click);
-			// 
-			// label1
-			// 
-			resources.ApplyResources(this.label1, "label1");
-			this.label1.Name = "label1";
-			// 
-			// tbName
-			// 
-			resources.ApplyResources(this.tbName, "tbName");
-			this.tbName.Name = "tbName";
-			this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
-			// 
-			// label2
-			// 
-			resources.ApplyResources(this.label2, "label2");
-			this.label2.Name = "label2";
-			// 
-			// label3
-			// 
-			resources.ApplyResources(this.label3, "label3");
-			this.label3.Name = "label3";
-			// 
-			// cbLabelExpr
-			// 
-			resources.ApplyResources(this.cbLabelExpr, "cbLabelExpr");
-			this.cbLabelExpr.Name = "cbLabelExpr";
-			// 
-			// cbParentExpr
-			// 
-			resources.ApplyResources(this.cbParentExpr, "cbParentExpr");
-			this.cbParentExpr.Name = "cbParentExpr";
-			// 
-			// lParent
-			// 
-			resources.ApplyResources(this.lParent, "lParent");
-			this.lParent.Name = "lParent";
-			// 
-			// chkPBS
-			// 
-			resources.ApplyResources(this.chkPBS, "chkPBS");
-			this.chkPBS.Name = "chkPBS";
-			// 
-			// chkPBE
-			// 
-			resources.ApplyResources(this.chkPBE, "chkPBE");
-			this.chkPBE.Name = "chkPBE";
-			// 
-			// chkRepeatHeader
-			// 
-			resources.ApplyResources(this.chkRepeatHeader, "chkRepeatHeader");
-			this.chkRepeatHeader.Name = "chkRepeatHeader";
-			// 
-			// chkGrpHeader
-			// 
-			resources.ApplyResources(this.chkGrpHeader, "chkGrpHeader");
-			this.chkGrpHeader.Name = "chkGrpHeader";
-			// 
-			// chkRepeatFooter
-			// 
-			resources.ApplyResources(this.chkRepeatFooter, "chkRepeatFooter");
-			this.chkRepeatFooter.Name = "chkRepeatFooter";
-			// 
-			// chkGrpFooter
-			// 
-			resources.ApplyResources(this.chkGrpFooter, "chkGrpFooter");
-			this.chkGrpFooter.Name = "chkGrpFooter";
-			// 
-			// bValueExpr
-			// 
-			resources.ApplyResources(this.bValueExpr, "bValueExpr");
-			this.bValueExpr.Name = "bValueExpr";
-			this.bValueExpr.Tag = "value";
-			this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
-			// 
-			// bLabelExpr
-			// 
-			resources.ApplyResources(this.bLabelExpr, "bLabelExpr");
-			this.bLabelExpr.Name = "bLabelExpr";
-			this.bLabelExpr.Tag = "label";
-			this.bLabelExpr.Click += new System.EventHandler(this.bExpr_Click);
-			// 
-			// bParentExpr
-			// 
-			resources.ApplyResources(this.bParentExpr, "bParentExpr");
-			this.bParentExpr.Name = "bParentExpr";
-			this.bParentExpr.Tag = "parent";
-			this.bParentExpr.Click += new System.EventHandler(this.bExpr_Click);
-			// 
-			// GroupingCtl
-			// 
-			resources.ApplyResources(this, "$this");
-			this.Controls.Add(this.bParentExpr);
-			this.Controls.Add(this.bLabelExpr);
-			this.Controls.Add(this.bValueExpr);
-			this.Controls.Add(this.chkRepeatFooter);
-			this.Controls.Add(this.chkGrpFooter);
-			this.Controls.Add(this.chkRepeatHeader);
-			this.Controls.Add(this.chkGrpHeader);
-			this.Controls.Add(this.chkPBE);
-			this.Controls.Add(this.chkPBS);
-			this.Controls.Add(this.cbParentExpr);
-			this.Controls.Add(this.lParent);
-			this.Controls.Add(this.cbLabelExpr);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.tbName);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.bDown);
-			this.Controls.Add(this.bUp);
-			this.Controls.Add(this.bDelete);
-			this.Controls.Add(this.dgGroup);
-			this.Name = "GroupingCtl";
-			((System.ComponentModel.ISupportInitialize)(this.dgGroup)).EndInit();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupingCtl));
+            this.dgGroup = new System.Windows.Forms.DataGridView();
+            this.bDelete = new System.Windows.Forms.Button();
+            this.bUp = new System.Windows.Forms.Button();
+            this.bDown = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbLabelExpr = new System.Windows.Forms.ComboBox();
+            this.cbParentExpr = new System.Windows.Forms.ComboBox();
+            this.lParent = new System.Windows.Forms.Label();
+            this.chkPBS = new System.Windows.Forms.CheckBox();
+            this.chkPBE = new System.Windows.Forms.CheckBox();
+            this.chkRepeatHeader = new System.Windows.Forms.CheckBox();
+            this.chkGrpHeader = new System.Windows.Forms.CheckBox();
+            this.chkRepeatFooter = new System.Windows.Forms.CheckBox();
+            this.chkGrpFooter = new System.Windows.Forms.CheckBox();
+            this.bValueExpr = new System.Windows.Forms.Button();
+            this.bLabelExpr = new System.Windows.Forms.Button();
+            this.bParentExpr = new System.Windows.Forms.Button();
+            this.BtnCercaFormulaEsclusione = new System.Windows.Forms.Button();
+            this.TxtPageBreakCondition = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgGroup)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgGroup
+            // 
+            resources.ApplyResources(this.dgGroup, "dgGroup");
+            this.dgGroup.Name = "dgGroup";
+            // 
+            // bDelete
+            // 
+            resources.ApplyResources(this.bDelete, "bDelete");
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
+            // bUp
+            // 
+            resources.ApplyResources(this.bUp, "bUp");
+            this.bUp.Name = "bUp";
+            this.bUp.Click += new System.EventHandler(this.bUp_Click);
+            // 
+            // bDown
+            // 
+            resources.ApplyResources(this.bDown, "bDown");
+            this.bDown.Name = "bDown";
+            this.bDown.Click += new System.EventHandler(this.bDown_Click);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // tbName
+            // 
+            resources.ApplyResources(this.tbName, "tbName");
+            this.tbName.Name = "tbName";
+            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // cbLabelExpr
+            // 
+            resources.ApplyResources(this.cbLabelExpr, "cbLabelExpr");
+            this.cbLabelExpr.Name = "cbLabelExpr";
+            // 
+            // cbParentExpr
+            // 
+            resources.ApplyResources(this.cbParentExpr, "cbParentExpr");
+            this.cbParentExpr.Name = "cbParentExpr";
+            // 
+            // lParent
+            // 
+            resources.ApplyResources(this.lParent, "lParent");
+            this.lParent.Name = "lParent";
+            // 
+            // chkPBS
+            // 
+            resources.ApplyResources(this.chkPBS, "chkPBS");
+            this.chkPBS.Name = "chkPBS";
+            // 
+            // chkPBE
+            // 
+            resources.ApplyResources(this.chkPBE, "chkPBE");
+            this.chkPBE.Name = "chkPBE";
+            // 
+            // chkRepeatHeader
+            // 
+            resources.ApplyResources(this.chkRepeatHeader, "chkRepeatHeader");
+            this.chkRepeatHeader.Name = "chkRepeatHeader";
+            // 
+            // chkGrpHeader
+            // 
+            resources.ApplyResources(this.chkGrpHeader, "chkGrpHeader");
+            this.chkGrpHeader.Name = "chkGrpHeader";
+            // 
+            // chkRepeatFooter
+            // 
+            resources.ApplyResources(this.chkRepeatFooter, "chkRepeatFooter");
+            this.chkRepeatFooter.Name = "chkRepeatFooter";
+            // 
+            // chkGrpFooter
+            // 
+            resources.ApplyResources(this.chkGrpFooter, "chkGrpFooter");
+            this.chkGrpFooter.Name = "chkGrpFooter";
+            // 
+            // bValueExpr
+            // 
+            resources.ApplyResources(this.bValueExpr, "bValueExpr");
+            this.bValueExpr.Name = "bValueExpr";
+            this.bValueExpr.Tag = "value";
+            this.bValueExpr.Click += new System.EventHandler(this.bValueExpr_Click);
+            // 
+            // bLabelExpr
+            // 
+            resources.ApplyResources(this.bLabelExpr, "bLabelExpr");
+            this.bLabelExpr.Name = "bLabelExpr";
+            this.bLabelExpr.Tag = "label";
+            this.bLabelExpr.Click += new System.EventHandler(this.bExpr_Click);
+            // 
+            // bParentExpr
+            // 
+            resources.ApplyResources(this.bParentExpr, "bParentExpr");
+            this.bParentExpr.Name = "bParentExpr";
+            this.bParentExpr.Tag = "parent";
+            this.bParentExpr.Click += new System.EventHandler(this.bExpr_Click);
+            // 
+            // BtnCercaFormulaEsclusione
+            // 
+            resources.ApplyResources(this.BtnCercaFormulaEsclusione, "BtnCercaFormulaEsclusione");
+            this.BtnCercaFormulaEsclusione.Name = "BtnCercaFormulaEsclusione";
+            this.BtnCercaFormulaEsclusione.Tag = "value";
+            this.BtnCercaFormulaEsclusione.Click += new System.EventHandler(this.BtnCercaFormulaEsclusione_Click);
+            // 
+            // TxtPageBreakCondition
+            // 
+            resources.ApplyResources(this.TxtPageBreakCondition, "TxtPageBreakCondition");
+            this.TxtPageBreakCondition.Name = "TxtPageBreakCondition";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // GroupingCtl
+            // 
+            this.Controls.Add(this.BtnCercaFormulaEsclusione);
+            this.Controls.Add(this.TxtPageBreakCondition);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.bParentExpr);
+            this.Controls.Add(this.bLabelExpr);
+            this.Controls.Add(this.bValueExpr);
+            this.Controls.Add(this.chkRepeatFooter);
+            this.Controls.Add(this.chkGrpFooter);
+            this.Controls.Add(this.chkRepeatHeader);
+            this.Controls.Add(this.chkGrpHeader);
+            this.Controls.Add(this.chkPBE);
+            this.Controls.Add(this.chkPBS);
+            this.Controls.Add(this.cbParentExpr);
+            this.Controls.Add(this.lParent);
+            this.Controls.Add(this.cbLabelExpr);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.bDown);
+            this.Controls.Add(this.bUp);
+            this.Controls.Add(this.bDelete);
+            this.Controls.Add(this.dgGroup);
+            this.Name = "GroupingCtl";
+            resources.ApplyResources(this, "$this");
+            ((System.ComponentModel.ISupportInitialize)(this.dgGroup)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -442,7 +470,10 @@ namespace fyiReporting.RdlDesign
 			}
 			else
 			{
-				if (this.cbLabelExpr.Text.Length > 0)
+                // Entry point per formula di validazione
+                _Draw.SetElement(grouping, "PageBreakCondition", TxtPageBreakCondition.Text.Trim());
+
+                if (this.cbLabelExpr.Text.Length > 0)
 					_Draw.SetElement(grouping, "Label", cbLabelExpr.Text);
 				else
 					_Draw.RemoveElement(grouping, "Label");
@@ -672,5 +703,21 @@ namespace fyiReporting.RdlDesign
 			return;
 		}
 
-	}
+        private void BtnCercaFormulaEsclusione_Click(object sender, EventArgs e)
+        {
+            Control c = TxtPageBreakCondition;
+            DialogExprEditor ee = new DialogExprEditor(_Draw, c.Text, _GroupingParent, false);
+            try
+            {
+                DialogResult dr = ee.ShowDialog();
+                if (dr == DialogResult.OK)
+                    c.Text = ee.Expression;
+            }
+            finally
+            {
+                ee.Dispose();
+            }
+            return;
+        }
+    }
 }
