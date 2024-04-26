@@ -22,7 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {

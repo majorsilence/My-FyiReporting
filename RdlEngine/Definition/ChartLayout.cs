@@ -22,7 +22,11 @@
 */
 
 using System;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
@@ -38,14 +42,14 @@ namespace fyiReporting.RDL
 		int _RightMargin;
 		int _TopMargin;
 		int _BottomMargin;
-		System.Drawing.Rectangle _PlotArea;
+		Drawing.Rectangle _PlotArea;
 	
 		internal ChartLayout(int width, int height)
 		{
 			_Width = width;
 			_Height = height;
 			_LeftMargin = _RightMargin = _TopMargin = _BottomMargin = 0;
-			_PlotArea = System.Drawing.Rectangle.Empty;
+			_PlotArea = Drawing.Rectangle.Empty;
 		}
 		
 		internal int Width
@@ -59,28 +63,28 @@ namespace fyiReporting.RDL
 		internal int LeftMargin
 		{
 			get { return  _LeftMargin; }
-            set { _LeftMargin = value; _PlotArea = System.Drawing.Rectangle.Empty; }
+            set { _LeftMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
 		}
 		internal int RightMargin
 		{
 			get { return  _RightMargin; }
-            set { _RightMargin = value; _PlotArea = System.Drawing.Rectangle.Empty; }
+            set { _RightMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
 		}
 		internal int TopMargin
 		{
 			get { return  _TopMargin; }
-            set { _TopMargin = value; _PlotArea = System.Drawing.Rectangle.Empty; }
+            set { _TopMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
 		}
 		internal int BottomMargin
 		{
 			get { return  _BottomMargin; }
-            set { _BottomMargin = value; _PlotArea = System.Drawing.Rectangle.Empty; }
+            set { _BottomMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
 		}
-		internal System.Drawing.Rectangle PlotArea
+		internal Drawing.Rectangle PlotArea
 		{
 			get 
 			{ 
-				if (_PlotArea == System.Drawing.Rectangle.Empty)
+				if (_PlotArea == Drawing.Rectangle.Empty)
 				{
 					int w = _Width - _LeftMargin - _RightMargin;
 					if (w <= 0)
@@ -89,7 +93,7 @@ namespace fyiReporting.RDL
 					if (h <= 0)
 						throw new Exception(Strings.ChartLayout_Error_PlotAreaHeightIs0);
 				
-					_PlotArea = new System.Drawing.Rectangle(_LeftMargin, _TopMargin, w, h); 
+					_PlotArea = new Drawing.Rectangle(_LeftMargin, _TopMargin, w, h); 
 				}
 
 				return _PlotArea;

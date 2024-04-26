@@ -1,44 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-	<TargetFrameworks>net48;netstandard2.0;net6.0;net6.0-windows</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <RootNamespace>fyiReporting.CRI</RootNamespace>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>RdlCri</AssemblyTitle>
-	<Description>RDL Project CustomReportItem Library</Description>
-	<Company>fyiReporting Software, LLC</Company>
-	<Product>CRI</Product>
-	<Copyright>Copyright ©  2006-2008</Copyright>
-	<AssemblyVersion>4.17.0</AssemblyVersion>
-	<Version>4.17.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.RdlCri</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Security" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="BarcodeLib" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
-    <PackageReference Include="System.Buffers" />
-    <PackageReference Include="System.Memory" />
-    <PackageReference Include="System.Numerics.Vectors" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-    <PackageReference Include="System.Text.Encodings.Web" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="System.ValueTuple" />
-    <PackageReference Include="ZXing.Net" />
-	<PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net6.0'">
-	<!-- Add your item references here -->
-	<PackageReference Include="System.Drawing.Common" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+    <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
+    <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <RootNamespace>fyiReporting.CRI</RootNamespace>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <AssemblyTitle>RdlCri</AssemblyTitle>
+        <Description>RDL Project CustomReportItem Library</Description>
+        <Company>fyiReporting Software, LLC</Company>
+        <Product>CRI</Product>
+        <Copyright>Copyright © 2006-2008</Copyright>
+        <AssemblyVersion>4.17.0</AssemblyVersion>
+        <Version>4.17.0</Version>
+        <DelaySign>false</DelaySign>
+        <PackageId>Majorsilence.Reporting.RdlCri</PackageId>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System.Security"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\RdlEngine\RdlEngine.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="BarcodeLib"/>
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces"/>
+        <PackageReference Include="System.Buffers"/>
+        <PackageReference Include="System.Memory"/>
+        <PackageReference Include="System.Numerics.Vectors"/>
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe"/>
+        <PackageReference Include="System.Text.Encodings.Web"/>
+        <PackageReference Include="System.Text.Json"/>
+        <PackageReference Include="System.Threading.Tasks.Extensions"/>
+        <PackageReference Include="System.ValueTuple"/>
+        <PackageReference Include="ZXing.Net"/>
+        <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\"/>
+    </ItemGroup>
 </Project>

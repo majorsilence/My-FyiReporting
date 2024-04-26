@@ -22,7 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -63,7 +67,7 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                Brush b;
+                Drawing.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -71,7 +75,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new SolidBrush(Color.FromArgb(A, R, G, B));
+                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -110,13 +114,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single Xp, Single Yp, Single Wid, Single Hgt, Brush b)
+        private void DoInstructions(Single Xp, Single Yp, Single Wid, Single Hgt, Drawing.Brush b)
         {
             switch (b.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)b;
-                    Color col = theBrush.Color;  
+                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)b;
+                   Drawing.Color col = theBrush.Color;  
                     PageEllipse pl = new PageEllipse();
                     pl.X = X + (Xp * SCALEFACTOR);
                     pl.Y = Y + (Yp * SCALEFACTOR);

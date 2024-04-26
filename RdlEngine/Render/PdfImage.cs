@@ -23,7 +23,11 @@
 using System;
 using System.Collections;
 using System.IO;
+#if LINUX
+using System.DrawingCore.Imaging;
+#else
 using System.Drawing.Imaging;
+#endif
 using fyiReporting.RDL;
 
 namespace fyiReporting.RDL

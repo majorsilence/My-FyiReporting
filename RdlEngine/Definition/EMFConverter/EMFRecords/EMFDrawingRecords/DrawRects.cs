@@ -22,8 +22,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
+
 namespace fyiReporting.RDL
 {       
     internal class DrawRects : DrawBase
@@ -62,7 +66,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 UInt32 NumberOfRects = _br.ReadUInt32();
                 EMFPen EMFp = (EMFPen)ObjectTable[ObjectID];
-                Pen p = EMFp.myPen;
+                Drawing.Pen p = EMFp.myPen;
                 if (Compressed)
                 {
                     DoCompressed(NumberOfRects, _br, p);
@@ -86,7 +90,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfRects, BinaryReader _br, Pen p)
+        private void DoFloat(UInt32 NumberOfRects, BinaryReader _br, Drawing.Pen p)
         {
             for (int i = 0; i < NumberOfRects; i++)
             {
@@ -98,7 +102,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoCompressed(UInt32 NumberOfRects, BinaryReader _br, Pen p)
+        private void DoCompressed(UInt32 NumberOfRects, BinaryReader _br, Drawing.Pen p)
         {
             for (int i = 0; i < NumberOfRects; i++)
             {
@@ -110,13 +114,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Pen p)
+        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Drawing.Pen p)
         {
             BorderStyleEnum ls = getLineStyle(p);           
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
+                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
                     PageRectangle pl = new PageRectangle();
                     pl.X = X + (recX * SCALEFACTOR);
                     pl.Y = Y + (recY * SCALEFACTOR);

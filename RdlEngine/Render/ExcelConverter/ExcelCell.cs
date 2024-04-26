@@ -1,5 +1,9 @@
 ﻿using System;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using fyiReporting.RDL;
 using NPOI.SS.UserModel;
 

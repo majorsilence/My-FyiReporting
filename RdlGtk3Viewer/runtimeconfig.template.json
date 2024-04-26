@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "runtimeOptions": {
+      
+    },
+    "configProperties": { "System.Drawing.EnableUnixSupport": true }
+  }
+}

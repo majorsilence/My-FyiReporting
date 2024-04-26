@@ -2,8 +2,13 @@
 using System.Linq;
 using System.Collections.Generic;
 using fyiReporting.RDL;
-using System.Drawing.Drawing2D;
+#if LINUX
+using System.DrawingCore;
+using System.DrawingCore.Drawing2D;
+#else
 using System.Drawing;
+using System.Drawing.Drawing2D;
+#endif
 
 namespace RdlEngine.Render.ExcelConverter
 {
@@ -26,7 +31,7 @@ namespace RdlEngine.Render.ExcelConverter
 
 		public ExcelCellsBuilder()
 		{
-			g = System.Drawing.Graphics.FromImage(new Bitmap(10, 10));
+			g = Graphics.FromImage(new Bitmap(10, 10));
 			Tables = new List<ExcelTable>();
 			Rows = new List<ExcelRow>();
 			AddRow(0, 1);

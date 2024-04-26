@@ -23,7 +23,11 @@
 
 using System;
 using System.Xml;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using System.Globalization;
 using System.Text.RegularExpressions;
 

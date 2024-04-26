@@ -26,10 +26,15 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.Text;
 using System.Globalization;
+#if LINUX
+using System.DrawingCore;
+using System.DrawingCore.Drawing2D;
+#else
 using System.Drawing;
+using System.Drawing.Drawing2D;
+#endif
 
 namespace fyiReporting.RDL
 {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition"
+  xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Description>
   </Description>
   <Author>
@@ -9,8 +10,8 @@
   <DataSources>
     <DataSource Name="DS1">
       <ConnectionProperties>
-        <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+        <DataProvider>Microsoft.Data.Sqlite</DataProvider>
+        <ConnectString>Data Source=/home/peter/source/repos/My-FyiReporting/Examples/SqliteExamples/sqlitetestdb2.db</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>
@@ -677,7 +678,7 @@
           </TableRows>
         </Details>
       </Table>
-      <Textbox Name="Textbox20" >
+      <Textbox Name="Textbox20">
         <Height>12pt</Height>
         <Width>1in</Width>
         <Value>Hello World</Value>

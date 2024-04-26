@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -75,7 +78,7 @@ namespace fyiReporting.RDL
                     pp.SI = si;
                     //si.BackgroundColor = Color.Blue;// Just a test to see where the tooltip is being drawn
                     string[] ttd = PData.Split('|');
-                    PointF[] pts = new PointF[(ttd.Length - 1) / 2];
+                    Drawing.PointF[] pts = new Drawing.PointF[(ttd.Length - 1) / 2];
                     pp.Points = pts;
                     pp.Tooltip = ttd[0].Split(':')[1];
                     for (int i = 0; i < pts.Length; i++)

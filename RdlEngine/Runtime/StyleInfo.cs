@@ -25,8 +25,14 @@ using System;
 using System.Xml;
 using System.IO;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Drawing2D = System.DrawingCore.Drawing2D;
+#else
+using Drawing = System.Drawing;
+using Drawing2D = System.Drawing2D.;
+#endif
+
 
 namespace fyiReporting.RDL
 {
@@ -40,19 +46,19 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Color of the left border
 		/// </summary>
-		public Color BColorLeft;		// (Color) Color of the left border
+		public Drawing.Color BColorLeft;		// (Color) Color of the left border
 		/// <summary>
 		/// Color of the right border
 		/// </summary>
-		public Color BColorRight;		// (Color) Color of the right border
+		public Drawing.Color BColorRight;		// (Color) Color of the right border
 		/// <summary>
 		/// Color of the top border
 		/// </summary>
-		public Color BColorTop;		// (Color) Color of the top border
+		public Drawing.Color BColorTop;		// (Color) Color of the top border
 		/// <summary>
 		/// Color of the bottom border
 		/// </summary>
-		public Color BColorBottom;	// (Color) Color of the bottom border
+		public Drawing.Color BColorBottom;	// (Color) Color of the bottom border
 		// _BorderStyle
 		/// <summary>
 		/// Style of the left border
@@ -91,7 +97,7 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Color of the background
 		/// </summary>
-		public Color BackgroundColor;			//(Color) Color of the background
+		public Drawing.Color BackgroundColor;			//(Color) Color of the background
         public string BackgroundColorText;		//(Textual Color) Color of the background
         /// <summary>
 		/// The type of background gradient
@@ -106,7 +112,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		public patternTypeEnum PatternType;
 		
-		public Color BackgroundGradientEndColor;	//(Color) End color for the background gradient.
+		public Drawing.Color BackgroundGradientEndColor;	//(Color) End color for the background gradient.
 		/// <summary>
 		/// A background image for the report item.
 		/// </summary>
@@ -146,7 +152,7 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// The foreground color	Default: Black
 		/// </summary>
-		public Color Color;			// (Color) The foreground color	Default: Black
+		public Drawing.Color Color;			// (Color) The foreground color	Default: Black
         public string ColorText;    // (Color-text)
         /// <summary>
 		/// Padding between the left edge of the report item.
@@ -202,15 +208,15 @@ namespace fyiReporting.RDL
 		/// </summary>
 		public StyleInfo()
 		{
-			BColorLeft = BColorRight = BColorTop = BColorBottom = System.Drawing.Color.Black;	// (Color) Color of the bottom border
+			BColorLeft = BColorRight = BColorTop = BColorBottom = Drawing.Color.Black;	// (Color) Color of the bottom border
 			BStyleLeft = BStyleRight = BStyleTop = BStyleBottom = BorderStyleEnum.None;
 			// _BorderWdith
 			BWidthLeft = BWidthRight = BWidthTop = BWidthBottom = 1;
 
-			BackgroundColor = System.Drawing.Color.Empty;
+			BackgroundColor = Drawing.Color.Empty;
             BackgroundColorText = string.Empty;
 			BackgroundGradientType = BackgroundGradientTypeEnum.None;
-			BackgroundGradientEndColor = System.Drawing.Color.Empty;
+			BackgroundGradientEndColor = Drawing.Color.Empty;
 			BackgroundImage = null;
 
 			FontStyle = FontStyleEnum.Normal;
@@ -225,7 +231,7 @@ namespace fyiReporting.RDL
 			TextDecoration = TextDecorationEnum.None;
 			TextAlign = TextAlignEnum.General;
 			VerticalAlign = VerticalAlignEnum.Top;
-			Color = System.Drawing.Color.Black;
+			Color = Drawing.Color.Black;
             ColorText = "Black";
             PaddingLeft = PaddingRight = PaddingTop = PaddingBottom = 0;
 			LineHeight = 0;
@@ -260,7 +266,7 @@ namespace fyiReporting.RDL
 		/// Gets the FontFamily instance using the FontFamily string.  This supports lists of fonts.
 		/// </summary>
 		/// <returns></returns>
-		public FontFamily GetFontFamily()
+		public Drawing.FontFamily GetFontFamily()
 		{
 			return GetFontFamily(_FontFamily);
 		}
@@ -269,10 +275,10 @@ namespace fyiReporting.RDL
 		/// Gets the FontFamily instance using the passed face name.  This supports lists of fonts.
 		/// </summary>
 		/// <returns></returns>
-		static public FontFamily GetFontFamily(string fface)
+		static public Drawing.FontFamily GetFontFamily(string fface)
 		{
 			string[] choices = fface.Split(',');
-			FontFamily ff=null;
+			Drawing.FontFamily ff=null;
 			foreach (string val in choices)
 			{
 				try 
@@ -301,14 +307,14 @@ namespace fyiReporting.RDL
 							font = val;
 							break;
 					}
-					ff = new FontFamily(font);
+					ff = new Drawing.FontFamily(font);
 					if (ff != null)
 						break;
 				}
 				catch {}	// if font doesn't exist we will go to the next
 			}
 			if (ff == null)
-				ff = new FontFamily("Arial");
+				ff = new Drawing.FontFamily("Arial");
 			return ff;
 		}
 		/// <summary>
@@ -641,33 +647,33 @@ namespace fyiReporting.RDL
             }
         }
 		
-		public static patternTypeEnum GetPatternType(System.Drawing.Drawing2D.HatchStyle hs)
+		public static patternTypeEnum GetPatternType(Drawing2D.HatchStyle hs)
 		{
 			switch (hs)
 			{
-				case HatchStyle.BackwardDiagonal:
+				case Drawing2D.HatchStyle.BackwardDiagonal:
 					return patternTypeEnum.BackwardDiagonal;					
-				case HatchStyle.Cross:
+				case Drawing2D.HatchStyle.Cross:
 					return patternTypeEnum.Cross;				
-				case HatchStyle.DarkDownwardDiagonal:
+				case Drawing2D.HatchStyle.DarkDownwardDiagonal:
 					return patternTypeEnum.DarkDownwardDiagonal;
-				case HatchStyle.DarkHorizontal:
+				case Drawing2D.HatchStyle.DarkHorizontal:
 					return patternTypeEnum.DarkHorizontal;
-				case HatchStyle.Vertical:
+				case Drawing2D.HatchStyle.Vertical:
 					return patternTypeEnum.Vertical;
-				case HatchStyle.LargeConfetti:
+				case Drawing2D.HatchStyle.LargeConfetti:
 					return patternTypeEnum.LargeConfetti;
-				case HatchStyle.OutlinedDiamond:
+				case Drawing2D.HatchStyle.OutlinedDiamond:
 					return patternTypeEnum.OutlinedDiamond;
-				case HatchStyle.SmallConfetti:
+				case Drawing2D.HatchStyle.SmallConfetti:
 					return patternTypeEnum.SmallConfetti;
-				case HatchStyle.HorizontalBrick:
+				case Drawing2D.HatchStyle.HorizontalBrick:
 					return patternTypeEnum.HorizontalBrick;
-				case HatchStyle.LargeCheckerBoard:
+				case Drawing2D.HatchStyle.LargeCheckerBoard:
 					return patternTypeEnum.CheckerBoard;
-				case HatchStyle.SolidDiamond:
+				case Drawing2D.HatchStyle.SolidDiamond:
 					return patternTypeEnum.SolidDiamond;
-				case HatchStyle.DiagonalBrick:
+				case Drawing2D.HatchStyle.DiagonalBrick:
 					return patternTypeEnum.DiagonalBrick;
 				default:
 					return patternTypeEnum.None;					

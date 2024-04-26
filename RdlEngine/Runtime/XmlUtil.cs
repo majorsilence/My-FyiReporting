@@ -26,7 +26,11 @@ using System.Xml;
 using System.Xml.Xsl;
 using System.Text;
 using System.IO;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;			// for Color class
+#endif
 using System.Reflection;
 
 namespace fyiReporting.RDL
@@ -57,7 +61,7 @@ namespace fyiReporting.RDL
 			Color c;
 			try 
 			{
-				c = ColorTranslator.FromHtml(sc);
+			//	c = ColorTranslator.FromHtml(sc);
 			}
 			catch 
 			{
@@ -65,7 +69,9 @@ namespace fyiReporting.RDL
 				if (rpt != null)
 					rpt.rl.LogError(4, string.Format("'{0}' is an invalid HTML color.", sc));
 			}
-			return c;
+
+			return Color.Aqua;
+			//	return c;
 		}
 
 		static internal int Integer(string i)

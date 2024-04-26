@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using fyiReporting.RDL;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.ComponentModel;
 using System.Xml;
 
@@ -22,7 +26,7 @@ namespace fyiReporting.CRI
             return false;
         }
 
-        public void DrawImage(ref Bitmap bm)
+        public void DrawImage(ref Drawing.Bitmap bm)
         {
             DrawImage(ref bm, _code39.ToUpper());
         }
@@ -32,22 +36,22 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref Drawing.Bitmap bm)
         {
             DrawImage(ref bm, "MYFYI");
         }
 
-        public void DrawImage(ref Bitmap bm, string code39)
+        public void DrawImage(ref Drawing.Bitmap bm, string code39)
         {
 #if NETSTANDARD2_0 || NET5_0_OR_GREATER
-            var writer = new ZXing.BarcodeWriter<Bitmap>();
+            var writer = new ZXing.BarcodeWriter<Drawing.Bitmap>();
 #else
             var writer = new ZXing.BarcodeWriter();
 #endif
 			writer.Format = ZXing.BarcodeFormat.CODE_39;
 
-            Graphics g = null;
-            g = Graphics.FromImage(bm);
+            Drawing.Graphics g = null;
+            g = Drawing.Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, 
                 OptimalHeight, OptimalWidth);
 

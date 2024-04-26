@@ -29,8 +29,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Drawing2D = System.DrawingCore.Drawing2D;
+#else
+using Drawing = System.Drawing;
+using Drawing2D System.Drawing.Drawing2D;
+#endif
 
 namespace fyiReporting.RDL.Utility
 {
@@ -43,9 +48,9 @@ namespace fyiReporting.RDL.Utility
         /// <summary>
         /// A method used to obtain a rectangle from the screen coordinates supplied.
         /// </summary>
-        public static System.Drawing.Rectangle RectFromPoints(Point p1, Point p2)
+        public static Drawing.Rectangle RectFromPoints(Drawing.Point p1, Drawing.Point p2)
         {
-            System.Drawing.Rectangle r = new System.Drawing.Rectangle();
+            Drawing.Rectangle r = new Drawing.Rectangle();
             // set the width and x of rectangle
             if (p1.X < p2.X)
             {
@@ -95,9 +100,9 @@ namespace fyiReporting.RDL.Utility
         /// A method used to convert pixels into points.
         /// </summary>
         /// <returns>A PointF containing the point X and Y values for the pixel X and Y values that were supplied.</returns>
-        public static PointF PointsFromPixels(float pixelsX, float pixelsY, PointF Dpi)
+        public static Drawing.PointF PointsFromPixels(float pixelsX, float pixelsY, Drawing.PointF Dpi)
         {
-            return new PointF(PointsFromPixels(pixelsX, Dpi.X), PointsFromPixels(pixelsY, Dpi.Y));
+            return new Drawing.PointF(PointsFromPixels(pixelsX, Dpi.X), PointsFromPixels(pixelsY, Dpi.Y));
         }
         /// <summary>
         /// A method used to convert points into pixels.
@@ -114,9 +119,9 @@ namespace fyiReporting.RDL.Utility
         /// A method used to convert points into pixels.
         /// </summary>
         /// <returns>A PointF containing the pixel X and Y values for the point X and Y values that were supplied.</returns>
-        public static PointF PixelsFromPoints(float pointsX, float pointsY, PointF Dpi)
+        public static Drawing.PointF PixelsFromPoints(float pointsX, float pointsY, Drawing.PointF Dpi)
         {
-            return new PointF(PixelsFromPoints(pointsX, Dpi.X), PixelsFromPoints(pointsY, Dpi.Y));
+            return new Drawing.PointF(PixelsFromPoints(pointsX, Dpi.X), PixelsFromPoints(pointsY, Dpi.Y));
         }
         /// <summary>
         /// A method used to convert points into twips.

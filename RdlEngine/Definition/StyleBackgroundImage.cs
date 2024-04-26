@@ -24,7 +24,11 @@ using System;
 using System.Xml;
 using System.Text;
 using System.IO;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.Globalization;
 using System.Threading;
 using System.Net;
@@ -144,7 +148,7 @@ namespace fyiReporting.RDL
 		{
 			string mtype=null; 
 			Stream strm=null;
-			System.Drawing.Image im=null;
+			Drawing.Image im=null;
 			PageImage pi=null;
 
 			WorkClass wc = GetWC(rpt);
@@ -165,22 +169,22 @@ namespace fyiReporting.RDL
                         this._Value==null?"": this._Value.EvaluateString(rpt, row)));
                     return null;
                 }
-                im = System.Drawing.Image.FromStream(strm);
+                im = Drawing.Image.FromStream(strm);
 				int height = im.Height;
 				int width = im.Width;
 				MemoryStream ostrm = new MemoryStream();
-				ImageFormat imf;
+				Drawing.Imaging.ImageFormat imf;
 				//				if (mtype.ToLower() == "image/jpeg")    //TODO: how do we get png to work
 				//					imf = ImageFormat.Jpeg;
 				//				else
 
-                imf = ImageFormat.Jpeg;
-                System.Drawing.Imaging.ImageCodecInfo[] info;
-                info = ImageCodecInfo.GetImageEncoders();
-                EncoderParameters encoderParameters;
-                encoderParameters = new EncoderParameters(1);
-                encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
-                System.Drawing.Imaging.ImageCodecInfo codec = null;
+                imf = Drawing.Imaging.ImageFormat.Jpeg;
+               Drawing.Imaging.ImageCodecInfo[] info;
+                info = Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                Drawing.Imaging.EncoderParameters encoderParameters;
+                encoderParameters = new Drawing.Imaging.EncoderParameters(1);
+                encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
+               Drawing.Imaging.ImageCodecInfo codec = null;
                 for (int i = 0; i < info.Length; i++)
                 {
                     if (info[i].FormatDescription == "JPEG")

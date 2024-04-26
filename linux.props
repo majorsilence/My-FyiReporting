@@ -1,0 +1,12 @@
+<Project>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+	</PropertyGroup>
+	<PropertyGroup>
+		<DefineConstants>LINUX</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- Add your item references here -->
+		<PackageReference Include="ZKWeb.System.Drawing"/>
+	</ItemGroup>
+</Project>

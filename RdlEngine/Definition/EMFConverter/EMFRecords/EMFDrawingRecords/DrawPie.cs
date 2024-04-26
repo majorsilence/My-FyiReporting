@@ -22,8 +22,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
+
 namespace fyiReporting.RDL
 {
     internal class DrawPie : DrawBase
@@ -64,7 +68,7 @@ namespace fyiReporting.RDL
                 Single StartAngle = _br.ReadSingle();
                 Single SweepAngle = _br.ReadSingle();
                 EMFPen EMFp = (EMFPen)ObjectTable[ObjectID];
-                Pen p = EMFp.myPen;
+                Drawing.Pen p = EMFp.myPen;
                 if (Compressed)
                 {
                     DoCompressed(StartAngle,SweepAngle, _br, p);
@@ -88,7 +92,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(Single StartAngle,Single SweepAngle, BinaryReader _br, Pen p)
+        private void DoFloat(Single StartAngle,Single SweepAngle, BinaryReader _br, Drawing.Pen p)
         {
             Single recX = _br.ReadSingle();
             Single recY = _br.ReadSingle();
@@ -98,7 +102,7 @@ namespace fyiReporting.RDL
             
         }
 
-        private void DoCompressed(Single StartAngle,Single SweepAngle, BinaryReader _br, Pen p)
+        private void DoCompressed(Single StartAngle,Single SweepAngle, BinaryReader _br, Drawing.Pen p)
         {           
             Int16 recX = _br.ReadInt16();
             Int16 recY = _br.ReadInt16();
@@ -107,14 +111,14 @@ namespace fyiReporting.RDL
             DoInstructions(recX, recY, recWidth, recHeight, p, StartAngle, SweepAngle);
         }
 
-        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Pen p,Single StartAngle,Single SweepAngle)
+        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Drawing.Pen p,Single StartAngle,Single SweepAngle)
         {
          
             BorderStyleEnum ls = getLineStyle(p);
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
+                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
                     PagePie pl = new PagePie();
                     pl.StartAngle = StartAngle;
                     pl.SweepAngle = SweepAngle;

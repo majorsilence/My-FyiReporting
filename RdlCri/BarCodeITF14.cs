@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Text;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using System.Xml;
 using System.Xml.XPath;
 using System.ComponentModel;

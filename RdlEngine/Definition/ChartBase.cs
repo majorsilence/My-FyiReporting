@@ -22,9 +22,16 @@
 */
 using System;
 using System.Collections;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Drawing2D = System.DrawingCore.Drawing2D;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+#endif
+
 
 
 namespace fyiReporting.RDL
@@ -36,11 +43,11 @@ namespace fyiReporting.RDL
 	{
 		protected Chart _ChartDefn; // GJL 14082008 Using Vector Graphics
 		MatrixCellEntry[,] _DataDefn;
-		protected Bitmap _bm;
-        protected Metafile _mf; // GJL 14082008 Using Vector Graphics
+		protected Drawing.Bitmap _bm;
+        protected Imaging.Metafile _mf; // GJL 14082008 Using Vector Graphics
         public System.IO.MemoryStream _aStream; // GJL 14082008 Using Vector Graphics
 		protected ChartLayout Layout;
-		Brush[] _SeriesBrush;
+		Drawing.Brush[] _SeriesBrush;
 		ChartMarkerEnum[] _SeriesMarker;
 		protected int _LastCategoryWidth=0;
 		protected Row _row;					// row chart created on
@@ -77,7 +84,7 @@ namespace fyiReporting.RDL
             get { return _row; }
         }
 
-		internal void Save(Report rpt, System.IO.Stream stream, ImageFormat im)
+		internal void Save(Report rpt, System.IO.Stream stream, Imaging.ImageFormat im)
 		{
 			if (_bm == null)
 				Draw(rpt);
@@ -85,7 +92,7 @@ namespace fyiReporting.RDL
 	//		_bm.Save(stream, im);
 		}
 
-		internal System.Drawing.Imaging.Metafile Image(Report rpt) // GJL 14082008 Using Vector Graphics
+		internal Imaging.Metafile Image(Report rpt) // GJL 14082008 Using Vector Graphics
 		{
 			if (_bm == null)
 				Draw(rpt);
@@ -95,25 +102,25 @@ namespace fyiReporting.RDL
 
 		}
 
-		protected Bitmap CreateSizedBitmap()
+		protected Drawing.Bitmap CreateSizedBitmap()
 		{
 			if (_bm != null)
 			{
 				_bm.Dispose();
 				_bm = null;
 			}
-			_bm = new Bitmap(Layout.Width, Layout.Height);
+			_bm = new Drawing.Bitmap(Layout.Width, Layout.Height);
 			return _bm;
 		}
 
-        protected Bitmap CreateSizedBitmap(int W, int H)
+        protected Drawing.Bitmap CreateSizedBitmap(int W, int H)
         {
             if (_bm != null)
             {
                 _bm.Dispose();
                 _bm = null;
             }
-            _bm = new Bitmap(W, H);
+            _bm = new Drawing.Bitmap(W, H);
             return _bm;
         }
 
@@ -142,7 +149,7 @@ namespace fyiReporting.RDL
 			get{return _DataDefn;}
 		}
 
-		protected Brush[] SeriesBrush(Report rpt, Row row, ReportDefn defn)
+		protected Drawing.Brush[] SeriesBrush(Report rpt, Row row, ReportDefn defn)
 		{
 				if (_SeriesBrush == null)
 					_SeriesBrush = GetSeriesBrushes(rpt,row,defn);	// These are all from Brushes class; so no Dispose should be used
@@ -164,12 +171,12 @@ namespace fyiReporting.RDL
 			get{return (_DataDefn.GetLength(1) - 1);}
 		}
 
-		protected void DrawChartStyle(Report rpt, Graphics g)
+		protected void DrawChartStyle(Report rpt, Drawing.Graphics g)
 		{
-			System.Drawing.Rectangle rect = new  System.Drawing.Rectangle(0, 0, Layout.Width, Layout.Height);
+			Drawing.Rectangle rect = new  Drawing.Rectangle(0, 0, Layout.Width, Layout.Height);
 			if (_ChartDefn.Style == null)
 			{
-				g.FillRectangle(Brushes.White, rect);
+				g.FillRectangle(Drawing.Brushes.White, rect);
 			}
 			else
 			{
@@ -182,51 +189,51 @@ namespace fyiReporting.RDL
 		}
 
 		// Draws the Legend and then returns the rectangle it drew in
-		protected System.Drawing.Rectangle DrawLegend(Report rpt, Graphics g, bool bMarker, bool bBeforePlotDrawn)
+		protected Drawing.Rectangle DrawLegend(Report rpt, Drawing.Graphics g, bool bMarker, bool bBeforePlotDrawn)
 		{
 			Legend l = _ChartDefn.Legend;
 			if (l == null)
-				return System.Drawing.Rectangle.Empty;
+				return Drawing.Rectangle.Empty;
 			if (!l.Visible)
-				return System.Drawing.Rectangle.Empty;
+				return Drawing.Rectangle.Empty;
 			if (_ChartDefn.SeriesGroupings == null)
-				return System.Drawing.Rectangle.Empty;
+				return Drawing.Rectangle.Empty;
 			if (bBeforePlotDrawn)
 			{
 				if (this.IsLegendInsidePlotArea())
-					return System.Drawing.Rectangle.Empty;
+					return Drawing.Rectangle.Empty;
 			}
 			else if (!IsLegendInsidePlotArea())			// Only draw legend after if inside the plot
-				return System.Drawing.Rectangle.Empty;
+				return Drawing.Rectangle.Empty;
 
-			Font drawFont = null;
-			Brush drawBrush = null;
-			StringFormat drawFormat = null;
+			Drawing.Font drawFont = null;
+			Drawing.Brush drawBrush = null;
+			Drawing.StringFormat drawFormat = null;
 	
 			// calculated bounding rectangle of the legend
-			System.Drawing.Rectangle rRect;
+			Drawing.Rectangle rRect;
 			Style s = l.Style;
 			try		// no matter what we want to dispose of the graphic resources
 			{
 				if (s == null)
 				{
-					drawFont = new Font("Arial", 10);
-					drawBrush = new SolidBrush(Color.Black);
-					drawFormat = new StringFormat();
-					drawFormat.Alignment = StringAlignment.Near;
+					drawFont = new Drawing.Font("Arial", 10);
+					drawBrush = new Drawing.SolidBrush(Drawing.Color.Black);
+					drawFormat = new Drawing.StringFormat();
+					drawFormat.Alignment = Drawing.StringAlignment.Near;
 				}
 				else
 				{
 					drawFont = 	s.GetFont(rpt, null);
 					drawBrush = s.GetBrush(rpt, null);
-					drawFormat = s.GetStringFormat(rpt, null, StringAlignment.Near);
+					drawFormat = s.GetStringFormat(rpt, null, Drawing.StringAlignment.Near);
 				}
 
 				int x, y, h;
 				int maxTextWidth, maxTextHeight;
-				drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
-				Size[] sizes = DrawLegendMeasure(rpt, g, drawFont, drawFormat, 
-					new SizeF(Layout.Width, Layout.Height), out maxTextWidth, out maxTextHeight);
+				drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
+				Drawing.Size[] sizes = DrawLegendMeasure(rpt, g, drawFont, drawFormat, 
+					new Drawing.SizeF(Layout.Width, Layout.Height), out maxTextWidth, out maxTextHeight);
 				int boxSize = (int) (maxTextHeight * .8);
 				int totalItemWidth = 0;			// width of a legend item
 				int totalWidth, totalHeight;	// final height and width of legend
@@ -245,7 +252,7 @@ namespace fyiReporting.RDL
 						totalHeight = (int) (maxTextHeight + (maxTextHeight * .1));
 						h = totalHeight;
 						totalItemWidth = maxTextWidth + (boxSize * 2); 
-						drawFormat.Alignment = StringAlignment.Near;	// Force alignment to near
+						drawFormat.Alignment = Drawing.StringAlignment.Near;	// Force alignment to near
 						break;
 					case LegendLayoutEnum.Table:
                         // for table we simplify to have TWO columns (i.e. don't do anything too tricky
@@ -348,7 +355,7 @@ namespace fyiReporting.RDL
 				}
 
 				// We now know enough to calc the bounding rectangle of the legend
-				rRect = new System.Drawing.Rectangle(x-1, y-1, totalWidth+2, totalHeight+2);
+				rRect = new Drawing.Rectangle(x-1, y-1, totalWidth+2, totalHeight+2);
 				if (s != null)
 				{
 					s.DrawBackground(rpt, g, null, rRect);	// draw (or not draw) background 
@@ -362,7 +369,7 @@ namespace fyiReporting.RDL
 					string c = GetSeriesValue(rpt, iCol);
                     if (c != "") //14052008WRP Cater for empty strings in the legend
                     {
-					System.Drawing.Rectangle rect;
+	                    Drawing.Rectangle rect;
                         // 20022008 AJM GJL - Draw correct legend icon (Column\Line)
                         Type t = null;
                         t = GetSeriesBrush(rpt, 1, iCol).GetType();
@@ -371,7 +378,7 @@ namespace fyiReporting.RDL
                     cm = ChartMarkerEnum.None;
                         bool isLine = GetPlotType(rpt, iCol, 1).ToUpper() == "LINE";                      
 
-                        if ((bMarker || isLine) || (this.ChartDefn.Type == ChartTypeEnum.Scatter && t == typeof(System.Drawing.Drawing2D.HatchBrush)))
+                        if ((bMarker || isLine) || (this.ChartDefn.Type == ChartTypeEnum.Scatter && t == typeof(Drawing2D.HatchBrush)))
                         cm = SeriesMarker[iCol - 1];
                         if (isLine && this.ChartDefn.Type == ChartTypeEnum.Scatter)
                         {
@@ -398,19 +405,19 @@ namespace fyiReporting.RDL
                         }
 
 
-                        SolidBrush b;
+                        Drawing.SolidBrush b;
 					switch (l.Layout)
 					{
 						case LegendLayoutEnum.Row:
-							rect = new System.Drawing.Rectangle(x + boxSize + (boxSize/2), y, totalItemWidth - boxSize - (boxSize/2), h);
+							rect = new Drawing.Rectangle(x + boxSize + (boxSize/2), y, totalItemWidth - boxSize - (boxSize/2), h);
                                 if (c != "") //14052008WRP to cater for empty strings in the legend
                                 {
 							g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
 
-                                    if ((cm != ChartMarkerEnum.None || this.ChartDefn.Type == ChartTypeEnum.Scatter) && (t == typeof(System.Drawing.Drawing2D.HatchBrush))) //GJL 110208 - Don't draw pattern for lines or Bubbles
+                                    if ((cm != ChartMarkerEnum.None || this.ChartDefn.Type == ChartTypeEnum.Scatter) && (t == typeof(Drawing2D.HatchBrush))) //GJL 110208 - Don't draw pattern for lines or Bubbles
                                     {
-                                        System.Drawing.Drawing2D.HatchBrush hb = (System.Drawing.Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
-                                        b = new SolidBrush(hb.ForegroundColor);
+                                        Drawing2D.HatchBrush hb = (Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
+                                        b = new Drawing.SolidBrush(hb.ForegroundColor);
 
                                         DrawLegendBox(g, b,
                                         cm, x, y + 1, boxSize,intLineSize);
@@ -426,13 +433,13 @@ namespace fyiReporting.RDL
                                 }
 							break;
 						case LegendLayoutEnum.Table:
-                            rect = new System.Drawing.Rectangle(x + boxSize + (boxSize / 2), y, maxTextWidth, h);
+                            rect = new Drawing.Rectangle(x + boxSize + (boxSize / 2), y, maxTextWidth, h);
                             g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
 
-                                if (cm != ChartMarkerEnum.None && (t == typeof(System.Drawing.Drawing2D.HatchBrush))) //GJL 110208 - Don't draw pattern for lines
+                                if (cm != ChartMarkerEnum.None && (t == typeof(Drawing2D.HatchBrush))) //GJL 110208 - Don't draw pattern for lines
                                 {
-                                    System.Drawing.Drawing2D.HatchBrush hb = (System.Drawing.Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
-                                    b = new SolidBrush(hb.ForegroundColor);
+                                    Drawing2D.HatchBrush hb = (Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
+                                    b = new Drawing.SolidBrush(hb.ForegroundColor);
 
                                     DrawLegendBox(g, /*GetSeriesBrushesExcel(iCol - 1)*/ b,
                                     cm, x, y + 1, boxSize,intLineSize);
@@ -453,14 +460,14 @@ namespace fyiReporting.RDL
                             break;
                         case LegendLayoutEnum.Column:
 						default:
-							rect = new System.Drawing.Rectangle(x + boxSize + (boxSize/2), y, maxTextWidth, h);
+							rect = new Drawing.Rectangle(x + boxSize + (boxSize/2), y, maxTextWidth, h);
 							g.DrawString(c, drawFont, drawBrush, rect, drawFormat);
 
 
-                                if (cm != ChartMarkerEnum.None && (t == typeof(System.Drawing.Drawing2D.HatchBrush)))       //GJL 110208 - Don't draw pattern for lines                          
+                                if (cm != ChartMarkerEnum.None && (t == typeof(Drawing2D.HatchBrush)))       //GJL 110208 - Don't draw pattern for lines                          
                                 {
-                                    System.Drawing.Drawing2D.HatchBrush hb = (System.Drawing.Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
-                                    b = new SolidBrush(hb.ForegroundColor);
+                                    Drawing2D.HatchBrush hb = (Drawing2D.HatchBrush)GetSeriesBrush(rpt, 1, iCol);
+                                    b = new Drawing.SolidBrush(hb.ForegroundColor);
 
                                     DrawLegendBox(g, /*GetSeriesBrushesExcel(iCol - 1)*/ b,
                                     cm, x, y + 1, boxSize,intLineSize);
@@ -492,23 +499,23 @@ namespace fyiReporting.RDL
 	        
 		}
 
-        void DrawLegendBox(Graphics g, Brush b, ChartMarkerEnum marker, int x, int y, int boxSize)
+        void DrawLegendBox(Drawing.Graphics g, Drawing.Brush b, ChartMarkerEnum marker, int x, int y, int boxSize)
         {
             DrawLegendBox(g, b, marker, x, y, boxSize, 2);
         }
 
-		void DrawLegendBox(Graphics g, Brush b, ChartMarkerEnum marker, int x, int y, int boxSize, int intLineSize)
+		void DrawLegendBox(Drawing.Graphics g, Drawing.Brush b, ChartMarkerEnum marker, int x, int y, int boxSize, int intLineSize)
 		{
-			Pen p=null;
+			Drawing.Pen p=null;
 			int mSize= boxSize / 2;		// Marker size is 1/2 of box size	
 			try
 			{
 				if (marker < ChartMarkerEnum.Count)
 				{
-					p = new Pen(b,intLineSize);
+					p = new Drawing.Pen(b,intLineSize);
                     if (this.ChartDefn.Type != ChartTypeEnum.Scatter)
                     {
-					g.DrawLine(p,  new Point(x, y + ((boxSize + 1)/2)), new Point(x + boxSize, y + ((boxSize + 1)/2)));
+					g.DrawLine(p,  new Drawing.Point(x, y + ((boxSize + 1)/2)), new Drawing.Point(x + boxSize, y + ((boxSize + 1)/2)));
                     }
 					x = x + ((boxSize - mSize)/2);
 					y = y + ((boxSize - mSize)/2);
@@ -527,8 +534,8 @@ namespace fyiReporting.RDL
                 else if (marker == ChartMarkerEnum.Line)
                 {
                     // this is only to draw lines for line plot types on scatter charts
-                    p = new Pen(b, intLineSize);
-                    g.DrawLine(p, new Point(x, y + ((boxSize + 1) / 2)), new Point(x + boxSize, y + ((boxSize + 1) / 2)));
+                    p = new Drawing.Pen(b, intLineSize);
+                    g.DrawLine(p, new Drawing.Point(x, y + ((boxSize + 1) / 2)), new Drawing.Point(x + boxSize, y + ((boxSize + 1) / 2)));
                 }
 				else
 				{
@@ -542,9 +549,9 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		internal void DrawLegendMarker(Graphics g, Brush b, Pen p, ChartMarkerEnum marker, int x, int y, int mSize)
+		internal void DrawLegendMarker(Drawing.Graphics g, Drawing.Brush b, Drawing.Pen p, ChartMarkerEnum marker, int x, int y, int mSize)
 		{
-			PointF[] points;
+			Drawing.PointF[] points;
 			switch (marker)
 			{
                 case ChartMarkerEnum.Bubble:
@@ -556,38 +563,38 @@ namespace fyiReporting.RDL
 					break;
 				case ChartMarkerEnum.Plus:
 					// 20022008 AJM GJL - Changed to line - plus is hard to see
-                    p = new Pen(p.Brush, 2);
-					g.DrawLine(p, new Point(x + ((mSize + 1)/2), y), new Point(x + ((mSize + 1)/2), y + mSize));
+                    p = new Drawing.Pen(p.Brush, 2);
+					g.DrawLine(p, new Drawing.Point(x + ((mSize + 1)/2), y), new Drawing.Point(x + ((mSize + 1)/2), y + mSize));
 					//g.DrawLine(p, new Point(x + (mSize + 1)/2, y + (mSize+1)/2), new Point(x + mSize, y + (mSize+1)/2));
 					break;
 				case ChartMarkerEnum.Diamond:
-					points = new PointF[5];
-					points[0] = points[4] = new Point(x + ((mSize + 1)/2), y);	// starting and ending point
-					points[1] = new PointF(x, y + ((mSize+1)/2));
-					points[2] = new PointF(x + ((mSize+1)/2), y+mSize);
-					points[3] = new PointF(x + mSize, y + ((mSize+1)/2));
+					points = new Drawing.PointF[5];
+					points[0] = points[4] = new Drawing.Point(x + ((mSize + 1)/2), y);	// starting and ending point
+					points[1] = new Drawing.PointF(x, y + ((mSize+1)/2));
+					points[2] = new Drawing.PointF(x + ((mSize+1)/2), y+mSize);
+					points[3] = new Drawing.PointF(x + mSize, y + ((mSize+1)/2));
 					g.FillPolygon(b, points);
 					break;
 				case ChartMarkerEnum.Triangle:
-					points = new PointF[4];
-					points[0] = points[3] = new PointF(x + ((mSize + 1)/2), y);	// starting and ending point
-					points[1] = new PointF(x, y + mSize);
-					points[2] = new PointF(x + mSize, y + mSize);
+					points = new Drawing.PointF[4];
+					points[0] = points[3] = new Drawing.PointF(x + ((mSize + 1)/2), y);	// starting and ending point
+					points[1] = new Drawing.PointF(x, y + mSize);
+					points[2] = new Drawing.PointF(x + mSize, y + mSize);
 					g.FillPolygon(b, points);
                     break;
 				case ChartMarkerEnum.X:
-                    p = new Pen(p.Brush, 2);// 20022008 AJM GJL
-					g.DrawLine(p, new Point(x, y), new Point(x + mSize, y + mSize));
-					g.DrawLine(p, new Point(x, y + mSize), new Point(x + mSize, y));// 20022008 AJM GJL
+                    p = new Drawing.Pen(p.Brush, 2);// 20022008 AJM GJL
+					g.DrawLine(p, new Drawing.Point(x, y), new Drawing.Point(x + mSize, y + mSize));
+					g.DrawLine(p, new Drawing.Point(x, y + mSize), new Drawing.Point(x + mSize, y));// 20022008 AJM GJL
 					break;
 			}
 			return;
 		}
 
 		// Measures the Legend and then returns the rectangle it drew in
-		protected Size[] DrawLegendMeasure(Report rpt, Graphics g, Font f, StringFormat sf, SizeF maxSize, out int maxWidth, out int maxHeight)
+		protected Drawing.Size[] DrawLegendMeasure(Report rpt, Drawing.Graphics g, Drawing.Font f, Drawing.StringFormat sf, Drawing.SizeF maxSize, out int maxWidth, out int maxHeight)
 		{
-			Size[] sizes = new Size[SeriesCount];
+			Drawing.Size[] sizes = new Drawing.Size[SeriesCount];
 			maxWidth = maxHeight = 0;
 
 			for (int iCol=1; iCol <= SeriesCount; iCol++)
@@ -595,8 +602,8 @@ namespace fyiReporting.RDL
 				string c = GetSeriesValue(rpt, iCol);
                 if (c != "")  //14052008WRP cater for empty strings in legend names
                 {
-				SizeF ms = g.MeasureString(c, f, maxSize, sf);
-				sizes[iCol-1] = new Size((int) Math.Ceiling(ms.Width), 
+	                Drawing.SizeF ms = g.MeasureString(c, f, maxSize, sf);
+				sizes[iCol-1] = new Drawing.Size((int) Math.Ceiling(ms.Width), 
 										 (int) Math.Ceiling(ms.Height));
 				if (sizes[iCol-1].Width > maxWidth)
 					maxWidth = sizes[iCol-1].Width;
@@ -608,11 +615,11 @@ namespace fyiReporting.RDL
 			return sizes;
 		}
 
-		protected void DrawPlotAreaStyle(Report rpt, Graphics g, System.Drawing.Rectangle crect)
+		protected void DrawPlotAreaStyle(Report rpt, Drawing.Graphics g, Drawing.Rectangle crect)
 		{
 			if (_ChartDefn.PlotArea == null || _ChartDefn.PlotArea.Style == null)
 				return;
-			System.Drawing.Rectangle rect = Layout.PlotArea;
+			Drawing.Rectangle rect = Layout.PlotArea;
 			Style s = _ChartDefn.PlotArea.Style;
 
             Row r = FirstChartRow(rpt);
@@ -621,7 +628,7 @@ namespace fyiReporting.RDL
 			{
 				// This occurs when the legend is drawn inside the plot area
 				//    we don't want to draw in the legend
-				Region rg=null;
+				Drawing.Region rg=null;
 				try
 				{
 	//				rg = new Region(rect);	// TODO: this doesn't work; nothing draws
@@ -643,7 +650,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		protected void DrawTitle(Report rpt, Graphics g, Title t, System.Drawing.Rectangle rect)
+		protected void DrawTitle(Report rpt, Drawing.Graphics g, Title t, Drawing.Rectangle rect)
 		{
 			if (t == null)
 				return;
@@ -664,9 +671,9 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		protected Size DrawTitleMeasure(Report rpt, Graphics g, Title t)
+		protected Drawing.Size DrawTitleMeasure(Report rpt, Drawing.Graphics g, Title t)
 		{
-			Size size=Size.Empty;
+			Drawing.Size size=Drawing.Size.Empty;
 
 			if (t == null || t.Caption == null)
 				return size;
@@ -682,7 +689,7 @@ namespace fyiReporting.RDL
 		}
 
         //15052008WRP - Draw category month labels
-        protected void DrawCategoryLabel(Report rpt, Graphics g, string t, Style a, System.Drawing.Rectangle rect)
+        protected void DrawCategoryLabel(Report rpt, Drawing.Graphics g, string t, Style a, Drawing.Rectangle rect)
         {
            
             if (t == null)
@@ -701,9 +708,9 @@ namespace fyiReporting.RDL
         }
 
         //15052008WRP - Measure category title size
-        protected Size DrawCategoryTitleMeasure(Report rpt, Graphics g, string t, Style a)
+        protected Drawing.Size DrawCategoryTitleMeasure(Report rpt, Drawing.Graphics g, string t, Style a)
         {
-            Size size = Size.Empty;
+	        Drawing.Size size = Drawing.Size.Empty;
             Row r = FirstChartRow(rpt);
 
             if (t == null || t == "")
@@ -870,9 +877,9 @@ namespace fyiReporting.RDL
             return v;
         }
 
-        protected Brush GetSeriesBrush(Report rpt, int row, int col)
+        protected Drawing.Brush GetSeriesBrush(Report rpt, int row, int col)
         {
-            Brush br = SeriesBrush(rpt, _row, ChartDefn.OwnerReport)[col - 1];            // this will be the default brush
+	        Drawing.Brush br = SeriesBrush(rpt, _row, ChartDefn.OwnerReport)[col - 1];            // this will be the default brush
 
             //  obtain the rows we're acting upon
             MatrixCellEntry mce = _DataDefn[row, col];
@@ -889,24 +896,24 @@ namespace fyiReporting.RDL
             Style s = ce.DP.Style;
             string sc = s.BackgroundColor.EvaluateString(rpt, lrow);
 
-            Color rc = XmlUtil.ColorFromHtml(sc, Color.Empty, rpt);
-            if (rc != Color.Empty)
-                br = new SolidBrush(rc);
+            Drawing.Color rc = XmlUtil.ColorFromHtml(sc, Drawing.Color.Empty, rpt);
+            if (rc != Drawing.Color.Empty)
+                br = new Drawing.SolidBrush(rc);
             
             return br; 
         }
 
-		protected void DrawDataPoint(Report rpt, Graphics g, Point p, int row, int col)
+		protected void DrawDataPoint(Report rpt, Drawing.Graphics g, Drawing.Point p, int row, int col)
 		{
-			DrawDataPoint(rpt, g, p, System.Drawing.Rectangle.Empty, row, col);
+			DrawDataPoint(rpt, g, p, Drawing.Rectangle.Empty, row, col);
 		}
 
-		protected void DrawDataPoint(Report rpt, Graphics g, System.Drawing.Rectangle rect, int row, int col)
+		protected void DrawDataPoint(Report rpt, Drawing.Graphics g, Drawing.Rectangle rect, int row, int col)
 		{
-			DrawDataPoint(rpt, g, Point.Empty, rect, row, col);
+			DrawDataPoint(rpt, g, Drawing.Point.Empty, rect, row, col);
 		}
 
-		void DrawDataPoint(Report rpt, Graphics g, Point p, System.Drawing.Rectangle rect, int row, int col)
+		void DrawDataPoint(Report rpt, Drawing.Graphics g, Drawing.Point p, Drawing.Rectangle rect, int row, int col)
 		{
 			MatrixCellEntry mce = _DataDefn[row, col];
 			if (mce == null)
@@ -942,19 +949,19 @@ namespace fyiReporting.RDL
 
 			if (dp.DataLabel.Style == null)
 			{
-				if (rect == System.Drawing.Rectangle.Empty)
+				if (rect == Drawing.Rectangle.Empty)
 				{
-					Size size = Style.MeasureStringDefaults(rpt, g, v, tc, lrow, int.MaxValue);
-					rect = new System.Drawing.Rectangle(p, size);
+					Drawing.Size size = Style.MeasureStringDefaults(rpt, g, v, tc, lrow, int.MaxValue);
+					rect = new Drawing.Rectangle(p, size);
 				}
 				Style.DrawStringDefaults(g, v, rect);
 			}
 			else
 			{
-				if (rect == System.Drawing.Rectangle.Empty)
+				if (rect == Drawing.Rectangle.Empty)
 				{
-					Size size = dp.DataLabel.Style.MeasureString(rpt, g, v, tc, lrow, int.MaxValue);
-					rect = new System.Drawing.Rectangle(p, size);
+					Drawing.Size size = dp.DataLabel.Style.MeasureString(rpt, g, v, tc, lrow, int.MaxValue);
+					rect = new Drawing.Rectangle(p, size);
 				}
 				dp.DataLabel.Style.DrawString(rpt, g, v, tc, lrow, rect);
 			}
@@ -1058,9 +1065,9 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		protected Brush[] GetSeriesBrushes(Report rpt, Row row, ReportDefn defn)
+		protected Drawing.Brush[] GetSeriesBrushes(Report rpt, Row row, ReportDefn defn)
 		{
-			Brush[] b = new Brush[SeriesCount];
+			Drawing.Brush[] b = new Drawing.Brush[SeriesCount];
 
 			for (int i=0; i < SeriesCount; i++)
 			{
@@ -1089,7 +1096,7 @@ namespace fyiReporting.RDL
                         b[i] = GetSeriesBrushesPatternedBlack(i); break;
                     case ChartPaletteEnum.Custom:
 
-                        b[i] = new SolidBrush(Color.FromName(getColour(rpt, 1, i + 1))); break;
+                        b[i] = new Drawing.SolidBrush(Drawing.Color.FromName(getColour(rpt, 1, i + 1))); break;
 					default:
 						b[i] = GetSeriesBrushesExcel(i); break;
 				}
@@ -1098,96 +1105,96 @@ namespace fyiReporting.RDL
 			return b;
 		}
 
-		Brush GetSeriesBrushesEarthTones(int i)
+		Drawing.Brush GetSeriesBrushesEarthTones(int i)
 		{
 			switch (i % 22)
 			{
-				case 0: return Brushes.Maroon;
-				case 1: return Brushes.Brown;
-				case 2: return Brushes.Chocolate;
-				case 3: return Brushes.IndianRed;
-				case 4: return Brushes.Peru;
-				case 5: return Brushes.BurlyWood;
-				case 6: return Brushes.AntiqueWhite;
-				case 7: return Brushes.FloralWhite;
-				case 8: return Brushes.Ivory;
-				case 9: return Brushes.LightCoral;
-				case 10:return Brushes.DarkSalmon;
-				case 11: return Brushes.LightSalmon;
-				case 12: return Brushes.PeachPuff;
-				case 13: return Brushes.NavajoWhite;
-				case 14: return Brushes.Moccasin;
-				case 15: return Brushes.PapayaWhip;
-				case 16: return Brushes.Goldenrod;
-				case 17: return Brushes.DarkGoldenrod;
-				case 18: return Brushes.DarkKhaki;
-				case 19: return Brushes.Khaki;
-				case 20: return Brushes.Beige;
-				case 21: return Brushes.Cornsilk;
-				default: return Brushes.Brown;
+				case 0: return Drawing.Brushes.Maroon;
+				case 1: return Drawing.Brushes.Brown;
+				case 2: return Drawing.Brushes.Chocolate;
+				case 3: return Drawing.Brushes.IndianRed;
+				case 4: return Drawing.Brushes.Peru;
+				case 5: return Drawing.Brushes.BurlyWood;
+				case 6: return Drawing.Brushes.AntiqueWhite;
+				case 7: return Drawing.Brushes.FloralWhite;
+				case 8: return Drawing.Brushes.Ivory;
+				case 9: return Drawing.Brushes.LightCoral;
+				case 10:return Drawing.Brushes.DarkSalmon;
+				case 11: return Drawing.Brushes.LightSalmon;
+				case 12: return Drawing.Brushes.PeachPuff;
+				case 13: return Drawing.Brushes.NavajoWhite;
+				case 14: return Drawing.Brushes.Moccasin;
+				case 15: return Drawing.Brushes.PapayaWhip;
+				case 16: return Drawing.Brushes.Goldenrod;
+				case 17: return Drawing.Brushes.DarkGoldenrod;
+				case 18: return Drawing.Brushes.DarkKhaki;
+				case 19: return Drawing.Brushes.Khaki;
+				case 20: return Drawing.Brushes.Beige;
+				case 21: return Drawing.Brushes.Cornsilk;
+				default: return Drawing.Brushes.Brown;
 			}
 		}
 
-		Brush GetSeriesBrushesExcel(int i)
+		Drawing.Brush GetSeriesBrushesExcel(int i)
 		{
 			switch (i % 11)				// Just a guess at what these might actually be
 			{
                 //Gil's Excel 080208 - from excel 2007
-                case 0: return Brushes.Blue;
-                case 1: return Brushes.Red;
-                case 2: return Brushes.Green;
-                case 3: return Brushes.Purple;
-                case 4: return Brushes.DeepSkyBlue;
-                case 5: return Brushes.Orange;
-                case 6: return Brushes.Magenta;
-                case 7: return Brushes.Gold;
-                case 8: return Brushes.Lime;
-                case 9: return Brushes.Teal;
-                case 10: return Brushes.Pink;
-                default: return Brushes.Blue;               
+                case 0: return Drawing.Brushes.Blue;
+                case 1: return Drawing.Brushes.Red;
+                case 2: return Drawing.Brushes.Green;
+                case 3: return Drawing.Brushes.Purple;
+                case 4: return Drawing.Brushes.DeepSkyBlue;
+                case 5: return Drawing.Brushes.Orange;
+                case 6: return Drawing.Brushes.Magenta;
+                case 7: return Drawing.Brushes.Gold;
+                case 8: return Drawing.Brushes.Lime;
+                case 9: return Drawing.Brushes.Teal;
+                case 10: return Drawing.Brushes.Pink;
+                default: return Drawing.Brushes.Blue;               
 			}
 		}
 // 20022008 AJM GJL
-        Brush GetSeriesBrushesPatterned(int i)
+		Drawing.Brush GetSeriesBrushesPatterned(int i)
         {
-            HatchBrush PatternBrush;
+	        Drawing2D.HatchBrush PatternBrush;
             switch (i % 10)
             {
                 case 0:
-                    PatternBrush = new HatchBrush(HatchStyle.LargeConfetti, Color.Blue,Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.LargeConfetti, Drawing.Color.Blue,Drawing.Color.White);
                     break;
                 case 1:
-                    PatternBrush = new HatchBrush(HatchStyle.Cross, Color.Red, Color.White); // was weave... but I Especially didn't want to draw that in PDF - GJL
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.Cross, Drawing.Color.Red, Drawing.Color.White); // was weave... but I Especially didn't want to draw that in PDF - GJL
                     break;
                 case 2:
-                    PatternBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Green, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DarkDownwardDiagonal, Drawing.Color.Green, Drawing.Color.White);
                     break;
                 case 3:
-                    PatternBrush = new HatchBrush(HatchStyle.OutlinedDiamond, Color.Purple, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.OutlinedDiamond, Drawing.Color.Purple, Drawing.Color.White);
                     break;
                 case 4:
-                    PatternBrush = new HatchBrush(HatchStyle.DarkHorizontal, Color.DeepSkyBlue, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DarkHorizontal, Drawing.Color.DeepSkyBlue, Drawing.Color.White);
                     break;
                 case 5:
-                    PatternBrush = new HatchBrush(HatchStyle.SmallConfetti, Color.Orange, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.SmallConfetti, Drawing.Color.Orange, Drawing.Color.White);
                     break;
                 case 6:
-                    PatternBrush = new HatchBrush(HatchStyle.HorizontalBrick, Color.Magenta, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.HorizontalBrick, Drawing.Color.Magenta, Drawing.Color.White);
                     break;
                 case 7:
-                    PatternBrush = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.Gold, Color.White); // was wave... but I didn't want to draw that in PDF - GJL
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.LargeCheckerBoard, Drawing.Color.Gold, Drawing.Color.White); // was wave... but I didn't want to draw that in PDF - GJL
                     break;
                 case 8:
-                    PatternBrush = new HatchBrush(HatchStyle.Vertical, Color.Lime, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.Vertical, Drawing.Color.Lime, Drawing.Color.White);
                     break;
                 case 9:
-                    PatternBrush = new HatchBrush(HatchStyle.SolidDiamond, Color.Teal, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.SolidDiamond, Drawing.Color.Teal, Drawing.Color.White);
                     break;
                 case 10:
-                    PatternBrush = new HatchBrush(HatchStyle.DiagonalBrick, Color.Pink, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DiagonalBrick, Drawing.Color.Pink, Drawing.Color.White);
                     break;
                 default:
-                    PatternBrush = new HatchBrush(HatchStyle.BackwardDiagonal, Color.Blue, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.BackwardDiagonal, Drawing.Color.Blue, Drawing.Color.White);
                     break;
                    
             } 
@@ -1195,122 +1202,122 @@ namespace fyiReporting.RDL
         }
 
 
-        Brush GetSeriesBrushesPatternedBlack(int i)
+		Drawing.Brush GetSeriesBrushesPatternedBlack(int i)
         {
-            HatchBrush PatternBrush;
+	        Drawing2D.HatchBrush PatternBrush;
             switch (i % 10)
             {
                 case 0:
-                    PatternBrush = new HatchBrush(HatchStyle.LargeConfetti, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.LargeConfetti, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 1:
-                    PatternBrush = new HatchBrush(HatchStyle.Weave, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.Weave, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 2:
-                    PatternBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DarkDownwardDiagonal, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 3:
-                    PatternBrush = new HatchBrush(HatchStyle.OutlinedDiamond, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.OutlinedDiamond, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 4:
-                    PatternBrush = new HatchBrush(HatchStyle.DarkHorizontal, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DarkHorizontal, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 5:
-                    PatternBrush = new HatchBrush(HatchStyle.SmallConfetti, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.SmallConfetti, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 6:
-                    PatternBrush = new HatchBrush(HatchStyle.HorizontalBrick, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.HorizontalBrick, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 7:
-                    PatternBrush = new HatchBrush(HatchStyle.Wave, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.Wave, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 8:
-                    PatternBrush = new HatchBrush(HatchStyle.Vertical, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.Vertical, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 9:
-                    PatternBrush = new HatchBrush(HatchStyle.SolidDiamond, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.SolidDiamond, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 case 10:
-                    PatternBrush = new HatchBrush(HatchStyle.DiagonalBrick, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.DiagonalBrick, Drawing.Color.Black, Drawing.Color.White);
                     break;
                 default:
-                    PatternBrush = new HatchBrush(HatchStyle.BackwardDiagonal, Color.Black, Color.White);
+                    PatternBrush = new Drawing2D.HatchBrush(Drawing2D.HatchStyle.BackwardDiagonal, Drawing.Color.Black, Drawing.Color.White);
                     break;
 
 			}
             return PatternBrush;
 		}
 
-		Brush GetSeriesBrushesGrayScale(int i)
+		Drawing.Brush GetSeriesBrushesGrayScale(int i)
 		{
 			switch (i % 10)			
 			{
-				case 0: return Brushes.Gray;
-				case 1: return Brushes.SlateGray;
-				case 2: return Brushes.DarkGray;
-				case 3: return Brushes.LightGray;
-				case 4: return Brushes.DarkSlateGray;
-				case 5: return Brushes.DimGray;
-				case 6: return Brushes.LightSlateGray;
-				case 7: return Brushes.Black;
-				case 8: return Brushes.White;
-				case 9: return Brushes.Gainsboro;
-				default: return Brushes.Gray;
+				case 0: return Drawing.Brushes.Gray;
+				case 1: return Drawing.Brushes.SlateGray;
+				case 2: return Drawing.Brushes.DarkGray;
+				case 3: return Drawing.Brushes.LightGray;
+				case 4: return Drawing.Brushes.DarkSlateGray;
+				case 5: return Drawing.Brushes.DimGray;
+				case 6: return Drawing.Brushes.LightSlateGray;
+				case 7: return Drawing.Brushes.Black;
+				case 8: return Drawing.Brushes.White;
+				case 9: return Drawing.Brushes.Gainsboro;
+				default: return Drawing.Brushes.Gray;
 			}
 		}
 
-		Brush GetSeriesBrushesLight(int i)
+		Drawing.Brush GetSeriesBrushesLight(int i)
 		{
 			switch (i % 13)
 			{
-				case 0: return Brushes.LightBlue;
-				case 1: return Brushes.LightCoral;
-				case 2: return Brushes.LightCyan;
-				case 3: return Brushes.LightGoldenrodYellow;
-				case 4: return Brushes.LightGray;
-				case 5: return Brushes.LightGreen;
-				case 6: return Brushes.LightPink;
-				case 7: return Brushes.LightSalmon;
-				case 8: return Brushes.LightSeaGreen;
-				case 9: return Brushes.LightSkyBlue;
-				case 10: return Brushes.LightSlateGray;
-				case 11: return Brushes.LightSteelBlue;
-				case 12: return Brushes.LightYellow;
-				default: return Brushes.LightBlue;
+				case 0: return Drawing.Brushes.LightBlue;
+				case 1: return Drawing.Brushes.LightCoral;
+				case 2: return Drawing.Brushes.LightCyan;
+				case 3: return Drawing.Brushes.LightGoldenrodYellow;
+				case 4: return Drawing.Brushes.LightGray;
+				case 5: return Drawing.Brushes.LightGreen;
+				case 6: return Drawing.Brushes.LightPink;
+				case 7: return Drawing.Brushes.LightSalmon;
+				case 8: return Drawing.Brushes.LightSeaGreen;
+				case 9: return Drawing.Brushes.LightSkyBlue;
+				case 10: return Drawing.Brushes.LightSlateGray;
+				case 11: return Drawing.Brushes.LightSteelBlue;
+				case 12: return Drawing.Brushes.LightYellow;
+				default: return Drawing.Brushes.LightBlue;
 			}
 		}
 
-		Brush GetSeriesBrushesPastel(int i)
+		Drawing.Brush GetSeriesBrushesPastel(int i)
 		{
 			switch (i % 26)	
 			{
-				case 0: return Brushes.CadetBlue;
-				case 1: return Brushes.MediumTurquoise;
-				case 2: return Brushes.Aquamarine;
-				case 3: return Brushes.LightCyan;
-				case 4: return Brushes.Azure;
-				case 5: return Brushes.AliceBlue;
-				case 6: return Brushes.MintCream;
-				case 7: return Brushes.DarkSeaGreen;
-				case 8: return Brushes.PaleGreen;
-				case 9: return Brushes.LightGreen;
-				case 10: return Brushes.MediumPurple;
-				case 11: return Brushes.CornflowerBlue;
-				case 12: return Brushes.Lavender;
-				case 13: return Brushes.GhostWhite;
-				case 14: return Brushes.PaleGoldenrod;
-				case 15: return Brushes.LightGoldenrodYellow;
-				case 16: return Brushes.LemonChiffon;
-				case 17: return Brushes.LightYellow;
-				case 18: return Brushes.Orchid;
-				case 19: return Brushes.Plum;
-				case 20: return Brushes.LightPink;
-				case 21: return Brushes.Pink;
-				case 22: return Brushes.LavenderBlush;
-				case 23: return Brushes.Linen;
-				case 24: return Brushes.PaleTurquoise;
-				case 25: return Brushes.OldLace;
-				default: return Brushes.CadetBlue;
+				case 0: return Drawing.Brushes.CadetBlue;
+				case 1: return Drawing.Brushes.MediumTurquoise;
+				case 2: return Drawing.Brushes.Aquamarine;
+				case 3: return Drawing.Brushes.LightCyan;
+				case 4: return Drawing.Brushes.Azure;
+				case 5: return Drawing.Brushes.AliceBlue;
+				case 6: return Drawing.Brushes.MintCream;
+				case 7: return Drawing.Brushes.DarkSeaGreen;
+				case 8: return Drawing.Brushes.PaleGreen;
+				case 9: return Drawing.Brushes.LightGreen;
+				case 10: return Drawing.Brushes.MediumPurple;
+				case 11: return Drawing.Brushes.CornflowerBlue;
+				case 12: return Drawing.Brushes.Lavender;
+				case 13: return Drawing.Brushes.GhostWhite;
+				case 14: return Drawing.Brushes.PaleGoldenrod;
+				case 15: return Drawing.Brushes.LightGoldenrodYellow;
+				case 16: return Drawing.Brushes.LemonChiffon;
+				case 17: return Drawing.Brushes.LightYellow;
+				case 18: return Drawing.Brushes.Orchid;
+				case 19: return Drawing.Brushes.Plum;
+				case 20: return Drawing.Brushes.LightPink;
+				case 21: return Drawing.Brushes.Pink;
+				case 22: return Drawing.Brushes.LavenderBlush;
+				case 23: return Drawing.Brushes.Linen;
+				case 24: return Drawing.Brushes.PaleTurquoise;
+				case 25: return Drawing.Brushes.OldLace;
+				default: return Drawing.Brushes.CadetBlue;
 			}
 		}
 
@@ -1436,7 +1443,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		protected void AdjustMargins(System.Drawing.Rectangle legendRect, Report rpt, Graphics g)
+		protected void AdjustMargins(Drawing.Rectangle legendRect, Report rpt, Drawing.Graphics g)
 		{
            // //110208AJM GJL Making room for second y axis        
 

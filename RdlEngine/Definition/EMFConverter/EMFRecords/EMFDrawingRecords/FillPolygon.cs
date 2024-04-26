@@ -22,8 +22,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Drawing2D = System.DrawingCore.Drawing2D;
+#else
+using Drawing = System.Drawing;
+using Drawing2D = System.Drawing2D.;
+#endif
 namespace fyiReporting.RDL
 {
     internal class FillPolygon : DrawBase
@@ -59,7 +64,7 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                Brush b;
+                Drawing.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -67,7 +72,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new SolidBrush(Color.FromArgb(A, R, G, B));
+                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -99,9 +104,9 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Brush b)
+        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Brush b)
         {
-            PointF[] Ps = new PointF[NumberOfPoints];
+            Drawing.PointF[] Ps = new Drawing.PointF[NumberOfPoints];
             for (int i = 0; i < NumberOfPoints; i++)
             {
                   
@@ -111,9 +116,9 @@ namespace fyiReporting.RDL
             DoInstructions(Ps, b);
         }
 
-        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Brush b)
+        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Brush b)
         {
-            PointF[] Ps = new PointF[NumberOfPoints];
+            Drawing.PointF[] Ps = new Drawing.PointF[NumberOfPoints];
             for (int i = 0; i < NumberOfPoints; i++)
             { 
                 Int16 px = _br.ReadInt16();
@@ -124,7 +129,7 @@ namespace fyiReporting.RDL
             DoInstructions(Ps, b);
         }
 
-        private void DoInstructions(PointF[] Ps, Brush b)
+        private void DoInstructions(Drawing.PointF[] Ps, Drawing.Brush b)
         {
             PagePolygon pl = new PagePolygon();
             //pl.X = X * SCALEFACTOR;
@@ -135,18 +140,18 @@ namespace fyiReporting.RDL
             switch (b.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)b;
+                    Drawing.SolidBrush theBrush = (Drawing.SolidBrush)b;
                     SI.Color = theBrush.Color;
                     SI.BackgroundColor = theBrush.Color;
                     break;
                 case "LinearGradientBrush":
-                    System.Drawing.Drawing2D.LinearGradientBrush linBrush = (System.Drawing.Drawing2D.LinearGradientBrush)b;
+                    Drawing2D.LinearGradientBrush linBrush = (Drawing2D.LinearGradientBrush)b;
                     SI.BackgroundGradientType = BackgroundGradientTypeEnum.LeftRight;
                     SI.BackgroundColor = linBrush.LinearColors[0];
                     SI.BackgroundGradientEndColor = linBrush.LinearColors[1];
                     break;
                 case "HatchBrush":
-                    System.Drawing.Drawing2D.HatchBrush hatBrush = (System.Drawing.Drawing2D.HatchBrush)b;
+                    Drawing2D.HatchBrush hatBrush = (Drawing2D.HatchBrush)b;
                     SI.BackgroundColor = hatBrush.BackgroundColor;
                     SI.Color = hatBrush.ForegroundColor;
                     SI.PatternType = StyleInfo.GetPatternType(hatBrush.HatchStyle);

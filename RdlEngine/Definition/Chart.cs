@@ -24,7 +24,13 @@
 using System;
 using System.Xml;
 using System.IO;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
+using Imaging = System.Drawing.Imaging;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -34,7 +40,7 @@ namespace fyiReporting.RDL
 	[Serializable]
 	internal class Chart : DataRegion
 	{
-		static readonly ImageFormat IMAGEFORMAT = ImageFormat.Jpeg;
+		static readonly Imaging.ImageFormat IMAGEFORMAT = Imaging.ImageFormat.Jpeg;
 		ChartTypeEnum _Type;	// Generic Type of the chart Default: Column
         Expression _Subtype;	// Available subtypes (and default subtype) depends on Type //AJM GJL 14022008 Allowing Expressions
 		SeriesGroupings _SeriesGroupings;	// Set of series groupings for the chart
@@ -292,7 +298,7 @@ namespace fyiReporting.RDL
 				cb = RunChartBuild(rpt, row);					// Build the chart
                 if (!_isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
                 {
-                    System.Drawing.Image im = cb.Image(rpt);	// Grab the image
+                   Drawing.Image im = cb.Image(rpt);	// Grab the image
                     int height = im.Height;							// save height and width
                     int width = im.Width;
 
@@ -300,13 +306,13 @@ namespace fyiReporting.RDL
                     /* The following is a new image saving logic which will allow for higher 
                      * quality images using JPEG with 100% quality
                      * 06122007AJM */
-                    System.Drawing.Imaging.ImageCodecInfo[] info;
-                    info = ImageCodecInfo.GetImageEncoders();
-                    EncoderParameters encoderParameters;
-                    encoderParameters = new EncoderParameters(1);
+                   Imaging.ImageCodecInfo[] info;
+                    info = Imaging.ImageCodecInfo.GetImageEncoders();
+                    Imaging.EncoderParameters encoderParameters;
+                    encoderParameters = new Imaging.EncoderParameters(1);
                     // 20022008 AJM GJL - Centralised class with global encoder settings
-                    encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.ChartImageQuality);
-                    System.Drawing.Imaging.ImageCodecInfo codec = null;
+                    encoderParameters.Param[0] = new Imaging.EncoderParameter(Imaging.Encoder.Quality, ImageQualityManager.ChartImageQuality);
+                   Drawing.Imaging.ImageCodecInfo codec = null;
                     for (int i = 0; i < info.Length; i++)
                     {
                         if (info[i].FormatDescription == "JPEG")
@@ -351,7 +357,7 @@ namespace fyiReporting.RDL
                 }
                 else //Ultimate Rendering - Vector //AJM GJL 14082008
                 {
-                    System.Drawing.Imaging.Metafile im = cb.Image(rpt);	// Grab the image
+                   Drawing.Imaging.Metafile im = cb.Image(rpt);	// Grab the image
                     //im could still be saved to a bitmap at this point
                     //if we were to offer a choice of raster or vector, it would probably
                     //be easiest to draw the chart to the EMF and then save as bitmap if needed
@@ -360,7 +366,7 @@ namespace fyiReporting.RDL
                     byte[] ba = cb._aStream.ToArray();
                     cb._aStream.Close();
 
-                    PageImage pi = new PageImage(ImageFormat.Wmf, ba, width, height);
+                    PageImage pi = new PageImage(Imaging.ImageFormat.Wmf, ba, width, height);
                     RunPageRegionBegin(pgs);
 
                     SetPagePositionAndStyle(rpt, pi, row);

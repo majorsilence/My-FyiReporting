@@ -1,6 +1,10 @@
 using System;
 using System.Diagnostics;
+#if LINUX
+using System.DrawingCore.Imaging;
+#else
 using System.Drawing.Imaging;
+#endif
 
 namespace fyiReporting.RDL
 {

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using fyiReporting.RDL;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.ComponentModel;
 using System.Xml;
 using ZXing;
@@ -22,7 +26,7 @@ namespace fyiReporting.CRI
             return false;
         }
 
-        void ICustomReportItem.DrawImage(ref System.Drawing.Bitmap bm)
+        void ICustomReportItem.DrawImage(ref Drawing.Bitmap bm)
         {
             DrawImage(ref bm, _qrCode);
         }
@@ -32,10 +36,10 @@ namespace fyiReporting.CRI
         /// </summary>
         /// <param name="bm"></param>
         /// <param name="qrcode"></param>
-        internal void DrawImage(ref System.Drawing.Bitmap bm, string qrcode)
+        internal void DrawImage(ref Drawing.Bitmap bm, string qrcode)
         {
 #if NETSTANDARD2_0 || NET5_0_OR_GREATER
-            var writer = new ZXing.BarcodeWriter<Bitmap>();
+            var writer = new ZXing.BarcodeWriter<Drawing.Bitmap>();
 #else
             var writer = new ZXing.BarcodeWriter();
 #endif
@@ -43,8 +47,8 @@ namespace fyiReporting.CRI
 
 			writer.Options.Hints.Add(new KeyValuePair<EncodeHintType, object>(EncodeHintType.CHARACTER_SET, "UTF-8"));
 
-            Graphics g = null;
-            g = Graphics.FromImage(bm);
+            Drawing.Graphics g = null;
+            g = Drawing.Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
@@ -63,7 +67,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        void ICustomReportItem.DrawDesignerImage(ref System.Drawing.Bitmap bm)
+        void ICustomReportItem.DrawDesignerImage(ref Drawing.Bitmap bm)
         {
             DrawImage(ref bm, "https://github.com/majorsilence/My-FyiReporting");
         }

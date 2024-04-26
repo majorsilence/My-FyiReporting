@@ -32,8 +32,13 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
+using Imaging = System.Drawing.Imaging;
+#endif
 using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -175,7 +180,7 @@ namespace fyiReporting.RDL
 
         }
 
-        protected internal override void AddLine(float x, float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
+        protected internal override void AddLine(float x, float y, float x2, float y2, float width, Drawing.Color c, BorderStyleEnum ls)
         {
             // Get the line color			
             _contentByte.SetRgbColorStroke(c.R, c.G, c.B);
@@ -200,7 +205,7 @@ namespace fyiReporting.RDL
             _contentByte.Stroke();
         }
 
-        protected internal override void AddImage(string name, StyleInfo si, ImageFormat imf, float x, float y, float width, float height, RectangleF clipRect, byte[] im, int samplesW, int samplesH, string url, string tooltip)
+        protected internal override void AddImage(string name, StyleInfo si, Imaging.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect, byte[] im, int samplesW, int samplesH, string url, string tooltip)
         {
             iTextSharp.text.Image pdfImg = iTextSharp.text.Image.GetInstance(im);
             pdfImg.ScaleAbsolute(width, height); //zoom		  
@@ -217,13 +222,13 @@ namespace fyiReporting.RDL
                 width + si.PaddingLeft + si.PaddingRight);			// add any required border
         }
 
-        protected internal override void AddPolygon(PointF[] pts, StyleInfo si, string url)
+        protected internal override void AddPolygon(Drawing.PointF[] pts, StyleInfo si, string url)
         {
             if (si.BackgroundColor.IsEmpty)
                 return;		 // nothing to do
 
             // Get the fill color - could be a gradient or pattern etc...
-            System.Drawing.Color c = si.BackgroundColor;
+            Drawing.Color c = si.BackgroundColor;
             iAddPoints(pts);
             _contentByte.SetRgbColorFill(c.R, c.G, c.B);
             _contentByte.ClosePathFillStroke();
@@ -268,11 +273,11 @@ namespace fyiReporting.RDL
             return;
         }
 
-        protected internal override void AddCurve(PointF[] pts, StyleInfo si)
+        protected internal override void AddCurve(Drawing.PointF[] pts, StyleInfo si)
         {
             if (pts.Length > 2)
             {   // do a spline curve
-                PointF[] tangents = iGetCurveTangents(pts);
+                Drawing.PointF[] tangents = iGetCurveTangents(pts);
                 iDoCurve(pts, tangents, si);
             }
             else
@@ -772,7 +777,7 @@ namespace fyiReporting.RDL
         /// Add a filled rectangle
         /// </summary>
         /// <returns></returns>
-        private void iAddFillRect(float x, float y, float width, float height, System.Drawing.Color c)
+        private void iAddFillRect(float x, float y, float width, float height, Drawing.Color c)
         {
             // Get the fill color
             _contentByte.SetRgbColorFill(c.R, c.G, c.B);
@@ -804,7 +809,7 @@ namespace fyiReporting.RDL
 
             return;
         }
-        private void iAddPoints(PointF[] pts)
+        private void iAddPoints(Drawing.PointF[] pts)
         {
             if (pts.Length > 0)
             {
@@ -819,7 +824,7 @@ namespace fyiReporting.RDL
 
         private void iAddFillRect(float x, float y, float width, float height, StyleInfo si)
         {
-            System.Drawing.Color c;
+            Drawing.Color c;
             // Get the fill color - could be a gradient or pattern etc...
             c = si.BackgroundColor;
             _contentByte.SetRgbColorFill(c.R, c.G, c.B);
@@ -860,7 +865,7 @@ namespace fyiReporting.RDL
             else
                 _contentByte.ClosePathFillStroke();
         }
-        private void iDoCurve(PointF[] points, PointF[] tangents, StyleInfo si)
+        private void iDoCurve(Drawing.PointF[] points, Drawing.PointF[] tangents, StyleInfo si)
         {
             int i;
 
@@ -883,13 +888,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private PointF[] iGetCurveTangents(PointF[] points)
+        private Drawing.PointF[] iGetCurveTangents(Drawing.PointF[] points)
         {
             float tension = .5f;				 // This  is the tension used on the DrawCurve GDI call.
             float coefficient = tension / 3.0f;
             int i;
 
-            PointF[] tangents = new PointF[points.Length];
+            Drawing.PointF[] tangents = new Drawing.PointF[points.Length];
 
             // initialize everything to zero to begin with
             for (i = 0; i < tangents.Length; i++)

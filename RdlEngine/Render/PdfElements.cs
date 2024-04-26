@@ -23,8 +23,13 @@
 using System;
 using System.Collections;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
+using Imaging = System.Drawing.Imaging;
+#endif
 using System.Globalization;
 using fyiReporting.RDL;
 
@@ -69,7 +74,7 @@ namespace fyiReporting.RDL
 		/// Page line element at the X Y to X2 Y2 position
 		/// </summary>
 		/// <returns></returns>
-		internal void AddLine(float x,float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
+		internal void AddLine(float x,float y, float x2, float y2, float width, Drawing.Color c, BorderStyleEnum ls)
 		{
 			// Get the line color
 			double red=c.R; 
@@ -106,7 +111,7 @@ namespace fyiReporting.RDL
 		/// Add a filled rectangle
 		/// </summary>
 		/// <returns></returns>
-		internal void AddFillRect(float x,float y, float width, float height, Color c)
+		internal void AddFillRect(float x,float y, float width, float height, Drawing.Color c)
 		{
 			// Get the fill color
 			double red=c.R; 
@@ -125,7 +130,7 @@ namespace fyiReporting.RDL
 		internal void AddFillRect(float x,float y, float width, float height,StyleInfo si,PdfPattern patterns)
 		{
 			// Get the fill color - could be a gradient or pattern etc...
-			Color c = si.BackgroundColor;
+			Drawing.Color c = si.BackgroundColor;
 			double red=c.R;
 			double green=c.G; 
 			double blue=c.B;
@@ -162,7 +167,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <returns>string Image name</returns>
 		internal string AddImage(PdfImages images, string name, int contentRef, StyleInfo si,
-            ImageFormat imf, float x, float y, float width, float height, RectangleF clipRect,
+            Imaging.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
 			byte[] im, int samplesW, int samplesH, string url,string tooltip)
 		{
             //MITEK:START---------------------------------- 
@@ -219,13 +224,13 @@ namespace fyiReporting.RDL
 /// <param name="si"></param>
 /// <param name="url"></param>
 /// <param name="patterns"></param>
-        internal void AddPolygon(PointF[] pts, StyleInfo si, string url, PdfPattern patterns)
+        internal void AddPolygon(Drawing.PointF[] pts, StyleInfo si, string url, PdfPattern patterns)
         {
             if (si.BackgroundColor.IsEmpty)
                 return;         // nothing to do
             
             // Get the fill color - could be a gradient or pattern etc...
-            Color c = si.BackgroundColor;
+            Drawing.Color c = si.BackgroundColor;
             double red = c.R;
             double green = c.G;
             double blue = c.B;
@@ -256,7 +261,7 @@ namespace fyiReporting.RDL
             elements.AppendFormat("\tQ");
         }
 
-        private void AddPoints(StringBuilder elements, PointF[] pts)
+        private void AddPoints(StringBuilder elements, Drawing.PointF[] pts)
         {
             for (int pi = 0; pi < pts.Length; pi++)
             {
@@ -313,11 +318,11 @@ namespace fyiReporting.RDL
             return;
         }
         //
-        internal void AddCurve(PointF[] pts, StyleInfo si)
+        internal void AddCurve(Drawing.PointF[] pts, StyleInfo si)
         {
             if (pts.Length > 2)
             {   // do a spline curve
-                PointF[] tangents = GetCurveTangents(pts);
+	            Drawing.PointF[] tangents = GetCurveTangents(pts);
                 DoCurve(pts, tangents, si);
             }
             else
@@ -326,7 +331,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        void DoCurve(PointF[] points, PointF[] tangents, StyleInfo si)
+        void DoCurve(Drawing.PointF[] points, Drawing.PointF[] tangents, StyleInfo si)
         {
             int i;
 
@@ -349,13 +354,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        PointF[] GetCurveTangents(PointF[] points)
+        Drawing.PointF[] GetCurveTangents(Drawing.PointF[] points)
         {
             float tension = .5f;                 // This  is the tension used on the DrawCurve GDI call.
             float coefficient = tension / 3.0f;
             int i;
 
-            PointF[] tangents = new PointF[points.Length];
+            Drawing.PointF[] tangents = new Drawing.PointF[points.Length];
 
             // initialize everything to zero to begin with
             for (i = 0; i < tangents.Length; i++)

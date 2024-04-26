@@ -25,7 +25,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
+using Imaging = System.Drawing.Imaging;
+#endif
 using System.Text;
 using System.Globalization;
 
@@ -46,25 +52,25 @@ namespace fyiReporting.RDL
 		override internal void Draw(Report rpt)
 		{
 			CreateSizedBitmap();
-            using (Graphics g1 = Graphics.FromImage(_bm))
+            using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
             {              
                 _aStream = new System.IO.MemoryStream();  
                 IntPtr HDC = g1.GetHdc(); 
                 //_mf = new System.Drawing.Imaging.Metafile(_aStream, HDC);
-                _mf = new System.Drawing.Imaging.Metafile(_aStream, HDC, new RectangleF(0, 0, _bm.Width, _bm.Height),System.Drawing.Imaging.MetafileFrameUnit.Pixel);
+                _mf = new Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height),Imaging.MetafileFrameUnit.Pixel);
                 g1.ReleaseHdc(HDC);
             }
 
-            using(Graphics g = Graphics.FromImage(_mf))
+            using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf))
 			{
                 // 06122007AJM Used to Force Higher Quality
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = Drawing.Drawing2D.PixelOffsetMode.None;
+                g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
 
 				// Adjust the top margin to depend on the title height
-				Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Drawing.Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
 				double max=0,min=0;	// Get the max and min values
@@ -73,13 +79,13 @@ namespace fyiReporting.RDL
 				DrawChartStyle(rpt, g);
 				
 				// Draw title; routine determines if necessary
-				DrawTitle(rpt, g, ChartDefn.Title, new System.Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
+				DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
 
 				Layout.LeftMargin = 0;
                 Layout.RightMargin = 0;
 
 				// Draw legend
-				System.Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
+				Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
 
 				Layout.BottomMargin = 0;
 
@@ -97,7 +103,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        private void DrawMap(Report rpt, Graphics g, string mapfile, double max, double min)
+        private void DrawMap(Report rpt, Drawing.Graphics g, string mapfile, double max, double min)
         {
             string file = XmlUtil.XmlFileExists(mapfile);
 
@@ -121,15 +127,15 @@ namespace fyiReporting.RDL
                     List<MapPolygon> pl = mp.GetPolygon(sv);
                     if (pl == null)
                         continue;
-                    Brush br = new SolidBrush(XmlUtil.ColorFromHtml(c, Color.Transparent));
+                    Drawing.Brush br = new Drawing.SolidBrush(XmlUtil.ColorFromHtml(c, Drawing.Color.Transparent));
                     foreach (MapPolygon mpoly in pl)
                     {
-                        PointF[] polygon = mpoly.Polygon;
-                        PointF[] drawpoly = new PointF[polygon.Length];
+	                    Drawing.PointF[] polygon = mpoly.Polygon;
+	                    Drawing.PointF[] drawpoly = new Drawing.PointF[polygon.Length];
                         // make points relative to plotarea --- need to scale this as well
                         for (int ip = 0; ip < drawpoly.Length; ip++)
                         {
-                            drawpoly[ip] = new PointF(Layout.PlotArea.X + (polygon[ip].X * scale), Layout.PlotArea.Y + (polygon[ip].Y * scale));
+                            drawpoly[ip] = new Drawing.PointF(Layout.PlotArea.X + (polygon[ip].X * scale), Layout.PlotArea.Y + (polygon[ip].Y * scale));
                         }
                         g.FillPolygon(br, drawpoly);
                         if (_showToolTips)
@@ -139,7 +145,7 @@ namespace fyiReporting.RDL
                             sb.Append(sv.Replace('|', '/'));        // we treat '|' as a separator character; don't allow in string
                             sb.Append(' ');
                             sb.Append(c.Replace('|', '/'));
-                            foreach (PointF pf in drawpoly)
+                            foreach (Drawing.PointF pf in drawpoly)
                                 sb.AppendFormat(NumberFormatInfo.InvariantInfo, "|{0}|{1}", pf.X, pf.Y);
                             g.AddMetafileComment(new System.Text.ASCIIEncoding().GetBytes(sb.ToString()));
                         }

@@ -28,7 +28,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Xml;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using System.Globalization;
 using System.Text.RegularExpressions;
 

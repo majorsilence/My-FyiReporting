@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -62,7 +65,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
 
                 EMFPen EMFp = (EMFPen)ObjectTable[ObjectID];
-                Pen p = EMFp.myPen;
+                Drawing.Pen p = EMFp.myPen;
 
                 if (Compressed)
                 {
@@ -94,15 +97,15 @@ namespace fyiReporting.RDL
                     _fs.Dispose();
             }
         }
-        private void DoEllipse(Pen p, Single Xp, Single Yp, Single Wid, Single Hgt)
+        private void DoEllipse(Drawing.Pen p, Single Xp, Single Yp, Single Wid, Single Hgt)
         {
             BorderStyleEnum ls = getLineStyle(p);
 
-            Color col = Color.Black;
+            Drawing.Color col = Drawing.Color.Black;
 
             if (p.Brush.GetType().Name.Equals("SolidBrush"))
             {
-                System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
+               Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
                 col = theBrush.Color;
             }
 

@@ -24,8 +24,11 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.IO;
 using System.Linq;
 
@@ -41,7 +44,7 @@ namespace fyiReporting.RDL
 	[Serializable]
 	internal class CustomReportItem : Rectangle
 	{
-        static readonly ImageFormat IMAGEFORMAT = ImageFormat.Jpeg;
+        static readonly Drawing.Imaging.ImageFormat IMAGEFORMAT = Drawing.Imaging.ImageFormat.Jpeg;
         string _Type;   // The type of the custom report item. Interpreted by a
 						// report design tool or server.
 		XmlNode xNode;
@@ -135,7 +138,7 @@ namespace fyiReporting.RDL
             {
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
 				Type a = cri.GetType();
-				Bitmap bm = null;
+				Drawing.Bitmap bm = null;
 				SetProperties(rpt, row, cri);
 				int width = WidthCalc(rpt, null) -
 					(Style == null ? 0 :
@@ -143,19 +146,19 @@ namespace fyiReporting.RDL
 				int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
 					(Style == null ? 0 :
 						(Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
-				bm = new Bitmap(width, height);
+				bm = new Drawing.Bitmap(width, height);
 				cri.DrawImage(ref bm);
 
 				MemoryStream ostrm = new MemoryStream();
 				// 06122007AJM Changed to use high quality JPEG encoding
 				//bm.Save(ostrm, IMAGEFORMAT);	// generate a jpeg   TODO: get png to work with pdf
-				System.Drawing.Imaging.ImageCodecInfo[] info;
-				info = ImageCodecInfo.GetImageEncoders();
-				EncoderParameters encoderParameters;
-				encoderParameters = new EncoderParameters(1);
+				Drawing.Imaging.ImageCodecInfo[] info;
+				info = Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+				Drawing.Imaging.EncoderParameters encoderParameters;
+				encoderParameters = new Drawing.Imaging.EncoderParameters(1);
 				// 20022008 AJM GJL - Using centralised image quality
-				encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.CustomImageQuality);
-				System.Drawing.Imaging.ImageCodecInfo codec = null;
+				encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
+				Drawing.Imaging.ImageCodecInfo codec = null;
 				for(int i = 0; i < info.Length; i++) {
 					if(info[i].FormatDescription == "JPEG") {
 						codec = info[i];
@@ -195,10 +198,10 @@ namespace fyiReporting.RDL
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
                 SetProperties(pgs.Report, row, cri);
                 
-                EncoderParameters encoderParameters = new EncoderParameters(1);
+                Drawing.Imaging.EncoderParameters encoderParameters = new Drawing.Imaging.EncoderParameters(1);
                 // 20022008 AJM GJL - Using centralised image quality
-                encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, ImageQualityManager.CustomImageQuality);
-                ImageCodecInfo codec = ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
+                encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
+                Drawing.Imaging.ImageCodecInfo codec = Drawing.Imaging.ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
 
                 PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
 
@@ -228,9 +231,9 @@ namespace fyiReporting.RDL
             }
         }
 
-        byte[] GenerateImage(ImageCodecInfo codec, EncoderParameters parameters, int width, int height, ICustomReportItem cri)
+        byte[] GenerateImage(Drawing.Imaging.ImageCodecInfo codec, Drawing.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
 		{
-			Bitmap bm = new Bitmap(width, height);
+			Drawing.Bitmap bm = new Drawing.Bitmap(width, height);
 			cri.DrawImage(ref bm);
 
 			MemoryStream ostrm = new MemoryStream();

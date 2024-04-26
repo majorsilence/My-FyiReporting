@@ -25,11 +25,16 @@ using System;
 using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
+#if LINUX
+using System.DrawingCore;
+using System.DrawingCore.Imaging;
+#else
+using System.Drawing;
 using System.Drawing.Imaging;
+#endif
 using System.Text;
 using System.Xml;
 using System.Globalization;
-using System.Drawing;
 
 namespace fyiReporting.RDL
 {

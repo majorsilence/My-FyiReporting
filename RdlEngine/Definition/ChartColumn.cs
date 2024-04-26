@@ -27,7 +27,11 @@
 
 using System;
 using System.Collections;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 //using System.Windows.Forms;JD 20080514 - Why? 
 using System.Reflection.Emit;
 
@@ -49,25 +53,25 @@ namespace fyiReporting.RDL
 		override internal void Draw(Report rpt)
 		{
 			CreateSizedBitmap();
-            using (Graphics g1 = Graphics.FromImage(_bm))
+            using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
             {              
                 _aStream = new System.IO.MemoryStream();  
                 IntPtr HDC = g1.GetHdc(); 
                 //_mf = new System.Drawing.Imaging.Metafile(_aStream, HDC);
-                _mf = new System.Drawing.Imaging.Metafile(_aStream, HDC, new RectangleF(0, 0, _bm.Width, _bm.Height),System.Drawing.Imaging.MetafileFrameUnit.Pixel);
+                _mf = new Drawing.Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height),Drawing.Imaging.MetafileFrameUnit.Pixel);
                 g1.ReleaseHdc(HDC);
             }
 
-            using(Graphics g = Graphics.FromImage(_mf))
+            using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf))
 			{
                 // 06122007AJM Used to Force Higher Quality
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = Drawing.Drawing2D.PixelOffsetMode.None;
+                g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
 
 				// Adjust the top margin to depend on the title height
-				Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Drawing.Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
 				double max=0,min=0;	// Get the max and min values
@@ -76,15 +80,15 @@ namespace fyiReporting.RDL
 				DrawChartStyle(rpt, g);
 				
 				// Draw title; routine determines if necessary
-				DrawTitle(rpt, g, ChartDefn.Title, new System.Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
+				DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
 
 				// Adjust the left margin to depend on the Value Axis
-				Size vaSize = ValueAxisSize(rpt, g, min, max);
+				Drawing.Size vaSize = ValueAxisSize(rpt, g, min, max);
 				Layout.LeftMargin = vaSize.Width;
 
                 // Adjust the right margin to depend on the Value Axis
                 bool Show2ndY = ShowRightYAxis(rpt);
-                Size vaSize2= vaSize;
+                Drawing.Size vaSize2= vaSize;
 
                 if (Show2ndY)
                 {
@@ -95,10 +99,10 @@ namespace fyiReporting.RDL
                 }
 
 				// Draw legend
-				System.Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
+				Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
 
 				// Adjust the bottom margin to depend on the Category Axis
-                Size caSize = CategoryAxisSize(rpt, g);
+				Drawing.Size caSize = CategoryAxisSize(rpt, g);
 				Layout.BottomMargin = caSize.Height;
 
 				AdjustMargins(lRect,rpt, g);		// Adjust margins based on legend.
@@ -111,7 +115,7 @@ namespace fyiReporting.RDL
 				// Draw Value Axis //GJL now as by ref params to return the values to the above variables
 				if (vaSize.Width > 0)	// If we made room for the axis - we need to draw it
 					DrawValueAxis(rpt, g, min, max, 
-						new System.Drawing.Rectangle(Layout.LeftMargin - vaSize.Width, Layout.TopMargin, vaSize.Width, _bm.Height - Layout.TopMargin - Layout.BottomMargin), Layout.LeftMargin, Layout.Width - Layout.RightMargin,out incr,out intervalCount);
+						new Drawing.Rectangle(Layout.LeftMargin - vaSize.Width, Layout.TopMargin, vaSize.Width, _bm.Height - Layout.TopMargin - Layout.BottomMargin), Layout.LeftMargin, Layout.Width - Layout.RightMargin,out incr,out intervalCount);
                 
                
                 //********************************************************************************************************************************************
@@ -120,13 +124,13 @@ namespace fyiReporting.RDL
                 double ScaleFactor = 1.0;
                 //Secong value axis            
                 if (Show2ndY)
-                    Draw2ndValueAxis(rpt, g, min, max, new System.Drawing.Rectangle(Layout.LeftMargin + Layout.PlotArea.Width, Layout.TopMargin, vaSize2.Width, _bm.Height - Layout.TopMargin - Layout.BottomMargin), Layout.LeftMargin, Layout.Width - Layout.RightMargin, incr, intervalCount, ref ScaleFactor);
+                    Draw2ndValueAxis(rpt, g, min, max, new Drawing.Rectangle(Layout.LeftMargin + Layout.PlotArea.Width, Layout.TopMargin, vaSize2.Width, _bm.Height - Layout.TopMargin - Layout.BottomMargin), Layout.LeftMargin, Layout.Width - Layout.RightMargin, incr, intervalCount, ref ScaleFactor);
                          
 				// Draw Category Axis
 				if (caSize.Height > 0)
                     // 090508ajm passing chart bounds in
 					DrawCategoryAxis(rpt, g,
-                        new System.Drawing.Rectangle(Layout.LeftMargin, _bm.Height - Layout.BottomMargin, Layout.PlotArea.Width, caSize.Height), Layout.TopMargin, caSize.Width);
+                        new Drawing.Rectangle(Layout.LeftMargin, _bm.Height - Layout.BottomMargin, Layout.PlotArea.Width, caSize.Height), Layout.TopMargin, caSize.Width);
                 if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.Stacked)
 					DrawPlotAreaStacked(rpt, g, max, min);
                 else if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.PercentStacked)
@@ -139,7 +143,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		void DrawPlotAreaPercentStacked(Report rpt, Graphics g)
+		void DrawPlotAreaPercentStacked(Report rpt, Drawing.Graphics g)
 		{
 			int barsNeeded = CategoryCount; 
 			int gapsNeeded = CategoryCount * 2;
@@ -165,7 +169,7 @@ namespace fyiReporting.RDL
 					sum += t;
 				}
 				double v=0;
-				Point saveP=Point.Empty;
+				Drawing.Point saveP=Drawing.Point.Empty;
 				for (int iCol = 1; iCol <= SeriesCount; iCol++)
 				{
 					double t = GetDataValue(rpt, iRow, iCol);
@@ -174,13 +178,13 @@ namespace fyiReporting.RDL
 					v += t;
 
 					int h = (int) ((Math.Min(v/sum,max) / max) * maxBarHeight);
-					Point p = new Point(barLoc, Layout.PlotArea.Top + (maxBarHeight -  h));
+					Drawing.Point p = new Drawing.Point(barLoc, Layout.PlotArea.Top + (maxBarHeight -  h));
 
-					System.Drawing.Rectangle rect;
-					if (saveP == Point.Empty)
-						rect = new System.Drawing.Rectangle(p, new Size(widthBar,h));
+					Drawing.Rectangle rect;
+					if (saveP == Drawing.Point.Empty)
+						rect = new Drawing.Rectangle(p, new Drawing.Size(widthBar,h));
 					else
-						rect = new System.Drawing.Rectangle(p, new Size(widthBar, saveP.Y - p.Y));
+						rect = new Drawing.Rectangle(p, new Drawing.Size(widthBar, saveP.Y - p.Y));
                     DrawColumnBar(rpt, g, GetSeriesBrush(rpt, iRow, iCol), rect, iRow, iCol);
 
                     //Add a metafilecomment to use as a tooltip GJL 26092008
@@ -210,7 +214,7 @@ namespace fyiReporting.RDL
          * with selected plot type. 
          * 06122007AJM
          */
-		void DrawPlotAreaPlain(Report rpt, Graphics g, double max, double min, double ScaleFactor)
+		void DrawPlotAreaPlain(Report rpt, Drawing.Graphics g, double max, double min, double ScaleFactor)
 		{
             /* Need to adjust bar count to allow for Line plot types
              * 06122007AJM */
@@ -267,7 +271,7 @@ namespace fyiReporting.RDL
                                 int h = (int)(((Math.Min(v, max) - min) / (max - min)) * maxBarHeight);
 
                                 DrawColumnBar(rpt, g, GetSeriesBrush(rpt, iRow, iCol),
-                                    new System.Drawing.Rectangle(barLoc, Layout.PlotArea.Top + (maxBarHeight - h), widthBar, h), iRow, iCol);
+                                    new Drawing.Rectangle(barLoc, Layout.PlotArea.Top + (maxBarHeight - h), widthBar, h), iRow, iCol);
 
                                 //Add a metafilecomment to use as a tooltip GJL 26092008
                                 if (_showToolTips)
@@ -306,22 +310,22 @@ namespace fyiReporting.RDL
                                 {
                                     int h = (int)(((Math.Min(v, max) - min) / (max - min)) * maxBarHeight);
 
-                                    System.Drawing.Rectangle r = new System.Drawing.Rectangle(lineLoc, Layout.PlotArea.Top + (maxBarHeight - h), widthBar, h);
+                                    Drawing.Rectangle r = new Drawing.Rectangle(lineLoc, Layout.PlotArea.Top + (maxBarHeight - h), widthBar, h);
 
-                                    Point p = new Point(r.Left, r.Top);
+                                    Drawing.Point p = new Drawing.Point(r.Left, r.Top);
                                     if (LastPoints[iCol - 1] == null)
                                         LastPoints[iCol - 1] = p;
                                     bool DrawMarker = getNoMarkerVal(rpt, iCol, 1) == false;
-                                    DrawDataPoint(rpt, g, new Point(p.X, p.Y - 14), iRow, iCol);  // todo: 14 is arbitrary
-                                    if (DrawMarker) { DrawLegendLineMarker(g, GetSeriesBrush(rpt, iRow, iCol), new Pen(GetSeriesBrush(rpt, iRow, iCol)), SeriesMarker[iCol - 1], p.X - 5, p.Y - 5, 10);}
+                                    DrawDataPoint(rpt, g, new Drawing.Point(p.X, p.Y - 14), iRow, iCol);  // todo: 14 is arbitrary
+                                    if (DrawMarker) { DrawLegendLineMarker(g, GetSeriesBrush(rpt, iRow, iCol), new Drawing.Pen(GetSeriesBrush(rpt, iRow, iCol)), SeriesMarker[iCol - 1], p.X - 5, p.Y - 5, 10);}
                                                                      
 
                                     if (LastPoints.ContainsKey(iCol) )
                                     {
-                                        Point[] Points = new Point[2];
+	                                    Drawing.Point[] Points = new Drawing.Point[2];
                                         Points[0] = p;
-                                        Point pt = (Point)LastPoints[iCol];
-                                        Points[1] = new Point(pt.X - 1, pt.Y);
+                                        Drawing.Point pt = (Drawing.Point)LastPoints[iCol];
+                                        Points[1] = new Drawing.Point(pt.X - 1, pt.Y);
                                         // 05052008AJM - Allowing for breaking lines in chart
                                         if (Points[1] != null) {
                                             String LineSize = getLineSize(rpt, iCol, 1);
@@ -362,16 +366,16 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        internal void DrawLegendLineMarker(Graphics g, Brush b, Pen p, ChartMarkerEnum marker, int x, int y, int mSize)
+        internal void DrawLegendLineMarker(Drawing.Graphics g, Drawing.Brush b, Drawing.Pen p, ChartMarkerEnum marker, int x, int y, int mSize)
         {
-             if (b.GetType() == typeof(System.Drawing.Drawing2D.HatchBrush))
+             if (b.GetType() == typeof(Drawing.Drawing2D.HatchBrush))
              {
-                System.Drawing.Drawing2D.HatchBrush hb = ( System.Drawing.Drawing2D.HatchBrush) b;
-                b = new SolidBrush(hb.ForegroundColor);
+                Drawing.Drawing2D.HatchBrush hb = ( Drawing.Drawing2D.HatchBrush) b;
+                b = new Drawing.SolidBrush(hb.ForegroundColor);
              }
 
-            Pen p2;
-            PointF[] points;
+             Drawing.Pen p2;
+             Drawing.PointF[] points;
             switch (marker)
             {
                 case ChartMarkerEnum.Bubble:
@@ -383,29 +387,29 @@ namespace fyiReporting.RDL
                     break;
                 case ChartMarkerEnum.Plus:                
                    
-                    p2 = new Pen(b, 2.0f);
-                    g.DrawLine(p2, new Point(x + ((mSize + 1) / 2), y), new Point(x + ((mSize + 1) / 2), y + mSize));
+                    p2 = new Drawing.Pen(b, 2.0f);
+                    g.DrawLine(p2, new Drawing.Point(x + ((mSize + 1) / 2), y), new Drawing.Point(x + ((mSize + 1) / 2), y + mSize));
                     //g.DrawLine(p2, new Point(x + (mSize + 1) / 2, y + (mSize + 1) / 2), new Point(x + mSize, y + (mSize + 1) / 2));
                     break;
                 case ChartMarkerEnum.Diamond:
-                    points = new PointF[5];
-                    points[0] = points[4] = new PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
-                    points[1] = new PointF(x, y + ((mSize + 1) / 2));
-                    points[2] = new PointF(x + ((mSize + 1) / 2), y + mSize);
-                    points[3] = new PointF(x + mSize, y + ((mSize + 1) / 2));
+                    points = new Drawing.PointF[5];
+                    points[0] = points[4] = new Drawing.PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
+                    points[1] = new Drawing.PointF(x, y + ((mSize + 1) / 2));
+                    points[2] = new Drawing.PointF(x + ((mSize + 1) / 2), y + mSize);
+                    points[3] = new Drawing.PointF(x + mSize, y + ((mSize + 1) / 2));
                     g.FillPolygon(b, points);
                     break;
                 case ChartMarkerEnum.Triangle:
-                    points = new PointF[4];
-                    points[0] = points[3] = new PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
-                    points[1] = new PointF(x, y + mSize);
-                    points[2] = new PointF(x + mSize, y + mSize);
+                    points = new Drawing.PointF[4];
+                    points[0] = points[3] = new Drawing.PointF(x + ((mSize + 1) / 2), y);	// starting and ending point
+                    points[1] = new Drawing.PointF(x, y + mSize);
+                    points[2] = new Drawing.PointF(x + mSize, y + mSize);
                     g.FillPolygon(b, points);
                     break;
                 case ChartMarkerEnum.X:
-                    p2 = new Pen(b, 2.0f);
-                    g.DrawLine(p2, new Point(x, y), new Point(x + mSize, y + mSize));
-                    g.DrawLine(p2, new Point(x, y + mSize), new Point(x + mSize, y));
+                    p2 = new Drawing.Pen(b, 2.0f);
+                    g.DrawLine(p2, new Drawing.Point(x, y), new Drawing.Point(x + mSize, y + mSize));
+                    g.DrawLine(p2, new Drawing.Point(x, y + mSize), new Drawing.Point(x + mSize, y));
                     break;
             }
             return;
@@ -416,28 +420,28 @@ namespace fyiReporting.RDL
          * will work, the only issue being that if the line drawing is changed then 
          * this function will need to be updated as well
          * 05122007 AJM */
-        void DrawLineBetweenPoints(Graphics g, Report rpt, Brush brush, Point[] points)
+        void DrawLineBetweenPoints(Drawing.Graphics g, Report rpt, Drawing.Brush brush, Drawing.Point[] points)
         {
             DrawLineBetweenPoints(g, rpt, brush, points, 2);
         }
 
 
-        void DrawLineBetweenPoints(Graphics g, Report rpt, Brush brush, Point[] points,int intLineSize)
+        void DrawLineBetweenPoints(Drawing.Graphics g, Report rpt, Drawing.Brush brush, Drawing.Point[] points,int intLineSize)
         {
             if (points.Length <= 1)		// Need at least 2 points
                 return;
 
-            Pen p = null;
+            Drawing.Pen p = null;
             try
             {
-                if (brush.GetType() == typeof(System.Drawing.Drawing2D.HatchBrush))
+                if (brush.GetType() == typeof(Drawing.Drawing2D.HatchBrush))
                 {
-                    System.Drawing.Drawing2D.HatchBrush tmpBrush = (System.Drawing.Drawing2D.HatchBrush)brush;
-                    p = new Pen(new SolidBrush(tmpBrush.ForegroundColor), intLineSize); //1.5F);    // todo - use line from style ????
+                    Drawing.Drawing2D.HatchBrush tmpBrush = (Drawing.Drawing2D.HatchBrush)brush;
+                    p = new Drawing.Pen(new Drawing.SolidBrush(tmpBrush.ForegroundColor), intLineSize); //1.5F);    // todo - use line from style ????
                 }
                 else
                 {
-                    p = new Pen(brush, intLineSize);
+                    p = new Drawing.Pen(brush, intLineSize);
                 }
 
                 if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.Smooth && points.Length > 2)
@@ -453,7 +457,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-		void DrawPlotAreaStacked(Report rpt, Graphics g, double max, double min)
+		void DrawPlotAreaStacked(Report rpt, Drawing.Graphics g, double max, double min)
 		{
 			int barsNeeded = CategoryCount; 
 			int gapsNeeded = CategoryCount * 2;
@@ -468,7 +472,7 @@ namespace fyiReporting.RDL
 				barLoc += _GapSize;	// space before series
 
 				double v=0;
-				Point saveP=Point.Empty;
+				Drawing.Point saveP=Drawing.Point.Empty;
 				for (int iCol = 1; iCol <= SeriesCount; iCol++)
 				{
 					double t = GetDataValue(rpt, iRow, iCol);
@@ -477,13 +481,13 @@ namespace fyiReporting.RDL
 					v += t;
 
 					int h = (int) (((Math.Min(v,max)-min) / (max-min)) * maxBarHeight);
-					Point p = new Point(barLoc, Layout.PlotArea.Top + (maxBarHeight -  h));
+					Drawing.Point p = new Drawing.Point(barLoc, Layout.PlotArea.Top + (maxBarHeight -  h));
 
-					System.Drawing.Rectangle rect;
-					if (saveP == Point.Empty)
-						rect = new System.Drawing.Rectangle(p, new Size(widthBar,h));
+					Drawing.Rectangle rect;
+					if (saveP == Drawing.Point.Empty)
+						rect = new Drawing.Rectangle(p, new Drawing.Size(widthBar,h));
 					else
-						rect = new System.Drawing.Rectangle(p, new Size(widthBar, saveP.Y - p.Y));
+						rect = new Drawing.Rectangle(p, new Drawing.Size(widthBar, saveP.Y - p.Y));
                     DrawColumnBar(rpt, g, GetSeriesBrush(rpt, iRow, iCol), rect, iRow, iCol);
 
                     //Add a metafilecomment to use as a tooltip GJL 26092008
@@ -501,11 +505,11 @@ namespace fyiReporting.RDL
 		}
 
 		// Calculate the size of the category axis
-		protected Size CategoryAxisSize(Report rpt, Graphics g)
+		protected Drawing.Size CategoryAxisSize(Report rpt, Drawing.Graphics g)
 		{
 			_LastCategoryWidth = 0;
 
-			Size size=Size.Empty;
+			Drawing.Size size=Drawing.Size.Empty;
 			if (this.ChartDefn.CategoryAxis == null)
 				return size;
 			Axis a = this.ChartDefn.CategoryAxis.Axis;
@@ -526,7 +530,7 @@ namespace fyiReporting.RDL
 			for (int iRow=1; iRow <= CategoryCount; iRow++)
 			{
 				object v = this.GetCategoryValue(rpt, iRow, out tc);
-				Size tSize;
+				Drawing.Size tSize;
 				if (s == null)
 					tSize = Style.MeasureStringDefaults(rpt, g, v, tc, null, int.MaxValue);
 				else
@@ -570,7 +574,7 @@ namespace fyiReporting.RDL
 
 		// DrawCategoryAxis 
         //09052008ajm added plottop variable to collect the top of the chart
-        protected void DrawCategoryAxis(Report rpt, Graphics g, System.Drawing.Rectangle rect, int plotTop, int maxWidth)
+        protected void DrawCategoryAxis(Report rpt, Drawing.Graphics g, Drawing.Rectangle rect, int plotTop, int maxWidth)
 		{
 			if (this.ChartDefn.CategoryAxis == null)
 				return;
@@ -578,8 +582,8 @@ namespace fyiReporting.RDL
 			if (a == null)
 				return;
 			Style s = a.Style;
-			Size tSize = DrawTitleMeasure(rpt, g, a.Title);
-			DrawTitle(rpt, g, a.Title, new System.Drawing.Rectangle(rect.Left, rect.Bottom-tSize.Height, rect.Width, tSize.Height));
+			Drawing.Size tSize = DrawTitleMeasure(rpt, g, a.Title);
+			DrawTitle(rpt, g, a.Title, new Drawing.Rectangle(rect.Left, rect.Bottom-tSize.Height, rect.Width, tSize.Height));
 
 			// Account for tick marks
 			int tickSize=0;
@@ -641,8 +645,8 @@ namespace fyiReporting.RDL
                 int skip = 0;
 				if (a.Visible && !a.Month)  //18052008WRP only show category labels if not month scale
 				{
-					System.Drawing.Rectangle drawRect;
-                    Size size = Size.Empty;
+					Drawing.Rectangle drawRect;
+					Drawing.Size size = Drawing.Size.Empty;
 
                     if (mustSize)
                     {	// Area chart - value is centered under the tick mark
@@ -659,10 +663,10 @@ namespace fyiReporting.RDL
 					if (ChartDefn.Type == ChartTypeEnum.Area)
 					{	// Area chart - value is centered under the tick mark
 						drawRect = 
-								new System.Drawing.Rectangle(drawLoc - (size.Width/2), rect.Top+tickSize, size.Width, size.Height);
+								new Drawing.Rectangle(drawLoc - (size.Width/2), rect.Top+tickSize, size.Width, size.Height);
 					}
 					else	// Column/Line charts are just centered in the region.
-						drawRect = new System.Drawing.Rectangle(drawLoc, rect.Top+tickSize, drawWidth, rect.Height-tSize.Height);
+						drawRect = new Drawing.Rectangle(drawLoc, rect.Top+tickSize, drawWidth, rect.Height-tSize.Height);
 
                     if (mustSize && drawRect.Width < size.Width)
                     {
@@ -683,12 +687,12 @@ namespace fyiReporting.RDL
                     if (CurrentDate.Month != OldDate.Month)
                     {
                         TempDate = CurrentDate;
-                        DrawCategoryAxisGrid(rpt, g, a.MajorGridLines, new Point(drawLoc, rect.Top), new Point(drawLoc, plotTop)); //Don't overdraw the Y axis on the first gridline
+                        DrawCategoryAxisGrid(rpt, g, a.MajorGridLines, new Drawing.Point(drawLoc, rect.Top), new Drawing.Point(drawLoc, plotTop)); //Don't overdraw the Y axis on the first gridline
                         CurrentDate = CurrentDate.AddMonths(OldDate.Month - CurrentDate.Month); // get previous category month value
                         string MonthString = CurrentDate.ToString("MMMM");
-                        Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
+                        Drawing.Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
                         int catlabelLoc = (int)((drawLoc - PreviousLocation) / 2) + PreviousLocation - (lSize.Width / 2);
-                        DrawCategoryLabel(rpt, g, MonthString, a.Style, new System.Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
+                        DrawCategoryLabel(rpt, g, MonthString, a.Style, new Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
                         PreviousLocation = drawLoc;
                         OldDate = TempDate;
                        
@@ -697,43 +701,43 @@ namespace fyiReporting.RDL
                 if ((MajorGrid != 0) && ((iRow-1) % MajorGrid == 0) && !(a.Month))
                 //if (((iRow - 1) % ((int)a.MajorInterval.EvaluateDouble(rpt, this.ChartRow.RowNumber)) == 0) && !(a.Month)) 
                 {
-                    DrawCategoryAxisGrid(rpt, g, a.MajorGridLines, new Point(drawLoc, rect.Top), new Point(drawLoc, plotTop));
+                    DrawCategoryAxisGrid(rpt, g, a.MajorGridLines, new Drawing.Point(drawLoc, rect.Top), new Drawing.Point(drawLoc, plotTop));
                 }
 				// Draw the Major Tick Marks (if necessary)
-				DrawCategoryAxisTick(g, true, a.MajorTickMarks, new Point(drawLoc, rect.Top));
+				DrawCategoryAxisTick(g, true, a.MajorTickMarks, new Drawing.Point(drawLoc, rect.Top));
                 iRow += skip;
 			}//exit from for loop - no more category data
 
             if (a.Month && date && a.Visible)// 16052008WRP draw last category label for months scale
             {
                 string MonthString = OldDate.ToString("MMMM");
-                Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
+                Drawing.Size lSize = DrawCategoryTitleMeasure(rpt, g, MonthString,s);
                 int catlabelLoc = (int)((rect.Right - PreviousLocation) / 2) + PreviousLocation - (lSize.Width / 2);
-                DrawCategoryLabel(rpt, g, MonthString, a.Style, new System.Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
+                DrawCategoryLabel(rpt, g, MonthString, a.Style, new Drawing.Rectangle(catlabelLoc, rect.Top - (lSize.Height - 25), lSize.Width, lSize.Height));
             }
                     
         
 			// Draw the end on (if necessary)
-			DrawCategoryAxisTick(g, true, a.MajorTickMarks, new Point(rect.Right, rect.Top));
+			DrawCategoryAxisTick(g, true, a.MajorTickMarks, new Drawing.Point(rect.Right, rect.Top));
 
 			return;
 		}
 
         
 
-		protected void DrawCategoryAxisTick(Graphics g, bool bMajor, AxisTickMarksEnum tickType, Point p)
+		protected void DrawCategoryAxisTick(Drawing.Graphics g, bool bMajor, AxisTickMarksEnum tickType, Drawing.Point p)
 		{
 			int len = bMajor? AxisTickMarkMajorLen: AxisTickMarkMinorLen;
 			switch (tickType)
 			{
 				case AxisTickMarksEnum.Outside:
-					g.DrawLine(Pens.Black, new Point(p.X, p.Y), new Point(p.X, p.Y+len));
+					g.DrawLine(Drawing.Pens.Black, new Drawing.Point(p.X, p.Y), new Drawing.Point(p.X, p.Y+len));
 					break;
 				case AxisTickMarksEnum.Inside:
-					g.DrawLine(Pens.Black, new Point(p.X, p.Y), new Point(p.X, p.Y-len));
+					g.DrawLine(Drawing.Pens.Black, new Drawing.Point(p.X, p.Y), new Drawing.Point(p.X, p.Y-len));
 					break;
 				case AxisTickMarksEnum.Cross:
-					g.DrawLine(Pens.Black, new Point(p.X, p.Y-len), new Point(p.X, p.Y+len));
+					g.DrawLine(Drawing.Pens.Black, new Drawing.Point(p.X, p.Y-len), new Drawing.Point(p.X, p.Y+len));
 					break;
 				case AxisTickMarksEnum.None:
 				default:
@@ -742,7 +746,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-        protected void DrawCategoryAxisGrid(Report rpt, Graphics g, ChartGridLines gl, Point s, Point e)
+        protected void DrawCategoryAxisGrid(Report rpt, Drawing.Graphics g, ChartGridLines gl, Drawing.Point s, Drawing.Point e)
         {
             if (gl == null || !gl.ShowGridLines)
                 return;
@@ -750,19 +754,19 @@ namespace fyiReporting.RDL
             if (gl.Style != null)
                 gl.Style.DrawStyleLine(rpt, g, null, s, e);
             else
-                g.DrawLine(Pens.Black, s, e);
+                g.DrawLine(Drawing.Pens.Black, s, e);
 
             return;
         }
 
-		void DrawColumnBar(Report rpt, Graphics g, Brush brush, System.Drawing.Rectangle rect, int iRow, int iCol)
+		void DrawColumnBar(Report rpt, Drawing.Graphics g, Drawing.Brush brush, Drawing.Rectangle rect, int iRow, int iCol)
 		{
 			if (rect.Height <= 0)
 				return;
             //we want to separate the bars with some whitespace.. GJL 080208
-            rect = new System.Drawing.Rectangle(rect.Left + 2, rect.Top, rect.Width -3, rect.Height);
+            rect = new Drawing.Rectangle(rect.Left + 2, rect.Top, rect.Width -3, rect.Height);
 			g.FillRectangle(brush, rect);			
-            g.DrawRectangle(Pens.Black, rect);
+            g.DrawRectangle(Drawing.Pens.Black, rect);
 
             if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.Stacked ||
                 (ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.PercentStacked)
@@ -771,16 +775,16 @@ namespace fyiReporting.RDL
 			}
 			else
 			{
-				Point p;
-				p = new Point(rect.Left, rect.Top - 14); // todo: 14 is arbitrary
+				Drawing.Point p;
+				p = new Drawing.Point(rect.Left, rect.Top - 14); // todo: 14 is arbitrary
 				DrawDataPoint(rpt, g, p, iRow, iCol);
 			}
 
 			return;
 		}
 
-		protected void DrawValueAxis(Report rpt, Graphics g, double min, double max,
-                        System.Drawing.Rectangle rect, int plotLeft, int plotRight, out double incr,out int intervalCount)
+		protected void DrawValueAxis(Report rpt, Drawing.Graphics g, double min, double max,
+                        Drawing.Rectangle rect, int plotLeft, int plotRight, out double incr,out int intervalCount)
 		{
             incr = 0;
             intervalCount = 0;
@@ -795,8 +799,8 @@ namespace fyiReporting.RDL
             //double incr;
             SetIncrementAndInterval(rpt, a, min, max, out incr, out intervalCount);      // Calculate the interval count
 	
-			Size tSize = DrawTitleMeasure(rpt, g, a.Title);
-            DrawTitle(rpt, g, a.Title, new System.Drawing.Rectangle(rect.Left, rect.Top, tSize.Width, rect.Height));
+            Drawing.Size tSize = DrawTitleMeasure(rpt, g, a.Title);
+            DrawTitle(rpt, g, a.Title, new Drawing.Rectangle(rect.Left, rect.Top, tSize.Width, rect.Height));
 
 			double v = min;
 			for (int i=0; i < intervalCount+1; i++)	 
@@ -814,29 +818,29 @@ namespace fyiReporting.RDL
 				}
 				else if (s != null)
 				{
-					Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
-					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
+					Drawing.Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
+					Drawing.Rectangle vRect = 
+						new Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
 					s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
 				}
 				else
 				{
-					Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
-					System.Drawing.Rectangle vRect = 
-						new System.Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
+					Drawing.Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
+					Drawing.Rectangle vRect = 
+						new Drawing.Rectangle(rect.Left+tSize.Width, rect.Top + rect.Height - h - (size.Height/2), rect.Width-tSize.Width, size.Height);
 					Style.DrawStringDefaults(g, v, vRect);
 				}
 
-				DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Point(plotLeft, rect.Top + rect.Height - h), new Point(plotRight, rect.Top + rect.Height - h));
-				DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Point(plotLeft, rect.Top + rect.Height - h));
+				DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Drawing.Point(plotLeft, rect.Top + rect.Height - h), new Drawing.Point(plotRight, rect.Top + rect.Height - h));
+				DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Drawing.Point(plotLeft, rect.Top + rect.Height - h));
 
 				v += incr;
 			}
 
 			// Draw the end points of the major grid lines
-			DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Point(plotLeft, rect.Top), new Point(plotLeft, rect.Bottom));
-			DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Point(plotLeft, rect.Top));
-			DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Point(plotRight, rect.Top), new Point(plotRight, rect.Bottom));
+			DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Drawing.Point(plotLeft, rect.Top), new Drawing.Point(plotLeft, rect.Bottom));
+			DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Drawing.Point(plotLeft, rect.Top));
+			DrawValueAxisGrid(rpt, g, a.MajorGridLines, new Drawing.Point(plotRight, rect.Top), new Drawing.Point(plotRight, rect.Bottom));
 			
             //12052008WRP this line not required adds tick at bottom end of right y axis.
             //DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Point(plotRight, rect.Bottom));
@@ -847,8 +851,8 @@ namespace fyiReporting.RDL
 
         //*******************************************************************************************************************************
         //Draws the second value axis
-        protected void Draw2ndValueAxis(Report rpt, Graphics g, double min, double max,
-                        System.Drawing.Rectangle rect, int plotLeft, int plotRight,double incr,int intervalCount,ref double ScaleFactor)
+        protected void Draw2ndValueAxis(Report rpt, Drawing.Graphics g, double min, double max,
+                        Drawing.Rectangle rect, int plotLeft, int plotRight,double incr,int intervalCount,ref double ScaleFactor)
         {           
 
             if (this.ChartDefn.ValueAxis == null)
@@ -984,11 +988,11 @@ namespace fyiReporting.RDL
             //}
 
        
-            Size tSize = DrawTitleMeasure(rpt, g, a.Title2);         
+            Drawing.Size tSize = DrawTitleMeasure(rpt, g, a.Title2);         
 
            // rect.Width = (int)g.VisibleClipBounds.Width - rect.Left + 20;
 
-            DrawTitle(rpt, g, a.Title2, new System.Drawing.Rectangle((int)rect.Right - tSize.Width, rect.Top, tSize.Width, rect.Height));
+            DrawTitle(rpt, g, a.Title2, new Drawing.Rectangle((int)rect.Right - tSize.Width, rect.Top, tSize.Width, rect.Height));
 
             double v = min;
             for (int i = 0; i < _gridIncrs + 1; i++)
@@ -1005,22 +1009,22 @@ namespace fyiReporting.RDL
                 }
                 else if (s != null)
                 {
-                    Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
-                    System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - tSize.Width, size.Height);
+	                Drawing.Size size = s.MeasureString(rpt, g, v, TypeCode.Double, null, int.MaxValue);
+                    Drawing.Rectangle vRect =
+                        new Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - tSize.Width, size.Height);
                     s.DrawString(rpt, g, v, TypeCode.Double, null, vRect);
                 }
                 else
                 {
-                    Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
-                    System.Drawing.Rectangle vRect =
-                        new System.Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - (tSize.Width * 2), size.Height);
+	                Drawing.Size size = Style.MeasureStringDefaults(rpt, g, v, TypeCode.Double, null, int.MaxValue);
+                    Drawing.Rectangle vRect =
+                        new Drawing.Rectangle(rect.Left - (int)(tSize.Width * .5), rect.Top + rect.Height - h - (size.Height / 2), rect.Width - (tSize.Width * 2), size.Height);
                     Style.DrawStringDefaults(g, v, vRect);
                 }          
 
                 v += incr;
 
-                DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Point(plotRight - (AxisTickMarkMajorLen / 2), rect.Top + rect.Height - h));
+                DrawValueAxisTick(rpt, g, true, a.MajorTickMarks, a.MajorGridLines, new Drawing.Point(plotRight - (AxisTickMarkMajorLen / 2), rect.Top + rect.Height - h));
 
             }
 
@@ -1028,7 +1032,7 @@ namespace fyiReporting.RDL
         }
         //*******************************************************************************************************************************
 
-		protected void DrawValueAxisGrid(Report rpt, Graphics g, ChartGridLines gl, Point s, Point e)
+		protected void DrawValueAxisGrid(Report rpt, Drawing.Graphics g, ChartGridLines gl, Drawing.Point s, Drawing.Point e)
 		{
 			if (gl == null || !gl.ShowGridLines)
 				return;
@@ -1036,32 +1040,32 @@ namespace fyiReporting.RDL
 			if (gl.Style != null)
 				gl.Style.DrawStyleLine(rpt, g, null, s, e);
 			else
-				g.DrawLine(Pens.Black, s, e);
+				g.DrawLine(Drawing.Pens.Black, s, e);
 
 			return;
 		}
 
-		protected void DrawValueAxisTick(Report rpt, Graphics g, bool bMajor, AxisTickMarksEnum tickType, ChartGridLines gl, Point p)
+		protected void DrawValueAxisTick(Report rpt, Drawing.Graphics g, bool bMajor, AxisTickMarksEnum tickType, ChartGridLines gl, Drawing.Point p)
 		{
 			if (tickType == AxisTickMarksEnum.None)
 				return;
 
 			int len = bMajor? AxisTickMarkMajorLen: AxisTickMarkMinorLen;
-			Point s, e;
+			Drawing.Point s, e;
 			switch (tickType)
 			{
 				case AxisTickMarksEnum.Inside:
-					s = new Point(p.X, p.Y); 
-					e = new Point(p.X+len, p.Y);
+					s = new Drawing.Point(p.X, p.Y); 
+					e = new Drawing.Point(p.X+len, p.Y);
 					break;
 				case AxisTickMarksEnum.Cross:
-					s = new Point(p.X-len, p.Y);
-					e = new Point(p.X+len, p.Y);
+					s = new Drawing.Point(p.X-len, p.Y);
+					e = new Drawing.Point(p.X+len, p.Y);
 					break;
 				case AxisTickMarksEnum.Outside:
 				default:
-					s = new Point(p.X-len, p.Y);
-					e = new Point(p.X, p.Y);
+					s = new Drawing.Point(p.X-len, p.Y);
+					e = new Drawing.Point(p.X, p.Y);
 					break;
 			}
 			Style style = gl.Style;
@@ -1069,7 +1073,7 @@ namespace fyiReporting.RDL
 			if (style != null)
 				style.DrawStyleLine(rpt, g, null, s, e);
 			else
-				g.DrawLine(Pens.Black, s, e);
+				g.DrawLine(Drawing.Pens.Black, s, e);
 
 			return;
 		}
@@ -1078,9 +1082,9 @@ namespace fyiReporting.RDL
 		//										 height is max value height
 
         //WhichAxis.... 1 = Left, 2 = Right GJL 140208
-		protected Size ValueAxisSize(Report rpt, Graphics g, double min, double max)
+		protected Drawing.Size ValueAxisSize(Report rpt, Drawing.Graphics g, double min, double max)
 		{
-			Size size=Size.Empty;
+			Drawing.Size size=Drawing.Size.Empty;
 
    			if (ChartDefn.ValueAxis == null)
 				return size;
@@ -1090,11 +1094,11 @@ namespace fyiReporting.RDL
 			if (a == null)
 				return size;
 
-			Size minSize;
-			Size maxSize;
+			Drawing.Size minSize;
+			Drawing.Size maxSize;
 			if (!a.Visible)
 			{
-				minSize = maxSize = Size.Empty;
+				minSize = maxSize = Drawing.Size.Empty;
 			}
 			else if (a.Style != null)
 			{
@@ -1111,7 +1115,7 @@ namespace fyiReporting.RDL
 			size.Height = Math.Max(minSize.Height, maxSize.Height);
 
 			// Now we need to add in the width of the title (if any)
-			Size titleSize = DrawTitleMeasure(rpt, g, a.Title);
+			Drawing.Size titleSize = DrawTitleMeasure(rpt, g, a.Title);
 			size.Width += titleSize.Width;
 
 			return size;

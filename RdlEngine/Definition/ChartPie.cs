@@ -22,7 +22,11 @@
 */
 using System;
 using System.Collections;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 
 namespace fyiReporting.RDL
@@ -42,36 +46,36 @@ namespace fyiReporting.RDL
 		{
 			CreateSizedBitmap();
 
-            using (Graphics g1 = Graphics.FromImage(_bm))
+            using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
             {
                 _aStream = new System.IO.MemoryStream();
                 IntPtr HDC = g1.GetHdc();
-                _mf = new System.Drawing.Imaging.Metafile(_aStream, HDC, new RectangleF(0, 0, _bm.Width, _bm.Height), System.Drawing.Imaging.MetafileFrameUnit.Pixel);
+                _mf = new Drawing.Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height), Drawing.Imaging.MetafileFrameUnit.Pixel);
                 g1.ReleaseHdc(HDC);
             }
 
-            using (Graphics g = Graphics.FromImage(_mf))
+            using (Drawing.Graphics g = Drawing.Graphics.FromImage(_mf))
 			{
                 // 06122007AJM Used to Force Higher Quality
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = Drawing.Drawing2D.PixelOffsetMode.None;
+                g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
 			
 				// Adjust the top margin to depend on the title height
-				Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Drawing.Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
 				DrawChartStyle(rpt, g);
 				
 				// Draw title; routine determines if necessary
-				DrawTitle(rpt, g, ChartDefn.Title, new System.Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
+				DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
 
 				// Draw legend
-				System.Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
+				Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
 
 				// Adjust the bottom margin to depend on the Category Axis
-				Size caSize = CategoryAxisSize(rpt, g);
+				Drawing.Size caSize = CategoryAxisSize(rpt, g);
 				Layout.BottomMargin = caSize.Height;
 
 				// 20022008 AJM GJL - Added required info
@@ -83,7 +87,7 @@ namespace fyiReporting.RDL
 				// Draw Category Axis
 				if (caSize.Height > 0)
 					DrawCategoryAxis(rpt, g,  
-						new System.Drawing.Rectangle(Layout.LeftMargin, _bm.Height-Layout.BottomMargin, _bm.Width - Layout.LeftMargin - Layout.RightMargin, caSize.Height));
+						new Drawing.Rectangle(Layout.LeftMargin, _bm.Height-Layout.BottomMargin, _bm.Width - Layout.LeftMargin - Layout.RightMargin, caSize.Height));
 
 				if (ChartDefn.Type == ChartTypeEnum.Doughnut)
 					DrawPlotAreaDoughnut(rpt, g);
@@ -94,7 +98,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		void DrawPlotAreaDoughnut(Report rpt, Graphics g)
+		void DrawPlotAreaDoughnut(Report rpt, Drawing.Graphics g)
 		{
 			// Draw Plot area data
 			int widthPie = Layout.PlotArea.Width;
@@ -133,7 +137,7 @@ namespace fyiReporting.RDL
 					endAngle = (float) (startAngle + (v / total * 360));
 
                     DrawPie(g, rpt, GetSeriesBrush(rpt, iRow, iCol), 
-						new System.Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
+						new Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
 
 					startAngle = endAngle;
 				}
@@ -144,7 +148,7 @@ namespace fyiReporting.RDL
 			pieLocX= left + (CategoryCount * doughWidth);
 			pieLocY= top + (CategoryCount * doughWidth);
 			pieSize = maxPieSize - (CategoryCount * doughWidth * 2);
-			System.Drawing.Rectangle rect = new System.Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize);
+			Drawing.Rectangle rect = new Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize);
 			Style s = ChartDefn.PlotArea.Style;
 
 			Rows cData = ChartDefn.ChartMatrix.GetMyData(rpt);
@@ -152,7 +156,7 @@ namespace fyiReporting.RDL
 			s.DrawBackgroundCircle(rpt, g, r, rect);
 		}
 
-		void DrawPlotAreaPie(Report rpt, Graphics g)
+		void DrawPlotAreaPie(Report rpt, Drawing.Graphics g)
 		{
 			int piesNeeded = CategoryCount; 
 			int gapsNeeded = CategoryCount + 1;
@@ -202,7 +206,7 @@ namespace fyiReporting.RDL
 					endAngle = (float) (startAngle + (v / total * 360));
 
                     DrawPie(g, rpt, GetSeriesBrush(rpt, iRow, iCol), 
-						new System.Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
+						new Drawing.Rectangle(pieLocX, pieLocY, pieSize, pieSize), iRow, iCol, startAngle, endAngle);
 
 					startAngle = endAngle;
 				}
@@ -210,9 +214,9 @@ namespace fyiReporting.RDL
 		}
 
 		// Calculate the size of the category axis
-		protected Size CategoryAxisSize(Report rpt, Graphics g)
+		protected Drawing.Size CategoryAxisSize(Report rpt, Drawing.Graphics g)
 		{
-			Size size=Size.Empty;
+			Drawing.Size size=Drawing.Size.Empty;
 			if (this.ChartDefn.CategoryAxis == null || 
 				this.ChartDefn.Type == ChartTypeEnum.Doughnut)	// doughnut doesn't get this
 				return size;
@@ -233,7 +237,7 @@ namespace fyiReporting.RDL
 			for (int iRow=1; iRow <= CategoryCount; iRow++)
 			{
 				object v = this.GetCategoryValue(rpt, iRow, out tc);
-				Size tSize;
+				Drawing.Size tSize;
 				if (s == null)
 					tSize = Style.MeasureStringDefaults(rpt, g, v, tc, null, int.MaxValue);
 
@@ -250,7 +254,7 @@ namespace fyiReporting.RDL
 		}
 
 		// DrawCategoryAxis 
-		protected void DrawCategoryAxis(Report rpt, Graphics g, System.Drawing.Rectangle rect)
+		protected void DrawCategoryAxis(Report rpt, Drawing.Graphics g, Drawing.Rectangle rect)
 		{
 			if (this.ChartDefn.CategoryAxis == null)
 				return;
@@ -259,8 +263,8 @@ namespace fyiReporting.RDL
 				return;
 			Style s = a.Style;
 
-			Size tSize = DrawTitleMeasure(rpt, g, a.Title);
-			DrawTitle(rpt, g, a.Title, new System.Drawing.Rectangle(rect.Left, rect.Bottom-tSize.Height, rect.Width, tSize.Height));
+			Drawing.Size tSize = DrawTitleMeasure(rpt, g, a.Title);
+			DrawTitle(rpt, g, a.Title, new Drawing.Rectangle(rect.Left, rect.Bottom-tSize.Height, rect.Width, tSize.Height));
 
 			int drawWidth = rect.Width / CategoryCount;
 			TypeCode tc;
@@ -273,7 +277,7 @@ namespace fyiReporting.RDL
 				// Draw the category text
 				if (a.Visible)
 				{
-					System.Drawing.Rectangle drawRect = new System.Drawing.Rectangle(drawLoc, rect.Top, drawWidth, rect.Height-tSize.Height);
+					Drawing.Rectangle drawRect = new Drawing.Rectangle(drawLoc, rect.Top, drawWidth, rect.Height-tSize.Height);
 					if (s == null)
 						Style.DrawStringDefaults(g, v, drawRect);
 					else
@@ -284,7 +288,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void DrawPie(Graphics g, Report rpt, Brush brush, System.Drawing.Rectangle rect, int iRow, int iCol, float startAngle, float endAngle)
+		void DrawPie(Drawing.Graphics g, Report rpt, Drawing.Brush brush, Drawing.Rectangle rect, int iRow, int iCol, float startAngle, float endAngle)
 		{
             if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.Exploded)
 			{
@@ -311,11 +315,11 @@ namespace fyiReporting.RDL
 				{
 					adjY = - adjY;
 				}
-				rect = new System.Drawing.Rectangle(rect.Left + adjX + offset, rect.Top + adjY + offset, side, side);
+				rect = new Drawing.Rectangle(rect.Left + adjX + offset, rect.Top + adjY + offset, side, side);
 			}
 
 			g.FillPie(brush, rect, startAngle, endAngle - startAngle);
-			g.DrawPie(Pens.Black, rect, startAngle, endAngle - startAngle);
+			g.DrawPie(Drawing.Pens.Black, rect, startAngle, endAngle - startAngle);
 
 			return;
 		}

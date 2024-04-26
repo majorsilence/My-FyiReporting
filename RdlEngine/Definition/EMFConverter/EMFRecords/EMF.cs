@@ -22,8 +22,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing.Imaging;
+#if LINUX
+using System.DrawingCore;
+using System.DrawingCore.Imaging;
+#else
 using System.Drawing;
+using System.Drawing.Imaging;
+#endif
 using System.Runtime.InteropServices;
 using fyiReporting.RDL;
 

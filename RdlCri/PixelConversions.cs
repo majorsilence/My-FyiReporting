@@ -1,4 +1,8 @@
-﻿using System.Drawing;
+﻿#if LINUX
+using System.DrawingCore;
+#else
+using System.Drawing;
+#endif
 
 namespace fyiReporting.CRI
 {

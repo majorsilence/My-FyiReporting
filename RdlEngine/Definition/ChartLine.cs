@@ -22,7 +22,11 @@
 */
 using System;
 using System.Collections;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 
 namespace fyiReporting.RDL
@@ -43,24 +47,24 @@ namespace fyiReporting.RDL
 		{
 			CreateSizedBitmap();
 
-			 using (Graphics g1 = Graphics.FromImage(_bm))
+			 using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
             {              
                 _aStream = new System.IO.MemoryStream();  
                 IntPtr HDC = g1.GetHdc();
-                _mf = new System.Drawing.Imaging.Metafile(_aStream, HDC, new RectangleF(0, 0, _bm.Width, _bm.Height), System.Drawing.Imaging.MetafileFrameUnit.Pixel);
+                _mf = new Drawing.Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height), Drawing.Imaging.MetafileFrameUnit.Pixel);
                 g1.ReleaseHdc(HDC);
             }
                       
-            using(Graphics g = Graphics.FromImage(_mf))
+            using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf))
 			{
                 // 06122007AJM Used to Force Higher Quality
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = Drawing.Drawing2D.PixelOffsetMode.None;
+                g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
 
 				// Adjust the top margin to depend on the title height
-				Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Drawing.Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
 				// 20022008 AJM GJL - Added new required info 
@@ -70,17 +74,17 @@ namespace fyiReporting.RDL
 				DrawChartStyle(rpt, g);
 				
 				// Draw title; routine determines if necessary
-				DrawTitle(rpt, g, ChartDefn.Title, new System.Drawing.Rectangle(0, 0, Layout.Width, Layout.TopMargin));
+				DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, Layout.Width, Layout.TopMargin));
 
 				// Adjust the left margin to depend on the Value Axis
-				Size vaSize = ValueAxisSize(rpt, g, min, max);
+				Drawing.Size vaSize = ValueAxisSize(rpt, g, min, max);
 				Layout.LeftMargin = vaSize.Width;
 
 				// Draw legend
-				System.Drawing.Rectangle lRect = DrawLegend(rpt,g, ChartDefn.Type == ChartTypeEnum.Area? false: true, true);
+				Drawing.Rectangle lRect = DrawLegend(rpt,g, ChartDefn.Type == ChartTypeEnum.Area? false: true, true);
 
 				// Adjust the bottom margin to depend on the Category Axis
-				Size caSize = CategoryAxisSize(rpt, g);
+				Drawing.Size caSize = CategoryAxisSize(rpt, g);
 				Layout.BottomMargin = caSize.Height;
 
 				AdjustMargins(lRect,rpt,g);		// Adjust margins based on legend.
@@ -92,13 +96,13 @@ namespace fyiReporting.RDL
 				// Draw Value Axis
 				if (vaSize.Width > 0)	// If we made room for the axis - we need to draw it
 					DrawValueAxis(rpt, g, min, max, 
-						new System.Drawing.Rectangle(Layout.LeftMargin - vaSize.Width, Layout.TopMargin, vaSize.Width, Layout.PlotArea.Height), Layout.LeftMargin, _bm.Width - Layout.RightMargin,out incr,out intervalCount);
+						new Drawing.Rectangle(Layout.LeftMargin - vaSize.Width, Layout.TopMargin, vaSize.Width, Layout.PlotArea.Height), Layout.LeftMargin, _bm.Width - Layout.RightMargin,out incr,out intervalCount);
 
 				// Draw Category Axis
 				if (caSize.Height > 0)
                     //09052008ajm passing chart bounds int
 					DrawCategoryAxis(rpt, g,
-                        new System.Drawing.Rectangle(Layout.LeftMargin, _bm.Height - Layout.BottomMargin, Layout.PlotArea.Width, caSize.Height), Layout.TopMargin,
+                        new Drawing.Rectangle(Layout.LeftMargin, _bm.Height - Layout.BottomMargin, Layout.PlotArea.Width, caSize.Height), Layout.TopMargin,
                         caSize.Width);
 
 				// Draw Plot area data 
@@ -119,12 +123,12 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		void DrawPlotAreaArea(Report rpt, Graphics g, double min, double max)
+		void DrawPlotAreaArea(Report rpt, Drawing.Graphics g, double min, double max)
 		{
 			// Draw Plot area data 
 			int maxPointHeight = (int) Layout.PlotArea.Height;	
 			double widthCat = ((double) (Layout.PlotArea.Width) / (CategoryCount-1));
-			Point[] saveP = new Point[CategoryCount];	// used for drawing lines between points
+			Drawing.Point[] saveP = new Drawing.Point[CategoryCount];	// used for drawing lines between points
 			for (int iCol=1; iCol <= SeriesCount; iCol++)
 			{
 				for (int iRow=1; iRow <= CategoryCount; iRow++)
@@ -133,7 +137,7 @@ namespace fyiReporting.RDL
 
 					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = p;
                     DrawLinePoint(rpt, g, GetSeriesBrush(rpt, iRow, iCol), ChartMarkerEnum.None, p, iRow, iCol);
 
@@ -149,13 +153,13 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void DrawPlotAreaAreaPercentStacked(Report rpt, Graphics g)
+		void DrawPlotAreaAreaPercentStacked(Report rpt, Drawing.Graphics g)
 		{
 			double max = 1;				// 100% is the max
 			// Draw Plot area data 
 			int maxPointHeight = (int) Layout.PlotArea.Height;	
 			double widthCat = ((double) (Layout.PlotArea.Width) / (CategoryCount-1));
-			Point[,] saveAllP = new Point[CategoryCount,SeriesCount];	// used to collect all data points
+			Drawing.Point[,] saveAllP = new Drawing.Point[CategoryCount,SeriesCount];	// used to collect all data points
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
@@ -172,14 +176,14 @@ namespace fyiReporting.RDL
 					v += GetDataValue(rpt, iRow, iCol);
 
 					int y = (int) ((Math.Min(v/sum,max) / max) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveAllP[iRow-1, iCol-1] = p;
 				}
 			}
 
 			// Now loop thru and plot all the points
-			Point[] saveP = new Point[CategoryCount];	// used for drawing lines between points
-			Point[] priorSaveP= new Point[CategoryCount];
+			Drawing.Point[] saveP = new Drawing.Point[CategoryCount];	// used for drawing lines between points
+			Drawing.Point[] priorSaveP= new Drawing.Point[CategoryCount];
 			for (int iCol=1; iCol <= SeriesCount; iCol++)
 			{
 				for (int iRow=1; iRow <= CategoryCount; iRow++)
@@ -188,7 +192,7 @@ namespace fyiReporting.RDL
 
 					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) ((Math.Min(v,max) / max) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = saveAllP[iRow-1, iCol-1];
                     DrawLinePoint(rpt, g, GetSeriesBrush(rpt, iRow, iCol), ChartMarkerEnum.None, p, iRow, iCol);
 
@@ -207,12 +211,12 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void DrawPlotAreaAreaStacked(Report rpt, Graphics g, double min, double max)
+		void DrawPlotAreaAreaStacked(Report rpt, Drawing.Graphics g, double min, double max)
 		{
 			// Draw Plot area data 
 			int maxPointHeight = (int) Layout.PlotArea.Height;	
 			double widthCat = ((double) (Layout.PlotArea.Width) / (CategoryCount-1));
-			Point[,] saveAllP = new Point[CategoryCount,SeriesCount];	// used to collect all data points
+			Drawing.Point[,] saveAllP = new Drawing.Point[CategoryCount,SeriesCount];	// used to collect all data points
 
 			// Loop thru calculating all the data points
 			for (int iRow = 1; iRow <= CategoryCount; iRow++)
@@ -223,14 +227,14 @@ namespace fyiReporting.RDL
 				{
 					v += GetDataValue(rpt, iRow, iCol);
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveAllP[iRow-1, iCol-1] = p;
 				}
 			}
 
 			// Now loop thru and plot all the points
-			Point[] saveP = new Point[CategoryCount];	// used for drawing lines between points
-			Point[] priorSaveP= new Point[CategoryCount];
+			Drawing.Point[] saveP = new Drawing.Point[CategoryCount];	// used for drawing lines between points
+			Drawing.Point[] priorSaveP= new Drawing.Point[CategoryCount];
 			for (int iCol=1; iCol <= SeriesCount; iCol++)
 			{
 				for (int iRow=1; iRow <= CategoryCount; iRow++)
@@ -239,7 +243,7 @@ namespace fyiReporting.RDL
 
 					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat));
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = saveAllP[iRow-1, iCol-1];
                     DrawLinePoint(rpt, g, GetSeriesBrush(rpt, iRow, iCol), ChartMarkerEnum.None, p, iRow, iCol);
                     //Add a metafilecomment to use as a tooltip GJL 26092008
@@ -259,12 +263,12 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void DrawPlotAreaLine(Report rpt, Graphics g, double min, double max)
+		void DrawPlotAreaLine(Report rpt, Drawing.Graphics g, double min, double max)
 		{
 			// Draw Plot area data 
 			int maxPointHeight = (int) Layout.PlotArea.Height;	
 			double widthCat = ((double) (Layout.PlotArea.Width) / CategoryCount);
-			Point[] saveP = new Point[CategoryCount];	// used for drawing lines between points
+			Drawing.Point[] saveP = new Drawing.Point[CategoryCount];	// used for drawing lines between points
 			for (int iCol=1; iCol <= SeriesCount; iCol++)
 			{
 				for (int iRow=1; iRow <= CategoryCount; iRow++)
@@ -273,7 +277,7 @@ namespace fyiReporting.RDL
 
 					int x = (int) (Layout.PlotArea.Left + ((iRow-1) * widthCat) + (widthCat/2) );
 					int y = (int) (((Math.Min(v,max)-min) / (max-min)) * maxPointHeight);
-					Point p = new Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
+					Drawing.Point p = new Drawing.Point(x, Layout.PlotArea.Top + (maxPointHeight -  y));
 					saveP[iRow-1] = p;
                     bool DrawPoint = getNoMarkerVal(rpt, iCol, 1) == false;
                     //dont draw the point if I say not to!
@@ -307,34 +311,34 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void DrawAreaBetweenPoints(Graphics g, Brush brush, Point[] points, Point[] previous)
+		void DrawAreaBetweenPoints(Drawing.Graphics g, Drawing.Brush brush, Drawing.Point[] points, Drawing.Point[] previous)
 		{
 			if (points.Length <= 1)		// Need at least 2 points
 				return;
 
-			Pen p=null;
+			Drawing.Pen p=null;
 			try
 			{
-				p = new Pen(brush, 1);    // todo - use line from style ????
+				p = new Drawing.Pen(brush, 1);    // todo - use line from style ????
 				g.DrawLines(p, points);
-				PointF[] poly;
+				Drawing.PointF[] poly;
 				if (previous == null)
 				{	// The bottom is the bottom of the chart
-					poly = new PointF[points.Length + 3];
+					poly = new Drawing.PointF[points.Length + 3];
 					int i=0;
-					foreach (Point pt in points)
+					foreach (Drawing.Point pt in points)
 					{
 						poly[i++] = pt;
 					}
-					poly[i++] = new PointF(points[points.Length-1].X, Layout.PlotArea.Bottom);
-					poly[i++] = new PointF(points[0].X, Layout.PlotArea.Bottom);
-					poly[i] = new PointF(points[0].X, points[0].Y); 
+					poly[i++] = new Drawing.PointF(points[points.Length-1].X, Layout.PlotArea.Bottom);
+					poly[i++] = new Drawing.PointF(points[0].X, Layout.PlotArea.Bottom);
+					poly[i] = new Drawing.PointF(points[0].X, points[0].Y); 
 				}
 				else
 				{	// The bottom is the previous line
-					poly = new PointF[(points.Length * 2) + 1];
+					poly = new Drawing.PointF[(points.Length * 2) + 1];
 					int i=0;
-					foreach (Point pt in points)
+					foreach (Drawing.Point pt in points)
 					{
 						poly[i] = pt;
 						poly[points.Length+i] = previous[previous.Length - 1 - i];
@@ -352,23 +356,23 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-        void DrawLineBetweenPoints(Graphics g, Report rpt, Brush brush, Point[] points)
+        void DrawLineBetweenPoints(Drawing.Graphics g, Report rpt, Drawing.Brush brush, Drawing.Point[] points)
 		{
             DrawLineBetweenPoints(g, rpt, brush, points, 2);
 		}
 
-        void DrawLineBetweenPoints(Graphics g, Report rpt, Brush brush, Point[] points, int intLineSize)
+        void DrawLineBetweenPoints(Drawing.Graphics g, Report rpt, Drawing.Brush brush, Drawing.Point[] points, int intLineSize)
         {
             if (points.Length <= 1)		// Need at least 2 points
                 return;
 
-            Pen p = null;
+            Drawing.Pen p = null;
             try
             {
                 // 20022008 AJM GJL - Added thicker lines
 
 
-                p = new Pen(brush, intLineSize);    // todo - use line from style ????
+                p = new Drawing.Pen(brush, intLineSize);    // todo - use line from style ????
 
 
                 if ((ChartSubTypeEnum)Enum.Parse(typeof(ChartSubTypeEnum), _ChartDefn.Subtype.EvaluateString(rpt, _row)) == ChartSubTypeEnum.Smooth && points.Length > 2)
@@ -384,15 +388,15 @@ namespace fyiReporting.RDL
             return;
         }
 
-		void DrawLinePoint(Report rpt, Graphics g, Brush brush, ChartMarkerEnum marker, Point p, int iRow, int iCol)
+		void DrawLinePoint(Report rpt, Drawing.Graphics g, Drawing.Brush brush, ChartMarkerEnum marker, Drawing.Point p, int iRow, int iCol)
 		{
-			Pen pen=null;
+			Drawing.Pen pen=null;
 			try
 			{
-				pen = new Pen(brush);
+				pen = new Drawing.Pen(brush);
 				// 20022008 AJM GJL - Added bigger points
 				DrawLegendMarker(g, brush, pen, marker, p.X-5, p.Y-5, 10);
-				DrawDataPoint(rpt, g, new Point(p.X-5, p.Y+5), iRow, iCol);
+				DrawDataPoint(rpt, g, new Drawing.Point(p.X-5, p.Y+5), iRow, iCol);
 			}
 			finally
 			{

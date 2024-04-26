@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using fyiReporting.RDL;
 
 namespace fyiReporting.RDL
@@ -63,7 +66,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 //PJR20220801 - (int) Math.Pow(2,7) !=128 it's 127!!! Argh!!!
                 bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
-                Brush b;
+                Drawing.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -71,7 +74,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new SolidBrush(Color.FromArgb(A, R, G, B));
+                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -92,8 +95,8 @@ namespace fyiReporting.RDL
                 System.Text.UnicodeEncoding d = new System.Text.UnicodeEncoding();
                 d.GetChars(_br.ReadBytes((int)StringLength * 2), 0, (int)StringLength * 2, StringData, 0);
                 EMFFont EF = (EMFFont)ObjectTable[(byte)ObjectID];
-                Font f = EF.myFont;
-                StringFormat sf;
+                Drawing.Font f = EF.myFont;
+                Drawing.StringFormat sf;
                 if (ObjectTable.Contains((byte)FormatID))
                 {
                     EMFStringFormat ESF = (EMFStringFormat)ObjectTable[(byte)FormatID];
@@ -101,7 +104,7 @@ namespace fyiReporting.RDL
                 }
                 else
                 {
-                    sf = new StringFormat();
+                    sf = new Drawing.StringFormat();
                 }
 
                 DoInstructions(f, sf, b, recX, recY, recWidth, recHeight, new String(StringData));
@@ -120,12 +123,12 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Font f, StringFormat sf, Brush br, Single recX, Single recY, Single recWidth, Single recHeight, String Text)
+        private void DoInstructions(Drawing.Font f, Drawing.StringFormat sf, Drawing.Brush br, Single recX, Single recY, Single recWidth, Single recHeight, String Text)
         {
-            Color Col = Color.Black;
+            Drawing.Color Col = Drawing.Color.Black;
             if (br.GetType().Name.Equals("SolidBrush"))
             {
-                SolidBrush sb = (SolidBrush)br;
+                Drawing.SolidBrush sb = (Drawing.SolidBrush)br;
                 Col = sb.Color;
             }
 
@@ -143,24 +146,24 @@ namespace fyiReporting.RDL
             if (f.Italic) {SI.FontStyle = FontStyleEnum.Italic;}
             if (f.Bold) { SI.FontWeight = FontWeightEnum.Bold; }
             if (f.Underline) { SI.TextDecoration = TextDecorationEnum.Underline; }
-            if (sf.LineAlignment == StringAlignment.Center)
+            if (sf.LineAlignment == Drawing.StringAlignment.Center)
             {
                 SI.TextAlign = TextAlignEnum.Center;
             }
-            else if (sf.LineAlignment == StringAlignment.Far)
+            else if (sf.LineAlignment == Drawing.StringAlignment.Far)
             {
                 SI.TextAlign = TextAlignEnum.Right;
             }
 
-            if (sf.Alignment == StringAlignment.Center)
+            if (sf.Alignment == Drawing.StringAlignment.Center)
             {
                 SI.VerticalAlign = VerticalAlignEnum.Middle;
             }
-            else if (sf.Alignment == StringAlignment.Far)
+            else if (sf.Alignment == Drawing.StringAlignment.Far)
             {
                 SI.VerticalAlign = VerticalAlignEnum.Bottom;
             }
-            if ((sf.FormatFlags & StringFormatFlags.DirectionVertical) == StringFormatFlags.DirectionVertical)
+            if ((sf.FormatFlags & Drawing.StringFormatFlags.DirectionVertical) == Drawing.StringFormatFlags.DirectionVertical)
             {
                 SI.WritingMode = WritingModeEnum.tb_rl;
             }

@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -70,7 +73,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 UInt32 NumberOfPoints = _br.ReadUInt32(); 
                 EMFPen Emfp = (EMFPen)ObjectTable[ObjectID];
-                Pen p = Emfp.myPen;               
+                Drawing.Pen p = Emfp.myPen;               
                 //EMFBrush b = p.myBrush;                
                 if (Compressed)
                 {
@@ -100,17 +103,17 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Pen p)
+        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
         {
-            System.Drawing.PointF[] Points = new System.Drawing.PointF[NumberOfPoints];
+            Drawing.PointF[] Points = new Drawing.PointF[NumberOfPoints];
             bool first = true;
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 Points[i].X = _br.ReadSingle();
                 Points[i].Y = _br.ReadSingle();
             }
-            PointF PointA = new PointF();
-            PointF PointB = new PointF();
+            Drawing.PointF PointA = new Drawing.PointF();
+            Drawing.PointF PointB = new Drawing.PointF();
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 if (first)
@@ -127,22 +130,22 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoRelative(UInt32 NumberOfPoints, BinaryReader _br, Pen p)
+        private void DoRelative(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
         {
             throw new NotSupportedException("Relative Points are not supported");
         }
 
-        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Pen p)
+        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
         {
             bool first = true;
-            Point[] Points = new System.Drawing.Point[NumberOfPoints];            
+            Drawing.Point[] Points = new Drawing.Point[NumberOfPoints];            
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 Points[i].X = _br.ReadInt16();
                 Points[i].Y = _br.ReadInt16();
             }
-            Point PointA= new Point();
-            Point PointB = new Point();
+            Drawing.Point PointA= new Drawing.Point();
+            Drawing.Point PointB = new Drawing.Point();
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 if (first)
@@ -159,7 +162,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single Xa,Single Xb, Single Ya, Single Yb,Pen p)
+        private void DoInstructions(Single Xa,Single Xb, Single Ya, Single Yb,Drawing.Pen p)
         {
             BorderStyleEnum ls = getLineStyle(p);
            
@@ -167,7 +170,7 @@ namespace fyiReporting.RDL
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
+                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
                     PageLine pl = new PageLine();
                     pl.X = X + (Xa * SCALEFACTOR);
                     pl.Y = Y + (Ya * SCALEFACTOR);

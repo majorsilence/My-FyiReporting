@@ -24,7 +24,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+#if LINUX
+using System.DrawingCore.Imaging;
+#else
 using System.Drawing.Imaging;
+#endif
 using System.Text;
 using RdlEngine.Resources;
 using fyiReporting.RDL;

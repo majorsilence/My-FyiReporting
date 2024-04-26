@@ -25,7 +25,11 @@ using RdlEngine.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {

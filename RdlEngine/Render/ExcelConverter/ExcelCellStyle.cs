@@ -1,5 +1,9 @@
 ﻿using System;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.Linq;
 using fyiReporting.RDL;
 using NPOI.SS.UserModel;
@@ -119,14 +123,15 @@ namespace RdlEngine.Render.ExcelConverter
 		public float FontSize { get; set; }
 		public string FontName { get; set; }
 
-		private Color fontColor;
-		public void SetFontColor(Color color)
+		private Drawing.Color fontColor;
+		public void SetFontColor(Drawing.Color color)
 		{
 			fontColor = color;
 		}
 		public XSSFColor FontColor {
 			get {
-				return new XSSFColor(fontColor.IsEmpty ? Color.Black : fontColor);
+				var color = ColorToByteArray(fontColor.IsEmpty ? Drawing.Color.Black : fontColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -155,14 +160,16 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		//background
-		private  Color backgroundColor;
-		public void SetBackgroundColor(Color color)
+		private  Drawing.Color backgroundColor;
+		public void SetBackgroundColor(Drawing.Color color)
 		{
 			backgroundColor = color;
 		}
 		public XSSFColor BackgroundColor {
-			get {
-				return new XSSFColor(backgroundColor.IsEmpty ? Color.White : backgroundColor);
+			get
+			{
+				var color = ColorToByteArray(backgroundColor.IsEmpty ? Drawing.Color.White : backgroundColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -170,15 +177,15 @@ namespace RdlEngine.Render.ExcelConverter
 
 		//top
 		private BorderStyleEnum borderTop;
-		private Color borderTopColor;
+		private Drawing.Color borderTopColor;
 		private short borderTopWidth;
 
 		public void SetBorderTop(BorderStyleEnum style)
 		{
-			SetBorderTop(style, 1, Color.Black);
+			SetBorderTop(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderTop(BorderStyleEnum style, float width, Color color)
+		public void SetBorderTop(BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderTopColor = color;
 			borderTop = style;
@@ -186,8 +193,10 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		public XSSFColor BorderTopColor {
-			get {
-				return new XSSFColor(borderTopColor.IsEmpty ? Color.Black : borderTopColor);
+			get
+			{
+				var color = ColorToByteArray(borderTopColor.IsEmpty ? Drawing.Color.Black : borderTopColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -199,15 +208,15 @@ namespace RdlEngine.Render.ExcelConverter
 
 		//right
 		private BorderStyleEnum borderRight;
-		private Color borderRightColor;
+		private Drawing.Color borderRightColor;
 		private short borderRightWidth;
 
 		public void SetBorderRight(BorderStyleEnum style)
 		{
-			SetBorderRight(style, 1, Color.Black);
+			SetBorderRight(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderRight(BorderStyleEnum style, float width, Color color)
+		public void SetBorderRight(BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderRightColor = color;
 			borderRight = style;
@@ -215,8 +224,10 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		public XSSFColor BorderRightColor {
-			get {
-				return new XSSFColor(borderRightColor.IsEmpty ? Color.Black : borderRightColor);
+			get
+			{
+				var color = ColorToByteArray(borderRightColor.IsEmpty ? Drawing.Color.Black : borderRightColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -230,15 +241,15 @@ namespace RdlEngine.Render.ExcelConverter
 
 		//bottom
 		private BorderStyleEnum borderBottom;
-		private Color borderBottomColor;
+		private Drawing.Color borderBottomColor;
 		private short borderBottomWidth;
 
 		public void SetBorderBottom(BorderStyleEnum style)
 		{
-			SetBorderBottom(style, 1, Color.Black);
+			SetBorderBottom(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderBottom(BorderStyleEnum style, float width, Color color)
+		public void SetBorderBottom(BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderBottomColor = color;
 			borderBottom = style;
@@ -246,8 +257,10 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		public XSSFColor BorderBottomColor {
-			get {
-				return new XSSFColor(borderBottomColor.IsEmpty ? Color.Black : borderBottomColor);
+			get
+			{
+				var color = ColorToByteArray(borderBottomColor.IsEmpty ? Drawing.Color.Black : borderBottomColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -259,15 +272,15 @@ namespace RdlEngine.Render.ExcelConverter
 
 		//left
 		private BorderStyleEnum borderLeft;
-		private Color borderLeftColor;
+		private Drawing.Color borderLeftColor;
 		private short borderLeftWidth;
 
 		public void SetBorderLeft(BorderStyleEnum style)
 		{
-			SetBorderLeft(style, 1, Color.Black);
+			SetBorderLeft(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderLeft(BorderStyleEnum style, float width, Color color)
+		public void SetBorderLeft(BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderLeftColor = color;
 			borderLeft = style;
@@ -275,8 +288,10 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		public XSSFColor BorderLeftColor {
-			get {
-				return new XSSFColor(borderLeftColor.IsEmpty ? Color.Black : borderLeftColor);
+			get
+			{
+				var color = ColorToByteArray(borderLeftColor.IsEmpty ? Drawing.Color.Black : borderLeftColor);
+				return new XSSFColor(color);
 			}
 		}
 
@@ -465,6 +480,11 @@ namespace RdlEngine.Render.ExcelConverter
 				default:
 					return HorizontalAlignment.Left;
 			}
+		}
+		
+		private byte[] ColorToByteArray(Drawing.Color color)
+		{
+			return new byte[] { color.R, color.G, color.B, color.A };
 		}
 	}
 }

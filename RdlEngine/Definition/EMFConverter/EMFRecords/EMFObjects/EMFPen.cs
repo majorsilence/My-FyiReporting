@@ -22,7 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -53,7 +57,7 @@ namespace fyiReporting.RDL
 
     internal class EMFPen : EMFRecordObject
     {
-        public Pen myPen; 
+        public Drawing.Pen myPen; 
 
         private EMFPen(byte[] RecordData)        
         {
@@ -62,7 +66,7 @@ namespace fyiReporting.RDL
             //put the Data into a stream and use a binary reader to read the data
             MemoryStream _ms = new MemoryStream(RecordData);
             BinaryReader _br = new BinaryReader(_ms);
-            myPen = new Pen(Color.Black); //default just for now..
+            myPen = new Drawing.Pen(Drawing.Color.Black); //default just for now..
             UInt32 Version = _br.ReadUInt32();
             UInt32 Unknown = _br.ReadUInt32();
             UInt32 Flags = _br.ReadUInt32();
@@ -81,15 +85,15 @@ namespace fyiReporting.RDL
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataStartCap) == (UInt32)PenDataFlags.PenDataStartCap)
             {
-                myPen.StartCap = (System.Drawing.Drawing2D.LineCap)_br.ReadInt32();               
+                myPen.StartCap = (Drawing.Drawing2D.LineCap)_br.ReadInt32();               
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataEndCap) == (UInt32)PenDataFlags.PenDataEndCap)
             {
-                myPen.EndCap = (System.Drawing.Drawing2D.LineCap)_br.ReadInt32();
+                myPen.EndCap = (Drawing.Drawing2D.LineCap)_br.ReadInt32();
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataJoin) == (UInt32)PenDataFlags.PenDataJoin)
             {
-                myPen.LineJoin = (System.Drawing.Drawing2D.LineJoin) _br.ReadUInt32();               
+                myPen.LineJoin = (Drawing.Drawing2D.LineJoin) _br.ReadUInt32();               
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataMiterLimit) == (UInt32)PenDataFlags.PenDataMiterLimit)
             {
@@ -97,11 +101,11 @@ namespace fyiReporting.RDL
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataLineStyle) == (UInt32)PenDataFlags.PenDataLineStyle)
             {
-                myPen.DashStyle = (System.Drawing.Drawing2D.DashStyle) _br.ReadInt32();              
+                myPen.DashStyle = (Drawing.Drawing2D.DashStyle) _br.ReadInt32();              
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataDashedLineCap) == (UInt32)PenDataFlags.PenDataDashedLineCap)
             {
-                myPen.DashCap = (System.Drawing.Drawing2D.DashCap) _br.ReadUInt32();             
+                myPen.DashCap = (Drawing.Drawing2D.DashCap) _br.ReadUInt32();             
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataDashedLineOffset) == (UInt32)PenDataFlags.PenDataDashedLineOffset)
             {
@@ -121,7 +125,7 @@ namespace fyiReporting.RDL
 
             if ((Flags & (UInt32)PenDataFlags.PenDataNonCenter) == (UInt32)PenDataFlags.PenDataNonCenter)
             {               
-                myPen.Alignment = (System.Drawing.Drawing2D.PenAlignment) _br.ReadInt32();             
+                myPen.Alignment = (Drawing.Drawing2D.PenAlignment) _br.ReadInt32();             
             }
             if ((Flags & (UInt32)PenDataFlags.PenDataCompoundLine) == (UInt32)PenDataFlags.PenDataCompoundLine)
             {

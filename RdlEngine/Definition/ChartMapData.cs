@@ -25,7 +25,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.IO;
 using System.Xml;
 using System.Globalization;
@@ -80,7 +84,7 @@ namespace fyiReporting.RDL
 
         private void ReadXmlLines(XmlReader xr)
         {
-            PointF[] pts = null;
+            Drawing.PointF[] pts = null;
             // Read thru all the Lines objects
             while (xr.Read())
             {
@@ -102,11 +106,11 @@ namespace fyiReporting.RDL
                 AddMapObject(new MapLines(pts));
         }
 
-        private PointF[] ReadXmlPoints(XmlReader xr)
+        private Drawing.PointF[] ReadXmlPoints(XmlReader xr)
         {
             string spts = xr.ReadString();
             string[] pts = spts.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            PointF[] pa = new PointF[pts.Length / 2];
+            Drawing.PointF[] pa = new Drawing.PointF[pts.Length / 2];
             int j=0;
             for (int i = 0; i < pa.Length; i++)
             {
@@ -118,9 +122,9 @@ namespace fyiReporting.RDL
         private void ReadXmlPolygon(XmlReader xr)
         {
             // Read thru all the Polygon objects
-            PointF[] pts = null;
+            Drawing.PointF[] pts = null;
             string[] keys = null;
-            Color fill = Color.Empty;
+            Drawing.Color fill = Drawing.Color.Empty;
             while (xr.Read())
             {
                 if (!xr.IsStartElement())
@@ -155,17 +159,17 @@ namespace fyiReporting.RDL
             return keys;
         }
 
-        private Color ReadXmlColor(XmlReader xr)
+        private Drawing.Color ReadXmlColor(XmlReader xr)
         {
             string sc = xr.ReadString();
-            return XmlUtil.ColorFromHtml(sc, Color.Empty);
+            return XmlUtil.ColorFromHtml(sc, Drawing.Color.Empty);
         }
 
         private void ReadXmlText(XmlReader xr)
         {
             // Read thru all the Text elements
             string val = null;
-            PointF location= new PointF();
+            Drawing.PointF location= new Drawing.PointF();
             string family = "Arial";
             float fontsize = 8;
             bool bBold = false;
@@ -186,7 +190,7 @@ namespace fyiReporting.RDL
                 switch (xr.Name)
                 {
                     case "Location":
-                        PointF[] pfa = ReadXmlPoints(xr);
+                        Drawing.PointF[] pfa = ReadXmlPoints(xr);
                         location = pfa[0];
                         break;
                     case "Value":
@@ -284,55 +288,55 @@ namespace fyiReporting.RDL
         /// </summary>
         internal MapData()
 		{
-            AddPolygon(new PointF[] { new PointF(338, 104), new PointF(339, 111), new PointF(344, 111), new PointF(344, 109) }, new string[] { "de" });
-            AddPolygon(new PointF[] { new PointF(312, 106), new PointF(335, 102), new PointF(332, 112), new PointF(323, 105) }, new string[] { "md" });
-            AddPolygon(new PointF[] { new PointF(355, 46), new PointF(358, 29), new PointF(364, 26), new PointF(367, 25), new PointF(371, 35), new PointF(378, 44), new PointF(372, 50), new PointF(369, 48), new PointF(368, 54), new PointF(360, 64) }, new string[] { "me" });
-            AddPolygon(new PointF[] { new PointF(352, 49), new PointF(360, 65), new PointF(359, 67), new PointF(351, 67) }, new string[] { "nh" });
-            AddPolygon(new PointF[] { new PointF(358, 76), new PointF(360, 77), new PointF(360, 80), new PointF(359, 80) }, new string[] { "ri" });
-            AddPolygon(new PointF[] { new PointF(348, 78), new PointF(361, 77), new PointF(357, 81), new PointF(349, 85) }, new string[] { "ct" });
-            AddPolygon(new PointF[] { new PointF(348, 72), new PointF(360, 68), new PointF(361, 72), new PointF(364, 74), new PointF(367, 73), new PointF(367, 76), new PointF(365, 77), new PointF(362, 78), new PointF(361, 74), new PointF(348, 77) }, new string[] { "ma" });
-            AddPolygon(new PointF[] { new PointF(343, 53), new PointF(352, 50), new PointF(350, 70), new PointF(347, 69) }, new string[] { "vt" });
-            AddPolygon(new PointF[] { new PointF(308, 86), new PointF(312, 80), new PointF(312, 75), new PointF(324, 72), new PointF(326, 68), new PointF(326, 63), new PointF(334, 54), new PointF(341, 54), new PointF(347, 71), new PointF(347, 85), new PointF(341, 85), new PointF(336, 81) }, new string[] { "ny" });
-            AddPolygon(new PointF[] { new PointF(340, 86), new PointF(346, 86), new PointF(347, 96), new PointF(344, 104), new PointF(338, 100), new PointF(343, 96), new PointF(340, 92) }, new string[] { "nj" });
-            AddPolygon(new PointF[] { new PointF(304, 88), new PointF(336, 81), new PointF(339, 86), new PointF(339, 91), new PointF(341, 94), new PointF(339, 100), new PointF(306, 106) }, new string[] { "pa" });
-            AddPolygon(new PointF[] { new PointF(305, 107), new PointF(312, 107), new PointF(315, 109), new PointF(320, 106), new PointF(321, 107), new PointF(310, 124), new PointF(302, 127), new PointF(300, 125), new PointF(295, 119) }, new string[] { "wv" });
-            AddPolygon(new PointF[] { new PointF(295, 136), new PointF(338, 126), new PointF(339, 119), new PointF(328, 110), new PointF(323, 107), new PointF(316, 115), new PointF(309, 126), new PointF(302, 129), new PointF(295, 132) }, new string[] { "va" });
-            AddPolygon(new PointF[] { new PointF(304, 135), new PointF(334, 129), new PointF(343, 131), new PointF(345, 137), new PointF(330, 152), new PointF(319, 147), new PointF(312, 146), new PointF(305, 145), new PointF(298, 147), new PointF(289, 150) }, new string[] { "nc" });
-            AddPolygon(new PointF[] { new PointF(296, 150), new PointF(303, 147), new PointF(310, 146), new PointF(312, 148), new PointF(319, 148), new PointF(328, 154), new PointF(315, 170) }, new string[] { "sc" });
-            AddPolygon(new PointF[] { new PointF(280, 94), new PointF(287, 93), new PointF(290, 94), new PointF(303, 88), new PointF(305, 105), new PointF(295, 119), new PointF(281, 115), new PointF(277, 94), new PointF(283, 93) }, new string[] { "oh" });
-            AddPolygon(new PointF[] { new PointF(267, 188), new PointF(313, 188), new PointF(331, 219), new PointF(328, 230), new PointF(321, 231), new PointF(313, 219), new PointF(305, 201), new PointF(295, 192), new PointF(283, 195), new PointF(280, 192), new PointF(270, 191) }, new string[] { "fl" });
-            AddPolygon(new PointF[] { new PointF(279, 152), new PointF(294, 150), new PointF(313, 170), new PointF(311, 186), new PointF(307, 186), new PointF(287, 183) }, new string[] { "ga" });
-            AddPolygon(new PointF[] { new PointF(261, 154), new PointF(277, 152), new PointF(285, 185), new PointF(267, 187), new PointF(269, 192), new PointF(263, 192) }, new string[] { "al" });
-            AddPolygon(new PointF[] { new PointF(246, 156), new PointF(260, 155), new PointF(260, 191), new PointF(251, 192), new PointF(250, 188), new PointF(237, 187), new PointF(242, 175), new PointF(240, 169) }, new string[] { "ms" });
-            AddPolygon(new PointF[] { new PointF(250, 143), new PointF(302, 135), new PointF(286, 150), new PointF(246, 155) }, new string[] { "tn" });
-            AddPolygon(new PointF[] { new PointF(250, 140), new PointF(291, 135), new PointF(298, 126), new PointF(295, 120), new PointF(279, 116), new PointF(271, 126), new PointF(262, 129) }, new string[] { "ky" });
-            AddPolygon(new PointF[] { new PointF(260, 96), new PointF(275, 95), new PointF(278, 118), new PointF(259, 129) }, new string[] { "in" });
-            AddPolygon(new PointF[] { new PointF(240, 91), new PointF(257, 91), new PointF(258, 97), new PointF(258, 127), new PointF(252, 136), new PointF(235, 110) }, new string[] { "il" });
-            AddPolygon(new PointF[] { new PointF(239, 56), new PointF(251, 48), new PointF(258, 53), new PointF(269, 53), new PointF(276, 56), new PointF(280, 61), new PointF(281, 77), new PointF(287, 75), new PointF(288, 83), new PointF(284, 91), new PointF(264, 94), new PointF(268, 85), new PointF(265, 73), new PointF(269, 67), new PointF(272, 60), new PointF(272, 57), new PointF(260, 60), new PointF(256, 64) }, new string[] { "mi" });
-            AddPolygon(new PointF[] { new PointF(229, 56), new PointF(235, 54), new PointF(253, 63), new PointF(256, 70), new PointF(255, 90), new PointF(238, 87), new PointF(235, 81), new PointF(227, 72), new PointF(224, 64) }, new string[] { "wi" });
-            AddPolygon(new PointF[] { new PointF(219, 173), new PointF(239, 174), new PointF(236, 188), new PointF(251, 190), new PointF(251, 194), new PointF(251, 200), new PointF(246, 203), new PointF(235, 199), new PointF(232, 201), new PointF(223, 199), new PointF(223, 189) }, new string[] { "la" });
-            AddPolygon(new PointF[] { new PointF(216, 145), new PointF(244, 143), new PointF(245, 149), new PointF(238, 172), new PointF(219, 168) }, new string[] { "ar" });
-            AddPolygon(new PointF[] { new PointF(208, 110), new PointF(233, 108), new PointF(250, 136), new PointF(247, 145), new PointF(243, 141), new PointF(215, 144), new PointF(216, 121) }, new string[] { "mo" });
-            AddPolygon(new PointF[] { new PointF(202, 84), new PointF(236, 84), new PointF(237, 91), new PointF(240, 95), new PointF(235, 107), new PointF(209, 108) }, new string[] { "ia" });
-            AddPolygon(new PointF[] { new PointF(200, 37), new PointF(210, 35), new PointF(241, 43), new PointF(227, 56), new PointF(225, 64), new PointF(224, 72), new PointF(234, 82), new PointF(203, 83) }, new string[] { "mn" });
-            AddPolygon(new PointF[] { new PointF(159, 142), new PointF(177, 144), new PointF(175, 160), new PointF(190, 166), new PointF(217, 170), new PointF(222, 199), new PointF(195, 216), new PointF(194, 233), new PointF(179, 227), new PointF(166, 202), new PointF(156, 199), new PointF(150, 206), new PointF(140, 199), new PointF(139, 192), new PointF(128, 178), new PointF(153, 181) }, new string[] { "tx" });
-            AddPolygon(new PointF[] { new PointF(157, 138), new PointF(213, 139), new PointF(215, 169), new PointF(206, 165), new PointF(186, 163), new PointF(176, 159), new PointF(176, 143), new PointF(155, 142) }, new string[] { "ok" });
-            AddPolygon(new PointF[] { new PointF(166, 112), new PointF(209, 112), new PointF(214, 122), new PointF(214, 138), new PointF(162, 137) }, new string[] { "ks" });
-            AddPolygon(new PointF[] { new PointF(155, 86), new PointF(202, 90), new PointF(209, 113), new PointF(165, 112), new PointF(165, 103), new PointF(151, 102) }, new string[] { "ne" });
-            AddPolygon(new PointF[] { new PointF(156, 61), new PointF(200, 62), new PointF(202, 90), new PointF(188, 88), new PointF(154, 85) }, new string[] { "sd" });
-            AddPolygon(new PointF[] { new PointF(159, 34), new PointF(197, 36), new PointF(200, 62), new PointF(158, 60) }, new string[] { "nd" });
-            AddPolygon(new PointF[] { new PointF(121, 100), new PointF(165, 103), new PointF(163, 137), new PointF(116, 134) }, new string[] { "co" });
-            AddPolygon(new PointF[] { new PointF(117, 134), new PointF(157, 137), new PointF(153, 180), new PointF(128, 177), new PointF(125, 180), new PointF(114, 177), new PointF(113, 181), new PointF(111, 181) }, new string[] { "nm" });
-            AddPolygon(new PointF[] { new PointF(83, 128), new PointF(116, 134), new PointF(110, 181), new PointF(70, 163) }, new string[] { "az" });
-            AddPolygon(new PointF[] { new PointF(92, 86), new PointF(109, 88), new PointF(107, 97), new PointF(121, 100), new PointF(115, 134), new PointF(84, 127) }, new string[] { "ut" });
-            AddPolygon(new PointF[] { new PointF(113, 63), new PointF(155, 69), new PointF(151, 102), new PointF(108, 97) }, new string[] { "wy" });
-            AddPolygon(new PointF[] { new PointF(91, 24), new PointF(159, 35), new PointF(155, 68), new PointF(114, 63), new PointF(112, 65), new PointF(102, 66) }, new string[] { "mt" });
-            AddPolygon(new PointF[] { new PointF(53, 77), new PointF(91, 86), new PointF(81, 133), new PointF(75, 132), new PointF(73, 141), new PointF(48, 101) }, new string[] { "nv" });
-            AddPolygon(new PointF[] { new PointF(86, 23), new PointF(90, 23), new PointF(89, 34), new PointF(95, 46), new PointF(93, 55), new PointF(97, 55), new PointF(101, 66), new PointF(112, 65), new PointF(108, 88), new PointF(73, 81) }, new string[] { "id" });
-            AddPolygon(new PointF[] { new PointF(29, 69), new PointF(53, 76), new PointF(47, 101), new PointF(75, 144), new PointF(76, 149), new PointF(69, 162), new PointF(51, 159), new PointF(48, 147), new PointF(42, 143), new PointF(32, 136), new PointF(32, 131), new PointF(29, 117), new PointF(28, 108), new PointF(33, 105), new PointF(27, 103), new PointF(22, 91), new PointF(22, 81) }, new string[] { "ca" });
-            AddPolygon(new PointF[] { new PointF(39, 36), new PointF(27, 69), new PointF(72, 80), new PointF(76, 62), new PointF(73, 62), new PointF(81, 52), new PointF(79, 47), new PointF(48, 44) }, new string[] { "or" });
-            AddPolygon(new PointF[] { new PointF(53, 14), new PointF(54, 24), new PointF(49, 29), new PointF(46, 27), new PointF(48, 24), new PointF(50, 21), new PointF(43, 16), new PointF(40, 34), new PointF(45, 37), new PointF(47, 43), new PointF(79, 46), new PointF(85, 22), new PointF(53,14) }, new string[] { "wa" });
-		    AddMapObject(new MapText("Map data failed to load.", new PointF(0,0)));
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(338, 104), new Drawing.PointF(339, 111), new Drawing.PointF(344, 111), new Drawing.PointF(344, 109) }, new string[] { "de" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(312, 106), new Drawing.PointF(335, 102), new Drawing.PointF(332, 112), new Drawing.PointF(323, 105) }, new string[] { "md" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(355, 46), new Drawing.PointF(358, 29), new Drawing.PointF(364, 26), new Drawing.PointF(367, 25), new Drawing.PointF(371, 35), new Drawing.PointF(378, 44), new Drawing.PointF(372, 50), new Drawing.PointF(369, 48), new Drawing.PointF(368, 54), new Drawing.PointF(360, 64) }, new string[] { "me" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(352, 49), new Drawing.PointF(360, 65), new Drawing.PointF(359, 67), new Drawing.PointF(351, 67) }, new string[] { "nh" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(358, 76), new Drawing.PointF(360, 77), new Drawing.PointF(360, 80), new Drawing.PointF(359, 80) }, new string[] { "ri" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(348, 78), new Drawing.PointF(361, 77), new Drawing.PointF(357, 81), new Drawing.PointF(349, 85) }, new string[] { "ct" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(348, 72), new Drawing.PointF(360, 68), new Drawing.PointF(361, 72), new Drawing.PointF(364, 74), new Drawing.PointF(367, 73), new Drawing.PointF(367, 76), new Drawing.PointF(365, 77), new Drawing.PointF(362, 78), new Drawing.PointF(361, 74), new Drawing.PointF(348, 77) }, new string[] { "ma" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(343, 53), new Drawing.PointF(352, 50), new Drawing.PointF(350, 70), new Drawing.PointF(347, 69) }, new string[] { "vt" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(308, 86), new Drawing.PointF(312, 80), new Drawing.PointF(312, 75), new Drawing.PointF(324, 72), new Drawing.PointF(326, 68), new Drawing.PointF(326, 63), new Drawing.PointF(334, 54), new Drawing.PointF(341, 54), new Drawing.PointF(347, 71), new Drawing.PointF(347, 85), new Drawing.PointF(341, 85), new Drawing.PointF(336, 81) }, new string[] { "ny" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(340, 86), new Drawing.PointF(346, 86), new Drawing.PointF(347, 96), new Drawing.PointF(344, 104), new Drawing.PointF(338, 100), new Drawing.PointF(343, 96), new Drawing.PointF(340, 92) }, new string[] { "nj" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(304, 88), new Drawing.PointF(336, 81), new Drawing.PointF(339, 86), new Drawing.PointF(339, 91), new Drawing.PointF(341, 94), new Drawing.PointF(339, 100), new Drawing.PointF(306, 106) }, new string[] { "pa" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(305, 107), new Drawing.PointF(312, 107), new Drawing.PointF(315, 109), new Drawing.PointF(320, 106), new Drawing.PointF(321, 107), new Drawing.PointF(310, 124), new Drawing.PointF(302, 127), new Drawing.PointF(300, 125), new Drawing.PointF(295, 119) }, new string[] { "wv" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(295, 136), new Drawing.PointF(338, 126), new Drawing.PointF(339, 119), new Drawing.PointF(328, 110), new Drawing.PointF(323, 107), new Drawing.PointF(316, 115), new Drawing.PointF(309, 126), new Drawing.PointF(302, 129), new Drawing.PointF(295, 132) }, new string[] { "va" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(304, 135), new Drawing.PointF(334, 129), new Drawing.PointF(343, 131), new Drawing.PointF(345, 137), new Drawing.PointF(330, 152), new Drawing.PointF(319, 147), new Drawing.PointF(312, 146), new Drawing.PointF(305, 145), new Drawing.PointF(298, 147), new Drawing.PointF(289, 150) }, new string[] { "nc" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(296, 150), new Drawing.PointF(303, 147), new Drawing.PointF(310, 146), new Drawing.PointF(312, 148), new Drawing.PointF(319, 148), new Drawing.PointF(328, 154), new Drawing.PointF(315, 170) }, new string[] { "sc" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(280, 94), new Drawing.PointF(287, 93), new Drawing.PointF(290, 94), new Drawing.PointF(303, 88), new Drawing.PointF(305, 105), new Drawing.PointF(295, 119), new Drawing.PointF(281, 115), new Drawing.PointF(277, 94), new Drawing.PointF(283, 93) }, new string[] { "oh" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(267, 188), new Drawing.PointF(313, 188), new Drawing.PointF(331, 219), new Drawing.PointF(328, 230), new Drawing.PointF(321, 231), new Drawing.PointF(313, 219), new Drawing.PointF(305, 201), new Drawing.PointF(295, 192), new Drawing.PointF(283, 195), new Drawing.PointF(280, 192), new Drawing.PointF(270, 191) }, new string[] { "fl" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(279, 152), new Drawing.PointF(294, 150), new Drawing.PointF(313, 170), new Drawing.PointF(311, 186), new Drawing.PointF(307, 186), new Drawing.PointF(287, 183) }, new string[] { "ga" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(261, 154), new Drawing.PointF(277, 152), new Drawing.PointF(285, 185), new Drawing.PointF(267, 187), new Drawing.PointF(269, 192), new Drawing.PointF(263, 192) }, new string[] { "al" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(246, 156), new Drawing.PointF(260, 155), new Drawing.PointF(260, 191), new Drawing.PointF(251, 192), new Drawing.PointF(250, 188), new Drawing.PointF(237, 187), new Drawing.PointF(242, 175), new Drawing.PointF(240, 169) }, new string[] { "ms" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(250, 143), new Drawing.PointF(302, 135), new Drawing.PointF(286, 150), new Drawing.PointF(246, 155) }, new string[] { "tn" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(250, 140), new Drawing.PointF(291, 135), new Drawing.PointF(298, 126), new Drawing.PointF(295, 120), new Drawing.PointF(279, 116), new Drawing.PointF(271, 126), new Drawing.PointF(262, 129) }, new string[] { "ky" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(260, 96), new Drawing.PointF(275, 95), new Drawing.PointF(278, 118), new Drawing.PointF(259, 129) }, new string[] { "in" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(240, 91), new Drawing.PointF(257, 91), new Drawing.PointF(258, 97), new Drawing.PointF(258, 127), new Drawing.PointF(252, 136), new Drawing.PointF(235, 110) }, new string[] { "il" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(239, 56), new Drawing.PointF(251, 48), new Drawing.PointF(258, 53), new Drawing.PointF(269, 53), new Drawing.PointF(276, 56), new Drawing.PointF(280, 61), new Drawing.PointF(281, 77), new Drawing.PointF(287, 75), new Drawing.PointF(288, 83), new Drawing.PointF(284, 91), new Drawing.PointF(264, 94), new Drawing.PointF(268, 85), new Drawing.PointF(265, 73), new Drawing.PointF(269, 67), new Drawing.PointF(272, 60), new Drawing.PointF(272, 57), new Drawing.PointF(260, 60), new Drawing.PointF(256, 64) }, new string[] { "mi" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(229, 56), new Drawing.PointF(235, 54), new Drawing.PointF(253, 63), new Drawing.PointF(256, 70), new Drawing.PointF(255, 90), new Drawing.PointF(238, 87), new Drawing.PointF(235, 81), new Drawing.PointF(227, 72), new Drawing.PointF(224, 64) }, new string[] { "wi" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(219, 173), new Drawing.PointF(239, 174), new Drawing.PointF(236, 188), new Drawing.PointF(251, 190), new Drawing.PointF(251, 194), new Drawing.PointF(251, 200), new Drawing.PointF(246, 203), new Drawing.PointF(235, 199), new Drawing.PointF(232, 201), new Drawing.PointF(223, 199), new Drawing.PointF(223, 189) }, new string[] { "la" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(216, 145), new Drawing.PointF(244, 143), new Drawing.PointF(245, 149), new Drawing.PointF(238, 172), new Drawing.PointF(219, 168) }, new string[] { "ar" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(208, 110), new Drawing.PointF(233, 108), new Drawing.PointF(250, 136), new Drawing.PointF(247, 145), new Drawing.PointF(243, 141), new Drawing.PointF(215, 144), new Drawing.PointF(216, 121) }, new string[] { "mo" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(202, 84), new Drawing.PointF(236, 84), new Drawing.PointF(237, 91), new Drawing.PointF(240, 95), new Drawing.PointF(235, 107), new Drawing.PointF(209, 108) }, new string[] { "ia" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(200, 37), new Drawing.PointF(210, 35), new Drawing.PointF(241, 43), new Drawing.PointF(227, 56), new Drawing.PointF(225, 64), new Drawing.PointF(224, 72), new Drawing.PointF(234, 82), new Drawing.PointF(203, 83) }, new string[] { "mn" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(159, 142), new Drawing.PointF(177, 144), new Drawing.PointF(175, 160), new Drawing.PointF(190, 166), new Drawing.PointF(217, 170), new Drawing.PointF(222, 199), new Drawing.PointF(195, 216), new Drawing.PointF(194, 233), new Drawing.PointF(179, 227), new Drawing.PointF(166, 202), new Drawing.PointF(156, 199), new Drawing.PointF(150, 206), new Drawing.PointF(140, 199), new Drawing.PointF(139, 192), new Drawing.PointF(128, 178), new Drawing.PointF(153, 181) }, new string[] { "tx" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(157, 138), new Drawing.PointF(213, 139), new Drawing.PointF(215, 169), new Drawing.PointF(206, 165), new Drawing.PointF(186, 163), new Drawing.PointF(176, 159), new Drawing.PointF(176, 143), new Drawing.PointF(155, 142) }, new string[] { "ok" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(166, 112), new Drawing.PointF(209, 112), new Drawing.PointF(214, 122), new Drawing.PointF(214, 138), new Drawing.PointF(162, 137) }, new string[] { "ks" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(155, 86), new Drawing.PointF(202, 90), new Drawing.PointF(209, 113), new Drawing.PointF(165, 112), new Drawing.PointF(165, 103), new Drawing.PointF(151, 102) }, new string[] { "ne" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(156, 61), new Drawing.PointF(200, 62), new Drawing.PointF(202, 90), new Drawing.PointF(188, 88), new Drawing.PointF(154, 85) }, new string[] { "sd" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(159, 34), new Drawing.PointF(197, 36), new Drawing.PointF(200, 62), new Drawing.PointF(158, 60) }, new string[] { "nd" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(121, 100), new Drawing.PointF(165, 103), new Drawing.PointF(163, 137), new Drawing.PointF(116, 134) }, new string[] { "co" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(117, 134), new Drawing.PointF(157, 137), new Drawing.PointF(153, 180), new Drawing.PointF(128, 177), new Drawing.PointF(125, 180), new Drawing.PointF(114, 177), new Drawing.PointF(113, 181), new Drawing.PointF(111, 181) }, new string[] { "nm" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(83, 128), new Drawing.PointF(116, 134), new Drawing.PointF(110, 181), new Drawing.PointF(70, 163) }, new string[] { "az" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(92, 86), new Drawing.PointF(109, 88), new Drawing.PointF(107, 97), new Drawing.PointF(121, 100), new Drawing.PointF(115, 134), new Drawing.PointF(84, 127) }, new string[] { "ut" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(113, 63), new Drawing.PointF(155, 69), new Drawing.PointF(151, 102), new Drawing.PointF(108, 97) }, new string[] { "wy" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(91, 24), new Drawing.PointF(159, 35), new Drawing.PointF(155, 68), new Drawing.PointF(114, 63), new Drawing.PointF(112, 65), new Drawing.PointF(102, 66) }, new string[] { "mt" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(53, 77), new Drawing.PointF(91, 86), new Drawing.PointF(81, 133), new Drawing.PointF(75, 132), new Drawing.PointF(73, 141), new Drawing.PointF(48, 101) }, new string[] { "nv" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(86, 23), new Drawing.PointF(90, 23), new Drawing.PointF(89, 34), new Drawing.PointF(95, 46), new Drawing.PointF(93, 55), new Drawing.PointF(97, 55), new Drawing.PointF(101, 66), new Drawing.PointF(112, 65), new Drawing.PointF(108, 88), new Drawing.PointF(73, 81) }, new string[] { "id" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(29, 69), new Drawing.PointF(53, 76), new Drawing.PointF(47, 101), new Drawing.PointF(75, 144), new Drawing.PointF(76, 149), new Drawing.PointF(69, 162), new Drawing.PointF(51, 159), new Drawing.PointF(48, 147), new Drawing.PointF(42, 143), new Drawing.PointF(32, 136), new Drawing.PointF(32, 131), new Drawing.PointF(29, 117), new Drawing.PointF(28, 108), new Drawing.PointF(33, 105), new Drawing.PointF(27, 103), new Drawing.PointF(22, 91), new Drawing.PointF(22, 81) }, new string[] { "ca" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(39, 36), new Drawing.PointF(27, 69), new Drawing.PointF(72, 80), new Drawing.PointF(76, 62), new Drawing.PointF(73, 62), new Drawing.PointF(81, 52), new Drawing.PointF(79, 47), new Drawing.PointF(48, 44) }, new string[] { "or" });
+            AddPolygon(new Drawing.PointF[] { new Drawing.PointF(53, 14), new Drawing.PointF(54, 24), new Drawing.PointF(49, 29), new Drawing.PointF(46, 27), new Drawing.PointF(48, 24), new Drawing.PointF(50, 21), new Drawing.PointF(43, 16), new Drawing.PointF(40, 34), new Drawing.PointF(45, 37), new Drawing.PointF(47, 43), new Drawing.PointF(79, 46), new Drawing.PointF(85, 22), new Drawing.PointF(53,14) }, new string[] { "wa" });
+		    AddMapObject(new MapText("Map data failed to load.", new Drawing.PointF(0,0)));
         }
 
         internal void AddMapObject(MapObject mo)
@@ -342,12 +346,12 @@ namespace fyiReporting.RDL
             _MaxY = Math.Max(_MaxY, mo.MaxY);
         }
 
-        internal void AddPolygon(PointF[] polygon, string[] entries)
+        internal void AddPolygon(Drawing.PointF[] polygon, string[] entries)
         {
-            AddPolygon(polygon, entries, Color.Empty);
+            AddPolygon(polygon, entries, Drawing.Color.Empty);
         }
 
-        internal void AddPolygon(PointF[] polygon, string[] entries, Color fill)
+        internal void AddPolygon(Drawing.PointF[] polygon, string[] entries, Drawing.Color fill)
         {
             MapPolygon mp = new MapPolygon(polygon);
             mp.Fill = fill;
@@ -404,19 +408,19 @@ namespace fyiReporting.RDL
     {
         internal abstract float MaxX { get;}
         internal abstract float MaxY { get;}
-        internal abstract void Draw(Graphics g, float scale, float offX, float offY);
+        internal abstract void Draw(Drawing.Graphics g, float scale, float offX, float offY);
     }
 
     internal class MapLines : MapObject
     {
-        PointF[] _Lines = null;
+        Drawing.PointF[] _Lines = null;
         float _MaxX=0;
         float _MaxY=0;
 
-        internal MapLines(PointF[] lines) : base()
+        internal MapLines(Drawing.PointF[] lines) : base()
         {
             _Lines = lines;
-            foreach (PointF p in lines)
+            foreach (Drawing.PointF p in lines)
             {
                 if (p.X > _MaxX)
                     _MaxX = p.X;
@@ -425,7 +429,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        internal PointF[] Lines
+        internal Drawing.PointF[] Lines
         {
             get { return _Lines; }
         }
@@ -438,40 +442,40 @@ namespace fyiReporting.RDL
         {
             get { return _MaxY; }
         }
-        internal override void Draw(Graphics g, float scale, float offX, float offY)
+        internal override void Draw(Drawing.Graphics g, float scale, float offX, float offY)
         {
-            PointF[] poly = this.Lines;
-            PointF[] drawpoly = new PointF[poly.Length];
+            Drawing.PointF[] poly = this.Lines;
+            Drawing.PointF[] drawpoly = new Drawing.PointF[poly.Length];
             // make points relative to plot area --- need to scale this as well
             for (int ip = 0; ip < drawpoly.Length; ip++)
             {
-                drawpoly[ip] = new PointF(offX + (poly[ip].X * scale), offY + (poly[ip].Y * scale));
+                drawpoly[ip] = new Drawing.PointF(offX + (poly[ip].X * scale), offY + (poly[ip].Y * scale));
             }
-            g.DrawPolygon(Pens.Black, drawpoly);
+            g.DrawPolygon(Drawing.Pens.Black, drawpoly);
         }
     }
 
     internal class MapPolygon : MapObject
     {
-        PointF[] _Polygon = null;
+        Drawing.PointF[] _Polygon = null;
         float _MaxX=0;
         float _MaxY=0;
-        Color _Fill = Color.Empty;
-        internal MapPolygon(PointF[] poly) : base()
+        Drawing.Color _Fill = Drawing.Color.Empty;
+        internal MapPolygon(Drawing.PointF[] poly) : base()
         {
-            PointF[] fpoly;
+            Drawing.PointF[] fpoly;
             if (poly[0].X == poly[poly.Length - 1].X &&
                 poly[0].Y == poly[poly.Length - 1].Y)
                 fpoly = poly;
             else
             {   // close the polygon;
-                fpoly = new PointF[poly.Length + 1];
+                fpoly = new Drawing.PointF[poly.Length + 1];
                 for (int pi = 0; pi < poly.Length; pi++)
                     fpoly[pi] = poly[pi];
                 fpoly[poly.Length] = fpoly[0];
             }
             _Polygon = fpoly;
-            foreach (PointF p in _Polygon)
+            foreach (Drawing.PointF p in _Polygon)
             {
                 if (p.X > _MaxX)
                     _MaxX = p.X;
@@ -480,12 +484,12 @@ namespace fyiReporting.RDL
             }
 
         }
-        internal Color Fill
+        internal Drawing.Color Fill
         {
             get { return _Fill; }
             set { _Fill = value; }
         }
-        internal PointF[] Polygon
+        internal Drawing.PointF[] Polygon
         {
             get { return _Polygon; }
         }
@@ -497,20 +501,20 @@ namespace fyiReporting.RDL
         {
             get { return _MaxY; }
         }
-        internal override void Draw(Graphics g, float scale, float offX, float offY)
+        internal override void Draw(Drawing.Graphics g, float scale, float offX, float offY)
         {
-            PointF[] poly = this.Polygon;
-            PointF[] drawpoly = new PointF[poly.Length];
+            Drawing.PointF[] poly = this.Polygon;
+            Drawing.PointF[] drawpoly = new Drawing.PointF[poly.Length];
             // make points relative to plotarea --- need to scale this as well
             for (int ip = 0; ip < drawpoly.Length; ip++)
             {
-                drawpoly[ip] = new PointF(offX + (poly[ip].X * scale), offY + (poly[ip].Y * scale));
+                drawpoly[ip] = new Drawing.PointF(offX + (poly[ip].X * scale), offY + (poly[ip].Y * scale));
             }
             
-            g.DrawPolygon(Pens.Black, drawpoly);
+            g.DrawPolygon(Drawing.Pens.Black, drawpoly);
             if (!Fill.IsEmpty)
             {
-                Brush brush = new SolidBrush(Fill);
+                Drawing.Brush brush = new Drawing.SolidBrush(Fill);
                 g.FillPolygon(brush, drawpoly);
                 brush.Dispose();
             }
@@ -520,7 +524,7 @@ namespace fyiReporting.RDL
     internal class MapText : MapObject
     {
         string _Text;              // text value
-        PointF _Location;           // location of text
+        Drawing.PointF _Location;           // location of text
         public string FontFamily = "Arial";
         public float FontSize = 8;
         public bool bBold = false;
@@ -528,7 +532,7 @@ namespace fyiReporting.RDL
         public bool bUnderline = false;
         public bool bLineThrough = false;
 
-        internal MapText(string val, PointF xy) : base()
+        internal MapText(string val, Drawing.PointF xy) : base()
         {
             _Text = val;
             _Location = xy;
@@ -539,7 +543,7 @@ namespace fyiReporting.RDL
             get { return _Text; }
         }
 
-        internal PointF Location
+        internal Drawing.PointF Location
         {
             get { return _Location; }
         }
@@ -552,36 +556,36 @@ namespace fyiReporting.RDL
         {
             get { return _Location.Y; }
         }
-        internal Font GetFont(float scale)
+        internal Drawing.Font GetFont(float scale)
         {
-            FontStyle fs = 0;
+            Drawing.FontStyle fs = 0;
 
             if (bItalic)
-                fs |= System.Drawing.FontStyle.Italic;
+                fs |= Drawing.FontStyle.Italic;
             if (bBold)
-                fs |= System.Drawing.FontStyle.Bold;
+                fs |= Drawing.FontStyle.Bold;
             if (bUnderline)
-                fs |= System.Drawing.FontStyle.Underline;
+                fs |= Drawing.FontStyle.Underline;
             if (bLineThrough)
-                fs |= System.Drawing.FontStyle.Strikeout;
+                fs |= Drawing.FontStyle.Strikeout;
             float size = (float)Math.Max(FontSize * scale, .25);
 
-            Font font;
+            Drawing.Font font;
             try     // when fontfamily is bad then sometimes there is an exception 
             {
-                font = new Font(FontFamily, size, fs);
+                font = new Drawing.Font(FontFamily, size, fs);
             }
             catch
             {
-                font = new Font("Arial", size, fs);
+                font = new Drawing.Font("Arial", size, fs);
             }
             return font;
         }
 
-        internal override void Draw(Graphics g, float scale, float offX, float offY)
+        internal override void Draw(Drawing.Graphics g, float scale, float offX, float offY)
         {
-            Font f = this.GetFont(scale);
-            g.DrawString(this.Text, f, Brushes.Black, new PointF(offX + (this.Location.X * scale), offY + (this.Location.Y * scale)));
+            Drawing.Font f = this.GetFont(scale);
+            g.DrawString(this.Text, f, Drawing.Brushes.Black, new Drawing.PointF(offX + (this.Location.X * scale), offY + (this.Location.Y * scale)));
             f.Dispose();
         }
     }

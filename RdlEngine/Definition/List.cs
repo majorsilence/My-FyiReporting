@@ -24,7 +24,11 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {

@@ -21,8 +21,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+#if LINUX
+using System.DrawingCore;
 using System.Drawing.Imaging;
+#else
 using System.Drawing;
+using System.Drawing.Imaging;
+#endif
 using System.Runtime.InteropServices;
 using System.IO;
 

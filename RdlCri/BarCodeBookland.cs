@@ -23,7 +23,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
@@ -53,7 +57,7 @@ namespace fyiReporting.CRI
         /// Runtime: Draw the BarCode
         /// </summary>
         /// <param name="bm">Bitmap to draw the barcode in.</param>
-        public void DrawImage(ref System.Drawing.Bitmap bm)
+        public void DrawImage(ref Drawing.Bitmap bm)
         {
             _Ean13.DrawImage(ref bm);
         }
@@ -63,7 +67,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(ref System.Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref Drawing.Bitmap bm)
         {
             _Ean13.DrawImage(bm, "978015602732");    // Yann Martel-Life of Pi
         }

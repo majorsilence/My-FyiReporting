@@ -22,12 +22,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
      internal class EMFSetPageTransform
     {
-        internal System.Drawing.GraphicsUnit PageUnit;
+        internal Drawing.GraphicsUnit PageUnit;
         internal bool postMultiplyTransform;
         internal Single PageScale;
         internal static EMFSetPageTransform getTransform(int flags, byte[] RecordData)
@@ -46,7 +51,7 @@ namespace fyiReporting.RDL
 
                 //PageUnit...
                 UInt16 PageU = _fr.ReadByte();
-                PageUnit = (System.Drawing.GraphicsUnit)PageU;
+                PageUnit = (Drawing.GraphicsUnit)PageU;
 
                 UInt16 RealFlags = _fr.ReadByte();
                 //XXXXXAXX - if A = 1 the transform matrix is post-multiplied else pre-multiplied...

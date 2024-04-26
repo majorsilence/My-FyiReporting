@@ -28,6 +28,11 @@ using fyiReporting.RDL;
 using System.Collections.Generic;
 using Gtk;
 using System.Linq;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RdlGtk3
 {
@@ -186,7 +191,7 @@ namespace fyiReporting.RdlGtk3
         {
             internal Rectangle rect;
             internal PageItem pi;
-            internal System.Drawing.PointF[] poly;
+            internal Drawing.PointF[] poly;
             internal HitListEntry(Rectangle r, PageItem pitem)
             {
                 rect = r;
@@ -196,7 +201,7 @@ namespace fyiReporting.RdlGtk3
             internal HitListEntry(PagePolygon pp, float x, float y, ReportArea ra)
             {
                 pi = pp;
-                poly = new System.Drawing.PointF[pp.Points.Length];
+                poly = new Drawing.PointF[pp.Points.Length];
                 for (int i = 0; i < pp.Points.Length; i++)
                 {
                     poly[i].X = ra.PixelsX(pp.Points[i].X + x);
@@ -221,17 +226,17 @@ namespace fyiReporting.RdlGtk3
             /// <returns></returns>
             bool PointInPolygon(PointD p)
             {
-                System.Drawing.PointF p1, p2;
+                Drawing.PointF p1, p2;
                 bool bIn = false;
                 if (poly.Length < 3)
                 {
                     return false;
                 }
 
-                System.Drawing.PointF op = new System.Drawing.PointF(poly[poly.Length - 1].X, poly[poly.Length - 1].Y);
+                Drawing.PointF op = new Drawing.PointF(poly[poly.Length - 1].X, poly[poly.Length - 1].Y);
                 for (int i = 0; i < poly.Length; i++)
                 {
-                    System.Drawing.PointF np = new System.Drawing.PointF(poly[i].X, poly[i].Y);
+                    Drawing.PointF np = new Drawing.PointF(poly[i].X, poly[i].Y);
                     if (np.X > op.X)
                     {
                         p1 = op;

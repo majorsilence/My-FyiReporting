@@ -26,6 +26,11 @@
 
 using System;
 using Cairo;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RdlGtk3
 {
@@ -652,7 +657,7 @@ namespace fyiReporting.RdlGtk3
 			return path;
 		}
 		
-		public static Color ToCairoColor (this System.Drawing.Color color)
+		public static Color ToCairoColor (this Drawing.Color color)
 		{
 			return new Color (color.R / 255f, color.G / 255f, color.B / 255f, color.A / 255f);
 		}

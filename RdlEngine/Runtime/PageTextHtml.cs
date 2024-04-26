@@ -24,8 +24,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.Text;
 using System.IO;
 using System.Net;
@@ -64,9 +67,9 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public void Build(Graphics g)
+		public void Build(Drawing.Graphics g)
 		{
-            System.Drawing.Drawing2D.Matrix transform = g.Transform;
+           Drawing.Drawing2D.Matrix transform = g.Transform;
             try
             {
                 g.ResetTransform();
@@ -79,7 +82,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-		private void BuildPrivate(Graphics g)
+		private void BuildPrivate(Drawing.Graphics g)
         {
             PageText model = new PageText("");
             model.AllowSelect = false;
@@ -118,7 +121,7 @@ namespace fyiReporting.RDL
 			si.BStyleBottom = si.BStyleLeft = si.BStyleRight = si.BStyleTop = BorderStyleEnum.None;
 			pt.SI.TextAlign = TextAlignEnum.Left;
 			pt.SI.VerticalAlign = VerticalAlignEnum.Top;
-			si.BackgroundColor = Color.Empty;
+			si.BackgroundColor = Drawing.Color.Empty;
 			si.BackgroundGradientType = BackgroundGradientTypeEnum.None;
 			si.BackgroundImage = null;
 
@@ -130,7 +133,7 @@ namespace fyiReporting.RDL
 			float maxLineHeight=0;
 			float maxDescent=0;
 			float descent;				// working value for descent
-			SizeF ms;
+			Drawing.SizeF ms;
 			bool bWhiteSpace=false;
 			List<PageItem> lineItems = new List<PageItem>();
             bool bIsOrderedList = false;
@@ -426,10 +429,10 @@ namespace fyiReporting.RDL
 				return;
 			model.HyperLink = model.Tooltip = href;
 			si.TextDecoration = TextDecorationEnum.Underline;
-			si.Color = Color.Blue;
+			si.Color = Drawing.Color.Blue;
 		}
 
-        private PageImage BuildImage(Graphics g, string token, StyleInfo oldsi, PageText model)
+        private PageImage BuildImage(Drawing.Graphics g, string token, StyleInfo oldsi, PageText model)
         {
             PageTextHtmlCmdLexer hc = new PageTextHtmlCmdLexer(token.Substring(4));
             Hashtable ht = hc.Lex();
@@ -445,7 +448,7 @@ namespace fyiReporting.RDL
             string align = (string)ht["align"];
 
             Stream strm = null;
-            System.Drawing.Image im = null;
+           Drawing.Image im = null;
             PageImage pi = null;
             try
             {
@@ -461,12 +464,12 @@ namespace fyiReporting.RDL
                 else
                     strm = new FileStream(src, System.IO.FileMode.Open, FileAccess.Read);
 
-                im = System.Drawing.Image.FromStream(strm);
+                im = Drawing.Image.FromStream(strm);
                 int h = im.Height;
                 int w = im.Width;
                 MemoryStream ostrm = new MemoryStream();
-                ImageFormat imf;
-                imf = ImageFormat.Jpeg;
+                Drawing.Imaging.ImageFormat imf;
+                imf = Drawing.Imaging.ImageFormat.Jpeg;
                 im.Save(ostrm, imf);
                 byte[] ba = ostrm.ToArray();
                 ostrm.Close();
@@ -787,20 +790,20 @@ namespace fyiReporting.RDL
 			return ht;
 		}
 
-		private SizeF MeasureString(string s, StyleInfo si, Graphics g, out float descent)
+		private Drawing.SizeF MeasureString(string s, StyleInfo si, Drawing.Graphics g, out float descent)
 		{
-			Font drawFont=null;
-			StringFormat drawFormat=null;
-			SizeF ms = SizeF.Empty;
+			Drawing.Font drawFont=null;
+			Drawing.StringFormat drawFormat=null;
+			Drawing.SizeF ms = Drawing.SizeF.Empty;
 			descent = 0;				
 			if (s == null || s.Length == 0)
 				return ms;
 			try
 			{
 				// STYLE
-				System.Drawing.FontStyle fs = 0;
+				Drawing.FontStyle fs = 0;
 				if (si.FontStyle == FontStyleEnum.Italic)
-					fs |= System.Drawing.FontStyle.Italic;
+					fs |= Drawing.FontStyle.Italic;
 
 				// WEIGHT
 				switch (si.FontWeight)
@@ -812,33 +815,33 @@ namespace fyiReporting.RDL
 					case FontWeightEnum.W700:
 					case FontWeightEnum.W800:
 					case FontWeightEnum.W900:
-						fs |= System.Drawing.FontStyle.Bold;
+						fs |= Drawing.FontStyle.Bold;
 						break;
 					default:
 						break;
 				}
 				try
 				{
-					FontFamily ff = si.GetFontFamily();
-					drawFont = new Font(ff, si.FontSize, fs);
+					Drawing.FontFamily ff = si.GetFontFamily();
+					drawFont = new Drawing.Font(ff, si.FontSize, fs);
 					// following algorithm comes from the C# Font Metrics documentation
 					float descentPixel = si.FontSize * ff.GetCellDescent(fs) / ff.GetEmHeight(fs);
 					descent = RSize.PointsFromPixels(g, descentPixel);
 				}
 				catch
 				{
-					drawFont = new Font("Arial", si.FontSize, fs);	// usually because font not found
+					drawFont = new Drawing.Font("Arial", si.FontSize, fs);	// usually because font not found
 					descent = 0;
 				}
-				drawFormat = new StringFormat();
-				drawFormat.Alignment = StringAlignment.Near;
+				drawFormat = new Drawing.StringFormat();
+				drawFormat.Alignment = Drawing.StringAlignment.Near;
 
-				CharacterRange[] cr = {new CharacterRange(0, s.Length)};
+				Drawing.CharacterRange[] cr = {new Drawing.CharacterRange(0, s.Length)};
 				drawFormat.SetMeasurableCharacterRanges(cr);
-				Region[] rs = new Region[1];
-				rs = g.MeasureCharacterRanges(s, drawFont, new RectangleF(0,0,float.MaxValue,float.MaxValue),
+				Drawing.Region[] rs = new Drawing.Region[1];
+				rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0,0,float.MaxValue,float.MaxValue),
 					drawFormat);
-				RectangleF mr = rs[0].GetBounds(g);
+				Drawing.RectangleF mr = rs[0].GetBounds(g);
 
 				ms.Height = RSize.PointsFromPixels(g, mr.Height);	// convert to points from pixels
 				ms.Width = RSize.PointsFromPixels(g, mr.Width);		// convert to points from pixels

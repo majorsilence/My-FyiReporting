@@ -27,6 +27,11 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using RdlEngine.Resources;
+#if LINUX
+using System.DrawingCore;
+#else
+using System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -143,7 +148,7 @@ namespace fyiReporting.RDL
         {
             return HeightOfRow(pgs.Report, pgs.G, r);
         }
-		internal float HeightOfRow(Report rpt, System.Drawing.Graphics g, Row r)
+		internal float HeightOfRow(Report rpt, Graphics g, Row r)
 		{
 			WorkClass wc = GetWC(rpt);
 			if (this.Visibility != null && Visibility.IsHidden(rpt, r))

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using fyiReporting.RDL;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using System.ComponentModel;
 using System.Xml;
 

@@ -25,8 +25,13 @@ using System;
 using System.Xml;
 using System.IO;
 using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Drawing2D = System.DrawingCore.Drawing2D;
+#else
+using Drawing = System.Drawing;
+using Drawing2D = System.Drawing.Drawing2D;
+#endif
 using System.Globalization;
 
 namespace fyiReporting.RDL
@@ -309,9 +314,9 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal void DrawBackground(Report rpt, Graphics g, Row r, System.Drawing.Rectangle rect)
+		internal void DrawBackground(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
 		{
-			LinearGradientBrush linGrBrush = null;
+			Drawing2D.LinearGradientBrush linGrBrush = null;
 
 			if (this.BackgroundGradientType != null &&
 				this.BackgroundGradientEndColor != null &&
@@ -320,33 +325,33 @@ namespace fyiReporting.RDL
 				string bgt = this.BackgroundGradientType.EvaluateString(rpt, r);
 				string bgc = this.BackgroundColor.EvaluateString(rpt, r);
 				
-				Color c = XmlUtil.ColorFromHtml(bgc, System.Drawing.Color.White, rpt);
+				Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
 
 				string bgec = this.BackgroundGradientEndColor.EvaluateString(rpt, r);
-				Color ec = XmlUtil.ColorFromHtml(bgec, System.Drawing.Color.White, rpt);
+				Drawing.Color ec = XmlUtil.ColorFromHtml(bgec, Drawing.Color.White, rpt);
 
 				switch (bgt)
 				{
 					case "LeftRight":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.Horizontal); 
 						break;
 					case "TopBottom":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.Vertical); 
 						break;
 					case "Center":	//??
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.Horizontal); 
 						break;
 					case "DiagonalLeft":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.ForwardDiagonal); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.ForwardDiagonal); 
 						break;
 					case "DiagonalRight":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.BackwardDiagonal); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.BackwardDiagonal); 
 						break;
 					case "HorizontalCenter":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.Horizontal); 
 						break;
 					case "VerticalCenter":
-						linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical); 
+						linGrBrush = new Drawing2D.LinearGradientBrush(rect, c, ec, Drawing2D.LinearGradientMode.Vertical); 
 						break;
 					case "None":
 					default:
@@ -364,33 +369,33 @@ namespace fyiReporting.RDL
 				if (this.BackgroundColor != null)
 				{
 					string bgc = this.BackgroundColor.EvaluateString(rpt, r);
-					Color c = XmlUtil.ColorFromHtml(bgc, System.Drawing.Color.White, rpt);
+					Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
 
-					using (SolidBrush sb = new SolidBrush(c)) {
+					using (Drawing.SolidBrush sb = new Drawing.SolidBrush(c)) {
 						g.FillRectangle(sb, rect);
 					}
 				}
 			}
 		}
  
-		internal void DrawBackgroundCircle(Report rpt, Graphics g, Row r, System.Drawing.Rectangle rect)
+		internal void DrawBackgroundCircle(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
 		{
 			// Don't use the gradient in this case (since it won't match) the rest of the 
 			//    background.  (Routine is only used by ChartPie in the doughnut case.)
 			if (this.BackgroundColor != null)
 			{
 				string bgc = this.BackgroundColor.EvaluateString(rpt, r);
-				Color c = XmlUtil.ColorFromHtml(bgc, System.Drawing.Color.White, rpt);
+				Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
 
-				using (SolidBrush sb = new SolidBrush(c)) {
+				using (Drawing.SolidBrush sb = new Drawing.SolidBrush(c)) {
 					g.FillEllipse(sb, rect);
-					g.DrawEllipse(Pens.Black, rect);
+					g.DrawEllipse(Drawing.Pens.Black, rect);
 				}
 			}
 		}
 
 		// Draw a border using the current style
-		internal void DrawBorder(Report rpt, Graphics g, Row r, System.Drawing.Rectangle rect)
+		internal void DrawBorder(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
 		{
 			if (this.BorderStyle == null)
 				return;
@@ -398,10 +403,10 @@ namespace fyiReporting.RDL
 			StyleBorderStyle bs = this.BorderStyle;
 
 			// Create points for each part of rectangular border
-			Point tl = new Point(rect.Left, rect.Top);
-			Point tr = new Point(rect.Right, rect.Top);
-			Point bl = new Point(rect.Left, rect.Bottom);
-			Point br = new Point(rect.Right, rect.Bottom);
+			Drawing.Point tl = new Drawing.Point(rect.Left, rect.Top);
+			Drawing.Point tr = new Drawing.Point(rect.Right, rect.Top);
+			Drawing.Point bl = new Drawing.Point(rect.Left, rect.Bottom);
+			Drawing.Point br = new Drawing.Point(rect.Right, rect.Bottom);
 			// Determine characteristics for each line to be drawn
 			BorderStyleEnum topBS, bottomBS, leftBS, rightBS;
 			topBS = bottomBS = leftBS = rightBS = BorderStyleEnum.None;
@@ -435,35 +440,35 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			Color topColor, bottomColor, leftColor, rightColor;
-			topColor = bottomColor = leftColor = rightColor = System.Drawing.Color.Black;
+			Drawing.Color topColor, bottomColor, leftColor, rightColor;
+			topColor = bottomColor = leftColor = rightColor = Drawing.Color.Black;
 			if (BorderColor != null)
 			{
 				if (BorderColor.Default != null)
 				{
 					v = BorderColor.Default.EvaluateString(rpt, r);
 					topColor = bottomColor = leftColor = rightColor = 
-						XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+						XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 				}
 				if (BorderColor.Top != null)
 				{
 					v = BorderColor.Top.EvaluateString(rpt, r);
-					topColor = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+					topColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 				}
 				if (BorderColor.Bottom != null)
 				{
 					v = BorderColor.Bottom.EvaluateString(rpt, r);
-					bottomColor = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+					bottomColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 				}
 				if (BorderColor.Left != null)
 				{
 					v = BorderColor.Left.EvaluateString(rpt, r);
-					leftColor = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+					leftColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 				}
 				if (BorderColor.Right != null)
 				{
 					v = BorderColor.Right.EvaluateString(rpt, r);
-					rightColor = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+					rightColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 				}
 			}
 
@@ -496,8 +501,8 @@ namespace fyiReporting.RDL
 			// top line
 			if (topBS != BorderStyleEnum.None)
 			{
-				using (Brush b = new SolidBrush(topColor))
-				using (Pen p = new Pen(b, topWidth))
+				using (Drawing.Brush b = new Drawing.SolidBrush(topColor))
+				using (Drawing.Pen p = new Drawing.Pen(b, topWidth))
 				{
 					DrawBorderDashStyle(p, topBS);
 					g.DrawLine(p, tl, tr);
@@ -506,8 +511,8 @@ namespace fyiReporting.RDL
 			// right line
 			if (rightBS != BorderStyleEnum.None)
 			{
-				using (Brush b = new SolidBrush(rightColor))
-				using (Pen p = new Pen(b, rightWidth))
+				using (Drawing.Brush b = new Drawing.SolidBrush(rightColor))
+				using (Drawing.Pen p = new Drawing.Pen(b, rightWidth))
 				{
 					DrawBorderDashStyle(p, rightBS);
 					g.DrawLine(p, tr, br);
@@ -516,8 +521,8 @@ namespace fyiReporting.RDL
 			// bottom line
 			if (bottomBS != BorderStyleEnum.None)
 			{
-				using (Brush b = new SolidBrush(bottomColor))
-				using (Pen p = new Pen(b, bottomWidth))
+				using (Drawing.Brush b = new Drawing.SolidBrush(bottomColor))
+				using (Drawing.Pen p = new Drawing.Pen(b, bottomWidth))
 				{
 					DrawBorderDashStyle(p, bottomBS);
 					g.DrawLine(p, br, bl);
@@ -526,8 +531,8 @@ namespace fyiReporting.RDL
 			// left line
 			if (leftBS != BorderStyleEnum.None)
 			{
-				using (Brush b = new SolidBrush(leftColor))
-				using (Pen p = new Pen(b, leftWidth))
+				using (Drawing.Brush b = new Drawing.SolidBrush(leftColor))
+				using (Drawing.Pen p = new Drawing.Pen(b, leftWidth))
 				{
 					DrawBorderDashStyle(p, leftBS);
 					g.DrawLine(p, bl, tl);
@@ -535,51 +540,51 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		private void DrawBorderDashStyle(Pen p, BorderStyleEnum bs)
+		private void DrawBorderDashStyle(Drawing.Pen p, BorderStyleEnum bs)
 		{
 			switch (bs)
 			{
 				case BorderStyleEnum.Dashed:
-					p.DashStyle = DashStyle.Dash;
+					p.DashStyle = Drawing2D.DashStyle.Dash;
 					break;
 				case BorderStyleEnum.Dotted:
-					p.DashStyle = DashStyle.Dot;
+					p.DashStyle = Drawing2D.DashStyle.Dot;
 					break;
 				case BorderStyleEnum.Double:
-					p.DashStyle = DashStyle.Solid;		// TODO:	really need to create custom?
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:	really need to create custom?
 					break;
 				case BorderStyleEnum.Groove:
-					p.DashStyle = DashStyle.Solid;		// TODO:
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:
 					break;
 				case BorderStyleEnum.Inset:
-					p.DashStyle = DashStyle.Solid;		// TODO:
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:
 					break;
 				case BorderStyleEnum.None:
-					p.DashStyle = DashStyle.Solid;		// only happens for lines
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// only happens for lines
 					break;
 				case BorderStyleEnum.Outset:
-					p.DashStyle = DashStyle.Solid;		// TODO:
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:
 					break;
 				case BorderStyleEnum.Ridge:
-					p.DashStyle = DashStyle.Solid;		// TODO:
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:
 					break;
 				case BorderStyleEnum.Solid:
-					p.DashStyle = DashStyle.Solid;
+					p.DashStyle = Drawing2D.DashStyle.Solid;
 					break;
 				case BorderStyleEnum.WindowInset:
-					p.DashStyle = DashStyle.Solid;		// TODO:
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// TODO:
 					break;
 				default:
-					p.DashStyle = DashStyle.Solid;		// really an error
+					p.DashStyle = Drawing2D.DashStyle.Solid;		// really an error
 					break;
 			}
 		}
 
 		// Draw a line into the specified graphics object using the current style
-		internal void DrawStyleLine(Report rpt, Graphics g, Row r, Point s, Point e)
+		internal void DrawStyleLine(Report rpt, Drawing.Graphics g, Row r, Drawing.Point s, Drawing.Point e)
 		{
 			int width;
-			Color color;
+			Drawing.Color color;
 			BorderStyleEnum bs;
 
 			// Border Width default is used for the line width
@@ -592,10 +597,10 @@ namespace fyiReporting.RDL
 			if (BorderColor != null && BorderColor.Default != null)
 			{
 				string v = BorderColor.Default.EvaluateString(rpt, r);
-				color = XmlUtil.ColorFromHtml(v, System.Drawing.Color.Black, rpt);
+				color = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
 			}
 			else
-				color = System.Drawing.Color.Black;
+				color = Drawing.Color.Black;
 			
 			if (BorderStyle != null && BorderStyle.Default != null)
 			{
@@ -605,8 +610,8 @@ namespace fyiReporting.RDL
 			else
 				bs = BorderStyleEnum.Solid;
 
-			using (var b = new SolidBrush(color))
-			using (var p = new Pen(b, width))
+			using (var b = new Drawing.SolidBrush(color))
+			using (var p = new Drawing.Pen(b, width))
 			{
 				DrawBorderDashStyle(p, bs);
 				g.DrawLine(p, s, e);
@@ -615,39 +620,39 @@ namespace fyiReporting.RDL
 
 		// Draw a string into the specified graphics object using the current style
 		//  information
-		internal void DrawString(Report rpt, Graphics g, object o, TypeCode tc, Row r, System.Drawing.Rectangle rect)
+		internal void DrawString(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, Drawing.Rectangle rect)
 		{
 			// the string to draw
 			var s = Style.GetFormatedString(rpt, this, r, o, tc);
 				
-			using (Font drawFont = GetFont(rpt, r)) // Font we'll draw with
-			using (Brush drawBrush = GetBrush(rpt, r)) // Brush we'll draw with
-			using (StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
+			using (Drawing.Font drawFont = GetFont(rpt, r)) // Font we'll draw with
+			using (Drawing.Brush drawBrush = GetBrush(rpt, r)) // Brush we'll draw with
+			using (Drawing.StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
 				// Draw string
-				drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
+				drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
 				g.DrawString(s, drawFont, drawBrush, rect, drawFormat);
 			}
 		}
 
-		static internal void DrawStringDefaults(Graphics g, object o, System.Drawing.Rectangle rect)
+		static internal void DrawStringDefaults(Drawing.Graphics g, object o, Drawing.Rectangle rect)
 		{
 			// Just use defaults to Create font and brush.
-			using (var drawFont = new Font("Arial", 10))
-			using (var drawBrush = new SolidBrush(System.Drawing.Color.Black)) 
+			using (var drawFont = new Drawing.Font("Arial", 10))
+			using (var drawBrush = new Drawing.SolidBrush(Drawing.Color.Black)) 
 			// Set format of string.
-			using (var drawFormat = new StringFormat())
+			using (var drawFormat = new Drawing.StringFormat())
 			{
-				drawFormat.Alignment = StringAlignment.Center;
+				drawFormat.Alignment = Drawing.StringAlignment.Center;
 
 				// 06122007AJM Fixed so that long names are written vertically
 				// need to add w to make slightly bigger
-				SizeF len = g.MeasureString(o.ToString() + "w", drawFont);
+				Drawing.SizeF len = g.MeasureString(o.ToString() + "w", drawFont);
 				if (len.Width > rect.Width)
 				{
-					drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
-					rect = (new System.Drawing.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
-					drawFormat.Alignment = StringAlignment.Near;
+					drawFormat.FormatFlags = Drawing.StringFormatFlags.DirectionVertical;
+					rect = (new Drawing.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
+					drawFormat.Alignment = Drawing.StringAlignment.Near;
 				}
 
 				// Draw string to image
@@ -657,61 +662,61 @@ namespace fyiReporting.RDL
 
 		// Calc size of a string with the specified graphics object using the current style
 		//  information
-		internal Size MeasureString(Report rpt, Graphics g, object o, TypeCode tc, Row r, int maxWidth)
+		internal Drawing.Size MeasureString(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
 			string s = Style.GetFormatedString(rpt, this, r, o, tc); // the string to draw
 
-			using (Font drawFont = GetFont(rpt, r)) // Font we'll draw with
-			using (StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
+			using (Drawing.Font drawFont = GetFont(rpt, r)) // Font we'll draw with
+			using (Drawing.StringFormat drawFormat = GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
 				// Measure string
 				if (maxWidth == int.MaxValue)
-					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
+					drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
 
 				// 06122007AJM need to add w to make slightly bigger
-				SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				return new Size((int) Math.Ceiling(ms.Width), 
+				Drawing.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
+				return new Drawing.Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
 		}
 
 		// Measure a string using the defaults for a Style font
-		static internal Size MeasureStringDefaults(Report rpt, Graphics g, object o, TypeCode tc, Row r, int maxWidth)
+		static internal Drawing.Size MeasureStringDefaults(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
 			string s = Style.GetFormatedString(rpt, null, r, o, tc); // the string to draw
 
-			Size size = Size.Empty;
-			using (Font drawFont = new Font("Arial", 10)) // Font we'll draw with
-			using (StringFormat drawFormat = new StringFormat()) // StringFormat we'll draw with
+			Drawing.Size size = Drawing.Size.Empty;
+			using (Drawing.Font drawFont = new Drawing.Font("Arial", 10)) // Font we'll draw with
+			using (Drawing.StringFormat drawFormat = new Drawing.StringFormat()) // StringFormat we'll draw with
 			{
-				drawFormat.Alignment = StringAlignment.Near;
+				drawFormat.Alignment = Drawing.StringAlignment.Near;
 
 				// Measure string
 				if (maxWidth == int.MaxValue)
-					drawFormat.FormatFlags |= StringFormatFlags.NoWrap;
+					drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
                 // 06122007AJM need to add w to make slightly bigger
-                SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				return new Size((int) Math.Ceiling(ms.Width), 
+                Drawing.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
+				return new Drawing.Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
 		}
 
-		internal Brush GetBrush(Report rpt, Row r)
+		internal Drawing.Brush GetBrush(Report rpt, Row r)
 		{
-			Brush drawBrush;
+			Drawing.Brush drawBrush;
 			// Get the brush information
 			if (this.Color != null)
 			{
 				string c = this.Color.EvaluateString(rpt, r);
-				Color color = XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
-				drawBrush = new SolidBrush(color);
+				Drawing.Color color = XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+				drawBrush = new Drawing.SolidBrush(color);
 			}
 			else
-				drawBrush = new SolidBrush(System.Drawing.Color.Black);
+				drawBrush = new Drawing.SolidBrush(Drawing.Color.Black);
 			return drawBrush;
 		}
 
-		internal Font GetFont(Report rpt, Row r)
+		internal Drawing.Font GetFont(Report rpt, Row r)
 		{
 			// Get the font information
 			// FAMILY
@@ -722,12 +727,12 @@ namespace fyiReporting.RDL
 				ff = "Arial";
 
 			// STYLE
-			System.Drawing.FontStyle fs = 0;
+			Drawing.FontStyle fs = 0;
 			if (this.FontStyle != null)
 			{
 				string fStyle = this.FontStyle.EvaluateString(rpt, r);
 				if (fStyle == "Italic")
-					fs |= System.Drawing.FontStyle.Italic;
+					fs |= Drawing.FontStyle.Italic;
 			}
 			if (this.TextDecoration != null)
 			{
@@ -735,12 +740,12 @@ namespace fyiReporting.RDL
 				switch (td)
 				{
 					case "Underline":
-						fs |= System.Drawing.FontStyle.Underline;
+						fs |= Drawing.FontStyle.Underline;
 						break;
 					case "Overline":	// Don't support this
 						break;
 					case "LineThrough":
-						fs |= System.Drawing.FontStyle.Strikeout;
+						fs |= Drawing.FontStyle.Strikeout;
 						break;
 					case "None":
 					default:
@@ -761,7 +766,7 @@ namespace fyiReporting.RDL
 					case "700":
 					case "800":
 					case "900":
-						fs |= System.Drawing.FontStyle.Bold;
+						fs |= Drawing.FontStyle.Bold;
 						break;
 						// Nothing to do otherwise since we don't have finer gradations
 					case "normal":
@@ -786,31 +791,31 @@ namespace fyiReporting.RDL
 			else
 				size = 10;
 			
-			FontFamily fFamily = StyleInfo.GetFontFamily(ff);
-			return new Font(fFamily, size, fs);
+			Drawing.FontFamily fFamily = StyleInfo.GetFontFamily(ff);
+			return new Drawing.Font(fFamily, size, fs);
 		}
         
-        internal StringFormat GetStringFormat(Report rpt, Row r)
+        internal Drawing.StringFormat GetStringFormat(Report rpt, Row r)
         {
-            return GetStringFormat(rpt, r, StringAlignment.Center);
+            return GetStringFormat(rpt, r, Drawing.StringAlignment.Center);
         }
 
-		internal StringFormat GetStringFormat(Report rpt, Row r, StringAlignment defTextAlign)
+		internal Drawing.StringFormat GetStringFormat(Report rpt, Row r, Drawing.StringAlignment defTextAlign)
 		{
 			// Set format of string.
-			StringFormat drawFormat = new StringFormat();
+			Drawing.StringFormat drawFormat = new Drawing.StringFormat();
 			
 			if (this.Direction != null)
 			{
 				string dir = this.Direction.EvaluateString(rpt, r);
 				if (dir == "RTL")
-					drawFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+					drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionRightToLeft;
 			}
 			if (this.WritingMode != null)
 			{
 				string wm = this.WritingMode.EvaluateString(rpt, r);
 				if (wm == "tb-rl")
-					drawFormat.FormatFlags |= StringFormatFlags.DirectionVertical;
+					drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionVertical;
 			}
 
 			if (this.TextAlign != null)
@@ -819,17 +824,17 @@ namespace fyiReporting.RDL
 				switch (ta.ToLower())
 				{
 					case "left":
-						drawFormat.Alignment = StringAlignment.Near;
+						drawFormat.Alignment = Drawing.StringAlignment.Near;
 						break;
 					case "right":
-						drawFormat.Alignment = StringAlignment.Far;
+						drawFormat.Alignment = Drawing.StringAlignment.Far;
 						break;
 					case "general":
                         drawFormat.Alignment = defTextAlign;
                         break;
                     case "center":
                     default:
-						drawFormat.Alignment = StringAlignment.Center;
+						drawFormat.Alignment = Drawing.StringAlignment.Center;
 						break;
 				}
 			}
@@ -843,20 +848,20 @@ namespace fyiReporting.RDL
 				{
 					case "top":
 					default:
-						drawFormat.LineAlignment = StringAlignment.Near;
+						drawFormat.LineAlignment = Drawing.StringAlignment.Near;
 						break;
 					case "bottom":
-						drawFormat.LineAlignment = StringAlignment.Far;
+						drawFormat.LineAlignment = Drawing.StringAlignment.Far;
 						break;
 					case "middle":
-						drawFormat.LineAlignment = StringAlignment.Center;
+						drawFormat.LineAlignment = Drawing.StringAlignment.Center;
 						break;
 				}
 			}
 			else
-				drawFormat.LineAlignment = StringAlignment.Near;
+				drawFormat.LineAlignment = Drawing.StringAlignment.Near;
 
-			drawFormat.Trimming = StringTrimming.None;
+			drawFormat.Trimming = Drawing.StringTrimming.None;
 			return drawFormat;
 		}
 
@@ -1012,7 +1017,7 @@ namespace fyiReporting.RDL
 			si.BackgroundColor = this.EvalBackgroundColor(rpt, r);
 			// When background color not specified; and reportitem part of table
 			//   use the tables background color
-			if (si.BackgroundColor == System.Drawing.Color.Empty)
+			if (si.BackgroundColor == Drawing.Color.Empty)
 			{
 				ReportItem ri = this.Parent as ReportItem;
 				if (ri != null)
@@ -1256,19 +1261,19 @@ namespace fyiReporting.RDL
 			return rc;
 		}
 
-		internal System.Drawing.Rectangle PaddingAdjust(Report rpt, Row r, System.Drawing.Rectangle rect, bool bAddIn)
+		internal Drawing.Rectangle PaddingAdjust(Report rpt, Row r, Drawing.Rectangle rect, bool bAddIn)
 		{
 			int pbottom = this.EvalPaddingBottomPx(rpt, r);
 			int ptop = this.EvalPaddingTopPx(rpt, r);
 			int pleft = this.EvalPaddingLeftPx(rpt, r);
 			int pright = this.EvalPaddingRightPx(rpt, r);
 
-			System.Drawing.Rectangle rt;
+			Drawing.Rectangle rt;
 			if (bAddIn)		// add in when trying to size the object
-				rt = new System.Drawing.Rectangle(rect.Left - pleft, rect.Top - ptop, 
+				rt = new Drawing.Rectangle(rect.Left - pleft, rect.Top - ptop, 
 					rect.Width + pleft + pright, rect.Height + ptop + pbottom);
 			else			// otherwise you want the rectangle of the embedded object
-				rt = new System.Drawing.Rectangle(rect.Left + pleft, rect.Top + ptop, 
+				rt = new Drawing.Rectangle(rect.Left + pleft, rect.Top + ptop, 
 					rect.Width - pleft - pright, rect.Height - ptop - pbottom);
 			return rt;
 		}
@@ -1297,13 +1302,13 @@ namespace fyiReporting.RDL
 			set {  _BackgroundColor = value; }
 		}
 
-		internal Color EvalBackgroundColor(Report rpt, Row row)
+		internal Drawing.Color EvalBackgroundColor(Report rpt, Row row)
 		{
 			if (_BackgroundColor == null)
-				return System.Drawing.Color.Empty;
+				return Drawing.Color.Empty;
 
 			string c = _BackgroundColor.EvaluateString(rpt, row);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Empty, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Empty, rpt);
 		}
 
 		internal Expression BackgroundGradientType
@@ -1327,13 +1332,13 @@ namespace fyiReporting.RDL
 			set {  _BackgroundGradientEndColor = value; }
 		}
 
-		internal Color EvalBackgroundGradientEndColor(Report rpt, Row r)
+		internal Drawing.Color EvalBackgroundGradientEndColor(Report rpt, Row r)
 		{
 			if (_BackgroundGradientEndColor == null)
-				return System.Drawing.Color.Empty;
+				return Drawing.Color.Empty;
 
 			string c = _BackgroundGradientEndColor.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Empty, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Empty, rpt);
 		}
 
 		internal StyleBackgroundImage BackgroundImage
@@ -1509,13 +1514,13 @@ namespace fyiReporting.RDL
 			set {  _Color = value; }
 		}
 
-		internal Color EvalColor(Report rpt, Row row)
+		internal Drawing.Color EvalColor(Report rpt, Row row)
 		{
 			if (_Color == null)
-				return System.Drawing.Color.Black;
+				return Drawing.Color.Black;
 
 			string c = _Color.EvaluateString(rpt, row);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 
 		internal Expression PaddingLeft

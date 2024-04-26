@@ -30,8 +30,13 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+using Imaging = System.DrawingCore.Imaging;
+#else
+using Drawing = System.Drawing;
+using Imaging = System.Drawing.Imaging;
+#endif
 using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -93,7 +98,7 @@ namespace fyiReporting.RDL
         /// Page line element at the X Y to X2 Y2 position
         /// </summary>
         /// <returns></returns>
-        private void iAddLine(float x, float y, float x2, float y2, float width, System.Drawing.Color c, BorderStyleEnum ls)
+        private void iAddLine(float x, float y, float x2, float y2, float width, Drawing.Color c, BorderStyleEnum ls)
         {
             // Get the line color			
             cb.SetRgbColorStroke(c.R, c.G, c.B);
@@ -121,7 +126,7 @@ namespace fyiReporting.RDL
         /// Add a filled rectangle
         /// </summary>
         /// <returns></returns>
-        private void iAddFillRect(float x, float y, float width, float height, System.Drawing.Color c)
+        private void iAddFillRect(float x, float y, float width, float height, Drawing.Color c)
         {
             // Get the fill color
             cb.SetRgbColorFill(c.R, c.G, c.B);
@@ -132,7 +137,7 @@ namespace fyiReporting.RDL
 
         private void iAddFillRect(float x, float y, float width, float height, StyleInfo si, PdfPattern patterns)
         {
-            System.Drawing.Color c;
+            Drawing.Color c;
             //Not sure about iTextSharp Pattern => Need check
             if (si.PatternType != patternTypeEnum.None)
             {
@@ -190,7 +195,7 @@ namespace fyiReporting.RDL
         /// </summary>
         /// <returns>string Image name</returns>
         private void iAddImage(PdfImages images, string name, int contentRef, StyleInfo si,
-            ImageFormat imf, float x, float y, float width, float height, RectangleF clipRect,
+            Drawing.Imaging.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
             byte[] im, int samplesW, int samplesH, string url, string tooltip)
         {
 
@@ -215,13 +220,13 @@ namespace fyiReporting.RDL
         /// <param name="si"></param>
         /// <param name="url"></param>
         /// <param name="patterns"></param>
-        internal void iAddPolygon(PointF[] pts, StyleInfo si, string url, PdfPattern patterns)
+        internal void iAddPolygon(Drawing.PointF[] pts, StyleInfo si, string url, PdfPattern patterns)
         {
             if (si.BackgroundColor.IsEmpty)
                 return;		 // nothing to do
 
             // Get the fill color - could be a gradient or pattern etc...
-            System.Drawing.Color c = si.BackgroundColor;
+            Drawing.Color c = si.BackgroundColor;
             iAddPoints(pts);
             cb.SetRgbColorFill(c.R, c.G, c.B);
             cb.ClosePathFillStroke();
@@ -248,7 +253,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void iAddPoints(PointF[] pts)
+        private void iAddPoints(Drawing.PointF[] pts)
         {
             if (pts.Length > 0)
             {
@@ -308,11 +313,11 @@ namespace fyiReporting.RDL
         /// Draw a curve
         /// </summary>
         /// <returns></returns>
-        private void iAddCurve(PointF[] pts, StyleInfo si)
+        private void iAddCurve(Drawing.PointF[] pts, StyleInfo si)
         {
             if (pts.Length > 2)
             {   // do a spline curve
-                PointF[] tangents = iGetCurveTangents(pts);
+                Drawing.PointF[] tangents = iGetCurveTangents(pts);
                 iDoCurve(pts, tangents, si);
             }
             else
@@ -321,7 +326,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void iDoCurve(PointF[] points, PointF[] tangents, StyleInfo si)
+        private void iDoCurve(Drawing.PointF[] points, Drawing.PointF[] tangents, StyleInfo si)
         {
             int i;
 
@@ -344,13 +349,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private PointF[] iGetCurveTangents(PointF[] points)
+        private Drawing.PointF[] iGetCurveTangents(Drawing.PointF[] points)
         {
             float tension = .5f;				 // This  is the tension used on the DrawCurve GDI call.
             float coefficient = tension / 3.0f;
             int i;
 
-            PointF[] tangents = new PointF[points.Length];
+            Drawing.PointF[] tangents = new Drawing.PointF[points.Length];
 
             // initialize everything to zero to begin with
             for (i = 0; i < tangents.Length; i++)
@@ -1103,13 +1108,13 @@ namespace fyiReporting.RDL
 
                                 iAddImage(images, bgImg.Name,
                                                 content.objectNum, bgImg.SI, bgImg.ImgFormat,
-                                                currX, currY, imW, imH, RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                                currX, currY, imW, imH, Drawing.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
                             }
                             else
                             {
                                 elements.AddImage(images, bgImg.Name,
                                            content.objectNum, bgImg.SI, bgImg.ImgFormat,
-                                           currX, currY, imW, imH, RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                           currX, currY, imW, imH, Drawing.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
 
                             }
                            
@@ -1200,20 +1205,20 @@ namespace fyiReporting.RDL
                     PageImage i = pi as PageImage;
 
                     //Duc Phan added 20 Dec, 2007 to support sized image 
-                    RectangleF r2 = new RectangleF(i.X + i.SI.PaddingLeft, i.Y + i.SI.PaddingTop, i.W - i.SI.PaddingLeft - i.SI.PaddingRight, i.H - i.SI.PaddingTop - i.SI.PaddingBottom);
+                    Drawing.RectangleF r2 = new Drawing.RectangleF(i.X + i.SI.PaddingLeft, i.Y + i.SI.PaddingTop, i.W - i.SI.PaddingLeft - i.SI.PaddingRight, i.H - i.SI.PaddingTop - i.SI.PaddingBottom);
 
-                    RectangleF adjustedRect;   // work rectangle 
-                    RectangleF clipRect = RectangleF.Empty;
+                    Drawing.RectangleF adjustedRect;   // work rectangle 
+                    Drawing.RectangleF clipRect = Drawing.RectangleF.Empty;
                     switch (i.Sizing)
                     {
                         case ImageSizingEnum.AutoSize:
-                            adjustedRect = new RectangleF(r2.Left, r2.Top,
+                            adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.Clip:
-                            adjustedRect = new RectangleF(r2.Left, r2.Top,
+                            adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
                                             Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
-                            clipRect = new RectangleF(r2.Left, r2.Top,
+                            clipRect = new Drawing.RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.FitProportional:
@@ -1231,14 +1236,14 @@ namespace fyiReporting.RDL
                             {   // this means the rectangle height must be corrected 
                                 height = width * ratioIm;
                             }
-                            adjustedRect = new RectangleF(r2.X, r2.Y, width, height);
+                            adjustedRect = new Drawing.RectangleF(r2.X, r2.Y, width, height);
                             break;
                         case ImageSizingEnum.Fit:
                         default:
                             adjustedRect = r2;
                             break;
                     }
-                    if (i.ImgFormat == System.Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == System.Drawing.Imaging.ImageFormat.Emf)
+                    if (i.ImgFormat == Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == Drawing.Imaging.ImageFormat.Emf)
                     {
                         //We dont want to add it - its already been broken down into page items;
                     }
@@ -1329,22 +1334,22 @@ namespace fyiReporting.RDL
 
         }
 
-        private string[] MeasureString(PageText pt, Graphics g, out float[] width)
+        private string[] MeasureString(PageText pt, Drawing.Graphics g, out float[] width)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
 
-            System.Drawing.Font drawFont = null;
-            StringFormat drawFormat = null;
-            SizeF ms;
+            Drawing.Font drawFont = null;
+            Drawing.StringFormat drawFormat = null;
+            Drawing.SizeF ms;
             string[] sa = null;
             width = null;
             try
             {
                 // STYLE
-                System.Drawing.FontStyle fs = 0;
+                Drawing.FontStyle fs = 0;
                 if (si.FontStyle == FontStyleEnum.Italic)
-                    fs |= System.Drawing.FontStyle.Italic;
+                    fs |= Drawing.FontStyle.Italic;
 
                 // WEIGHT
                 switch (si.FontWeight)
@@ -1356,15 +1361,15 @@ namespace fyiReporting.RDL
                     case FontWeightEnum.W700:
                     case FontWeightEnum.W800:
                     case FontWeightEnum.W900:
-                        fs |= System.Drawing.FontStyle.Bold;
+                        fs |= Drawing.FontStyle.Bold;
                         break;
                     default:
                         break;
                 }
 
-                drawFont = new System.Drawing.Font(StyleInfo.GetFontFamily(si.FontFamilyFull), si.FontSize, fs);
-                drawFormat = new StringFormat();
-                drawFormat.Alignment = StringAlignment.Near;
+                drawFont = new Drawing.Font(StyleInfo.GetFontFamily(si.FontFamilyFull), si.FontSize, fs);
+                drawFormat = new Drawing.StringFormat();
+                drawFormat.Alignment = Drawing.StringAlignment.Near;
 
                 // Measure string   
                 //  pt.NoClip indicates that this was generated by PageTextHtml Build.  It has already word wrapped.
@@ -1411,7 +1416,7 @@ namespace fyiReporting.RDL
                     // 1) break line into parts; then build up again keeping track of word positions
                     string[] parts = fl.Split(wordBreak);	// this is the maximum split of lines
                     StringBuilder sb = new StringBuilder(fl.Length);
-                    CharacterRange[] cra = new CharacterRange[parts.Length];
+                    Drawing.CharacterRange[] cra = new Drawing.CharacterRange[parts.Length];
                     for (int i = 0; i < parts.Length; i++)
                     {
                         int sc = sb.Length;	 // starting character
@@ -1419,7 +1424,7 @@ namespace fyiReporting.RDL
                         if (i != parts.Length - 1)  // last item doesn't need blank
                             sb.Append(" ");
                         int ec = sb.Length;
-                        CharacterRange cr = new CharacterRange(sc, ec - sc);
+                        Drawing.CharacterRange cr = new Drawing.CharacterRange(sc, ec - sc);
                         cra[i] = cr;			// add to character array
                     }
 
@@ -1431,8 +1436,8 @@ namespace fyiReporting.RDL
 
                     // 3) Loop thru creating new lines as needed
                     int startLoc = 0;
-                    CharacterRange crs = cra[startLoc];
-                    CharacterRange cre = cra[startLoc];
+                    Drawing.CharacterRange crs = cra[startLoc];
+                    Drawing.CharacterRange cre = cra[startLoc];
                     float cwidth = wordLocations[0].end;	// length of the first
                     float bwidth = wordLocations[0].start;  // characters need a little extra on start
                     string ts;
@@ -1491,7 +1496,7 @@ namespace fyiReporting.RDL
         /// <summary>
         /// Measures the location of an arbritrary # of words within a string
         /// </summary>
-        private WordStartFinish[] MeasureString(string s, Graphics g, System.Drawing.Font drawFont, StringFormat drawFormat, CharacterRange[] cra)
+        private WordStartFinish[] MeasureString(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat, Drawing.CharacterRange[] cra)
         {
             if (cra.Length <= MEASUREMAX)		// handle the simple case of < MEASUREMAX words
                 return MeasureString32(s, g, drawFont, drawFormat, cra);
@@ -1501,7 +1506,7 @@ namespace fyiReporting.RDL
             int ip = cra.Length % MEASUREMAX;		// # of partial entries needed for last array (if any)
             WordStartFinish[] sz = new WordStartFinish[cra.Length];	// this is the final result;
             float startPos = 0;
-            CharacterRange[] cra32 = new CharacterRange[MEASUREMAX];	// fill out			
+            Drawing.CharacterRange[] cra32 = new Drawing.CharacterRange[MEASUREMAX];	// fill out			
             int icra = 0;						// index thru the cra 
             for (int i = 0; i < mcra; i++)
             {
@@ -1531,7 +1536,7 @@ namespace fyiReporting.RDL
             if (ip > 0)
             {
                 // resize the range array
-                cra32 = new CharacterRange[ip];
+                cra32 = new Drawing.CharacterRange[ip];
                 // fill out the new array
                 int ticra = icra;
                 for (int j = 0; j < cra32.Length; j++)
@@ -1565,20 +1570,20 @@ namespace fyiReporting.RDL
         /// <param name="drawFormat"></param>
         /// <param name="cra"></param>
         /// <returns></returns>
-        private WordStartFinish[] MeasureString32(string s, Graphics g, System.Drawing.Font drawFont, StringFormat drawFormat, CharacterRange[] cra)
+        private WordStartFinish[] MeasureString32(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat, Drawing.CharacterRange[] cra)
         {
             if (s == null || s.Length == 0)
                 return null;
 
             drawFormat.SetMeasurableCharacterRanges(cra);
-            Region[] rs = new Region[cra.Length];
-            rs = g.MeasureCharacterRanges(s, drawFont, new RectangleF(0, 0, float.MaxValue, float.MaxValue),
+            Drawing.Region[] rs = new Drawing.Region[cra.Length];
+            rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0, 0, float.MaxValue, float.MaxValue),
                 drawFormat);
             WordStartFinish[] sz = new WordStartFinish[cra.Length];
             int isz = 0;
-            foreach (Region r in rs)
+            foreach (Drawing.Region r in rs)
             {
-                RectangleF mr = r.GetBounds(g);
+                Drawing.RectangleF mr = r.GetBounds(g);
                 sz[isz].start = Measurement.PointsFromPixels(mr.Left, g.DpiX);
                 sz[isz].end = Measurement.PointsFromPixels(mr.Right, g.DpiX);
                 isz++;
@@ -1592,24 +1597,24 @@ namespace fyiReporting.RDL
             internal float end;
         }
 
-        private SizeF MeasureString(string s, Graphics g, System.Drawing.Font drawFont, StringFormat drawFormat)
+        private Drawing.SizeF MeasureString(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat)
         {
             if (s == null || s.Length == 0)
-                return SizeF.Empty;
+                return Drawing.SizeF.Empty;
 
-            CharacterRange[] cr = { new CharacterRange(0, s.Length) };
+            Drawing.CharacterRange[] cr = { new Drawing.CharacterRange(0, s.Length) };
             drawFormat.SetMeasurableCharacterRanges(cr);
-            Region[] rs = new Region[1];
-            rs = g.MeasureCharacterRanges(s, drawFont, new RectangleF(0, 0, float.MaxValue, float.MaxValue),
+            Drawing.Region[] rs = new Drawing.Region[1];
+            rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0, 0, float.MaxValue, float.MaxValue),
                 drawFormat);
-            RectangleF mr = rs[0].GetBounds(g);
+            Drawing.RectangleF mr = rs[0].GetBounds(g);
 
-            return new SizeF(mr.Width, mr.Height);
+            return new Drawing.SizeF(mr.Width, mr.Height);
         }
 
-        private float MeasureStringBlank(Graphics g, System.Drawing.Font drawFont, StringFormat drawFormat)
+        private float MeasureStringBlank(Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat)
         {
-            SizeF ms = MeasureString(" ", g, drawFont, drawFormat);
+            Drawing.SizeF ms = MeasureString(" ", g, drawFont, drawFormat);
             float width = Measurement.PointsFromPixels(ms.Width, g.DpiX);	// convert to points from pixels
             return width * 2;
         }

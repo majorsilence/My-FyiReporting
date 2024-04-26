@@ -26,11 +26,14 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.Text;
 using System.Xml;
 using System.Globalization;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -46,9 +49,9 @@ namespace fyiReporting.RDL
 		StringWriter tw;			// temporary location where the output is going
 		IStreamGen _sg;				// stream generater
         System.Collections.Generic.List<string> _Fonts;        // list of fonts used
-        System.Collections.Generic.List<Color> _Colors;         // list of colors used
-        Bitmap _bm=null;			// bm and
-		Graphics _g=null;			//		  g are needed when calculating string heights
+        System.Collections.Generic.List<Drawing.Color> _Colors;         // list of colors used
+        Drawing.Bitmap _bm=null;			// bm and
+        Drawing.Graphics _g=null;			//		  g are needed when calculating string heights
 
         // some matrix generation variables
         int[] _MatrixColumnWidths;    // column widths for matrix
@@ -65,7 +68,7 @@ namespace fyiReporting.RDL
 
 			tw = new StringWriter();	// will hold the bulk of the RTF until we generate
             _Fonts = new System.Collections.Generic.List<string>();
-            _Colors = new System.Collections.Generic.List<Color>();
+            _Colors = new System.Collections.Generic.List<Drawing.Color>();
         }
         public void Dispose() 
 		{
@@ -92,14 +95,14 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private Graphics GetGraphics
+		private Drawing.Graphics GetGraphics
 		{
 			get 
 			{
 				if (_g == null)
 				{
-					_bm = new Bitmap(10, 10);
-					_g = Graphics.FromImage(_bm);
+					_bm = new Drawing.Bitmap(10, 10);
+					_g = Drawing.Graphics.FromImage(_bm);
 				}
 				return _g;
 			}
@@ -157,7 +160,7 @@ namespace fyiReporting.RDL
         private void PutColorTable(TextWriter ftw)
         {
             ftw.Write(@"{\colortbl;");
-            foreach (Color color in _Colors)
+            foreach (Drawing.Color color in _Colors)
             {
                 ftw.Write(@"\red{0}\green{1}\blue{2};", color.R, color.G, color.B);
             }
@@ -645,7 +648,7 @@ namespace fyiReporting.RDL
 
 		public void Chart(Chart c, Row row, ChartBase cb)
 		{
-            System.Drawing.Image im = cb.Image(r);
+           Drawing.Image im = cb.Image(r);
             
             PutImage(im, im.Width, im.Height);
             
@@ -654,7 +657,7 @@ namespace fyiReporting.RDL
         }
         public void Image(Image i, Row r, string mimeType, Stream ioin)
         {
-            using (System.Drawing.Image im = System.Drawing.Image.FromStream(ioin))
+            using (Drawing.Image im = Drawing.Image.FromStream(ioin))
             {
                 PutImage(im, i.Width == null ? 0 : i.Width.PixelsX, i.Height == null ? 0 : i.Height.PixelsY);
             }
@@ -683,11 +686,11 @@ namespace fyiReporting.RDL
         /// <param name="ioin"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-		void PutImage(System.Drawing.Image im, int width, int height)
+		void PutImage(Drawing.Image im, int width, int height)
 		{
             MemoryStream ostrm = new MemoryStream();
-            ImageFormat imf;
-            imf = ImageFormat.Png;
+            Drawing.Imaging.ImageFormat imf;
+            imf = Drawing.Imaging.ImageFormat.Png;
             im.Save(ostrm, imf);
             byte[] ba = ostrm.ToArray();
             ostrm.Close();

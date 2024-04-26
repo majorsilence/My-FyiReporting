@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -70,7 +73,7 @@ namespace fyiReporting.RDL
                 UInt32 NumberOfPoints = _br.ReadUInt32();
                 UInt32 NumberOfSegments = _br.ReadUInt32();
                 EMFPen Emfp = (EMFPen)ObjectTable[ObjectID];
-                Pen p = Emfp.myPen;
+                Drawing.Pen p = Emfp.myPen;
                 //EMFBrush b = p.myBrush;                
                 if (Compressed)
                 {
@@ -96,9 +99,9 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfSegments, BinaryReader _br, Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
+        private void DoFloat(UInt32 NumberOfSegments, BinaryReader _br, Drawing.Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
         {
-            System.Drawing.PointF[] Points = null;
+            Drawing.PointF[] Points = null;
             //bool first = true;
             for (int i = 0; i < NumberOfPoints; i++)
             {
@@ -109,10 +112,10 @@ namespace fyiReporting.RDL
         }
 
 
-        private void DoCompressed(UInt32 NumberOfSegments, BinaryReader _br, Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
+        private void DoCompressed(UInt32 NumberOfSegments, BinaryReader _br, Drawing.Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
         {
             //bool first = true;
-            PointF[] Points = new System.Drawing.PointF[NumberOfPoints];
+            Drawing.PointF[] Points = new Drawing.PointF[NumberOfPoints];
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 Points[i].X = (float) _br.ReadInt16();
@@ -121,7 +124,7 @@ namespace fyiReporting.RDL
             DoInstructions(Points, p, Offset, NumberOfSegments, Tension);
         }
 
-        private void DoInstructions(PointF[] points, Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
+        private void DoInstructions(Drawing.PointF[] points, Drawing.Pen p, UInt32 Offset, UInt32 NumberOfPoints, float Tension)
         {
             BorderStyleEnum ls = getLineStyle(p);
             //Well we only draw lines at the moment.... 
@@ -129,7 +132,7 @@ namespace fyiReporting.RDL
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                    System.Drawing.SolidBrush theBrush = (System.Drawing.SolidBrush)p.Brush;
+                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
                     PageCurve pc = new PageCurve();
                     for (int i = 0; i < points.Length; i++)
                     {

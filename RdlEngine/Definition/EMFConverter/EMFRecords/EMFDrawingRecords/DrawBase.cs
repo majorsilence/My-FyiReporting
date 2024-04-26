@@ -22,8 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 
 namespace fyiReporting.RDL
 {
@@ -37,27 +40,27 @@ namespace fyiReporting.RDL
         protected Single Height;
         protected List<PageItem> items;
 
-        protected static BorderStyleEnum getLineStyle(Pen p)
+        protected static BorderStyleEnum getLineStyle(Drawing.Pen p)
         {
             BorderStyleEnum ls = BorderStyleEnum.Solid;
             switch (p.DashStyle)
             {               
-                case DashStyle.Dash:
+                case Drawing.Drawing2D.DashStyle.Dash:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case DashStyle.DashDot:
+                case Drawing.Drawing2D.DashStyle.DashDot:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case DashStyle.DashDotDot:
+                case Drawing.Drawing2D.DashStyle.DashDotDot:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case DashStyle.Dot: 
+                case Drawing.Drawing2D.DashStyle.Dot: 
                     ls = BorderStyleEnum.Dotted;
                     break;
-                case DashStyle.Solid:
+                case Drawing.Drawing2D.DashStyle.Solid:
                     ls = BorderStyleEnum.Solid;
                     break;
-                case DashStyle.Custom:
+                case Drawing.Drawing2D.DashStyle.Custom:
                     ls = BorderStyleEnum.Solid;
                     break;
                 default:                   

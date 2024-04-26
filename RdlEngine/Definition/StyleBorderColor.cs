@@ -24,7 +24,11 @@
 using System;
 using System.Xml;
 using System.Text;
-using System.Drawing;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
 using System.Globalization;
 
 namespace fyiReporting.RDL
@@ -166,13 +170,13 @@ namespace fyiReporting.RDL
 			set {  _Default = value; }
 		}
 
-		internal Color EvalDefault(Report rpt, Row r)
+		internal Drawing.Color EvalDefault(Report rpt, Row r)
 		{
 			if (_Default == null)
-				return System.Drawing.Color.Black;
+				return Drawing.Color.Black;
 			
 			string c = _Default.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 
 		internal Expression Left
@@ -181,13 +185,13 @@ namespace fyiReporting.RDL
 			set {  _Left = value; }
 		}
 
-		internal Color EvalLeft(Report rpt, Row r)
+		internal Drawing.Color EvalLeft(Report rpt, Row r)
 		{
 			if (_Left == null)
 				return EvalDefault(rpt, r);
 			
 			string c = _Left.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 
 		internal Expression Right
@@ -196,13 +200,13 @@ namespace fyiReporting.RDL
 			set {  _Right = value; }
 		}
 
-		internal Color EvalRight(Report rpt, Row r)
+		internal Drawing.Color EvalRight(Report rpt, Row r)
 		{
 			if (_Right == null)
 				return EvalDefault(rpt, r);
 			
 			string c = _Right.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 
 		internal Expression Top
@@ -211,13 +215,13 @@ namespace fyiReporting.RDL
 			set {  _Top = value; }
 		}
 
-		internal Color EvalTop(Report rpt, Row r)
+		internal Drawing.Color EvalTop(Report rpt, Row r)
 		{
 			if (_Top == null)
 				return EvalDefault(rpt, r);
 			
 			string c = _Top.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 
 		internal Expression Bottom
@@ -226,13 +230,13 @@ namespace fyiReporting.RDL
 			set {  _Bottom = value; }
 		}
 
-		internal Color EvalBottom(Report rpt, Row r)
+		internal Drawing.Color EvalBottom(Report rpt, Row r)
 		{
 			if (_Bottom == null)
 				return EvalDefault(rpt, r);
 			
 			string c = _Bottom.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, System.Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
 		}
 	}
 }

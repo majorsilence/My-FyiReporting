@@ -24,7 +24,11 @@
 using System;
 using System.Xml;
 using System.IO;
+#if LINUX
+using System.DrawingCore;
+#else
 using System.Drawing;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 

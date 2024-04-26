@@ -27,9 +27,12 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
+#if LINUX
+using Drawing = System.DrawingCore;
+#else
+using Drawing = System.Drawing;
+#endif
+
 using System.Text;
 using System.Runtime.InteropServices;
 
@@ -44,7 +47,7 @@ namespace fyiReporting.RDL
         Report r;               // report 
         Stream tw;               // where the output is going 
 
-        Bitmap _tif;
+        Drawing.Bitmap _tif;
 
         float DpiX;
         float DpiY;
@@ -94,23 +97,23 @@ namespace fyiReporting.RDL
             // STEP: processing a page. 
             foreach (Page p in pgs)
             {
-                System.Drawing.Bitmap bm = CreateObjectBitmap();
-                System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bm);
+                Drawing.Bitmap bm = CreateObjectBitmap();
+                Drawing.Graphics g = Drawing.Graphics.FromImage(bm);
 
-                g.PageUnit = GraphicsUnit.Pixel;
+                g.PageUnit = Drawing.GraphicsUnit.Pixel;
                 g.ScaleTransform(1, 1);
 
                 DpiX = g.DpiX;
                 DpiY = g.DpiY;
 
                 // STEP: Fill backgroup 
-                g.FillRectangle(Brushes.White, 0F, 0F, (float)bm.Width, (float)bm.Height);
+                g.FillRectangle(Drawing.Brushes.White, 0F, 0F, (float)bm.Width, (float)bm.Height);
 
                 // STEP: draw page to bitmap 
                 ProcessPage(g, p);
 
                 // STEP: 
-                System.Drawing.Bitmap bm2 = ConvertToBitonal(bm);
+                Drawing.Bitmap bm2 = ConvertToBitonal(bm);
 
                 if (pageNo == 1)
                     _tif = bm2;
@@ -123,9 +126,9 @@ namespace fyiReporting.RDL
             if (_tif != null)
             {
                 // STEP: prepare encoder parameters 
-                EncoderParameters encoderParams = new EncoderParameters(1);
-                encoderParams.Param[0] = new EncoderParameter(
-                    System.Drawing.Imaging.Encoder.SaveFlag, (long)EncoderValue.Flush
+                Drawing.Imaging.EncoderParameters encoderParams = new Drawing.Imaging.EncoderParameters(1);
+                encoderParams.Param[0] = new Drawing.Imaging.EncoderParameter(
+                    Drawing.Imaging.Encoder.SaveFlag, (long)Drawing.Imaging.EncoderValue.Flush
                 );
 
                 // STEP: 
@@ -135,7 +138,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-        private void ProcessPage(Graphics g, IEnumerable p)
+        private void ProcessPage(Drawing.Graphics g, IEnumerable p)
         {
             foreach (PageItem pi in p)
             {
@@ -155,7 +158,7 @@ namespace fyiReporting.RDL
                     continue;
                 }
 
-                RectangleF rect = new RectangleF(PixelsX(pi.X), PixelsY(pi.Y), PixelsX(pi.W), PixelsY(pi.H));
+                Drawing.RectangleF rect = new Drawing.RectangleF(PixelsX(pi.X), PixelsY(pi.Y), PixelsX(pi.W), PixelsY(pi.H));
 
                 if (pi.SI.BackgroundImage != null)
                 {   // put out any background image 
@@ -203,28 +206,28 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void ProcessHtml(PageTextHtml pth, System.Drawing.Graphics g)
+        private void ProcessHtml(PageTextHtml pth, Drawing.Graphics g)
         {
             pth.Build(g);            // Builds the subobjects that make up the html 
             this.ProcessPage(g, pth);
         }
 
-        private void DrawLine(Color c, BorderStyleEnum bs, float w, Graphics g, float x, float y, float x2, float y2)
+        private void DrawLine(Drawing.Color c, BorderStyleEnum bs, float w, Drawing.Graphics g, float x, float y, float x2, float y2)
         {
             if (bs == BorderStyleEnum.None || c.IsEmpty || w <= 0)   // nothing to draw 
                 return;
 
-            Pen p = null;
+            Drawing.Pen p = null;
             try
             {
-                p = new Pen(c, w);
+                p = new Drawing.Pen(c, w);
                 switch (bs)
                 {
                     case BorderStyleEnum.Dashed:
-                        p.DashStyle = DashStyle.Dash;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dash;
                         break;
                     case BorderStyleEnum.Dotted:
-                        p.DashStyle = DashStyle.Dot;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dot;
                         break;
                     case BorderStyleEnum.Double:
                     case BorderStyleEnum.Groove:
@@ -234,7 +237,7 @@ namespace fyiReporting.RDL
                     case BorderStyleEnum.Ridge:
                     case BorderStyleEnum.WindowInset:
                     default:
-                        p.DashStyle = DashStyle.Solid;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Solid;
                         break;
                 }
 
@@ -247,23 +250,23 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DrawCurve(Color c, BorderStyleEnum bs, float w, Graphics g,
-                                PointF[] points, int Offset, float Tension)
+        private void DrawCurve(Drawing.Color c, BorderStyleEnum bs, float w, Drawing.Graphics g,
+            Drawing.PointF[] points, int Offset, float Tension)
         {
             if (bs == BorderStyleEnum.None || c.IsEmpty || w <= 0)	// nothing to draw
                 return;
 
-            Pen p = null;
+            Drawing.Pen p = null;
             try
             {
-                p = new Pen(c, w);
+                p = new Drawing.Pen(c, w);
                 switch (bs)
                 {
                     case BorderStyleEnum.Dashed:
-                        p.DashStyle = DashStyle.Dash;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dash;
                         break;
                     case BorderStyleEnum.Dotted:
-                        p.DashStyle = DashStyle.Dot;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dot;
                         break;
                     case BorderStyleEnum.Double:
                     case BorderStyleEnum.Groove:
@@ -273,10 +276,10 @@ namespace fyiReporting.RDL
                     case BorderStyleEnum.Ridge:
                     case BorderStyleEnum.WindowInset:
                     default:
-                        p.DashStyle = DashStyle.Solid;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Solid;
                         break;
                 }
-                PointF[] tmp = new PointF[points.Length];
+                Drawing.PointF[] tmp = new Drawing.PointF[points.Length];
                 for (int i = 0; i < points.Length; i++)
                 {
 
@@ -294,23 +297,23 @@ namespace fyiReporting.RDL
 
         }
 
-        private void DrawEllipse(PageEllipse pe, Graphics g, RectangleF r)
+        private void DrawEllipse(PageEllipse pe, Drawing.Graphics g, Drawing.RectangleF r)
         {
             StyleInfo si = pe.SI;
             if (!si.BackgroundColor.IsEmpty)
             {
-                g.FillEllipse(new SolidBrush(si.BackgroundColor), r);
+                g.FillEllipse(new Drawing.SolidBrush(si.BackgroundColor), r);
             }
             if (si.BStyleTop != BorderStyleEnum.None)
             {
-                Pen p = new Pen(si.BColorTop, si.BWidthTop);
+                Drawing.Pen p = new Drawing.Pen(si.BColorTop, si.BWidthTop);
                 switch (si.BStyleTop)
                 {
                     case BorderStyleEnum.Dashed:
-                        p.DashStyle = DashStyle.Dash;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dash;
                         break;
                     case BorderStyleEnum.Dotted:
-                        p.DashStyle = DashStyle.Dot;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dot;
                         break;
                     case BorderStyleEnum.Double:
                     case BorderStyleEnum.Groove:
@@ -320,18 +323,18 @@ namespace fyiReporting.RDL
                     case BorderStyleEnum.Ridge:
                     case BorderStyleEnum.WindowInset:
                     default:
-                        p.DashStyle = DashStyle.Solid;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Solid;
                         break;
                 }
                 g.DrawEllipse(p, r);
             }
         }
 
-        private void FillPolygon(PagePolygon pp, Graphics g, RectangleF r)
+        private void FillPolygon(PagePolygon pp, Drawing.Graphics g, Drawing.RectangleF r)
         {
 
             StyleInfo si = pp.SI;
-            PointF[] tmp = new PointF[pp.Points.Length];
+            Drawing.PointF[] tmp = new Drawing.PointF[pp.Points.Length];
             if (!si.BackgroundColor.IsEmpty)
             {
                 for (int i = 0; i < pp.Points.Length; i++)
@@ -339,28 +342,28 @@ namespace fyiReporting.RDL
                     tmp[i].X = PixelsX(pp.Points[i].X);
                     tmp[i].Y = PixelsY(pp.Points[i].Y);
                 }
-                g.FillPolygon(new SolidBrush(si.BackgroundColor), tmp);
+                g.FillPolygon(new Drawing.SolidBrush(si.BackgroundColor), tmp);
             }
         }
 
-        private void DrawPie(PagePie pp, Graphics g, RectangleF r)
+        private void DrawPie(PagePie pp, Drawing.Graphics g, Drawing.RectangleF r)
         {
             StyleInfo si = pp.SI;
             if (!si.BackgroundColor.IsEmpty)
             {
-                g.FillPie(new SolidBrush(si.BackgroundColor), (int)r.X, (int)r.Y, (int)r.Width, (int)r.Height, (float)pp.StartAngle, (float)pp.SweepAngle);
+                g.FillPie(new Drawing.SolidBrush(si.BackgroundColor), (int)r.X, (int)r.Y, (int)r.Width, (int)r.Height, (float)pp.StartAngle, (float)pp.SweepAngle);
             }
 
             if (si.BStyleTop != BorderStyleEnum.None)
             {
-                Pen p = new Pen(si.BColorTop, si.BWidthTop);
+                Drawing.Pen p = new Drawing.Pen(si.BColorTop, si.BWidthTop);
                 switch (si.BStyleTop)
                 {
                     case BorderStyleEnum.Dashed:
-                        p.DashStyle = DashStyle.Dash;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dash;
                         break;
                     case BorderStyleEnum.Dotted:
-                        p.DashStyle = DashStyle.Dot;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Dot;
                         break;
                     case BorderStyleEnum.Double:
                     case BorderStyleEnum.Groove:
@@ -370,35 +373,35 @@ namespace fyiReporting.RDL
                     case BorderStyleEnum.Ridge:
                     case BorderStyleEnum.WindowInset:
                     default:
-                        p.DashStyle = DashStyle.Solid;
+                        p.DashStyle = Drawing.Drawing2D.DashStyle.Solid;
                         break;
                 }
                 g.DrawPie(p, r, pp.StartAngle, pp.SweepAngle);
             }
         }
 
-        private void DrawString(PageText pt, Graphics g, RectangleF r)
+        private void DrawString(PageText pt, Drawing.Graphics g, Drawing.RectangleF r)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
 
-            Font drawFont = null;
-            StringFormat drawFormat = null;
-            Brush drawBrush = null;
+            Drawing.Font drawFont = null;
+            Drawing.StringFormat drawFormat = null;
+            Drawing.Brush drawBrush = null;
             try
             {
                 // STYLE 
-                System.Drawing.FontStyle fs = 0;
+                Drawing.FontStyle fs = 0;
                 if (si.FontStyle == FontStyleEnum.Italic)
-                    fs |= System.Drawing.FontStyle.Italic;
+                    fs |= Drawing.FontStyle.Italic;
 
                 switch (si.TextDecoration)
                 {
                     case TextDecorationEnum.Underline:
-                        fs |= System.Drawing.FontStyle.Underline;
+                        fs |= Drawing.FontStyle.Underline;
                         break;
                     case TextDecorationEnum.LineThrough:
-                        fs |= System.Drawing.FontStyle.Strikeout;
+                        fs |= Drawing.FontStyle.Strikeout;
                         break;
                     case TextDecorationEnum.Overline:
                     case TextDecorationEnum.None:
@@ -415,65 +418,65 @@ namespace fyiReporting.RDL
                     case FontWeightEnum.W700:
                     case FontWeightEnum.W800:
                     case FontWeightEnum.W900:
-                        fs |= System.Drawing.FontStyle.Bold;
+                        fs |= Drawing.FontStyle.Bold;
                         break;
                     default:
                         break;
                 }
                 try
                 {
-                    drawFont = new Font(si.GetFontFamily(), si.FontSize, fs);   // si.FontSize already in points 
+                    drawFont = new Drawing.Font(si.GetFontFamily(), si.FontSize, fs);   // si.FontSize already in points 
                 }
                 catch (ArgumentException)
                 {
-                    drawFont = new Font("Arial", si.FontSize, fs);   // if this fails we'll let the error pass thru 
+                    drawFont = new Drawing.Font("Arial", si.FontSize, fs);   // if this fails we'll let the error pass thru 
                 }
                 // ALIGNMENT 
-                drawFormat = new StringFormat();
+                drawFormat = new Drawing.StringFormat();
                 switch (si.TextAlign)
                 {
                     case TextAlignEnum.Right:
-                        drawFormat.Alignment = StringAlignment.Far;
+                        drawFormat.Alignment = Drawing.StringAlignment.Far;
                         break;
                     case TextAlignEnum.Center:
-                        drawFormat.Alignment = StringAlignment.Center;
+                        drawFormat.Alignment = Drawing.StringAlignment.Center;
                         break;
                     case TextAlignEnum.Left:
                     default:
-                        drawFormat.Alignment = StringAlignment.Near;
+                        drawFormat.Alignment = Drawing.StringAlignment.Near;
                         break;
                 }
                 if (pt.SI.WritingMode == WritingModeEnum.tb_rl)
                 {
-                    drawFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
-                    drawFormat.FormatFlags |= StringFormatFlags.DirectionVertical;
+                    drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionRightToLeft;
+                    drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionVertical;
                 }
                 switch (si.VerticalAlign)
                 {
                     case VerticalAlignEnum.Bottom:
-                        drawFormat.LineAlignment = StringAlignment.Far;
+                        drawFormat.LineAlignment = Drawing.StringAlignment.Far;
                         break;
                     case VerticalAlignEnum.Middle:
-                        drawFormat.LineAlignment = StringAlignment.Center;
+                        drawFormat.LineAlignment = Drawing.StringAlignment.Center;
                         break;
                     case VerticalAlignEnum.Top:
                     default:
-                        drawFormat.LineAlignment = StringAlignment.Near;
+                        drawFormat.LineAlignment = Drawing.StringAlignment.Near;
                         break;
                 }
                 // draw the background 
                 DrawBackground(g, r, si);
 
                 // adjust drawing rectangle based on padding 
-                RectangleF r2 = new RectangleF(r.Left + si.PaddingLeft,
+                Drawing.RectangleF r2 = new Drawing.RectangleF(r.Left + si.PaddingLeft,
                                                r.Top + si.PaddingTop,
                                                r.Width - si.PaddingLeft - si.PaddingRight,
                                                r.Height - si.PaddingTop - si.PaddingBottom);
 
-                drawBrush = new SolidBrush(si.Color);
+                drawBrush = new Drawing.SolidBrush(si.Color);
                 if (pt.NoClip)   // request not to clip text 
                 {
-                    g.DrawString(pt.Text, drawFont, drawBrush, new PointF(r.Left, r.Top), drawFormat);
+                    g.DrawString(pt.Text, drawFont, drawBrush, new Drawing.PointF(r.Left, r.Top), drawFormat);
                     //HighlightString(g, pt, new RectangleF(r.Left, r.Top, float.MaxValue, float.MaxValue),drawFont, drawFormat); 
                 }
                 else
@@ -494,14 +497,14 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DrawImage(PageImage pi, Graphics g, RectangleF r)
+        private void DrawImage(PageImage pi, Drawing.Graphics g, Drawing.RectangleF r)
         {
             Stream strm = null;
-            System.Drawing.Image im = null;
+            Drawing.Image im = null;
             try
             {
                 strm = new MemoryStream(pi.GetImageData((int)r.Width, (int)r.Height));
-                im = System.Drawing.Image.FromStream(strm);
+                im = Drawing.Image.FromStream(strm);
                 DrawImageSized(pi, im, g, r);
             }
             finally
@@ -514,18 +517,18 @@ namespace fyiReporting.RDL
 
         }
 
-        private void DrawImageSized(PageImage pi, System.Drawing.Image im, System.Drawing.Graphics g, System.Drawing.RectangleF r)
+        private void DrawImageSized(PageImage pi, Drawing.Image im, Drawing.Graphics g, Drawing.RectangleF r)
         {
             float height, width;      // some work variables 
             StyleInfo si = pi.SI;
 
             // adjust drawing rectangle based on padding 
-            System.Drawing.RectangleF r2 = new System.Drawing.RectangleF(r.Left + PixelsX(si.PaddingLeft),
+            Drawing.RectangleF r2 = new Drawing.RectangleF(r.Left + PixelsX(si.PaddingLeft),
                 r.Top + PixelsY(si.PaddingTop),
                 r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
                 r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
 
-            System.Drawing.Rectangle ir;   // int work rectangle 
+            Drawing.Rectangle ir;   // int work rectangle 
             switch (pi.Sizing)
             {
                 case ImageSizingEnum.AutoSize:
@@ -536,28 +539,28 @@ namespace fyiReporting.RDL
                     if (g.DpiX == im.HorizontalResolution &&
                         g.DpiY == im.VerticalResolution)
                     {
-                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                                         im.Width, im.Height);
                     }
                     else
-                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                            Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
                     g.DrawImage(im, ir);
 
                     break;
                 case ImageSizingEnum.Clip:
-                    Region saveRegion = g.Clip;
-                    Region clipRegion = new Region(g.Clip.GetRegionData());
+                    Drawing.Region saveRegion = g.Clip;
+                    Drawing.Region clipRegion = new Drawing.Region(g.Clip.GetRegionData());
                     clipRegion.Intersect(r2);
                     g.Clip = clipRegion;
                     if (g.DpiX == im.HorizontalResolution &&
                         g.DpiY == im.VerticalResolution)
                     {
-                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                                         im.Width, im.Height);
                     }
                     else
-                        ir = new System.Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
+                        ir = new Drawing.Rectangle(Convert.ToInt32(r2.Left), Convert.ToInt32(r2.Top),
                                            Convert.ToInt32(r2.Width), Convert.ToInt32(r2.Height));
                     g.DrawImage(im, ir);
                     g.Clip = saveRegion;
@@ -575,7 +578,7 @@ namespace fyiReporting.RDL
                     {   // this means the ractangle height must be corrected 
                         height = width * ratioIm;
                     }
-                    r2 = new RectangleF(r2.X, r2.Y, width, height);
+                    r2 = new Drawing.RectangleF(r2.X, r2.Y, width, height);
                     g.DrawImage(im, r2);
                     break;
                 case ImageSizingEnum.Fit:
@@ -586,41 +589,41 @@ namespace fyiReporting.RDL
             return;
         }
 
-        private void DrawBackground(Graphics g, System.Drawing.RectangleF rect, StyleInfo si)
+        private void DrawBackground(Drawing.Graphics g, Drawing.RectangleF rect, StyleInfo si)
         {
-            LinearGradientBrush linGrBrush = null;
-            SolidBrush sb = null;
+            Drawing.Drawing2D.LinearGradientBrush linGrBrush = null;
+            Drawing.SolidBrush sb = null;
             try
             {
                 if (si.BackgroundGradientType != BackgroundGradientTypeEnum.None &&
                     !si.BackgroundGradientEndColor.IsEmpty &&
                     !si.BackgroundColor.IsEmpty)
                 {
-                    Color c = si.BackgroundColor;
-                    Color ec = si.BackgroundGradientEndColor;
+                    Drawing.Color c = si.BackgroundColor;
+                    Drawing.Color ec = si.BackgroundGradientEndColor;
 
                     switch (si.BackgroundGradientType)
                     {
                         case BackgroundGradientTypeEnum.LeftRight:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.Horizontal);
                             break;
                         case BackgroundGradientTypeEnum.TopBottom:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.Vertical);
                             break;
                         case BackgroundGradientTypeEnum.Center:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.Horizontal);
                             break;
                         case BackgroundGradientTypeEnum.DiagonalLeft:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.ForwardDiagonal);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal);
                             break;
                         case BackgroundGradientTypeEnum.DiagonalRight:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.BackwardDiagonal);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal);
                             break;
                         case BackgroundGradientTypeEnum.HorizontalCenter:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.Horizontal);
                             break;
                         case BackgroundGradientTypeEnum.VerticalCenter:
-                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical);
+                            linGrBrush = new Drawing.Drawing2D.LinearGradientBrush(rect, c, ec, Drawing.Drawing2D.LinearGradientMode.Vertical);
                             break;
                         default:
                             break;
@@ -634,7 +637,7 @@ namespace fyiReporting.RDL
                 }
                 else if (!si.BackgroundColor.IsEmpty)
                 {
-                    sb = new SolidBrush(si.BackgroundColor);
+                    sb = new Drawing.SolidBrush(si.BackgroundColor);
                     g.FillRectangle(sb, rect);
                     sb.Dispose();
                 }
@@ -649,7 +652,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-        private void DrawBorder(PageItem pi, Graphics g, RectangleF r)
+        private void DrawBorder(PageItem pi, Drawing.Graphics g, Drawing.RectangleF r)
         {
             if (r.Height <= 0 || r.Width <= 0)      // no bounding box to use 
                 return;
@@ -669,35 +672,35 @@ namespace fyiReporting.RDL
         }
 
         #region TIFF image handler
-        private Bitmap CreateObjectBitmap()
+        private Drawing.Bitmap CreateObjectBitmap()
         {
             float dpiX = 200F;
             float dpiY = 200F;
 
-            Bitmap bm = new System.Drawing.Bitmap(
+            Drawing.Bitmap bm = new Drawing.Bitmap(
                 Convert.ToInt32(r.ReportDefinition.PageWidth.Size / 2540F * dpiX),
                 Convert.ToInt32(r.ReportDefinition.PageHeight.Size / 2540F * dpiY)
             );
 
-            bm.MakeTransparent(Color.White);
+            bm.MakeTransparent(Drawing.Color.White);
             bm.SetResolution(dpiX, dpiY);
 
             return bm;
         }
 
-        private Bitmap ConvertToBitonal(Bitmap original)
+        private Drawing.Bitmap ConvertToBitonal(Drawing.Bitmap original)
         {
             if (_RenderColor)
                 return original;
 
-            Bitmap source = null;
+            Drawing.Bitmap source = null;
 
             // If original bitmap is not already in 32 BPP, ARGB format, then convert 
-            if (original.PixelFormat != PixelFormat.Format32bppArgb)
+            if (original.PixelFormat != Drawing.Imaging.PixelFormat.Format32bppArgb)
             {
-                source = new Bitmap(original.Width, original.Height, PixelFormat.Format32bppArgb);
+                source = new Drawing.Bitmap(original.Width, original.Height, Drawing.Imaging.PixelFormat.Format32bppArgb);
                 source.SetResolution(original.HorizontalResolution, original.VerticalResolution);
-                using (Graphics g = Graphics.FromImage(source))
+                using (Drawing.Graphics g = Drawing.Graphics.FromImage(source))
                 {
                     g.DrawImageUnscaled(original, 0, 0);
                 }
@@ -708,7 +711,9 @@ namespace fyiReporting.RDL
             }
 
             // Lock source bitmap in memory 
-            BitmapData sourceData = source.LockBits(new System.Drawing.Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            Drawing.Imaging.BitmapData sourceData = source.LockBits(new Drawing.Rectangle(0, 0, source.Width, source.Height), 
+                Drawing.Imaging.ImageLockMode.ReadOnly,
+                Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             // Copy image data to binary array 
             int imageSize = sourceData.Stride * sourceData.Height;
@@ -719,13 +724,14 @@ namespace fyiReporting.RDL
             source.UnlockBits(sourceData);
 
             // Create destination bitmap 
-            Bitmap destination = new Bitmap(source.Width, source.Height, PixelFormat.Format1bppIndexed);
+            Drawing.Bitmap destination = new Drawing.Bitmap(source.Width, source.Height, Drawing.Imaging.PixelFormat.Format1bppIndexed);
 
             // Set resolution 
             destination.SetResolution(source.HorizontalResolution, source.VerticalResolution);
 
             // Lock destination bitmap in memory 
-            BitmapData destinationData = destination.LockBits(new System.Drawing.Rectangle(0, 0, destination.Width, destination.Height), ImageLockMode.WriteOnly, PixelFormat.Format1bppIndexed);
+            Drawing.Imaging.BitmapData destinationData = destination.LockBits(new Drawing.Rectangle(0, 0, destination.Width, destination.Height), 
+                Drawing.Imaging.ImageLockMode.WriteOnly, Drawing.Imaging.PixelFormat.Format1bppIndexed);
 
             // Create destination buffer 
             imageSize = destinationData.Stride * destinationData.Height;
@@ -786,16 +792,16 @@ namespace fyiReporting.RDL
             return destination;
         }
 
-        private void SaveBitmap(Bitmap tif, Bitmap bm, Stream st, int pageNo)
+        private void SaveBitmap(Drawing.Bitmap tif, Drawing.Bitmap bm, Stream st, int pageNo)
         {
             if (pageNo == 1)
             {
                 // Handling saving first page 
 
                 // STEP: Prepare ImageCodecInfo for saving 
-                ImageCodecInfo info = null;
+                Drawing.Imaging.ImageCodecInfo info = null;
 
-                foreach (ImageCodecInfo i in ImageCodecInfo.GetImageEncoders())
+                foreach (Drawing.Imaging.ImageCodecInfo i in Drawing.Imaging.ImageCodecInfo.GetImageEncoders())
                 {
                     if (i.MimeType == "image/tiff")
                     {
@@ -805,15 +811,15 @@ namespace fyiReporting.RDL
                 }
 
                 // STEP: Prepare parameters 
-                EncoderParameters encoderParams = new EncoderParameters(2);
+                Drawing.Imaging.EncoderParameters encoderParams = new Drawing.Imaging.EncoderParameters(2);
 
-                encoderParams.Param[0] = new EncoderParameter(
-                    System.Drawing.Imaging.Encoder.SaveFlag, (long)EncoderValue.MultiFrame
+                encoderParams.Param[0] = new Drawing.Imaging.EncoderParameter(
+                    Drawing.Imaging.Encoder.SaveFlag, (long)Drawing.Imaging.EncoderValue.MultiFrame
                 );
 
-                encoderParams.Param[1] = new EncoderParameter(
-                    System.Drawing.Imaging.Encoder.Compression, 
-                    (long)(_RenderColor? EncoderValue.CompressionLZW: EncoderValue.CompressionCCITT3)
+                encoderParams.Param[1] = new Drawing.Imaging.EncoderParameter(
+                    Drawing.Imaging.Encoder.Compression, 
+                    (long)(_RenderColor? Drawing.Imaging.EncoderValue.CompressionLZW: Drawing.Imaging.EncoderValue.CompressionCCITT3)
                 );
 
                 // STEP: Save bitmap 
@@ -822,10 +828,10 @@ namespace fyiReporting.RDL
             else
             {
                 // STEP: Prepare parameters 
-                EncoderParameters encoderParams = new EncoderParameters(1);
+                Drawing.Imaging.EncoderParameters encoderParams = new Drawing.Imaging.EncoderParameters(1);
 
-                encoderParams.Param[0] = new EncoderParameter(
-                    System.Drawing.Imaging.Encoder.SaveFlag, (long)EncoderValue.FrameDimensionPage
+                encoderParams.Param[0] = new Drawing.Imaging.EncoderParameter(
+                    Drawing.Imaging.Encoder.SaveFlag, (long)Drawing.Imaging.EncoderValue.FrameDimensionPage
                 );
 
                 // STEP: Save bitmap 
