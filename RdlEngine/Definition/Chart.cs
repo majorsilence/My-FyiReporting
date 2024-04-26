@@ -321,6 +321,8 @@ namespace fyiReporting.RDL
                             break;
                         }
                     }
+                    // NOTE: if you are on linux and see "System.ArgumentException: A null reference or invalid value was found [GDI+ status: InvalidParameter]"
+                    // then you need to install a newer libgdiplus package. This should work on Ubuntu 24.04 or newer "sudo apt-get install libgdiplus"
                     im.Save(ostrm, codec, encoderParameters);
                     // 06122007AJM The follow has been replaced with the code above
                     //im.Save(ostrm, info);	// generate a jpeg   TODO: get png to work with pdf
