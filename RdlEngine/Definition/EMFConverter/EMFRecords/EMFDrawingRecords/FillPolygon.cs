@@ -27,7 +27,7 @@ using Drawing = System.DrawingCore;
 using Drawing2D = System.DrawingCore.Drawing2D;
 #else
 using Drawing = System.Drawing;
-using Drawing2D = System.Drawing2D.;
+using Drawing2D = System.Drawing.Drawing2D;
 #endif
 namespace fyiReporting.RDL
 {

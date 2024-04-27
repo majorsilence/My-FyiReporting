@@ -28,8 +28,8 @@ using Drawing2D = System.DrawingCore.Drawing2D;
 using Imaging = System.DrawingCore.Imaging;
 #else
 using Drawing = System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
+using Drawing2D = System.Drawing.Drawing2D;
+using Imaging = System.Drawing.Imaging;
 #endif
 
 
