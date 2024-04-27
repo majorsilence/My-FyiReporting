@@ -1,9 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net48;net6.0</TargetFrameworks>
-	</PropertyGroup>
 
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net48;net6.0</TargetFrameworks>
+		<RootNamespace>fyiReporting.RdlCreator</RootNamespace>
+		<AssemblyName>RdlCreator</AssemblyName>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />

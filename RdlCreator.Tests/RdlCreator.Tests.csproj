@@ -2,6 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows</TargetFramework>
+		<RootNamespace>fyiReporting.RdlCreator.Tests</RootNamespace>
+		<AssemblyName>RdlCreator.Tests</AssemblyName>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

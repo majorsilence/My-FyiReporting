@@ -2,11 +2,11 @@
 using System.IO;
 using System.Xml.Serialization;
 using System;
-using RdlCreator;
+using fyiReporting.RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 
-namespace RdlCreator.Tests
+namespace fyiReporting.RdlCreator.Tests
 {
     [TestFixture]
     public class ManualReportDefinitionTest

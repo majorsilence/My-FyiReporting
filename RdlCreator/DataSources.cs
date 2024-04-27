@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 
 
-namespace RdlCreator
+namespace fyiReporting.RdlCreator
 {
     public class DataSources
     {
