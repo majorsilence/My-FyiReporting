@@ -268,7 +268,6 @@ namespace fyiReporting.RdlDesign
                         g.FillRectangle(lgb, rf);
                         lgb.Dispose();
                         lgb = null;
-//                        g.FillRectangle(sb, rf);
                     }
                     off = offset;
                 }
@@ -343,19 +342,22 @@ namespace fyiReporting.RdlDesign
             float mod;
 
             xoff = Design.PointsX(this.Width / 2 - 2);
+            mod = Design.PointsY(g.DpiY);
             if (_IsMetric)
                 mod = Design.PointsY(g.DpiY / 2.54f);
-            else
-                mod = Design.PointsY(g.DpiY);
-            yinc = mod / _Intervals;
-            float scroll = Design.PointsY(ScrollPosition);
+            mod *= _Design.SCALEY;
+
+            yinc = mod / (_Intervals * _Design.SCALEY);
+            yinc *= _Design.SCALEY;
+            
+            float scroll = Design.PointsY(ScrollPosition)*_Design.SCALEY;
             sinc = yoff = 0;
             if (scroll > offset)
                 sinc += (yinc - scroll % yinc);
 
             // Fill in the background for the entire ruler
-//            RectangleF rf = new RectangleF(0, yoff + offset - scroll, this.Width, height);
-            RectangleF rf = new RectangleF(0, offset - scroll, Design.PointsX(this.Width), height);
+            RectangleF rf = new RectangleF(0, yoff + offset - scroll, this.Width, height);
+        //    RectangleF rf = new RectangleF(0, offset - scroll, Design.PointsX(this.Width), height);
             if (rf.IntersectsWith(g.ClipBounds))
             {
                 LinearGradientBrush lgb = new LinearGradientBrush(rf, BEGINCOLOR, ENDCOLOR, LinearGradientMode.Horizontal);
