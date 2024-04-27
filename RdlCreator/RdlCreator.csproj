@@ -9,6 +9,8 @@
 		<AssemblyName>RdlCreator</AssemblyName>
 		<AssemblyVersion>4.17.0</AssemblyVersion>
 		<Version>4.17.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Majorsilence.Reporting.RdlCreator</PackageId>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
