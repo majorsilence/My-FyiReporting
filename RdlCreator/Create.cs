@@ -15,7 +15,6 @@ namespace RdlCreator
     {
         public fyiReporting.RDL.Report GenerateRdl(Report report)
         {
-            // Create a new instance of the Report class
             var serializer = new XmlSerializer(typeof(Report));
             string xml;
             using (var writer = new Utf8StringWriter())
@@ -106,8 +105,59 @@ namespace RdlCreator
             string bottomMargin = ".25in",
             string pageHeaderText = "")
         {
-            // Create a new instance of the Report class
-            throw new NotImplementedException();
+            var headerTableCells = new List<TableCell>();
+            var bodyTableCells = new List<TableCell>();
+            var fields = new List<Field>();
+
+            var properties = typeof(T).GetProperties();
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                string colName = properties[i].Name;
+                TypeCode colType = Type.GetTypeCode(properties[i].PropertyType);
+                headerTableCells.Add(new TableCell
+                {
+                    ReportItems = new TableCellReportItems()
+                    {
+                        Textbox = new Textbox
+                        {
+                            Name = $"TextboxH{colName}",
+                            Value = new Value { Text = colName },
+                            Style = new Style { TextAlign = "Center", FontWeight = "Bold" }
+                        }
+                    }
+                });
+
+                bodyTableCells.Add(new TableCell
+                {
+                    ReportItems = new TableCellReportItems()
+                    {
+                        Textbox = new Textbox
+                        {
+                            Name = $"TextBoxB{colName}",
+                            Value = new Value { Text = $"=Fields!{colName}.Value" },
+                            CanGrow = "true"
+                        }
+                    }
+                });
+
+                fields.Add(new Field
+                {
+                    Name = colName,
+                    DataField = colName,
+                    TypeName = colType.ToString()
+                });
+            }
+
+            var xml = InternalReportCreation("", "",
+                "", description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+
+            var rdlp = new RDLParser(xml);
+
+            var fyiReport = rdlp.Parse();
+            fyiReport.DataSets["Data"].SetData(data);
+            return fyiReport;
         }
 
         public fyiReporting.RDL.Report GenerateRdl(string dataProvider,

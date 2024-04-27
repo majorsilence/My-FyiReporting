@@ -5,6 +5,7 @@ using System;
 using RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using Microsoft.Identity.Client;
 
 namespace RdlCreator.Tests
 {
@@ -124,7 +125,7 @@ namespace RdlCreator.Tests
             dt.Columns.Add("Description", typeof(string));
             dt.Rows.Add(1, "Beverages", "Soft drinks, coffees, teas, beers, and ales");
             dt.Rows.Add(2, "Condiments", "Sweet and savory sauces, relishes, spreads, and seasonings");
-                dt.Rows.Add(3, "Confections", "Desserts, candies, and sweet breads");
+            dt.Rows.Add(3, "Confections", "Desserts, candies, and sweet breads");
             dt.Rows.Add(4, "Dairy Products", "Cheeses");
             dt.Rows.Add(5, "Grains/Cereals", "Breads, crackers, pasta, and cereal");
             dt.Rows.Add(6, "Meat/Poultry", "Prepared meats");
@@ -133,6 +134,51 @@ namespace RdlCreator.Tests
 
             var create = new RdlCreator.Create();
             var fyiReport = create.GenerateRdl(dt,
+                pageHeaderText: "DataProviderTest TestMethod1");
+            var ms = new fyiReporting.RDL.MemoryStreamGen();
+            fyiReport.RunGetData(null);
+            fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            var text = ms.GetText();
+
+            Assert.That(text, Is.Not.Null);
+            Assert.That(NormalizeEOL(text), Is.EqualTo(@"""DataProviderTest TestMethod1""
+""CategoryID"",""CategoryName"",""Description""
+1,""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
+2,""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
+3,""Confections"",""Desserts, candies, and sweet breads""
+4,""Dairy Products"",""Cheeses""
+5,""Grains/Cereals"",""Breads, crackers, pasta, and cereal""
+6,""Meat/Poultry"",""Prepared meats""
+7,""Produce"",""Dried fruit and bean curd""
+8,""Seafood"",""Seaweed and fish""
+""1 of 1""
+"));
+        }
+
+        class Category
+        {
+            public int CategoryID { get; set; }
+            public string CategoryName { get; set; }
+            public string Description { get; set; }
+        }
+
+        [Test]
+        public void TestReportFromEnumerable()
+        {
+            var data = new List<Category>
+            {
+                new Category { CategoryID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" },
+                new Category { CategoryID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" },
+                new Category { CategoryID = 3, CategoryName = "Confections", Description = "Desserts, candies, and sweet breads" },
+                new Category { CategoryID = 4, CategoryName = "Dairy Products", Description = "Cheeses" },
+                new Category { CategoryID = 5, CategoryName = "Grains/Cereals", Description = "Breads, crackers, pasta, and cereal" },
+                new Category { CategoryID = 6, CategoryName = "Meat/Poultry", Description = "Prepared meats" },
+                new Category { CategoryID = 7, CategoryName = "Produce", Description = "Dried fruit and bean curd" },
+                new Category { CategoryID = 8, CategoryName = "Seafood", Description = "Seaweed and fish" }
+            };
+
+            var create = new RdlCreator.Create();
+            var fyiReport = create.GenerateRdl(data,
                 pageHeaderText: "DataProviderTest TestMethod1");
             var ms = new fyiReporting.RDL.MemoryStreamGen();
             fyiReport.RunGetData(null);
