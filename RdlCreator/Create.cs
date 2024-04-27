@@ -1,6 +1,4 @@
 ﻿using fyiReporting.RDL;
-using iTextSharp.text;
-using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -43,8 +41,57 @@ namespace RdlCreator
             string bottomMargin = ".25in",
             string pageHeaderText = "")
         {
-            // Create a new instance of the Report class
-            throw new NotImplementedException();
+            var headerTableCells = new List<TableCell>();
+            var bodyTableCells = new List<TableCell>();
+            var fields = new List<Field>();
+
+            for (int i = 0; i < data.Columns.Count; i++)
+            {
+                string colName = data.Columns[i].ColumnName;
+                TypeCode colType = Type.GetTypeCode(data.Columns[i].DataType);
+                headerTableCells.Add(new TableCell
+                {
+                    ReportItems = new TableCellReportItems()
+                    {
+                        Textbox = new Textbox
+                        {
+                            Name = $"TextboxH{colName}",
+                            Value = new Value { Text = colName },
+                            Style = new Style { TextAlign = "Center", FontWeight = "Bold" }
+                        }
+                    }
+                });
+
+                bodyTableCells.Add(new TableCell
+                {
+                    ReportItems = new TableCellReportItems()
+                    {
+                        Textbox = new Textbox
+                        {
+                            Name = $"TextBoxB{colName}",
+                            Value = new Value { Text = $"=Fields!{colName}.Value" },
+                            CanGrow = "true"
+                        }
+                    }
+                });
+
+                fields.Add(new Field
+                {
+                    Name = colName,
+                    DataField = colName,
+                    TypeName = colType.ToString()
+                });
+            }
+
+            var xml = InternalReportCreation("", "",
+                "", description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+
+            var rdlp = new RDLParser(xml);
+
+            var fyiReport = rdlp.Parse();
+            fyiReport.DataSets["Data"].SetData(data);
+            return fyiReport;
         }
 
         public fyiReporting.RDL.Report GenerateRdl<T>(IEnumerable<T> data,
@@ -93,7 +140,7 @@ namespace RdlCreator
                     cmd.CommandType = commandType;
                     using (var dr = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
                     {
-                        for(int i = 0; i < dr.FieldCount; i++)
+                        for (int i = 0; i < dr.FieldCount; i++)
                         {
                             string colName = dr.GetName(i);
                             TypeCode colType = Type.GetTypeCode(dr.GetFieldType(i));
@@ -136,6 +183,21 @@ namespace RdlCreator
                 }
             }
 
+            var xml = InternalReportCreation(dataProvider, connectionString,
+                commandText, description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+
+            var rdlp = new RDLParser(xml);
+            var fyiReport = rdlp.Parse();
+
+            return fyiReport;
+        }
+
+        private static string InternalReportCreation(string dataProvider, string connectionString,
+            string commandText, string description, string author, string pageHeight, string pageWidth,
+            string width, string topMargin, string leftMargin, string rightMargin, string bottomMargin,
+            string pageHeaderText, List<TableCell> headerTableCells, List<TableCell> bodyTableCells, List<Field> fields)
+        {
             // Create a new instance of the Report class
             var report = new Report
             {
@@ -275,9 +337,7 @@ namespace RdlCreator
                 xml = writer.ToString();
             }
 
-            var rdlp = new RDLParser(xml);
-            var fyiReport = rdlp.Parse();
-            return fyiReport;
+            return xml;
         }
     }
 
