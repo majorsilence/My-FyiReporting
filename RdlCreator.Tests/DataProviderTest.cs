@@ -43,9 +43,26 @@ namespace RdlCreator.Tests
 "));
         }
 
+        [Test]
+        public void TestMethodExcelLegacy()
+        {
+            var create = new RdlCreator.Create();
+
+            var fyiReport = create.GenerateRdl(dataProvider,
+                connectionString,
+                "SELECT CategoryID, CategoryName, Description FROM Categories",
+                pageHeaderText: "DataProviderTest TestMethod1");
+
+            string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcelLegacy.xls");
+            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            fyiReport.RunGetData(null);
+            fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.ExcelTableOnly);
+
+            Assert.That(System.IO.File.Exists(filepath), Is.True);
+        }
 
         [Test]
-        public void TestMethodExcel()
+        public void TestMethodExcel2007()
         {
             var create = new RdlCreator.Create();
 
@@ -58,6 +75,24 @@ namespace RdlCreator.Tests
             var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
             fyiReport.RunGetData(null);
             fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.Excel2007);
+
+            Assert.That(System.IO.File.Exists(filepath), Is.True);
+        }
+
+        [Test]
+        public void TestMethodExcel2007DataOnly()
+        {
+            var create = new RdlCreator.Create();
+
+            var fyiReport = create.GenerateRdl(dataProvider,
+                connectionString,
+                "SELECT CategoryID, CategoryName, Description FROM Categories",
+                pageHeaderText: "DataProviderTest TestMethod1");
+
+            string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcelDataOnly.xlsx");
+            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            fyiReport.RunGetData(null);
+            fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.Excel2007DataOnly);
 
             Assert.That(System.IO.File.Exists(filepath), Is.True);
         }

@@ -48,6 +48,7 @@ namespace fyiReporting.RDL
         Word,
         ExcelTableOnly,
 		Excel2007,
+		Excel2007DataOnly,
         TIF,
         TIFBW,                   // black and white tif
         Excel2003
