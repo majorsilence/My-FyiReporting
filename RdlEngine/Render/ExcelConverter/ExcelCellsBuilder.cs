@@ -80,8 +80,8 @@ namespace RdlEngine.Render.ExcelConverter
 		public void AddTable(Table table)
 		{
 			CurrentExcelTable = new ExcelTable();
-			var tableTop = table.Top.Points;
-			var tableLeft = table.Left.Points;
+			var tableTop = table.Top?.Points ?? 0;
+			var tableLeft = table.Left?.Points ?? 0;
 
 			FillAbsolutePosition(table, ref tableTop, ref tableLeft);
 
@@ -119,7 +119,7 @@ namespace RdlEngine.Render.ExcelConverter
 				var column = CurrentExcelTable.Table.TableColumns.Items[cell.ColIndex];
 				if(column.IsHidden(Report, row))
 					continue;
-				var xPosition = CurrentExcelTable.Table.Left.Points;
+				var xPosition = CurrentExcelTable.Table.Left?.Points ?? 0;
 				for(int i = 0; i < cell.ColIndex; i++) {
 					var columnBefore = CurrentExcelTable.Table.TableColumns.Items[i];
 					if(columnBefore.IsHidden(Report, row))

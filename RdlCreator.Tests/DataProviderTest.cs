@@ -15,19 +15,19 @@ namespace RdlCreator.Tests
         string dataProvider = "Microsoft.Data.Sqlite";
 
         [Test]
-        public void TestMethod1()
+        public void TestMethodCsv()
         {
             var create = new RdlCreator.Create();
-           
-            var fyiReport = create.GenerateRdl(dataProvider, 
-                connectionString, 
+
+            var fyiReport = create.GenerateRdl(dataProvider,
+                connectionString,
                 "SELECT CategoryID, CategoryName, Description FROM Categories",
                 pageHeaderText: "DataProviderTest TestMethod1");
             var ms = new fyiReporting.RDL.MemoryStreamGen();
             fyiReport.RunGetData(null);
             fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
             var text = ms.GetText();
-           
+
             Assert.That(text, Is.Not.Null);
             Assert.That(NormalizeEOL(text), Is.EqualTo(@"""DataProviderTest TestMethod1""
 ""CategoryID"",""CategoryName"",""Description""
@@ -41,6 +41,43 @@ namespace RdlCreator.Tests
 8,""Seafood"",""Seaweed and fish""
 ""1 of 1""
 "));
+        }
+
+
+        [Test]
+        public void TestMethodExcel()
+        {
+            var create = new RdlCreator.Create();
+
+            var fyiReport = create.GenerateRdl(dataProvider,
+                connectionString,
+                "SELECT CategoryID, CategoryName, Description FROM Categories",
+                pageHeaderText: "DataProviderTest TestMethod1");
+
+            string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcel.xlsx");
+            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            fyiReport.RunGetData(null);
+            fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.Excel2007);
+
+            Assert.That(System.IO.File.Exists(filepath), Is.True);
+        }
+
+        [Test]
+        public void TestMethodPdf()
+        {
+            var create = new RdlCreator.Create();
+
+            var fyiReport = create.GenerateRdl(dataProvider,
+                connectionString,
+                "SELECT CategoryID, CategoryName, Description FROM Categories",
+                pageHeaderText: "DataProviderTest TestMethod1");
+
+            string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodPdf.pdf");
+            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            fyiReport.RunGetData(null);
+            fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.PDF);
+
+            Assert.That(System.IO.File.Exists(filepath), Is.True);
         }
 
         private string NormalizeEOL(string input)
