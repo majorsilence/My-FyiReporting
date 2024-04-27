@@ -89,7 +89,7 @@
     <PackageReference Include="NPOI" />
     <PackageReference Include="SharpZipLib" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48' ">
     <!-- Add your item references here -->
 	<PackageReference Include="System.Data.SqlClient" />
 	<PackageReference Include="System.Data.Odbc" />
