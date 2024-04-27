@@ -27,11 +27,10 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 #if LINUX
-using Drawing = System.DrawingCore;
+using Draw = System.DrawingCore;
 #else
-using Drawing = System.Drawing;
+using Draw = System.Drawing;
 #endif
-
 
 #if LINUX
 namespace System.DrawingCore
@@ -42,25 +41,25 @@ namespace System.Drawing
     public class GraphicsExtended
     {
         //drawstring justified without paragraph format
-        public static void DrawStringJustified(Drawing.Graphics graphics, string s, 
-            Drawing.Font font, Drawing.Brush brush, Drawing.RectangleF layoutRectangle)
+        public static void DrawStringJustified(Draw.Graphics graphics, string s, 
+            Draw.Font font, Draw.Brush brush, Draw.RectangleF layoutRectangle)
         {
             DrawStringJustified(graphics, s, font, brush, layoutRectangle, ' ');
         }
 
         //drawstring justified with paragraph format
-        public static void DrawStringJustified(Drawing.Graphics graphics, string s, Drawing.Font font, Drawing.Brush brush, 
-            Drawing.RectangleF layoutRectangle, char paragraphFormat)
+        public static void DrawStringJustified(Draw.Graphics graphics, string s, Draw.Font font, Draw.Brush brush, 
+            Draw.RectangleF layoutRectangle, char paragraphFormat)
         {
             try
             {
                 //save the current state of the graphics handle
-                Drawing.Drawing2D.GraphicsState graphicsState = graphics.Save();
+                Draw.Drawing2D.GraphicsState graphicsState = graphics.Save();
                 //obtain the font height to be used as line height
                 double lineHeight = (double)Math.Round(font.GetHeight(graphics), 1);
                 //string builder to format the text
                 StringBuilder text = new StringBuilder(s);
-                Drawing.Font originalFont = new Drawing.Font(font.FontFamily, font.Size, font.Style);
+                Draw.Font originalFont = new Draw.Font(font.FontFamily, font.Size, font.Style);
 
                 //adjust the text string to ease detection of carriage returns
                 text = text.Replace("\r\n", " <CR> ");
@@ -68,33 +67,33 @@ namespace System.Drawing
                 text.Append(" <CR> ");
 
                 //ensure measure string will bring the best measures possible (antialias)
-                graphics.TextRenderingHint = Drawing.Text.TextRenderingHint.AntiAlias;
+                graphics.TextRenderingHint = Draw.Text.TextRenderingHint.AntiAlias;
 
                 //create a string format object with the generic typographic to obtain the most accurate string measurements
                 //strange, but the recommended for this case is to use a "cloned" stringformat
-                Drawing.StringFormat stringFormat = (Drawing.StringFormat)Drawing.StringFormat.GenericTypographic.Clone();
+                Draw.StringFormat stringFormat = (Draw.StringFormat)Draw.StringFormat.GenericTypographic.Clone();
 
                 //allow the correct measuring of spaces
-                stringFormat.FormatFlags = Drawing.StringFormatFlags.MeasureTrailingSpaces;
+                stringFormat.FormatFlags = Draw.StringFormatFlags.MeasureTrailingSpaces;
 
                 //create a stringformat for leftalignment
-                Drawing.StringFormat leftAlignHandle = new Drawing.StringFormat();
-                leftAlignHandle.LineAlignment = Drawing.StringAlignment.Near;
+                Draw.StringFormat leftAlignHandle = new Draw.StringFormat();
+                leftAlignHandle.LineAlignment = Draw.StringAlignment.Near;
 
                 //create a stringformat for rightalignment
-                Drawing.StringFormat rightAlignHandle = new Drawing.StringFormat();
-                rightAlignHandle.LineAlignment = Drawing.StringAlignment.Far;
+                Draw.StringFormat rightAlignHandle = new Draw.StringFormat();
+                rightAlignHandle.LineAlignment = Draw.StringAlignment.Far;
 
                 //measure space for the given font
-                Drawing.SizeF stringSize = graphics.MeasureString(" ", font, layoutRectangle.Size, stringFormat);
+                Draw.SizeF stringSize = graphics.MeasureString(" ", font, layoutRectangle.Size, stringFormat);
                 double spaceWidth = stringSize.Width + 1;
 
                 //measure paragraph format for the given font
                 double paragraphFormatWidth = 0;
                 if (paragraphFormat != ' ')
                 {
-                    Drawing.SizeF paragraphFormatSize = graphics.MeasureString(paragraphFormat.ToString(), 
-                        new Drawing.Font(font.FontFamily, font.Size, Drawing.FontStyle.Regular), layoutRectangle.Size, stringFormat);
+                    Draw.SizeF paragraphFormatSize = graphics.MeasureString(paragraphFormat.ToString(), 
+                        new Draw.Font(font.FontFamily, font.Size, Draw.FontStyle.Regular), layoutRectangle.Size, stringFormat);
                     paragraphFormatWidth = paragraphFormatSize.Width;
                 }
 
@@ -116,11 +115,11 @@ namespace System.Drawing
 
                     //marque to start bolding or/and italic
                     if (word.ToLower().Contains("<b>") && word.ToLower().Contains("<i>"))
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold & Drawing.FontStyle.Italic);
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold & Draw.FontStyle.Italic);
                     else if (word.ToLower().Contains("<b>"))
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold);
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold);
                     else if (word.ToLower().Contains("<i>"))
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Italic);
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Italic);
 
                     Word currentWord = (Word)words[n];
                     currentWord.StartBold = word.ToLower().Contains("<b>");
@@ -129,7 +128,7 @@ namespace System.Drawing
                     currentWord.StopItalic = word.ToLower().Contains("</i>");
 
                     //size of the word
-                    Drawing.SizeF wordSize = graphics.MeasureString(currentWord.String, font, layoutRectangle.Size, stringFormat);
+                    Draw.SizeF wordSize = graphics.MeasureString(currentWord.String, font, layoutRectangle.Size, stringFormat);
                     float wordWidth = wordSize.Width;
 
                     if (wordWidth > layoutRectangle.Width && currentWord.String != "<CR>")
@@ -166,12 +165,12 @@ namespace System.Drawing
                     ((Word)words[n]).Length = wordWidth;
 
                     //marque to stop bolding or/and italic
-                    if (word.ToLower().Contains("</b>") && font.Style == Drawing.FontStyle.Italic)
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Italic);
-                    else if (word.ToLower().Contains("</i>") && font.Style == Drawing.FontStyle.Bold)
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold);
+                    if (word.ToLower().Contains("</b>") && font.Style == Draw.FontStyle.Italic)
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Italic);
+                    else if (word.ToLower().Contains("</i>") && font.Style == Draw.FontStyle.Bold)
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold);
                     else if (word.ToLower().Contains("</b>") || word.ToLower().Contains("</i>"))
-                        font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Regular);
+                        font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Regular);
 
                     n++;
                     if (n > totalWords - 1)
@@ -182,7 +181,7 @@ namespace System.Drawing
                 graphics.Restore(graphicsState);
 
                 //restore to font to the original values
-                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, originalFont.Style);
+                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, originalFont.Style);
 
                 //start drawing word by word
                 int currentLine = 0;
@@ -253,39 +252,39 @@ namespace System.Drawing
                                 lastWord = false;
                             }
 
-                            Drawing.RectangleF rectangleF;
-                            Drawing.StringFormat stringFormatHandle;
+                            Draw.RectangleF rectangleF;
+                            Draw.StringFormat stringFormatHandle;
 
                             if (lastWord)
                             {
-                                rectangleF = new Drawing.RectangleF(layoutRectangle.Left, (float)currentTop, layoutRectangle.Width, (float)(currentTop + lineHeight));
+                                rectangleF = new Draw.RectangleF(layoutRectangle.Left, (float)currentTop, layoutRectangle.Width, (float)(currentTop + lineHeight));
                                 stringFormatHandle = rightAlignHandle;
                             }
                             else
                             {
                                 //lets zero size for word to drawstring auto-size de word
-                                rectangleF = new Drawing.RectangleF((float)currentLeft, (float)currentTop, 0, 0);
+                                rectangleF = new Draw.RectangleF((float)currentLeft, (float)currentTop, 0, 0);
                                 stringFormatHandle = leftAlignHandle;
                             }
 
                             //start bolding and/or italic
                             if (((Word)words[i]).StartBold && ((Word)words[i]).StartItalic)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold & Drawing.FontStyle.Italic);
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold & Draw.FontStyle.Italic);
                             else if (((Word)words[i]).StartBold)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold);
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold);
                             else if (((Word)words[i]).StartItalic)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Italic);
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Italic);
 
                             //draw the word
                             graphics.DrawString(((Word)words[i]).String, font, brush, rectangleF, stringFormatHandle);
 
                             //stop bolding and/or italic
-                            if (((Word)words[i]).StopBold && font.Style == Drawing.FontStyle.Italic)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Regular);
-                            else if (((Word)words[i]).StopItalic && font.Style == Drawing.FontStyle.Bold)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Bold);
+                            if (((Word)words[i]).StopBold && font.Style == Draw.FontStyle.Italic)
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Regular);
+                            else if (((Word)words[i]).StopItalic && font.Style == Draw.FontStyle.Bold)
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Bold);
                             else if (((Word)words[i]).StopBold || ((Word)words[i]).StopItalic)
-                                font = new Drawing.Font(originalFont.FontFamily, originalFont.Size, Drawing.FontStyle.Regular);
+                                font = new Draw.Font(originalFont.FontFamily, originalFont.Size, Draw.FontStyle.Regular);
 
                             //paragraph formating
                             if (endOfSentence && currentWord == wordsInLine - 1 && paragraphFormat != ' ')
@@ -294,7 +293,7 @@ namespace System.Drawing
                                 //draw until end of line
                                 while (currentLeft + paragraphFormatWidth <= layoutRectangle.Left + layoutRectangle.Width)
                                 {
-                                    rectangleF = new Drawing.RectangleF((float)currentLeft, (float)currentTop, 0, 0);
+                                    rectangleF = new Draw.RectangleF((float)currentLeft, (float)currentTop, 0, 0);
                                     //draw the paragraph format
                                     graphics.DrawString(paragraphFormat.ToString(), font, brush, rectangleF, stringFormatHandle);
                                     currentLeft += paragraphFormatWidth;
