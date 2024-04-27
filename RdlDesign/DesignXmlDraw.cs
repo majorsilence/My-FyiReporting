@@ -91,8 +91,13 @@ namespace fyiReporting.RdlDesign
 
         bool _ShowReportItemOutline=false;
 
+
+		// For Scaling and AlignMent grid display
         public float SCALAX = 1;
         public float SCALAY = 1;
+        public bool EnableDrawGriglia = false;
+        public Size SizeGridPt = new Size(4, 4);
+        public Size SizeGridTwips = new Size(8, 8);
 
         internal DesignXmlDraw():base()
 		{
@@ -1080,7 +1085,9 @@ namespace fyiReporting.RdlDesign
 
 		private float DrawReportPrimaryRegions(XmlNode xNode, float xLoc, float yLoc, string title)
 		{
-			if (xNode == null)
+            RectangleF TempRect = new RectangleF();  // To be used on grid backgroung design
+
+            if (xNode == null)
 				return yLoc;
 
 			XmlNode items=null;
@@ -1126,8 +1133,24 @@ namespace fyiReporting.RdlDesign
 			b = new RectangleF(xLoc + lMargin, yLoc + 1, /*PointsX(Width)*/(pWidth - lMargin - rMargin) /*+ _hScroll*/, /*height*/ ((CurrentSectionheight > TotalPageHeight /* - yLoc*/) ? TotalPageHeight/* - yLoc*/ : CurrentSectionheight));//displayHeight > 0 ? displayHeight : 0);
             DrawBackground(b, si);
 
-			//Edge of paper
-			DrawLine(Color.Gray, BorderStyleEnum.Solid, 1, pWidth, yLoc + 1, pWidth, yLoc + CurrentSectionheight);
+			// The alignment grid is displayed on Work area 
+
+            // La griglia e' disegnata sulla superficie di lavoro e deve tenere conto dei valori dello scroll
+            // perche' i valori dello scroll dei singoli items sono computati nelle varie routines che disegnano
+            // la linea o il background
+            //
+            if (EnableDrawGriglia == true)
+            {
+                TempRect = b;
+                // adjust coordinates for scrolling
+                TempRect.X -= _hScroll - 1;
+                TempRect.Y -= _vScroll - 1;
+                ControlPaint.DrawGrid(g, Rectangle.Round(TempRect), SizeGridPt, Color.White);
+            }
+
+
+            //Edge of paper
+            DrawLine(Color.Gray, BorderStyleEnum.Solid, 1, pWidth, yLoc + 1, pWidth, yLoc + CurrentSectionheight);
             //End "Paper"
 
             // Josh:

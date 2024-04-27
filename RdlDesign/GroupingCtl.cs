@@ -642,8 +642,12 @@ namespace fyiReporting.RdlDesign
 
 		private void bValueExpr_Click(object sender, System.EventArgs e)
 		{
-			int cr = dgGroup.CurrentRow.Index;
-			if (cr < 0)
+            int cr = -1;
+            if (dgGroup.CurrentRow != null)
+            {
+                cr = dgGroup.CurrentRow.Index;
+            }
+            if (cr < 0)
 			{	// No rows yet; create one
 				string[] rowValues = new string[1];
 				rowValues[0] = null;

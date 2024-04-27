@@ -21,6 +21,7 @@
 	<Version>4.16.0</Version>
 	<DelaySign>false</DelaySign>
 	<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
+	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System">
@@ -221,5 +222,10 @@
     <Compile Remove="ChartCtl - Copy.cs" />
     <Compile Remove="StaticSeriesCtl - Copy.cs" />
   </ItemGroup>
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-windows|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
 </Project>

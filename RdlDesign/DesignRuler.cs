@@ -286,7 +286,7 @@ namespace fyiReporting.RdlDesign
                 SectionHeigth = Design.SepHeight * _Design.SCALEY;
                 rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(Brushes.Yellow, rf);
+                    g.FillRectangle(bb, rf);
                 off += SectionHeigth;
 
                 // 4) Body
@@ -301,7 +301,7 @@ namespace fyiReporting.RdlDesign
                 SectionHeigth = Design.SepHeight * _Design.SCALEY;
                 rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(Brushes.Yellow, rf);
+                    g.FillRectangle(bb, rf);
                 off += SectionHeigth;
 
 
@@ -317,7 +317,7 @@ namespace fyiReporting.RdlDesign
                 SectionHeigth = Design.SepHeight * _Design.SCALEY;
                 rf = new RectangleF(0, off - sp, width, SectionHeigth);
                 if (rf.IntersectsWith(g.ClipBounds))
-                    g.FillRectangle(Brushes.Yellow, rf);
+                    g.FillRectangle(bb, rf);
                 off += SectionHeigth;
 
                 // 8) The rest to end

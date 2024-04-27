@@ -3887,36 +3887,29 @@ namespace fyiReporting.RdlDesign
             mc.Editor.DesignCtl._hScroll.Maximum = (int)mc.Editor.DesignCtl._DrawPanel.ReportVisualSize;
 
             mc.Editor.DesignCtl._vScroll.Maximum = (int)(mc.Editor.DesignCtl._DrawPanel.VerticalMax * mc.Editor.DesignCtl._DrawPanel.SCALAY);
-
-
-
-
         }
 
-        private void menuFormat_Popup(object sender, UserZoomControl.CambiaValori e)
-        {
+       
 
-        }
         /// <summary>
-        /// Abilita Flag per allineamento griglia
+        /// Enable Alignment grid on RdlEditor
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void AlignmentGridEnable_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    MDIChild mc = this.ActiveMdiChild as MDIChild;
-        //    if (mc == null)
-        //        return;
-        //    if (mc.Editor == null)
-        //    {
-        //        return;
-        //    }
-        //    mc.Editor.DesignCtl._DrawPanel.EnableDrawGriglia = AlignmentGridEnable.Checked;
-        //    mc.Editor.DesignCtl._DrawPanel.Invalidate();
-        //    mc.Editor.dcTopRuler.Invalidate();
-        //    mc.Editor.dcLeftRuler.Invalidate();
-
-        //}
+        /// <param name = "sender" ></ param >
+        /// < param name="e"></param>
+        private void AlignmentGridEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            MDIChild mc = this.ActiveMdiChild as MDIChild;
+            if (mc == null)
+                return;
+            if (mc.Editor == null)
+            {
+                return;
+            }
+            mc.Editor.DesignCtl._DrawPanel.EnableDrawGriglia = AlignmentGridEnable.Checked;
+            mc.Editor.DesignCtl._DrawPanel.Invalidate();
+            mc.Editor.dcTopRuler.Invalidate();
+            mc.Editor.dcLeftRuler.Invalidate();
+        }
 
     }
 
