@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-    <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'" />
+    <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'" />
     <PropertyGroup>
         <OutputType>Library</OutputType>
         <RootNamespace>fyiReporting.CRI</RootNamespace>
@@ -18,26 +18,25 @@
 		<Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System.Security"/>
+        <Reference Include="System.Security" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\RdlEngine\RdlEngine.csproj"/>
+        <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="BarcodeLib"/>
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces"/>
-        <PackageReference Include="System.Buffers"/>
-        <PackageReference Include="System.Memory"/>
-        <PackageReference Include="System.Numerics.Vectors"/>
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe"/>
-        <PackageReference Include="System.Text.Encodings.Web"/>
-        <PackageReference Include="System.Text.Json"/>
-        <PackageReference Include="System.Threading.Tasks.Extensions"/>
-        <PackageReference Include="System.ValueTuple"/>
-        <PackageReference Include="ZXing.Net"/>
-        <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility"/>
+        <PackageReference Include="BarcodeLib" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+        <PackageReference Include="System.Buffers" />
+        <PackageReference Include="System.Memory" />
+        <PackageReference Include="System.Numerics.Vectors" />
+        <PackageReference Include="System.Text.Encodings.Web" />
+        <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="System.Threading.Tasks.Extensions" />
+        <PackageReference Include="System.ValueTuple" />
+        <PackageReference Include="ZXing.Net" />
+        <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Properties\"/>
+        <Folder Include="Properties\" />
     </ItemGroup>
 </Project>
