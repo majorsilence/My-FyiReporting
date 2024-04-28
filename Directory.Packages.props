@@ -10,8 +10,6 @@
     <PackageVersion Include="iTextSharp.LGPLv2.Core" Version="3.4.18" />
     <PackageVersion Include="MajorsilenceReporting-Core" Version="4.15" />
     <PackageVersion Include="MajorsilenceReporting-Viewer" Version="4.15" />
-    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.Data.Edm" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.OData" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.Services.Client" Version="5.8.5" />

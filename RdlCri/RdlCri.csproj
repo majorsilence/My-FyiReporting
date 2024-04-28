@@ -25,7 +25,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BarcodeLib" />
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
         <PackageReference Include="System.Buffers" />
         <PackageReference Include="System.Memory" />
         <PackageReference Include="System.Numerics.Vectors" />
