@@ -53,6 +53,7 @@ namespace fyiReporting.RdlGtk3
             this.SaveButton.UseStock = true;
             this.SaveButton.UseUnderline = true;
             this.SaveButton.Label = "gtk-save";
+            this.SaveButton.Clicked += new System.EventHandler(this.OnFileSave_Activated);
             this.hbox1.PackStart(this.SaveButton, false, false, 0);
 
             this.PrintButton = new Gtk.Button();
@@ -61,6 +62,7 @@ namespace fyiReporting.RdlGtk3
             this.PrintButton.UseStock = true;
             this.PrintButton.UseUnderline = true;
             this.PrintButton.Label = "gtk-print";
+            this.PrintButton.Clicked += new System.EventHandler(this.OnFilePrint_Activated);
             this.hbox1.PackStart(this.PrintButton, false, false, 0);
 
             this.FirstPageButton = new Gtk.Button();
@@ -69,7 +71,8 @@ namespace fyiReporting.RdlGtk3
             this.FirstPageButton.UseStock = true;
             this.FirstPageButton.UseUnderline = true;
             this.FirstPageButton.Label = "gtk-goto-first";
-            this.hbox1.PackStart(this.FirstPageButton, false, false, 0);
+            this.FirstPageButton.Clicked += new System.EventHandler(this.OnFirstPageButton_Activated);
+            //this.hbox1.PackStart(this.FirstPageButton, false, false, 0);
 
             this.PreviousButton = new Gtk.Button();
             this.PreviousButton.CanFocus = true;
@@ -77,7 +80,8 @@ namespace fyiReporting.RdlGtk3
             this.PreviousButton.UseStock = true;
             this.PreviousButton.UseUnderline = true;
             this.PreviousButton.Label = "gtk-go-back";
-            this.hbox1.PackStart(this.PreviousButton, false, false, 0);
+            this.PreviousButton.Clicked += new System.EventHandler(this.OnPreviousButton_Activated);
+            //this.hbox1.PackStart(this.PreviousButton, false, false, 0);
 
             this.NextButton = new Gtk.Button();
             this.NextButton.CanFocus = true;
@@ -85,7 +89,8 @@ namespace fyiReporting.RdlGtk3
             this.NextButton.UseStock = true;
             this.NextButton.UseUnderline = true;
             this.NextButton.Label = "gtk-go-forward";
-            this.hbox1.PackStart(this.NextButton, false, false, 0);
+            this.NextButton.Clicked += new System.EventHandler(this.OnNextButton_Activated);
+            //this.hbox1.PackStart(this.NextButton, false, false, 0);
 
             this.LastPageButton = new Gtk.Button();
             this.LastPageButton.CanFocus = true;
@@ -93,7 +98,8 @@ namespace fyiReporting.RdlGtk3
             this.LastPageButton.UseStock = true;
             this.LastPageButton.UseUnderline = true;
             this.LastPageButton.Label = "gtk-goto-last";
-            this.hbox1.PackStart(this.LastPageButton, false, false, 0);
+            this.LastPageButton.Clicked += new System.EventHandler(this.OnLastPageButton_Activated);
+            //this.hbox1.PackStart(this.LastPageButton, false, false, 0);
 
             this.CurrentPage = new Gtk.SpinButton(0, 999999, 1);
             this.CurrentPage.CanFocus = true;
@@ -101,11 +107,11 @@ namespace fyiReporting.RdlGtk3
             this.CurrentPage.Adjustment.PageIncrement = 10;
             this.CurrentPage.ClimbRate = 1;
             this.CurrentPage.Numeric = true;
-            this.hbox1.PackStart(this.CurrentPage, false, false, 0);
+            //this.hbox1.PackStart(this.CurrentPage, false, false, 0);
 
             this.PageCountLabel = new Gtk.Label();
             this.PageCountLabel.Name = "PageCountLabel";
-            this.hbox1.PackStart(this.PageCountLabel, false, false, 0);
+            //this.hbox1.PackStart(this.PageCountLabel, false, false, 0);
 
             this.vbox1.PackStart(this.hbox1, false, false, 0);
 
@@ -186,36 +192,66 @@ namespace fyiReporting.RdlGtk3
                 }
             }
 
-    }
-
-    private string GetParameters(Uri sourcefile)
-    {
-        string parameters = "";
-        string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
-        fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
-        parser.Parse();
-
-        if (parser.Report.UserReportParameters.Count > 0)
-        {
-            int count = 0;
-
-            foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters)
-            {
-                parameters += "&" + rp.Name + "=";
-            }
-
-            fyiReporting.RdlGtk3.ParameterPrompt prompt = new fyiReporting.RdlGtk3.ParameterPrompt();
-            prompt.Parameters = parameters;
-
-            if (prompt.Run() == (int)Gtk.ResponseType.Ok)
-            {
-                parameters = prompt.Parameters;
-            }
-
-            prompt.Destroy();
         }
 
-        return parameters;
+        public void OnFileSave_Activated(object sender, System.EventArgs e)
+        {
+            this.reportviewer1.SaveReport();
+        }
+
+        public void OnFilePrint_Activated(object sender, System.EventArgs e)
+        {
+            this.reportviewer1.PrintReport();
+        }
+
+        public void OnFirstPageButton_Activated(object sender, System.EventArgs e)
+        {
+            //this.reportviewer1.FirstPage();
+        }
+
+        public void OnPreviousButton_Activated(object sender, System.EventArgs e)
+        {
+            // this.reportviewer1.PreviousPage();
+        }
+
+        public void OnNextButton_Activated(object sender, System.EventArgs e)
+        {
+            //this.reportviewer1.NextPage();
+        }
+
+        public void OnLastPageButton_Activated(object sender, System.EventArgs e)
+        {
+            //this.reportviewer1.LastPage();
+        }
+
+        private string GetParameters(Uri sourcefile)
+        {
+            string parameters = "";
+            string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
+            fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
+            parser.Parse();
+
+            if (parser.Report.UserReportParameters.Count > 0)
+            {
+                int count = 0;
+
+                foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters)
+                {
+                    parameters += "&" + rp.Name + "=";
+                }
+
+                fyiReporting.RdlGtk3.ParameterPrompt prompt = new fyiReporting.RdlGtk3.ParameterPrompt();
+                prompt.Parameters = parameters;
+
+                if (prompt.Run() == (int)Gtk.ResponseType.Ok)
+                {
+                    parameters = prompt.Parameters;
+                }
+
+                prompt.Destroy();
+            }
+
+            return parameters;
+        }
     }
-}
 }

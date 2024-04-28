@@ -41,15 +41,15 @@ namespace fyiReporting.RdlGtk3
         private Report report;
         private Pages pages;
         private PrintOperation printing;
-		
+
         public NeedPassword DataSourceReferencePassword = null;
-		
-		private string connectionString;
-		private bool overwriteSubreportConnection;
+
+        private string connectionString;
+        private bool overwriteSubreportConnection;
         private OutputPresentationType[] restrictedOutputPresentationTypes;
         private Action<Pages> customPrintAction;
 
-		public event EventHandler ReportPrinted;
+        public event EventHandler ReportPrinted;
 
         private Toolbar actionGroup { get; set; }
         private Gtk.Action refreshAction;
@@ -84,7 +84,7 @@ namespace fyiReporting.RdlGtk3
             }
         }
 
-		public string DefaultExportFileName { get; set;}
+        public string DefaultExportFileName { get; set; }
 
         bool show_params;
 
@@ -95,24 +95,27 @@ namespace fyiReporting.RdlGtk3
                 return show_params;
             }
             set
-            { 
-                show_params = value; 
+            {
+                show_params = value;
                 CheckVisibility();
             }
         }
 
-		public string WorkingDirectory { get; set; }
+        public string WorkingDirectory { get; set; }
 
-		Uri sourceFile;
-        public Uri SourceFile {
-			get {
-				return sourceFile;
-			}
-			private set {
-				sourceFile = value;
-				WorkingDirectory = System.IO.Path.GetDirectoryName (sourceFile.LocalPath);
-			}
-		}
+        Uri sourceFile;
+        public Uri SourceFile
+        {
+            get
+            {
+                return sourceFile;
+            }
+            private set
+            {
+                sourceFile = value;
+                WorkingDirectory = System.IO.Path.GetDirectoryName(sourceFile.LocalPath);
+            }
+        }
 
         public ReportViewer()
         {
@@ -159,7 +162,7 @@ namespace fyiReporting.RdlGtk3
             vbox = new Box(Orientation.Vertical, 6);
             vbox.Homogeneous = false;
             vbox.Expand = true;
-            
+
 
             hbox = new Box(Orientation.Horizontal, 6);
             hbox.Homogeneous = false;
@@ -173,7 +176,7 @@ namespace fyiReporting.RdlGtk3
             hpanedReport.Expand = true;
             scrolledwindowPages = new ScrolledWindow();
             scrolledwindowPages.Expand = true;
-            
+
             var gtkViewport = new Viewport();
             gtkViewport.Expand = true;
             vboxPages = new Box(Orientation.Vertical, 6);
@@ -215,32 +218,32 @@ namespace fyiReporting.RdlGtk3
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
         /// <param name="customPrintAction">>For use a custom print action</param>
-        public void LoadReport (Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
-		{
-			SourceFile = filename;
+        public void LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
+        {
+            SourceFile = filename;
 
-			this.connectionString = connectionString;
-			this.overwriteSubreportConnection = overwriteSubreportConnection;
-			this.customPrintAction = customPrintAction;
+            this.connectionString = connectionString;
+            this.overwriteSubreportConnection = overwriteSubreportConnection;
+            this.customPrintAction = customPrintAction;
 
-			LoadReport (filename, parameters, restrictedOutputPresentationTypes);
-		}
+            LoadReport(filename, parameters, restrictedOutputPresentationTypes);
+        }
 
-		/// <summary>
-		/// Loads the report.
-		/// </summary>
-		/// <param name="source">Xml source of report</param>
-		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-		/// <param name="connectionString">Relace all Connection string in report.</param>
-		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
+        /// <summary>
+        /// Loads the report.
+        /// </summary>
+        /// <param name="source">Xml source of report</param>
+        /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
+        /// <param name="connectionString">Relace all Connection string in report.</param>
+        /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-		public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
-		{
-			this.connectionString = connectionString;
-			this.overwriteSubreportConnection = overwriteSubreportConnection;
+        public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        {
+            this.connectionString = connectionString;
+            this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-			LoadReport(source, parameters, restrictedOutputPresentationTypes);
-		}
+            LoadReport(source, parameters, restrictedOutputPresentationTypes);
+        }
 
         /// <summary>
         /// Loads the report.
@@ -261,7 +264,7 @@ namespace fyiReporting.RdlGtk3
         public void LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             SourceFile = sourcefile;
-						
+
             string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
             LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
@@ -275,7 +278,7 @@ namespace fyiReporting.RdlGtk3
         public void LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             this.restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
-            
+
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
                 this.Parameters = this.GetParmeters(parameters);
@@ -284,25 +287,25 @@ namespace fyiReporting.RdlGtk3
 
             // Compile the report 
             report = this.GetReport(source);
-			if (report == null)
-				return;
-            AddParameterControls();		
-			
+            if (report == null)
+                return;
+            AddParameterControls();
+
             RefreshReport();
         }
 
         void RefreshReport()
         {
-            if(ShowParameters)
-            	SetParametersFromControls();
+            if (ShowParameters)
+                SetParametersFromControls();
             report.RunGetData(Parameters);
             pages = report.BuildPages();
-			
+
             foreach (Gtk.Widget w in vboxPages.AllChildren)
             {
                 vboxPages.Remove(w);
             }
-			
+
             for (int pageCount = 0; pageCount < pages.Count; pageCount++)
             {
                 ReportArea area = new ReportArea();
@@ -311,20 +314,20 @@ namespace fyiReporting.RdlGtk3
                 vboxPages.Add(area);
             }
             this.ShowAll();
-			
-			SetErrorMessages (report.ErrorItems);
 
-			if (report.ErrorMaxSeverity == 0)
-				show_errors = false;
-			
-			errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
-			
-//			Title = string.Format ("RDL report viewer - {0}", report.Name);
+            SetErrorMessages(report.ErrorItems);
+
+            if (report.ErrorMaxSeverity == 0)
+                show_errors = false;
+
+            errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
+
+            //			Title = string.Format ("RDL report viewer - {0}", report.Name);
             EnableActions();
             CheckVisibility();
         }
 
-		
+
         protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
         {
             foreach (Gtk.Widget w in vboxPages.AllChildren)
@@ -348,7 +351,7 @@ namespace fyiReporting.RdlGtk3
             }
             //reportarea.Scale += 0.1f;
         }
-		
+
         // GetParameters creates a list dictionary
         // consisting of a report parameter name and a value.
         private System.Collections.Specialized.ListDictionary GetParmeters(string parms)
@@ -380,16 +383,16 @@ namespace fyiReporting.RdlGtk3
         private Report GetReport(string reportSource)
         {
             // Now parse the file 
-		
+
             RDLParser rdlp;
             Report r;
-		
+
             rdlp = new RDLParser(reportSource);
-			rdlp.Folder = WorkingDirectory;
-			rdlp.OverwriteConnectionString = connectionString;
-			rdlp.OverwriteInSubreport = overwriteSubreportConnection;
+            rdlp.Folder = WorkingDirectory;
+            rdlp.OverwriteConnectionString = connectionString;
+            rdlp.OverwriteInSubreport = overwriteSubreportConnection;
             // RDLParser takes RDL XML and Parse compiles the report
-			
+
             r = rdlp.Parse();
             if (r.ErrorMaxSeverity > 0)
             {
@@ -397,14 +400,14 @@ namespace fyiReporting.RdlGtk3
                 {
                     Console.WriteLine(emsg);
                 }
-				SetErrorMessages (r.ErrorItems);
-			
+                SetErrorMessages(r.ErrorItems);
+
                 int severity = r.ErrorMaxSeverity;
                 r.ErrorReset();
                 if (severity > 4)
                 {
-					errorsAction.Active = true;
-					return null; // don't return when severe errors
+                    errorsAction.Active = true;
+                    return null; // don't return when severe errors
                 }
             }
             return r;
@@ -433,7 +436,7 @@ namespace fyiReporting.RdlGtk3
             else
             {
                 //vboxParameters.HideAll();
-            }	
+            }
         }
 
         protected override void OnShown()
@@ -444,7 +447,7 @@ namespace fyiReporting.RdlGtk3
 
         void DisableActions()
         {
-			saveAsAction.Sensitive = false;
+            saveAsAction.Sensitive = false;
             refreshAction.Sensitive = false;
             printAction.Sensitive = false;
             zoomInAction.Sensitive = false;
@@ -453,7 +456,7 @@ namespace fyiReporting.RdlGtk3
 
         void EnableActions()
         {
-			saveAsAction.Sensitive = true;
+            saveAsAction.Sensitive = true;
             refreshAction.Sensitive = true;
             printAction.Sensitive = true;
             zoomInAction.Sensitive = true;
@@ -501,7 +504,7 @@ namespace fyiReporting.RdlGtk3
         }
 
         void SetParametersFromControls()
-        {	
+        {
             int i = 0;
             foreach (UserReportParameter rp in report.UserReportParameters)
             {
@@ -517,19 +520,24 @@ namespace fyiReporting.RdlGtk3
         {
             textviewErrors.Buffer.Clear();
 
-			if (errors == null || errors.Count == 0)
-				return;
+            if (errors == null || errors.Count == 0)
+                return;
 
             StringBuilder msgs = new StringBuilder();
-			msgs.AppendLine("Report rendering errors:");
-			msgs.AppendLine ();
+            msgs.AppendLine("Report rendering errors:");
+            msgs.AppendLine();
             foreach (var error in errors)
                 msgs.AppendLine(error.ToString());
-			
+
             textviewErrors.Buffer.Text = msgs.ToString();
         }
 
         protected void OnPdfActionActivated(object sender, System.EventArgs e)
+        {
+            SaveReport();
+        }
+
+        public void SaveReport()
         {
             // *********************************
             object[] param = new object[4];
@@ -541,68 +549,76 @@ namespace fyiReporting.RdlGtk3
             Gtk.FileChooserDialog fc =
                 new Gtk.FileChooserDialog(Strings.FileChooser_SaveFileTo_Title,
                     null,
-					Gtk.FileChooserAction.Save,
+                    Gtk.FileChooserAction.Save,
                     param);
 
-			fc.CurrentName = DefaultExportFileName??report.Name;
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF)) {
+            fc.CurrentName = DefaultExportFileName ?? report.Name;
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF))
+            {
                 Gtk.FileFilter pdfFilter = new Gtk.FileFilter { Name = "PDF" };
                 var extensionPDF = ".pdf";
                 pdfFilter.AddPattern($"*{extensionPDF}");
                 fc.AddFilter(pdfFilter);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV)) {
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV))
+            {
                 Gtk.FileFilter csvFilter = new Gtk.FileFilter { Name = "CSV" };
                 var extensionCSV = ".csv";
                 csvFilter.AddPattern($"*{extensionCSV}");
                 fc.AddFilter(csvFilter);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ExcelTableOnly)) {
-                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel no formatting (Fast)" };
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007DataOnly))
+            {
+                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel no formatting" };
                 var extensionXLSX = ".xlsx";
                 excel2007Data.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007Data);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007)) {
-                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel with formatting (Slow)" };
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007))
+            {
+                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel with formatting" };
                 var extensionXLSX = ".xlsx";
                 excel2007.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF)) {
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF))
+            {
                 Gtk.FileFilter tiffFilter = new Gtk.FileFilter { Name = "TIFF" };
                 var extensionTIFF = ".tiff";
                 tiffFilter.AddPattern($"*{extensionTIFF}");
                 fc.AddFilter(tiffFilter);
             }
 
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML)) {
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML))
+            {
                 Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter { Name = "ASP HTML" };
                 var extensionASPHTML = ".asphtml";
                 asphtmlFilter.AddPattern($"*{extensionASPHTML}");
                 fc.AddFilter(asphtmlFilter);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML)) {
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML))
+            {
                 Gtk.FileFilter htmlFilter = new Gtk.FileFilter { Name = "HTML" };
                 var extensionHTML = ".html";
                 htmlFilter.AddPattern($"*{extensionHTML}");
                 fc.AddFilter(htmlFilter);
             }
-            
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML)) {
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML))
+            {
                 Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter { Name = "MHTML" };
                 var extensionMHTML = ".mhtml";
                 mhtmlFilter.AddPattern($"*{extensionMHTML}");
                 fc.AddFilter(mhtmlFilter);
             }
-			
-            if(!restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML)) {
+
+            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML))
+            {
                 Gtk.FileFilter xmlFilter = new Gtk.FileFilter { Name = "XML" };
                 var extensionXML = ".xml";
                 xmlFilter.AddPattern($"*{extensionXML}");
@@ -627,7 +643,7 @@ namespace fyiReporting.RdlGtk3
                 {
                     string searchPattern = "*";
 
-                    string filename = fc.Filename;		
+                    string filename = fc.Filename;
                     OutputPresentationType exportType = OutputPresentationType.PDF;
                     if (fc.Filter.Name == "CSV")
                     {
@@ -649,35 +665,41 @@ namespace fyiReporting.RdlGtk3
                     }
                     else if (fc.Filter.Name == "Excel 2007 Data")
                     {
-						exportType = OutputPresentationType.ExcelTableOnly;
+                        exportType = OutputPresentationType.ExcelTableOnly;
                         if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
                         {
                             filename = filename + ".xlsx";
                             searchPattern = "*.xlsx";
                         }
                     }
-					else if(fc.Filter.Name == "Excel 2007") {
-						exportType = OutputPresentationType.Excel2007;
-						if(filename.ToLower().Trim().EndsWith(".xlsx") == false) {
-							filename = filename + ".xlsx";
+                    else if (fc.Filter.Name == "Excel 2007")
+                    {
+                        exportType = OutputPresentationType.Excel2007;
+                        if (filename.ToLower().Trim().EndsWith(".xlsx") == false)
+                        {
+                            filename = filename + ".xlsx";
                             searchPattern = "*.xlsx";
-						}
-					}
-					else if(fc.Filter.Name == "TIFF") {
-						exportType = OutputPresentationType.TIF;
-						if(filename.ToLower().Trim().EndsWith(".tif") == false) {
-							filename = filename + ".tif";
+                        }
+                    }
+                    else if (fc.Filter.Name == "TIFF")
+                    {
+                        exportType = OutputPresentationType.TIF;
+                        if (filename.ToLower().Trim().EndsWith(".tif") == false)
+                        {
+                            filename = filename + ".tif";
                             searchPattern = "*.tif";
-						}
-					}
-					else if(fc.Filter.Name == "ASP HTML") {
-						exportType = OutputPresentationType.ASPHTML;
-						if(filename.ToLower().Trim().EndsWith(".asphtml") == false) {
-							filename = filename + ".asphtml";
+                        }
+                    }
+                    else if (fc.Filter.Name == "ASP HTML")
+                    {
+                        exportType = OutputPresentationType.ASPHTML;
+                        if (filename.ToLower().Trim().EndsWith(".asphtml") == false)
+                        {
+                            filename = filename + ".asphtml";
                             searchPattern = "*.asphtml";
-						}
-					}
-					else if (fc.Filter.Name == "HTML")
+                        }
+                    }
+                    else if (fc.Filter.Name == "HTML")
                     {
                         exportType = OutputPresentationType.HTML;
                         if (filename.ToLower().Trim().EndsWith(".html") == false)
@@ -712,32 +734,32 @@ namespace fyiReporting.RdlGtk3
                     //Check for files with same name in directory
                     if (files.Any())
                     {
-                        for(int i = 0; i < files.Length; i++)
+                        for (int i = 0; i < files.Length; i++)
                         {
                             if (files[i] == filename)
                             {
                                 //If found files with the same name in directory
                                 MessageDialog m = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Question,
-                                    Gtk.ButtonsType.YesNo, false, 
+                                    Gtk.ButtonsType.YesNo, false,
                                  Strings.SaveToFile_CheckIf_SameFilesInDir);
 
                                 m.SetPosition(WindowPosition.Center);
                                 ResponseType result = (ResponseType)m.Run();
                                 m.Destroy();
-                                if(result == ResponseType.Yes)
+                                if (result == ResponseType.Yes)
                                 {
                                     // Must use the RunGetData before each export or there is no data.
                                     report.RunGetData(this.Parameters);
                                     ExportReport(report, filename, exportType);
                                     break;
-                                } 
-                                else 
+                                }
+                                else
                                 {
-                                    break;  
+                                    break;
                                 }
                             }
 
-                            if (i+1 == files.Length && files[i] != filename)
+                            if (i + 1 == files.Length && files[i] != filename)
                             {
                                 //If no files with the same name found in directory
                                 // Must use the RunGetData before each export or there is no data.
@@ -752,22 +774,22 @@ namespace fyiReporting.RdlGtk3
                         //If no files found in directory
                         // Must use the RunGetData before each export or there is no data.
                         report.RunGetData(this.Parameters);
-                        ExportReport(report, filename, exportType);	
+                        ExportReport(report, filename, exportType);
                     }
                 }
                 catch (Exception ex)
                 {
                     Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                               Gtk.ButtonsType.Ok, false, 
+                               Gtk.ButtonsType.Ok, false,
                                $"Error Saving Copy of {fc.Filter?.Name}." + System.Environment.NewLine + ex.Message);
-						
+
                     m.Run();
                     m.Destroy();
                 }
             }
             //Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
             fc.Destroy();
-            
+
         }
 
         /// <summary>
@@ -786,14 +808,14 @@ namespace fyiReporting.RdlGtk3
             try
             {
                 sg = new OneFileStreamGen(FileName, true);
-                report.RunRender(sg, exportType);     
+                report.RunRender(sg, exportType);
             }
             catch (Exception ex)
             {
                 Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
-                              Gtk.ButtonsType.Ok, false, 
+                              Gtk.ButtonsType.Ok, false,
                               ex.Message);
-						
+
                 m.Run();
                 m.Destroy();
             }
@@ -809,55 +831,60 @@ namespace fyiReporting.RdlGtk3
 
         protected void OnPrintActionActivated(object sender, System.EventArgs e)
         {
+        }
+
+        public void PrintReport()
+        {
             using (PrintContext context = new PrintContext(GdkWindow.Handle))
             {
-	            if (customPrintAction == null)
-	            {
-		            printing = new PrintOperation();
-		            printing.Unit = Unit.Points;
-		            printing.UseFullPage = true;
-		            printing.DefaultPageSetup = new PageSetup();
-		            printing.DefaultPageSetup.Orientation = 
-			            report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
+                if (customPrintAction == null)
+                {
+                    printing = new PrintOperation();
+                    printing.Unit = Unit.Points;
+                    printing.UseFullPage = true;
+                    printing.DefaultPageSetup = new PageSetup();
+                    printing.DefaultPageSetup.Orientation =
+                        report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
 
-		            printing.BeginPrint += HandlePrintBeginPrint;
-		            printing.DrawPage += HandlePrintDrawPage;
-		            printing.EndPrint += HandlePrintEndPrint;
+                    printing.BeginPrint += HandlePrintBeginPrint;
+                    printing.DrawPage += HandlePrintDrawPage;
+                    printing.EndPrint += HandlePrintEndPrint;
 
-		            printing.Run(PrintOperationAction.PrintDialog, null);
-	            }
-	            else
-	            {
-		            customPrintAction.Invoke(pages);
-	            }
+                    printing.Run(PrintOperationAction.PrintDialog, null);
+                }
+                else
+                {
+                    customPrintAction.Invoke(pages);
+                }
             }
         }
 
-		void HandlePrintBeginPrint (object o, BeginPrintArgs args)
-		{
-			printing.NPages = pages.Count;
-		}
+        void HandlePrintBeginPrint(object o, BeginPrintArgs args)
+        {
+            printing.NPages = pages.Count;
+        }
 
-		void HandlePrintDrawPage (object o, DrawPageArgs args)
-		{
-            if(args?.Context == null || pages == null) {
+        void HandlePrintDrawPage(object o, DrawPageArgs args)
+        {
+            if (args?.Context == null || pages == null)
+            {
                 return;
             }
-            
-            using(var g = args.Context.CairoContext)
-			using(var render = new RenderCairo(g))
-            {
-				render.RunPage(pages[args.PageNr]);
-            }
-		}
 
-		void HandlePrintEndPrint (object o, EndPrintArgs args)
-		{
-			ReportPrinted?.Invoke(this, EventArgs.Empty);
+            using (var g = args.Context.CairoContext)
+            using (var render = new RenderCairo(g))
+            {
+                render.RunPage(pages[args.PageNr]);
+            }
+        }
+
+        void HandlePrintEndPrint(object o, EndPrintArgs args)
+        {
+            ReportPrinted?.Invoke(this, EventArgs.Empty);
             printing.BeginPrint -= HandlePrintBeginPrint;
             printing.DrawPage -= HandlePrintDrawPage;
             printing.EndPrint -= HandlePrintEndPrint;
-			printing.DefaultPageSetup.Dispose();
+            printing.DefaultPageSetup.Dispose();
             printing.Dispose();
         }
 
@@ -882,6 +909,7 @@ namespace fyiReporting.RdlGtk3
                 SetHPanedPosition();
             }
         }
+
 
         public override void Destroy()
         {
