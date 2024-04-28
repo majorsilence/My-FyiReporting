@@ -35,13 +35,12 @@ github project named My-FyiReporting so links are not broken.  All branding will
 
 Also check this [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki) as information will be slowly added.
 
-Majorsilence Reporting is currently built with visual studio 2010 and 2012 and targets .net 4.0.  You can also run the build script in 
-the Release-Builds folder to build .net 3.5 (may be broken) and 4.0 packages.  
+Majorsilence Reporting is currently built with visual studio 2022 and rider 2024.1 and targets .net 4.8, net6.0 and 8.0.  You can also run the build script.
 
 # Development
 Majorsilence Reporting is developed with the following workflow:
 
-* Nothing happens for weeks
+* Nothing happens for weeks or months
 * Someone needs it to do something it doesn't already do
 * That person implements that something and submits a pull request
 * Repeat
