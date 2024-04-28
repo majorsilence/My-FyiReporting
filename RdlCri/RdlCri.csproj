@@ -25,13 +25,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BarcodeLib" />
-        <PackageReference Include="System.Buffers" />
-        <PackageReference Include="System.Memory" />
-        <PackageReference Include="System.Numerics.Vectors" />
-        <PackageReference Include="System.Text.Encodings.Web" />
-        <PackageReference Include="System.Text.Json" />
-        <PackageReference Include="System.Threading.Tasks.Extensions" />
-        <PackageReference Include="System.ValueTuple" />
         <PackageReference Include="ZXing.Net" />
         <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
     </ItemGroup>
