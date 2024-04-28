@@ -14,6 +14,8 @@
         <Version>4.17.0</Version>
         <DelaySign>false</DelaySign>
         <PackageId>Majorsilence.Reporting.RdlCri</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System.Security"/>

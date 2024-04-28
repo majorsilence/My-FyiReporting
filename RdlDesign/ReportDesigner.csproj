@@ -1,231 +1,233 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
-    <ProjectType>Local</ProjectType>
-    <ApplicationIcon>App.ico</ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <AssemblyName>RdlDesigner</AssemblyName>
-    <DelaySign>false</DelaySign>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>fyiReporting.RdlDesign</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>RDL Designer</AssemblyTitle>
-	<Description></Description>
-	<Company>fyiReporting Software, LLC</Company>
-	<Product>RDL Project</Product>
-	<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-	<AssemblyVersion>4.16.0</AssemblyVersion>
-	<Version>4.16.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
-	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Update="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Runtime.Remoting" />
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App.ico" />
-    <Content Include="calign.gif" />
-    <Content Include="chart.gif" />
-    <EmbeddedResource Include="csv.gif" />
-    <EmbeddedResource Include="excel.gif" />
-    <EmbeddedResource Include="tif.gif" />
-    <Content Include="selecttool.gif" />
-    <Content Include="html.gif" />
-    <Content Include="image.gif" />
-    <Content Include="line.gif" />
-    <Content Include="list.gif" />
-    <Content Include="matrix.gif" />
-    <Content Include="mht.gif" />
-    <Content Include="pdf.gif" />
-    <Content Include="rectangle.gif" />
-    <Content Include="subreport.gif" />
-    <Content Include="table.gif" />
-    <Content Include="text.gif" />
-    <Content Include="xml.gif" />
-    <Compile Update="BodyCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ChartAxisCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ChartCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ChartLegendCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="CodeCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="BackgroundCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ColorPicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="GridCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DesignRuler.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="FontCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="RdlUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="StaticSeriesCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="VisibilityCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="PropertyCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="CustomReportItemCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DesignEditLines.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DataSetRowsCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DataSetsCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DesignCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DesignXmlDraw.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="FiltersCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="GroupingCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ImageCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="InteractivityCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ListCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="MatrixCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModulesClassesCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="PositionCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="QueryParametersCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="RdlEditPreview.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ReportCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ReportParameterCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ReportXmlCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="SimpleButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="SimpleToggle.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="SortingCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="StyleBorderCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="StyleCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="StyleTextCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="SubreportCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="TableColumnCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="TableCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="TableRowCtl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
-      <Link>RdlEngineConfig.Linux.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\RdlEngine\RdlEngineConfig.xml">
-      <Link>RdlEngineConfig.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-    <ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="dotConnect.Express.for.PostgreSQL" />  
-    <PackageReference Include="Microsoft.Data.Edm" />
-    <PackageReference Include="Microsoft.Data.OData" />   
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="System.Spatial" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net48' ">
-	<PackageReference Include="jacobslusser.ScintillaNET" />
-	<PackageReference Include="Microsoft.Data.Services.Client" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
-	<PackageReference Include="fernandreu.ScintillaNET" />
-	<PackageReference Include="Microsoft.Data.SqlClient" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="ChartCtl - Copy.cs" />
-    <Compile Remove="StaticSeriesCtl - Copy.cs" />
-  </ItemGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
-    <Optimize>False</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-windows|AnyCPU'">
-    <Optimize>False</Optimize>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+		<ProjectType>Local</ProjectType>
+		<ApplicationIcon>App.ico</ApplicationIcon>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<AssemblyName>RdlDesigner</AssemblyName>
+		<DelaySign>false</DelaySign>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>fyiReporting.RdlDesign</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>RDL Designer</AssemblyTitle>
+		<Description></Description>
+		<Company>fyiReporting Software, LLC</Company>
+		<Product>RDL Project</Product>
+		<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Update="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Runtime.Remoting" />
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="App.ico" />
+		<Content Include="calign.gif" />
+		<Content Include="chart.gif" />
+		<EmbeddedResource Include="csv.gif" />
+		<EmbeddedResource Include="excel.gif" />
+		<EmbeddedResource Include="tif.gif" />
+		<Content Include="selecttool.gif" />
+		<Content Include="html.gif" />
+		<Content Include="image.gif" />
+		<Content Include="line.gif" />
+		<Content Include="list.gif" />
+		<Content Include="matrix.gif" />
+		<Content Include="mht.gif" />
+		<Content Include="pdf.gif" />
+		<Content Include="rectangle.gif" />
+		<Content Include="subreport.gif" />
+		<Content Include="table.gif" />
+		<Content Include="text.gif" />
+		<Content Include="xml.gif" />
+		<Compile Update="BodyCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ChartAxisCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ChartCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ChartLegendCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="CodeCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="BackgroundCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ColorPicker.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="GridCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DesignRuler.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="FontCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="RdlUserControl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="StaticSeriesCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="VisibilityCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="PropertyCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="CustomReportItemCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DesignEditLines.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DataSetRowsCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DataSetsCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DesignCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="DesignXmlDraw.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="FiltersCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="GroupingCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ImageCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="InteractivityCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ListCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="MatrixCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ModulesClassesCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="PositionCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="QueryParametersCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="RdlEditPreview.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ReportCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ReportParameterCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ReportXmlCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="SimpleButton.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="SimpleToggle.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="SortingCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="StyleBorderCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="StyleCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="StyleTextCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="SubreportCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="TableColumnCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="TableCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="TableRowCtl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
+			<Link>RdlEngineConfig.Linux.xml</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\RdlEngine\RdlEngineConfig.xml">
+			<Link>RdlEngineConfig.xml</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="dotConnect.Express.for.PostgreSQL" />
+		<PackageReference Include="Microsoft.Data.Edm" />
+		<PackageReference Include="Microsoft.Data.OData" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="System.Spatial" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net48' ">
+		<PackageReference Include="jacobslusser.ScintillaNET" />
+		<PackageReference Include="Microsoft.Data.Services.Client" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="fernandreu.ScintillaNET" />
+		<PackageReference Include="Microsoft.Data.SqlClient" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="ChartCtl - Copy.cs" />
+		<Compile Remove="StaticSeriesCtl - Copy.cs" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
+		<Optimize>False</Optimize>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-windows|AnyCPU'">
+		<Optimize>False</Optimize>
+	</PropertyGroup>
 </Project>

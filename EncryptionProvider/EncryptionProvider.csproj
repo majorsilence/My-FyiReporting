@@ -1,21 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-	<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>EncryptionProvider</AssemblyTitle>
-	<Description></Description>
-	<Company></Company>
-	<Product>EncryptionProvider</Product>
-	<Copyright>Copyright ©  2015</Copyright>
-	<AssemblyVersion>4.16.0</AssemblyVersion>
-	<Version>4.16.0</Version>
-	<PackageId>Majorsilence.Reporting.EncryptionProvider</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" />
-    <PackageReference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>EncryptionProvider</AssemblyTitle>
+		<Description></Description>
+		<Company></Company>
+		<Product>EncryptionProvider</Product>
+		<Copyright>Copyright ©  2015</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<PackageId>Majorsilence.Reporting.EncryptionProvider</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" />
+		<PackageReference Include="System.Data.DataSetExtensions" />
+	</ItemGroup>
 </Project>

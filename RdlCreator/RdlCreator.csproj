@@ -1,7 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-
-
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net48;net6.0</TargetFrameworks>
@@ -11,6 +8,8 @@
 		<Version>4.17.0</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlCreator</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />

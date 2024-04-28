@@ -1,37 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-  <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
-  <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyTitle>RDL Data Providers</AssemblyTitle>
-    <Description></Description>
-    <Company>fyiReporting Software, LLC</Company>
-    <Product>RDL Project</Product>
-    <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-    <AssemblyVersion>4.17.0</AssemblyVersion> 
-	<Version>4.17.0</Version>
-    <DelaySign>false</DelaySign>
-    <PackageId>Majorsilence.Reporting.DataProviders</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Security" />
-    <Reference Include="System.Web.Services">
-      <Name>System.Web.Services</Name>
-    </Reference>
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <PropertyGroup />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
+	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>RDL Data Providers</AssemblyTitle>
+		<Description></Description>
+		<Company>fyiReporting Software, LLC</Company>
+		<Product>RDL Project</Product>
+		<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.DataProviders</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Security" />
+		<Reference Include="System.Web.Services">
+			<Name>System.Web.Services</Name>
+		</Reference>
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<PropertyGroup />
 </Project>

@@ -6,12 +6,14 @@
 		<AssemblyName>RdlCreator.Tests</AssemblyName>
 		<AssemblyVersion>4.17.0</AssemblyVersion>
 		<Version>4.17.0</Version>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\Examples\SqliteExamples\sqlitetestdb2.db" Link="sqlitetestdb2.db">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Include="..\Examples\SqliteExamples\sqlitetestdb2.db" Link="sqlitetestdb2.db">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -24,6 +26,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\RdlCreator\RdlCreator.csproj" />
+		<ProjectReference Include="..\RdlCreator\RdlCreator.csproj" />
 	</ItemGroup>
 </Project>

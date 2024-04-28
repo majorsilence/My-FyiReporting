@@ -1,45 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>Library</OutputType>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>LibRdlCrossPlatformViewer</AssemblyTitle>
-	<Description></Description>
-	<Company></Company>
-	<Product>LibRdlCrossPlatformViewer</Product>
-	<Copyright>Copyright ©  2012</Copyright>
-	<AssemblyVersion>4.17.0</AssemblyVersion>
-	<Version>4.17.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.LibRdlCrossPlatformViewer</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Xwt">
-      <HintPath>..\References\dot net 4\Xwt.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\References\dot net 4\Xwt.Gtk.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\References\dot net 4\Xwt.WPF.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\References\dot net 4\Xwt.Gtk.Windows.dll">
-      <Link>Xwt.Gtk.Windows.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" />
-    <PackageReference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>LibRdlCrossPlatformViewer</AssemblyTitle>
+		<Description></Description>
+		<Company></Company>
+		<Product>LibRdlCrossPlatformViewer</Product>
+		<Copyright>Copyright ©  2012</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.LibRdlCrossPlatformViewer</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="Xwt">
+			<HintPath>..\References\dot net 4\Xwt.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\References\dot net 4\Xwt.Gtk.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\References\dot net 4\Xwt.WPF.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\References\dot net 4\Xwt.Gtk.Windows.dll">
+			<Link>Xwt.Gtk.Windows.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" />
+		<PackageReference Include="System.Data.DataSetExtensions" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
 </Project>

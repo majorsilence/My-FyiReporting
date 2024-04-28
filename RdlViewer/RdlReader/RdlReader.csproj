@@ -7,11 +7,13 @@
 		<DelaySign>false</DelaySign>
 		<OutputType>WinExe</OutputType>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-		<Deterministic>false</Deterministic>
+		<Deterministic>true</Deterministic>
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

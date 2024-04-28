@@ -1,36 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-  <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <RootNamespace>fyiReporting.RdlGtk3</RootNamespace>
-    <AssemblyName>RdlGtk3</AssemblyName>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <AssemblyVersion>4.16.0</AssemblyVersion>
-	<Version>4.16.0</Version>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="GtkSharp" />
-	<PackageReference Include="Mono.Posix" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
-      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app.desktop">
-      <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\RdlEngine\RdlEngineConfig.xml">
-      <Link>RdlEngineConfig.xml</Link>
-    </None>
-  </ItemGroup>
+	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
+	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RootNamespace>fyiReporting.RdlGtk3</RootNamespace>
+		<AssemblyName>RdlGtk3</AssemblyName>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Majorsilence.Reporting.RdlGtk3</PackageId>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="GtkSharp" />
+		<PackageReference Include="Mono.Posix" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
+			<DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="app.desktop">
+			<DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\RdlEngine\RdlEngineConfig.xml">
+			<Link>RdlEngineConfig.xml</Link>
+		</None>
+	</ItemGroup>
 </Project>

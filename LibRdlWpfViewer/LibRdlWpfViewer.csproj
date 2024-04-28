@@ -1,45 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>RDL Data WPF Library</AssemblyTitle>
-	<Description></Description>
-	<Company></Company>
-	<Product>RDL Data WPF Library</Product>
-	<Copyright>Copyright © 2012 Peter Gill</Copyright>
-	<AssemblyVersion>4.17.0</AssemblyVersion>
-	<Version>4.17.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.LibRdlWpfViewer</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Update="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Update="UIAutomationProvider">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Update="WindowsFormsIntegration">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-    <ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>RDL Data WPF Library</AssemblyTitle>
+		<Description></Description>
+		<Company></Company>
+		<Product>RDL Data WPF Library</Product>
+		<Copyright>Copyright © 2012 Peter Gill</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.LibRdlWpfViewer</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System.Core">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Update="System.Xml.Linq">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Update="UIAutomationProvider">
+			<RequiredTargetFramework>3.0</RequiredTargetFramework>
+		</Reference>
+		<Reference Update="WindowsFormsIntegration">
+			<RequiredTargetFramework>3.0</RequiredTargetFramework>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<AppDesigner Include="Properties\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Data.DataSetExtensions" />
+	</ItemGroup>
 </Project>

@@ -1,94 +1,96 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
-    <ProjectType>Local</ProjectType>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RootNamespace>fyiReporting.RdlViewer</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <PublishUrl>publish\</PublishUrl>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>RDL Viewer</AssemblyTitle>
-	<Description></Description>
-	<Company>fyiReporting Software, LLC</Company>
-	<Product>RDL Project</Product>
-	<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-	<AssemblyVersion>4.17.0</AssemblyVersion>
-	<Version>4.17.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.RdlViewer</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="RdlReader\bin\**" />
-    <Compile Remove="RdlReader\obj\**" />
-    <EmbeddedResource Remove="RdlReader\bin\**" />
-    <EmbeddedResource Remove="RdlReader\obj\**" />
-    <None Remove="RdlReader\bin\**" />
-    <None Remove="RdlReader\obj\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Update="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="PageDrawing.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="RdlViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="RdlViewerFind.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ViewerToolstrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <EmbeddedResource Include="Resources\document-print.png" />
-    <EmbeddedResource Include="Resources\document-open.png" />
-    <EmbeddedResource Include="Resources\document-save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="RdlReader\AssemblyInfo.cs" />
-    <Compile Remove="RdlReader\DialogAbout.cs" />
-    <Compile Remove="RdlReader\DialogAbout.Designer.cs" />
-    <Compile Remove="RdlReader\MDIChild.cs" />
-    <Compile Remove="RdlReader\MDIChild.Designer.cs" />
-    <Compile Remove="RdlReader\Properties\Resources.Designer.cs" />
-    <Compile Remove="RdlReader\RdlReader.cs" />
-    <Compile Remove="RdlReader\RdlReader.Designer.cs" />
-    <Compile Remove="RdlReader\Resources\Strings.Designer.cs" />
-    <Compile Remove="RdlReader\ZoomTo.cs" />
-    <Compile Remove="RdlReader\ZoomTo.Designer.cs" />
-    <EmbeddedResource Remove="RdlReader\DialogAbout.resx" />
-    <EmbeddedResource Remove="RdlReader\DialogAbout.ru-RU.resx" />
-    <EmbeddedResource Remove="RdlReader\MDIChild.resx" />
-    <EmbeddedResource Remove="RdlReader\Properties\Resources.resx" />
-    <EmbeddedResource Remove="RdlReader\RdlReader.resx" />
-    <EmbeddedResource Remove="RdlReader\RdlReader.ru-RU.resx" />
-    <EmbeddedResource Remove="RdlReader\Resources\Strings.resx" />
-    <EmbeddedResource Remove="RdlReader\Resources\Strings.ru-RU.resx" />
-    <EmbeddedResource Remove="RdlReader\ZoomTo.resx" />
-    <EmbeddedResource Remove="RdlReader\ZoomTo.ru-RU.resx" />
-  </ItemGroup>
-  <PropertyGroup />
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+		<ProjectType>Local</ProjectType>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RootNamespace>fyiReporting.RdlViewer</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<PublishUrl>publish\</PublishUrl>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>RDL Viewer</AssemblyTitle>
+		<Description></Description>
+		<Company>fyiReporting Software, LLC</Company>
+		<Product>RDL Project</Product>
+		<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.RdlViewer</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="RdlReader\bin\**" />
+		<Compile Remove="RdlReader\obj\**" />
+		<EmbeddedResource Remove="RdlReader\bin\**" />
+		<EmbeddedResource Remove="RdlReader\obj\**" />
+		<None Remove="RdlReader\bin\**" />
+		<None Remove="RdlReader\obj\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Update="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="PageDrawing.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="RdlViewer.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="RdlViewerFind.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="ViewerToolstrip.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<EmbeddedResource Include="Resources\document-print.png" />
+		<EmbeddedResource Include="Resources\document-open.png" />
+		<EmbeddedResource Include="Resources\document-save.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="RdlReader\AssemblyInfo.cs" />
+		<Compile Remove="RdlReader\DialogAbout.cs" />
+		<Compile Remove="RdlReader\DialogAbout.Designer.cs" />
+		<Compile Remove="RdlReader\MDIChild.cs" />
+		<Compile Remove="RdlReader\MDIChild.Designer.cs" />
+		<Compile Remove="RdlReader\Properties\Resources.Designer.cs" />
+		<Compile Remove="RdlReader\RdlReader.cs" />
+		<Compile Remove="RdlReader\RdlReader.Designer.cs" />
+		<Compile Remove="RdlReader\Resources\Strings.Designer.cs" />
+		<Compile Remove="RdlReader\ZoomTo.cs" />
+		<Compile Remove="RdlReader\ZoomTo.Designer.cs" />
+		<EmbeddedResource Remove="RdlReader\DialogAbout.resx" />
+		<EmbeddedResource Remove="RdlReader\DialogAbout.ru-RU.resx" />
+		<EmbeddedResource Remove="RdlReader\MDIChild.resx" />
+		<EmbeddedResource Remove="RdlReader\Properties\Resources.resx" />
+		<EmbeddedResource Remove="RdlReader\RdlReader.resx" />
+		<EmbeddedResource Remove="RdlReader\RdlReader.ru-RU.resx" />
+		<EmbeddedResource Remove="RdlReader\Resources\Strings.resx" />
+		<EmbeddedResource Remove="RdlReader\Resources\Strings.ru-RU.resx" />
+		<EmbeddedResource Remove="RdlReader\ZoomTo.resx" />
+		<EmbeddedResource Remove="RdlReader\ZoomTo.ru-RU.resx" />
+	</ItemGroup>
+	<PropertyGroup />
 </Project>

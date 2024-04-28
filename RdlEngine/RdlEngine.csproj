@@ -1,105 +1,107 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-  <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
-  <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyTitle>RDL Engine</AssemblyTitle>
-	<Description></Description>
-	<Company>fyiReporting Software, LLC</Company>
-	<Product>RDL Engine</Product>
-	<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-	<AssemblyVersion>4.17.0</AssemblyVersion>
-	<Version>4.17.0</Version>
-	<DelaySign>false</DelaySign>
-	<PackageId>Majorsilence.Reporting.RdlEngine</PackageId>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Update="System.Drawing">
-      <Name>System.Drawing</Name>
-    </Reference>
-    <Reference Include="System.Security" />
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Strings.ru-RU.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.ru-RU.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="RdlEngineConfig.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="RdlEngineConfig.Linux.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Strings.ru-RU.resx">
-      <LastGenOutput>Strings.ru-RU.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <PropertyGroup />
-  <ItemGroup>
-    <Compile Update="Resources\Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Strings.ru-RU.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-	<PackageReference Include="iTextSharp.LGPLv2.Core" />
-    <PackageReference Include="NPOI" />
-    <PackageReference Include="SharpZipLib" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' != 'net48' ">
-    <!-- Add your item references here -->
-	<PackageReference Include="System.Data.SqlClient" />
-	<PackageReference Include="System.Data.Odbc" />
-	<PackageReference Include="System.Data.OleDb" />
-	<PackageReference Include="System.CodeDom" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="PageDrawing.cs" />
-    <Compile Remove="RdlPrint.cs" />
-    <Compile Remove="Render\CompilationExtensions.cs" />
-    <Compile Remove="Render\ExcelValet_old.cs" />
-  </ItemGroup>
+	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
+	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyTitle>RDL Engine</AssemblyTitle>
+		<Description></Description>
+		<Company>fyiReporting Software, LLC</Company>
+		<Product>RDL Engine</Product>
+		<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+		<DelaySign>false</DelaySign>
+		<PackageId>Majorsilence.Reporting.RdlEngine</PackageId>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Update="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Security" />
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\Strings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Strings.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Strings.ru-RU.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Strings.ru-RU.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="RdlEngineConfig.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="RdlEngineConfig.Linux.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Strings.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Strings.ru-RU.resx">
+			<LastGenOutput>Strings.ru-RU.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+	<PropertyGroup />
+	<ItemGroup>
+		<Compile Update="Resources\Strings.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Strings.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Strings.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Strings.ru-RU.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="iTextSharp.LGPLv2.Core" />
+		<PackageReference Include="NPOI" />
+		<PackageReference Include="SharpZipLib" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' != 'net48' ">
+		<!-- Add your item references here -->
+		<PackageReference Include="System.Data.SqlClient" />
+		<PackageReference Include="System.Data.Odbc" />
+		<PackageReference Include="System.Data.OleDb" />
+		<PackageReference Include="System.CodeDom" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="PageDrawing.cs" />
+		<Compile Remove="RdlPrint.cs" />
+		<Compile Remove="Render\CompilationExtensions.cs" />
+		<Compile Remove="Render\ExcelValet_old.cs" />
+	</ItemGroup>
 </Project>

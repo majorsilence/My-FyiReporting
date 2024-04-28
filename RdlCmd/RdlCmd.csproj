@@ -1,34 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-	<TargetFrameworks>net48;net6.0</TargetFrameworks>
-    <ApplicationIcon>App.ico</ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <DelaySign>false</DelaySign>
-	<OutputType>Exe</OutputType>
-    <RootNamespace>fyiReporting.RdlCmd</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<Deterministic>false</Deterministic>
-	<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
-  </ItemGroup>
-  <PropertyGroup />
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0</TargetFrameworks>
+		<ApplicationIcon>App.ico</ApplicationIcon>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<DelaySign>false</DelaySign>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>fyiReporting.RdlCmd</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Deterministic>true</Deterministic>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<AssemblyVersion>4.17.0</AssemblyVersion>
+		<Version>4.17.0</Version>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="App.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+	</ItemGroup>
+	<PropertyGroup />
 </Project>
