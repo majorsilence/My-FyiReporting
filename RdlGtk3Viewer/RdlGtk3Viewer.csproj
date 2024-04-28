@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-    <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <RootNamespace>fyiReporting.RdlGtk3Viewer</RootNamespace>
-        <AssemblyName>RdlGtk3Viewer</AssemblyName>
-    </PropertyGroup>
+	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
+	<Import Project="../windows.gtkviewer.props" Condition="'$(OS)' == 'Windows_NT'"/>
 
-    <ItemGroup>
-        <ProjectReference Include="..\RdlGtk3\RdlGtk3.csproj"/>
-    </ItemGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>fyiReporting.RdlGtk3Viewer</RootNamespace>
+		<AssemblyName>RdlGtk3Viewer</AssemblyName>
+	</PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="GtkSharp"/>
-        <PackageReference Include="Microsoft.Data.Sqlite" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\RdlGtk3\RdlGtk3.csproj"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GtkSharp"/>
+		<PackageReference Include="Microsoft.Data.Sqlite" />
+	</ItemGroup>
 
 </Project>

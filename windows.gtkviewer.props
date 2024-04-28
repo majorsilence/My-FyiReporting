@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- Add your item references here -->
+        <PackageReference Include="System.Drawing.Common"/>
+    </ItemGroup>
+</Project>
