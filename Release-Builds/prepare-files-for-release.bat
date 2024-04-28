@@ -9,7 +9,7 @@ REM See https://github.com/TownSuite/AssemblyInfoUtil
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlAsp\RdlAsp.csproj"
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlCmd\RdlCmd.csproj"
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlCri\RdlCri.csproj"
-.\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlDesign\RdlDesign.csproj"
+.\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlDesign\ReportDesigner.csproj"
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlDesktop\RdlDesktop.csproj"
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlEngine\RdlEngine.csproj"
 .\tools\AssemblyInfoUtil.exe -inc:2 "%CD%\..\RdlGtkViewer\RdlGtkViewer\AssemblyInfo.cs"
