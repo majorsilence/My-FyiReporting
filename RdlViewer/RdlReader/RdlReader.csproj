@@ -52,6 +52,10 @@
 		<EmbeddedResource Include="RdlReader.ru-RU.resx">
 			<DependentUpon>RdlReader.cs</DependentUpon>
 		</EmbeddedResource>
+		<EmbeddedResource Include="ZoomTo.resx">
+			<DependentUpon>ZoomTo.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\Strings.resx">
 			<DependentUpon>Strings.Designer.cs</DependentUpon>
 			<SubType>Designer</SubType>
