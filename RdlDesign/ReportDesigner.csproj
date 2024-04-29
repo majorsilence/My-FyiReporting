@@ -208,6 +208,7 @@
 		<PackageReference Include="dotConnect.Express.for.PostgreSQL" />
 		<PackageReference Include="Microsoft.Data.Edm" />
 		<PackageReference Include="Microsoft.Data.OData" />
+		<PackageReference Include="Microsoft.Data.Sqlite" />
 		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="System.Spatial" />
 	</ItemGroup>
