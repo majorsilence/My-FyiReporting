@@ -15,15 +15,7 @@
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RdlEngine">
-      <HintPath>..\..\..\RdlEngine\bin\x86\Debug\RdlEngine.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="System.Data.DataSetExtensions" />
+	<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
   </ItemGroup>
 </Project>

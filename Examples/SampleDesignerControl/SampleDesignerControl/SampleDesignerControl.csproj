@@ -1,47 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>SampleApp2_SetData</RootNamespace>
-    <AssemblyName>SampleApp2-SetData</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="RdlEngine">
-      <HintPath>..\..\..\RdlEngine\bin\x86\Debug\RdlEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\..\References\dot net 4\32bit\System.Data.SQLite.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="SampleApp2-TestReport.rdl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\..\..\RdlDesign\ReportDesigner.csproj" />
-    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="RdlEngineConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" />
-    <PackageReference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>SampleApp2_SetData</RootNamespace>
+		<AssemblyName>SampleApp2-SetData</AssemblyName>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+		<OutputPath>bin\x86\Debug\</OutputPath>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+		<OutputPath>bin\x86\Release\</OutputPath>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Update="SampleApp2-TestReport.rdl">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="RdlEngineConfig.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Data.DataSetExtensions" />
+		<PackageReference Include="Microsoft.Data.Sqlite" />
+		<PackageReference Include="Majorsilence.Reporting.ReportDesigner" />
+	</ItemGroup>
 </Project>

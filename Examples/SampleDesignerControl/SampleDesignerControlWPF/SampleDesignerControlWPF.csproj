@@ -11,13 +11,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DataProviders\DataProviders.csproj" />
-    <ProjectReference Include="..\..\..\RdlCri\RdlCri.csproj" />
-    <ProjectReference Include="..\..\..\RdlDesign\ReportDesigner.csproj" />
-    <ProjectReference Include="..\..\..\RdlEngine\RdlEngine.csproj" />
-    <ProjectReference Include="..\..\..\RdlViewer\RdlViewer.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" />
+	  <PackageReference Include="Majorsilence.Reporting.ReportDesigner" />
   </ItemGroup>
 </Project>

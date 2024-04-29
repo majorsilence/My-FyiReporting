@@ -15,28 +15,17 @@
 		<OutputPath>bin\x86\Release\</OutputPath>
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-		<OutputPath>bin\x64\Debug\</OutputPath>
-		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-		<OutputPath>bin\x64\Release\</OutputPath>
-		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-	</PropertyGroup>
 	<ItemGroup>
 		<None Update="SampleApp2-TestReport.rdl">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="RdlEngineConfig.Linux.xml" />
-		<Content Include="RdlEngineConfig.xml" />
+		<None Update="RdlEngineConfig.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="iTextSharp.LGPLv2.Core" />
-		<PackageReference Include="SharpZipLib" />
-		<PackageReference Include="System.Data.DataSetExtensions" />
-		<PackageReference Include="ZXing.Net" />
 		<PackageReference Include="Microsoft.Data.Sqlite" />
 		<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
 	</ItemGroup>

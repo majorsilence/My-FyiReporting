@@ -65,7 +65,6 @@
     <PackageReference Include="MajorsilenceReporting-Core" />
     <PackageReference Include="MajorsilenceReporting-Viewer" />
     <PackageReference Include="SharpZipLib" />
-    <PackageReference Include="System.ComponentModel.Annotations" />
     <PackageReference Include="System.Data.DataSetExtensions" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="ZXing.Net" />

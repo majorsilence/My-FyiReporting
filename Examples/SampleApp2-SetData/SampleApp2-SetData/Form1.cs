@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 
 namespace SampleApp2_SetData
 {
@@ -20,8 +20,8 @@ namespace SampleApp2_SetData
 
             // TODO: You must change this connection string to match where your database is
             string connectionString = @"Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;";
-            SQLiteConnection cn = new SQLiteConnection(connectionString);
-            SQLiteCommand cmd = new SQLiteCommand();
+            SqliteConnection cn = new SqliteConnection(connectionString);
+            SqliteCommand cmd = new SqliteCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT CategoryID, CategoryName, Description FROM Categories;";
             cmd.Connection = cn;
@@ -36,7 +36,7 @@ namespace SampleApp2_SetData
         }
 
 
-        public DataTable GetTable(SQLiteCommand cmd)
+        public DataTable GetTable(SqliteCommand cmd)
         {
             System.Data.ConnectionState original = cmd.Connection.State;
             if (cmd.Connection.State == ConnectionState.Closed)
@@ -45,7 +45,7 @@ namespace SampleApp2_SetData
             }
 
             DataTable dt = new DataTable();
-            SQLiteDataReader dr;
+            SqliteDataReader dr;
 
             dr = cmd.ExecuteReader();
             dt.Load(dr);
@@ -54,7 +54,7 @@ namespace SampleApp2_SetData
 
             if (original == ConnectionState.Closed)
             {
-                cmd.Connection.Clone();
+                cmd.Connection.Close();
             }
 
             return dt;
