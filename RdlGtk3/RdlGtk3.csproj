@@ -14,7 +14,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="GtkSharp" />
-		<PackageReference Include="Mono.Posix" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
