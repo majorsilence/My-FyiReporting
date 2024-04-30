@@ -130,8 +130,9 @@
     <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
-    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\SixLabors.ImageSharp.2.1.7\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13">
+      <HintPath>..\..\..\packages/SixLabors.ImageSharp.2.1.8/lib/net472/SixLabors.ImageSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\SkiaSharp.2.88.6\lib\net462\SkiaSharp.dll</HintPath>
