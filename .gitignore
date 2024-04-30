@@ -236,3 +236,5 @@ obj/
 /Examples/SampleApp2-SetData/SampleApp2-SetData/RdlEngineConfig.Linux.xml
 .vs/
 
+/Examples/SampleAspDotNet/SampleAspDotNet/libSkiaSharp.dll
+/Examples/SampleAspDotNet/SampleAspDotNet/libSkiaSharp.dylib
