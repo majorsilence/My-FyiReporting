@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<OutputType>Library</OutputType>
@@ -6,8 +6,8 @@
 		<Deterministic>true</Deterministic>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-		<AssemblyVersion>4.17.0</AssemblyVersion>
-		<Version>4.17.0</Version>
+		<AssemblyVersion>4.18.0</AssemblyVersion>
+		<Version>4.18.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
