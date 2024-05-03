@@ -117,16 +117,9 @@ compatible with RDL 2005.  If you want to add more features see the specfication
 * 2008 direct link: [http://download.microsoft.com/download/6/5/7/6575f1c8-4607-48d2-941d-c69622e11c32/RDL_spec_08.pdf](http://download.microsoft.com/download/6/5/7/6575f1c8-4607-48d2-941d-c69622e11c32/RDL_spec_08.pdf)
 * 2008 R2 direct link: [http://download.microsoft.com/download/B/E/1/BE1AABB3-6ED8-4C3C-AF91-448AB733B1AF/Report%20Definition.xps](http://download.microsoft.com/download/B/E/1/BE1AABB3-6ED8-4C3C-AF91-448AB733B1AF/Report%20Definition.xps)
 
-#User interface tutorials:
+# User interface tutorials
 ReportingCloud (another fork) has made some tutorials for using the designer and creating reports. 
 [http://sourceforge.net/projects/reportingcloud/files/](http://sourceforge.net/projects/reportingcloud/files/)
 
-I know there are other forks but last I checked they also seemed to be dead.  The main fyiReporting site is 
-found at http://www.fyireporting.com/ and it has examples found at [http://www.fyireporting.com/helpv4/index.php](http://www.fyireporting.com/helpv4/index.php) and 
-the forum is [http://www.fyireporting.com/forum/index.php](http://www.fyireporting.com/forum/index.php).  However has I said above for the most part it is a dead 
-project.
 
-UPDATE: ReportFU [http://reportfu.org](http://reportfu.org) ~~is alive?~~ is dead (2019-01-18)
-
-UPDATE: NReport [http://nreports.codeplex.com/](http://nreports.codeplex.com/) - Looks dead.
 
