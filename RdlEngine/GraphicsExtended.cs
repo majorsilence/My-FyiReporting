@@ -26,13 +26,13 @@
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
-#if LINUX
+#if DRAWINGCOMPAT
 using Draw = System.DrawingCore;
 #else
 using Draw = System.Drawing;
 #endif
 
-#if LINUX
+#if DRAWINGCOMPAT
 namespace System.DrawingCore
 #else
 namespace System.Drawing

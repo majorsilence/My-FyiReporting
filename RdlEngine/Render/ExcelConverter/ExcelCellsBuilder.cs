@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using fyiReporting.RDL;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 using System.DrawingCore.Drawing2D;
 #else

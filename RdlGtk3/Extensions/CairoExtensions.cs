@@ -26,7 +26,7 @@
 
 using System;
 using Cairo;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 #else
 using Drawing = System.Drawing;

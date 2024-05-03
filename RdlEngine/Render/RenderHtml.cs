@@ -25,7 +25,7 @@ using System;
 using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 using System.DrawingCore.Imaging;
 #else

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Text;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 #else
 using System.Drawing;

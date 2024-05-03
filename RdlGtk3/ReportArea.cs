@@ -28,7 +28,7 @@ using fyiReporting.RDL;
 using System.Collections.Generic;
 using Gtk;
 using System.Linq;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 #else
 using Drawing = System.Drawing;

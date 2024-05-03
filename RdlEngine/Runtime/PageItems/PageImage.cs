@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore.Imaging;
 #else
 using System.Drawing.Imaging;

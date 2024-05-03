@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Xml;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 #else
 using System.Drawing;

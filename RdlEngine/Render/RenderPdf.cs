@@ -30,7 +30,7 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 using Imaging = System.DrawingCore.Imaging;
 #else

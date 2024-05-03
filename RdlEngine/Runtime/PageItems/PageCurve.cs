@@ -1,5 +1,5 @@
 using System;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 #else
 using System.Drawing;

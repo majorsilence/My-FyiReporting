@@ -31,7 +31,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 using Drawing2D = System.DrawingCore.Imaging;
 #else

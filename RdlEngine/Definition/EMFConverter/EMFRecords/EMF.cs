@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 using System.DrawingCore.Imaging;
 #else

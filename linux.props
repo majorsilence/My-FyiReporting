@@ -3,7 +3,7 @@
 		<TargetFrameworks>net8.0</TargetFrameworks>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DefineConstants>LINUX</DefineConstants>
+		<DefineConstants>DRAWINGCOMPAT</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- Add your item references here -->

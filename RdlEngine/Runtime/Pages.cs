@@ -25,7 +25,7 @@ using RdlEngine.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 #else
 using System.Drawing;

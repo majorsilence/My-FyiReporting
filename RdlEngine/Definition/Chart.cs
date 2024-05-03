@@ -24,7 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 using Imaging = System.DrawingCore.Imaging;
 #else

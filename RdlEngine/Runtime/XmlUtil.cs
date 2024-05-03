@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.Xsl;
 using System.Text;
 using System.IO;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 #else
 using System.Drawing;			// for Color class

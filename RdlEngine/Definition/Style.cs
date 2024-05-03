@@ -25,7 +25,7 @@ using System;
 using System.Xml;
 using System.IO;
 using System.Text;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 using Drawing2D = System.DrawingCore.Drawing2D;
 #else

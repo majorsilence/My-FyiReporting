@@ -22,7 +22,7 @@
 */
 using System;
 using System.Collections;
-#if LINUX
+#if DRAWINGCOMPAT
 using Drawing = System.DrawingCore;
 using Drawing2D = System.DrawingCore.Drawing2D;
 using Imaging = System.DrawingCore.Imaging;

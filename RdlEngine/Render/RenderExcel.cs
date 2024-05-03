@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Globalization;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore;
 using System.DrawingCore.Imaging;
 #else

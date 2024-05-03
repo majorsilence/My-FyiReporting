@@ -24,7 +24,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-#if LINUX
+#if DRAWINGCOMPAT
 using System.DrawingCore.Imaging;
 #else
 using System.Drawing.Imaging;
