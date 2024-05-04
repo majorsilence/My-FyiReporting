@@ -28,7 +28,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
-using System.Web;
+
 using fyiReporting.RDL;
 
 
@@ -357,7 +357,7 @@ namespace fyiReporting.RdlDesktop
 				{
 					string name = p.Substring(0, iEq);
 					string val = p.Substring(iEq+1);
-					ld.Add(HttpUtility.UrlDecode(name), HttpUtility.UrlDecode(val));	
+					ld.Add(WebUtility.UrlDecode(name), WebUtility.UrlDecode(val));	
 				}
 			}
 			return ld;
@@ -722,7 +722,7 @@ namespace fyiReporting.RdlDesktop
 		string UnescapeRequest(string req)
 		{
 			req = req.Replace("\\","/"); //Replace backslash with Forward Slash, if Any
-			return HttpUtility.UrlDecode(req);
+			return WebUtility.UrlDecode(req);
 		}
 	}
 }

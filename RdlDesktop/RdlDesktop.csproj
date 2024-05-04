@@ -21,9 +21,6 @@
 		<Reference Update="System.Data">
 			<Name>System.Data</Name>
 		</Reference>
-		<Reference Include="System.Web">
-			<Name>System.Web</Name>
-		</Reference>
 		<Reference Update="System.Xml">
 			<Name>System.XML</Name>
 		</Reference>
