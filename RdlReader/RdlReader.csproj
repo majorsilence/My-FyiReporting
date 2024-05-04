@@ -65,9 +65,9 @@
 		<Content Include="App.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\RdlCri\RdlCri.csproj" />
-		<ProjectReference Include="..\..\RdlEngine\RdlEngine.csproj" />
-		<ProjectReference Include="..\RdlViewer.csproj" />
+		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
+		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Properties\Resources.Designer.cs">
