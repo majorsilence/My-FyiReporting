@@ -3542,9 +3542,10 @@ namespace fyiReporting.RdlDesign
             _TempReportFiles = null;
         }
 
+       
         private void RdlDesigner_Load(object sender, EventArgs e)
         {
-
+           
         }
 
 
@@ -3889,14 +3890,12 @@ namespace fyiReporting.RdlDesign
             mc.Editor.DesignCtl._vScroll.Maximum = (int)(mc.Editor.DesignCtl._DrawPanel.VerticalMax * mc.Editor.DesignCtl._DrawPanel.SCALAY);
         }
 
-       
-
         /// <summary>
         /// Enable Alignment grid on RdlEditor
         /// </summary>
         /// <param name = "sender" ></ param >
         /// < param name="e"></param>
-        private void AlignmentGridEnable_CheckedChanged(object sender, EventArgs e)
+        private void AlignmentGridEnable_CheckStateChanged(object sender, EventArgs e)
         {
             foreach (var form in MdiChildren)
             {
@@ -3912,30 +3911,8 @@ namespace fyiReporting.RdlDesign
                 mc.Editor.dcTopRuler.Invalidate();
                 mc.Editor.dcLeftRuler.Invalidate();
             }
-
-  
         }
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public class RdlIpcObject : MarshalByRefObject
     {
