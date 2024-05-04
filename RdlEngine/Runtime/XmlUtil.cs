@@ -61,7 +61,7 @@ namespace fyiReporting.RDL
 			Color c;
 			try 
 			{
-			//	c = ColorTranslator.FromHtml(sc);
+				c = ColorTranslator.FromHtml(sc);
 			}
 			catch 
 			{
@@ -70,8 +70,7 @@ namespace fyiReporting.RDL
 					rpt.rl.LogError(4, string.Format("'{0}' is an invalid HTML color.", sc));
 			}
 
-			return Color.Aqua;
-			//	return c;
+			return c;
 		}
 
 		static internal int Integer(string i)
