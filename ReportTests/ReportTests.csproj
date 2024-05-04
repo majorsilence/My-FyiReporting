@@ -19,7 +19,7 @@
 		<ProjectReference Include="..\RdlDesktop\RdlDesktop.csproj" />
 		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
 		<ProjectReference Include="..\RdlMapFile\RdlMapFile.csproj" />
-		<ProjectReference Include="..\RdlViewer\RdlReader\RdlReader.csproj" />
+		<ProjectReference Include="..\RdlReader\RdlReader.csproj" />
 		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
 	</ItemGroup>
