@@ -3898,17 +3898,22 @@ namespace fyiReporting.RdlDesign
         /// < param name="e"></param>
         private void AlignmentGridEnable_CheckedChanged(object sender, EventArgs e)
         {
-            MDIChild mc = this.ActiveMdiChild as MDIChild;
-            if (mc == null)
-                return;
-            if (mc.Editor == null)
+            foreach (var form in MdiChildren)
             {
-                return;
+                MDIChild mc = form as MDIChild;
+                if (mc == null)
+                    continue;
+                if (mc.Editor == null)
+                {
+                    continue;
+                }
+                mc.Editor.DesignCtl._DrawPanel.EnableDrawGriglia = AlignmentGridEnable.Checked;
+                mc.Editor.DesignCtl._DrawPanel.Invalidate();
+                mc.Editor.dcTopRuler.Invalidate();
+                mc.Editor.dcLeftRuler.Invalidate();
             }
-            mc.Editor.DesignCtl._DrawPanel.EnableDrawGriglia = AlignmentGridEnable.Checked;
-            mc.Editor.DesignCtl._DrawPanel.Invalidate();
-            mc.Editor.dcTopRuler.Invalidate();
-            mc.Editor.dcLeftRuler.Invalidate();
+
+  
         }
 
     }
