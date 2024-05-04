@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
 	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
 	<PropertyGroup>
@@ -27,13 +27,13 @@
 		<Reference Update="System.Data">
 			<Name>System.Data</Name>
 		</Reference>
-		<Reference Include="System.Security" />
-		<Reference Include="System.Web.Services">
-			<Name>System.Web.Services</Name>
-		</Reference>
 		<Reference Update="System.Xml">
 			<Name>System.XML</Name>
 		</Reference>
 	</ItemGroup>
-	<PropertyGroup />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+		<Reference Include="System.Web.Services">
+			<Name>System.Web.Services</Name>
+		</Reference>
+	</ItemGroup>
 </Project>

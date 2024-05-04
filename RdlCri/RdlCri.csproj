@@ -18,9 +18,6 @@
 		<Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System.Security" />
-    </ItemGroup>
-    <ItemGroup>
         <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
     </ItemGroup>
     <ItemGroup>

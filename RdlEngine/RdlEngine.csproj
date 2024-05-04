@@ -30,7 +30,6 @@
 		<Reference Update="System.Drawing">
 			<Name>System.Drawing</Name>
 		</Reference>
-		<Reference Include="System.Security" />
 		<Reference Update="System.Xml">
 			<Name>System.XML</Name>
 		</Reference>
