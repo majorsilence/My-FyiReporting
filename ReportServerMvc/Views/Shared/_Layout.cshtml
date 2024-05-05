@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - Majorsilence.Reporting</title>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div id="header">
+            <!-- header -->
+
+            <h1>Majorsilence Reporting Report Server</h1>
+
+            <h2>.NET Open Source Reporting</h2>
+
+        </div><!--header-->
+
+        <div style="float: right;">
+            <asp:Literal ID="LiteralLogin" runat="server"></asp:Literal>
+        </div>
+
+        <div id="menu">
+
+            <ul>
+                <li class="m-item"><a href="~/Home">Home</a></li>
+                <li class="m-item"><a href="~/Reports">Reports</a></li>
+                <li class="m-item"><a href="~/Admin/Settings">Settings</a></li>
+
+            </ul>
+
+        </div><!--menu-->
+
+        <div id="main">
+            <!--main -->
+            @RenderBody()
+
+            <div class="clr"></div>
+        </div><!--main-->
+
+
+
+        <div id="footer">
+            <!-- footer -->
+
+
+            <div id="footer-1">
+                Majorsilence Reporting is a report and charting system based on Microsoft's Report Definition Language (RDL), forked from fyiReporting. Tabular, free form, matrix, charts
+                are fully supported. HTML, PDF, XML, .Net Control, and printing supported.
+
+            </div>
+
+            <div id="footer-2">
+                A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for
+                creating new reports and for inserting new tables, matrixes, and charts into existing reports.
+            </div>
+
+
+            <div id="footer-3">
+                <!-- footer-1-->
+                For more information please visit the <a href="https://github.com/majorsilence/My-FyiReporting/wiki">Majorsilence Reporting wiki page</a>.
+                You will find info about database providers, designer tutorials, and code examples.
+            </div><!-- footer-1-->
+
+            <div class="clr"></div>
+        </div><!-- footer -->
+
+
+        <div id="copy">
+
+
+
+            Design &copy; copyright 2011, <a href="http://onebusypixel.com">onebusypixel.com</a>
+
+
+        </div>
+
+        <div class="clr"></div>
+
+    </div><!--wrapper-->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

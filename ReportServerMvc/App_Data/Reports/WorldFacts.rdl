@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Name="WorldFacts">
+  <Description>Worlds Facts - test data from MySQL World database</Description>
+  <Author>fyiReporting Software, LLC</Author>
+  <DataElementStyle>ElementNormal</DataElementStyle>
+  <LeftMargin>.4in</LeftMargin>
+  <RightMargin>.4in</RightMargin>
+  <TopMargin>.5in</TopMargin>
+  <BottomMargin>.5in</BottomMargin>
+  <DataSources>
+    <DataSource Name="DS1">
+      <ConnectionProperties>
+        <!--			<DataProvider>ODBC</DataProvider>   Use this line when using ODBC driver-->
+        <DataProvider>xxx</DataProvider>
+        <!-- Use this line when using xml data -->
+        <ConnectString>dsn=world;UID=uuu;PWD=ppp;</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Data">
+      <Query>
+        <DataSourceName>DS1</DataSourceName>
+        <!--			<CommandText>SELECT Code, Name, Continent, Region, Population, IndepYear, SurfaceArea FROM Country</CommandText> -->
+      </Query>
+      <Fields>
+        <Field Name="Code">
+          <DataField>Code</DataField>
+          <TypeName>String</TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <TypeName>String</TypeName>
+        </Field>
+        <Field Name="Continent">
+          <DataField>Continent</DataField>
+          <TypeName>String</TypeName>
+        </Field>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <TypeName>String</TypeName>
+        </Field>
+        <Field Name="Population">
+          <DataField>Population</DataField>
+          <TypeName>Float</TypeName>
+        </Field>
+        <Field Name="IndependenceYear">
+          <DataField>IndependenceYear</DataField>
+          <TypeName>Float</TypeName>
+        </Field>
+        <Field Name="SurfaceArea">
+          <DataField>SurfaceArea</DataField>
+          <TypeName>Float</TypeName>
+        </Field>
+      </Fields>
+      <Rows File="WorldFacts.xml" />
+    </DataSet>
+  </DataSets>
+  <PageHeader>
+    <Height>.5 in</Height>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Top>7.20pt</Top>
+        <Left>7.20pt</Left>
+        <Height>18.00pt</Height>
+        <Value>="Welcome to the World's Countries " &amp; User!UserID.Value</Value>
+        <Style>
+          <FontSize>15pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <Height>64.4pt</Height>
+    <ReportItems>
+      <Table Name="Table1">
+        <DetailDataElementName>Row</DetailDataElementName>
+        <DetailDataCollectionName>Rows</DetailDataCollectionName>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <TableColumns>
+          <TableColumn>
+            <Width>.75 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>.5 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1 in</Width>
+          </TableColumn>
+        </TableColumns>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox2">
+                      <Value>Continent</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox3">
+                      <Value>Code</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox4">
+                      <Value>Name</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox5">
+                      <Value>Region</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox6">
+                      <Value>Population</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox7">
+                      <Value>Independence</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox8">
+                      <Value>Surface Area</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <Height>12 pt</Height>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>7</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="Textbox9">
+                          <Value>=Fields.Continent.Value</Value>
+                          <Style>
+                            <PaddingLeft>2 pt</PaddingLeft>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                </TableRow>
+              </TableRows>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </Header>
+            <Footer>
+              <TableRows>
+                <TableRow>
+                  <Height>12 pt</Height>
+                  <TableCells>
+                    <TableCell>
+                      <ColSpan>7</ColSpan>
+                      <ReportItems>
+                        <Textbox Name="Textbox14">
+                          <Value>="Count of countries in " + Fields.Continent.Value + " = " +Count(Fields.Name.Value)</Value>
+                          <Style>
+                            <PaddingLeft>2 pt</PaddingLeft>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                </TableRow>
+              </TableRows>
+            </Footer>
+            <Grouping Name="ContinentGroup">
+              <GroupExpressions>
+                <GroupExpression>=Fields!Continent.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <Details>
+          <Sorting>
+            <SortBy>
+              <SortExpression>=Fields!Name.Value</SortExpression>
+            </SortBy>
+          </Sorting>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox10">
+                      <Value>
+                      </Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Bottom>None</Bottom>
+                          <Top>None</Top>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Code">
+                      <Value>=Fields!Code.Value</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Name">
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Name.Value</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Region">
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Region.Value</Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox11">
+                      <Value>=Fields!Population.Value</Value>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingRight>2 pt</PaddingRight>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox12">
+                      <Value>=switch(Fields!IndependenceYear.Value = 0, "", Fields!IndependenceYear.Value &gt; 0, Fields!IndependenceYear.Value, true, -Fields!IndependenceYear.Value + " BC")</Value>
+                      <Style>
+                        <Format>0000</Format>
+                        <TextAlign>Center</TextAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox13">
+                      <Value>=Fields!SurfaceArea.Value</Value>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingRight>2 pt</PaddingRight>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <Height>12 pt</Height>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>4</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="Textbox15">
+                      <Value>=CountDistinct(Fields.Continent.Value) + " continents.  " + Count(Fields.Name.Value)+ " countries." </Value>
+                      <Style>
+                        <PaddingLeft>2 pt</PaddingLeft>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ColSpan>1</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="Textbox16">
+                      <Value>=Sum(Fields.Population.Value)</Value>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingRight>2 pt</PaddingRight>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ColSpan>1</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="Textbox17">
+                      <Value>
+                      </Value>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingRight>2 pt</PaddingRight>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ColSpan>1</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="Textbox18">
+                      <Value>=Sum(Fields.SurfaceArea.Value)</Value>
+                      <Style>
+                        <Format>#,##0</Format>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingRight>2 pt</PaddingRight>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+    </ReportItems>
+    <Columns>1</Columns>
+  </Body>
+  <PageFooter>
+    <Height>0pt</Height>
+    <PrintOnFirstPage>True</PrintOnFirstPage>
+    <PrintOnLastPage>True</PrintOnLastPage>
+  </PageFooter>
+  <Width>7in</Width>
+  <PageWidth>8.5in</PageWidth>
+  <PageHeight>11in</PageHeight>
+  <DataElementName>Report</DataElementName>
+</Report>

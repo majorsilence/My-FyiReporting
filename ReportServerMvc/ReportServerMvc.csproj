@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>fyiReporting.ReportServerMvc</RootNamespace>
+		<AssemblyTitle>ReportServerMvc</AssemblyTitle>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters.CoreServices" />
+		<PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" />
+		<PackageReference Include="Microsoft.Data.Sqlite" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RdlAsp.Mvc\RdlAsp.Mvc.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	</ItemGroup>
+
+</Project>

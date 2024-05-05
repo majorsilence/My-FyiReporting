@@ -1,0 +1,91 @@
+﻿/* Stylesheet */
+
+body{background:#f7f7f7; font-family:tahoma, verdana, sans-serif, geneva; color:#3399CC;}
+
+h1, h2, h3, h4, h5, h6{ font-family: tahoma, verdana, sans-serif, geneva; color:#3399CC;}
+
+h1{ font-size: 22px; color:#3399CC;}
+h2{ font-size: 18px; color:#3399CC;}
+h3{ font-size: 16px; color:#3399CC;}
+h4{ font-size: 14px; color:#3399CC;}
+h5{ font-size: 12px; color:#3399CC;}
+h6{ font-size: 10px; color:#3399CC;}
+
+ul,ol li{font-family: tahoma, verdana, sans-serif, geneva; font-size: 13px; color:#636363; line-height:25px; }
+
+.clr{ clear:both; }
+
+#wrapper{ width: 960px; margin: 0 auto 30px auto; }
+
+/*header*/
+
+#header{ width: 960px; margin: 0px; height:100px; border: 1px solid #ccc; margin:0; padding:0;}
+
+#header h1{margin:10px 0 0 20px; font-size:30px; color:#3399CC;}
+
+#header h2{color:#636363; font-size: 11px; margin:10px 0 0 20px; padding:0; font-family:Georgia, "Times New Roman", Times, serif; font-weight:normal; float:left;}
+
+/*header*/
+
+
+/*top nav menu */
+
+#menu{ width: 958px; height:50px; margin-top: 15px;  margin-bottom: 20px; padding:0 0 0 0;}
+
+.m-item{ float: left; margin-right: 20px; height:38px; background:#0072ff;}
+
+.m-item:hover{background:#333333; color:#FFFFFF;}
+
+.m-item a{text-decoration:none;}
+
+.m-item a:hover{text-decoration:none;}
+
+#menu ul{ list-style-type: none; margin:0; padding:0 }
+
+#menu ul li{ font-size: 16px; margin:0 10px 0 10px; padding:12px 0 0 0;}
+
+#menu ul li a{ font-family: calibri; height:38px; margin:0 10px 0 10px; padding:0 10px 0 10px; color:#FFFFFF;}
+
+/*top nav menu */
+
+
+#main{ width: 958px; height: auto; margin-top: 5px; margin-bottom: 20px; border: 1px solid #ccc;}
+
+/*total Content*/
+
+
+
+/*footer*/
+
+#footer{ clear: both; padding:0 0 0 0; color:#636363; font-size:11px; width:958px; height:auto; border: 1px solid #ccc;}
+
+#footer-1, #footer-2, #footer-3{width:299px; height:auto; margin:10px; float:left;}
+
+#footer-1 ul, #footer-2 ul, #footer-3 ul{margin:0; padding:0;}
+
+#footer-1 ul li, #footer-2 ul li, #footer-3 ul li{padding:0 0 0 0; margin:0 0 0 40px}
+
+#footer-1 ul li a , #footer-2 ul li a , #footer-3 ul li a{font-family:tahoma, verdana, sans-serif, geneva; font-size:12px; text-decoration:none; line-height:30px; color:#636363;}
+
+.text_area{width:294px; height:25px; font-family:tahoma, verdana, sans-serif, geneva; font-size:12px; color:#636363; padding:0 0 0 5px ; margin:10px 0 10px 0;}
+
+
+.text-box{width:150px; height:20px; border:none; background:#CCCCCC; color:#636363; margin:0 60px 0 0; float:right;}
+
+
+#copy{width:960px; height:40px; text-align:center; float:left; font-family:tahoma, verdana, sans-serif, geneva; font-size:12px; color:#636363; padding-top:10px;}
+
+#copy a{font-family:tahoma, verdana, sans-serif, geneva; font-size:12px; color:#636363; text-decoration:none;}
+
+#copy a:hover{font-family:tahoma, verdana, sans-serif, geneva; font-size:12px; color:#636363; text-decoration:none;}
+
+
+
+
+
+
+
+
+
+ 
+
