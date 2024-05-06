@@ -42,6 +42,7 @@ $Version=""
 GetVersions([ref]$Version)
 Write-Host  $Version
 dotnet restore "./MajorsilenceReporting.sln"
+dotnet restore "./MajorsilenceReporting-ReportServer.sln"
 
 # ************* Begin net48 anycpu *********************************************
 
@@ -52,6 +53,8 @@ $buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-
 $buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-net48-anycpu"
 $buildoutputpath_viewer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-viewer-net48-anycpu"
 $buildoutputpath_mapfile="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-mapfile-net48-anycpu"
+$buildoutputpath_reportserver="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-reportserver-net48-anycpu"
+
 Remove-Item "$buildoutputpath_designer" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_designer"
 Remove-Item "$buildoutputpath_desktop" -Recurse -ErrorAction Ignore
@@ -62,6 +65,8 @@ Remove-Item "$buildoutputpath_viewer" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_viewer"
 Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_mapfile"
+Remove-Item "$buildoutputpath_reportserver" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_reportserver"
 
 Copy-Item .\RdlDesign\bin\Release\net48\ -Destination "$buildoutputpath_designer\" -Recurse
 Copy-Item .\RdlDesktop\bin\Release\net48\ -Destination "$buildoutputpath_desktop\" -Recurse
@@ -78,7 +83,17 @@ cd build-output
 ..\7za.exe a $Version-majorsilence-reporting-mapfile-net48-anycpu.zip majorsilence-reporting-mapfile-net48-anycpu\
 cd "$CURRENTPATH"
 
-# ************* End x64 *********************************************
+
+& "$msbuildpath" "$CURRENTPATH\MajorsilenceReporting-ReportServer.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU"
+& "$msbuildpath" "$CURRENTPATH\MajorsilenceReporting-ReportServer.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU" /property:DeployOnBuild=true /property:PublishProfile='FolderProfile'
+
+Copy-Item .\ReportServer\bin\app.publish\ -Destination "$buildoutputpath_reportserver\" -Recurse
+cd Release-Builds
+cd build-output	
+..\7za.exe a $Version-majorsilence-reporting-reportserver-net48-anycpu.zip majorsilence-reporting-reportserver-net48-anycpu\
+cd "$CURRENTPATH"
+
+# ************* End net48 *********************************************
 
 
 # ************* Begin PHP *********************************************
