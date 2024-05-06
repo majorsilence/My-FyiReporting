@@ -10,29 +10,21 @@ namespace fyiReporting.ReportServerMvc.Code
     {
         public static DataTable ExecuteCmdTable(Microsoft.Data.Sqlite.SqliteCommand cmd)
         {
-
-            System.Data.ConnectionState origSate = cmd.Connection.State;
+            var origSate = cmd.Connection.State;
             if (cmd.Connection.State == ConnectionState.Closed)
             {
                 cmd.Connection.Open();
             }
 
-
-            DataTable dt;
-
-
-            dt = new DataTable();
+            DataTable dt = new DataTable();
             using var dr = cmd.ExecuteReader();
             dt.Load(dr);
-
             dr.Close();
-
 
             if (origSate == ConnectionState.Closed)
             {
                 cmd.Connection.Close();
             }
-
 
             return dt;
         }

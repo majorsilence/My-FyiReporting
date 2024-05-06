@@ -23,7 +23,7 @@ namespace fyiReporting.ReportServerMvc.Controllers
         public ActionResult SignupSubmit()
         {
 
-            SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
+            using var cn = new SqliteConnection(Code.DAL.ConnectionString);
 
             try
             {
@@ -89,7 +89,8 @@ namespace fyiReporting.ReportServerMvc.Controllers
                 string sql = "SELECT Email, FirstName, LastName, RoleId FROM users WHERE Email = @email AND Password = @password;";
 
                 SqliteCommand cmd = new SqliteCommand();
-                cmd.Connection = new SqliteConnection(Code.DAL.ConnectionString);
+                using var cn = new SqliteConnection(Code.DAL.ConnectionString);
+                cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
                 cmd.Parameters.Add("@email", DbType.String).Value = TextBoxUser.Text;
@@ -137,6 +138,95 @@ namespace fyiReporting.ReportServerMvc.Controllers
             SessionVariables.LoggedLastName = "Anonymous";
             SessionVariables.LoggedRoleId = "Anonymous";
             return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePasswordSubmit()
+        {
+            if (TextBoxNewPassword.Text.Length < 1)
+            {
+                LabelError.Text = "New password must be at least one character in length.";
+
+                return;
+            }
+
+            if (TextBoxNewPassword.Text != TextBoxConfirmNewPassword.Text)
+            {
+
+                LabelError.Text = "New passwords do not match.";
+
+                return;
+            }
+
+            try
+            {
+                string sql = "SELECT Email FROM users WHERE Password = @password AND Email = @email;";
+                SqliteCommand cmd = new SqliteCommand();
+                using var cn2 = new SqliteConnection(Code.DAL.ConnectionString);
+                cmd.Connection = cn2;
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = sql;
+                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxOldPassword.Text);
+                cmd.Parameters.Add("@email", DbType.String).Value = SessionVariables.LoggedEmail;
+
+                DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+                if (dt.Rows.Count != 1)
+                {
+                    LabelError.Text = "Invalid old password";
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LabelError.Text = ex.Message;
+                return;
+            }
+
+
+            using SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
+            cn.Open();
+            using SqliteTransaction txn = cn.BeginTransaction();
+            try
+            {
+
+                string sql = "UPDATE users SET Password = @password WHERE Email = @email;";
+                SqliteCommand cmd = new SqliteCommand();
+                cmd.Connection = cn;
+                cmd.Transaction = txn;
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = sql;
+                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxNewPassword.Text);
+                cmd.Parameters.Add("@email", DbType.String).Value = SessionVariables.LoggedEmail;
+                cmd.ExecuteNonQuery();
+
+
+                txn.Commit();
+
+                LabelError.Text = "Password Changed";
+            }
+            catch (Exception ex)
+            {
+                txn.Rollback();
+                LabelError.Text = ex.Message;
+            }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                {
+                    cn.Close();
+                }
+
+                TextBoxConfirmNewPassword.Text = "";
+                TextBoxNewPassword.Text = "";
+                TextBoxOldPassword.Text = "";
+
+            }
         }
 
         // GET: UserController/Details/5
