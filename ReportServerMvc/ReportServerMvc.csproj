@@ -18,8 +18,4 @@
 	  <ProjectReference Include="..\RdlAsp.Mvc\RdlAsp.Mvc.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
 </Project>

@@ -1,4 +1,5 @@
 ﻿using iTextSharp.text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Sqlite;
@@ -9,6 +10,7 @@ using System.Web;
 
 namespace fyiReporting.ReportServerMvc.Controllers
 {
+    [Authorize(Policy = "Admin")]
     public class AdminController : Controller
     {
         // GET: AdminController

@@ -20,27 +20,24 @@ namespace fyiReporting.ReportServerMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignupSubmit()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignupSubmit([FromBody] Models.Signup model)
         {
-
-            using var cn = new SqliteConnection(Code.DAL.ConnectionString);
+            await using var cn = new SqliteConnection(Code.DAL.ConnectionString);
 
             try
             {
-
-                if (TextBoxPassword.Text != TextBoxConfirmPassword.Text)
+                if (!string.Equals(model.Password, model.ConfirmPassword))
                 {
-
-                    LabelError.Text = "Password and confirm password do not match.";
-                    return;
+                    return BadRequest("Password and confirm password do not match.");
                 }
-                else if (TextBoxPassword.Text.Length < 1)
+                else if (model.Password.Length < 1)
                 {
-                    LabelError.Text = "Password must be at least one character in length.";
-                    return;
+                    return BadRequest("Password must be at least one character in length.");
                 }
 
-                string password = Code.Hashes.GetSHA512StringHash(TextBoxPassword.Text);
+                // FIXME: salt and hash password
+                string password = Code.Hashes.GetSHA512StringHash(model.Password);
 
                 string sql = "INSERT INTO users (Email, FirstName, LastName, RoleId, Password) VALUES(@email, @firstname, @lastname, 'Users', @password)";
                 SqliteCommand cmd = new SqliteCommand();
@@ -48,30 +45,21 @@ namespace fyiReporting.ReportServerMvc.Controllers
                 cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@email", DbType.String).Value = TextBoxEmail.Text;
-                cmd.Parameters.Add("@firstname", DbType.String).Value = TextBoxFirstName.Text;
-                cmd.Parameters.Add("@lastname", DbType.String).Value = TextBoxLastName.Text;
-                cmd.Parameters.Add("@password", DbType.String).Value = password;
+                cmd.Parameters.Add("@email", SqliteType.Text).Value = model.Email;
+                cmd.Parameters.Add("@firstname", SqliteType.Text).Value = model.FirstName;
+                cmd.Parameters.Add("@lastname", SqliteType.Text).Value = model.LastName;
+                cmd.Parameters.Add("@password", SqliteType.Text).Value = password;
 
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                await cn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
 
-                this.Response.Redirect("Login.aspx", true);
-
-
+                this.Response.Redirect("~/User/Login", true);
             }
             catch (Exception ex)
             {
-                LabelError.Text = ex.Message;
+                return BadRequest(ex.Message);
             }
-            finally
-            {
-                if (cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
-            }
-
+            return Ok();
         }
 
         public ActionResult Login()
@@ -80,23 +68,23 @@ namespace fyiReporting.ReportServerMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginSubmit()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LoginSubmit([FromBody] Models.Login model)
         {
             try
             {
 
-
                 string sql = "SELECT Email, FirstName, LastName, RoleId FROM users WHERE Email = @email AND Password = @password;";
 
                 SqliteCommand cmd = new SqliteCommand();
-                using var cn = new SqliteConnection(Code.DAL.ConnectionString);
+                await using var cn = new SqliteConnection(Code.DAL.ConnectionString);
                 cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@email", DbType.String).Value = TextBoxUser.Text;
-                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxPassword.Text);
+                cmd.Parameters.Add("@email", SqliteType.Text).Value = model.Email;
+                cmd.Parameters.Add("@password", SqliteType.Text).Value = Code.Hashes.GetSHA512StringHash(model.Password);
 
-                DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+                DataTable dt = await Code.DAL.ExecuteCmdTableAsync(cmd);
 
                 if (dt.Rows.Count == 1)
                 {
@@ -105,7 +93,7 @@ namespace fyiReporting.ReportServerMvc.Controllers
                     SessionVariables.LoggedFirstName = dt.Rows[0]["FirstName"].ToString();
                     SessionVariables.LoggedLastName = dt.Rows[0]["LastName"].ToString();
                     SessionVariables.LoggedRoleId = dt.Rows[0]["RoleId"].ToString();
-                    this.Response.Redirect("Reports.aspx", false);
+                    this.Response.Redirect("~/Reports", false);
                 }
                 else
                 {
@@ -114,11 +102,8 @@ namespace fyiReporting.ReportServerMvc.Controllers
                     SessionVariables.LoggedFirstName = "Anonymous";
                     SessionVariables.LoggedLastName = "Anonymous";
                     SessionVariables.LoggedRoleId = "Anonymous";
-                    lResult.Text = "Unknown user name and/or password!";
+                    return BadRequest("Unknown user name and/or password!");
                 }
-
-
-
 
             }
             catch (System.Threading.ThreadAbortException tae)
@@ -126,8 +111,10 @@ namespace fyiReporting.ReportServerMvc.Controllers
             catch (Exception ex)
             {
                 SessionVariables.LoggedIn = false;
-                lResult.Text = ex.Message;
+                return BadRequest(ex.Message);
             }
+
+            return Ok();
         }
 
         public ActionResult Logout()
@@ -146,52 +133,46 @@ namespace fyiReporting.ReportServerMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePasswordSubmit()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePasswordSubmit([FromBody] Models.ChangePassword model)
         {
-            if (TextBoxNewPassword.Text.Length < 1)
+            if (model.NewPassword.Length < 1)
             {
-                LabelError.Text = "New password must be at least one character in length.";
-
-                return;
+                return BadRequest("New password must be at least one character in length.");
             }
 
-            if (TextBoxNewPassword.Text != TextBoxConfirmNewPassword.Text)
+            if (!string.Equals(model.NewPassword, model.ConfirmNewPassword))
             {
-
-                LabelError.Text = "New passwords do not match.";
-
-                return;
+                return BadRequest("New passwords do not match.");
             }
 
             try
             {
                 string sql = "SELECT Email FROM users WHERE Password = @password AND Email = @email;";
                 SqliteCommand cmd = new SqliteCommand();
-                using var cn2 = new SqliteConnection(Code.DAL.ConnectionString);
+                await using var cn2 = new SqliteConnection(Code.DAL.ConnectionString);
                 cmd.Connection = cn2;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxOldPassword.Text);
-                cmd.Parameters.Add("@email", DbType.String).Value = SessionVariables.LoggedEmail;
+                cmd.Parameters.Add("@password", SqliteType.Text).Value = Code.Hashes.GetSHA512StringHash(model.Password);
+                cmd.Parameters.Add("@email", SqliteType.Text).Value = SessionVariables.LoggedEmail;
 
-                DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+                DataTable dt = await Code.DAL.ExecuteCmdTableAsync(cmd);
                 if (dt.Rows.Count != 1)
                 {
-                    LabelError.Text = "Invalid old password";
-                    return;
+                    return BadRequest("Invalid old password");
                 }
 
             }
             catch (Exception ex)
             {
-                LabelError.Text = ex.Message;
-                return;
+                return BadRequest(ex.Message);
             }
 
 
-            using SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
-            cn.Open();
-            using SqliteTransaction txn = cn.BeginTransaction();
+            await using SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
+            await cn.OpenAsync();
+            await using SqliteTransaction txn = cn.BeginTransaction();
             try
             {
 
@@ -201,32 +182,19 @@ namespace fyiReporting.ReportServerMvc.Controllers
                 cmd.Transaction = txn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@password", DbType.String).Value = Code.Hashes.GetSHA512StringHash(TextBoxNewPassword.Text);
-                cmd.Parameters.Add("@email", DbType.String).Value = SessionVariables.LoggedEmail;
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.Add("@password", SqliteType.Text).Value = Code.Hashes.GetSHA512StringHash(model.NewPassword);
+                cmd.Parameters.Add("@email", SqliteType.Text).Value = SessionVariables.LoggedEmail;
+                await cmd.ExecuteNonQueryAsync();
 
-
-                txn.Commit();
-
-                LabelError.Text = "Password Changed";
+                await txn.CommitAsync();
             }
             catch (Exception ex)
             {
                 txn.Rollback();
-                LabelError.Text = ex.Message;
+                return BadRequest(ex.Message);
             }
-            finally
-            {
-                if (cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
 
-                TextBoxConfirmNewPassword.Text = "";
-                TextBoxNewPassword.Text = "";
-                TextBoxOldPassword.Text = "";
-
-            }
+            return Ok("Password Changed");
         }
 
         // GET: UserController/Details/5

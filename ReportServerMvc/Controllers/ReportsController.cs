@@ -1,61 +1,60 @@
 ﻿using fyiReporting.RdlAsp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fyiReporting.ReportServerMvc.Controllers
 {
+    [Authorize(Policy = "Authed")]
     public class ReportsController : Controller
     {
+        readonly private RdlReport _report;
+        public ReportsController(RdlReport report)
+        {
+            _report = report;
+        }
+
         // GET: ReportsController
         public ActionResult Index()
         {
             return View();
         }
 
+        [ServiceFilter(typeof(HasReportPermissionsAttribute))]
         public ActionResult ViewerPdf()
         {
-
-
-            RdlReport _Report;
 
             //GJL 20080520 - Show report parameters without running it first (many line changes in this file)
             bool error;
 
-            _Report = new RdlReport();
-
-            ReportSession ses = (ReportSession)context.Session["CurrentPdfReport"];
-
+            string sessionValue = HttpContext.Session.GetString("CurrentPdfReport");
+            ReportSession ses = System.Text.Json.JsonSerializer.Deserialize<ReportSession>(sessionValue);
 
             string Name = ses.Name;
             bool FirstRun = ses.FirstRun;
 
-            if (Security.HasPermissions(ses.url) == false)
-            {
-                return;
-            }
-
             if (FirstRun)
             {
-                _Report.NoShow = true;
+                _report.NoShow = true;
             }
             else
             {
-                _Report.NoShow = false;
+                _report.NoShow = false;
             }
 
 
-            _Report.RenderType = "pdf";
+            _report.RenderType = "pdf";
 
-            _Report.PassPhrase = "northwind";       // user should provide in some fashion (from web.config??)
+            _report.PassPhrase = "northwind";       // user should provide in some fashion (from web.config??)
             // ReportFile must be the last item set since it triggers the building of the report
 
             string arg = ses.url;
             if (arg != null)
             {
-                _Report.ReportFile = arg;
+                _report.ReportFile = arg;
             }
 
-            if (_Report.Object == null)
+            if (_report.Object == null)
             {
                 error = true;
             }
@@ -64,7 +63,7 @@ namespace fyiReporting.ReportServerMvc.Controllers
                 //context.Response.ContentType = "application/pdf";
 
                 context.Response.AddHeader("content-disposition", "inline; filename=myFyiReportingReport.pdf");
-                context.Response.BinaryWrite(_Report.Object);
+                context.Response.BinaryWrite(_report.Object);
             }
             return View();
         }
