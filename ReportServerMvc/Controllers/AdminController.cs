@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using fyiReporting.ReportServerMvc.Models;
+using iTextSharp.text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,21 +20,18 @@ namespace fyiReporting.ReportServerMvc.Controllers
             return View();
         }
 
-        public ActionResult Setup()
+        public async Task<ActionResult> Setup()
         {
-            LabelError.Text = "";
-
             try
             {
-
                 string sql = "SELECT email FROM users WHERE RoleId = 'Admin'";
                 SqliteCommand cmd = new SqliteCommand();
-                using var cn = new SqliteConnection(Code.DAL.ConnectionString);
+                await using var cn = new SqliteConnection(Code.DAL.ConnectionString);
                 cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
 
-                DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+                DataTable dt = await Code.DAL.ExecuteCmdTableAsync(cmd);
 
                 if (dt.Rows.Count > 0)
                 {
@@ -50,84 +48,71 @@ namespace fyiReporting.ReportServerMvc.Controllers
             }
             catch (Exception ex)
             {
-                LabelError.Text = ex.Message;
+                return BadRequest(ex.Message);
             }
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult SetupSubmit()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SetupSubmit([FromBody] AdminSetupSubmission model)
         {
             using var cn = new SqliteConnection(Code.DAL.ConnectionString);
 
             try
             {
-
-                if (TextBoxPassword.Text != TextBoxConfirmPassword.Text)
+                if (!string.Equals(model.Password, model.ConfirmPassword, StringComparison.OrdinalIgnoreCase))
                 {
-
-                    LabelError.Text = "Password and confirm password do not match.";
-                    return;
+                    return BadRequest("Password and confirm password do not match.");
                 }
-                else if (TextBoxPassword.Text.Length < 1)
+                else if (model.Password.Length < 1)
                 {
-                    LabelError.Text = "Password must be at least one character in length.";
-                    return;
+                    return BadRequest("Password must be at least one character in length.");
                 }
 
-                string password = Code.Hashes.GetSHA512StringHash(TextBoxPassword.Text);
+                string password = Code.Hashes.GetSHA512StringHash(model.Password);
 
                 string sql = "INSERT INTO users (Email, FirstName, LastName, RoleId, Password) VALUES(@email, @firstname, @lastname, 'Admin', @password)";
                 SqliteCommand cmd = new SqliteCommand();
                 cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@email", DbType.String).Value = TextBoxEmail.Text;
-                cmd.Parameters.Add("@firstname", DbType.String).Value = TextBoxFirstName.Text;
-                cmd.Parameters.Add("@lastname", DbType.String).Value = TextBoxLastName.Text;
-                cmd.Parameters.Add("@password", DbType.String).Value = password;
+                cmd.Parameters.Add("@email", SqliteType.Text).Value = model.Email;
+                cmd.Parameters.Add("@firstname", SqliteType.Text).Value = model.FirstName;
+                cmd.Parameters.Add("@lastname", SqliteType.Text).Value = model.LastName;
+                cmd.Parameters.Add("@password", SqliteType.Text).Value = password;
 
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                await cn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
 
-                this.Response.Redirect("Reports.aspx", true);
+                this.Response.Redirect("~/Reports", true);
             }
             catch (Exception ex)
             {
-                LabelError.Text = ex.Message;
-            }
-            finally
-            {
-                if (cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
+                return BadRequest(ex.Message);
             }
 
-
+            return Ok();
         }
 
-        public ActionResult Settings()
+        public async Task<ActionResult> Settings()
         {
-
             try
             {
-
-
                 string sql = "SELECT role, tag FROM roleaccess WHERE role = @roleid and (tag = 'Admin/Role Management' or tag = 'Admin/Report Upload' or tag = 'Admin/User Management')";
                 SqliteCommand cmd = new SqliteCommand();
-                using var cn = new SqliteConnection(Code.DAL.ConnectionString);
+                await using var cn = new SqliteConnection(Code.DAL.ConnectionString);
                 cmd.Connection = cn;
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@roleid", DbType.String).Value = SessionVariables.LoggedRoleId;
+                cmd.Parameters.Add("@roleid", SqliteType.Text).Value = SessionVariables.LoggedRoleId;
 
-                DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
+                DataTable dt = await Code.DAL.ExecuteCmdTableAsync(cmd);
 
                 if (dt.Rows.Count == 0)
                 {
-                    return;
+                    return View();
                 }
 
                 StringBuilder sb = new StringBuilder();
@@ -152,51 +137,34 @@ namespace fyiReporting.ReportServerMvc.Controllers
             }
             catch (Exception ex)
             {
-                LabelError.Text = ex.Message;
+                return BadRequest(ex.Message);
+
             }
 
             return View();
         }
 
+        [TypeFilter(typeof(IsValidRequestAttribute), Arguments = new object[] { @"Admin/Report Upload" })]
         public ActionResult ReportUpload()
         {
-            Security.IsValidateRequest(context.Response, context.Session, @"Admin/Report Upload");
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult ReportUploadSubmit()
+        [ValidateAntiForgeryToken]
+        [TypeFilter(typeof(IsValidRequestAttribute), Arguments = new object[] { @"Admin/Report Upload" })]
+        public async Task<ActionResult> ReportUploadSubmit(IFormFile formFile)
         {
-            Security.IsValidateRequest(context.Response, context.Session, @"Admin/Report Upload");
-
-
-            context.Response.ContentType = "application/json";
-
             try
             {
                 string path = SessionVariables.ReportDirectory;
 
-                Stream inputStream;
-                String filename;
-
-                if (context.Request.Browser.Type.StartsWith("IE"))
-                {
-                    inputStream = context.Request.Files[0].InputStream;
-                    filename = HttpUtility.UrlDecode(context.Request.Files[0].FileName);
-                }
-                else
-                {
-                    filename = HttpUtility.UrlDecode(HttpContext.Current.Request.Headers["X-File-Name"]);
-                    inputStream = HttpContext.Current.Request.InputStream;
-                }
-
-
-
+                String filename = formFile.Name;
+                Stream inputStream = formFile.OpenReadStream();
+              
                 if (System.IO.File.Exists(System.IO.Path.Combine(path, filename)))
                 {
-                    context.Response.Write(string.Format("{\"error\":\"File {0} already exists\"}", filename)); // in case of error
-                    return;
+                    return BadRequest(string.Format("File {0} already exists", filename));
                 }
                 FileStream fileStream = new FileStream(System.IO.Path.Combine(path, filename), FileMode.OpenOrCreate);
                 inputStream.CopyTo(fileStream);
@@ -204,9 +172,9 @@ namespace fyiReporting.ReportServerMvc.Controllers
 
                 // TODO: Add insert into report table.
 
-                using SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
-                cn.Open();
-                using SqliteTransaction txn = cn.BeginTransaction();
+                await using SqliteConnection cn = new SqliteConnection(Code.DAL.ConnectionString);
+                await cn.OpenAsync();
+                await using SqliteTransaction txn = cn.BeginTransaction();
                 try
                 {
 
@@ -218,9 +186,9 @@ namespace fyiReporting.ReportServerMvc.Controllers
                     cmd.Transaction = txn;
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = sql;
-                    cmd.Parameters.Add("@tag", DbType.String).Value = tag;
-                    cmd.Parameters.Add("@description", DbType.String).Value = filename + " report";
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.Add("@tag", SqliteType.Text).Value = tag;
+                    cmd.Parameters.Add("@description", SqliteType.Text).Value = filename + " report";
+                    await cmd.ExecuteNonQueryAsync();
 
                     string sql2 = "INSERT INTO roleaccess (role, tag) VALUES (@role, @tag);";
                     SqliteCommand cmd2 = new SqliteCommand();
@@ -228,9 +196,9 @@ namespace fyiReporting.ReportServerMvc.Controllers
                     cmd2.Transaction = txn;
                     cmd2.CommandType = System.Data.CommandType.Text;
                     cmd2.CommandText = sql2;
-                    cmd2.Parameters.Add("@role", DbType.String).Value = "Admin";
-                    cmd2.Parameters.Add("@tag", DbType.String).Value = tag;
-                    cmd2.ExecuteNonQuery();
+                    cmd2.Parameters.Add("@role", SqliteType.Text).Value = "Admin";
+                    cmd2.Parameters.Add("@tag", SqliteType.Text).Value = tag;
+                    await cmd2.ExecuteNonQueryAsync();
 
 
                     string sql3 = "INSERT INTO reportfiles (reportname, tag) VALUES (@reportname, @tag);";
@@ -239,49 +207,33 @@ namespace fyiReporting.ReportServerMvc.Controllers
                     cmd3.Transaction = txn;
                     cmd3.CommandType = System.Data.CommandType.Text;
                     cmd3.CommandText = sql3;
-                    cmd3.Parameters.Add("@reportname", DbType.String).Value = filename;
-                    cmd3.Parameters.Add("@tag", DbType.String).Value = tag;
-                    cmd3.ExecuteNonQuery();
+                    cmd3.Parameters.Add("@reportname", SqliteType.Text).Value = filename;
+                    cmd3.Parameters.Add("@tag", SqliteType.Text).Value = tag;
+                    await cmd3.ExecuteNonQueryAsync();
 
-
-                    txn.Commit();
-
+                    await txn.CommitAsync();
                 }
                 catch (Exception ex)
                 {
                     txn.Rollback();
                     System.IO.File.Delete(System.IO.Path.Combine(path, filename));
-                    context.Response.Write(string.Format("{\"error\":\"{0}\"}", ex.Message)); // in case of error
-                    return;
-                }
-                finally
-                {
-                    if (cn.State != ConnectionState.Closed)
-                    {
-                        cn.Close();
-                    }
+                    return BadRequest(ex.Message);
                 }
 
-
-                context.Response.Write("{\"success\":true}"); // when upload was successful
-
-
+                return Json(new { success = true }); // when upload was successful
             }
             catch (Exception ex)
             {
-                context.Response.Write(string.Format("{\"error\":\"{0}\"}", ex.Message)); // in case of error
+                return BadRequest(ex.Message);
             }
 
-            return View();
         }
 
+        [TypeFilter(typeof(IsValidRequestAttribute), Arguments = new object[] { @"Admin/Role Management" })]
         public ActionResult RoleManagement()
         {
             try
             {
-
-                Security.IsValidateRequest(this.Response, this.Session, @"Admin/Role Management");
-
 
                 if (IsPostBack)
                 {
@@ -513,11 +465,10 @@ namespace fyiReporting.ReportServerMvc.Controllers
             }
         }
 
+        [ValidateAntiForgeryToken]
+        [TypeFilter(typeof(IsValidRequestAttribute), Arguments = new object[] { @"Admin/User Management" })]
         public ActionResult RoleUsers()
         {
-            Security.IsValidateRequest(this.Response, this.Session, @"Admin/User Management");
-
-
             LabelError.Text = "";
 
             try

@@ -21,7 +21,8 @@ namespace fyiReporting.ReportServerMvc.Controllers
         }
 
         [ServiceFilter(typeof(HasReportPermissionsAttribute))]
-        public ActionResult ViewerPdf()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ViewerPdf()
         {
 
             //GJL 20080520 - Show report parameters without running it first (many line changes in this file)
@@ -62,8 +63,8 @@ namespace fyiReporting.ReportServerMvc.Controllers
             {
                 //context.Response.ContentType = "application/pdf";
 
-                context.Response.AddHeader("content-disposition", "inline; filename=myFyiReportingReport.pdf");
-                context.Response.BinaryWrite(_report.Object);
+                HttpContext.Response.Headers.Add("content-disposition", "inline; filename=myFyiReportingReport.pdf");
+                await HttpContext.Response.BodyWriter.WriteAsync(_report.Object);
             }
             return View();
         }
