@@ -46,6 +46,34 @@ Majorsilence Reporting is developed with the following workflow:
 * Repeat
 If it doesn't have a feature that you want it to have, add it.  If it has a bug you need fixed, fix it.
 
+## Mac
+
+Install mono-libgdiplus.
+
+```bash
+brew install mono-libgdiplus
+```
+
+For report generation to work set the DYLD_LIBRARY_PATH environment variable:
+
+```bash
+DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/homebrew/lib
+```
+
+## Ubuntu
+
+Install libgdiplus.
+
+```bash
+apt install libgdiplus
+```
+
+For report generation to work set the LD_LIBRARY_PATH environment variable:
+
+```bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
+```
+
 ## Contribute:
 All contributions welcome.  I'll try to respond the same day to any emails or pull requests.  Or within a few 
 days at the most.  Small pull requests are best as they are easier to review.
@@ -108,7 +136,7 @@ A big thanks to all of Majorsilence Reporting contributors:
 * ReportSever\
 
 
- RDL Compliance
+# RDL Compliance
 Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly 
 compatible with RDL 2005.  If you want to add more features see the specfications.
 
