@@ -184,12 +184,11 @@ namespace fyiReporting.RdlGtk3
             vboxPages.Expand = true;
             gtkViewport.Add(vboxPages);
             scrolledwindowPages.Add(gtkViewport);
-            hpanedReport.Pack1(scrolledwindowPages, true, true); // Set the second parameter to true to make the widget fill the available space
+            hpanedReport.Pack1(scrolledwindowPages, true, true);
 
             scrolledwindowErrors = new ScrolledWindow();
             textviewErrors = new TextView();
             textviewErrors.WidthRequest = 200;
-            textviewErrors.Visible = false;
             textviewErrors.Editable = false;
             textviewErrors.WrapMode = WrapMode.WordChar;
             scrolledwindowErrors.Add(textviewErrors);
@@ -326,8 +325,7 @@ namespace fyiReporting.RdlGtk3
             EnableActions();
             CheckVisibility();
         }
-
-
+        
         protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
         {
             foreach (Gtk.Widget w in vboxPages.AllChildren)
@@ -894,19 +892,15 @@ namespace fyiReporting.RdlGtk3
         }
 
         int hpanedWidth = 0;
-
-        void SetHPanedPosition()
-        {
-            int textviewWidth = scrolledwindowErrors.Allocation.Width + 10;
-            hpanedReport.Position = hpanedWidth - textviewWidth;
-        }
-
+        
         protected void OnHpanedReportSizeAllocated(object o, Gtk.SizeAllocatedArgs args)
         {
             if (args.Allocation.Width != hpanedWidth)
             {
                 hpanedWidth = args.Allocation.Width;
-                SetHPanedPosition();
+                // int textviewWidth = scrolledwindowErrors.Allocation.Width + 10;
+                // hpanedReport.Position = hpanedWidth - textviewWidth;
+                hpanedReport.Position = (int)(hpanedWidth * 0.8);
             }
         }
 
