@@ -110,6 +110,9 @@ A big thanks to all of Majorsilence Reporting contributors:
 * RdlAsp\RdlAsp.sln
 	* Asp controls to display reports in asp.net and silverlight pages.
 	* References RdlEngine
+* RdlAsp.Mvc
+	* Asp.net core mvc controllers
+	* WIP
 * RdlCMD\RdlCmd.sln
 	* Command line tools
 	* References RdlEngine
@@ -121,19 +124,30 @@ A big thanks to all of Majorsilence Reporting contributors:
 	* References RdlEngine
 	* References RdlViewer
 * RdlDesktop\RdlDesktop.sln
+	* Simple server
 	* References RdlEngine
 * RdlEngine\RdlEngine.sln
 	* Main engine.  Is referenced in many of the other projects
 * RdlGtkViewer\RdlGtkViewer.sln
-	* A Gtk# (gtk-sharp) viewer
+	* A Gtk# 2 (gtk-sharp) viewer
+* RdlGtk3
+    * GtkSharp 3 core components
+* RdlGtk3Viewer
+    * GtkSharp 3 viewer
+* RdlReader
+    * Viewer executable
 * RdlViewer
+	* View controls
 	* References RdlEngine
 	* Disabled COM interop
 * RdlMapFile\RdlMapFile.sln
 	 * Map viewer
 * RdlTest\RdlTests.sln
 	 * Tests
-* ReportSever\
+* ReportSever
+	* aspx webforms
+* RdlCreator
+	* Code first report creation and generation
 
 
 # RDL Compliance
