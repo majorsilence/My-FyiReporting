@@ -84,8 +84,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\BouncyCastle.Cryptography.2.3.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938">
+      <HintPath>..\..\..\packages/BouncyCastle.Cryptography.2.3.1/lib/net461/BouncyCastle.Cryptography.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DataProviders, Version=4.17.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Majorsilence.Reporting.DataProviders.4.17.0\lib\net48\DataProviders.dll</HintPath>
