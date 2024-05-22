@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace fyiReporting.RdlDesign
 {
@@ -415,6 +416,105 @@ namespace fyiReporting.RdlDesign
 			_DrawPanel.Invalidate();   
 		}
 		
+
+
+		/// <summary>
+		/// Align to center in a container a selected item.
+		/// Items Tested : Simple TextBox , Rectangle , TextBox inside Rectangle , Line , Table
+		/// For a selected Item the container can be a Section (PageHeader,Body,PageFooter) or another item (typ. rectangle)
+		/// For Table alignment select only 1 cell 
+		/// 
+		/// </summary>
+		public void HorizontalCenterInsideContainer()
+		{
+			// Get the selected node
+            XmlNode model = _DrawPanel.SelectedList[0] as XmlNode;
+			RectangleF mrect;
+			float W;
+			//
+			// If item selected is inside Table
+			//
+			if (_DrawPanel.InTable(model) == true)
+			{
+				// Get parent table of the selected node
+				XmlNode NodoTable = _DrawPanel.TMParent(model);
+				// Get size of table
+                mrect = _DrawPanel.GetRectangle(NodoTable);
+                //
+                // Get the size in point of the container and its center
+                //
+                W= _DrawPanel.WidthOfContainer(NodoTable) / 2;
+                //
+                // Calculate new Left position for table
+                //
+                float nleft = W - mrect.Width / 2;
+                //
+                // Set new left position of table
+                //
+                string left = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.00}pt", nleft);
+                _DrawPanel.SetElement(NodoTable, "Left", left);
+            }
+			else
+			{
+				// Get rectangle that contains the model
+				mrect = _DrawPanel.GetReportItemRect(model);
+				if (mrect.Width == float.MinValue) return;
+                //
+                // Get the size in point of the container and its center
+                //
+                W = _DrawPanel.WidthOfContainer(model) / 2;
+                //
+                // Calculate new Left position for model
+                //
+                float nleft = W - mrect.Width / 2;
+                //
+                // Set new left position of model
+                //
+                string left = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.00}pt", nleft);
+                _DrawPanel.SetElement(model, "Left", left);
+            }
+            ReportChanged(this, new EventArgs());
+            _DrawPanel.Invalidate();
+        }
+
+		/// <summary>
+		/// Vertical center alignment.
+		/// Alignment can be done only on item inside a container (ie rectangle) or only PageHeader or Footer
+		/// </summary>
+		public void VerticalCenterInsideContainer()
+		{
+            // Get the selected node
+            XmlNode model = _DrawPanel.SelectedList[0] as XmlNode;
+            RectangleF mrect;
+			float SectionHeight;
+            float NewTop;
+            //
+            // If item selected is inside Table do nothing
+            //
+            if (_DrawPanel.InTable(model) == true)
+			{
+				return;
+			}
+			//
+			// Get the Height of the model container
+			//
+			SectionHeight=_DrawPanel.HeightOfContainer(model);
+			//
+			// do nothing if invalid section Height
+			//
+			if(SectionHeight == 0) return;
+			// Get rectangle that contains the model
+			mrect = _DrawPanel.GetReportItemRect(model);
+			// Calculate new Top for model
+			NewTop=(SectionHeight- mrect.Height) / 2;
+			string top = string.Format(NumberFormatInfo.InvariantInfo, "{0:0.00}pt", NewTop);
+			_DrawPanel.SetElement(model, "Top", top);
+			ReportChanged(this, new EventArgs());
+			_DrawPanel.Invalidate();
+		}
+
+
+
 		public void AlignTops()
 		{
             if (_DrawPanel.SelectedCount < 2)
