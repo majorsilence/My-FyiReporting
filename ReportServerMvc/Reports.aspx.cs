@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Text;
-using System.Data.SQLite;
 using System.Data;
+using Microsoft.Data.Sqlite;
 
 namespace ReportServer
 {
@@ -24,11 +22,11 @@ namespace ReportServer
 
 
                 string sql = "SELECT a.reportname, a.tag, c.description FROM reportfiles a JOIN roleaccess b ON a.tag=b.tag JOIN roletags c ON a.tag = c.tag WHERE b.role = @roleid ;";
-                SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = new SQLiteConnection(Code.DAL.ConnectionString);
+                SqliteCommand cmd = new SqliteCommand();
+                cmd.Connection = new SqliteConnection(Code.DAL.ConnectionString);
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@roleid", DbType.String).Value = SessionVariables.LoggedRoleId;
+                cmd.Parameters.Add("@roleid", SqliteType.Text).Value = SessionVariables.LoggedRoleId;
 
                 DataTable dt = Code.DAL.ExecuteCmdTable(cmd);
 
