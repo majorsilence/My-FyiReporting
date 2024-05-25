@@ -10,11 +10,8 @@ $msbuildpath="C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
 If (Test-Path "C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"){
 	$msbuildpath="C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
 }
-ElseIf (Test-Path "C:\BuildTools\MSBuild\17.0\Bin\MSBuild.exe"){
-	$msbuildpath="C:\BuildTools\MSBuild\17.0\Bin\MSBuild.exe"
-}
-ElseIf (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"){
-	$msbuildpath="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"
+ElseIf (Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"){
+	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"
 }
 Else {
 	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"

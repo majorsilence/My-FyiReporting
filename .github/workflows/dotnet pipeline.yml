@@ -1,0 +1,86 @@
+name: .NET
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Build Release
+        run: ./build-release.ps1
+      - name: Test
+        run: dotnet test -c Release MajorsilenceReporting.sln --verbosity normal --collect:"XPlat Code Coverage" --logger:"trx"
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: unit tests
+          path: "**/TestResults/*.trx"
+          reporter: dotnet-trx
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: "**/TestResults/**/coverage.cobertura.xml"
+          badge: true
+          fail_below_min: false
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: "60 80"
+      - name: Write Code Coverage to Job Summary
+        run: cat **code-coverage-results.md** >> $GITHUB_STEP_SUMMARY
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+      - name: SBOM
+        uses: CycloneDX/gh-dotnet-generate-sbom@v1
+        with:
+          path: ./MajorsilenceReporting.sln
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: |
+            Release-Builds/build-output/*.*
+            sbom.xml
+          retention-days: 1
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
+      - name: Build
+        run: dotnet build -c Release MajorsilenceReporting-Linux-GtkViewer.sln --no-restore
+  mac-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
+      - name: Build
+        run: dotnet build -c Release MajorsilenceReporting-Linux-GtkViewer.sln --no-restore
