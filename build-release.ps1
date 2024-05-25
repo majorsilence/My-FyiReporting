@@ -13,8 +13,11 @@ If (Test-Path "C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"){
 ElseIf (Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"){
 	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"
 }
-Else {
+ElseIf (Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"){
 	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
+}
+Else {
+	$msbuildpath="msbuild"
 }
 
 
