@@ -905,5 +905,14 @@ namespace fyiReporting.RDL
         {
             return Math.Round(n, decimals);
         }
+		
+		/// <summary>
+		/// Return Local Newline
+		/// </summary>
+		/// <returns></returns>
+		static public string VbCrlf()
+		{
+			return Environment.NewLine;
+		}
     }
 }

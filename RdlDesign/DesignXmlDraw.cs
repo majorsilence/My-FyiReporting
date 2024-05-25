@@ -61,8 +61,8 @@ namespace fyiReporting.RdlDesign
         public float ReportVisualSize;
         public float ReportVisualSizeBase;
         // rWidth is now ReportVisualSizeBase i.e. the report real w size
-        float pHeight, pWidth;
-		float lMargin, rMargin, tMargin, bMargin;
+        public float pHeight, pWidth;
+		public float lMargin, rMargin, tMargin, bMargin;
 		XmlNode bodyNode;
 		XmlNode phNode;
 		XmlNode pfNode;
@@ -366,6 +366,11 @@ namespace fyiReporting.RdlDesign
 			RectangleF mr = GetReportItemRect(xNode, r);		// get the matrix rectangle
 			return mr;
 		}
+
+
+
+
+
 
 		private RectangleF GetRectTable(XmlNode xNode, RectangleF r)
 		{
@@ -1275,7 +1280,7 @@ namespace fyiReporting.RdlDesign
 			return al;
 		}
 
-		private RectangleF GetReportItemRect(XmlNode xNode, RectangleF r)
+		public RectangleF GetReportItemRect(XmlNode xNode, RectangleF r)
 		{
 			RectangleF rir = GetReportItemRect(xNode);
 
@@ -6179,6 +6184,79 @@ namespace fyiReporting.RdlDesign
         {
             return y * POINTSIZED / DpiY;
         }
+
+		/// <summary>
+		/// Return the name of the section where item is draw		
+		/// </summary>
+		/// <param name="node"></param>
+		/// <returns></returns>
+		public string SectionBelongsTo(XmlNode node)
+		{
+            var myList = new List<string>() { "PageHeader", "Body", "PageFooter" };
+			node = node.ParentNode;
+			string Name = node.Name;
+			while(!myList.Any(x => x.Contains(Name)))
+			{
+				node = node.ParentNode;
+				Name=node.Name;
+			}
+			return Name;
+        }
+
+		/// <summary>
+		/// Return the Width of the node container
+		/// </summary>
+		/// <param name="node"></param>
+		/// <returns></returns>
+		public float WidthOfContainer(XmlNode node)
+		{
+			node = node.ParentNode.ParentNode;
+			string Name = node.Name;
+			var myList = new List<string>() { "PageHeader", "Body", "PageFooter" };
+			if (myList.Any(x => x.Contains(Name)))
+			{
+					return pWidth-lMargin-rMargin;
+			}
+			//
+			// Is not a section , but is a container for selection
+			// Determine the Width
+			//
+			return GetRectangle(node).Width;	
+		}
+		/// <summary>
+		/// Return then Height of node container
+		/// </summary>
+		/// <param name="node"></param>
+		/// <returns></returns>
+		public float HeightOfContainer(XmlNode node)
+		{
+			node = node.ParentNode.ParentNode;
+			string Name = node.Name;
+			switch (Name) {
+				case "Body":
+					return 0;
+				case "PageHeader":
+					return PageHeaderHeight;
+				case "PageFooter":
+					return PageFooterHeight;
+				default:
+					return GetRectangle(node).Height;
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	}
 

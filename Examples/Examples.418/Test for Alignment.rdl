@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description></Description>
+  <Author></Author>
+  <PageHeight>11in</PageHeight>
+  <PageWidth>8.5in</PageWidth>
+  <Width>7.5in</Width>
+  <TopMargin>.25in</TopMargin>
+  <LeftMargin>.25in</LeftMargin>
+  <RightMargin>.25in</RightMargin>
+  <BottomMargin>.25in</BottomMargin>
+  <PageHeader>
+    <Height>196.2pt</Height>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <ReportItems>
+      <Rectangle Name="Rectangle2" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>55.68pt</Height>
+        <Width>158.93pt</Width>
+        <Left>68.0pt</Left>
+        <Top>12.2pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Outset</Default>
+            <Left>Outset</Left>
+            <Right>Outset</Right>
+            <Top>Outset</Top>
+            <Bottom>Outset</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth>
+            <Default>6pt</Default>
+            <Left>6pt</Left>
+            <Right>6pt</Right>
+            <Top>6pt</Top>
+            <Bottom>6pt</Bottom>
+          </BorderWidth>
+          <BackgroundColor>Lightgreen</BackgroundColor>
+        </Style>
+        <ReportItems>
+          <Textbox Name="Textbox4">
+            <Height>32.31pt</Height>
+            <Width>111.66pt</Width>
+            <Value>="TESTO 1 IN"  + vbcrlf() +  "BIANCO"</Value>
+            <ZIndex>2</ZIndex>
+            <Left>23.6pt</Left>
+            <Top>11.0pt</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+                <Left>Solid</Left>
+                <Right>Solid</Right>
+                <Top>Solid</Top>
+                <Bottom>Solid</Bottom>
+              </BorderStyle>
+              <BorderColor />
+              <BorderWidth />
+              <TextAlign>Center</TextAlign>
+              <VerticalAlign>Middle</VerticalAlign>
+              <BackgroundColor>White</BackgroundColor>
+              <Color>Black</Color>
+              <PaddingLeft>0pt</PaddingLeft>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <CanShrink>false</CanShrink>
+          </Textbox>
+        </ReportItems>
+        <ZIndex>1</ZIndex>
+      </Rectangle>
+      <Rectangle Name="Rectangle1">
+        <Height>112.82pt</Height>
+        <Width>230.31pt</Width>
+        <Left>168.30pt</Left>
+        <Top>63.46pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Double</Default>
+            <Left>Double</Left>
+            <Right>Double</Right>
+            <Top>Double</Top>
+            <Bottom>Double</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <ReportItems>
+          <Rectangle Name="Rectangle3" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+            <Height>55.68pt</Height>
+            <Width>158.93pt</Width>
+            <Left>35.69pt</Left>
+            <Top>28.57pt</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+                <Left>Solid</Left>
+                <Right>Solid</Right>
+                <Top>Solid</Top>
+                <Bottom>Solid</Bottom>
+              </BorderStyle>
+              <BorderColor />
+              <BorderWidth />
+              <BackgroundColor>Lightgreen</BackgroundColor>
+            </Style>
+            <ReportItems>
+              <Textbox Name="Textbox2">
+                <Height>32.31pt</Height>
+                <Width>140pt</Width>
+                <Value>="TESTO IN" + VbCrlf() +"BIANCO"</Value>
+                <ZIndex>2</ZIndex>
+                <Left>9.46pt</Left>
+                <Top>11.69pt</Top>
+                <Style>
+                  <BorderStyle>
+                    <Default>Solid</Default>
+                    <Left>Solid</Left>
+                    <Right>Solid</Right>
+                    <Top>Solid</Top>
+                    <Bottom>Solid</Bottom>
+                  </BorderStyle>
+                  <BorderColor />
+                  <BorderWidth />
+                  <TextAlign>Center</TextAlign>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <BackgroundColor>White</BackgroundColor>
+                  <Color>Black</Color>
+                  <PaddingLeft>0pt</PaddingLeft>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <ZIndex>1</ZIndex>
+          </Rectangle>
+          <Line Name="Line1">
+            <Height>0.00pt</Height>
+            <Width>72.27pt</Width>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Left>73.40pt</Left>
+            <Top>15.4pt</Top>
+          </Line>
+        </ReportItems>
+      </Rectangle>
+      <Textbox Name="Textbox5" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+        <Height>40.57pt</Height>
+        <Width>153.53pt</Width>
+        <Value>="TESTO IN" + VbCrlf() +"BIANCO"</Value>
+        <ZIndex>2</ZIndex>
+        <Left>419.3pt</Left>
+        <Top>17.2pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>None</Default>
+            <Left>Solid</Left>
+            <Right>WindowInset</Right>
+            <Top>Solid</Top>
+            <Bottom>WindowInset</Bottom>
+          </BorderStyle>
+          <BorderColor>
+            <Default>Black</Default>
+            <Left>Black</Left>
+            <Right>Black</Right>
+            <Top>Black</Top>
+            <Bottom>Black</Bottom>
+          </BorderColor>
+          <BorderWidth>
+            <Default>6pt</Default>
+            <Left>1pt</Left>
+            <Right>4pt</Right>
+            <Top>1pt</Top>
+            <Bottom>4pt</Bottom>
+          </BorderWidth>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <BackgroundColor>White</BackgroundColor>
+          <Color>Black</Color>
+          <PaddingLeft>0pt</PaddingLeft>
+          <Format>None</Format>
+          <FontSize>14pt</FontSize>
+        </Style>
+      </Textbox>
+      <Rectangle Name="Rectangle5" >
+        <Height>82.13pt</Height>
+        <Width>103.91pt</Width>
+        <Left>440.40pt</Left>
+        <Top>75.28pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Double</Default>
+            <Left>Double</Left>
+            <Right>Double</Right>
+            <Top>Double</Top>
+            <Bottom>Double</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <ReportItems>
+          <Line Name="Line2">
+            <Height>0.00pt</Height>
+            <Width>72.27pt</Width>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Left>15.82pt</Left>
+            <Top>41.07pt</Top>
+          </Line>
+        </ReportItems>
+      </Rectangle>
+    </ReportItems>
+  </PageHeader>
+  <Body>
+    <Height>140.3pt</Height>
+    <ReportItems>
+      <Rectangle Name="Rectangle4" >
+        <Height>88.88pt</Height>
+        <Width>327.41pt</Width>
+        <Left>125.38pt</Left>
+        <Top>16.8pt</Top>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <ReportItems>
+          <Textbox Name="Textbox6" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+            <Height>44.50pt</Height>
+            <Width>229.38pt</Width>
+            <Value>TESTO IN BIANCO</Value>
+            <ZIndex>2</ZIndex>
+            <Left>49.02pt</Left>
+            <Top>22.19pt</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+                <Left>Solid</Left>
+                <Right>Solid</Right>
+                <Top>Solid</Top>
+                <Bottom>Solid</Bottom>
+              </BorderStyle>
+              <BorderColor />
+              <BorderWidth />
+              <TextAlign>Center</TextAlign>
+              <VerticalAlign>Middle</VerticalAlign>
+              <BackgroundColor>#FFD7EB</BackgroundColor>
+              <Color>Black</Color>
+              <PaddingLeft>8.00pt</PaddingLeft>
+            </Style>
+          </Textbox>
+        </ReportItems>
+      </Rectangle>
+    </ReportItems>
+  </Body>
+  <PageFooter>
+    <Height>73.2pt</Height>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Top>12.8pt</Top>
+        <Left>5.2pt</Left>
+        <Height>12.00pt</Height>
+        <Width>216.81pt</Width>
+        <Value>=Globals!PageNumber + ' of ' + Globals!TotalPages</Value>
+        <Style>
+          <FontSize>10pt</FontSize>
+          <FontWeight>Normal</FontWeight>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+</Report>
