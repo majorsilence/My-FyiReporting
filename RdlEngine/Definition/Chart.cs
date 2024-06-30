@@ -359,7 +359,7 @@ namespace fyiReporting.RDL
                 }
                 else //Ultimate Rendering - Vector //AJM GJL 14082008
                 {
-                   Drawing.Imaging.Metafile im = cb.Image(rpt);	// Grab the image
+                   var im = cb.Image(rpt);	// Grab the image
                     //im could still be saved to a bitmap at this point
                     //if we were to offer a choice of raster or vector, it would probably
                     //be easiest to draw the chart to the EMF and then save as bitmap if needed

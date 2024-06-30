@@ -34,6 +34,7 @@ using Imaging = System.Drawing.Imaging;
 #endif
 using System.Text;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 
 namespace fyiReporting.RDL
@@ -52,16 +53,20 @@ namespace fyiReporting.RDL
 		override internal void Draw(Report rpt)
 		{
 			CreateSizedBitmap();
-            using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
-            {              
-                _aStream = new System.IO.MemoryStream();  
-                IntPtr HDC = g1.GetHdc(); 
-                //_mf = new System.Drawing.Imaging.Metafile(_aStream, HDC);
-                _mf = new Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height),Imaging.MetafileFrameUnit.Pixel);
-                g1.ReleaseHdc(HDC);
-            }
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			{
+				using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
+				{
+					_aStream = new System.IO.MemoryStream();
+					IntPtr HDC = g1.GetHdc();
+					//_mf = new System.Drawing.Imaging.Metafile(_aStream, HDC);
+					_mf = new Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height),
+						Imaging.MetafileFrameUnit.Pixel);
+					g1.ReleaseHdc(HDC);
+				}
+			}
 
-            using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf))
+			using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf != null ? _mf : _bm))
 			{
                 // 06122007AJM Used to Force Higher Quality
                 g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;

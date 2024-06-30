@@ -44,7 +44,7 @@ namespace fyiReporting.RDL
 		protected Chart _ChartDefn; // GJL 14082008 Using Vector Graphics
 		MatrixCellEntry[,] _DataDefn;
 		protected Drawing.Bitmap _bm;
-        protected Imaging.Metafile _mf; // GJL 14082008 Using Vector Graphics
+        protected Imaging.Metafile _mf = null; // GJL 14082008 Using Vector Graphics
         public System.IO.MemoryStream _aStream; // GJL 14082008 Using Vector Graphics
 		protected ChartLayout Layout;
 		Drawing.Brush[] _SeriesBrush;
@@ -88,17 +88,17 @@ namespace fyiReporting.RDL
 		{
 			if (_bm == null)
 				Draw(rpt);
-            _mf.Save(stream, im);
-	//		_bm.Save(stream, im);
+           // _mf.Save(stream, im);
+			_bm.Save(stream, im);
 		}
 
-		internal Imaging.Metafile Image(Report rpt) // GJL 14082008 Using Vector Graphics
+		internal Drawing.Image Image(Report rpt) // GJL 14082008 Using Vector Graphics
 		{
 			if (_bm == null)
 				Draw(rpt);
 
-			//return _bm;
-            return _mf;
+			return _bm;
+            //return _mf;
 
 		}
 
