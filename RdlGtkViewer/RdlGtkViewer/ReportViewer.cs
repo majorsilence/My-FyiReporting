@@ -1,4 +1,4 @@
-// 
+﻿// 
 //  ReportViewer.cs
 //  
 //  Author:
@@ -37,6 +37,7 @@ namespace fyiReporting.RdlGtkViewer
     [System.ComponentModel.ToolboxItem(true)]
     public partial class ReportViewer : Gtk.Bin
     {
+		private bool _disposed;
         private Report report;
         private Pages pages;
         private PrintOperation printing;
@@ -769,7 +770,26 @@ namespace fyiReporting.RdlGtkViewer
 
         int hpanedWidth = 0;
 
-        void SetHPanedPosition()
+		private void DisposeUiManagerAndActions()
+		{
+			foreach(var actionGroup in UIManager.ActionGroups)
+			{
+				actionGroup.Dispose();
+			}
+
+			UIManager.Dispose();
+			refreshAction.Dispose();
+			saveAsAction.Dispose();
+			printAction.Dispose();
+			ZoomOutAction.Dispose();
+			ZoomInAction.Dispose();
+
+			errorsAction.Toggled -= OnErrorsActionToggled;
+			errorsAction.Dispose();
+			customPrintAction = null;
+		}
+
+		void SetHPanedPosition()
         {
             int textviewWidth = scrolledwindowErrors.Allocation.Width + 10;
             hpanedReport.Position = hpanedWidth - textviewWidth;
@@ -784,18 +804,25 @@ namespace fyiReporting.RdlGtkViewer
             }
         }
 
-        public override void Destroy()
-        {
-            base.Destroy();
-        }
+		protected override void OnDestroyed()
+		{
+			Dispose();
+			base.OnDestroyed();
+		}
 
         public override void Dispose()
         {
-            errorsAction.Toggled -= OnErrorsActionToggled;
-            pages?.Dispose();
-            pages = null;
-            report?.Dispose();
+			if(_disposed)
+			{
+				return;
+			}
+
+			DisposeUiManagerAndActions();
+			pages?.Dispose();
+			pages = null;
+			report?.Dispose();
+			_disposed = true;
         }
-    }
+	}
 }
 
