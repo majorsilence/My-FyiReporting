@@ -13,7 +13,7 @@
     </Description>
     <DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.RdlAsp.Mvc</PackageId>
-	<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+	<TargetFrameworks>net8.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Data">

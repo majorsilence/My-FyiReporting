@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<ProjectType>Local</ProjectType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -208,7 +208,7 @@
 		<PackageReference Include="jacobslusser.ScintillaNET" />
 		<PackageReference Include="Microsoft.Data.Services.Client" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows' Or '$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="fernandreu.ScintillaNET" />
 		<PackageReference Include="Microsoft.Data.SqlClient" />
 	</ItemGroup>
@@ -219,7 +219,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
 		<Optimize>False</Optimize>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-windows|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows|AnyCPU'">
 		<Optimize>False</Optimize>
 	</PropertyGroup>
 </Project>
