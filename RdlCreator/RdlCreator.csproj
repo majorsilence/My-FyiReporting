@@ -4,12 +4,8 @@
 		<TargetFrameworks>net48;net6.0</TargetFrameworks>
 		<RootNamespace>fyiReporting.RdlCreator</RootNamespace>
 		<AssemblyName>RdlCreator</AssemblyName>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlCreator</PackageId>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />

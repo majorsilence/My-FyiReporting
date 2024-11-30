@@ -7,15 +7,8 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <AssemblyTitle>RdlCri</AssemblyTitle>
         <Description>RDL Project CustomReportItem Library</Description>
-        <Company>fyiReporting Software, LLC</Company>
-        <Product>CRI</Product>
-        <Copyright>Copyright © 2006-2008</Copyright>
-        <AssemblyVersion>4.18.0</AssemblyVersion>
-        <Version>4.18.0</Version>
         <DelaySign>false</DelaySign>
         <PackageId>Majorsilence.Reporting.RdlCri</PackageId>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />

@@ -6,10 +6,6 @@
 		<OutputType>WinExe</OutputType>
 		<RootNamespace>fyiReporting.RdlGtk3Viewer</RootNamespace>
 		<AssemblyName>RdlGtk3Viewer</AssemblyName>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
 	<ItemGroup>

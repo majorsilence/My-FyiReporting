@@ -7,14 +7,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<AssemblyTitle>EncryptionProvider</AssemblyTitle>
 		<Description></Description>
-		<Company></Company>
-		<Product>EncryptionProvider</Product>
-		<Copyright>Copyright ©  2015</Copyright>
-		<AssemblyVersion>4.17.0</AssemblyVersion>
-		<Version>4.17.0</Version>
 		<PackageId>Majorsilence.Reporting.EncryptionProvider</PackageId>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Data.DataSetExtensions" />

@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <RepositoryUrl>https://github.com/majorsilence/My-FyiReporting</RepositoryUrl>
+    <AssemblyVersion>4.18.0</AssemblyVersion>
+    <FileVersion>4.18.0</FileVersion>
+    <Version>4.18.0</Version>
+    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Product>Majorsilence Reporting</Product>
+    <Copyright>Copyright © 2004-2008  fyiReporting Software, LLC, Majorsilence Reporting Devs 2024</Copyright>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+</Project>

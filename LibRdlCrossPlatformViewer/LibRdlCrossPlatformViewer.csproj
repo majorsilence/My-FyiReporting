@@ -5,15 +5,8 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<AssemblyTitle>LibRdlCrossPlatformViewer</AssemblyTitle>
 		<Description></Description>
-		<Company></Company>
-		<Product>LibRdlCrossPlatformViewer</Product>
-		<Copyright>Copyright ©  2012</Copyright>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.LibRdlCrossPlatformViewer</PackageId>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Xwt">

@@ -7,11 +7,7 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>fyiReporting.RdlCmd</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

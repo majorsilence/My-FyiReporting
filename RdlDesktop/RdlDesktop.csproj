@@ -8,10 +8,6 @@
 		<RootNamespace>fyiReporting.RdlDesktop</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<StartupObject>fyiReporting.RdlDesktop.RdlDesktop</StartupObject>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 		<TargetFrameworks>net48;net6.0</TargetFrameworks>
 	</PropertyGroup>
 	<ItemGroup>

@@ -11,15 +11,9 @@
     <AssemblyTitle>RDL ASP</AssemblyTitle>
     <Description>
     </Description>
-    <Company>fyiReporting Software, LLC</Company>
-    <Product>RDL Project</Product>
-    <Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-    <AssemblyVersion>4.18.0</AssemblyVersion>
-    <Version>4.18.0</Version>
     <DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.RdlAsp.Mvc</PackageId>
 	<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Data">

@@ -10,15 +10,8 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<AssemblyTitle>RDL Data Providers</AssemblyTitle>
 		<Description></Description>
-		<Company>fyiReporting Software, LLC</Company>
-		<Product>RDL Project</Product>
-		<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-		<AssemblyVersion>4.18.0</AssemblyVersion>
-		<Version>4.18.0</Version>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.DataProviders</PackageId>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

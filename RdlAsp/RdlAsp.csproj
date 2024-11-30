@@ -9,11 +9,6 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<AssemblyTitle>RDL ASP</AssemblyTitle>
 	<Description></Description>
-	<Company>fyiReporting Software, LLC</Company>
-	<Product>RDL Project</Product>
-	<Copyright>Copyright (C) 2004-2008  fyiReporting Software, LLC</Copyright>
-	<AssemblyVersion>4.18.0</AssemblyVersion>
-	<Version>4.18.0</Version>
 	<DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.RdlAsp</PackageId>
   </PropertyGroup>
@@ -41,6 +36,5 @@
   <PropertyGroup />
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 </Project>
