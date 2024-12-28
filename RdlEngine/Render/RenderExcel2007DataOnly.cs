@@ -232,33 +232,6 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		private StyleInfo GetStyle(ReportItem ri, Row row)
-		{
-			if(ri.Style == null)
-				return null;
-
-			return ri.Style.GetStyleInfo(report, row);
-		}
-
-		private static bool InTable(ReportItem tb)
-		{
-			Type tp = tb.Parent.Parent.GetType();
-			return (tp == typeof(TableCell) ||
-					 tp == typeof(Corner) ||
-					 tp == typeof(DynamicColumns) ||
-					 tp == typeof(DynamicRows) ||
-					 tp == typeof(StaticRow) ||
-					 tp == typeof(StaticColumn) ||
-					 tp == typeof(Subtotal) ||
-					 tp == typeof(MatrixCell));
-		}
-
-		private static bool InList(ReportItem tb)
-		{
-			Type tp = tb.Parent.Parent.GetType();
-			return (tp == typeof(List));
-		}
-
 		public void DataRegionNoRows(DataRegion d, string noRowsMsg)            // no rows in table
 		{
 		}

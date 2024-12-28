@@ -216,18 +216,12 @@ namespace fyiReporting.RDL
                     ip = new RenderRtf(this, sg);
                     _Report.Run(ip);
                     break;
-                case OutputPresentationType.ExcelTableOnly:
-                    ip = new RenderExcel(this, sg);
-                    _Report.Run(ip);
-                    break;
 				case OutputPresentationType.Excel2003:
-                    ip = new RenderExcel2003(this, sg);
-                    _Report.Run(ip);
-                    break;
                 case OutputPresentationType.Excel2007:
 					ip = new RenderExcel2007(this, sg);
 					_Report.Run(ip);
 					break;
+                case OutputPresentationType.ExcelTableOnly:
                 case OutputPresentationType.Excel2007DataOnly:
                     ip = new RenderExcel2007DataOnly(this, sg);
                     _Report.Run(ip);
