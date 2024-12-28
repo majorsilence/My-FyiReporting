@@ -27,7 +27,7 @@ using System.Xml.Xsl;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
+using Majorsilence.Drawing;
 #else
 using System.Drawing;			// for Color class
 #endif

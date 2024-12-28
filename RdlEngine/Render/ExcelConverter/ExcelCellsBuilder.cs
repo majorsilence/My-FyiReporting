@@ -3,8 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using fyiReporting.RDL;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
-using System.DrawingCore.Drawing2D;
+using Majorsilence.Drawing;
+using Majorsilence.Drawing.Drawing2D;
 #else
 using System.Drawing;
 using System.Drawing.Drawing2D;

@@ -14,6 +14,7 @@
     <DelaySign>false</DelaySign>
     <PackageId>Majorsilence.Reporting.RdlAsp.Mvc</PackageId>
 	<TargetFrameworks>net8.0</TargetFrameworks>
+	<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Data">

@@ -21,20 +21,18 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-
+#if !DRAWINGCOMPAT
 using System;
 using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-#if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-#else
 using Drawing = System.Drawing;
-#endif
+using System.Drawing.Imaging;
 
 using System.Text;
 using System.Runtime.InteropServices;
+
 
 namespace fyiReporting.RDL
 {
@@ -799,9 +797,9 @@ namespace fyiReporting.RDL
                 // Handling saving first page 
 
                 // STEP: Prepare ImageCodecInfo for saving 
-                Drawing.Imaging.ImageCodecInfo info = null;
+                ImageCodecInfo info = null;
 
-                foreach (Drawing.Imaging.ImageCodecInfo i in Drawing.Imaging.ImageCodecInfo.GetImageEncoders())
+                foreach (ImageCodecInfo i in ImageCodecInfo.GetImageEncoders())
                 {
                     if (i.MimeType == "image/tiff")
                     {
@@ -1022,3 +1020,5 @@ namespace fyiReporting.RDL
         }
     }
 }
+
+#endif

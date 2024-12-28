@@ -30,8 +30,8 @@ using System.Text;
 using System.Xml;
 using System.Globalization;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
-using System.DrawingCore.Imaging;
+using Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using System.Drawing;
 using System.Drawing.Imaging;

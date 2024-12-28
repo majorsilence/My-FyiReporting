@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>Library</OutputType>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />

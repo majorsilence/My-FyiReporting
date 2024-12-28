@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<ProjectType>Local</ProjectType>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
 		<DelaySign>false</DelaySign>
@@ -15,6 +14,7 @@
 		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.RdlViewer</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="RdlReader\bin\**" />

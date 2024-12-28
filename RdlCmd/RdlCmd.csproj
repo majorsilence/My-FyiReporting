@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0</TargetFrameworks>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
 		<DelaySign>false</DelaySign>
@@ -8,6 +7,7 @@
 		<RootNamespace>fyiReporting.RdlCmd</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

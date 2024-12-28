@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
@@ -10,6 +9,7 @@
 		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.LibRdlWpfViewer</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System.Core">

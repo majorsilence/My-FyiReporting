@@ -23,9 +23,9 @@
 using System;
 using System.Collections;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Drawing2D = System.DrawingCore.Drawing2D;
-using Imaging = System.DrawingCore.Imaging;
+using Drawing = Majorsilence.Drawing;
+using Drawing2D = Majorsilence.Drawing.Drawing2D;
+using Imaging = Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;
@@ -44,7 +44,9 @@ namespace fyiReporting.RDL
 		protected Chart _ChartDefn; // GJL 14082008 Using Vector Graphics
 		MatrixCellEntry[,] _DataDefn;
 		protected Drawing.Bitmap _bm;
-        protected Imaging.Metafile _mf = null; // GJL 14082008 Using Vector Graphics
+#if !DRAWINGCOMPAT
+		protected Imaging.Metafile _mf = null; // GJL 14082008 Using Vector Graphics
+#endif
         public System.IO.MemoryStream _aStream; // GJL 14082008 Using Vector Graphics
 		protected ChartLayout Layout;
 		Drawing.Brush[] _SeriesBrush;

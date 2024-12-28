@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using Gtk;
 using System.Linq;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
 #else
 using Drawing = System.Drawing;
 #endif

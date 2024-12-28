@@ -32,8 +32,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Drawing2D = System.DrawingCore.Imaging;
+using Drawing = Majorsilence.Drawing;
+using Drawing2D = Majorsilence.Drawing.Imaging;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
 using Drawing2D = System.Drawing.Imaging;
@@ -338,17 +339,20 @@ namespace fyiReporting.RDL
                             adjustedRect = r2;
                             break;
                     }
-                    if (i.ImgFormat == Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == Drawing.Imaging.ImageFormat.Emf)
+#if !DRAWINGCOMPAT
+                    if (i.ImgFormat == System.Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == System.Drawing.Imaging.ImageFormat.Emf)
                     {
                         //We dont want to add it - its already been broken down into page items;
                     }
                     else
                     {
+#endif
                        
                             AddImage(i.Name,  i.SI, i.ImgFormat,
                             adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData((int)clipRect.Width, (int)clipRect.Height), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
-                       
+#if !DRAWINGCOMPAT
                     }
+#endif
                     continue;
                 }
 

@@ -33,8 +33,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Imaging = System.DrawingCore.Imaging;
+using Drawing = Majorsilence.Drawing;
+using Imaging = Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
 using Imaging = System.Drawing.Imaging;

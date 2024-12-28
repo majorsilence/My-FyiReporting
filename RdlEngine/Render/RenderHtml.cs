@@ -26,8 +26,8 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
-using System.DrawingCore.Imaging;
+using Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using System.Drawing;
 using System.Drawing.Imaging;

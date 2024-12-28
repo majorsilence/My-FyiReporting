@@ -24,7 +24,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
 #else
 using Drawing = System.Drawing;
 #endif

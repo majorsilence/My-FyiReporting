@@ -29,8 +29,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
-using System.DrawingCore.Drawing2D;
+using Majorsilence.Drawing;
+using Majorsilence.Drawing.Drawing2D;
 #else
 using System.Drawing;
 using System.Drawing.Drawing2D;

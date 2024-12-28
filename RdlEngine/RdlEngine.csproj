@@ -1,6 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -12,6 +10,7 @@
 		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.RdlEngine</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">
@@ -46,6 +45,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\Majorsilence.Drawing.Common\Majorsilence.Drawing.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="RdlEngineConfig.Linux.xml">
@@ -82,6 +82,7 @@
 		<PackageReference Include="iTextSharp.LGPLv2.Core" />
 		<PackageReference Include="NPOI" />
 		<PackageReference Include="SharpZipLib" />
+		<PackageReference Include="SkiaSharp" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' != 'net48' ">
 		<!-- Add your item references here -->
@@ -89,11 +90,15 @@
 		<PackageReference Include="System.Data.Odbc" />
 		<PackageReference Include="System.Data.OleDb" />
 		<PackageReference Include="System.CodeDom" />
+		<PackageReference Condition="'$(DefineConstants.Contains(DRAWINGCOMPAT))' == False" Include="System.Drawing.Common" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="PageDrawing.cs" />
 		<Compile Remove="RdlPrint.cs" />
 		<Compile Remove="Render\CompilationExtensions.cs" />
 		<Compile Remove="Render\ExcelValet_old.cs" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(DefineConstants.Contains(DRAWINGCOMPAT))'">
+		<Compile Remove="Definition\EMFConverter\**\**\*.cs" />
 	</ItemGroup>
 </Project>

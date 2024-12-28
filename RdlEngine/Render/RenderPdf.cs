@@ -31,8 +31,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Imaging = System.DrawingCore.Imaging;
+using Drawing = Majorsilence.Drawing;
+using Imaging = Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
 using Imaging = System.Drawing.Imaging;
@@ -195,7 +195,7 @@ namespace fyiReporting.RDL
         /// </summary>
         /// <returns>string Image name</returns>
         private void iAddImage(PdfImages images, string name, int contentRef, StyleInfo si,
-            Drawing.Imaging.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
+            Imaging.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
             byte[] im, int samplesW, int samplesH, string url, string tooltip)
         {
 
@@ -1243,13 +1243,14 @@ namespace fyiReporting.RDL
                             adjustedRect = r2;
                             break;
                     }
-                    if (i.ImgFormat == Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == Drawing.Imaging.ImageFormat.Emf)
+#if !DRAWINGCOMPAT
+                    if (i.ImgFormat == Imaging.ImageFormat.Wmf || i.ImgFormat == Imaging.ImageFormat.Emf)
                     {
                         //We dont want to add it - its already been broken down into page items;
                     }
                     else
                     {
-                       
+#else
                         if (r.ItextPDF)
                         {
                             iAddImage(images, i.Name, content.objectNum, i.SI, i.ImgFormat,
@@ -1261,11 +1262,15 @@ namespace fyiReporting.RDL
                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData(), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
 
                         }
+#endif
+#if !DRAWINGCOMPAT
                     }
+#endif
                     continue;
                 }
 
-                if (pi is PageRectangle)
+
+                    if (pi is PageRectangle)
                 {
                     PageRectangle pr = pi as PageRectangle;
 

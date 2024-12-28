@@ -26,8 +26,8 @@ using System.Xml;
 using System.IO;
 using System.Text;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Drawing2D = System.DrawingCore.Drawing2D;
+using Drawing = Majorsilence.Drawing;
+using Drawing2D = Majorsilence.Drawing.Drawing2D;
 #else
 using Drawing = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;

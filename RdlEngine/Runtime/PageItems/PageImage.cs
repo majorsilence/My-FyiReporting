@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 #if DRAWINGCOMPAT
-using System.DrawingCore.Imaging;
+using Majorsilence.Drawing.Imaging;
 #else
 using System.Drawing.Imaging;
 #endif
@@ -21,9 +21,15 @@ namespace fyiReporting.RDL
 
 		public PageImage(ImageFormat im, byte[] image, int w, int h)
 		{
-			Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif || im == ImageFormat.Wmf,
+#if DRAWINGCOMPAT
+            Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif,
+                "PageImage only supports Jpeg, Gif and Png and WMF image formats (Thanks HYNE!).");
+#else
+Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif || im == ImageFormat.Wmf,
 				"PageImage only supports Jpeg, Gif and Png and WMF image formats (Thanks HYNE!).");
-			imf = im;
+#endif
+
+            imf = im;
 			imageData = image;
 			samplesW = w;
 			samplesH = h;
@@ -33,9 +39,15 @@ namespace fyiReporting.RDL
 		
 		public PageImage(ImageFormat im, Func<ImageFormat, int, int, byte[]> imageGenerator, ImageSizingEnum sizing = ImageSizingEnum.AutoSize)
 		{
-			Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif || im == ImageFormat.Wmf,
+#if DRAWINGCOMPAT
+            Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif,
+                "PageImage only supports Jpeg, Gif and Png and WMF image formats (Thanks HYNE!).");
+#else
+Debug.Assert(im == ImageFormat.Jpeg || im == ImageFormat.Png || im == ImageFormat.Gif || im == ImageFormat.Wmf,
 				"PageImage only supports Jpeg, Gif and Png and WMF image formats (Thanks HYNE!).");
-			imf = im;
+#endif
+
+            imf = im;
 			this.imageGenerator = imageGenerator;
 			repeat = ImageRepeat.NoRepeat;
 			this.sizing = sizing;

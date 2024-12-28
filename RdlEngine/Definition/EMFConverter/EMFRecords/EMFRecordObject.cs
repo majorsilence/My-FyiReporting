@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
+using Majorsilence.Drawing;
 using System.Drawing.Imaging;
 #else
 using System.Drawing;

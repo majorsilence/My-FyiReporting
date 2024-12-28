@@ -25,9 +25,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
+using System.Drawing.Imaging;
 #endif
 using System.Text;
 using System.IO;
@@ -36,11 +38,11 @@ using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
 {
-	///<summary>
-	/// PageTextHtml handles text that should to be formatted as HTML.  It only handles
-	/// a subset of HTML (e.g. "<b>,<br>, ..."
-	///</summary>
-	public class PageTextHtml : PageText, IEnumerable, ICloneable
+    ///<summary>
+    /// PageTextHtml handles text that should to be formatted as HTML.  It only handles
+    /// a subset of HTML (e.g. "<b>,<br>, ..."
+    ///</summary>
+    public class PageTextHtml : PageText, IEnumerable, ICloneable
 	{
 		List<PageItem> _items=null;
 		Stack _StyleStack;				// work variable when processing styles
@@ -468,8 +470,8 @@ namespace fyiReporting.RDL
                 int h = im.Height;
                 int w = im.Width;
                 MemoryStream ostrm = new MemoryStream();
-                Drawing.Imaging.ImageFormat imf;
-                imf = Drawing.Imaging.ImageFormat.Jpeg;
+                ImageFormat imf;
+                imf = ImageFormat.Jpeg;
                 im.Save(ostrm, imf);
                 byte[] ba = ostrm.ToArray();
                 ostrm.Close();

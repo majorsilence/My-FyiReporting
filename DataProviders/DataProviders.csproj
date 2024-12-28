@@ -1,6 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -12,6 +10,7 @@
 		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.DataProviders</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

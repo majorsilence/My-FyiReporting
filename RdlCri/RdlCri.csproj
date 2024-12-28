@@ -1,6 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'" />
-    <Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Library</OutputType>
         <RootNamespace>fyiReporting.CRI</RootNamespace>
@@ -9,6 +7,7 @@
         <Description>RDL Project CustomReportItem Library</Description>
         <DelaySign>false</DelaySign>
         <PackageId>Majorsilence.Reporting.RdlCri</PackageId>
+        <Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
@@ -16,8 +15,14 @@
     <ItemGroup>
         <PackageReference Include="BarcodeLib" />
         <PackageReference Include="ZXing.Net" />
-        <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
     </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net.Bindings.SkiaSharp" />
+	</ItemGroup>
+		
     <ItemGroup>
         <Folder Include="Properties\" />
     </ItemGroup>

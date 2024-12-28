@@ -28,7 +28,7 @@
 using System;
 using System.Collections;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
 #else
 using Drawing = System.Drawing;
 #endif
@@ -55,7 +55,8 @@ namespace fyiReporting.RDL
 		{
 			CreateSizedBitmap();
 
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#if !DRAWINGCOMPAT
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
 				using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
 				{
@@ -69,7 +70,10 @@ namespace fyiReporting.RDL
 			}
 
 			using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf != null ? _mf : _bm))
-			{
+#else
+            using (Drawing.Graphics g = Drawing.Graphics.FromImage(_bm))
+#endif
+            {
                 // 06122007AJM Used to Force Higher Quality
                 g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;

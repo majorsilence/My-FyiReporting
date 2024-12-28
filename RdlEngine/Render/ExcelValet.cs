@@ -29,7 +29,7 @@ using System.Text;
 using System.Data;
 using System.Xml;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
+using Majorsilence.Drawing;
 #else
 using System.Drawing;
 #endif

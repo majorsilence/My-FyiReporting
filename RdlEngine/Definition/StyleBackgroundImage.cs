@@ -25,20 +25,23 @@ using System.Xml;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
+using System.Drawing.Imaging;
 #endif
 using System.Globalization;
 using System.Threading;
 using System.Net;
 
+
 namespace fyiReporting.RDL
 {
-	///<summary>
-	/// Represents the background image information in a Style.
-	///</summary>
-	[Serializable]
+    ///<summary>
+    /// Represents the background image information in a Style.
+    ///</summary>
+    [Serializable]
 	internal class StyleBackgroundImage : ReportLink
 	{
 		StyleBackgroundImageSourceEnum _Source;	// Identifies the source of the image:
@@ -173,18 +176,18 @@ namespace fyiReporting.RDL
 				int height = im.Height;
 				int width = im.Width;
 				MemoryStream ostrm = new MemoryStream();
-				Drawing.Imaging.ImageFormat imf;
+				ImageFormat imf;
 				//				if (mtype.ToLower() == "image/jpeg")    //TODO: how do we get png to work
 				//					imf = ImageFormat.Jpeg;
 				//				else
 
-                imf = Drawing.Imaging.ImageFormat.Jpeg;
-               Drawing.Imaging.ImageCodecInfo[] info;
-                info = Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+                imf = ImageFormat.Jpeg;
+               ImageCodecInfo[] info;
+                info = ImageCodecInfo.GetImageEncoders();
                 Drawing.Imaging.EncoderParameters encoderParameters;
                 encoderParameters = new Drawing.Imaging.EncoderParameters(1);
                 encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
-               Drawing.Imaging.ImageCodecInfo codec = null;
+               ImageCodecInfo codec = null;
                 for (int i = 0; i < info.Length; i++)
                 {
                     if (info[i].FormatDescription == "JPEG")

@@ -24,9 +24,10 @@
 using System;
 using System.Xml;
 using System.IO;
+
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
-using Imaging = System.DrawingCore.Imaging;
+using Drawing = Majorsilence.Drawing;
+using Imaging = Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
 using Imaging = System.Drawing.Imaging;
@@ -34,10 +35,10 @@ using Imaging = System.Drawing.Imaging;
 
 namespace fyiReporting.RDL
 {
-	///<summary>
-	/// Defines the Chart.  A DataRegion and ReportItem
-	///</summary>
-	[Serializable]
+    ///<summary>
+    /// Defines the Chart.  A DataRegion and ReportItem
+    ///</summary>
+    [Serializable]
 	internal class Chart : DataRegion
 	{
 		static readonly Imaging.ImageFormat IMAGEFORMAT = Imaging.ImageFormat.Jpeg;
@@ -295,122 +296,23 @@ namespace fyiReporting.RDL
 			ChartBase cb=null;
 			try
 			{
-				cb = RunChartBuild(rpt, row);					// Build the chart
-                if (!_isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
+				cb = RunChartBuild(rpt, row);                   // Build the chart
+
+#if DRAWINGCOMPAT
+                p = RunPage_Bitmap(pgs, row, rpt, cb);
+#else
+			    if (!_isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
                 {
-                   Drawing.Image im = cb.Image(rpt);	// Grab the image
-                    int height = im.Height;							// save height and width
-                    int width = im.Width;
-
-                    MemoryStream ostrm = new MemoryStream();
-                    /* The following is a new image saving logic which will allow for higher 
-                     * quality images using JPEG with 100% quality
-                     * 06122007AJM */
-                   Imaging.ImageCodecInfo[] info;
-                    info = Imaging.ImageCodecInfo.GetImageEncoders();
-                    Imaging.EncoderParameters encoderParameters;
-                    encoderParameters = new Imaging.EncoderParameters(1);
-                    // 20022008 AJM GJL - Centralised class with global encoder settings
-                    encoderParameters.Param[0] = new Imaging.EncoderParameter(Imaging.Encoder.Quality, ImageQualityManager.ChartImageQuality);
-                   Drawing.Imaging.ImageCodecInfo codec = null;
-                    for (int i = 0; i < info.Length; i++)
-                    {
-                        if (info[i].FormatDescription == "JPEG")
-                        {
-                            codec = info[i];
-                            break;
-                        }
-                    }
-                    // NOTE: if you are on linux and see "System.ArgumentException: A null reference or invalid value was found [GDI+ status: InvalidParameter]"
-                    // then you need to install a newer libgdiplus package. This should work on Ubuntu 24.04 or newer "sudo apt-get install libgdiplus"
-                    im.Save(ostrm, codec, encoderParameters);
-                    // 06122007AJM The follow has been replaced with the code above
-                    //im.Save(ostrm, info);	// generate a jpeg   TODO: get png to work with pdf
-
-                    byte[] ba = ostrm.ToArray();
-                    ostrm.Close();
-                    PageImage pi = new PageImage(IMAGEFORMAT, ba, width, height);	// Create an image
-
-                    RunPageRegionBegin(pgs);
-
-                    SetPagePositionAndStyle(rpt, pi, row);
-                    pi.SI.BackgroundImage = null;	// chart already has the background image
-
-                    if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
-                    {	// force page break if it doesn't fit on the page
-                        pgs.NextOrNew();
-                        pgs.CurrentPage.YOffset = OwnerReport.TopOfPage;
-                        if (this.YParents != null)
-                            pi.Y = 0;
-                    }
-
-                    p = pgs.CurrentPage;
-
-                    p.AddObject(pi);	// Put image onto the current page
-
-                    RunPageRegionEnd(pgs);
-
-                    if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
-                    {
-                        float newY = pi.Y + pi.H;
-                        p.YOffset += newY;	// bump the y location
-                    }
-                    SetPagePositionEnd(pgs, pi.Y + pi.H);
+                    p = RunPage_Bitmap(pgs, row, rpt, cb);
                 }
                 else //Ultimate Rendering - Vector //AJM GJL 14082008
                 {
-                   var im = cb.Image(rpt);	// Grab the image
-                    //im could still be saved to a bitmap at this point
-                    //if we were to offer a choice of raster or vector, it would probably
-                    //be easiest to draw the chart to the EMF and then save as bitmap if needed
-                    int height = im.Height;							// save height and width
-                    int width = im.Width;
-                    byte[] ba = cb._aStream.ToArray();
-                    cb._aStream.Close();
+                    p = RunPage_Emf(pgs, row, rpt, cb);
+                }		
+#endif
 
-                    PageImage pi = new PageImage(Imaging.ImageFormat.Wmf, ba, width, height);
-                    RunPageRegionBegin(pgs);
-
-                    SetPagePositionAndStyle(rpt, pi, row);
-                    pi.SI.BackgroundImage = null;	// chart already has the background image
-
-                    if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
-                    {	// force page break if it doesn't fit on the page
-                        pgs.NextOrNew();
-                        pgs.CurrentPage.YOffset = OwnerReport.TopOfPage;
-                        if (this.YParents != null)
-                            pi.Y = 0;
-                    }
-
-                    p = pgs.CurrentPage;
-
-                    //GJL 25072008 - Charts now draw in EMFplus format and not in bitmap. Still using the "PageImage" for the positioning
-                    //paging etc, but we don't add it to the page.
-                    // ******************************************************************************************************************
-                    // New EMF Processing... we want to add the EMF Components to the page and not the actual EMF...
-                    EMF emf = new EMF(pi.X, pi.Y, width, height);
-                    emf.ProcessEMF(ba); //Process takes the bytearray of EMFplus data and breaks it down into lines,ellipses,text,rectangles
-                    //etc... There are still a lot of GDI+ functions I haven't got to (and some I have no intention of getting to!). 
-                    foreach (PageItem emfItem in emf.PageItems)
-                    {
-                        p.AddObject(emfItem);
-
-                    }
-                    // ******************************************************************************************************************
-
-                    //p.AddObject(pi);
-                    RunPageRegionEnd(pgs);
-                    pi.Y += p.YOffset;
-                    if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
-                    {
-                        float newY = pi.Y + pi.H;
-                        p.YOffset += newY;	// bump the y location
-                    }
-                    SetPagePositionEnd(pgs, pi.Y + pi.H); //our emf size seems to be bigger than the jpeg...
-          
-                }
             }
-			catch (Exception ex)
+            catch (Exception ex)
 			{
 				rpt.rl.LogError(8, string.Format("Exception in Chart handling.\n{0}\n{1}", ex.Message, ex.StackTrace));
 			}
@@ -423,7 +325,129 @@ namespace fyiReporting.RDL
             return;
 		}
 
-		ChartBase RunChartBuild(Report rpt, Row row)
+#if !DRAWINGCOMPAT
+        private Page RunPage_Emf(Pages pgs, Row row, Report rpt, ChartBase cb)
+        {
+            Page p;
+            var im = cb.Image(rpt); // Grab the image
+                                    //im could still be saved to a bitmap at this point
+                                    //if we were to offer a choice of raster or vector, it would probably
+                                    //be easiest to draw the chart to the EMF and then save as bitmap if needed
+            int height = im.Height;                         // save height and width
+            int width = im.Width;
+            byte[] ba = cb._aStream.ToArray();
+            cb._aStream.Close();
+
+            PageImage pi = new PageImage(Imaging.ImageFormat.Wmf, ba, width, height);
+
+
+            RunPageRegionBegin(pgs);
+
+            SetPagePositionAndStyle(rpt, pi, row);
+            pi.SI.BackgroundImage = null;   // chart already has the background image
+
+            if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
+            {   // force page break if it doesn't fit on the page
+                pgs.NextOrNew();
+                pgs.CurrentPage.YOffset = OwnerReport.TopOfPage;
+                if (this.YParents != null)
+                    pi.Y = 0;
+            }
+
+            p = pgs.CurrentPage;
+
+            //GJL 25072008 - Charts now draw in EMFplus format and not in bitmap. Still using the "PageImage" for the positioning
+            //paging etc, but we don't add it to the page.
+            // ******************************************************************************************************************
+            // New EMF Processing... we want to add the EMF Components to the page and not the actual EMF...
+            EMF emf = new EMF(pi.X, pi.Y, width, height);
+            emf.ProcessEMF(ba); //Process takes the bytearray of EMFplus data and breaks it down into lines,ellipses,text,rectangles
+                                //etc... There are still a lot of GDI+ functions I haven't got to (and some I have no intention of getting to!). 
+            foreach (PageItem emfItem in emf.PageItems)
+            {
+                p.AddObject(emfItem);
+
+            }
+            // ******************************************************************************************************************
+
+            //p.AddObject(pi);
+            RunPageRegionEnd(pgs);
+            pi.Y += p.YOffset;
+            if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
+            {
+                float newY = pi.Y + pi.H;
+                p.YOffset += newY;  // bump the y location
+            }
+            SetPagePositionEnd(pgs, pi.Y + pi.H); //our emf size seems to be bigger than the jpeg...
+            return p;
+        }
+#endif
+
+        private Page RunPage_Bitmap(Pages pgs, Row row, Report rpt, ChartBase cb)
+        {
+            Page p;
+            Drawing.Image im = cb.Image(rpt);   // Grab the image
+            int height = im.Height;                         // save height and width
+            int width = im.Width;
+
+            MemoryStream ostrm = new MemoryStream();
+            /* The following is a new image saving logic which will allow for higher 
+             * quality images using JPEG with 100% quality
+             * 06122007AJM */
+            Imaging.ImageCodecInfo[] info;
+            info = Imaging.ImageCodecInfo.GetImageEncoders();
+            Imaging.EncoderParameters encoderParameters;
+            encoderParameters = new Imaging.EncoderParameters(1);
+            // 20022008 AJM GJL - Centralised class with global encoder settings
+            encoderParameters.Param[0] = new Imaging.EncoderParameter(Imaging.Encoder.Quality, ImageQualityManager.ChartImageQuality);
+            Imaging.ImageCodecInfo codec = null;
+            for (int i = 0; i < info.Length; i++)
+            {
+                if (info[i].FormatDescription == "JPEG")
+                {
+                    codec = info[i];
+                    break;
+                }
+            }
+            // NOTE: if you are on linux and see "System.ArgumentException: A null reference or invalid value was found [GDI+ status: InvalidParameter]"
+            // then you need to install a newer libgdiplus package. This should work on Ubuntu 24.04 or newer "sudo apt-get install libgdiplus"
+            im.Save(ostrm, codec, encoderParameters);
+            // 06122007AJM The follow has been replaced with the code above
+            //im.Save(ostrm, info);	// generate a jpeg   TODO: get png to work with pdf
+
+            byte[] ba = ostrm.ToArray();
+            ostrm.Close();
+            PageImage pi = new PageImage(IMAGEFORMAT, ba, width, height);   // Create an image
+
+            RunPageRegionBegin(pgs);
+
+            SetPagePositionAndStyle(rpt, pi, row);
+            pi.SI.BackgroundImage = null;   // chart already has the background image
+
+            if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
+            {   // force page break if it doesn't fit on the page
+                pgs.NextOrNew();
+                pgs.CurrentPage.YOffset = OwnerReport.TopOfPage;
+                if (this.YParents != null)
+                    pi.Y = 0;
+            }
+
+            p = pgs.CurrentPage;
+
+            p.AddObject(pi);    // Put image onto the current page
+
+            RunPageRegionEnd(pgs);
+
+            if (!this.PageBreakAtEnd && !IsTableOrMatrixCell(rpt))
+            {
+                float newY = pi.Y + pi.H;
+                p.YOffset += newY;  // bump the y location
+            }
+            SetPagePositionEnd(pgs, pi.Y + pi.H);
+            return p;
+        }
+
+        ChartBase RunChartBuild(Report rpt, Row row)
 		{
 			// Get the matrix that defines the data; 
 			_ChartMatrix.SetMyData(rpt, GetMyData(rpt));	// set the data in the matrix

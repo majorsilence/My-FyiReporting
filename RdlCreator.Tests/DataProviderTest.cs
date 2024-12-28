@@ -15,6 +15,27 @@ namespace fyiReporting.RdlCreator.Tests
         string connectionString = "Data Source=sqlitetestdb2.db;";
         string dataProvider = "Microsoft.Data.Sqlite";
 
+        [SetUp]
+        public void Setup()
+        {
+            var files = new[]
+            {
+                "TestMethodExcelLegacy.xls",
+                "TestMethodExcel.xlsx",
+                "TestMethodExcelDataOnly.xlsx",
+                "TestMethodPdf.pdf"
+            };
+
+            foreach (var file in files)
+            {
+                var filepath = System.IO.Path.Combine(Environment.CurrentDirectory, file);
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+            }
+        }
+
         [Test]
         public void TestMethodCsv()
         {
@@ -59,7 +80,11 @@ namespace fyiReporting.RdlCreator.Tests
             fyiReport.RunGetData(null);
             fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.ExcelTableOnly);
 
-            Assert.That(System.IO.File.Exists(filepath), Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(System.IO.File.Exists(filepath), Is.True);
+                Assert.That(new FileInfo(filepath).Length, Is.GreaterThan(0));
+            });
         }
 
         [Test]
@@ -113,7 +138,11 @@ namespace fyiReporting.RdlCreator.Tests
             fyiReport.RunGetData(null);
             fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.PDF);
 
-            Assert.That(System.IO.File.Exists(filepath), Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(System.IO.File.Exists(filepath), Is.True);
+                Assert.That(new FileInfo(filepath).Length, Is.GreaterThan(0));
+            });
         }
 
         [Test]

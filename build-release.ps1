@@ -20,7 +20,6 @@ Else {
 	$msbuildpath="msbuild"
 }
 
-
 function delete_files([string]$path)
 {
 	If (Test-Path $path){

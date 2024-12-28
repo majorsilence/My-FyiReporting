@@ -25,26 +25,28 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
+using System.Drawing.Imaging;
 #endif
 using System.IO;
 using System.Linq;
 
 namespace fyiReporting.RDL
 {
-	///<summary>
-	///CustomReportItem describes a report item that is not natively defined in RDL.  The 
+    ///<summary>
+    ///CustomReportItem describes a report item that is not natively defined in RDL.  The 
     /// RdlEngineConfig.xml file (loaded by RdlEngineConfig.cs) contains a list of the 
     /// extensions.   RdlCri.dll is a code module that contains the built-in CustomReportItems.
     /// However, the runtime dynamically loads this so RdlCrl.dll is not required for the
     /// report engine to function properly.
-	///</summary>
-	[Serializable]
+    ///</summary>
+    [Serializable]
 	internal class CustomReportItem : Rectangle
 	{
-        static readonly Drawing.Imaging.ImageFormat IMAGEFORMAT = Drawing.Imaging.ImageFormat.Jpeg;
+        static readonly ImageFormat IMAGEFORMAT = ImageFormat.Jpeg;
         string _Type;   // The type of the custom report item. Interpreted by a
 						// report design tool or server.
 		XmlNode xNode;
@@ -152,13 +154,13 @@ namespace fyiReporting.RDL
 				MemoryStream ostrm = new MemoryStream();
 				// 06122007AJM Changed to use high quality JPEG encoding
 				//bm.Save(ostrm, IMAGEFORMAT);	// generate a jpeg   TODO: get png to work with pdf
-				Drawing.Imaging.ImageCodecInfo[] info;
-				info = Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+				ImageCodecInfo[] info;
+				info = ImageCodecInfo.GetImageEncoders();
 				Drawing.Imaging.EncoderParameters encoderParameters;
 				encoderParameters = new Drawing.Imaging.EncoderParameters(1);
 				// 20022008 AJM GJL - Using centralised image quality
 				encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
-				Drawing.Imaging.ImageCodecInfo codec = null;
+				ImageCodecInfo codec = null;
 				for(int i = 0; i < info.Length; i++) {
 					if(info[i].FormatDescription == "JPEG") {
 						codec = info[i];
@@ -201,7 +203,7 @@ namespace fyiReporting.RDL
                 Drawing.Imaging.EncoderParameters encoderParameters = new Drawing.Imaging.EncoderParameters(1);
                 // 20022008 AJM GJL - Using centralised image quality
                 encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
-                Drawing.Imaging.ImageCodecInfo codec = Drawing.Imaging.ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
+                ImageCodecInfo codec = ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
 
                 PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
 
@@ -231,7 +233,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        byte[] GenerateImage(Drawing.Imaging.ImageCodecInfo codec, Drawing.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
+        byte[] GenerateImage(ImageCodecInfo codec, Drawing.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
 		{
 			Drawing.Bitmap bm = new Drawing.Bitmap(width, height);
 			cri.DrawImage(ref bm);

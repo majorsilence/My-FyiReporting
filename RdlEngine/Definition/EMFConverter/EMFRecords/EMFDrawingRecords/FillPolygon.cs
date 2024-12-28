@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
 using Drawing2D = System.DrawingCore.Drawing2D;
 #else
 using Drawing = System.Drawing;

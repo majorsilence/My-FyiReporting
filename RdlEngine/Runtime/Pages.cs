@@ -26,7 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
+using Majorsilence.Drawing;
 #else
 using System.Drawing;
 #endif

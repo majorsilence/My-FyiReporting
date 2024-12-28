@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<OutputType>WinExe</OutputType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Update="DesignXmlDraw.cs">

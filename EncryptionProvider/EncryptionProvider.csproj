@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
@@ -8,6 +7,7 @@
 		<AssemblyTitle>EncryptionProvider</AssemblyTitle>
 		<Description></Description>
 		<PackageId>Majorsilence.Reporting.EncryptionProvider</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Data.DataSetExtensions" />

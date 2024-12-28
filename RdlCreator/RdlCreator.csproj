@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net48;net8.0</TargetFrameworks>
 		<RootNamespace>fyiReporting.RdlCreator</RootNamespace>
 		<AssemblyName>RdlCreator</AssemblyName>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlCreator</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />

@@ -8,7 +8,7 @@
 		<RootNamespace>fyiReporting.RdlDesktop</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<StartupObject>fyiReporting.RdlDesktop.RdlDesktop</StartupObject>
-		<TargetFrameworks>net48;net8.0</TargetFrameworks>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

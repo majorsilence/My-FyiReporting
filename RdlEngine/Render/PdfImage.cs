@@ -24,7 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 #if DRAWINGCOMPAT
-using System.DrawingCore.Imaging;
+using Majorsilence.Drawing.Imaging;
 #else
 using System.Drawing.Imaging;
 #endif

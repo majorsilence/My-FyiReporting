@@ -1,14 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>Library</OutputType>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
-		<ProjectReference Include="..\LibRdlCrossPlatformViewer\LibRdlCrossPlatformViewer.csproj" />
-		<ProjectReference Include="..\RdlAsp\RdlAsp.csproj" />
 		<ProjectReference Include="..\RdlCmd\RdlCmd.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlDesign\ReportDesigner.csproj" />

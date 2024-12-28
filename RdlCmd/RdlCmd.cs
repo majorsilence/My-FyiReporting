@@ -17,8 +17,14 @@ using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Reflection;
-using System.Drawing;
+#if DRAWINGCOMPAT
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
+#else
+using Drawing = System.Drawing;
 using System.Drawing.Imaging;
+#endif
+
 using System.Text.RegularExpressions;
 using System.Globalization;
 using fyiReporting.RDL;
@@ -431,7 +437,7 @@ namespace fyiReporting.RdlCmd
 		{
 			Pages pgs = report.BuildPages();
 			FileStream strm=null;
-			System.Drawing.Image im=null;
+			Drawing.Image im=null;
 
 			// Handle any parameters
 			float x = 0;		// x position of image
@@ -481,7 +487,7 @@ namespace fyiReporting.RdlCmd
 				try 
 				{
 					strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);		
-					im = System.Drawing.Image.FromStream(strm);
+					im = Drawing.Image.FromStream(strm);
 					int height = im.Height;
 					int width = im.Width;
 					MemoryStream ostrm = new MemoryStream();
@@ -490,12 +496,12 @@ namespace fyiReporting.RdlCmd
                       * 06122007AJM */
  					ImageFormat imf = ImageFormat.Jpeg;
  					//im.Save(ostrm, imf);
-                    System.Drawing.Imaging.ImageCodecInfo[] info;
+                    Drawing.Imaging.ImageCodecInfo[] info;
                     info = ImageCodecInfo.GetImageEncoders();
                     EncoderParameters encoderParameters;
                     encoderParameters = new EncoderParameters(1);
                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
-                    System.Drawing.Imaging.ImageCodecInfo codec = null;
+                    Drawing.Imaging.ImageCodecInfo codec = null;
                     for (int i = 0; i < info.Length; i++)
                     {
                         if (info[i].FormatDescription == "JPEG")

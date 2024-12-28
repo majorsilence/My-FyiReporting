@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="../linux.props" Condition="'$(OS)' != 'Windows_NT'"/>
-	<Import Project="../windows.props" Condition="'$(OS)' == 'Windows_NT'"/>
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<RootNamespace>fyiReporting.RdlGtk3</RootNamespace>
 		<AssemblyName>RdlGtk3</AssemblyName>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlGtk3</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="GtkSharp" />

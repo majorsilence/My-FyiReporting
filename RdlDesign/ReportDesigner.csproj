@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
 		<ProjectType>Local</ProjectType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -16,6 +15,7 @@
 		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">
@@ -105,9 +105,7 @@
 		<Compile Update="DataSetsCtl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
-		<Compile Update="DesignCtl.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
+		<Compile Update="DesignCtl.cs" />
 		<Compile Update="DesignXmlDraw.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
@@ -219,7 +217,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
 		<Optimize>False</Optimize>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release-DrawingCompat|net48|AnyCPU'">
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows|AnyCPU'">
 		<Optimize>False</Optimize>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release-DrawingCompat|net8.0-windows|AnyCPU'">
+	  <Optimize>False</Optimize>
 	</PropertyGroup>
 </Project>

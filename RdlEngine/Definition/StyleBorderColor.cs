@@ -25,7 +25,7 @@ using System;
 using System.Xml;
 using System.Text;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
 #else
 using Drawing = System.Drawing;
 #endif

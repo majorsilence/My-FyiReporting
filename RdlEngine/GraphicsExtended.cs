@@ -23,17 +23,18 @@
    the website www.fyiReporting.com.
 */
 
+using System;
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 #if DRAWINGCOMPAT
-using Draw = System.DrawingCore;
+using Draw = Majorsilence.Drawing;
 #else
 using Draw = System.Drawing;
 #endif
 
 #if DRAWINGCOMPAT
-namespace System.DrawingCore
+namespace Majorsilence.Drawing
 #else
 namespace System.Drawing
 #endif

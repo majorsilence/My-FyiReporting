@@ -183,7 +183,8 @@ namespace fyiReporting.RDL
                     this.ItextPDF = false;
                     _Report.Run(ip);
                     break;
-                case OutputPresentationType.TIF:
+#if !DRAWINGCOMPAT
+				case OutputPresentationType.TIF:
                     ip = new RenderTif(this, sg);
                     _Report.Run(ip);
                     break;
@@ -193,6 +194,7 @@ namespace fyiReporting.RDL
                     ip = rtif;
                     _Report.Run(ip);
                     break;
+#endif
                 case OutputPresentationType.XML:
 					if (_Report.DataTransform != null && _Report.DataTransform.Length > 0)
 					{
@@ -337,12 +339,13 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-        /// <summary>
-        /// RunRenderTif will render a TIF given the page structure
-        /// </summary>
-        /// <param name="sg"></param>
-        /// <param name="pgs"></param>
-        public void RunRenderTif(IStreamGen sg, Pages pgs, bool bColor)
+#if !DRAWINGCOMPAT
+		/// <summary>
+		/// RunRenderTif will render a TIF given the page structure
+		/// </summary>
+		/// <param name="sg"></param>
+		/// <param name="pgs"></param>
+		public void RunRenderTif(IStreamGen sg, Pages pgs, bool bColor)
         {
             PageNumber = 1;		// reset page numbers
             TotalPages = 1;
@@ -363,6 +366,7 @@ namespace fyiReporting.RDL
 
             return;
         }
+#endif
 
 		private void RunRenderXmlTransform(IStreamGen sg, MemoryStreamGen msg)
 		{

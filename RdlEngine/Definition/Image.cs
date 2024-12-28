@@ -25,21 +25,24 @@ using System;
 using System.Xml;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
+using System.Drawing.Imaging;
 #endif
 using System.Collections;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Net;
 
+
 namespace fyiReporting.RDL
 {
-	///<summary>
-	/// Represents an image.  Source of image can from database, external or embedded. 
-	///</summary>
-	[Serializable]
+    ///<summary>
+    /// Represents an image.  Source of image can from database, external or embedded. 
+    ///</summary>
+    [Serializable]
 	internal class Image : ReportItem
 	{
 		ImageSourceEnum _ImageSource;	// Identifies the source of the image:
@@ -186,7 +189,7 @@ namespace fyiReporting.RDL
 			SetPagePositionBegin(pgs);
             if (bHidden)
             {
-                PageImage pi = new PageImage(Drawing.Imaging.ImageFormat.Jpeg, (byte[])null, 0, 0);
+                PageImage pi = new PageImage(ImageFormat.Jpeg, (byte[])null, 0, 0);
                 this.SetPagePositionAndStyle(r, pi, row);
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
                 return;
@@ -217,25 +220,25 @@ namespace fyiReporting.RDL
 				int width = im.Width;
 				MemoryStream ostrm = new MemoryStream();
 				strm.Position = 0;
-				Drawing.Imaging.ImageFormat imf;
+				ImageFormat imf;
 				switch(mtype.ToLower())
 				{	
 					case "image/jpeg" :
-						imf = Drawing.Imaging.ImageFormat.Jpeg;
+						imf = ImageFormat.Jpeg;
 						CopyStream(strm, ostrm);
 						break;
 					case "image/png":
-						imf = Drawing.Imaging.ImageFormat.Png;
+						imf = ImageFormat.Png;
 						CopyStream(strm, ostrm);
 						break;
 					default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
-						imf = Drawing.Imaging.ImageFormat.Jpeg;
-						Drawing.Imaging.ImageCodecInfo[] info;
-						info = Drawing.Imaging.ImageCodecInfo.GetImageEncoders();
+						imf = ImageFormat.Jpeg;
+						ImageCodecInfo[] info;
+						info = ImageCodecInfo.GetImageEncoders();
 						Drawing.Imaging.EncoderParameters encoderParameters;
 						encoderParameters = new Drawing.Imaging.EncoderParameters(1);
 						encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
-						Drawing.Imaging.ImageCodecInfo codec = null;
+						ImageCodecInfo codec = null;
 						for (int i = 0; i < info.Length; i++)
 						{
 							if (info[i].FormatDescription == "JPEG")

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using fyiReporting.RDL;
 #if DRAWINGCOMPAT
-using System.DrawingCore;
+using Majorsilence.Drawing;
 #else
 using System.Drawing;
 #endif
@@ -43,12 +43,14 @@ namespace fyiReporting.CRI
 
         public void DrawImage(ref Bitmap bm, string code)
         {
-#if NETSTANDARD2_0 || NET5_0_OR_GREATER
-            var writer = new ZXing.BarcodeWriter<Bitmap>();
+#if DRAWINGCOMPAT
+            var writer = new ZXing.BarcodeWriter<SkiaSharp.SKBitmap>();
+#elif NETSTANDARD2_0 || NET5_0_OR_GREATER
+            var writer = new ZXing.BarcodeWriter<System.Drawing.Bitmap>();
 #else
             var writer = new ZXing.BarcodeWriter();
 #endif
-			writer.Format = ZXing.BarcodeFormat.EAN_8;
+            writer.Format = ZXing.BarcodeFormat.EAN_8;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);

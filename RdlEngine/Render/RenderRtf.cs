@@ -29,19 +29,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Globalization;
+
 #if DRAWINGCOMPAT
-using Drawing = System.DrawingCore;
+using Drawing = Majorsilence.Drawing;
+using Majorsilence.Drawing.Imaging;
 #else
 using Drawing = System.Drawing;
+using System.Drawing.Imaging;
 #endif
 
 namespace fyiReporting.RDL
 {
-	
-	///<summary>
-	/// Renders a report to HTML.   This handles some page formating but does not do true page formatting.
-	///</summary>
-	internal class RenderRtf: IPresent
+
+    ///<summary>
+    /// Renders a report to HTML.   This handles some page formating but does not do true page formatting.
+    ///</summary>
+    internal class RenderRtf: IPresent
 	{
         static readonly char[] HEXCHARS = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
         
@@ -689,8 +692,8 @@ namespace fyiReporting.RDL
 		void PutImage(Drawing.Image im, int width, int height)
 		{
             MemoryStream ostrm = new MemoryStream();
-            Drawing.Imaging.ImageFormat imf;
-            imf = Drawing.Imaging.ImageFormat.Png;
+            ImageFormat imf;
+            imf = ImageFormat.Png;
             im.Save(ostrm, imf);
             byte[] ba = ostrm.ToArray();
             ostrm.Close();
