@@ -175,14 +175,10 @@ namespace fyiReporting.RDL
 			{
                 case OutputPresentationType.PDF:
                 case OutputPresentationType.RenderPdf_iTextSharp:
+                case OutputPresentationType.PDFOldStyle:
                     ip =new RenderPdf_iTextSharp(this, sg);
                     _Report.Run(ip);
-                    break;
-                case OutputPresentationType.PDFOldStyle:
-                    ip = new RenderPdf(this, sg);
-                    this.ItextPDF = false;
-                    _Report.Run(ip);
-                    break;
+                    break;          
 #if !DRAWINGCOMPAT
 				case OutputPresentationType.TIF:
                     ip = new RenderTif(this, sg);
@@ -319,11 +315,8 @@ namespace fyiReporting.RDL
 			PageNumber = 1;		// reset page numbers
 			TotalPages = 1;
 
-            IPresent ip;
-            if (this.ItextPDF)
-                ip = new RenderPdf_iTextSharp(this, sg);
-            else
-                ip=new RenderPdf(this, sg);	
+            IPresent ip = new RenderPdf_iTextSharp(this, sg);
+         
 			try
 			{
 				ip.Start();
