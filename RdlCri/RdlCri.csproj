@@ -8,6 +8,7 @@
         <DelaySign>false</DelaySign>
         <PackageId>Majorsilence.Reporting.RdlCri</PackageId>
         <Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
+		<TargetFrameworks>net8.0</TargetFrameworks>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />

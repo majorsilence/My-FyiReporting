@@ -4,6 +4,7 @@
 		<RootNamespace>fyiReporting.RdlCreator.Tests</RootNamespace>
 		<AssemblyName>RdlCreator.Tests</AssemblyName>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>

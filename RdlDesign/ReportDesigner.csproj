@@ -16,6 +16,7 @@
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
+		<TargetFrameworks>net8.0-windows</TargetFrameworks>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

@@ -2,23 +2,10 @@
 $ErrorActionPreference = "Stop"
 $CURRENTPATH=$pwd.Path
 
-# Platform options: "x86", "x64", "x64"
-# /p:Configuration="Debug" or "Release"
+# /p:Configuration="Debug", "Debug-DrawingCompat", "Release", "Release-DrawingCompat"
+$pConfiguration="Release"
+$pTargetFramework="net8.0-windows"
 
-# set msbuildpath="%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe"
-$msbuildpath="C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
-If (Test-Path "C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"){
-	$msbuildpath="C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
-}
-ElseIf (Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"){
-	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Current\Bin\MSBuild.exe"
-}
-ElseIf (Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"){
-	$msbuildpath="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
-}
-Else {
-	$msbuildpath="msbuild"
-}
 
 function delete_files([string]$path)
 {
@@ -30,7 +17,7 @@ function delete_files([string]$path)
 
 function GetVersions([ref]$theVersion)
 {
-	$csprojPath = Join-Path $CURRENTPATH ".\RdlEngine\RdlEngine.csproj"
+	$csprojPath = Join-Path $CURRENTPATH ".\Directory.Build.props"
 	$xml = [xml](Get-Content $csprojPath)
 	$theVersion.Value = $xml.Project.PropertyGroup.Version
 }
@@ -41,18 +28,16 @@ $Version=""
 GetVersions([ref]$Version)
 Write-Host  $Version
 dotnet restore "./MajorsilenceReporting.sln"
-dotnet restore "./MajorsilenceReporting-ReportServer.sln"
 
-# ************* Begin net48 anycpu *********************************************
+# ************* Begin anycpu *********************************************
 
-& "$msbuildpath" "$CURRENTPATH\MajorsilenceReporting.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU" /target:clean /target:rebuild
+dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration $pConfiguration --verbosity minimal
 
-$buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-designer-net48-anycpu"
-$buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-desktop-net48-anycpu"
-$buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-net48-anycpu"
-$buildoutputpath_viewer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-viewer-net48-anycpu"
-$buildoutputpath_mapfile="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-mapfile-net48-anycpu"
-$buildoutputpath_reportserver="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-reportserver-net48-anycpu"
+$buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-designer-$pTargetFramework-anycpu"
+$buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-desktop-$pTargetFramework-anycpu"
+$buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu"
+$buildoutputpath_viewer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-viewer-$pTargetFramework-anycpu"
+$buildoutputpath_mapfile="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-mapfile-$pTargetFramework-anycpu"
 
 Remove-Item "$buildoutputpath_designer" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_designer"
@@ -64,35 +49,24 @@ Remove-Item "$buildoutputpath_viewer" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_viewer"
 Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_mapfile"
-Remove-Item "$buildoutputpath_reportserver" -Recurse -ErrorAction Ignore
-mkdir "$buildoutputpath_reportserver"
 
-Copy-Item .\RdlDesign\bin\Release\net48\ -Destination "$buildoutputpath_designer\" -Recurse
-Copy-Item .\RdlDesktop\bin\Release\net48\ -Destination "$buildoutputpath_desktop\" -Recurse
-Copy-Item .\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
-Copy-Item .\RdlViewer\bin\Release\net48\ -Destination "$buildoutputpath_viewer\" -Recurse
-Copy-Item .\RdlMapFile\bin\Release\net48\ -Destination "$buildoutputpath_mapfile\" -Recurse
+Copy-Item .\RdlDesign\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_designer\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_desktop\" -Recurse
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
+Copy-Item .\RdlViewer\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_viewer\" -Recurse
+Copy-Item .\RdlMapFile\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_mapfile\" -Recurse
 
 cd Release-Builds
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-designer-net48-anycpu.zip majorsilence-reporting-designer-net48-anycpu\
-..\7za.exe a $Version-majorsilence-reporting-desktop-net48-anycpu.zip majorsilence-reporting-desktop-net48-anycpu\
-..\7za.exe a $Version-majorsilence-reporting-rdlcmd-net48-anycpu.zip majorsilence-reporting-rdlcmd-net48-anycpu\
-..\7za.exe a $Version-majorsilence-reporting-viewer-net48-anycpu.zip majorsilence-reporting-viewer-net48-anycpu\
-..\7za.exe a $Version-majorsilence-reporting-mapfile-net48-anycpu.zip majorsilence-reporting-mapfile-net48-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-designer-$pTargetFramework-anycpu.zip majorsilence-reporting-designer-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-desktop-$pTargetFramework-anycpu.zip majorsilence-reporting-desktop-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu.zip majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-viewer-$pTargetFramework-anycpu.zip majorsilence-reporting-viewer-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-mapfile-$pTargetFramework-anycpu.zip majorsilence-reporting-mapfile-$pTargetFramework-anycpu\
 cd "$CURRENTPATH"
 
 
-& "$msbuildpath" "$CURRENTPATH\MajorsilenceReporting-ReportServer.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU"
-& "$msbuildpath" "$CURRENTPATH\MajorsilenceReporting-ReportServer.sln" /verbosity:minimal /p:Configuration="Release" /property:Platform="Any CPU" /property:DeployOnBuild=true /property:PublishProfile='FolderProfile'
-
-Copy-Item .\ReportServer\bin\app.publish\ -Destination "$buildoutputpath_reportserver\" -Recurse
-cd Release-Builds
-cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-reportserver-net48-anycpu.zip majorsilence-reporting-reportserver-net48-anycpu\
-cd "$CURRENTPATH"
-
-# ************* End net48 *********************************************
+# ************* End anycpu *********************************************
 
 
 # ************* Begin PHP *********************************************
@@ -100,15 +74,15 @@ $buildoutputpath_php="$CURRENTPATH\Release-Builds\build-output\majorsilence-repo
 delete_files "$buildoutputpath_php"
 mkdir "$buildoutputpath_php"
 
-Copy-Item .\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_php\config.xml"
-Copy-Item .\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_php\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_php\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_php\" -Recurse
 
 Copy-Item ".\LanguageWrappers\php\config.php" "$buildoutputpath_php\config.php"
 Copy-Item ".\LanguageWrappers\php\report.php" "$buildoutputpath_php\report.php"
 
 cd Release-Builds
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-build-php.zip majorsilence-reporting-php\
+..\7za.exe a -tzip $Version-majorsilence-reporting-build-php.zip majorsilence-reporting-php\
 cd "$CURRENTPATH"
 
 # ************* End PHP *********************************************
@@ -120,14 +94,14 @@ $buildoutputpath_python="$CURRENTPATH\Release-Builds\build-output\majorsilence-r
 delete_files "$buildoutputpath_python"
 mkdir "$buildoutputpath_python"
 
-Copy-Item .\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_python\config.xml"
-Copy-Item .\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_python\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_python\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_python\" -Recurse
 Copy-Item ".\LanguageWrappers\python\config.py" "$buildoutputpath_python\config.py"
 Copy-Item ".\LanguageWrappers\python\report.py" "$buildoutputpath_python\report.py"
 
 cd Release-Builds
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-python.zip majorsilence-reporting-python\
+..\7za.exe a -tzip $Version-majorsilence-reporting-python.zip majorsilence-reporting-python\
 cd "$CURRENTPATH"
 # ************* End Python *********************************************
 
@@ -137,15 +111,15 @@ $buildoutputpath_ruby="$CURRENTPATH\Release-Builds\build-output\majorsilence-rep
 delete_files "$buildoutputpath_ruby"
 mkdir "$buildoutputpath_ruby"
 
-Copy-Item .\RdlDesktop\bin\Release\net48\config.xml "$buildoutputpath_ruby\config.xml"
-Copy-Item .\RdlCmd\bin\Release\net48\ -Destination "$buildoutputpath_ruby\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_ruby\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_ruby\" -Recurse
 
 Copy-Item ".\LanguageWrappers\ruby\config.rb" "$buildoutputpath_ruby\config.rb"
 Copy-Item ".\LanguageWrappers\ruby\report.rb" "$buildoutputpath_ruby\report.rb"
 
 cd Release-Builds
 cd build-output	
-..\7za.exe a $Version-majorsilence-reporting-ruby.zip majorsilence-reporting-ruby\
+..\7za.exe a -tzip $Version-majorsilence-reporting-ruby.zip majorsilence-reporting-ruby\
 cd "$CURRENTPATH"
 
 # ************* End Ruby *********************************************

@@ -6,6 +6,7 @@
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<TargetFrameworks>net8.0-windows</TargetFrameworks>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Update="DesignXmlDraw.cs">
