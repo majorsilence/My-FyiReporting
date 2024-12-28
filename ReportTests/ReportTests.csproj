@@ -18,10 +18,6 @@
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
-			<Link>RdlEngineConfig.Linux.xml</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 		<None Update="Reports\BaseTestReport.rdl">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

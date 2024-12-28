@@ -48,11 +48,6 @@
 		<ProjectReference Include="..\Majorsilence.Drawing.Common\Majorsilence.Drawing.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Update="RdlEngineConfig.Linux.xml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
 		<EmbeddedResource Update="Resources\Strings.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Strings.Designer.cs</LastGenOutput>

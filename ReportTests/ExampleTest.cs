@@ -10,7 +10,7 @@ namespace ReportTests
 		public void Test1()
 		{
 
-			var conn = new fyiReporting.Data.XmlConnection("RdlEngineconfig.Linux.xml");
+			var conn = new fyiReporting.Data.XmlConnection("RdlEngineconfig.xml");
 			Assert.That(conn.Database == null);
 
 		}

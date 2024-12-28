@@ -178,10 +178,6 @@
 		<Compile Update="TableRowCtl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
-		<None Include="..\RdlEngine\RdlEngineConfig.Linux.xml">
-			<Link>RdlEngineConfig.Linux.xml</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 		<None Include="..\RdlEngine\RdlEngineConfig.xml">
 			<Link>RdlEngineConfig.xml</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

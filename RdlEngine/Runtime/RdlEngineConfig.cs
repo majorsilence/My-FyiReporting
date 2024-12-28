@@ -82,17 +82,8 @@ namespace fyiReporting.RDL
                 if (dir == null)
                     continue;
 
-                PlatformID pid = System.Environment.OSVersion.Platform;
-                if (pid == PlatformID.Unix)
-                {
-                    file = System.IO.Path.Combine(dir, "RdlEngineConfig.Linux.xml");
-                }
-                else
-                {
-                    file = System.IO.Path.Combine(dir, "RdlEngineConfig.xml");
-                }
-
-                
+                file = System.IO.Path.Combine(dir, "RdlEngineConfig.xml");
+                 
                 try
                 {
                     FileInfo fi = new FileInfo(file);

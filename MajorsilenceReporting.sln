@@ -23,11 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlViewer", "RdlViewer\RdlV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlReader", "RdlReader\RdlReader.csproj", "{2412E381-D3D9-4AB7-A2FA-02D9786260F0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{41D0ACBF-09D8-47D1-B8DC-F71B14EFEA32}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportTests", "ReportTests\ReportTests.csproj", "{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionProvider", "EncryptionProvider\EncryptionProvider.csproj", "{83D67C75-CE23-4141-8BFE-3AC52F53310E}"
