@@ -1,11 +1,6 @@
 <Project>
   <PropertyGroup Condition="'$(Configuration)' == 'Release-DrawingCompat' Or '$(Configuration)' == 'Debug-DrawingCompat'">
-		<TargetFrameworks>net8.0</TargetFrameworks>
     <DefineConstants>DRAWINGCOMPAT</DefineConstants>
-	</PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'">
-		<TargetFrameworks>net8.0-windows</TargetFrameworks>
 	</PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +10,6 @@
     <AssemblyVersion>5.0.0</AssemblyVersion>
     <FileVersion>5.0.0</FileVersion>
     <Version>5.0.0</Version>
-    <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Product>Majorsilence Reporting</Product>
     <Copyright>Copyright © 2004-2008  fyiReporting Software, LLC, Majorsilence Reporting Devs 2024</Copyright>
