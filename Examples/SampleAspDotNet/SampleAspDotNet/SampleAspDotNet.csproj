@@ -85,7 +85,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938">
-      <HintPath>..\..\..\packages/BouncyCastle.Cryptography.2.3.1/lib/net461/BouncyCastle.Cryptography.dll</HintPath>
+      <HintPath>..\..\..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DataProviders, Version=4.17.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -132,7 +132,7 @@
       <HintPath>..\..\..\packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13">
-      <HintPath>..\..\..\packages/SixLabors.ImageSharp.2.1.8/lib/net472/SixLabors.ImageSharp.dll</HintPath>
+      <HintPath>..\..\..\packages\SixLabors.ImageSharp.2.1.9\lib\net472\SixLabors.ImageSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
