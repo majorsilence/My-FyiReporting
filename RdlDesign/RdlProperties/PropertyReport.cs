@@ -41,7 +41,7 @@ namespace fyiReporting.RdlDesign
    		private DesignXmlDraw _Draw;
         private DesignCtl _DesignCtl;
 
-        internal PropertyReport(DesignXmlDraw d, DesignCtl dc)
+        public PropertyReport(DesignXmlDraw d, DesignCtl dc)
         {
             _Draw = d;
             _DesignCtl = dc;
@@ -345,7 +345,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReport pr;
 
-        internal PropertyReportParameters(PropertyReport r)
+        public PropertyReportParameters(PropertyReport r)
         {
             pr = r;
         }
@@ -409,7 +409,8 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyReportParameterUIEditor : UITypeEditor
     {
-        internal PropertyReportParameterUIEditor()
+        // Adding a parameterless constructor to resolve the MissingMethodException
+        public PropertyReportParameterUIEditor()
         {
         }
 
@@ -452,7 +453,8 @@ namespace fyiReporting.RdlDesign
             }
         }
     }
-#endregion
+
+    #endregion
 
     #region Code
     [TypeConverter(typeof(PropertyReportCodeConverter)),
@@ -461,7 +463,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReport pr;
 
-        internal PropertyReportCode(PropertyReport r)
+        public PropertyReportCode(PropertyReport r)
         {
             pr = r;
         }
@@ -505,7 +507,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyReportCodeUIEditor : UITypeEditor
     {
-        internal PropertyReportCodeUIEditor()
+        public PropertyReportCodeUIEditor() : base()
         {
         }
 
@@ -557,7 +559,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReport pr;
 
-        internal PropertyReportModulesClasses(PropertyReport r)
+        public PropertyReportModulesClasses(PropertyReport r)
         {
             pr = r;
         }
@@ -609,7 +611,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyReportModulesClassesUIEditor : UITypeEditor
     {
-        internal PropertyReportModulesClassesUIEditor()
+        public PropertyReportModulesClassesUIEditor() : base()
         {
         }
 
@@ -657,7 +659,7 @@ namespace fyiReporting.RdlDesign
     #region XSLFile
     internal class FileUIEditor : UITypeEditor
     {
-        internal FileUIEditor()
+        public FileUIEditor()
         {
         }
 
