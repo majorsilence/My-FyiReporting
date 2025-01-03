@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -46,6 +47,12 @@ namespace fyiReporting.RDL
 		// Give opportunity for report elements to do additional work
 		//   e.g.  expressions should be parsed at this point
 		abstract internal void FinalPass();
+
+		virtual internal Task FinalPassAsync()
+		{
+			FinalPass();
+			return Task.CompletedTask;
+		}
 
 		internal bool InPageHeaderOrFooter()
 		{

@@ -29,8 +29,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using fyiReporting.RDL;
-using GLib;
 using Gtk;
+using System.Threading.Tasks;
 using Strings = RdlEngine.Resources.Strings;
 
 namespace fyiReporting.RdlGtk3
@@ -217,7 +217,7 @@ namespace fyiReporting.RdlGtk3
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
         /// <param name="customPrintAction">>For use a custom print action</param>
-        public void LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
+        public async Task LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
         {
             SourceFile = filename;
 
@@ -225,7 +225,7 @@ namespace fyiReporting.RdlGtk3
             this.overwriteSubreportConnection = overwriteSubreportConnection;
             this.customPrintAction = customPrintAction;
 
-            LoadReport(filename, parameters, restrictedOutputPresentationTypes);
+            await LoadReport(filename, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -236,12 +236,12 @@ namespace fyiReporting.RdlGtk3
         /// <param name="connectionString">Relace all Connection string in report.</param>
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        public async Task LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             this.connectionString = connectionString;
             this.overwriteSubreportConnection = overwriteSubreportConnection;
 
-            LoadReport(source, parameters, restrictedOutputPresentationTypes);
+            await LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -249,9 +249,9 @@ namespace fyiReporting.RdlGtk3
         /// </summary>
         /// <param name='filename'>Filename.</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport(Uri filename, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        public async Task LoadReport(Uri filename, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
-            LoadReport(filename, "", restrictedOutputPresentationTypes);
+            await LoadReport(filename, "", restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -260,12 +260,12 @@ namespace fyiReporting.RdlGtk3
         /// <param name='sourcefile'>Filename.</param>
         /// <param name='parameters'>Example: parameter1=someValue&parameter2=anotherValue</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        public async Task LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             SourceFile = sourcefile;
 
             string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-            LoadReport(source, parameters, restrictedOutputPresentationTypes);
+            await LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace fyiReporting.RdlGtk3
         /// <param name="source">Xml source of report</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
         /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public void LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        public async Task LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             this.restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
 
@@ -290,14 +290,14 @@ namespace fyiReporting.RdlGtk3
                 return;
             AddParameterControls();
 
-            RefreshReport();
+            await RefreshReport();
         }
 
-        void RefreshReport()
+        async Task RefreshReport()
         {
             if (ShowParameters)
                 SetParametersFromControls();
-            report.RunGetData(Parameters);
+            await report.RunGetData(Parameters);
             pages = report.BuildPages();
 
             foreach (Gtk.Widget w in vboxPages.AllChildren)
@@ -530,12 +530,12 @@ namespace fyiReporting.RdlGtk3
             textviewErrors.Buffer.Text = msgs.ToString();
         }
 
-        protected void OnPdfActionActivated(object sender, System.EventArgs e)
+        protected async void OnPdfActionActivated(object sender, System.EventArgs e)
         {
-            SaveReport();
+            await SaveReport();
         }
 
-        public void SaveReport()
+        public async Task SaveReport()
         {
             // *********************************
             object[] param = new object[4];
@@ -747,7 +747,7 @@ namespace fyiReporting.RdlGtk3
                                 if (result == ResponseType.Yes)
                                 {
                                     // Must use the RunGetData before each export or there is no data.
-                                    report.RunGetData(this.Parameters);
+                                    await report.RunGetData(this.Parameters);
                                     ExportReport(report, filename, exportType);
                                     break;
                                 }
@@ -761,7 +761,7 @@ namespace fyiReporting.RdlGtk3
                             {
                                 //If no files with the same name found in directory
                                 // Must use the RunGetData before each export or there is no data.
-                                report.RunGetData(this.Parameters);
+                                await report.RunGetData(this.Parameters);
                                 ExportReport(report, filename, exportType);
                                 break;
                             }
@@ -771,7 +771,7 @@ namespace fyiReporting.RdlGtk3
                     {
                         //If no files found in directory
                         // Must use the RunGetData before each export or there is no data.
-                        report.RunGetData(this.Parameters);
+                        await report.RunGetData(this.Parameters);
                         ExportReport(report, filename, exportType);
                     }
                 }
@@ -886,9 +886,9 @@ namespace fyiReporting.RdlGtk3
             printing.Dispose();
         }
 
-        protected void OnRefreshActionActivated(object sender, System.EventArgs e)
+        protected async void OnRefreshActionActivated(object sender, System.EventArgs e)
         {
-            RefreshReport();
+            await RefreshReport();
         }
 
         int hpanedWidth = 0;

@@ -29,6 +29,8 @@ using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
+using System.Data.Common;
 
 namespace fyiReporting.RDL
 {
@@ -129,8 +131,8 @@ namespace fyiReporting.RDL
 		}
 
 		internal bool ConnectDataSource(Report rpt)
-		{
-			IDbConnection cn = GetConnection(rpt);
+        {
+            IDbConnection cn = GetConnection(rpt);
             if (cn != null)
             {
                 return true;
@@ -147,46 +149,104 @@ namespace fyiReporting.RDL
                 return false;
             }
 
-			bool rc = false;
-			try 
-			{
-				cn = RdlEngineConfig.GetConnection(_ConnectionProperties.DataProvider,  
-					_ConnectionProperties.Connectstring(rpt));
-				if (cn != null)
-				{
-					cn.Open();
-					rc = true;										   
-				}
-			}
-			catch(Exception e)
-			{
-				string err = string.Format("DataSource '{0}'.\r\n{1}", _Name,
-					e.InnerException == null? e.Message: e.InnerException.Message);
-				if (rpt == null)
-					OwnerReport.rl.LogError(4, err);	// error occurred during parse phase
-				else
-					rpt.rl.LogError(4, err);
-				if (cn != null)
-				{
-					cn.Close();
-					cn = null;
-				}
-			}
+            bool rc = false;
+            try
+            {
+                cn = RdlEngineConfig.GetConnection(_ConnectionProperties.DataProvider,
+                    _ConnectionProperties.Connectstring(rpt));
+                if (cn != null)
+                {
+                    cn.Open();
+                    rc = true;
+                }
+            }
+            catch (Exception e)
+            {
+                cn = HandleConnectionError(rpt, cn, e);
+            }
 
-			if (cn != null)
-				SetSysConnection(rpt, cn);
-			else
-			{
-				string err = string.Format("Unable to connect to datasource '{0}'.", _Name.Nm);
-				if (rpt == null)
-					OwnerReport.rl.LogError(4, err);	// error occurred during parse phase
-				else
-					rpt.rl.LogError(4, err);
-			}
-			return rc;
-		}
+            ConnectDataSourceLogInfoAndCache(rpt, cn);
+            return rc;
+        }
 
-		void ConnectDataSourceReference(Report rpt)
+        async internal Task<bool> ConnectDataSourceAsync(Report rpt)
+        {
+            IDbConnection cn = GetConnection(rpt);
+            if (cn != null)
+            {
+                return true;
+            }
+
+            if (_DataSourceReference != null)
+            {
+                ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
+            }
+
+            if (_ConnectionProperties == null ||
+                _ConnectionProperties.ConnectstringValue == null)
+            {
+                return false;
+            }
+
+            bool rc = false;
+            try
+            {
+                cn = RdlEngineConfig.GetConnection(_ConnectionProperties.DataProvider,
+                    _ConnectionProperties.Connectstring(rpt));
+                if (cn != null)
+                {
+                    if (cn is DbConnection dbConnection)
+                    {
+                        await dbConnection.OpenAsync();
+                    }
+                    else
+                    {
+                        cn.Open();
+                    }
+                    rc = true;
+                }
+            }
+            catch (Exception e)
+            {
+                cn = HandleConnectionError(rpt, cn, e);
+            }
+
+            ConnectDataSourceLogInfoAndCache(rpt, cn);
+            return rc;
+        }
+
+        private void ConnectDataSourceLogInfoAndCache(Report rpt, IDbConnection cn)
+        {
+            if (cn != null)
+                SetSysConnection(rpt, cn);
+            else
+            {
+                string err = string.Format("Unable to connect to datasource '{0}'.", _Name.Nm);
+                if (rpt == null)
+                    OwnerReport.rl.LogError(4, err);    // error occurred during parse phase
+                else
+                    rpt.rl.LogError(4, err);
+            }
+        }
+
+        private IDbConnection HandleConnectionError(Report rpt, IDbConnection cn, Exception e)
+        {
+            string err = string.Format("DataSource '{0}'.\r\n{1}", _Name,
+                                e.InnerException == null ? e.Message : e.InnerException.Message);
+            if (rpt == null)
+                OwnerReport.rl.LogError(4, err);    // error occurred during parse phase
+            else
+                rpt.rl.LogError(4, err);
+            if (cn != null)
+            {
+                cn.Close();
+                cn = null;
+            }
+
+            return cn;
+        }
+
+        void ConnectDataSourceReference(Report rpt)
 		{
 			if (_ConnectionProperties != null)
 				return;
@@ -218,7 +278,7 @@ namespace fyiReporting.RDL
 				XmlNode xNodeLoop = xDoc.FirstChild;
 				
 				_ConnectionProperties = new ConnectionProperties(OwnerReport, this, xNodeLoop);
-				_ConnectionProperties.FinalPass();
+                _ConnectionProperties.FinalPass();
 			}
 			catch (Exception e)
 			{

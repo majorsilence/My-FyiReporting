@@ -25,6 +25,7 @@ using RdlEngine.Resources;
 using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -79,9 +80,9 @@ namespace fyiReporting.RDL
 		}
 
 		// Run the report passing the parameter values and the output
-		public void Run(IDictionary parms, OutputPresentationType type)
+		public async Task Run(IDictionary parms, OutputPresentationType type)
 		{
-			r.RunGetData(parms);
+            await r.RunGetData(parms);
 
 			r.RunRender(_sg, type);
 

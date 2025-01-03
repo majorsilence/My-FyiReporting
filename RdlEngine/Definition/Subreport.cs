@@ -27,6 +27,7 @@ using System.IO;
 using System.Collections;
 using System.Text;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -124,10 +125,10 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task RunAsync(IPresent ip, Row row)
 		{
 			Report r = ip.Report();
-			base.Run(ip, row);
+            base.Run(ip, row);
 
 			// need to save the owner report and nest in this defintion
 			ReportDefn saveReport = r.ReportDefinition;
@@ -148,7 +149,7 @@ namespace fyiReporting.RDL
 			{	// When no parameters we only retrieve data once
 				if (r.Cache.Get(this, "report") == null)
 				{
-					r.RunGetData(null);
+                    await r.RunGetData(null);
                     if (!r.IsSubreportDataRetrievalDefined)       // if use has defined subreportdataretrieval they might
                         r.Cache.Add(this, "report", this);      //    set the data; so we don't cache
 				}
@@ -156,7 +157,7 @@ namespace fyiReporting.RDL
 			else
 			{
 				SetSubreportParameters(r, row);
-				r.RunGetData(null);
+                await r.RunGetData(null);
 			}
 
 			ip.Subreport(this, row);
@@ -165,13 +166,19 @@ namespace fyiReporting.RDL
 			r.ParentConnections = saveDS;				// restore the data connnections
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+        internal override void RunPage(Pages pgs, Row row)
+        {
+			// HACK:
+            Task.Run(async () => await RunPageAsync(pgs, row)).GetAwaiter().GetResult();
+        }
+
+        async override internal Task RunPageAsync(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
 			if (IsHidden(r, row))
 				return;
 
-			base.RunPage(pgs, row);
+            await base.RunPageAsync(pgs, row);
 
 			// need to save the owner report and nest in this defintion
 			ReportDefn saveReport = r.ReportDefinition;
@@ -196,7 +203,7 @@ namespace fyiReporting.RDL
 
 				if (wc == null)
 				{   // run report first time; 
-					bRows = r.RunGetData(null);
+					bRows = await r.RunGetData(null);
                     if (!r.IsSubreportDataRetrievalDefined)       // if use has defined subreportdataretrieval they might set data
                         r.Cache.Add(this, "report", new SubreportWorkClass(bRows));	    // so we can't cache
 				}
@@ -206,7 +213,7 @@ namespace fyiReporting.RDL
 			else
 			{
 				SetSubreportParameters(r, row);		// apply the parameters
-				bRows = r.RunGetData(null);
+				bRows = await r.RunGetData(null);
 			}
 
 			SetPageLeft(r);				// Set the Left attribute since this will be the margin for this report

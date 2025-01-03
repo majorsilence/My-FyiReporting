@@ -33,6 +33,8 @@ using System.Text;
 using System.Globalization;
 using System.Reflection;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
+using System.Data.Common;
 
 namespace fyiReporting.RDL
 {
@@ -103,82 +105,94 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		// Handle parsing of function in final pass
-		override internal void FinalPass()
-		{
-			if (_CommandText != null)
-				_CommandText.FinalPass();
-			if (_QueryParameters != null)
-				_QueryParameters.FinalPass();
+        internal override void FinalPass()
+        {
+			// HACK:
+            Task.Run(async ()=> await FinalPassAsync()).GetAwaiter().GetResult();
+        }
 
-			// verify the data source
-			DataSourceDefn ds=null;
-			if (OwnerReport.DataSourcesDefn != null &&
-				OwnerReport.DataSourcesDefn.Items != null)
-			{
-				ds = OwnerReport.DataSourcesDefn[_DataSourceName];
-			}
-			if (ds == null)
-			{
-				OwnerReport.rl.LogError(8, "Query references unknown data source '" + _DataSourceName + "'");
-				return;
-			}
-			_DataSourceDefn = ds;
+        // Handle parsing of function in final pass
+        internal override async Task FinalPassAsync()
+        {
+            if (_CommandText != null)
+                _CommandText.FinalPass();
+            if (_QueryParameters != null)
+                _QueryParameters.FinalPass();
 
-			IDbConnection cnSQL = ds.SqlConnect(null);
-			if (cnSQL == null || _CommandText == null)
-				return;
+            // verify the data source
+            DataSourceDefn ds = null;
+            if (OwnerReport.DataSourcesDefn != null &&
+                OwnerReport.DataSourcesDefn.Items != null)
+            {
+                ds = OwnerReport.DataSourcesDefn[_DataSourceName];
+            }
+            if (ds == null)
+            {
+                OwnerReport.rl.LogError(8, "Query references unknown data source '" + _DataSourceName + "'");
+                return;
+            }
+            _DataSourceDefn = ds;
 
-			// Treat this as a SQL statement
-			String sql = _CommandText.EvaluateString(null, null);
-			IDbCommand cmSQL=null;
-			IDataReader dr=null;
-			try 
-			{
-				cmSQL = cnSQL.CreateCommand();		
-				cmSQL.CommandText = AddParametersAsLiterals(null, cnSQL, sql, false);
+            IDbConnection cnSQL = ds.SqlConnect(null);
+            if (cnSQL == null || _CommandText == null)
+                return;
+
+            // Treat this as a SQL statement
+            String sql = _CommandText.EvaluateString(null, null);
+            IDbCommand cmSQL = null;
+            IDataReader dr = null;
+            try
+            {
+                cmSQL = cnSQL.CreateCommand();
+                cmSQL.CommandText = AddParametersAsLiterals(null, cnSQL, sql, false);
                 if (this._QueryCommandType == QueryCommandTypeEnum.StoredProcedure)
                     cmSQL.CommandType = CommandType.StoredProcedure;
 
-				AddParameters(null, cnSQL, cmSQL, false);
-				dr = cmSQL.ExecuteReader(CommandBehavior.SchemaOnly);
-				if (dr.FieldCount < 10)
-					_Columns = new ListDictionary();	// Hashtable is overkill for small lists
-				else
-					_Columns = new Hashtable(dr.FieldCount);
+                AddParameters(null, cnSQL, cmSQL, false);
+                if (cmSQL is DbCommand dbCommand)
+                {
+                    dr = await dbCommand.ExecuteReaderAsync(CommandBehavior.SchemaOnly).ConfigureAwait(false);
+                }
+                else
+                {
+                    dr = cmSQL.ExecuteReader(CommandBehavior.SchemaOnly);
+                }
 
-				for (int i=0; i < dr.FieldCount; i++)
-				{ 
-					QueryColumn qc = new QueryColumn(i, dr.GetName(i), Type.GetTypeCode(dr.GetFieldType(i)) );
+                if (dr.FieldCount < 10)
+                    _Columns = new ListDictionary(); // Hashtable is overkill for small lists
+                else
+                    _Columns = new Hashtable(dr.FieldCount);
 
-					try { _Columns.Add(qc.colName, qc); }
-					catch	// name has already been added to list: 
-					{	// According to the RDL spec SQL names are matched by Name not by relative
-						//   position: this seems wrong to me and causes this problem; but 
-						//   user can fix by using "as" keyword to name columns in Select 
-						//    e.g.  Select col as "col1", col as "col2" from tableA
-						OwnerReport.rl.LogError(8, String.Format("Column '{0}' is not uniquely defined within the SQL Select columns.", qc.colName));
-					}
-				}
-			}
-			catch (Exception e)
-			{
+                for (int i = 0; i < dr.FieldCount; i++)
+                {
+                    QueryColumn qc = new QueryColumn(i, dr.GetName(i), Type.GetTypeCode(dr.GetFieldType(i)));
+
+                    try { _Columns.Add(qc.colName, qc); }
+                    catch // name has already been added to list: 
+                    { // According to the RDL spec SQL names are matched by Name not by relative
+                      //   position: this seems wrong to me and causes this problem; but 
+                      //   user can fix by using "as" keyword to name columns in Select 
+                      //    e.g.  Select col as "col1", col as "col2" from tableA
+                        OwnerReport.rl.LogError(8, String.Format("Column '{0}' is not uniquely defined within the SQL Select columns.", qc.colName));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
                 // Issue #35 - Kept the logging
                 OwnerReport.rl.LogError(4, "SQL Exception during report compilation: " + e.Message + "\r\nSQL: " + sql);
                 throw;
             }
-			finally
-			{
-				if (cmSQL != null)
-				{
-					cmSQL.Dispose();
-					if (dr != null)
-						dr.Close();
-				}
-			}
-
-			return;
-		}
+            finally
+            {
+                if (cmSQL != null)
+                {
+                    cmSQL.Dispose();
+                    if (dr != null)
+                        dr.Close();
+                }
+            }
+        }
 
 		internal bool GetData(Report rpt, Fields flds, Filters f)
 		{

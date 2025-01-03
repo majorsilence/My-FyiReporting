@@ -148,7 +148,7 @@ namespace fyiReporting.RdlGtk3
             Application.Quit();
         }
 
-        protected void OnFileOpen_Activated(object sender, System.EventArgs e)
+        protected async void OnFileOpen_Activated(object sender, System.EventArgs e)
         {
             object[] param = new object[4];
             param[0] = "Cancel";
@@ -177,7 +177,7 @@ namespace fyiReporting.RdlGtk3
                     if (System.IO.File.Exists(filename))
                     {
                         string parameters = this.GetParameters(new Uri(filename));
-                        this.reportviewer1.LoadReport(new Uri(filename), parameters);
+                        await this.reportviewer1.LoadReport(new Uri(filename), parameters);
                     }
                 }
                 catch (Exception ex)
@@ -194,9 +194,9 @@ namespace fyiReporting.RdlGtk3
 
         }
 
-        public void OnFileSave_Activated(object sender, System.EventArgs e)
+        public async void OnFileSave_Activated(object sender, System.EventArgs e)
         {
-            this.reportviewer1.SaveReport();
+            await this.reportviewer1.SaveReport();
         }
 
         public void OnFilePrint_Activated(object sender, System.EventArgs e)

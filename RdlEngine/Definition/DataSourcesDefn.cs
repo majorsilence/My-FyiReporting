@@ -24,6 +24,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Xml;
 
 
@@ -85,7 +86,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal bool ConnectDataSources(Report rpt)
+		async internal Task<bool> ConnectDataSources(Report rpt)
 		{
 			// Handle any parent connections if any	(ie we're in a subreport and want to use parent report connections
 			if (rpt.ParentConnections != null && rpt.ParentConnections.Items != null)
@@ -105,7 +106,7 @@ namespace fyiReporting.RDL
 
 			foreach (DataSourceDefn ds in _Items.Values)
 			{
-				ds.ConnectDataSource(rpt);
+				await ds.ConnectDataSourceAsync(rpt);
 			}
 			return true;
 		}

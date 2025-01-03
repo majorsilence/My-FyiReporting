@@ -30,6 +30,7 @@ using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -346,7 +347,7 @@ namespace fyiReporting.RDL
 		}
 
 		// Obtain the data for the report
-		internal bool RunGetData(Report rpt, IDictionary parms)
+		async internal Task<bool> RunGetData(Report rpt, IDictionary parms)
 		{
             bool bRows = false;
 			// Step 1- set the parameter values for the runtime
@@ -358,7 +359,7 @@ namespace fyiReporting.RDL
 			// Step 2- prep the datasources (ie connect and execute the queries)
             if (this._DataSourcesDefn != null)
             {
-                _DataSourcesDefn.ConnectDataSources(rpt);
+                await _DataSourcesDefn.ConnectDataSources(rpt);
             }
 
 			// Step 3- obtain the data; applying filters

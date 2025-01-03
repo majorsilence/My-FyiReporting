@@ -30,6 +30,8 @@ using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace fyiReporting.RDL
 {
@@ -138,10 +140,10 @@ namespace fyiReporting.RDL
 		/// Read all the DataSets in the report
 		/// </summary>
 		/// <param name="parms"></param>
-		public bool RunGetData(IDictionary parms)
+		public async Task<bool> RunGetData(IDictionary parms)
 		{
 			ExecutionTime = DateTime.Now;
-			bool bRows = _Report.RunGetData(this, parms);
+			bool bRows = await _Report.RunGetData(this, parms);
 			return bRows;
 		}
 
@@ -677,112 +679,113 @@ namespace fyiReporting.RDL
 		}
 	}
 
-	internal class RCache
-	{
-		Hashtable _RunCache;
+    internal class RCache
+    {
+        ConcurrentDictionary<string, object> _RunCache;
 
-		internal RCache()
-		{
-			_RunCache = new Hashtable();
-		}
+        internal RCache()
+        {
+            _RunCache = new ConcurrentDictionary<string, object>();
+        }
 
-		internal void Add(ReportLink rl, string name, object o)
-		{
-			_RunCache.Add(GetKey(rl,name), o);
-		}
+        internal void Add(ReportLink rl, string name, object o)
+        {
+            _RunCache.TryAdd(GetKey(rl, name), o);
+        }
 
-		internal void AddReplace(ReportLink rl, string name, object o)
-		{
-			string key = GetKey(rl,name);
-			_RunCache.Remove(key);
-			_RunCache.Add(key, o);
-		}
+        internal void AddReplace(ReportLink rl, string name, object o)
+        {
+            string key = GetKey(rl, name);
+            _RunCache.AddOrUpdate(key, o, (k, v) => o);
+        }
 
-		internal object Get(ReportLink rl, string name)
-		{
-			return _RunCache[GetKey(rl,name)];
-		}
+        internal object Get(ReportLink rl, string name)
+        {
+            _RunCache.TryGetValue(GetKey(rl, name), out var value);
+            return value;
+        }
 
-		internal void Remove(ReportLink rl, string name)
-		{
-			_RunCache.Remove(GetKey(rl,name));
-		}
+        internal void Remove(ReportLink rl, string name)
+        {
+            _RunCache.TryRemove(GetKey(rl, name), out _);
+        }
 
-		internal void Add(ReportDefn rd, string name, object o)
-		{
-			_RunCache.Add(GetKey(rd,name), o);
-		}
+        internal void Add(ReportDefn rd, string name, object o)
+        {
+            _RunCache.TryAdd(GetKey(rd, name), o);
+        }
 
-		internal void AddReplace(ReportDefn rd, string name, object o)
-		{
-			string key = GetKey(rd,name);
-			_RunCache.Remove(key);
-			_RunCache.Add(key, o);
-		}
+        internal void AddReplace(ReportDefn rd, string name, object o)
+        {
+            string key = GetKey(rd, name);
+            _RunCache.AddOrUpdate(key, o, (k, v) => o);
+        }
 
-		internal object Get(ReportDefn rd, string name)
-		{
-			return _RunCache[GetKey(rd,name)];
-		}
+        internal object Get(ReportDefn rd, string name)
+        {
+            _RunCache.TryGetValue(GetKey(rd, name), out var value);
+            return value;
+        }
 
-		internal void Remove(ReportDefn rd, string name)
-		{
-			_RunCache.Remove(GetKey(rd,name));
-		}
+        internal void Remove(ReportDefn rd, string name)
+        {
+            _RunCache.TryRemove(GetKey(rd, name), out _);
+        }
 
-		internal void Add(string key, object o)
-		{
-			_RunCache.Add(key, o);
-		}
+        internal void Add(string key, object o)
+        {
+            _RunCache.TryAdd(key, o);
+        }
 
-		internal void AddReplace(string key, object o)
-		{
-			_RunCache.Remove(key);
-			_RunCache.Add(key, o);
-		}
+        internal void AddReplace(string key, object o)
+        {
+            _RunCache.AddOrUpdate(key, o, (k, v) => o);
+        }
 
-		internal object Get(string key)
-		{
-			return _RunCache[key];
-		}
+        internal object Get(string key)
+        {
+            _RunCache.TryGetValue(key, out var value);
+            return value;
+        }
 
-		internal void Remove(string key)
-		{
-			_RunCache.Remove(key);
-		}
+        internal void Remove(string key)
+        {
+            _RunCache.TryRemove(key, out _);
+        }
 
-		internal object Get(int i, string name)
-		{
-			return _RunCache[GetKey(i,name)];
-		}
+        internal object Get(int i, string name)
+        {
+            _RunCache.TryGetValue(GetKey(i, name), out var value);
+            return value;
+        }
 
-		internal void Remove(int i, string name)
-		{
-			_RunCache.Remove(GetKey(i,name));
-		}
+        internal void Remove(int i, string name)
+        {
+            _RunCache.TryRemove(GetKey(i, name), out _);
+        }
 
-		string GetKey(ReportLink rl, string name)
-		{
-			return GetKey(rl.ObjectNumber, name);
-		}
+        string GetKey(ReportLink rl, string name)
+        {
+            return GetKey(rl.ObjectNumber, name);
+        }
 
-		string GetKey(ReportDefn rd, string name)
-		{
-            if (rd.Subreport == null)	// top level report use 0 
+        string GetKey(ReportDefn rd, string name)
+        {
+            if (rd.Subreport == null) // top level report use 0 
             {
                 return GetKey(0, name);
             }
-            else						// Use the subreports object number
+            else // Use the subreports object number
             {
                 return GetKey(rd.Subreport.ObjectNumber, name);
             }
-		}
+        }
 
-		string GetKey(int onum, string name)
-		{
-			return name + onum.ToString();
-		}
-	}
+        string GetKey(int onum, string name)
+        {
+            return name + onum.ToString();
+        }
+    }
 
 	// holder objects for value types
 	internal class ODateTime

@@ -31,6 +31,7 @@ using System.Drawing;
 #endif
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -346,12 +347,24 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal virtual void RunPage(Pages pgs, Row row)
+        internal virtual Task RunAsync(IPresent ip, Row row)
+        {
+			Run(ip, row);
+            return Task.CompletedTask;
+        }
+
+        internal virtual void RunPage(Pages pgs, Row row)
 		{
 			return;
 		}
 
-		internal bool IsTableOrMatrixCell(Report rpt)
+        virtual internal Task RunPageAsync(Pages pgs, Row row)
+        {
+            RunPage(pgs, row);
+            return Task.CompletedTask;
+        }
+
+        internal bool IsTableOrMatrixCell(Report rpt)
 		{
 			WorkClass wc = GetWC(rpt);
 			return (_TC != null || wc.MC != null || this._InMatrix);

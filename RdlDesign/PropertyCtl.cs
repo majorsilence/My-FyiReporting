@@ -85,7 +85,7 @@ namespace fyiReporting.RdlDesign
             if (_Draw.SelectedCount == 0)
             {
                 this.pgSelected.SelectedObject = new PropertyReport(_Draw, dc);
-                cbReportItems.SelectedItem = REPORT;
+                cbReportItems.SelectedItem = REPORT;       
             }
             else if (SingleReportItemType())
             {
