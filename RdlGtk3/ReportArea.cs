@@ -401,7 +401,7 @@ namespace fyiReporting.RdlGtk3
                                       r.Width,
                                       r.Height);
 
-            g.Color = si.Color.ToCairoColor();
+            g.SetSourceColor(si.Color.ToCairoColor());
 
             g.MoveTo(box.X, box.Y);
 

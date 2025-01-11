@@ -54,7 +54,7 @@ namespace fyiReporting.RdlGtk3
 			g.LineTo (r.X, r.Y + r.Height);
 			g.LineTo (r.X, r.Y);
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			g.LineWidth = lineWidth;
 			g.LineCap = LineCap.Square;
 			
@@ -92,7 +92,7 @@ namespace fyiReporting.RdlGtk3
 			g.LineTo (r.X, r.Y + r.Height);
 			g.LineTo (r.X, r.Y);
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			Rectangle dirty = g.StrokeExtents ();
 
@@ -133,7 +133,7 @@ namespace fyiReporting.RdlGtk3
 				//g.Stroke();
 			}
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			Rectangle dirty = g.StrokeExtents ();
 			g.Stroke ();
@@ -151,7 +151,7 @@ namespace fyiReporting.RdlGtk3
 			foreach (var point in points)
 				g.LineTo (point);
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			Rectangle dirty = g.StrokeExtents ();
 			g.Fill ();
@@ -180,10 +180,10 @@ namespace fyiReporting.RdlGtk3
 			g.LineTo (x, y + r.Height);
 			g.LineTo (x, y);
 			
-			g.Color = fill;
+			g.SetSourceColor(fill);
 			g.FillPreserve ();
 			
-			g.Color = stroke;
+			g.SetSourceColor(stroke);
 			g.LineWidth = lineWidth;
 			g.LineCap = LineCap.Square;
 			
@@ -214,7 +214,7 @@ namespace fyiReporting.RdlGtk3
 			
 			g.ClosePath ();
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			g.LineWidth = lineWidth;
 			
 			Rectangle dirty = g.StrokeExtents ();
@@ -244,7 +244,7 @@ namespace fyiReporting.RdlGtk3
 			
 			g.ClosePath ();
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			Rectangle dirty = g.StrokeExtents ();
 			
@@ -299,10 +299,10 @@ namespace fyiReporting.RdlGtk3
 			
 			g.ClosePath ();
 			
-			g.Color = fill;
+			g.SetSourceColor(fill);
 			g.FillPreserve ();
 			
-			g.Color = stroke;
+			g.SetSourceColor(stroke);
 			g.LineWidth = lineWidth;
 			
 			Rectangle dirty = g.StrokeExtents ();
@@ -332,10 +332,10 @@ namespace fyiReporting.RdlGtk3
 
 			g.Restore ();
 			
-			g.Color = fill;
+			g.SetSourceColor(fill);
 			g.FillPreserve ();
 			
-			g.Color = stroke;
+			g.SetSourceColor(stroke);
 			g.LineWidth = lineWidth;
 			
 			Rectangle dirty = g.StrokeExtents ();
@@ -365,7 +365,7 @@ namespace fyiReporting.RdlGtk3
 			
 			//g.Restore ();
 
-			g.Color = fill;
+			g.SetSourceColor(fill);
 			
 			Rectangle dirty = g.StrokeExtents ();
 
@@ -379,7 +379,7 @@ namespace fyiReporting.RdlGtk3
 		{
 			g.Save ();
 			
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			for (int i=0;i<region.NumRectangles;i++)
 			{
@@ -390,7 +390,7 @@ namespace fyiReporting.RdlGtk3
 				g.LineTo (r.X, r.Y + r.Height);
 				g.LineTo (r.X, r.Y);
 				
-				g.Color = color;
+				g.SetSourceColor(color);
 
 				g.StrokeExtents ();
 				g.Fill ();
@@ -407,7 +407,7 @@ namespace fyiReporting.RdlGtk3
 			
 			g.AppendPath (p);
 			
-			g.Color = stroke;
+			g.SetSourceColor(stroke);
 			g.LineWidth = lineWidth;
 			
 			Rectangle dirty = g.StrokeExtents ();
@@ -454,7 +454,7 @@ namespace fyiReporting.RdlGtk3
 			g.MoveTo (p1.X, p1.Y);
 			g.LineTo (p2.X, p2.Y);
 
-			g.Color = color;
+			g.SetSourceColor(color);
 			g.LineWidth = lineWidth;
 			g.LineCap = LineCap.Square;
 
@@ -473,7 +473,7 @@ namespace fyiReporting.RdlGtk3
 			g.MoveTo (p.X, p.Y);
 			g.SelectFontFace (family, slant, weight);
 			g.SetFontSize (size);
-			g.Color = color;
+			g.SetSourceColor(color);
 			
 			TextExtents te = g.TextExtents(text);
 			//TODO alignment

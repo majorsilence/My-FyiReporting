@@ -833,7 +833,7 @@ namespace fyiReporting.RdlGtk3
 
         public void PrintReport()
         {
-            using (PrintContext context = new PrintContext(GdkWindow.Handle))
+            using (PrintContext context = new PrintContext(Window.Handle))
             {
                 if (customPrintAction == null)
                 {

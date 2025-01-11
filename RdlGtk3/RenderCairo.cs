@@ -158,7 +158,7 @@ namespace fyiReporting.RdlGtk3
             g.Save();
 //          Pen p = null;  
 //          p = new Pen(c, w);
-            g.Color = c;
+            g.SetSourceColor(c);
             g.LineWidth = w;
             switch (bs)
             {
@@ -351,7 +351,7 @@ namespace fyiReporting.RdlGtk3
                 r.Width,
                 r.Height);
 
-            g.Color = si.Color.ToCairoColor();
+            g.SetSourceColor(si.Color.ToCairoColor());
 
             g.MoveTo(box.X, box.Y);
 
@@ -441,7 +441,7 @@ namespace fyiReporting.RdlGtk3
                 r.Width,
                 r.Height);
 
-            g.Color = si.Color.ToCairoColor();
+            g.SetSourceColor(si.Color.ToCairoColor());
             
             g.Rotate(90 * Math.PI / 180.0);
             CairoHelper.UpdateLayout(g, layout);
@@ -533,7 +533,7 @@ namespace fyiReporting.RdlGtk3
                 r.Height - si.PaddingBottom - si.PaddingTop,
                 r.Width - si.PaddingLeft + si.PaddingRight);
 
-            g.Color = si.Color.ToCairoColor();
+            g.SetSourceColor(si.Color.ToCairoColor());
 
             g.Rotate(270 * Math.PI / 180.0);
             CairoHelper.UpdateLayout(g, layout);
