@@ -5,7 +5,7 @@ $CURRENTPATH=$pwd.Path
 # /p:Configuration="Debug", "Debug-DrawingCompat", "Release", "Release-DrawingCompat"
 $pConfiguration="Release"
 $pTargetFramework="net8.0-windows"
-
+$pTargetFrameworkGeneric="net8.0"
 
 function delete_files([string]$path)
 {
@@ -34,8 +34,8 @@ dotnet restore "./MajorsilenceReporting.sln"
 dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration $pConfiguration --verbosity minimal
 
 $buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-designer-$pTargetFramework-anycpu"
-$buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-desktop-$pTargetFramework-anycpu"
-$buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu"
+$buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu"
+$buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu"
 $buildoutputpath_viewer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-viewer-$pTargetFramework-anycpu"
 $buildoutputpath_mapfile="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-mapfile-$pTargetFramework-anycpu"
 
@@ -51,16 +51,16 @@ Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_mapfile"
 
 Copy-Item .\RdlDesign\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_designer\" -Recurse
-Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_desktop\" -Recurse
-Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_desktop\" -Recurse
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
 Copy-Item .\RdlViewer\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_viewer\" -Recurse
 Copy-Item .\RdlMapFile\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_mapfile\" -Recurse
 
 cd Release-Builds
 cd build-output	
 ..\7za.exe a -tzip $Version-majorsilence-reporting-designer-$pTargetFramework-anycpu.zip majorsilence-reporting-designer-$pTargetFramework-anycpu\
-..\7za.exe a -tzip $Version-majorsilence-reporting-desktop-$pTargetFramework-anycpu.zip majorsilence-reporting-desktop-$pTargetFramework-anycpu\
-..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu.zip majorsilence-reporting-rdlcmd-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\
 ..\7za.exe a -tzip $Version-majorsilence-reporting-viewer-$pTargetFramework-anycpu.zip majorsilence-reporting-viewer-$pTargetFramework-anycpu\
 ..\7za.exe a -tzip $Version-majorsilence-reporting-mapfile-$pTargetFramework-anycpu.zip majorsilence-reporting-mapfile-$pTargetFramework-anycpu\
 cd "$CURRENTPATH"
@@ -74,8 +74,8 @@ $buildoutputpath_php="$CURRENTPATH\Release-Builds\build-output\majorsilence-repo
 delete_files "$buildoutputpath_php"
 mkdir "$buildoutputpath_php"
 
-Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_php\config.xml"
-Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_php\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\config.xml "$buildoutputpath_php\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_php\" -Recurse
 
 Copy-Item ".\LanguageWrappers\php\config.php" "$buildoutputpath_php\config.php"
 Copy-Item ".\LanguageWrappers\php\report.php" "$buildoutputpath_php\report.php"
@@ -94,8 +94,8 @@ $buildoutputpath_python="$CURRENTPATH\Release-Builds\build-output\majorsilence-r
 delete_files "$buildoutputpath_python"
 mkdir "$buildoutputpath_python"
 
-Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_python\config.xml"
-Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_python\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\config.xml "$buildoutputpath_python\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_python\" -Recurse
 Copy-Item ".\LanguageWrappers\python\config.py" "$buildoutputpath_python\config.py"
 Copy-Item ".\LanguageWrappers\python\report.py" "$buildoutputpath_python\report.py"
 
@@ -111,8 +111,8 @@ $buildoutputpath_ruby="$CURRENTPATH\Release-Builds\build-output\majorsilence-rep
 delete_files "$buildoutputpath_ruby"
 mkdir "$buildoutputpath_ruby"
 
-Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFramework\config.xml "$buildoutputpath_ruby\config.xml"
-Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_ruby\" -Recurse
+Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\config.xml "$buildoutputpath_ruby\config.xml"
+Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_ruby\" -Recurse
 
 Copy-Item ".\LanguageWrappers\ruby\config.rb" "$buildoutputpath_ruby\config.rb"
 Copy-Item ".\LanguageWrappers\ruby\report.rb" "$buildoutputpath_ruby\report.rb"
