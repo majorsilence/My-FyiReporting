@@ -61,11 +61,13 @@ namespace fyiReporting.RdlGtk3
 		
 		public static Cairo.Color GetCairoColor (this Gtk.ColorSelection selection) 
 		{
-			Cairo.Color cairo_color = selection.CurrentColor.ToCairoColor ();
+#pragma warning disable CS0612 // Type or member is obsolete
+            Cairo.Color cairo_color = selection.CurrentColor.ToCairoColor ();
 			return new Cairo.Color (cairo_color.R, cairo_color.G, cairo_color.B, (double)selection.CurrentAlpha / ushort.MaxValue);
-		}
-		
-		public static Gdk.Point Center (this Gdk.Rectangle rect)
+#pragma warning restore CS0612 // Type or member is obsolete
+        }
+
+        public static Gdk.Point Center (this Gdk.Rectangle rect)
 		{
 			return new Gdk.Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
 		}

@@ -40,7 +40,9 @@ namespace fyiReporting.RdlGtk3
             this.OpenButton = new Gtk.Button();
             this.OpenButton.CanFocus = true;
             this.OpenButton.Name = "OpenButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.OpenButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.OpenButton.UseUnderline = true;
             this.OpenButton.Label = "gtk-open";
             this.OpenButton.Clicked += new System.EventHandler(this.OnFileOpen_Activated);
@@ -49,7 +51,9 @@ namespace fyiReporting.RdlGtk3
             this.SaveButton = new Gtk.Button();
             this.SaveButton.CanFocus = true;
             this.SaveButton.Name = "SaveButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.SaveButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.SaveButton.UseUnderline = true;
             this.SaveButton.Label = "gtk-save";
             this.SaveButton.Clicked += new System.EventHandler(this.OnFileSave_Activated);
@@ -58,7 +62,9 @@ namespace fyiReporting.RdlGtk3
             this.PrintButton = new Gtk.Button();
             this.PrintButton.CanFocus = true;
             this.PrintButton.Name = "PrintButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.PrintButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.PrintButton.UseUnderline = true;
             this.PrintButton.Label = "gtk-print";
             this.PrintButton.Clicked += new System.EventHandler(this.OnFilePrint_Activated);
@@ -67,7 +73,9 @@ namespace fyiReporting.RdlGtk3
             this.FirstPageButton = new Gtk.Button();
             this.FirstPageButton.CanFocus = true;
             this.FirstPageButton.Name = "FirstPageButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.FirstPageButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.FirstPageButton.UseUnderline = true;
             this.FirstPageButton.Label = "gtk-goto-first";
             this.FirstPageButton.Clicked += new System.EventHandler(this.OnFirstPageButton_Activated);
@@ -76,7 +84,9 @@ namespace fyiReporting.RdlGtk3
             this.PreviousButton = new Gtk.Button();
             this.PreviousButton.CanFocus = true;
             this.PreviousButton.Name = "PreviousButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.PreviousButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.PreviousButton.UseUnderline = true;
             this.PreviousButton.Label = "gtk-go-back";
             this.PreviousButton.Clicked += new System.EventHandler(this.OnPreviousButton_Activated);
@@ -85,7 +95,9 @@ namespace fyiReporting.RdlGtk3
             this.NextButton = new Gtk.Button();
             this.NextButton.CanFocus = true;
             this.NextButton.Name = "NextButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.NextButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.NextButton.UseUnderline = true;
             this.NextButton.Label = "gtk-go-forward";
             this.NextButton.Clicked += new System.EventHandler(this.OnNextButton_Activated);
@@ -94,7 +106,9 @@ namespace fyiReporting.RdlGtk3
             this.LastPageButton = new Gtk.Button();
             this.LastPageButton.CanFocus = true;
             this.LastPageButton.Name = "LastPageButton";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.LastPageButton.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.LastPageButton.UseUnderline = true;
             this.LastPageButton.Label = "gtk-goto-last";
             this.LastPageButton.Clicked += new System.EventHandler(this.OnLastPageButton_Activated);
@@ -232,8 +246,6 @@ namespace fyiReporting.RdlGtk3
 
             if (parser.Report.UserReportParameters.Count > 0)
             {
-                int count = 0;
-
                 foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters)
                 {
                     parameters += "&" + rp.Name + "=";

@@ -131,6 +131,7 @@ namespace fyiReporting.RdlGtk3
         {
             actionGroup = new Toolbar();
 
+#pragma warning disable CS0612 // Type or member is obsolete
             refreshAction = new Gtk.Action("refresh", "Refresh", "gtk-refresh", Stock.Refresh);
             refreshAction.IsImportant = true;
             refreshAction.Tooltip = "Refresh the report";
@@ -145,7 +146,9 @@ namespace fyiReporting.RdlGtk3
             actionGroup.Add(printAction.CreateToolItem());
 
             zoomOutAction = new Gtk.Action("zoom-out", "Zoom Out", "gtk-zoom-out", Stock.ZoomOut);
+
             zoomOutAction.IsImportant = true;
+
             zoomOutAction.Tooltip = "Zoom out the report";
             actionGroup.Add(zoomOutAction.CreateToolItem());
 
@@ -206,6 +209,7 @@ namespace fyiReporting.RdlGtk3
             this.zoomOutAction.Activated += new global::System.EventHandler(this.OnZoomOutActionActivated);
             this.zoomInAction.Activated += new global::System.EventHandler(this.OnZoomInActionActivated);
             this.hpanedReport.SizeAllocated += new global::Gtk.SizeAllocatedHandler(this.OnHpanedReportSizeAllocated);
+#pragma warning restore CS0612 // Type or member is obsolete
         }
 
         /// <summary>
@@ -319,7 +323,9 @@ namespace fyiReporting.RdlGtk3
             if (report.ErrorMaxSeverity == 0)
                 show_errors = false;
 
+#pragma warning disable CS0612 // Type or member is obsolete
             errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
+#pragma warning restore CS0612 // Type or member is obsolete
 
             //			Title = string.Format ("RDL report viewer - {0}", report.Name);
             EnableActions();
@@ -404,7 +410,9 @@ namespace fyiReporting.RdlGtk3
                 r.ErrorReset();
                 if (severity > 4)
                 {
+#pragma warning disable CS0612 // Type or member is obsolete
                     errorsAction.Active = true;
+#pragma warning restore CS0612 // Type or member is obsolete
                     return null; // don't return when severe errors
                 }
             }
@@ -414,7 +422,9 @@ namespace fyiReporting.RdlGtk3
 
         void OnErrorsActionToggled(object sender, EventArgs e)
         {
+#pragma warning disable CS0612 // Type or member is obsolete
             ShowErrors = errorsAction.Active;
+#pragma warning restore CS0612 // Type or member is obsolete
         }
 
         void CheckVisibility()
@@ -445,20 +455,24 @@ namespace fyiReporting.RdlGtk3
 
         void DisableActions()
         {
+#pragma warning disable CS0612 // Type or member is obsolete
             saveAsAction.Sensitive = false;
             refreshAction.Sensitive = false;
             printAction.Sensitive = false;
             zoomInAction.Sensitive = false;
             zoomOutAction.Sensitive = false;
+#pragma warning restore CS0612 // Type or member is obsolete
         }
 
         void EnableActions()
         {
+#pragma warning disable CS0612 // Type or member is obsolete
             saveAsAction.Sensitive = true;
             refreshAction.Sensitive = true;
             printAction.Sensitive = true;
             zoomInAction.Sensitive = true;
             zoomOutAction.Sensitive = true;
+#pragma warning restore CS0612 // Type or member is obsolete
         }
 
         void AddParameterControls()
@@ -469,9 +483,13 @@ namespace fyiReporting.RdlGtk3
             }
             foreach (UserReportParameter rp in report.UserReportParameters)
             {
+#pragma warning disable CS0612 // Type or member is obsolete
                 HBox hbox = new HBox();
+#pragma warning restore CS0612 // Type or member is obsolete
                 Label labelPrompt = new Label();
+#pragma warning disable CS0612 // Type or member is obsolete
                 labelPrompt.SetAlignment(0, 0.5f);
+#pragma warning restore CS0612 // Type or member is obsolete
                 labelPrompt.Text = string.Format("{0} :", rp.Prompt);
                 hbox.PackStart(labelPrompt, true, true, 0);
                 Entry entryValue = new Entry();

@@ -111,10 +111,12 @@ namespace fyiReporting.RdlGtk3
 			g.LineTo (r.X + r.Width, r.Y + r.Height);
 			g.LineTo (r.X, r.Y + r.Height);
 			g.LineTo (r.X, r.Y);
-			
-			g.Pattern = pattern;
 
-			Rectangle dirty = g.StrokeExtents ();
+#pragma warning disable CS0618 // Type or member is obsolete
+            g.Pattern = pattern;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            Rectangle dirty = g.StrokeExtents ();
 			g.Fill ();
 
 			g.Restore ();

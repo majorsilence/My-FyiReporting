@@ -17,12 +17,16 @@ namespace fyiReporting.RdlGtk3
             this.WindowPosition = Gtk.WindowPosition.Center;
 
             // Internal child fyiReporting.RdlGtkViewer.ParameterPrompt.VBox
+#pragma warning disable CS0612 // Type or member is obsolete
             Gtk.VBox vbox = new Gtk.VBox();
+#pragma warning restore CS0612 // Type or member is obsolete
             vbox.Name = "dialog1_VBox";
             vbox.BorderWidth = 2;
 
             // Container child dialog1_VBox.Gtk.Box+BoxChild
+#pragma warning disable CS0612 // Type or member is obsolete
             this.hbox3 = new Gtk.HBox();
+#pragma warning restore CS0612 // Type or member is obsolete
             this.hbox3.Name = "hbox3";
             this.hbox3.Spacing = 6;
 
@@ -43,7 +47,9 @@ namespace fyiReporting.RdlGtk3
             vbox.PackStart(this.hbox3, false, false, 0);
 
             // Internal child fyiReporting.RdlGtkViewer.ParameterPrompt.ActionArea
+#pragma warning disable CS0612 // Type or member is obsolete
             Gtk.HButtonBox actionArea = new Gtk.HButtonBox();
+#pragma warning restore CS0612 // Type or member is obsolete
             actionArea.Name = "dialog1_ActionArea";
             actionArea.Spacing = 10;
             actionArea.BorderWidth = 5;
@@ -54,7 +60,9 @@ namespace fyiReporting.RdlGtk3
             this.buttonCancel.CanDefault = true;
             this.buttonCancel.CanFocus = true;
             this.buttonCancel.Name = "buttonCancel";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.buttonCancel.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             actionArea.PackStart(this.buttonCancel, false, false, 0);
@@ -64,7 +72,9 @@ namespace fyiReporting.RdlGtk3
             this.buttonOk.CanDefault = true;
             this.buttonOk.CanFocus = true;
             this.buttonOk.Name = "buttonOk";
+#pragma warning disable CS0612 // Type or member is obsolete
             this.buttonOk.UseStock = true;
+#pragma warning restore CS0612 // Type or member is obsolete
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             actionArea.PackStart(this.buttonOk, false, false, 0);

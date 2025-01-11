@@ -292,12 +292,16 @@ namespace fyiReporting.RdlGtk3
             using (var shadowS = repS.Clone())
             using (var shadowG = new Context(shadowS))
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 shadowG.Pattern = shadowGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
                 shadowG.Paint();
                 g.SetSourceSurface(shadowS, shadow_padding, shadow_padding);
                 g.Paint();
 
+#pragma warning disable CS0618 // Type or member is obsolete
                 repG.Pattern = repGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
                 repG.Paint();
                 repG.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
 
@@ -307,7 +311,9 @@ namespace fyiReporting.RdlGtk3
                 if (selectedItem != null)
                 {
                     currentRepGPattern = new SolidPattern(new Color(0.4, 0.4, 1));
+#pragma warning disable CS0618 // Type or member is obsolete
                     repG.Pattern = currentRepGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
                     repG.Rectangle(GetSelectedItemRectangle());
                     repG.Fill();
                 }
