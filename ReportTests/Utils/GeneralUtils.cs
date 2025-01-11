@@ -38,7 +38,7 @@ namespace ReportTests.Utils
         static string CurrentDirectory()
         {
             // Works from within nunit and regular execution
-            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var u = new UriBuilder(codeBase);
 
             var path = Uri.UnescapeDataString(u.Path);
