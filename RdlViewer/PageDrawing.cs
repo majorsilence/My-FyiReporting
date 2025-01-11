@@ -30,6 +30,7 @@ using System.IO;
 using System.Text;
 using fyiReporting.RdlViewer.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlViewer
 {
@@ -275,7 +276,7 @@ namespace fyiReporting.RdlViewer
         /// <param name="g"></param>
         /// <param name="page"></param>
         /// <param name="clipRectangle"></param>
-        public void Draw(Graphics g, int page, System.Drawing.Rectangle clipRectangle, bool drawBackground, PointF pageOffset)
+        public async Task Draw(Graphics g, int page, System.Drawing.Rectangle clipRectangle, bool drawBackground, PointF pageOffset)
         {
             DpiX = g.DpiX;			 // this can change (e.g. printing graphics context)
             DpiY = g.DpiY;
@@ -305,7 +306,7 @@ namespace fyiReporting.RdlViewer
                 g.FillRectangle(Brushes.White, PixelsX(_left), PixelsY(_top),
                     PixelsX(_pgs.PageWidth), PixelsY(_pgs.PageHeight));
 
-            ProcessPage(g, _pgs[page], r, false);
+            await ProcessPage(g, _pgs[page], r, false);
         }
         /// <summary>
         /// Draw: accounting for scrolling and zoom factors
@@ -317,7 +318,7 @@ namespace fyiReporting.RdlViewer
         /// <param name="hScroll"></param>
         /// <param name="vScroll"></param>
         /// <param name="clipRectangle"></param>
-        public void Draw(Graphics g, float zoom, float leftOffset, float pageGap,
+        public async Task Draw(Graphics g, float zoom, float leftOffset, float pageGap,
             float hScroll, float vScroll,
             System.Drawing.Rectangle clipRectangle,
             PageItem highLightItem,
@@ -369,7 +370,7 @@ namespace fyiReporting.RdlViewer
                                                     (int)PixelsX(_pgs.PageWidth), (int)PixelsY(_pgs.PageHeight));
                 g.FillRectangle(Brushes.White, pr);
 
-                ProcessPage(g, _pgs[p], r, true);
+                await ProcessPage(g, _pgs[p], r, true);
 
                 // Draw the page outline
                 using (Pen pn = new Pen(Brushes.Black, 1))
@@ -665,7 +666,7 @@ namespace fyiReporting.RdlViewer
         }
 
         // render all the objects in a page (or any composite object
-        private void ProcessPage(Graphics g, IEnumerable p, RectangleF clipRect, bool bHitList)
+        private async Task ProcessPage(Graphics g, IEnumerable p, RectangleF clipRect, bool bHitList)
         {
             // TODO: (Peter) Support can grow and can shrink
             foreach (PageItem pi in p)
@@ -678,7 +679,7 @@ namespace fyiReporting.RdlViewer
                                                                             PixelsX(pi.W), PixelsY(pi.H));
                         _HitList.Add(new HitListEntry(hr, pi));
                     }
-                    ProcessHtml(pi as PageTextHtml, g, clipRect, bHitList);
+                    await ProcessHtml(pi as PageTextHtml, g, clipRect, bHitList);
                     continue;
                 }
 
@@ -1180,10 +1181,10 @@ namespace fyiReporting.RdlViewer
         }
 
 
-        private void ProcessHtml(PageTextHtml pth, Graphics g, RectangleF clipRect, bool bHitList)
+        private async Task ProcessHtml(PageTextHtml pth, Graphics g, RectangleF clipRect, bool bHitList)
         {
-            pth.Build(g);				// Builds the subobjects that make up the html
-            this.ProcessPage(g, pth, clipRect, bHitList);
+            await pth.Build(g);             // Builds the subobjects that make up the html
+            await this.ProcessPage(g, pth, clipRect, bHitList);
         }
 
         private void DrawEllipse(PageEllipse pe, Graphics g, RectangleF r)

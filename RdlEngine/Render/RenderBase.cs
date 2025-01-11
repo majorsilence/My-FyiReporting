@@ -51,7 +51,6 @@ namespace fyiReporting.RDL
     ///<summary>
     /// Renders a report to PDF.   This is a page oriented formatting renderer.
     ///</summary>
-    [SecuritySafeCritical]
     internal abstract class RenderBase : IPresent
     {
 
@@ -177,7 +176,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-        public void RunPages(Pages pgs)	// this does all the work
+        public async Task RunPages(Pages pgs)	// this does all the work
         {
             foreach (Page p in pgs)
             {
@@ -186,14 +185,14 @@ namespace fyiReporting.RDL
 
                 //Create a Page 
                 CreatePage();
-                ProcessPage(pgs, p);
+                await ProcessPage(pgs, p);
                 // after a page
                 AfterProcessPage();
             }
             return;
         }
         // render all the objects in a page in PDF
-        private void ProcessPage(Pages pgs, IEnumerable items)
+        private async Task ProcessPage(Pages pgs, IEnumerable items)
         {
             foreach (PageItem pi in items)
             {
@@ -256,8 +255,8 @@ namespace fyiReporting.RDL
                 if (pi is PageTextHtml)
                 {
                     PageTextHtml pth = pi as PageTextHtml;
-                    pth.Build(pgs.G);
-                    ProcessPage(pgs, pth);
+                    await pth.Build(pgs.G);
+                    await ProcessPage(pgs, pth);
                     continue;
                 }
 

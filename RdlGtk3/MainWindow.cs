@@ -18,7 +18,6 @@ namespace fyiReporting.RdlGtk3
         private Gtk.SpinButton CurrentPage;
         private Gtk.Label PageCountLabel;
         private Gtk.ScrolledWindow scrolledwindow1;
-        private Gtk.Box vboxImages;
         private fyiReporting.RdlGtk3.ReportViewer reportviewer1;
 
         public MainWindow()

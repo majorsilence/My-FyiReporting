@@ -89,7 +89,7 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void RunPages(Pages pgs)   // this does all the work 
+        public async Task RunPages(Pages pgs)   // this does all the work 
         {
             int pageNo = 1;
 
@@ -109,7 +109,7 @@ namespace fyiReporting.RDL
                 g.FillRectangle(Drawing.Brushes.White, 0F, 0F, (float)bm.Width, (float)bm.Height);
 
                 // STEP: draw page to bitmap 
-                ProcessPage(g, p);
+                await ProcessPage(g, p);
 
                 // STEP: 
                 Drawing.Bitmap bm2 = ConvertToBitonal(bm);
@@ -137,13 +137,13 @@ namespace fyiReporting.RDL
             return;
         }
 
-        private void ProcessPage(Drawing.Graphics g, IEnumerable p)
+        private async Task ProcessPage(Drawing.Graphics g, IEnumerable p)
         {
             foreach (PageItem pi in p)
             {
                 if (pi is PageTextHtml)
                 {   // PageTextHtml is actually a composite object (just like a page) 
-                    ProcessHtml(pi as PageTextHtml, g);
+                    await ProcessHtml(pi as PageTextHtml, g);
                     continue;
                 }
 
@@ -205,10 +205,10 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void ProcessHtml(PageTextHtml pth, Drawing.Graphics g)
+        private async Task ProcessHtml(PageTextHtml pth, Drawing.Graphics g)
         {
-            pth.Build(g);            // Builds the subobjects that make up the html 
-            this.ProcessPage(g, pth);
+            await pth.Build(g);            // Builds the subobjects that make up the html 
+            await this.ProcessPage(g, pth);
         }
 
         private void DrawLine(Drawing.Color c, BorderStyleEnum bs, float w, Drawing.Graphics g, float x, float y, float x2, float y2)

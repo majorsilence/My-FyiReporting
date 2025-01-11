@@ -7,6 +7,7 @@
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Update="DesignXmlDraw.cs">

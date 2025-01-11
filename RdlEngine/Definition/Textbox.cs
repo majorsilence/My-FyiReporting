@@ -401,7 +401,7 @@ namespace fyiReporting.RDL
 						pth = new PageTextHtml(o==null? "": o.ToString());
 						await SetPagePositionAndStyle(rpt, pth, row);
 					}
-					pth.Build(g);
+					await pth.Build(g);
 					s.Height = RSize.PixelsFromPoints(pth.TotalHeight);
 				}
 				else

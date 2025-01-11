@@ -436,9 +436,9 @@ namespace fyiReporting.RDL
 			PopContainer(g.DataCollectionName);
 		}
 
-		public void RunPages(Pages pgs)	// we don't have paging turned on for xml
+		public Task RunPages(Pages pgs)	// we don't have paging turned on for xml
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		void PopContainer(string name)

@@ -9,6 +9,7 @@
 		<PackageId>Majorsilence.Reporting.EncryptionProvider</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Data.DataSetExtensions" />

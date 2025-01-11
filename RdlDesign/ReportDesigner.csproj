@@ -17,6 +17,7 @@
 		<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

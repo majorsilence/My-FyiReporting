@@ -36,6 +36,8 @@ using System.Reflection;
 using System.IO;
 using System.Net;
 using Microsoft.CSharp;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace fyiReporting.Data
 {
@@ -181,44 +183,33 @@ namespace fyiReporting.Data
 #endif
 		}
 
-#if !NETSTANDARD2_0 && !NET6_0_OR_GREATER
-        public ServiceDescription GetServiceDescription()
-		{
-			ServiceDescription sd = new ServiceDescription();
-			Stream sr=null;
-			try
-			{
-				sr = GetStream();
-				sd = ServiceDescription.Read(sr);
-			}
-			finally
-			{
-				if (sr != null)
-					sr.Close();
-			}
+        async Task<Stream> GetStream()
+        {
+            string fname = _url;
+            Stream strm = null;
 
-			return sd;
-		}
-#endif
+            if (fname.StartsWith("http:") || fname.StartsWith("file:") || fname.StartsWith("https:"))
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(fname);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        strm = await response.Content.ReadAsStreamAsync();
+                    }
+                    else
+                    {
+                        throw new Exception($"Failed to get response from {fname}. Status code: {response.StatusCode}");
+                    }
+                }
+            }
+            else
+            {
+                strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);
+            }
 
-		Stream GetStream() 
-		{
-			string fname = _url;
-			Stream strm=null;
-
-			if (fname.StartsWith("http:") ||
-				fname.StartsWith("file:") ||
-				fname.StartsWith("https:"))
-			{
-				WebRequest wreq = WebRequest.Create(fname);
-				WebResponse wres = wreq.GetResponse();
-				strm = wres.GetResponseStream();
-			}
-			else
-				strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);		
-
-			return strm;
-		}
+            return strm;
+        }
 
 	}
 }

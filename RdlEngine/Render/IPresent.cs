@@ -43,7 +43,7 @@ namespace fyiReporting.RDL
 		void End();									// called last
 
 		// 
-		void RunPages(Pages pgs);					// only called if IsPagingNeeded - 
+		Task RunPages(Pages pgs);					// only called if IsPagingNeeded - 
 
 		// Body: main container for the report
 		void BodyStart(Body b);						// called right before body processing  

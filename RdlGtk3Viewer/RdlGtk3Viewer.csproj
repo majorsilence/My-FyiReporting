@@ -5,6 +5,7 @@
 		<AssemblyName>RdlGtk3Viewer</AssemblyName>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
+		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -456,7 +456,7 @@ namespace fyiReporting.RDL
 
                 pgs.SortPageItems();             // Handle ZIndex ordering of pages
 
-				ip.RunPages(pgs);
+                await ip.RunPages(pgs);
 			}
 			finally
 			{

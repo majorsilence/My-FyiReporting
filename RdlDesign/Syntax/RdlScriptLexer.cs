@@ -41,7 +41,6 @@ namespace fyiReporting.RdlDesign.Syntax
 			ClassMethod
 		}
 
-		private HashSet<string> keywords;
 		private HashSet<string> userInfo;
 		private HashSet<string> globals;
 		private HashSet<string> parameters;

@@ -96,7 +96,7 @@ namespace fyiReporting.RdlGtk3
 			try {
 				sg = new OneFileStreamGen(fileName, true);
                 await report.RunRender(sg, exportType);
-			} catch(Exception ex) {
+			} catch(Exception) {
 				throw;
 			} finally {
 				if(sg != null) {
@@ -192,7 +192,7 @@ namespace fyiReporting.RdlGtk3
                     await report.RunRender(ms, exportType);
 					return ms.GetStream() as MemoryStream;
 				}
-				catch(Exception ex)
+				catch(Exception)
 				{
 					throw;
 				}

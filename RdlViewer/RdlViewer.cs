@@ -875,7 +875,7 @@ namespace fyiReporting.RdlViewer
             pd.Print();
         }
 
-        private void PrintPage(object sender, PrintPageEventArgs e)
+        private async void PrintPage(object sender, PrintPageEventArgs e)
         {
             System.Drawing.Rectangle r = new System.Drawing.Rectangle(0, 0, int.MaxValue, int.MaxValue);
             // account for the non-printable area of the paper
@@ -905,7 +905,7 @@ namespace fyiReporting.RdlViewer
                 pageOffset = PointF.Empty;
             }
 
-            _DrawPanel.Draw(e.Graphics, printCurrentPage, r, false, pageOffset);
+            await _DrawPanel.Draw(e.Graphics, printCurrentPage, r, false, pageOffset);
 
             printCurrentPage++;
             if (printCurrentPage > printEndPage)
@@ -945,10 +945,10 @@ namespace fyiReporting.RdlViewer
                         _Report.RunRenderPdf(sg, _pgs);
                         break;
                     case OutputPresentationType.TIF:
-                        _Report.RunRenderTif(sg, _pgs, true);
+                        await _Report.RunRenderTif(sg, _pgs, true);
                         break;
                     case OutputPresentationType.TIFBW:
-                        _Report.RunRenderTif(sg, _pgs, false);
+                        await _Report.RunRenderTif(sg, _pgs, false);
                         break;
                     case OutputPresentationType.CSV:
                         await _Report.RunRender(sg, OutputPresentationType.CSV);
@@ -1147,7 +1147,7 @@ namespace fyiReporting.RdlViewer
                         CalcZoom();             // new report or resize client requires new zoom factor
 
                     // Draw the page
-                    _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
+                    await _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
                         PointsX(_hScroll.Value), PointsY(_vScroll.Value),
                         e.ClipRectangle,
                         _HighlightItem, _HighlightText, _HighlightCaseSensitive, _HighlightAll);
@@ -1568,7 +1568,7 @@ namespace fyiReporting.RdlViewer
                     wait.ShowDialog();
                 }
             }
-            catch (ObjectDisposedException ode)
+            catch (ObjectDisposedException)
             {
                 // Just let it go
             }

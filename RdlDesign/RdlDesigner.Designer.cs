@@ -9,12 +9,9 @@ namespace fyiReporting.RdlDesign
 	public partial class RdlDesigner : System.Windows.Forms.Form
 	{
 		#region Windows Form Designer generated code
-		Timer _IpcTimer = null;
-private MDIChild printChild=null;
-private DialogValidateRdl _ValidateRdl=null;
-private DockStyle _PropertiesLocation = DockStyle.Right;
-
-     
+        private MDIChild printChild=null;
+        private DialogValidateRdl _ValidateRdl=null;
+        private DockStyle _PropertiesLocation = DockStyle.Right;   
 
 		private void InitializeComponent()
 		{

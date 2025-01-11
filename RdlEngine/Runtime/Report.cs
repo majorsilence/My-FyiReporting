@@ -334,7 +334,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="sg"></param>
 		/// <param name="pgs"></param>
-		public void RunRenderTif(IStreamGen sg, Pages pgs, bool bColor)
+		public async Task RunRenderTif(IStreamGen sg, Pages pgs, bool bColor)
         {
             PageNumber = 1;		// reset page numbers
             TotalPages = 1;
@@ -344,7 +344,7 @@ namespace fyiReporting.RDL
             try
             {
                 ip.Start();
-                ip.RunPages(pgs);
+                await ip.RunPages(pgs);
                 ip.End();
             }
             finally

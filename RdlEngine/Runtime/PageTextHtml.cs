@@ -35,6 +35,8 @@ using System.Text;
 using System.IO;
 using System.Net;
 using RdlEngine.Resources;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -69,13 +71,13 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public void Build(Drawing.Graphics g)
+		public async Task Build(Drawing.Graphics g)
 		{
            Drawing.Drawing2D.Matrix transform = g.Transform;
             try
             {
                 g.ResetTransform();
-                BuildPrivate(g);
+                await BuildPrivate(g);
             }
             finally
             {
@@ -84,7 +86,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-		private void BuildPrivate(Drawing.Graphics g)
+		private async Task BuildPrivate(Drawing.Graphics g)
         {
             PageText model = new PageText("");
             model.AllowSelect = false;
@@ -281,7 +283,7 @@ namespace fyiReporting.RDL
 					}
                     else if (ltoken.StartsWith("<img"))
                     {
-                        PageImage pimg = BuildImage(g, token.Substring(1), cs, model);
+                        PageImage pimg = await BuildImage(g, token.Substring(1), cs, model);
                         if (pimg != null)   // We got an image; add to process list
                         {
                             pimg.Y = this.Y + yPos;
@@ -434,7 +436,7 @@ namespace fyiReporting.RDL
 			si.Color = Drawing.Color.Blue;
 		}
 
-        private PageImage BuildImage(Drawing.Graphics g, string token, StyleInfo oldsi, PageText model)
+        private async Task<PageImage> BuildImage(Drawing.Graphics g, string token, StyleInfo oldsi, PageText model)
         {
             PageTextHtmlCmdLexer hc = new PageTextHtmlCmdLexer(token.Substring(4));
             Hashtable ht = hc.Lex();
@@ -450,21 +452,22 @@ namespace fyiReporting.RDL
             string align = (string)ht["align"];
 
             Stream strm = null;
-           Drawing.Image im = null;
+            Drawing.Image im = null;
             PageImage pi = null;
             try
             {
                 // Obtain the image stream
-                if (src.StartsWith("http:") ||
-                    src.StartsWith("file:") ||
-                    src.StartsWith("https:"))
+                if (src.StartsWith("http:") || src.StartsWith("file:") || src.StartsWith("https:"))
                 {
-                    WebRequest wreq = WebRequest.Create(src);
-                    WebResponse wres = wreq.GetResponse();
-                    strm = wres.GetResponseStream();
+                    using (HttpClient client = new HttpClient())
+                    {
+                        strm = await client.GetStreamAsync(src);
+                    }
                 }
                 else
+                {
                     strm = new FileStream(src, System.IO.FileMode.Open, FileAccess.Read);
+                }
 
                 im = Drawing.Image.FromStream(strm);
                 int h = im.Height;
@@ -483,11 +486,11 @@ namespace fyiReporting.RDL
                 pi.X = 0;
                 pi.Y = 0;
 
-                pi.W = RSize.PointsFromPixels(g, width != null? Convert.ToInt32(width): w);
-                pi.H = RSize.PointsFromPixels(g, height != null? Convert.ToInt32(height): h);
+                pi.W = RSize.PointsFromPixels(g, width != null ? Convert.ToInt32(width) : w);
+                pi.H = RSize.PointsFromPixels(g, height != null ? Convert.ToInt32(height) : h);
                 pi.SI = new StyleInfo();
             }
-            catch 
+            catch
             {
                 pi = null;
             }

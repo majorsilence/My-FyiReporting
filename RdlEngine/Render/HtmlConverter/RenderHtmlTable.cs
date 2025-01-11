@@ -1447,8 +1447,9 @@ function findObject(id) {
         public void GroupingEnd(Grouping g)         // called at end of grouping
         {
         }
-        public void RunPages(Pages pgs) // we don't have paging turned on for html
+        public Task RunPages(Pages pgs) // we don't have paging turned on for html
         {
+            return Task.CompletedTask;
         }
     }
 

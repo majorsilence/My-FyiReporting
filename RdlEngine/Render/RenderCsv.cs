@@ -66,8 +66,9 @@ namespace fyiReporting.RDL
 
         }									
 
-        public void RunPages(Pages pgs)
+        public Task RunPages(Pages pgs)
         {
+            return Task.CompletedTask;
         }					
 
         public void BodyStart(Body b)

@@ -36,6 +36,7 @@ using System.Collections.Specialized;
 using System.Threading;
 using System.Net;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 
 namespace fyiReporting.RDL
@@ -315,9 +316,12 @@ namespace fyiReporting.RDL
                             fname.StartsWith("file:") ||
                             fname.StartsWith("https:"))
                         {
-                            WebRequest wreq = WebRequest.Create(fname);
-                            WebResponse wres = wreq.GetResponse();
-                            strm = wres.GetResponseStream();
+                            using (HttpClient client = new HttpClient())
+                            {
+                                HttpResponseMessage response = await client.GetAsync(fname);
+                                response.EnsureSuccessStatusCode();
+                                strm = await response.Content.ReadAsStreamAsync();
+                            }
                         }
                         else
                             strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);
