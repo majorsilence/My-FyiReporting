@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -78,10 +79,10 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Hidden != null)
-				_Hidden.FinalPass();
+                await _Hidden.FinalPass();
 			return;
 		}
 
@@ -91,12 +92,12 @@ namespace fyiReporting.RDL
 			set {  _Hidden = value; }
 		}
 
-		internal bool IsHidden(Report rpt, Row r)
+		internal async Task<bool> IsHidden(Report rpt, Row r)
 		{
 			if (_Hidden == null)
 				return false;
 
-			return _Hidden.EvaluateBoolean(rpt, r);
+			return await _Hidden.EvaluateBoolean(rpt, r);
 		}
 
 		internal string ToggleItem

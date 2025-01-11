@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -93,9 +94,9 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "EmbeddedImage ImageData is required but not specified for " + (this.Name == null? "'name not specified'": this.Name.Nm));
 		}
 		
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal Name Name

@@ -773,7 +773,6 @@ namespace fyiReporting.RdlDesign
 			this.rdlPreview.ShowParameterPanel = true;
 			this.rdlPreview.ShowWaitDialog = true;
 			this.rdlPreview.SourceFile = null;
-			this.rdlPreview.SourceRdl = null;
 			this.rdlPreview.UseTrueMargins = true;
 			this.rdlPreview.Zoom = 0.5495112F;
 			this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
@@ -856,7 +855,7 @@ namespace fyiReporting.RdlDesign
 			}
 		}
 		
-		private void tcEHP_SelectedIndexChanged(object sender, System.EventArgs e)
+		private async void tcEHP_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			TabControl tc = (TabControl) sender;
 			DesignTabs tag = (DesignTabs)tc.SelectedIndex;
@@ -877,7 +876,7 @@ namespace fyiReporting.RdlDesign
 			if (tag == DesignTabs.Preview)
 			{
 				if (rdlPreview.SourceRdl != scintilla1.Text)			// sync up preview
-					this.rdlPreview.SourceRdl = scintilla1.Text;
+					await this.rdlPreview.SetSourceRdl(scintilla1.Text);
 			}
 			else if (tag == DesignTabs.Design)
 			{
@@ -904,14 +903,14 @@ namespace fyiReporting.RdlDesign
 		/// <summary>
 		/// Print the report.  
 		/// </summary>
-		public void Print(PrintDocument pd)
+		public async void Print(PrintDocument pd)
 		{
-			this.rdlPreview.Print(pd);
+			await this.rdlPreview.Print(pd);
 		}
 
-        public void SaveAs(string filename, OutputPresentationType type)
+        public async void SaveAs(string filename, OutputPresentationType type)
 		{
-			this.rdlPreview.SaveAs(filename, type);
+			await this.rdlPreview.SaveAs(filename, type);
 		}
 
 		public string GetRdlText()

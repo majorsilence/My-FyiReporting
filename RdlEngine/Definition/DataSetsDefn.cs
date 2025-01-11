@@ -24,6 +24,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Xml;
 
 
@@ -66,21 +67,21 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (DataSetDefn ds in _Items.Values)
 			{
-				ds.FinalPass();
+				await ds.FinalPass();
 			}
 			return;
 		}
 
-		internal bool GetData(Report rpt)
+		internal async Task<bool> GetData(Report rpt)
 		{
             bool haveRows = false;
 			foreach (DataSetDefn ds in _Items.Values)
 			{
-				haveRows |= ds.GetData(rpt);
+				haveRows |= await ds.GetData(rpt);
 			}
 
 			return haveRows;

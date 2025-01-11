@@ -5,6 +5,7 @@ using System;
 using fyiReporting.RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlCreator.Tests
 {
@@ -15,14 +16,14 @@ namespace fyiReporting.RdlCreator.Tests
         string dataProvider = "Microsoft.Data.Sqlite";
 
         [Test]
-        public void TestMethod1()
+        public async Task TestMethod1()
         {
             var create = new RdlCreator.Create();
             var report = GenerateTestData();
-            var fyiReport = create.GenerateRdl(report);
+            var fyiReport = await create.GenerateRdl(report);
             var ms = new fyiReporting.RDL.MemoryStreamGen();
-            fyiReport.RunGetData(null);
-            fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            await fyiReport.RunGetData(null);
+            await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
             var text = ms.GetText();
            
             Assert.That(text, Is.Not.Null);

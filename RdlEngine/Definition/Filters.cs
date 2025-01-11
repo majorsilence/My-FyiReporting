@@ -23,6 +23,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -64,11 +65,11 @@ namespace fyiReporting.RDL
 				_Items.TrimExcess();
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (Filter f in _Items)
 			{
-				f.FinalPass();
+                await f.FinalPass();
 			}
 			return;
 		}
@@ -85,7 +86,7 @@ namespace fyiReporting.RDL
 			return true;
 		}
 
-		internal void ApplyFinalFilters(Report rpt, Rows data, bool makeCopy)
+		internal async Task ApplyFinalFilters(Report rpt, Rows data, bool makeCopy)
 		{
 			// Need to apply the Top/Bottom and then the rest of the data
 			
@@ -112,7 +113,7 @@ namespace fyiReporting.RDL
 			for (; iFilter < _Items.Count && data.Data.Count > 0; iFilter++)
 			{
 				Filter f = (Filter) _Items[iFilter];
-				f.Apply(rpt, data);
+                await f.Apply(rpt, data);
 			}
 			
 			// trim the space

@@ -34,6 +34,7 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -53,9 +54,9 @@ namespace fyiReporting.RDL
 			_Assembly = GetAssembly();
 		}
 		
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		private Assembly GetAssembly()

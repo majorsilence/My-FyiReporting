@@ -25,6 +25,7 @@ using System;
 using System.Xml;
 using System.Collections;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -138,12 +139,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, string.Format("ReportParameter DataType is required but not specified or invalid for {0}.", _Name==null? "<unknown name>": _Name.Nm));
 		}
 
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DefaultValue != null)
-				_DefaultValue.FinalPass();
+                await _DefaultValue.FinalPass();
 			if (_ValidValues != null)
-				_ValidValues.FinalPass();
+                await _ValidValues.FinalPass();
 			return;
 		}
 
@@ -153,7 +154,7 @@ namespace fyiReporting.RDL
 			set {  _Name = value; }
 		}
 
-		internal object GetRuntimeValue(Report rpt)
+		internal async Task<object> GetRuntimeValue(Report rpt)
 		{
 			object rtv = rpt == null? null:
 				rpt.Cache.Get(this, "runtimevalue");
@@ -163,7 +164,7 @@ namespace fyiReporting.RDL
 			if (_DefaultValue == null)
 				return null;
 				
-			object[] result = _DefaultValue.GetValue(rpt);
+			object[] result = await _DefaultValue.GetValue(rpt);
 			if (result == null)
 				return null;
 			object v = result[0];
@@ -177,7 +178,7 @@ namespace fyiReporting.RDL
 			return rtv;
 		}
 
-        internal ArrayList GetRuntimeValues(Report rpt)
+        internal async Task <ArrayList> GetRuntimeValues(Report rpt)
         {
             ArrayList rtv = rpt == null ? null :
                 (ArrayList) rpt.Cache.Get(this, "rtvs");
@@ -188,7 +189,7 @@ namespace fyiReporting.RDL
             if (_DefaultValue == null)
                 return null;
 
-            object[] result = _DefaultValue.GetValue(rpt);
+            object[] result = await _DefaultValue.GetValue(rpt);
             if (result == null)
                 return null;
 
@@ -453,7 +454,10 @@ namespace fyiReporting.RDL
 				if (_DisplayValues == null)
 				{
 					if (_rp.ValidValues != null)
-						_DisplayValues = _rp.ValidValues.DisplayValues(_rpt);
+					{
+						// HACK: async
+						_DisplayValues = Task.Run(async () => await _rp.ValidValues.DisplayValues(_rpt)).GetAwaiter().GetResult();
+					}
 				}
 				return  _DisplayValues;		 
 			}
@@ -469,7 +473,10 @@ namespace fyiReporting.RDL
 				if (_DataValues == null)
 				{
 					if (_rp.ValidValues != null)
-						_DataValues = _rp.ValidValues.DataValues(this._rpt);
+					{
+						// HACK: async
+						_DataValues = Task.Run(async () => await _rp.ValidValues.DataValues(this._rpt)).GetAwaiter().GetResult();
+					}
 				}
 				return  _DataValues;		 
 			}
@@ -540,7 +547,10 @@ namespace fyiReporting.RDL
         /// </summary>
         public ArrayList Values
         {
-            get { return _rp.GetRuntimeValues(this._rpt); }
+            get { 
+				// HACK: async
+				return Task.Run(async () => await _rp.GetRuntimeValues(this._rpt)).GetAwaiter().GetResult(); 
+			}
             set
             {
                 ArrayList ar = new ArrayList(value.Count);

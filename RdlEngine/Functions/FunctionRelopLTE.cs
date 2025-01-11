@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -51,13 +50,13 @@ namespace fyiReporting.RDL
 			return TypeCode.Boolean;
 		}
 
-		public IExpr ConstantOptimization()
+		public async Task<IExpr> ConstantOptimization()
 		{
-			_lhs = _lhs.ConstantOptimization();
-			_rhs = _rhs.ConstantOptimization();
-			if (_lhs.IsConstant() && _rhs.IsConstant())
+			_lhs = await _lhs.ConstantOptimization();
+			_rhs = await _rhs.ConstantOptimization();
+			if (await _lhs.IsConstant() && await _rhs.IsConstant())
 			{
-				bool b = EvaluateBoolean(null, null);
+				bool b = await EvaluateBoolean(null, null);
 				return new ConstantBoolean(b);
 			}
 
@@ -65,45 +64,45 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateBoolean(rpt, row);
+			return await EvaluateBoolean(rpt, row);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			object left = _lhs.Evaluate(rpt, row);
-			object right = _rhs.Evaluate(rpt, row);
+			object left = await _lhs.Evaluate(rpt, row);
+			object right = await _rhs.Evaluate(rpt, row);
 			if (Filter.ApplyCompare(_lhs.GetTypeCode(), left, right) <= 0)
 				return true;
 			else
 				return false;
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return double.NaN;
+			return Task.FromResult(double.NaN);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return decimal.MinValue;
+			return Task.FromResult(decimal.MinValue);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return int.MinValue;
+            return Task.FromResult(int.MinValue);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			bool result = EvaluateBoolean(rpt, row);
+			bool result = await EvaluateBoolean(rpt, row);
 			return result.ToString();
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return DateTime.MinValue;
+			return  Task.FromResult(DateTime.MinValue);
 		}
 	}
 }

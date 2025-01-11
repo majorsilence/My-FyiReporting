@@ -27,6 +27,7 @@ using System.Globalization;
 using System.Xml;
 using fyiReporting.RDL;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -114,12 +115,12 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// 
 		/// <returns>A Report instance.</returns>
-		public Report Parse()
+		public async Task<Report> Parse()
 		{
-			return Parse(0);
+			return await Parse(0);
 		}
 		
-		internal Report Parse(int oc)
+		internal async Task<Report> Parse(int oc)
 			{
 			if (_RdlDocument == null)	// no document?
 				return null;			// nothing to do
@@ -136,6 +137,7 @@ namespace fyiReporting.RDL
 			ReportLog rl = new ReportLog();		// create a report log
 
 			ReportDefn rd = new ReportDefn(xNode, rl, this._Folder, this._DataSourceReferencePassword, oc, OnSubReportGetContent, OverwriteConnectionString, OverwriteInSubreport);
+			await rd.InitializeAsync();
 			_Report = new Report(rd);
 			
 			bPassed = true;

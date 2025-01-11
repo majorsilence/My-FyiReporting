@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -53,47 +52,47 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateString(rpt, row);
+			return await EvaluateString(rpt, row);
 		}
 	
-		public IExpr ConstantOptimization()
+		public async Task<IExpr> ConstantOptimization()
 		{
-			_lhs = _lhs.ConstantOptimization();
-			_rhs = _rhs.ConstantOptimization();
-			if (_lhs.IsConstant() && _rhs.IsConstant())
+			_lhs = await _lhs.ConstantOptimization();
+			_rhs = await _rhs.ConstantOptimization();
+			if (await _lhs.IsConstant() && await _rhs.IsConstant())
 			{
-				string s = EvaluateString(null, null);
+				string s = await EvaluateString(null, null);
 				return new ConstantString(s);
 			}
 
 			return this;
 		}
 	
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 
 			return Convert.ToDouble(result);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToDecimal(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            string result = EvaluateString(rpt, row);
+            string result = await EvaluateString(rpt, row);
             return Convert.ToInt32(result);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			string lhs = _lhs.EvaluateString(rpt, row);
-			string rhs = _rhs.EvaluateString(rpt, row);
+			string lhs = await _lhs.EvaluateString(rpt, row);
+			string rhs = await _rhs.EvaluateString(rpt, row);
 
 			if (lhs != null && rhs != null)
 				return lhs + rhs;
@@ -101,15 +100,15 @@ namespace fyiReporting.RDL
 				return null;
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToBoolean(result);
 		}
 	}

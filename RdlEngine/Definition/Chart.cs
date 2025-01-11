@@ -24,6 +24,8 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
+
 
 #if DRAWINGCOMPAT
 using Drawing = Majorsilence.Drawing;
@@ -198,70 +200,70 @@ namespace fyiReporting.RDL
             
         }
 
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 			if (_SeriesGroupings != null)
-				_SeriesGroupings.FinalPass();
+                await _SeriesGroupings.FinalPass();
 			if (_CategoryGroupings != null)
-				_CategoryGroupings.FinalPass();
+                await _CategoryGroupings.FinalPass();
 			if (_ChartData != null)
-				_ChartData.FinalPass();
+                await _ChartData.FinalPass();
 			if (_Legend != null)
-				_Legend.FinalPass();
+                await _Legend.FinalPass();
 			if (_CategoryAxis != null)
-				_CategoryAxis.FinalPass();
+                await _CategoryAxis.FinalPass();
 			if (_ValueAxis != null)
-				_ValueAxis.FinalPass();
+                await _ValueAxis.FinalPass();
 			if (_Title != null)
-				_Title.FinalPass();
+                await _Title.FinalPass();
 			if (_ThreeDProperties != null)
-				_ThreeDProperties.FinalPass();
+                await _ThreeDProperties.FinalPass();
 			if (_PlotArea != null)
-				_PlotArea.FinalPass();
+                await _PlotArea.FinalPass();
 			//AJM GJL 14082008
             if (_Palette != null)
-                _Palette.FinalPass();
+                await _Palette.FinalPass();
             if (_isHYNEsWonderfulVector != null)
-                _isHYNEsWonderfulVector.FinalPass();
+                await _isHYNEsWonderfulVector.FinalPass();
             if (_showTooltips != null)
-                _showTooltips.FinalPass();
+                await _showTooltips.FinalPass();
             if (_showTooltipsX != null)
-                _showTooltipsX.FinalPass();
+                await _showTooltipsX.FinalPass();
             if (_Subtype != null)
-                _Subtype.FinalPass();
+                await _Subtype.FinalPass();
             if (_ToolTipXFormat != null)
-                _ToolTipXFormat.FinalPass();
+                await _ToolTipXFormat.FinalPass();
             if (_ToolTipYFormat != null)
-                _ToolTipYFormat.FinalPass();
+                await _ToolTipYFormat.FinalPass();
 
 
 			if (this.OwnerReport.rl.MaxSeverity < 8)	// Don't take this step if already have errors
 			{
-				_ChartMatrix = GenerateMatrix();		//   GenerateMatrix() needs no error in defn to date
-				_ChartMatrix.FinalPass();
+				_ChartMatrix = GenerateMatrix();        //   GenerateMatrix() needs no error in defn to date
+                await _ChartMatrix.FinalPass();
 			}
 			return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		override internal async Task Run(IPresent ip, Row row)
 		{
 			Report rpt = ip.Report();
 
 			_ChartMatrix.RunReset(rpt);
-			Rows _Data = GetFilteredData(ip.Report(), row);
+			Rows _Data = await GetFilteredData(ip.Report(), row);
 			SetMyData(ip.Report(), _Data);
 
-			if (!AnyRows(ip, _Data))		// if no rows, return
+			if (!await AnyRows(ip, _Data))		// if no rows, return
 				return;
 
 			// Build the Chart bitmap, along with data regions
 			ChartBase cb=null;
 			try
 			{
-				cb = RunChartBuild(rpt, row);
+				cb = await RunChartBuild(rpt, row);
 
-				ip.Chart(this, row, cb);
+                await ip.Chart(this, row, cb);
 			}
 			catch (Exception ex)
 			{
@@ -275,20 +277,20 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		override internal async Task RunPage(Pages pgs, Row row)
 		{
 			Report rpt = pgs.Report;
 
-			if (IsHidden(pgs.Report, row))
+			if (await IsHidden(pgs.Report, row))
 				return;
 
 			_ChartMatrix.RunReset(rpt);
-			Rows _Data = GetFilteredData(rpt, row);
+			Rows _Data = await GetFilteredData(rpt, row);
 			SetMyData(rpt, _Data);
 
 			SetPagePositionBegin(pgs);
 
-			if (!AnyRowsPage(pgs, _Data))		// if no rows return
+			if (!await AnyRowsPage(pgs, _Data))		// if no rows return
 				return;						//   nothing left to do
 
 			// Build the Chart bitmap, along with data regions
@@ -296,18 +298,18 @@ namespace fyiReporting.RDL
 			ChartBase cb=null;
 			try
 			{
-				cb = RunChartBuild(rpt, row);                   // Build the chart
+				cb = await RunChartBuild(rpt, row);                   // Build the chart
 
 #if DRAWINGCOMPAT
                 p = RunPage_Bitmap(pgs, row, rpt, cb);
 #else
-			    if (!_isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
+			    if (!await _isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
                 {
-                    p = RunPage_Bitmap(pgs, row, rpt, cb);
+                    p = await RunPage_Bitmap(pgs, row, rpt, cb);
                 }
                 else //Ultimate Rendering - Vector //AJM GJL 14082008
                 {
-                    p = RunPage_Emf(pgs, row, rpt, cb);
+                    p = await RunPage_Emf(pgs, row, rpt, cb);
                 }		
 #endif
 
@@ -326,7 +328,7 @@ namespace fyiReporting.RDL
 		}
 
 #if !DRAWINGCOMPAT
-        private Page RunPage_Emf(Pages pgs, Row row, Report rpt, ChartBase cb)
+        private async Task<Page> RunPage_Emf(Pages pgs, Row row, Report rpt, ChartBase cb)
         {
             Page p;
             var im = cb.Image(rpt); // Grab the image
@@ -343,7 +345,7 @@ namespace fyiReporting.RDL
 
             RunPageRegionBegin(pgs);
 
-            SetPagePositionAndStyle(rpt, pi, row);
+            await SetPagePositionAndStyle(rpt, pi, row);
             pi.SI.BackgroundImage = null;   // chart already has the background image
 
             if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
@@ -383,7 +385,7 @@ namespace fyiReporting.RDL
         }
 #endif
 
-        private Page RunPage_Bitmap(Pages pgs, Row row, Report rpt, ChartBase cb)
+        private async Task<Page> RunPage_Bitmap(Pages pgs, Row row, Report rpt, ChartBase cb)
         {
             Page p;
             Drawing.Image im = cb.Image(rpt);   // Grab the image
@@ -421,7 +423,7 @@ namespace fyiReporting.RDL
 
             RunPageRegionBegin(pgs);
 
-            SetPagePositionAndStyle(rpt, pi, row);
+            await SetPagePositionAndStyle(rpt, pi, row);
             pi.SI.BackgroundImage = null;   // chart already has the background image
 
             if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
@@ -447,13 +449,14 @@ namespace fyiReporting.RDL
             return p;
         }
 
-        ChartBase RunChartBuild(Report rpt, Row row)
+        async Task<ChartBase> RunChartBuild(Report rpt, Row row)
 		{
 			// Get the matrix that defines the data; 
 			_ChartMatrix.SetMyData(rpt, GetMyData(rpt));	// set the data in the matrix
 			int maxColumns;
 			int maxRows;
-			MatrixCellEntry[,] matrix = _ChartMatrix.RunBuild(rpt, out maxRows, out maxColumns);
+            MatrixCellEntry[,] matrix;
+            (matrix, maxRows, maxColumns)= await _ChartMatrix.RunBuild(rpt);
 
 			// Build the Chart bitmap, along with data regions
 			ChartBase cb=null;

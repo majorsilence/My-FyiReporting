@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -77,16 +78,16 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Details requires the TableRows element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_TableRows.FinalPass();
+            await _TableRows.FinalPass();
 			if (_Grouping != null)
-				_Grouping.FinalPass();
+                await _Grouping.FinalPass();
 			if (_Sorting != null)
-				_Sorting.FinalPass();
+                await _Sorting.FinalPass();
 			if (_Visibility != null)
 			{
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 				if (_Visibility.ToggleItem != null)
 				{
 					_ToggleTextbox = (Textbox) (OwnerReport.LUReportItems[_Visibility.ToggleItem]);
@@ -97,28 +98,28 @@ namespace fyiReporting.RDL
 			return;
 		}
 		
-		internal void Run(IPresent ip, Rows rs, int start, int end)
+		internal async Task Run(IPresent ip, Rows rs, int start, int end)
 		{
 			// if no rows output or rows just leave
 			if (rs == null || rs.Data == null)
 				return;
-            if (this.Visibility != null && Visibility.IsHidden(ip.Report(), rs.Data[start]) && Visibility.ToggleItem == null)
+            if (this.Visibility != null && await Visibility.IsHidden(ip.Report(), rs.Data[start]) && Visibility.ToggleItem == null)
                 return;                 // not visible
 
 			for (int r=start; r <= end; r++)
 			{
-				_TableRows.Run(ip, rs.Data[r]);
+                await _TableRows.Run(ip, rs.Data[r]);
 			}
 			return;
 		}
 		
-		internal void RunPage(Pages pgs, Rows rs, int start, int end, float footerHeight)
+		internal async Task RunPage(Pages pgs, Rows rs, int start, int end, float footerHeight)
 		{
 			// if no rows output or rows just leave
 			if (rs == null || rs.Data == null)
 				return;
 
-            if (this.Visibility != null && Visibility.IsHidden(pgs.Report, rs.Data[start]))
+            if (this.Visibility != null && await Visibility.IsHidden(pgs.Report, rs.Data[start]))
                 return;                 // not visible
 
 			Page p;
@@ -128,23 +129,23 @@ namespace fyiReporting.RDL
 			{
 				p = pgs.CurrentPage;			// this can change after running a row
 				row = rs.Data[r];
-				float hrows = HeightOfRows(pgs, row);	// height of all the rows in the details
+				float hrows = await HeightOfRows(pgs, row);	// height of all the rows in the details
 				float height = p.YOffset + hrows;
 
                 // add the footerheight that must be on every page
-                height += OwnerTable.GetPageFooterHeight(pgs, row);
+                height += await OwnerTable.GetPageFooterHeight(pgs, row);
 
 				if (r == end) 
 					height += footerHeight;		// on last row; may need additional room for footer
 				if (height > pgs.BottomOfPage)
 				{
-                    OwnerTable.RunPageFooter(pgs, row, false);
+                    await OwnerTable.RunPageFooter(pgs, row, false);
 					p = OwnerTable.RunPageNew(pgs, p);
-					OwnerTable.RunPageHeader(pgs, row, false, null);
-                    _TableRows.RunPage(pgs, row, true);   // force checking since header + hrows might be > BottomOfPage
+                    await OwnerTable.RunPageHeader(pgs, row, false, null);
+                    await _TableRows.RunPage(pgs, row, true);   // force checking since header + hrows might be > BottomOfPage
                 }
-                else 
-				    _TableRows.RunPage(pgs, row, hrows > pgs.BottomOfPage);
+                else
+                    await _TableRows.RunPage(pgs, row, hrows > pgs.BottomOfPage);
 			}
 			return;
 		}
@@ -155,14 +156,14 @@ namespace fyiReporting.RDL
 			set {  _TableRows = value; }
 		}
 
-		internal float HeightOfRows(Pages pgs, Row r)
+		internal async Task<float> HeightOfRows(Pages pgs, Row r)
 		{
-            if (this.Visibility != null && Visibility.IsHidden(pgs.Report, r))
+            if (this.Visibility != null && await Visibility.IsHidden(pgs.Report, r))
             {
                 return 0;
             }
 
-			return _TableRows.HeightOfRows(pgs, r);
+			return await _TableRows.HeightOfRows(pgs, r);
 		}
 
 		internal Grouping Grouping

@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -72,12 +73,12 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DataSetReference != null)
-				_DataSetReference.FinalPass();
+                await _DataSetReference.FinalPass();
 			if (_ParameterValues != null)
-				_ParameterValues.FinalPass();
+                await _ParameterValues.FinalPass();
 			return;
 		}
 
@@ -93,75 +94,69 @@ namespace fyiReporting.RDL
 			set {  _ParameterValues = value; }
 		}
 
-		internal string[] DisplayValues(Report rpt)
+		internal async Task<string[]> DisplayValues(Report rpt)
 		{
-			lock (this)
-			{
-				string[] dsplValues = rpt.Cache.Get(this, "displayvalues") as string[];
-				object[] dataValues;
+			string[] dsplValues = rpt.Cache.Get(this, "displayvalues") as string[];
+			object[] dataValues;
 
-				if (dsplValues != null)
-					return dsplValues;
-
-				if (_DataSetReference != null)
-					_DataSetReference.SupplyValues(rpt, out dsplValues, out dataValues);
-				else
-					_ParameterValues.SupplyValues(rpt, out dsplValues, out dataValues);
-
-                if (dataValues == null)
-                    dataValues = new object[0];
-                if (dsplValues == null)
-                    dsplValues = new string[0];
-
-				// there shouldn't be a problem; but if there is it doesn't matter as values can be recreated
-				try {rpt.Cache.Add(this, "datavalues", dataValues);} 
-				catch (Exception e1)
-				{
-					rpt.rl.LogError(4, "Error caching data values.  " + e1.Message);
-				}
-				try {rpt.Cache.Add(this, "displayvalues", dsplValues);} 
-				catch (Exception e2)
-				{
-					rpt.rl.LogError(4, "Error caching display values.  " + e2.Message);
-				}
-
+			if (dsplValues != null)
 				return dsplValues;
+
+			if (_DataSetReference != null)
+				(dsplValues, dataValues) = await _DataSetReference.SupplyValues(rpt);
+			else
+				(dsplValues, dataValues) = await _ParameterValues.SupplyValues(rpt);
+
+            if (dataValues == null)
+                dataValues = new object[0];
+            if (dsplValues == null)
+                dsplValues = new string[0];
+
+			// there shouldn't be a problem; but if there is it doesn't matter as values can be recreated
+			try {rpt.Cache.Add(this, "datavalues", dataValues);} 
+			catch (Exception e1)
+			{
+				rpt.rl.LogError(4, "Error caching data values.  " + e1.Message);
 			}
+			try {rpt.Cache.Add(this, "displayvalues", dsplValues);} 
+			catch (Exception e2)
+			{
+				rpt.rl.LogError(4, "Error caching display values.  " + e2.Message);
+			}
+
+			return dsplValues;
 		}
 
-		internal object[] DataValues(Report rpt)
+		internal async Task<object[]> DataValues(Report rpt)
 		{
-			lock (this)
-			{
-				string[] dsplValues;
-				object[] dataValues = rpt.Cache.Get(this, "datavalues") as object[];
+			string[] dsplValues;
+			object[] dataValues = rpt.Cache.Get(this, "datavalues") as object[];
 
-				if (dataValues != null)
-					return dataValues;
-
-				if (_DataSetReference != null)
-					_DataSetReference.SupplyValues(rpt, out dsplValues, out dataValues);
-				else
-					_ParameterValues.SupplyValues(rpt, out dsplValues, out dataValues);
-
-                if (dataValues == null)
-                    dataValues = new object[0];
-                if (dsplValues == null)
-                    dsplValues = new string[0];
-
-				// there shouldn't be a problem; but if there is it doesn't matter as values can be recreated
-				try {rpt.Cache.Add(this, "datavalues", dataValues);} 
-				catch (Exception e1)
-				{
-					rpt.rl.LogError(4, "Error caching data values.  " + e1.Message);
-				}
-				try {rpt.Cache.Add(this, "displayvalues", dsplValues);} 
-				catch (Exception e2)
-				{
-					rpt.rl.LogError(4, "Error caching display values.  " + e2.Message);
-				}
+			if (dataValues != null)
 				return dataValues;
+
+			if (_DataSetReference != null)
+				(dsplValues, dataValues)= await _DataSetReference.SupplyValues(rpt);
+			else
+				(dsplValues, dataValues) = await _ParameterValues.SupplyValues(rpt);
+
+            if (dataValues == null)
+                dataValues = new object[0];
+            if (dsplValues == null)
+                dsplValues = new string[0];
+
+			// there shouldn't be a problem; but if there is it doesn't matter as values can be recreated
+			try {rpt.Cache.Add(this, "datavalues", dataValues);} 
+			catch (Exception e1)
+			{
+				rpt.rl.LogError(4, "Error caching data values.  " + e1.Message);
 			}
+			try {rpt.Cache.Add(this, "displayvalues", dsplValues);} 
+			catch (Exception e2)
+			{
+				rpt.rl.LogError(4, "Error caching display values.  " + e2.Message);
+			}
+			return dataValues;		
 		}
 	}
 }

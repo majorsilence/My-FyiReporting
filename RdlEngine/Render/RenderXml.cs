@@ -26,6 +26,7 @@ using fyiReporting.RDL;
 using System.IO;
 using System.Collections;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -106,11 +107,11 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void Textbox(Textbox tb, string t, Row row)
+		public Task Textbox(Textbox tb, string t, Row row)
 		{
 			if (tb.DataElementOutput != DataElementOutputEnum.Output ||
 				tb.DataElementName == null)
-				return;
+				return Task.CompletedTask;
 			
 			if (rowstart != null)		// In case no items in row are visible
 			{							//   we delay until we get one.
@@ -127,32 +128,34 @@ namespace fyiReporting.RDL
 			{	// write out as element
 				WriteElement("<{0}>{1}</{0}>", tb.DataElementName, t);
 			}
-		}
+            return Task.CompletedTask;
+        }
 		
-		public void DataRegionNoRows(DataRegion t, string noRowMsg)
+		public Task DataRegionNoRows(DataRegion t, string noRowMsg)
 		{
-		}
+            return Task.CompletedTask;
+        }
 
 		// Lists
-		public bool ListStart(List l, Row r)
+		public Task<bool> ListStart(List l, Row r)
 		{
 			if (l.DataElementOutput == DataElementOutputEnum.NoOutput)
-				return false;
+				return Task.FromResult(false);
 			if (l.DataElementOutput == DataElementOutputEnum.ContentsOnly)
-				return true;
+				return Task.FromResult(true);
 			WriteElementLine("<{0}>", l.DataElementName);
 
-			return true;	//want to continue
+			return Task.FromResult(true);	//want to continue
 		}
 
-		public void ListEnd(List l, Row r)
+		public Task ListEnd(List l, Row r)
 		{
 			if (l.DataElementOutput == DataElementOutputEnum.NoOutput ||
 				l.DataElementOutput == DataElementOutputEnum.ContentsOnly)
-				return;
+				return Task.CompletedTask;
 
 			WriteElementLine("</{0}>", l.DataElementName);
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void ListEntryBegin(List l, Row r)
@@ -186,10 +189,10 @@ namespace fyiReporting.RDL
 		}
 
 		// Tables					// Report item table
-		public bool TableStart(Table t, Row row)
+		public Task<bool> TableStart(Table t, Row row)
 		{
 			if (t.DataElementOutput == DataElementOutputEnum.NoOutput)
-				return false;
+				return Task.FromResult(false);
 
 			PushContainer(t.DataElementName);
 
@@ -198,20 +201,20 @@ namespace fyiReporting.RDL
 			if (cName != null)
 				WriteAttributeLine("><{0}", cName);
 
-			return true;
+			return Task.FromResult(true);
 		}
 
-		public void TableEnd(Table t, Row row)
+		public Task TableEnd(Table t, Row row)
 		{
 			if (t.DataElementOutput == DataElementOutputEnum.NoOutput)
-				return;
+				return Task.CompletedTask;
 
 			string cName = TableGetCollectionName(t);
 			PopContainer(cName);
 
 			WriteElementLine("</{0}>", t.DataElementName);
 			stkReportItem.Pop();
-			return;
+			return Task.CompletedTask;
 		}
 
 		string TableGetCollectionName(Table t)
@@ -254,12 +257,13 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void TableRowStart(TableRow tr, Row row)
+		public Task TableRowStart(TableRow tr, Row row)
 		{
 			string n = TableGetRowElementName(tr);
 			if (n == null)
-				return;
+				return Task.CompletedTask;
 			PushContainer(n);
+			return Task.CompletedTask;
 		}
 
 		public void TableRowEnd(TableRow tr, Row row)
@@ -306,26 +310,28 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-        public bool MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
+        public Task<bool> MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
 		{
 			if (m.DataElementOutput != DataElementOutputEnum.Output)
-				return false;
+				return Task.FromResult(false);
 			tw.WriteLine("<" + (m.DataElementName == null? "Matrix": m.DataElementName) + ">");
 
-			return true;
+			return Task.FromResult(true);
 		}
 
 		public void MatrixColumns(Matrix m, MatrixColumns mc)	// called just after MatrixStart
 		{
 		}
 
-		public void MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+		public Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
 		{
+			return Task.CompletedTask;
 		}
 
-		public void MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
+		public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
 		{
-		}
+            return Task.CompletedTask;
+        }
 
 		public void MatrixRowStart(Matrix m, int row, Row r)
 		{
@@ -335,24 +341,28 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void MatrixEnd(Matrix m, Row r)				// called last
+		public Task MatrixEnd(Matrix m, Row r)				// called last
 		{
 			tw.WriteLine("</" + (m.DataElementName == null? "Matrix": m.DataElementName) + ">");
-		}
+            return Task.CompletedTask;
+        }
 
-		public void Chart(Chart c, Row r, ChartBase cb)
+		public Task Chart(Chart c, Row r, ChartBase cb)
 		{
+			return Task.CompletedTask;
 		}
 
-		public void Image(Image i, Row r, string mimeType, Stream io)
+		public Task Image(Image i, Row r, string mimeType, Stream io)
 		{
-		}
+            return Task.CompletedTask;
+        }
 
-		public void Line(Line l, Row r)
+		public Task Line(Line l, Row r)
 		{
-		}
+            return Task.CompletedTask;
+        }
 
-		public bool RectangleStart(RDL.Rectangle rect, Row r)
+		public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
 		{
 			bool rc=true;
 			switch (rect.DataElementOutput)
@@ -374,28 +384,30 @@ namespace fyiReporting.RDL
 					break;
 			}
 
-			return rc;
+			return Task.FromResult(rc);
 		}
 
-		public void RectangleEnd(RDL.Rectangle rect, Row r)
+		public Task RectangleEnd(RDL.Rectangle rect, Row r)
 		{
 			if (rect.DataElementOutput != DataElementOutputEnum.Output)
-				return;
+				return Task.CompletedTask;
 			PopContainer(rect.DataElementName);
+
+			return Task.CompletedTask;
 		}
 		
-		public void Subreport(Subreport s, Row r)
+		public async Task Subreport(Subreport s, Row r)
 		{
 			if (s.DataElementOutput != DataElementOutputEnum.Output)
-				return;
+                return;
 
-			PushContainer(s.DataElementName);
+            PushContainer(s.DataElementName);
 
-			s.ReportDefn.Run(this);
+            await s.ReportDefn.Run(this);
 
 			PopContainer(s.DataElementName);
-			return;
-		}
+            return;
+        }
 		public void GroupingStart(Grouping g)			// called at start of grouping
 		{
 			if (g.DataElementOutput != DataElementOutputEnum.Output)

@@ -27,6 +27,7 @@ using System.Reflection;
 using System.Globalization;
 using RdlEngine.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -54,18 +55,18 @@ namespace fyiReporting.RDL
 			return TypeCode.Object;		// we don't know the typecode until we run the function
 		}
 
-		public virtual bool IsConstant()
+		public virtual Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public virtual IExpr ConstantOptimization()
+		public virtual async Task<IExpr> ConstantOptimization()
 		{	
-			_ArgExpr = _ArgExpr.ConstantOptimization();
+			_ArgExpr = await _ArgExpr.ConstantOptimization();
 
-			if (_ArgExpr.IsConstant())
+			if (await _ArgExpr.IsConstant())
 			{
-				string o = _ArgExpr.EvaluateString(null, null);
+				string o = await _ArgExpr.EvaluateString(null, null);
 				if (o == null)
 					throw new Exception(Strings.FunctionGlobalCollection_Error_GlobalsNull); 
 				switch (o.ToLower())
@@ -89,12 +90,12 @@ namespace fyiReporting.RDL
 		}
 
 		// 
-		public virtual object Evaluate(Report rpt, Row row)
+		public virtual async Task<object> Evaluate(Report rpt, Row row)
 		{
 			if (rpt == null)
 				return null;
 
-			string g = _ArgExpr.EvaluateString(rpt, row);
+			string g = await _ArgExpr.EvaluateString(rpt, row);
 			if (g == null)
 				return null;
 
@@ -115,46 +116,46 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		public virtual double EvaluateDouble(Report rpt, Row row)
+		public virtual async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
 			if (row == null)
 				return Double.NaN;
-			return Convert.ToDouble(Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
+			return Convert.ToDouble(await Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
 		}
 		
-		public virtual decimal EvaluateDecimal(Report rpt, Row row)
+		public virtual async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
 			if (row == null)
 				return decimal.MinValue;
-			return Convert.ToDecimal(Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
+			return Convert.ToDecimal(await Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
 		}
 
-        public virtual int EvaluateInt32(Report rpt, Row row)
+        public virtual async Task<int> EvaluateInt32(Report rpt, Row row)
         {
             if (row == null)
                 return int.MinValue;
-            return Convert.ToInt32(Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
+            return Convert.ToInt32(await Evaluate(rpt, row), NumberFormatInfo.InvariantInfo);
         }
 
-        public virtual string EvaluateString(Report rpt, Row row)
+        public virtual async Task<string> EvaluateString(Report rpt, Row row)
 		{
 			if (row == null)
 				return null;
-			return Convert.ToString(Evaluate(rpt, row));
+			return Convert.ToString(await Evaluate(rpt, row));
 		}
 
-		public virtual DateTime EvaluateDateTime(Report rpt, Row row)
+		public virtual async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
 			if (row == null)
 				return DateTime.MinValue;
-			return Convert.ToDateTime(Evaluate(rpt, row));
+			return Convert.ToDateTime(await Evaluate(rpt, row));
 		}
 
-		public virtual bool EvaluateBoolean(Report rpt, Row row)
+		public virtual async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
 			if (row == null)
 				return false;
-			return Convert.ToBoolean(Evaluate(rpt, row));
+			return Convert.ToBoolean(await Evaluate(rpt, row));
 		}
 	}
 }

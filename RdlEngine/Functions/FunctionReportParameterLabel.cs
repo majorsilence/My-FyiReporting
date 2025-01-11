@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -52,26 +51,26 @@ namespace fyiReporting.RDL
                 return base.GetTypeCode();
 		}
 
-		public override bool IsConstant()
+		public override Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public override IExpr ConstantOptimization()
+		public override Task<IExpr> ConstantOptimization()
 		{	// not a constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public override object Evaluate(Report rpt, Row row)
+		public async override Task<object> Evaluate(Report rpt, Row row)
 		{
-			string v = base.EvaluateString(rpt, row);
+			string v = await base.EvaluateString(rpt, row);
 
 			if (p.ValidValues == null)
 				return v;
 
-			string[] displayValues = p.ValidValues.DisplayValues(rpt);
-			object[] dataValues = p.ValidValues.DataValues(rpt);
+			string[] displayValues = await p.ValidValues.DisplayValues(rpt);
+			object[] dataValues = await p.ValidValues.DataValues(rpt);
 
 			for (int i=0; i < dataValues.Length; i++)
 			{
@@ -82,35 +81,35 @@ namespace fyiReporting.RDL
 			return v;
 		}
 		
-		public override double EvaluateDouble(Report rpt, Row row)
+		public async override Task<double> EvaluateDouble(Report rpt, Row row)
 		{	
-			string r = EvaluateString(rpt, row);
+			string r = await EvaluateString(rpt, row);
 
 			return r == null? double.MinValue: Convert.ToDouble(r);
 		}
 		
-		public override decimal EvaluateDecimal(Report rpt, Row row)
+		public override async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			string r = EvaluateString(rpt, row);
+			string r = await EvaluateString(rpt, row);
 
 			return r == null? decimal.MinValue: Convert.ToDecimal(r);
 		}
 
-		public override string EvaluateString(Report rpt, Row row)
+		public async override Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return (string) Evaluate(rpt, row);
+			return (string)await Evaluate(rpt, row);
 		}
 
-		public override DateTime EvaluateDateTime(Report rpt, Row row)
+		public async override Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			string r = EvaluateString(rpt, row);
+			string r = await EvaluateString(rpt, row);
 
 			return r == null? DateTime.MinValue: Convert.ToDateTime(r);
 		}
 
-		public override bool EvaluateBoolean(Report rpt, Row row)
+		public async override Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			string r = EvaluateString(rpt, row);
+			string r = await EvaluateString(rpt, row);
 
 			return r.ToLower() == "true"? true: false;
 		}

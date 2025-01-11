@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Validation;
 using fyiReporting.RDL;
@@ -81,7 +82,7 @@ namespace ReportTests
         };
 
         [Test, TestCaseSource("TestCasesExcelValetFormat")]
-        public void ExcelValet_Format(string file2test,
+        public async Task ExcelValet_Format(string file2test,
                                       string cultureName,
                                       string suffixFileName,
                                       Func<Dictionary<string, IEnumerable>> fillDatasets)
@@ -90,7 +91,7 @@ namespace ReportTests
             OneFileStreamGen sg = null;
 
             Uri fileRdlUri = new Uri(_reportFolder, file2test);
-            Report rap = RdlUtils.GetReport(fileRdlUri);
+            Report rap = await RdlUtils.GetReport(fileRdlUri);
             rap.Folder = _reportFolder.LocalPath;
             if (fillDatasets != null)
             {
@@ -98,10 +99,10 @@ namespace ReportTests
 
                 foreach (var dataset in dataSets)
                 {
-                    rap.DataSets[dataset.Key].SetData(dataset.Value);
+                    await rap.DataSets[dataset.Key].SetData(dataset.Value);
                 }
             }
-            rap.RunGetData(null);
+            await rap.RunGetData(null);
 
             string fileNameOut = string.Format("{0}_{1}_{2}{3}",
                                                 file2test,
@@ -111,7 +112,7 @@ namespace ReportTests
 
             string fullOutputPath = System.IO.Path.Combine(_outputFolder.LocalPath, fileNameOut);
             sg = new OneFileStreamGen(fullOutputPath, true);
-            rap.RunRender(sg, OutputPresentationType.ExcelTableOnly);
+            await rap.RunRender(sg, OutputPresentationType.ExcelTableOnly);
 
 
             

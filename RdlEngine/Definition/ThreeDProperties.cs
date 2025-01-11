@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -115,9 +116,9 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal bool Enabled

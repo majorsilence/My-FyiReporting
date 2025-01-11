@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Validation;
 using fyiReporting.RDL;
@@ -64,7 +65,7 @@ namespace ReportTests.Utils
         };
 
         [Test, TestCaseSource("TestCasesRenderPdf_iTextSharpDraw")]
-        public void RenderPdf_iTextSharpDraw(string file2test,
+        public async Task RenderPdf_iTextSharpDraw(string file2test,
                                       string cultureName,
                                       string suffixFileName,
                                       Func<Dictionary<string, IEnumerable>> fillDatasets)
@@ -75,7 +76,7 @@ namespace ReportTests.Utils
             Uri fileRdlUri = new Uri(_reportFolder, file2test);
             // We change dir so the SQL lite database is found
             System.IO.Directory.SetCurrentDirectory(_reportFolder.LocalPath);
-            Report rap = RdlUtils.GetReport(fileRdlUri);
+            Report rap = await RdlUtils.GetReport(fileRdlUri);
             rap.Folder = _reportFolder.LocalPath;
             if (fillDatasets != null)
             {
@@ -83,10 +84,10 @@ namespace ReportTests.Utils
 
                 foreach (var dataset in dataSets)
                 {
-                    rap.DataSets[dataset.Key].SetData(dataset.Value);
+                    await rap.DataSets[dataset.Key].SetData(dataset.Value);
                 }
             }
-            rap.RunGetData(null);
+            await rap.RunGetData(null);
 
             string fileNameOut = string.Format("{0}_{1}_{2}{3}",
                                                 file2test,
@@ -96,7 +97,7 @@ namespace ReportTests.Utils
 
             string fullOutputPath = System.IO.Path.Combine(_outputFolder.LocalPath, fileNameOut);
             sg = new OneFileStreamGen(fullOutputPath, true);
-            rap.RunRender(sg, OutputPresentationType.RenderPdf_iTextSharp);
+            await rap.RunRender(sg, OutputPresentationType.RenderPdf_iTextSharp);
         }
 
     }

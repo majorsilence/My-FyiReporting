@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -56,55 +55,55 @@ namespace fyiReporting.RDL
 			return TypeCode.Object;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	// not a constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate the value for the expression
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return t.Evaluate(rpt, row);
+			return await t.Evaluate(rpt, row);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDouble(result);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDecimal(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            object result = Evaluate(rpt, row);
+            object result = await Evaluate(rpt, row);
             return Convert.ToInt32(result);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result.ToString();
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToBoolean(result);
 		}
 	}

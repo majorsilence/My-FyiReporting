@@ -31,6 +31,7 @@ using NPOI.XSSF.UserModel.Helpers;
 using System.Linq;
 using NPOI.SS.Util;
 using NPOI.Util;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -273,19 +274,19 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void Textbox(Textbox tb, string t, Row row)
+		public async Task Textbox(Textbox tb, string t, Row row)
 		{
-			if(!tb.IsHidden(report, row)) {
-				excelBuilder.AddTextbox(tb, t, row);
+			if(!await tb.IsHidden(report, row)) {
+                await excelBuilder.AddTextbox(tb, t, row);
 			}
 		}
 
-		private StyleInfo GetStyle(ReportItem ri, Row row)
+		private async Task<StyleInfo> GetStyle(ReportItem ri, Row row)
 		{
 			if(ri.Style == null)
 				return null;
 
-			return ri.Style.GetStyleInfo(report, row);
+			return await ri.Style.GetStyleInfo(report, row);
 		}
 
 		private static bool InTable(ReportItem tb)
@@ -307,18 +308,20 @@ namespace fyiReporting.RDL
 			return (tp == typeof(List));
 		}
 
-		public void DataRegionNoRows(DataRegion d, string noRowsMsg)            // no rows in table
+		public Task DataRegionNoRows(DataRegion d, string noRowsMsg)            // no rows in table
 		{
+			return Task.CompletedTask;
 		}
 
 		// Lists
-		public bool ListStart(List l, Row r)
+		public Task<bool> ListStart(List l, Row r)
 		{
-			return true;
+			return Task.FromResult(true);
 		}
 
-		public void ListEnd(List l, Row r)
+		public Task ListEnd(List l, Row r)
 		{
+			return Task.CompletedTask;
 		}
 
 		public void ListEntryBegin(List l, Row r)
@@ -330,9 +333,9 @@ namespace fyiReporting.RDL
 		}
 
 		// Tables					// Report item table
-		public bool TableStart(Table t, Row row)
+		public async Task<bool> TableStart(Table t, Row row)
 		{
-			if(t.Visibility == null || (t.Visibility != null && !t.Visibility.IsHidden(report, row))) {
+			if(t.Visibility == null || (t.Visibility != null && !await t.Visibility.IsHidden(report, row))) {
 				excelBuilder.AddTable(t);
 				return true;
 			}
@@ -344,9 +347,9 @@ namespace fyiReporting.RDL
 			return false;   // can't have tableGroups; must have 1 detail row
 		}
 
-		public void TableEnd(Table t, Row row)
+		public Task TableEnd(Table t, Row row)
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void TableBodyStart(Table t, Row row)
@@ -373,9 +376,9 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void TableRowStart(TableRow tr, Row row)
+		public async Task TableRowStart(TableRow tr, Row row)
 		{
-			excelBuilder.AddRow(tr, row);
+            await excelBuilder.AddRow(tr, row);
 		}
 
 		public void TableRowEnd(TableRow tr, Row row)
@@ -392,21 +395,23 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		public bool MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)               // called first
+		public Task<bool> MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)               // called first
 		{
-			return true;
+			return Task.FromResult(true);
 		}
 
 		public void MatrixColumns(Matrix m, MatrixColumns mc)   // called just after MatrixStart
 		{
 		}
 
-		public void MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+		public Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
 		{
+			return Task.CompletedTask;
 		}
 
-		public void MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
+		public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
 		{
+			return Task.CompletedTask;
 		}
 
 		public void MatrixRowStart(Matrix m, int row, Row r)
@@ -417,47 +422,49 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		public void MatrixEnd(Matrix m, Row r)              // called last
+		public Task MatrixEnd(Matrix m, Row r)              // called last
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
-		public void Chart(Chart c, Row row, ChartBase cb)
+		public Task Chart(Chart c, Row row, ChartBase cb)
 		{
+			return Task.CompletedTask;
 		}
-		public void Image(Image i, Row r, string mimeType, Stream ioin)
+		public async Task Image(Image i, Row r, string mimeType, Stream ioin)
 		{
-			if(i.Visibility == null || (i.Visibility != null && !i.Visibility.IsHidden(report, r))) {
+			if(i.Visibility == null || (i.Visibility != null && !await i.Visibility.IsHidden(report, r))) {
 				int picIndex = workbook.AddPicture(ioin, XSSFWorkbook.PICTURE_TYPE_JPEG);
 				excelBuilder.AddImage(i, picIndex);
 			}
 		}
 
-		public void Line(Line l, Row row)
+		public async Task Line(Line l, Row row)
 		{
 			float borderWidth = 1;
 			if(l.Style.BorderWidth != null) {
-				borderWidth = l.Style.BorderWidth.EvalDefault(report, row);
+				borderWidth = await l.Style.BorderWidth.EvalDefault(report, row);
 			} else if(l.Style.BorderStyle != null) {
-				borderWidth = (float)l.Style.BorderStyle.EvalDefault(report, row);
+				borderWidth = (float)await l.Style.BorderStyle.EvalDefault(report, row);
 			}
 			excelBuilder.AddLine(l, borderWidth);
-
 		}
 
-		public bool RectangleStart(RDL.Rectangle rect, Row r)
+		public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
 		{
-			return true;
+			return Task.FromResult(true);
 		}
 
-		public void RectangleEnd(RDL.Rectangle rect, Row r)
+		public Task RectangleEnd(RDL.Rectangle rect, Row r)
 		{
+			return Task.CompletedTask;
 		}
 
 		// Subreport:  
-		public void Subreport(Subreport s, Row r)
+		public Task Subreport(Subreport s, Row r)
 		{
-		}
+            return Task.CompletedTask;
+        }
 		public void GroupingStart(Grouping g)           // called at start of grouping
 		{
 		}

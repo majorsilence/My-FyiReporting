@@ -26,6 +26,7 @@ using System.IO;
 using System.Reflection;
 using RdlEngine.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -111,25 +112,25 @@ namespace fyiReporting.RDL
             }
 		}
 
-		public virtual bool IsConstant()
+		public virtual Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public virtual IExpr ConstantOptimization()
+		public virtual Task<IExpr> ConstantOptimization()
 		{	// not a constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public virtual object Evaluate(Report rpt, Row row)
+		public async virtual Task<object> Evaluate(Report rpt, Row row)
 		{
-            return this.p.MultiValue? EvaluateMV(rpt, row): p.GetRuntimeValue(rpt);
+            return this.p.MultiValue? await EvaluateMV(rpt, row): await p.GetRuntimeValue(rpt);
 		}
 
-        private object EvaluateMV(Report rpt, Row row)
+        private async Task<object> EvaluateMV(Report rpt, Row row)
         {
-            ArrayList ar = p.GetRuntimeValues(rpt);
+            ArrayList ar = await p.GetRuntimeValues(rpt);
             
             object va = this._arg == null ? null : _arg.Evaluate(rpt, row);
 
@@ -155,9 +156,9 @@ namespace fyiReporting.RDL
             }
         }
 		
-		public virtual double EvaluateDouble(Report rpt, Row row)
+		public virtual async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-            object rtv = Evaluate(rpt, row);
+            object rtv = await Evaluate(rpt, row);
 			if (rtv == null)
 				return Double.NaN;
 
@@ -180,9 +181,9 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		public virtual decimal EvaluateDecimal(Report rpt, Row row)
+		public virtual async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-            object rtv = Evaluate(rpt, row);
+            object rtv = await Evaluate(rpt, row);
 			if (rtv == null)
 				return Decimal.MinValue;
 
@@ -205,9 +206,9 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        public virtual int EvaluateInt32(Report rpt, Row row)
+        public virtual async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            object rtv = Evaluate(rpt, row);
+            object rtv = await Evaluate(rpt, row);
             if (rtv == null)
                 return int.MinValue;
 
@@ -233,9 +234,9 @@ namespace fyiReporting.RDL
         }
 
 
-		public virtual string EvaluateString(Report rpt, Row row)
+		public virtual async  Task<string> EvaluateString(Report rpt, Row row)
 		{
-            object rtv = this.p.MultiValue ? EvaluateMV(rpt, row) : p.GetRuntimeValue(rpt);
+            object rtv = this.p.MultiValue ? await EvaluateMV(rpt, row) : await p.GetRuntimeValue(rpt);
 //            object rtv = Evaluate(rpt, row);
 			if (rtv == null)
 				return null;
@@ -243,9 +244,9 @@ namespace fyiReporting.RDL
 			return rtv.ToString();
 		}
 
-		public virtual DateTime EvaluateDateTime(Report rpt, Row row)
+		public virtual async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-            object rtv = Evaluate(rpt, row);
+            object rtv = await Evaluate(rpt, row);
 			if (rtv == null)
 				return DateTime.MinValue;
 
@@ -268,9 +269,9 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public virtual bool EvaluateBoolean(Report rpt, Row row)
+		public virtual async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-            object rtv = Evaluate(rpt, row);
+            object rtv = await Evaluate(rpt, row);
 
 			if (rtv == null)
 				return false;

@@ -22,7 +22,7 @@
 */
 using System;
 using System.IO;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -46,54 +46,54 @@ namespace fyiReporting.RDL
 			return TypeCode.Int32;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	// not a constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate is for interpretation  
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{
-            return rpt == null ? (int) 1 : (int) rpt.TotalPages;
+            return rpt == null ? Task.FromResult((int) 1 as object) : Task.FromResult((int) rpt.TotalPages as object);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{	
-			return rpt == null? 1: rpt.TotalPages;
+			return rpt == null? Task.FromResult(1d): Task.FromResult((double)rpt.TotalPages);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return rpt == null ? 1 : rpt.TotalPages;
+            return rpt == null ? Task.FromResult(1) : Task.FromResult(rpt.TotalPages);
         }
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			int result = EvaluateInt32(rpt, row);
+			int result = await EvaluateInt32(rpt, row);
 
 			return Convert.ToDecimal(result);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			int result = EvaluateInt32(rpt, row);
+			int result = await EvaluateInt32(rpt, row);
 			return result.ToString();
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			int result = EvaluateInt32(rpt, row);
+			int result = await EvaluateInt32(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			int result = EvaluateInt32(rpt, row);
+			int result = await EvaluateInt32(rpt, row);
 			return Convert.ToBoolean(result);
 		}
 		

@@ -31,6 +31,7 @@ using System.Drawing.Printing;
 using System.Text;
 using fyiReporting.RdlViewer.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlViewer
 {
@@ -152,12 +153,12 @@ namespace fyiReporting.RdlViewer
             this.Visible = false;
         }
 
-        private void bFindNext_Click(object sender, EventArgs e)
+        private async void bFindNext_Click(object sender, EventArgs e)
         {
-            FindNext();
+            await FindNext();
         }
 
-        public void FindNext()
+        public async Task FindNext()
         {
             if (_Viewer == null)
                 throw new ApplicationException(Strings.RdlViewerFind_ErrorA_PropertyMustSetPriorFindNext);
@@ -171,33 +172,33 @@ namespace fyiReporting.RdlViewer
                 RdlViewerFinds.None;
 
             bool begin = position == null;
-            position = _Viewer.Find(tbFind.Text, position, findOptions);
+            position = await _Viewer.Find(tbFind.Text, position, findOptions);
             if (position == null)
             {   
                 if (!begin)     // if we didn't start from beginning already; try from beginning
-                    position = _Viewer.Find(tbFind.Text, position, findOptions);
+                    position = await _Viewer.Find(tbFind.Text, position, findOptions);
 
                 lStatus.Text = position == null ? 
                     Strings.RdlViewerFind_FindNext_Phrase_not_found : Strings.RdlViewerFind_FindNext_Reached_end_of_report;
 
                 _Viewer.HighlightPageItem = position;
                 if (position != null)
-                    _Viewer.ScrollToPageItem(position);
+                    await _Viewer.ScrollToPageItem(position);
             }
             else
             {
                 lStatus.Text = "";
                 _Viewer.HighlightPageItem = position;
-                _Viewer.ScrollToPageItem(position);
+                await _Viewer.ScrollToPageItem(position);
             }
         }
 
-        private void bFindPrevious_Click(object sender, EventArgs e)
+        private async void bFindPrevious_Click(object sender, EventArgs e)
         {
-            FindPrevious();
+            await FindPrevious();
         }
 
-        public void FindPrevious()
+        public async Task FindPrevious()
         {
             if (_Viewer == null)
                 throw new ApplicationException(Strings.RdlViewerFind_ErrorA_PropertyMustSetPriorFindPrevious);
@@ -209,35 +210,35 @@ namespace fyiReporting.RdlViewer
                 (ckMatchCase.Checked ? RdlViewerFinds.MatchCase : RdlViewerFinds.None);
 
             bool begin = position == null;
-            position = _Viewer.Find(tbFind.Text, position, findOptions);
+            position = await _Viewer.Find(tbFind.Text, position, findOptions);
             if (position == null)
             {
                 if (!begin)     // if we didn't start from beginning already; try from bottom
-                    position = _Viewer.Find(tbFind.Text, position, findOptions);
+                    position = await _Viewer.Find(tbFind.Text, position, findOptions);
 
                 lStatus.Text = position == null ?
 					Strings.RdlViewerFind_FindNext_Phrase_not_found : Strings.RdlViewerFind_FindPrevious_Reached_top_of_report;
 
                 _Viewer.HighlightPageItem = position;
                 if (position != null)
-                    _Viewer.ScrollToPageItem(position);
+                    await _Viewer.ScrollToPageItem(position);
             }
             else
             {
                 lStatus.Text = "";
                 _Viewer.HighlightPageItem = position;
-                _Viewer.ScrollToPageItem(position);
+                await _Viewer.ScrollToPageItem(position);
             }
         }
 
-        private void RdlViewerFind_VisibleChanged(object sender, EventArgs e)
+        private async void RdlViewerFind_VisibleChanged(object sender, EventArgs e)
         {
             lStatus.Text = "";
             if (this.Visible)
             {
                 _Viewer.HighlightText = tbFind.Text;
                 tbFind.Focus();
-                FindNext();         // and go find the contents of the textbox
+                await FindNext();         // and go find the contents of the textbox
             }
             else
             {   // turn off any highlighting when find control not visible
@@ -248,7 +249,7 @@ namespace fyiReporting.RdlViewer
             }
         }
 
-        private void tbFind_TextChanged(object sender, EventArgs e)
+        private async void tbFind_TextChanged(object sender, EventArgs e)
         {
             lStatus.Text = "";
             position = null;        // reset position when edit changes?? todo not really
@@ -256,7 +257,7 @@ namespace fyiReporting.RdlViewer
             ckHighlightAll.Enabled = bFindNext.Enabled = bFindPrevious.Enabled =
                     tbFind.Text.Length > 0;
             if (tbFind.Text.Length > 0)
-                FindNext();
+                await FindNext();
         }
 
         private void ckHighlightAll_CheckedChanged(object sender, EventArgs e)

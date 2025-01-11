@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -81,27 +82,27 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Body Height not specified.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+				await _ReportItems.FinalPass();
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			ip.BodyStart(this);
 
 			if (_ReportItems != null)
-				_ReportItems.Run(ip, null);	// not sure about the row here?
+                await _ReportItems.Run(ip, null);	// not sure about the row here?
 
 			ip.BodyEnd(this);
 			return ;
 		}
 
-		internal void RunPage(Pages pgs)
+		internal async Task RunPage(Pages pgs)
 		{
 			if (OwnerReport.Subreport == null)
 			{	// Only set bottom of pages when on top level report
@@ -111,7 +112,7 @@ namespace fyiReporting.RDL
 			this.SetCurrentColumn(pgs.Report, 0);
 
 			if (_ReportItems != null)
-				_ReportItems.RunPage(pgs, null, OwnerReport.LeftMargin.Points);
+                await _ReportItems.RunPage(pgs, null, OwnerReport.LeftMargin.Points);
 
 			return ;
 		}

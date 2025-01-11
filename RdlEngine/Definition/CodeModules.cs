@@ -26,6 +26,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.Reflection;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -96,11 +97,11 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (CodeModule cm in _Items)
 			{
-				cm.FinalPass();
+                await cm.FinalPass();
 			}
 			return;
 		}

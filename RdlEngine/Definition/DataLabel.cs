@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -80,12 +81,12 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			if (_Style != null) 
-				_Style.FinalPass();
-			if (_Value != null) 
-				_Value.FinalPass();
+			if (_Style != null)
+                await _Style.FinalPass();
+			if (_Value != null)
+                await _Value.FinalPass();
 			return;
 		}
 

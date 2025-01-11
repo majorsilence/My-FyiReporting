@@ -25,6 +25,7 @@ using System.IO;
 using System.Globalization;
 using RdlEngine.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -47,50 +48,50 @@ namespace fyiReporting.RDL
 			return TypeCode.String;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate is for interpretation  
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateString(rpt, row);
+			return await EvaluateString(rpt, row);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{	
 			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDouble);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
 			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDecimal);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
             throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToInt32);
         }
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
 			if (rpt == null || rpt.ClientLanguage == null)
-				return CultureInfo.CurrentCulture.ThreeLetterISOLanguageName;
+				return Task.FromResult(CultureInfo.CurrentCulture.ThreeLetterISOLanguageName);
 			else
-				return rpt.ClientLanguage;
+				return Task.FromResult(rpt.ClientLanguage);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
 			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToDateTime);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
 			throw new Exception(Strings.FunctionUserLanguage_Error_ConvertToBoolean);
 		}

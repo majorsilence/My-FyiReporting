@@ -152,9 +152,9 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="sg">IStreamGen for generating result stream</param>
 		/// <param name="type">Presentation type: HTML, XML, PDF, or ASP compatible HTML</param>
-		public void RunRender(IStreamGen sg, OutputPresentationType type)
+		public async Task RunRender(IStreamGen sg, OutputPresentationType type)
 		{
-			RunRender(sg, type, "");
+            await RunRender(sg, type, "");
 		}
 
 		/// <summary>
@@ -163,7 +163,7 @@ namespace fyiReporting.RDL
 		/// <param name="sg">IStreamGen for generating result stream</param>
 		/// <param name="type">Presentation type: HTML, XML, PDF, MHT, or ASP compatible HTML</param>
 		/// <param name="prefix">For HTML puts prefix allowing unique name generation</param>
-		public void RunRender(IStreamGen sg, OutputPresentationType type, string prefix)
+		public async Task RunRender(IStreamGen sg, OutputPresentationType type, string prefix)
 		{
 			if (sg == null)
 				throw new ArgumentException("IStreamGen argument cannot be null.", "sg");
@@ -179,18 +179,18 @@ namespace fyiReporting.RDL
                 case OutputPresentationType.RenderPdf_iTextSharp:
                 case OutputPresentationType.PDFOldStyle:
                     ip =new RenderPdf_iTextSharp(this, sg);
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;          
 #if !DRAWINGCOMPAT
 				case OutputPresentationType.TIF:
                     ip = new RenderTif(this, sg);
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;
                 case OutputPresentationType.TIFBW:
                     RenderTif rtif = new RenderTif(this, sg);
                     rtif.RenderColor = false;
                     ip = rtif;
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;
 #endif
                 case OutputPresentationType.XML:
@@ -198,35 +198,35 @@ namespace fyiReporting.RDL
 					{
 						msg = new MemoryStreamGen();
 						ip = new RenderXml(this, msg);
-						_Report.Run(ip);
+                        await _Report.Run(ip);
 						RunRenderXmlTransform(sg, msg);
 					}
 					else
 					{
-						ip = new RenderXml(this, sg);    
-						_Report.Run(ip);
+						ip = new RenderXml(this, sg);
+                        await _Report.Run(ip);
 					}
 					break;
 				case OutputPresentationType.MHTML:
-					this.RunRenderMht(sg);
+                    await this.RunRenderMht(sg);
 					break;
                 case OutputPresentationType.CSV:
                     ip = new RenderCsv(this, sg);
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;
                 case OutputPresentationType.RTF:
                     ip = new RenderRtf(this, sg);
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;
 				case OutputPresentationType.Excel2003:
                 case OutputPresentationType.Excel2007:
 					ip = new RenderExcel2007(this, sg);
-					_Report.Run(ip);
+                    await _Report.Run(ip);
 					break;
                 case OutputPresentationType.ExcelTableOnly:
                 case OutputPresentationType.Excel2007DataOnly:
                     ip = new RenderExcel2007DataOnly(this, sg);
-                    _Report.Run(ip);
+                    await _Report.Run(ip);
                     break;
                 case OutputPresentationType.ASPHTML:
 				case OutputPresentationType.HTML:
@@ -234,7 +234,7 @@ namespace fyiReporting.RDL
 					ip = rh = new RenderHtml(this, sg);
 					rh.Asp = (type == OutputPresentationType.ASPHTML);
 					rh.Prefix = prefix;
-					_Report.Run(ip);
+                    await _Report.Run(ip);
 					// Retain the CSS and JavaScript
 					if (rh != null)
 					{
@@ -249,7 +249,7 @@ namespace fyiReporting.RDL
             return;
 		}
 
-		private void RunRenderMht(IStreamGen sg)
+		private async Task RunRenderMht(IStreamGen sg)
 		{
 			OneFileStreamGen temp = null;
 			FileStream fs=null;
@@ -257,7 +257,7 @@ namespace fyiReporting.RDL
 			{
 				string tempHtmlReportFileName = Path.ChangeExtension(Path.GetTempFileName(), "htm");
 				temp = new OneFileStreamGen(tempHtmlReportFileName, true);
-				RunRender(temp, OutputPresentationType.HTML);
+                await RunRender(temp, OutputPresentationType.HTML);
 				temp.CloseMainStream();
 
 				// Create the mht file (into a temporary file position)
@@ -384,7 +384,7 @@ namespace fyiReporting.RDL
 		/// Build the Pages for this report.
 		/// </summary>
 		/// <returns></returns>
-		public Pages BuildPages()
+		public async Task<Pages> BuildPages()
 		{
 			PageNumber = 1;		// reset page numbers
 			TotalPages = 1;
@@ -397,17 +397,17 @@ namespace fyiReporting.RDL
 				Page p = new Page(1);				// kick it off with a new page
 				pgs.AddPage(p);
 
-				// Create all the pages
-				_Report.Body.RunPage(pgs);
+                // Create all the pages
+                await _Report.Body.RunPage(pgs);
 
 				if (pgs.LastPage.IsEmpty() && pgs.PageCount > 1) // get rid of extraneous pages which
 					pgs.RemoveLastPage();			//   can be caused by region page break at end
 
 				// Now create the headers and footers for all the pages (as needed)
 				if (_Report.PageHeader != null)
-					_Report.PageHeader.RunPage(pgs);
+                    await _Report.PageHeader.RunPage(pgs);
 				if (_Report.PageFooter != null)
-					_Report.PageFooter.RunPage(pgs);
+                    await _Report.PageFooter.RunPage(pgs);
 				// clear out any runtime clutter
 				foreach (Page pg in pgs)
 					pg.ResetPageExpressions();
@@ -656,8 +656,11 @@ namespace fyiReporting.RDL
 		{
 			get 
             {
-                if (_Report.Language != null)
-                    return _Report.Language.EvaluateString(this, null);
+				if (_Report.Language != null)
+				{
+					// HACK: async
+					return Task.Run(async () => await _Report.Language.EvaluateString(this, null)).GetAwaiter().GetResult();
+				}
 
                 if (_ClientLanguage != null)
                     return _ClientLanguage;

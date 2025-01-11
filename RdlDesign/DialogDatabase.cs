@@ -36,6 +36,7 @@ using System.Globalization;
 using System.Xml;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlDesign
 {
@@ -381,7 +382,7 @@ namespace fyiReporting.RdlDesign
             this.Close();
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, System.EventArgs e)
+        private async void tabControl1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             TabControl tc = (TabControl)sender;
             string tag = (string)tc.TabPages[tc.SelectedIndex].Tag;
@@ -401,7 +402,7 @@ namespace fyiReporting.RdlDesign
                     DoReportSyntax(false);
                     break;
                 case "preview":	// run report using generated report syntax
-                    DoReportPreview();
+                    await DoReportPreview();
                     break;
                 default:
                     break;
@@ -939,7 +940,7 @@ namespace fyiReporting.RdlDesign
                 sb.Append("</QueryParameters>");
         }
 
-        private bool DoReportPreview()
+        private async Task<bool> DoReportPreview()
         {
             if (!DoReportSyntax(true))
                 return false;
@@ -952,7 +953,7 @@ namespace fyiReporting.RdlDesign
             {
                 rdlViewer1.GetDataSourceReferencePassword = _rUserControl.SharedDatasetPassword;
             }
-            rdlViewer1.SourceRdl = tbReportSyntax.Text;
+            await rdlViewer1.SetSourceRdl(tbReportSyntax.Text);
             return true;
         }
 

@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -68,12 +69,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "RowGrouping requires the Width element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DynamicRows != null)
-				_DynamicRows.FinalPass();
+                await _DynamicRows.FinalPass();
 			if (_StaticRows != null)
-				_StaticRows.FinalPass();
+                await _StaticRows.FinalPass();
 			return;
 		}
 

@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -56,10 +57,10 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Axis != null)
-				_Axis.FinalPass();
+                await _Axis.FinalPass();
 			return;
 		}
 

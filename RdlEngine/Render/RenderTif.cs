@@ -32,6 +32,7 @@ using System.Drawing.Imaging;
 
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -873,22 +874,25 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void Textbox(Textbox tb, string t, Row row)
+        public Task Textbox(Textbox tb, string t, Row row)
         {
+            return Task.CompletedTask;
         }
 
-        public void DataRegionNoRows(DataRegion d, string noRowsMsg)
+        public Task DataRegionNoRows(DataRegion d, string noRowsMsg)
         {
+            return Task.CompletedTask;
         }
 
         // Lists 
-        public bool ListStart(List l, Row r)
+        public Task<bool> ListStart(List l, Row r)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void ListEnd(List l, Row r)
+        public Task ListEnd(List l, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void ListEntryBegin(List l, Row r)
@@ -900,13 +904,14 @@ namespace fyiReporting.RDL
         }
 
         // Tables               // Report item table 
-        public bool TableStart(Table t, Row row)
+        public Task<bool> TableStart(Table t, Row row)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void TableEnd(Table t, Row row)
+        public Task TableEnd(Table t, Row row)
         {
+            return Task.CompletedTask;
         }
 
         public void TableBodyStart(Table t, Row row)
@@ -933,8 +938,9 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void TableRowStart(TableRow tr, Row row)
+        public Task TableRowStart(TableRow tr, Row row)
         {
+            return Task.CompletedTask;
         }
 
         public void TableRowEnd(TableRow tr, Row row)
@@ -951,21 +957,23 @@ namespace fyiReporting.RDL
             return;
         }
 
-        public bool MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)            // called first 
+        public Task<bool> MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)            // called first 
         {
-            return true;
+            return Task.FromResult(true);
         }
 
         public void MatrixColumns(Matrix m, MatrixColumns mc)   // called just after MatrixStart 
         {
         }
 
-        public void MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+        public Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
         {
+            return Task.CompletedTask;
         }
 
-        public void MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
+        public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void MatrixRowStart(Matrix m, int row, Row r)
@@ -976,34 +984,39 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void MatrixEnd(Matrix m, Row r)            // called last 
+        public Task MatrixEnd(Matrix m, Row r)            // called last 
         {
+            return Task.CompletedTask;
         }
 
-        public void Chart(Chart c, Row r, ChartBase cb)
+        public Task Chart(Chart c, Row r, ChartBase cb)
         {
+            return Task.CompletedTask;
         }
 
-        public void Image(fyiReporting.RDL.Image i, Row r, string mimeType, Stream ior)
+        public Task Image(fyiReporting.RDL.Image i, Row r, string mimeType, Stream ior)
         {
+            return Task.CompletedTask;
         }
 
-        public void Line(Line l, Row r)
+        public Task Line(Line l, Row r)
         {
-            return;
+            return Task.CompletedTask;
         }
 
-        public bool RectangleStart(RDL.Rectangle rect, Row r)
+        public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void RectangleEnd(RDL.Rectangle rect, Row r)
+        public Task RectangleEnd(RDL.Rectangle rect, Row r)
         {
+            return Task.CompletedTask;
         }
 
-        public void Subreport(Subreport s, Row r)
+        public Task Subreport(Subreport s, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void GroupingStart(Grouping g)         // called at start of grouping 

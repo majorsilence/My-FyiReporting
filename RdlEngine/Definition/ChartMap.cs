@@ -35,6 +35,7 @@ using Imaging = System.Drawing.Imaging;
 using System.Text;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -50,7 +51,7 @@ namespace fyiReporting.RDL
 		{
 		}
 
-		override internal void Draw(Report rpt)
+		override internal async Task Draw(Report rpt)
 		{
 			CreateSizedBitmap();
 #if !DRAWINGCOMPAT
@@ -79,40 +80,40 @@ namespace fyiReporting.RDL
                 g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
 
 				// Adjust the top margin to depend on the title height
-				Drawing.Size titleSize = DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Drawing.Size titleSize = await DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
-				double max=0,min=0;	// Get the max and min values
-		//		GetValueMaxMin(rpt, ref max, ref min,0, 1);
+				double max=0,min=0; // Get the max and min values
+                                    //		GetValueMaxMin(rpt, ref max, ref min,0, 1);
 
-				DrawChartStyle(rpt, g);
-				
-				// Draw title; routine determines if necessary
-				DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
+                await DrawChartStyle(rpt, g);
+
+                // Draw title; routine determines if necessary
+                await DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
 
 				Layout.LeftMargin = 0;
                 Layout.RightMargin = 0;
 
 				// Draw legend
-				Drawing.Rectangle lRect = DrawLegend(rpt, g, false, true);
+				Drawing.Rectangle lRect = await DrawLegend(rpt, g, false, true);
 
 				Layout.BottomMargin = 0;
 
-				AdjustMargins(lRect,rpt, g);		// Adjust margins based on legend.
+				AdjustMargins(lRect,rpt, g);        // Adjust margins based on legend.
 
-				// Draw Plot area
-				DrawPlotAreaStyle(rpt, g, lRect);
+                // Draw Plot area
+                await DrawPlotAreaStyle(rpt, g, lRect);
 
-                string subtype = _ChartDefn.Subtype.EvaluateString(rpt, _row);
-                
-                DrawMap(rpt, g, subtype, max, min);
+                string subtype = await _ChartDefn.Subtype.EvaluateString(rpt, _row);
 
-				DrawLegend(rpt, g, false, false);
+                await DrawMap(rpt, g, subtype, max, min);
+
+                await DrawLegend(rpt, g, false, false);
 
 			}
 		}
 
-        private void DrawMap(Report rpt, Drawing.Graphics g, string mapfile, double max, double min)
+        private async Task DrawMap(Report rpt, Drawing.Graphics g, string mapfile, double max, double min)
         {
             string file = XmlUtil.XmlFileExists(mapfile);
 
@@ -130,9 +131,9 @@ namespace fyiReporting.RDL
             {
                 for (int iCol = 1; iCol <= SeriesCount; iCol++)
                 {
-                    string sv = GetSeriesValue(rpt, iCol);
+                    string sv = await GetSeriesValue(rpt, iCol);
 
-                    string c = this.GetDataValueString(rpt, iRow, iCol);
+                    string c = await this.GetDataValueString(rpt, iRow, iCol);
                     List<MapPolygon> pl = mp.GetPolygon(sv);
                     if (pl == null)
                         continue;

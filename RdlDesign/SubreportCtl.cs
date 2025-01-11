@@ -31,6 +31,7 @@ using System.Text;
 using System.IO;
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlDesign
 {
@@ -262,7 +263,7 @@ namespace fyiReporting.RdlDesign
             }
 		}
 
-		private void bRefreshParms_Click(object sender, System.EventArgs e)
+		private async void bRefreshParms_Click(object sender, System.EventArgs e)
 		{
 			// Obtain the source
 			string filename="";
@@ -277,7 +278,7 @@ namespace fyiReporting.RdlDesign
 				return;						// error: message already displayed
 
 			// Compile the report
-			Report report = this.GetReport(source, filename);
+			Report report = await this.GetReport(source, filename);
 			if (report == null)
 				return;					// error: message already displayed
 			
@@ -316,7 +317,7 @@ namespace fyiReporting.RdlDesign
 			return prog;
 		}
 
-		private Report GetReport(string prog, string file)
+		private async Task<Report> GetReport(string prog, string file)
 		{
 			// Now parse the file
 			RDLParser rdlp;
@@ -329,7 +330,7 @@ namespace fyiReporting.RdlDesign
 					folder = Environment.CurrentDirectory;
 				rdlp.Folder = folder;
 
-				r = rdlp.Parse();
+				r = await rdlp.Parse();
 				if (r.ErrorMaxSeverity > 4) 
 				{
 					MessageBox.Show(Strings.DrillParametersDialog_ShowC_ReportHasErrors);

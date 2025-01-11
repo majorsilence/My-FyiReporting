@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -71,9 +72,9 @@ namespace fyiReporting.RDL
 			return _LoadedAssembly;
 		}
 
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal string CdModule

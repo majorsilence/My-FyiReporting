@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -87,18 +88,18 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "DynamicColumns requires the ReportItems element defined with exactly one report item.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Grouping != null)
-				_Grouping.FinalPass();
+                await _Grouping.FinalPass();
 			if (_Sorting != null)
-				_Sorting.FinalPass();
+                await _Sorting.FinalPass();
 			if (_Subtotal != null)
-				_Subtotal.FinalPass();
+                await _Subtotal.FinalPass();
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+                await _ReportItems.FinalPass();
 			if (_Visibility != null)
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 			return;
 		}
 

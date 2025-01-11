@@ -203,22 +203,22 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			if (_Action != null)
-				_Action.FinalPass();
+                await _Action.FinalPass();
 			if (_Visibility != null)
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 			if (_ToolTip != null)
-				_ToolTip.FinalPass();
+                await _ToolTip.FinalPass();
 			if (_Label != null)
-				_Label.FinalPass();
+                await _Label.FinalPass();
 			if (_Bookmark != null)
-				_Bookmark.FinalPass();
+                await _Bookmark.FinalPass();
 			if (_Custom != null)
-				_Custom.FinalPass();
+                await _Custom.FinalPass();
 
 			if (Parent.Parent is TableCell)	// This is part of a table
 			{
@@ -342,25 +342,13 @@ namespace fyiReporting.RDL
 			return w;
 		}
 
-		internal virtual void Run(IPresent ip, Row row)
-		{
-			return;
-		}
-
-        internal virtual Task RunAsync(IPresent ip, Row row)
+        internal virtual Task Run(IPresent ip, Row row)
         {
-			Run(ip, row);
             return Task.CompletedTask;
         }
 
-        internal virtual void RunPage(Pages pgs, Row row)
-		{
-			return;
-		}
-
-        virtual internal Task RunPageAsync(Pages pgs, Row row)
+        virtual internal Task RunPage(Pages pgs, Row row)
         {
-            RunPage(pgs, row);
             return Task.CompletedTask;
         }
 
@@ -501,11 +489,11 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		internal bool IsHidden(Report rpt, Row r)
+		internal async Task<bool> IsHidden(Report rpt, Row r)
 		{
 			if (this._Visibility == null)
 				return false;
-			return _Visibility.IsHidden(rpt, r);
+			return await _Visibility.IsHidden(rpt, r);
 		}
 
 		internal void SetPageLeft(Report rpt)
@@ -521,7 +509,7 @@ namespace fyiReporting.RDL
 				Left = new RSize(OwnerReport, "0pt");
 		}
 
-		internal void SetPagePositionAndStyle(Report rpt, PageItem pi, Row row)
+		internal async Task SetPagePositionAndStyle(Report rpt, PageItem pi, Row row)
 		{
 			WorkClass wc = GetWC(rpt);
 			pi.X = GetOffsetCalc(rpt) + LeftCalc(rpt);
@@ -577,7 +565,7 @@ namespace fyiReporting.RDL
                     pi.W = this.WidthOrOwnerWidth(rpt);
             }
 			if (Style != null)
-				pi.SI = Style.GetStyleInfo(rpt, row);
+				pi.SI = await Style.GetStyleInfo(rpt, row);
 			else
 				pi.SI = new StyleInfo();	// this will just default everything
 
@@ -586,15 +574,15 @@ namespace fyiReporting.RDL
 			// Catch any action needed
 			if (this._Action != null)
 			{
-				pi.BookmarkLink = _Action.BookmarkLinkValue(rpt, row);
-				pi.HyperLink = _Action.HyperLinkValue(rpt, row);
+				pi.BookmarkLink = await _Action.BookmarkLinkValue(rpt, row);
+				pi.HyperLink = await _Action.HyperLinkValue(rpt, row);
 			}
 
             if (this._Bookmark != null)
-                pi.Bookmark = _Bookmark.EvaluateString(rpt, row);
+                pi.Bookmark = await _Bookmark.EvaluateString(rpt, row);
 
 			if (this._ToolTip != null)
-				pi.Tooltip = _ToolTip.EvaluateString(rpt, row);
+				pi.Tooltip = await _ToolTip.EvaluateString(rpt, row);
 		}
 
 		internal MatrixCellEntry GetMC(Report rpt)
@@ -848,12 +836,12 @@ namespace fyiReporting.RDL
 			set {  _ToolTip = value; }
 		}
 
-		internal string ToolTipValue(Report rpt, Row r)
+		internal async Task<string> ToolTipValue(Report rpt, Row r)
 		{
 			if (_ToolTip == null)
 				return null;
 
-			return _ToolTip.EvaluateString(rpt, r);
+			return await _ToolTip.EvaluateString(rpt, r);
 		}
 
 		internal Expression Label
@@ -874,12 +862,12 @@ namespace fyiReporting.RDL
 			set {  _Bookmark = value; }
 		}
 
-		internal string BookmarkValue(Report rpt, Row r)
+		internal async Task<string> BookmarkValue(Report rpt, Row r)
 		{
 			if (_Bookmark == null)
 				return null;
 
-			return _Bookmark.EvaluateString(rpt, r);
+			return await _Bookmark.EvaluateString(rpt, r);
 		}
 
 		internal TableCell TC
@@ -927,7 +915,9 @@ namespace fyiReporting.RDL
 					if (this is Textbox)
 					{
 						Textbox tb = this as Textbox;
-						if (tb.Value.IsConstant())
+						// HACK: async
+						bool isConstant = Task.Run(async () => await tb.Value.IsConstant()).GetAwaiter().GetResult();
+                        if (isConstant)
 							return DataElementOutputEnum.NoOutput;
 						else
 							return DataElementOutputEnum.Output;

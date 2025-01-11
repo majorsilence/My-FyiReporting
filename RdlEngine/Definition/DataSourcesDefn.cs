@@ -77,11 +77,11 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (DataSourceDefn ds in _Items.Values)
 			{
-				ds.FinalPass();
+                await ds.FinalPass();
 			}
 			return;
 		}

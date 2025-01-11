@@ -22,7 +22,7 @@
 */
 using System;
 using System.IO;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -46,50 +46,50 @@ namespace fyiReporting.RDL
 			return TypeCode.String;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	// not a constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{
-			return rpt.Folder;
+			return Task.FromResult(rpt.Folder as object);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{	
-			return double.NaN;
+			return Task.FromResult(double.NaN);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return Decimal.MinValue;
+			return Task.FromResult(Decimal.MinValue);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return int.MinValue;
+            return Task.FromResult(int.MinValue);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return rpt == null? "": rpt.Folder;
+			return rpt == null? Task.FromResult(""): Task.FromResult(rpt.Folder);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 	}
 }

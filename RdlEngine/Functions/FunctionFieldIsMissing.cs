@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -52,45 +51,45 @@ namespace fyiReporting.RDL
 			return TypeCode.Boolean;
 		}
 
-		public override bool IsConstant()
+		public override Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public override IExpr ConstantOptimization()
+		public override Task<IExpr> ConstantOptimization()
 		{	
-			return this;	// not a constant
+			return Task.FromResult(this as IExpr);	// not a constant
 		}
 
 		// 
-		public override object Evaluate(Report rpt, Row row)
+		public override async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateBoolean(rpt, row);
+			return await EvaluateBoolean(rpt, row);
 		}
 		
-		public override double EvaluateDouble(Report rpt, Row row)
+		public override async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return EvaluateBoolean(rpt, row)? 1: 0;
+			return await EvaluateBoolean(rpt, row)? 1: 0;
 		}
 		
-		public override decimal EvaluateDecimal(Report rpt, Row row)
+		public override async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return EvaluateBoolean(rpt, row)? 1m: 0m;
+			return await EvaluateBoolean(rpt, row)? 1m: 0m;
 		}
 
-		public override string EvaluateString(Report rpt, Row row)
+		public override async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return EvaluateBoolean(rpt, row)? "True": "False";
+			return await EvaluateBoolean(rpt, row)? "True": "False";
 		}
 
-		public override DateTime EvaluateDateTime(Report rpt, Row row)
+		public override Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return DateTime.MinValue;
+			return Task.FromResult(DateTime.MinValue);
 		}
 
-		public override bool EvaluateBoolean(Report rpt, Row row)
+		public override async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			object o = base.Evaluate(rpt, row);
+			object o = await base.Evaluate(rpt, row);
 			if(o is double)
 				return double.IsNaN((double)o) ? true : false;
 			else

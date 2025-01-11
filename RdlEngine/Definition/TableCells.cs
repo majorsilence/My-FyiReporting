@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -65,25 +66,25 @@ namespace fyiReporting.RDL
                 _Items.TrimExcess();
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (TableCell tc in _Items)
 			{
-				tc.FinalPass();
+                await tc.FinalPass();
 			}
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			foreach (TableCell tc in _Items)
 			{
-				tc.Run(ip, row);
+                await tc.Run(ip, row);
 			}
 			return ;
 		}
 
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
 			// Start each row in the same location
 			//   e.g. if there are two embedded tables in cells they both start at same location
@@ -94,7 +95,7 @@ namespace fyiReporting.RDL
 
 			foreach (TableCell tc in _Items)
 			{
-				tc.RunPage(pgs, row);
+                await tc.RunPage(pgs, row);
 				if (maxpg != pgs.CurrentPage)
 				{	// a page break
 					if (maxpg.PageNumber < pgs.CurrentPage.PageNumber)

@@ -33,6 +33,7 @@ using System.Drawing.Imaging;
 #endif
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -97,17 +98,17 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "CustomReportItem requires the Type element.");
 		}
 
-        override internal void FinalPass()
+        async override internal Task FinalPass()
         {
-            base.FinalPass();       // this handles the finalpass of the AltReportItems
+            await base.FinalPass();       // this handles the finalpass of the AltReportItems
 
             // Handle the final pass for the Custom Properties
             if (_Properties != null)
             {
                 foreach (CustomProperty cp in _Properties)
                 {
-                    cp.Name.FinalPass();
-                    cp.Value.FinalPass();
+                    await cp.Name.FinalPass();
+                    await cp.Value.FinalPass();
                 }
             }
 
@@ -131,7 +132,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-        override internal void Run(IPresent ip, Row row)
+        override internal async Task Run(IPresent ip, Row row)
         {
             Report rpt = ip.Report();
 
@@ -141,13 +142,13 @@ namespace fyiReporting.RDL
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
 				Type a = cri.GetType();
 				Drawing.Bitmap bm = null;
-				SetProperties(rpt, row, cri);
+                await SetProperties(rpt, row, cri);
 				int width = WidthCalc(rpt, null) -
 					(Style == null ? 0 :
-						(Style.EvalPaddingLeftPx(rpt, row) + Style.EvalPaddingRightPx(rpt, row)));
+						(await Style.EvalPaddingLeftPx(rpt, row) + await Style.EvalPaddingRightPx(rpt, row)));
 				int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
 					(Style == null ? 0 :
-						(Style.EvalPaddingTopPx(rpt, row) + Style.EvalPaddingBottomPx(rpt, row)));
+						(await Style.EvalPaddingTopPx(rpt, row) + await Style.EvalPaddingBottomPx(rpt, row)));
 				bm = new Drawing.Bitmap(width, height);
 				cri.DrawImage(ref bm);
 
@@ -169,7 +170,7 @@ namespace fyiReporting.RDL
 				}
 				bm.Save(ostrm, codec, encoderParameters);
 
-				ip.Image(new Image(rpt.ReportDefinition, this, xNode), row, null, ostrm);
+                await ip.Image(new Image(rpt.ReportDefinition, this, xNode), row, null, ostrm);
 				ostrm.Close();
             }
             catch (Exception ex)
@@ -181,13 +182,15 @@ namespace fyiReporting.RDL
                 if (cri != null)
                     cri.Dispose();
             }
+
+            return;
         }
 
-        override internal void RunPage(Pages pgs, Row row)
+        override internal async Task RunPage(Pages pgs, Row row)
         {
             Report rpt = pgs.Report;
 
-            if (IsHidden(pgs.Report, row))
+            if (await IsHidden(pgs.Report, row))
                 return;
 
             SetPagePositionBegin(pgs);
@@ -198,7 +201,7 @@ namespace fyiReporting.RDL
             try
             {
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
-                SetProperties(pgs.Report, row, cri);
+                await SetProperties(pgs.Report, row, cri);
                 
                 Drawing.Imaging.EncoderParameters encoderParameters = new Drawing.Imaging.EncoderParameters(1);
                 // 20022008 AJM GJL - Using centralised image quality
@@ -207,7 +210,7 @@ namespace fyiReporting.RDL
 
                 PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
 
-                SetPagePositionAndStyle(rpt, pi, row);
+                await SetPagePositionAndStyle(rpt, pi, row);
 
                 if (pgs.CurrentPage.YOffset + pi.Y + pi.H >= pgs.BottomOfPage && !pgs.CurrentPage.IsEmpty())
                 {	// force page break if it doesn't fit on the page
@@ -231,6 +234,7 @@ namespace fyiReporting.RDL
                 if (cri != null)
                     cri.Dispose();
             }
+            return;
         }
 
         byte[] GenerateImage(ImageCodecInfo codec, Drawing.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
@@ -245,7 +249,7 @@ namespace fyiReporting.RDL
 			return ba;
 		}
 
-        void SetProperties(Report rpt, Row row, ICustomReportItem cri)
+        async Task SetProperties(Report rpt, Row row, ICustomReportItem cri)
         {
             if (_Properties == null || _Properties.Count == 0)  // Any properties specified?
                 return;
@@ -254,7 +258,7 @@ namespace fyiReporting.RDL
                 new Dictionary<string, object>(_Properties.Count);
             foreach (CustomProperty cp in _Properties)
             {
-                string name = cp.Name.EvaluateString(rpt, row);
+                string name = await cp.Name.EvaluateString(rpt, row);
                 object val = cp.Value.Evaluate(rpt, row);
                 try { dict.Add(name, val); }
                 catch

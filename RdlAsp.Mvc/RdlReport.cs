@@ -33,6 +33,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlAsp
 {
@@ -179,7 +180,9 @@ namespace fyiReporting.RdlAsp
                 // Build the new report
                 string contentRootPath = _webHostEnvironment.ContentRootPath;
                 string pfile = Path.Combine(contentRootPath, _ReportFile);
-                DoRender(pfile);
+
+                // HACK: async
+                Task.Run(async () =>  await DoRender(pfile)).GetAwaiter().GetResult();
             }
         }
 
@@ -244,7 +247,7 @@ namespace fyiReporting.RdlAsp
 
 
         // Render the report files with the requested types
-        private void DoRender(string file)
+        private async Task DoRender(string file)
         {
 
             string source;
@@ -270,7 +273,7 @@ namespace fyiReporting.RdlAsp
                         return;                 // GetSource reported the error
 
                     // Compile the report
-                    report = this.GetReport(source, file);
+                    report = await this.GetReport(source, file);
                     if (report == null)
                         return;
 
@@ -282,7 +285,7 @@ namespace fyiReporting.RdlAsp
                 // Obtain the data if report is being generated
                 if (!_NoShow)
                 {
-                    report.RunGetData(ld);
+                    await report.RunGetData(ld);
                     Generate(report);
                 }
             }
@@ -455,7 +458,7 @@ namespace fyiReporting.RdlAsp
         }
 
 
-        private Report GetReport(string prog, string file)
+        private async Task<Report> GetReport(string prog, string file)
         {
             // Now parse the file
             RDLParser rdlp;
@@ -474,7 +477,7 @@ namespace fyiReporting.RdlAsp
                 rdlp.Folder = folder;
                 rdlp.DataSourceReferencePassword = new NeedPassword(this.GetPassword);
 
-                r = rdlp.Parse();
+                r = await rdlp.Parse();
                 if (r.ErrorMaxSeverity > 0)
                 {
                     AddError(r.ErrorMaxSeverity, r.ErrorItems);

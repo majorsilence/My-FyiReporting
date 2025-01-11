@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -48,19 +49,20 @@ namespace fyiReporting.RDL
 				}
 			}
 		}
-		override internal void Run(IPresent ip, Row row)
+		override internal Task Run(IPresent ip, Row row)
 		{
 			ip.Line(this, row);
+			return Task.CompletedTask;
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		override internal async Task RunPage(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
-            bool bHidden = IsHidden(r, row);
+            bool bHidden = await IsHidden(r, row);
 
 			SetPagePositionBegin(pgs);
 			PageLine pl = new PageLine();
-            SetPagePositionAndStyle(r, pl, row);
+            await SetPagePositionAndStyle(r, pl, row);
             if (!bHidden)
 			    pgs.CurrentPage.AddObject(pl);
 			SetPagePositionEnd(pgs, pl.Y);

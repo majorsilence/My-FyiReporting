@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -76,34 +77,34 @@ namespace fyiReporting.RDL
 			}
 		}
  
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+                await _ReportItems.FinalPass();
 
 			return;
 		}
  
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
-			base.Run(ip, row);
+            await base.Run(ip, row);
 
 			if (_ReportItems == null)
 				return;
 
-			if (ip.RectangleStart(this, row))
+			if (await ip.RectangleStart(this, row))
 			{
-				_ReportItems.Run(ip, row);
-				ip.RectangleEnd(this, row);
+                await _ReportItems.Run(ip, row);
+                await ip.RectangleEnd(this, row);
 			}
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		async override internal Task RunPage(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
-            bool bHidden = IsHidden(r, row);
+            bool bHidden = await IsHidden(r, row);
 
 			SetPagePositionBegin(pgs);
 
@@ -115,7 +116,7 @@ namespace fyiReporting.RDL
             }
 
 			PageRectangle pr = new PageRectangle();
-			SetPagePositionAndStyle(r, pr, row);
+            await SetPagePositionAndStyle(r, pr, row);
 			if (pr.SI.BackgroundImage != null)
 				pr.SI.BackgroundImage.H = pr.H;		//   and in the background image
 
@@ -129,7 +130,7 @@ namespace fyiReporting.RDL
                     float saveY = p.YOffset;
        //             p.YOffset += (Top == null ? 0 : this.Top.Points);
                     p.YOffset = pr.Y;       // top of rectangle is base for contained report items
-                    _ReportItems.RunPage(pgs, row, GetOffsetCalc(pgs.Report) + LeftCalc(r));
+                    await _ReportItems.RunPage(pgs, row, GetOffsetCalc(pgs.Report) + LeftCalc(r));
                     p.YOffset = saveY;
                 }
 
@@ -142,6 +143,8 @@ namespace fyiReporting.RDL
             }
 //			SetPagePositionEnd(pgs, pgs.CurrentPage.YOffset);
             SetPagePositionEnd(pgs, pr.Y + pr.H);
+
+			return;
         }
 
         internal override void RemoveWC(Report rpt)

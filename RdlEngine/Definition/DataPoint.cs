@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -96,18 +97,18 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "DataPoint requires the DataValues element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DataValues != null)
-				_DataValues.FinalPass();
+                await _DataValues.FinalPass();
 			if (_DataLabel != null)
-				_DataLabel.FinalPass();
+                await _DataLabel.FinalPass();
 			if (_Action != null)
-				_Action.FinalPass();
+                await _Action.FinalPass();
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			if (_Marker != null)
-				_Marker.FinalPass();
+                await _Marker.FinalPass();
 			return;
 		}
 

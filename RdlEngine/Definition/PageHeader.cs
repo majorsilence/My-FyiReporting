@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -82,16 +83,16 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "PageHeader Height is required.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+                await _ReportItems.FinalPass();
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			if (OwnerReport.Subreport != null)
 				return;		// don't process page headers for sub-reports
@@ -99,11 +100,11 @@ namespace fyiReporting.RDL
 			rpt.TotalPages = rpt.PageNumber = 1;
 			ip.PageHeaderStart(this);
 			if (_ReportItems != null)
-				_ReportItems.Run(ip, row);
+                await _ReportItems.Run(ip, row);
 			ip.PageHeaderEnd(this);
 		}
 
-		internal void RunPage(Pages pgs)
+		async internal Task RunPage(Pages pgs)
 		{
 			if (OwnerReport.Subreport != null)
 				return;		// don't process page headers for sub-reports
@@ -122,8 +123,8 @@ namespace fyiReporting.RDL
 				if (p.PageNumber == 1 && pgs.Count > 1 && !_PrintOnFirstPage)
 					continue;		// Don't put header on the first page
 				if (p.PageNumber == pgs.Count && !_PrintOnLastPage)
-					continue;		// Don't put header on the last page
-				_ReportItems.RunPage(pgs, null, OwnerReport.LeftMargin.Points);
+					continue;       // Don't put header on the last page
+                await _ReportItems.RunPage(pgs, null, OwnerReport.LeftMargin.Points);
 			}
 		}
 

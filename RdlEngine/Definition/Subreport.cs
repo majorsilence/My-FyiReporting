@@ -106,29 +106,29 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		override async internal Task FinalPass()
 		{
-			base.FinalPass();
+			await base.FinalPass();
 
 			// Subreports aren't allowed in PageHeader or PageFooter; 
 			if (this.InPageHeaderOrFooter())
 				OwnerReport.rl.LogError(8, String.Format("The Subreport '{0}' is not allowed in a PageHeader or PageFooter", this.Name == null? "unknown": Name.Nm) );
 
 			if (_Parameters != null)
-				_Parameters.FinalPass();
+                await _Parameters.FinalPass();
 			if (_NoRows != null)
-				_NoRows.FinalPass();
+                await _NoRows.FinalPass();
 
-			_ReportDefn = GetReport(OwnerReport.ParseFolder);
+			_ReportDefn = await GetReport(OwnerReport.ParseFolder);
             if (_ReportDefn != null)    // only null in error case (e.g. subreport not found)
 			    _ReportDefn.Subreport = this;
 			return;
 		}
 
-		async override internal Task RunAsync(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
 			Report r = ip.Report();
-            base.Run(ip, row);
+            await base.Run(ip, row);
 
 			// need to save the owner report and nest in this defintion
 			ReportDefn saveReport = r.ReportDefinition;
@@ -160,25 +160,19 @@ namespace fyiReporting.RDL
                 await r.RunGetData(null);
 			}
 
-			ip.Subreport(this, row);
+            await ip.Subreport(this, row);
 
 			r.SetReportDefinition(saveReport);			// restore the current report
 			r.ParentConnections = saveDS;				// restore the data connnections
 		}
 
-        internal override void RunPage(Pages pgs, Row row)
-        {
-			// HACK:
-            Task.Run(async () => await RunPageAsync(pgs, row)).GetAwaiter().GetResult();
-        }
-
-        async override internal Task RunPageAsync(Pages pgs, Row row)
+        async override internal Task RunPage(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
-			if (IsHidden(r, row))
+			if (await IsHidden(r, row))
 				return;
 
-            await base.RunPageAsync(pgs, row);
+            await base.RunPage(pgs, row);
 
 			// need to save the owner report and nest in this defintion
 			ReportDefn saveReport = r.ReportDefinition;
@@ -227,21 +221,21 @@ namespace fyiReporting.RDL
                 //
                 // Run the subreport -- this is the major effort in creating the display objects in the page
                 //
-                r.ReportDefinition.Body.RunPage(pgs);		// create a the subreport items
+                await r.ReportDefinition.Body.RunPage(pgs);		// create a the subreport items
                 yOffset = pgs.CurrentPage.YOffset;
             }
             else
             {   // Handle NoRows message 
                 string msg;
                 if (this.NoRows != null)
-                    msg = this.NoRows.EvaluateString(pgs.Report, null);
+                    msg = await this.NoRows.EvaluateString(pgs.Report, null);
                 else
                     msg = null;
 
                 if (msg != null)
                 {
                     PageText pt = new PageText(msg);
-                    SetPagePositionAndStyle(pgs.Report, pt, null);
+                    await SetPagePositionAndStyle(pgs.Report, pt, null);
 
                     if (pt.SI.BackgroundImage != null)
                         pt.SI.BackgroundImage.H = pt.H;		//   and in the background image
@@ -270,7 +264,7 @@ namespace fyiReporting.RDL
             _ReportDefn.Body.RemoveWC(rpt);
         }
 
-		private ReportDefn GetReport(string folder)
+		private async Task<ReportDefn> GetReport(string folder)
 		{
 			string prog;
 			string name;
@@ -299,7 +293,7 @@ namespace fyiReporting.RDL
 					rdlp.OverwriteInSubreport = OwnerReport.OverwriteInSubreport;
 				}
 
-				r = rdlp.Parse(OwnerReport.GetObjectNumber());
+				r = await rdlp.Parse(OwnerReport.GetObjectNumber());
 				OwnerReport.SetObjectNumber(r.ReportDefinition.GetObjectNumber());
 				if (r.ErrorMaxSeverity > 0) 
 				{

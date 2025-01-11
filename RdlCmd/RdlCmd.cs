@@ -28,6 +28,7 @@ using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlCmd
 {
@@ -48,7 +49,7 @@ namespace fyiReporting.RdlCmd
         private string _user = null; // Allow the user to be set via a command line param GJL AJM 12062008
 
 		[STAThread]
-		static public int Main(string[] args)
+		static public async Task<int> Main(string[] args)
 		{
 			// Handle the arguments
 			if (args == null || args.Length==0)
@@ -133,7 +134,7 @@ namespace fyiReporting.RdlCmd
 
 			rc.returnCode = returnCode;
 
-			rc.DoRender(dir, files, types);				
+            await rc.DoRender(dir, files, types);				
 
 			return rc.returnCode;
 		}
@@ -144,7 +145,7 @@ namespace fyiReporting.RdlCmd
 		}
 
 		// Render the report files with the requested types
-		private void DoRender(string dir, string[] files, string[] types)
+		private async Task DoRender(string dir, string[] files, string[] types)
 		{
 			string source;
 			Report report;
@@ -183,7 +184,7 @@ namespace fyiReporting.RdlCmd
 					continue;					// error: process the rest of the files
 
 				// Compile the report
-				report = this.GetReport(source, file);
+				report = await this.GetReport(source, file);
                 report.UserID = _user; //Set the user of the report based on the parameter passed in GJL AJM 12062008
                 if (this._ShowStats)
                 {
@@ -204,7 +205,7 @@ namespace fyiReporting.RdlCmd
 						ld.Remove("rc:ofile");	// don't pass this as an argument to the report
 				}
 
-				report.RunGetData(ld);
+                await report.RunGetData(ld);
                 if (this._ShowStats)
                 {
                     DateTime temp = DateTime.Now;
@@ -220,7 +221,7 @@ namespace fyiReporting.RdlCmd
 
 				foreach (string stype in types)
 				{
-					SaveAs(report, fileNoExt+"."+stype, stype);
+                    await SaveAs(report, fileNoExt+"."+stype, stype);
                     if (this._ShowStats)
                     {
                         DateTime temp = DateTime.Now;
@@ -282,7 +283,7 @@ namespace fyiReporting.RdlCmd
 			return prog;
 		}
 
-		private Report GetReport(string prog, string file)
+		private async Task<Report> GetReport(string prog, string file)
 		{
 			// Now parse the file
 			RDLParser rdlp;
@@ -296,7 +297,7 @@ namespace fyiReporting.RdlCmd
 				rdlp.Folder = folder;
 				rdlp.DataSourceReferencePassword = new NeedPassword(this.GetPassword);
 
-				r = rdlp.Parse();
+				r = await rdlp.Parse();
 				if (r.ErrorMaxSeverity > 0) 
 				{
 					// have errors fill out the msgs 
@@ -335,7 +336,7 @@ namespace fyiReporting.RdlCmd
 		/// </summary>
 		/// <param name="FileName">Name of the file to be saved to.</param>
 		/// <param name="ext">Type of file to save.  Should be "pdf", "xml", "html", mht.</param>
-		private void SaveAs(Report report, string FileName, string type)
+		private async Task SaveAs(Report report, string FileName, string type)
 		{
 			string ext = type.ToLower();
 			OneFileStreamGen sg=null;
@@ -363,43 +364,43 @@ namespace fyiReporting.RdlCmd
 						{
 							if (isOldPdf)
 							{
-								report.RunRender(sg, OutputPresentationType.PDFOldStyle);
+                                await report.RunRender(sg, OutputPresentationType.PDFOldStyle);
 							}
 							else
 							{
-								report.RunRender(sg, OutputPresentationType.PDF);
+                                await report.RunRender(sg, OutputPresentationType.PDF);
 							}
 								
 						}
 						else
-							SaveAsPdf(report, sg);
+                            await SaveAsPdf(report, sg);
 						break;
-					case "xml": 
-						report.RunRender(sg, OutputPresentationType.XML);
+					case "xml":
+                        await report.RunRender(sg, OutputPresentationType.XML);
 						break;																  
-					case "mht": 
-						report.RunRender(sg, OutputPresentationType.MHTML);
+					case "mht":
+                        await report.RunRender(sg, OutputPresentationType.MHTML);
 						break;																  
 					case "html": case "htm":
-						report.RunRender(sg, OutputPresentationType.HTML);
+                        await report.RunRender(sg, OutputPresentationType.HTML);
 						break;
                     case "csv":
-                        report.RunRender(sg, OutputPresentationType.CSV);
+                        await report.RunRender(sg, OutputPresentationType.CSV);
                         break;
                     case "xlsx_table":
-                        report.RunRender(sg, OutputPresentationType.ExcelTableOnly);
+                        await report.RunRender(sg, OutputPresentationType.ExcelTableOnly);
                         break;
                     case "xlsx":
-                        report.RunRender(sg, OutputPresentationType.Excel2007);
+                        await report.RunRender(sg, OutputPresentationType.Excel2007);
                         break;
                     case "rtf":
-                        report.RunRender(sg, OutputPresentationType.RTF);
+                        await report.RunRender(sg, OutputPresentationType.RTF);
                         break;
                     case "tif": case "tiff":
-                        report.RunRender(sg, OutputPresentationType.TIF);
+                        await report.RunRender(sg, OutputPresentationType.TIF);
                         break;
                     case "tifb":
-                        report.RunRender(sg, OutputPresentationType.TIFBW);
+                        await report.RunRender(sg, OutputPresentationType.TIFBW);
                         break;
 					default:
 						Console.WriteLine("Unsupported file extension '{0}'.  Must be 'pdf', 'xml', 'mht', 'csv', 'xslx', 'xlsx_table', 'rtf', 'tif', 'tifb' or 'html'", type);
@@ -433,9 +434,9 @@ namespace fyiReporting.RdlCmd
 
 			return;
 		}
-		private void SaveAsPdf(Report report, OneFileStreamGen sg)
+		private async Task SaveAsPdf(Report report, OneFileStreamGen sg)
 		{
-			Pages pgs = report.BuildPages();
+			Pages pgs = await report.BuildPages();
 			FileStream strm=null;
 			Drawing.Image im=null;
 

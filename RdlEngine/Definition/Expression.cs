@@ -27,6 +27,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Threading;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -58,7 +59,7 @@ namespace fyiReporting.RDL
 			get {return _UniqueName;}
 		}
 
-		override internal void FinalPass()
+		override internal async Task FinalPass()
 		{
 			// optimization: avoid expression overhead if this isn't really an expression
 			if (_Source == null)
@@ -142,7 +143,7 @@ namespace fyiReporting.RDL
 
 			try 
 			{
-				_Expr = p.Parse(lu, _Source);
+				_Expr = await p.Parse(lu, _Source);
 			}
 			catch (Exception e)
 			{
@@ -154,7 +155,7 @@ namespace fyiReporting.RDL
 			// Optimize removing any expression that always result in a constant
 			try
 			{
-				_Expr = _Expr.ConstantOptimization();
+				_Expr = await _Expr.ConstantOptimization();
 			}
 			catch(Exception ex)
 			{
@@ -218,23 +219,23 @@ namespace fyiReporting.RDL
 			return _Expr.GetTypeCode();
 		}
 
-		public bool IsConstant()
+		public async Task<bool> IsConstant()
 		{
             if (_Expr == null)
             {
-                this.FinalPass();           // expression hasn't been parsed yet -- let try to parse it.
+                await this.FinalPass();           // expression hasn't been parsed yet -- let try to parse it.
                 if (_Expr == null)
                     return false;           // no luck; then don't treat as constant
             }
-            return _Expr.IsConstant();
+            return await _Expr.IsConstant();
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
 			try 
 			{
@@ -247,7 +248,7 @@ namespace fyiReporting.RDL
 						row = rows.Data[0];
 				}
 
-				return _Expr.Evaluate(rpt, row);
+				return await _Expr.Evaluate(rpt, row);
 			}
 			catch (Exception e)
 			{
@@ -262,11 +263,11 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
 			try 
 			{
-				return _Expr.EvaluateString(rpt, row);
+				return await _Expr.EvaluateString(rpt, row);
 			}
 			catch (Exception e)
 			{	
@@ -276,11 +277,11 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
 			try 
 			{
-				return _Expr.EvaluateDouble(rpt, row);
+				return await _Expr.EvaluateDouble(rpt, row);
 			}
 			catch (Exception e)
 			{	
@@ -290,11 +291,11 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
 			try 
 			{
-				return _Expr.EvaluateDecimal(rpt, row);
+				return await _Expr.EvaluateDecimal(rpt, row);
 			}
 			catch (Exception e)
 			{	
@@ -304,11 +305,11 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
             try
             {
-                return _Expr.EvaluateInt32(rpt, row);
+                return await _Expr.EvaluateInt32(rpt, row);
             }
             catch (Exception e)
             {
@@ -318,11 +319,11 @@ namespace fyiReporting.RDL
             }
         }
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
 			try 
 			{
-				return _Expr.EvaluateDateTime(rpt, row);
+				return await _Expr.EvaluateDateTime(rpt, row);
 			}
 			catch (Exception e)
 			{	
@@ -332,11 +333,11 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
 			try 
 			{
-				return _Expr.EvaluateBoolean(rpt, row);
+				return await _Expr.EvaluateBoolean(rpt, row);
 			}
 			catch (Exception e)
 			{	
@@ -348,10 +349,10 @@ namespace fyiReporting.RDL
 
 		#endregion
 
-        public void SetSource(string sql)
+        public async Task SetSource(string sql)
         {
             this._Source = sql;
-            FinalPass();
+            await FinalPass();
         }
 
 	}

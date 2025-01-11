@@ -26,6 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -112,9 +113,9 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 
             if (this is Table)
             {   // Grids don't have any data responsibilities
@@ -157,12 +158,12 @@ namespace fyiReporting.RDL
 					OwnerReport.rl.LogError(8, string.Format("{0} must specify a DataSetName.",this.Name == null? "DataRegions": this.Name.Nm));
 			}
 
-			if (_NoRows != null) 
-				_NoRows.FinalPass();
-			if (_Filters != null) 
-				_Filters.FinalPass();
+			if (_NoRows != null)
+                await _NoRows.FinalPass();
+			if (_Filters != null)
+                await _Filters.FinalPass();
             if (_PageBreakCondition != null)
-                _PageBreakCondition.FinalPass();
+                await _PageBreakCondition.FinalPass();
 
             return;
 		}
@@ -182,9 +183,9 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
-			base.Run(ip, row);
+            await base.Run(ip, row);
 		}
 
 		internal void RunPageRegionBegin(Pages pgs)
@@ -205,24 +206,24 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		internal bool AnyRows(IPresent ip, Rows data)
+		internal async Task<bool> AnyRows(IPresent ip, Rows data)
 		{
 			if (data == null || data.Data == null ||
 				data.Data.Count <= 0)
 			{
 				string msg;
 				if (this.NoRows != null)
-					msg = this.NoRows.EvaluateString(ip.Report(), null);
+					msg = await this.NoRows.EvaluateString(ip.Report(), null);
 				else
 					msg = null;
-				ip.DataRegionNoRows(this, msg);
+                await ip.DataRegionNoRows(this, msg);
 				return false;
 			}
 
 			return true;
 		}
 
-		internal bool AnyRowsPage(Pages pgs, Rows data)
+		internal async Task<bool> AnyRowsPage(Pages pgs, Rows data)
 		{
 			if (data != null && data.Data != null &&
 				data.Data.Count > 0)
@@ -230,7 +231,7 @@ namespace fyiReporting.RDL
 
 			string msg;
 			if (this.NoRows != null)
-				msg = this.NoRows.EvaluateString(pgs.Report, null);
+				msg = await this.NoRows.EvaluateString(pgs.Report, null);
 			else
 				msg = null;
 
@@ -241,7 +242,7 @@ namespace fyiReporting.RDL
 			RunPageRegionBegin(pgs);				// still perform page break if needed
 
 			PageText pt = new PageText(msg);
-			SetPagePositionAndStyle(pgs.Report, pt, null);
+            await SetPagePositionAndStyle(pgs.Report, pt, null);
 
 			if (pt.SI.BackgroundImage != null)
 				pt.SI.BackgroundImage.H = pt.H;		//   and in the background image
@@ -255,7 +256,7 @@ namespace fyiReporting.RDL
             return false;
 		}
 
-		internal Rows GetFilteredData(Report rpt, Row row)
+		internal async Task<Rows> GetFilteredData(Report rpt, Row row)
 		{
 			try
 			{
@@ -291,7 +292,7 @@ namespace fyiReporting.RDL
 				}
                 ar.TrimExcess();
 				data.Data = ar;
-				_Filters.ApplyFinalFilters(rpt, data, true);
+                await _Filters.ApplyFinalFilters(rpt, data, true);
 
 				// Adjust the rowcount
 				int rCount = 0;

@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -61,12 +62,12 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DataSetReference != null)
-				_DataSetReference.FinalPass();
+                await _DataSetReference.FinalPass();
 			if (_Values != null)
-				_Values.FinalPass();
+                await _Values.FinalPass();
 			return;
 		}
 
@@ -76,7 +77,7 @@ namespace fyiReporting.RDL
 			set {  _DataSetReference = value; }
 		}
 
-		internal object[] GetValue(Report rpt)
+		internal async Task<object[]> GetValue(Report rpt)
 		{
 			if (_Values != null)
 				return ValuesCalc(rpt);
@@ -86,7 +87,7 @@ namespace fyiReporting.RDL
 
 			string[] dsValues;
 			if (_DataSetReference != null)
-				_DataSetReference.SupplyValues(rpt, out dsValues, out dValues);
+				(dsValues, dValues) = await _DataSetReference.SupplyValues(rpt);
 
 			this.SetDataValues(rpt, dValues);
 			return dValues;

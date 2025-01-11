@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -59,7 +59,7 @@ namespace fyiReporting.RDL
 			return _tc;
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
 			bool bSave=true;
 			RowEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -73,46 +73,46 @@ namespace fyiReporting.RDL
 				if (re.Data.Count > 0)
 					saver = re.Data[re.FirstRow] as Row;
 
-				v = _Expr.Evaluate(rpt, saver);
+				v = await _Expr.Evaluate(rpt, saver);
 				if (bSave)
 					SetValue(rpt, v);
 			}
 			return v;
 		}
 
-		public override bool EvaluateBoolean(Report rpt,Row row)
+		public override async Task<bool> EvaluateBoolean(Report rpt,Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToBoolean(result);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDouble(result);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDecimal(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            object result = Evaluate(rpt, row);
+            object result = await Evaluate(rpt, row);
             return Convert.ToInt32(result);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 

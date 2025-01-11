@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -55,10 +54,10 @@ namespace fyiReporting.RDL
 			_rhs = r;
 		}
 
-		public bool IsConstant()
+		public async Task<bool> IsConstant()
 		{
-			if (_lhs.IsConstant())
-				return _rhs.IsConstant();
+			if (await _lhs.IsConstant())
+				return await _rhs.IsConstant();
 
 			return false;
 		}

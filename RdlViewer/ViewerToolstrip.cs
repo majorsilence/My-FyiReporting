@@ -44,7 +44,7 @@ namespace fyiReporting.RdlViewer
      
         }
 
-        private void OpenClicked(object sender, System.EventArgs e)
+        private async void OpenClicked(object sender, System.EventArgs e)
         {
             var dlg = new OpenFileDialog();
             var result = dlg.ShowDialog();
@@ -54,13 +54,13 @@ namespace fyiReporting.RdlViewer
             }
 
             Viewer.SourceFile = new Uri(dlg.FileName);
-            Viewer.Rebuild();
+            await Viewer.Rebuild();
 
             currentPage.Text = Viewer.PageCurrent.ToString();
             pageCount.Text = "/" + Viewer.PageCount;
         }
 
-        private void PrintClicked(object sender, System.EventArgs e)
+        private async void PrintClicked(object sender, System.EventArgs e)
         {
             if (Viewer == null)
             {
@@ -81,13 +81,13 @@ namespace fyiReporting.RdlViewer
                 dlg.AllowSomePages = true;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    Viewer.Print(pd);
+                    await Viewer.Print(pd);
                 }
             }
 
         }
 
-        private void SaveAsClicked(object sender, System.EventArgs e)
+        private async void SaveAsClicked(object sender, System.EventArgs e)
         {
             if (Viewer == null)
             {
@@ -155,7 +155,7 @@ namespace fyiReporting.RdlViewer
                     break;
             }
 
-            Viewer.SaveAs(dlg.FileName, type);
+            await Viewer.SaveAs(dlg.FileName, type);
         }
 
         private void FirstPageClicked(object sender, System.EventArgs e)

@@ -28,6 +28,7 @@ using System.Globalization;
 
 
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -58,49 +59,49 @@ namespace fyiReporting.RDL
 			return TypeCode.Double;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return true;
+			return Task.FromResult(true);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	// already constant expression
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{
-			return _Value;
+			return Task.FromResult((object)_Value);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return Convert.ToString(_Value);
+			return Task.FromResult(Convert.ToString(_Value));
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return _Value;
+			return Task.FromResult(_Value);
 		}
 
-        public decimal EvaluateDecimal(Report rpt, Row row)
+        public Task<decimal> EvaluateDecimal(Report rpt, Row row)
         {
-            return Convert.ToDecimal(_Value);
+            return Task.FromResult(Convert.ToDecimal(_Value));
         }
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return Convert.ToInt32(_Value);
+            return Task.FromResult(Convert.ToInt32(_Value));
         }
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return Convert.ToDateTime(_Value);
+			return Task.FromResult(Convert.ToDateTime(_Value));
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return Convert.ToBoolean(_Value);
+			return Task.FromResult(Convert.ToBoolean(_Value));
 		}
 	}
 }

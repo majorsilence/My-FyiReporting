@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -106,39 +107,39 @@ namespace fyiReporting.RDL
 			return;
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_ReportItems.FinalPass();
+            await _ReportItems.FinalPass();
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			// todo: visibility on the column should really only be evaluated once at the beginning
 			//   of the table processing;  also this doesn't account for the affect of colspan correctly
 			//   where if any of the spanned columns are visible the value would show??
 			TableColumn tc = _OwnerTable.TableColumns[_ColIndex];
-			if (tc.Visibility != null && tc.Visibility.IsHidden(ip.Report(), row))	// column visible?
+			if (tc.Visibility != null && await tc.Visibility.IsHidden(ip.Report(), row))	// column visible?
 				return;													//  no nothing to do
 
 			ip.TableCellStart(this, row);
-			
-			_ReportItems.Items[0].Run(ip, row);
+
+            await _ReportItems.Items[0].Run(ip, row);
 
 			ip.TableCellEnd(this, row);
 			return;
 		}
 
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
 			// todo: visibility on the column should really only be evaluated once at the beginning
 			//   of the table processing;  also this doesn't account for the affect of colspan correctly
 			//   where if any of the spanned columns are visible the value would show??
 			TableColumn tc = _OwnerTable.TableColumns[_ColIndex];
-			if (tc.Visibility != null && tc.Visibility.IsHidden(pgs.Report, row))	// column visible?
-				return;													//  no nothing to do
+			if (tc.Visibility != null && await tc.Visibility.IsHidden(pgs.Report, row))	// column visible?
+				return;                                                 //  no nothing to do
 
-			_ReportItems.Items[0].RunPage(pgs, row);
+            await _ReportItems.Items[0].RunPage(pgs, row);
 			return;
 		}
 

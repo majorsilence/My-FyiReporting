@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -81,10 +82,10 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "ConnectionProperties ConnectString is required.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_ConnectString != null)
-				_ConnectString.FinalPass();
+                await _ConnectString.FinalPass();
 			return;
 		}
 
@@ -94,9 +95,9 @@ namespace fyiReporting.RDL
 			set {  _DataProvider = value; }
 		}
 
-		internal string Connectstring(Report rpt)
+		internal async Task<string> Connectstring(Report rpt)
 		{
-			return _ConnectString.EvaluateString(rpt, null);
+			return await _ConnectString.EvaluateString(rpt, null);
 		}
 
 		internal string ConnectstringValue

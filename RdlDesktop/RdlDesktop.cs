@@ -133,8 +133,8 @@ namespace fyiReporting.RdlDesktop
 					if (_continue)
 					{
 						ConnectionThread c = new ConnectionThread(this, myListener, sr, wd);
-						ThreadPool.QueueUserWorkItem(new WaitCallback(c.HandleConnection));
-					}
+                        ThreadPool.QueueUserWorkItem(async _ => await c.HandleConnection());
+                    }
 				}
 			}
 			catch(Exception e)

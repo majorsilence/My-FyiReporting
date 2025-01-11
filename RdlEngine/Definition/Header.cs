@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -63,21 +64,21 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Header requires the TableRows element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_TableRows.FinalPass();
+            await _TableRows.FinalPass();
 
 			OwnerReport.DataCache.Add(this);
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
-			_TableRows.Run(ip, row);
+            await _TableRows.Run(ip, row);
 			return;
 		}
 
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
 			WorkClass wc = this.GetValue(pgs.Report);
 
@@ -86,19 +87,19 @@ namespace fyiReporting.RDL
 
 			Page p = pgs.CurrentPage;
 
-			float height = p.YOffset + HeightOfRows(pgs, row);
-            height += OwnerTable.GetPageFooterHeight(pgs, row);
+			float height = p.YOffset + await HeightOfRows(pgs, row);
+            height += await OwnerTable.GetPageFooterHeight(pgs, row);
 			if (height > pgs.BottomOfPage)
 			{
 				Table t = OwnerTable;
-                t.RunPageFooter(pgs, row, false);
+                await t.RunPageFooter(pgs, row, false);
 				p = t.RunPageNew(pgs, p);
-				t.RunPageHeader(pgs, row, false, null);
+                await t.RunPageHeader(pgs, row, false, null);
 				if (this.RepeatOnNewPage)
 					return;		// should already be on the page
 			}
 
-			_TableRows.RunPage(pgs, row);
+            await _TableRows.RunPage(pgs, row);
 			wc.OutputRow = row;
 			wc.OutputPage = pgs.CurrentPage;
 			return;
@@ -124,9 +125,9 @@ namespace fyiReporting.RDL
 			set {  _TableRows = value; }
 		}
  
-		internal float HeightOfRows(Pages pgs, Row r)
+		internal async Task<float> HeightOfRows(Pages pgs, Row r)
 		{
-			return _TableRows.HeightOfRows(pgs, r);
+			return await _TableRows.HeightOfRows(pgs, r);
 		}
 
 		internal bool RepeatOnNewPage

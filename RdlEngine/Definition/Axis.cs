@@ -21,6 +21,7 @@
    the website www.fyiReporting.com.
 */
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -178,27 +179,27 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_MajorInterval != null)
-				_MajorInterval.FinalPass();
+                await _MajorInterval.FinalPass();
 			if (_MinorInterval != null)
-				_MinorInterval.FinalPass();
+                await _MinorInterval.FinalPass();
 			if (_Max != null)
-				_Max.FinalPass();
+                await _Max.FinalPass();
 			if (_Min != null)
-				_Min.FinalPass();
+                await _Min.FinalPass();
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			if (_Title != null)
-				_Title.FinalPass();
+                await _Title.FinalPass();
 			// 20022008 AJM GJL - Second Y axis
             if (_Title2 != null)
-                _Title2.FinalPass();
+                await _Title2.FinalPass();
 			if (_MajorGridLines != null)
-				_MajorGridLines.FinalPass();
+                await _MajorGridLines.FinalPass();
 			if (_MinorGridLines != null)
-				_MinorGridLines.FinalPass();
+                await _MinorGridLines.FinalPass();
 			return;
 		}
 
@@ -304,18 +305,18 @@ namespace fyiReporting.RDL
 			set {  _Max = value; }
 		}
         //GJL 010308 --- Changed from int... We may want to start / stop a chart on a decimal
-		internal double MaxEval(Report r, Row row)
+		internal async Task<double> MaxEval(Report r, Row row)
 		{
 			if (_Max == null)
 				return (double)int.MinValue;
-			return  _Max.EvaluateDouble(r, row);
+			return await _Max.EvaluateDouble(r, row);
 		}
 
-		internal double MinEval(Report r, Row row)
+		internal async Task<double> MinEval(Report r, Row row)
 		{
 			if (_Min == null)
                 return (double)int.MinValue;
-			return  _Min.EvaluateDouble(r, row);
+			return await _Min.EvaluateDouble(r, row);
 		}
         //WP 12 may 2008 -- set up month gridlines for report
         internal bool Month

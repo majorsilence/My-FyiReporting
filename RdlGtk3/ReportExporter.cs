@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 namespace fyiReporting.RdlGtk3
@@ -21,14 +22,14 @@ namespace fyiReporting.RdlGtk3
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public static void Export(Uri filename, string parameters, string connectionStr, string fileName, OutputPresentationType exportType, bool overwriteSubreportCon = false)
+		public static async Task Export(Uri filename, string parameters, string connectionStr, string fileName, OutputPresentationType exportType, bool overwriteSubreportCon = false)
 		{
 			//SourceFile = filename;
 
 			connectionString = connectionStr;
 			overwriteSubreportConnection = overwriteSubreportCon;
 
-			Export(filename, parameters, fileName, exportType);
+            await Export(filename, parameters, fileName, exportType);
 		}
 
 		/// <summary>
@@ -38,12 +39,12 @@ namespace fyiReporting.RdlGtk3
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public static void Export(string source, string parameters, string connectionStr, string fileName, OutputPresentationType exportType, bool overwriteSubreportCon = false)
+		public static async Task Export(string source, string parameters, string connectionStr, string fileName, OutputPresentationType exportType, bool overwriteSubreportCon = false)
 		{
 			connectionString = connectionStr;
 			overwriteSubreportConnection = overwriteSubreportCon;
 
-			Export(source, parameters, fileName, exportType);
+            await Export(source, parameters, fileName, exportType);
 		}
 
 		/// <summary>
@@ -52,9 +53,9 @@ namespace fyiReporting.RdlGtk3
 		/// <param name='filename'>
 		/// Filename.
 		/// </param>
-		public static void Export(Uri filename, string fileName, OutputPresentationType exportType)
+		public static async Task Export(Uri filename, string fileName, OutputPresentationType exportType)
 		{
-			Export(filename, "", fileName, exportType);
+            await Export(filename, "", fileName, exportType);
 		}
 
 		/// <summary>
@@ -66,13 +67,13 @@ namespace fyiReporting.RdlGtk3
 		/// <param name='parameters'>
 		/// Example: parameter1=someValue&parameter2=anotherValue
 		/// </param>
-		public static void Export(Uri sourcefile, string parameters, string fileName, OutputPresentationType exportType)
+		public static async Task Export(Uri sourcefile, string parameters, string fileName, OutputPresentationType exportType)
 		{
 			sourceFileUri = sourcefile;
 			workingDirectory = System.IO.Path.GetDirectoryName(sourcefile.LocalPath);
 
 			string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-			Export(source, parameters, fileName, exportType);
+            await Export(source, parameters, fileName, exportType);
 		}
 
 		/// <summary>
@@ -80,23 +81,23 @@ namespace fyiReporting.RdlGtk3
 		/// </summary>
 		/// <param name="source">Xml source of report</param>
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-		public static void Export(string source, string parameters, string fileName, OutputPresentationType exportType)
+		public static async Task Export(string source, string parameters, string fileName, OutputPresentationType exportType)
 		{
 			// Compile the report 
-			report = GetReport(source);
+			report = await GetReport(source);
 			if(report == null) {
 				throw new ArgumentException("Can not compile report");
 			}
 
-			report.RunGetData(GetParmeters(parameters));
+            await report.RunGetData(GetParmeters(parameters));
 
 			OneFileStreamGen sg = null;
 
 			try {
 				sg = new OneFileStreamGen(fileName, true);
-				report.RunRender(sg, exportType);
+                await report.RunRender(sg, exportType);
 			} catch(Exception ex) {
-				throw ex;
+				throw;
 			} finally {
 				if(sg != null) {
 					sg.CloseMainStream();
@@ -115,14 +116,14 @@ namespace fyiReporting.RdlGtk3
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public static MemoryStream ExportToMemoryStream(Uri filename, string parameters, string connectionStr, OutputPresentationType exportType, bool overwriteSubreportCon = false)
+		public static async Task<MemoryStream> ExportToMemoryStream(Uri filename, string parameters, string connectionStr, OutputPresentationType exportType, bool overwriteSubreportCon = false)
 		{
 			//SourceFile = filename;
 
 			connectionString = connectionStr;
 			overwriteSubreportConnection = overwriteSubreportCon;
 
-			return ExportToMemoryStream(filename, parameters, exportType);
+			return await ExportToMemoryStream(filename, parameters, exportType);
 		}
 
 		/// <summary>
@@ -132,12 +133,12 @@ namespace fyiReporting.RdlGtk3
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
 		/// <param name="connectionString">Relace all Connection string in report.</param>
 		/// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-		public static MemoryStream ExportToMemoryStream(string source, string parameters, string connectionStr, OutputPresentationType exportType, bool overwriteSubreportCon = false)
+		public static async Task<MemoryStream> ExportToMemoryStream(string source, string parameters, string connectionStr, OutputPresentationType exportType, bool overwriteSubreportCon = false)
 		{
 			connectionString = connectionStr;
 			overwriteSubreportConnection = overwriteSubreportCon;
 
-			return ExportToMemoryStream(source, parameters, exportType);
+			return await ExportToMemoryStream(source, parameters, exportType);
 		}
 
 		/// <summary>
@@ -146,9 +147,9 @@ namespace fyiReporting.RdlGtk3
 		/// <param name='filename'>
 		/// Filename.
 		/// </param>
-		public static MemoryStream ExportToMemoryStream(Uri filename, OutputPresentationType exportType)
+		public static async Task<MemoryStream> ExportToMemoryStream(Uri filename, OutputPresentationType exportType)
 		{
-			return ExportToMemoryStream(filename, "", exportType);
+			return await ExportToMemoryStream(filename, "", exportType);
 		}
 
 		/// <summary>
@@ -160,13 +161,13 @@ namespace fyiReporting.RdlGtk3
 		/// <param name='parameters'>
 		/// Example: parameter1=someValue&parameter2=anotherValue
 		/// </param>
-		public static MemoryStream ExportToMemoryStream(Uri sourcefile, string parameters, OutputPresentationType exportType)
+		public static async Task<MemoryStream> ExportToMemoryStream(Uri sourcefile, string parameters, OutputPresentationType exportType)
 		{
 			sourceFileUri = sourcefile;
 			workingDirectory = System.IO.Path.GetDirectoryName(sourcefile.LocalPath);
 
 			string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
-			return ExportToMemoryStream(source, parameters, exportType);
+			return await ExportToMemoryStream(source, parameters, exportType);
 		}
 
 		/// <summary>
@@ -174,26 +175,26 @@ namespace fyiReporting.RdlGtk3
 		/// </summary>
 		/// <param name="source">Xml source of report</param>
 		/// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-		public static MemoryStream ExportToMemoryStream(string source, string parameters, OutputPresentationType exportType)
+		public static async Task<MemoryStream> ExportToMemoryStream(string source, string parameters, OutputPresentationType exportType)
 		{
 			// Compile the report 
-			report = GetReport(source);
+			report = await GetReport(source);
 			if(report == null) {
 				throw new ArgumentException("Can not compile report");
 			}
 
-			report.RunGetData(GetParmeters(parameters));
+            await report.RunGetData(GetParmeters(parameters));
 
 			using(MemoryStreamGen ms = new MemoryStreamGen())
 			{
 				try
 				{
-					report.RunRender(ms, exportType);
+                    await report.RunRender(ms, exportType);
 					return ms.GetStream() as MemoryStream;
 				}
 				catch(Exception ex)
 				{
-					throw ex;
+					throw;
 				}
 				finally
 				{
@@ -234,7 +235,7 @@ namespace fyiReporting.RdlGtk3
 			return ld;
 		}
 
-		private static Report GetReport(string reportSource)
+		private static async Task<Report> GetReport(string reportSource)
 		{
 			// Now parse the file 
 
@@ -247,7 +248,7 @@ namespace fyiReporting.RdlGtk3
 			rdlp.OverwriteInSubreport = overwriteSubreportConnection;
 			// RDLParser takes RDL XML and Parse compiles the report
 
-			r = rdlp.Parse();
+			r = await rdlp.Parse();
 			if(r.ErrorMaxSeverity > 0) {
 				foreach(string emsg in r.ErrorItems) {
 					Console.WriteLine(emsg);

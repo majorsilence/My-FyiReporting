@@ -25,7 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -55,21 +55,21 @@ namespace fyiReporting.RDL
 			_LevelCheck = false;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public async Task<IExpr> ConstantOptimization()
 		{
 			if (_Expr != null)
-				_Expr = _Expr.ConstantOptimization();
+				_Expr = await _Expr.ConstantOptimization();
 			return (IExpr) this;
 		}
 
-		public virtual bool EvaluateBoolean(Report rpt, Row row)
+		public virtual Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
 		public IExpr Expr

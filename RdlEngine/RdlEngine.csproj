@@ -12,6 +12,7 @@
 		<PackageId>Majorsilence.Reporting.RdlEngine</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
+		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">

@@ -24,6 +24,8 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 #if DRAWINGCOMPAT
 using Majorsilence.Drawing;
 #else
@@ -95,16 +97,16 @@ namespace fyiReporting.RDL
 			DataRegionFinish();			// Tidy up the DataRegion
 		}
 
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 
 			if (_Grouping != null)
-				_Grouping.FinalPass();
+                await _Grouping.FinalPass();
 			if (_Sorting != null)
-				_Sorting.FinalPass();
+                await _Sorting.FinalPass();
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+                await _ReportItems.FinalPass();
 
 			// determine if the size is dynamic depending on any of its
 			//   contained textbox have cangrow true
@@ -131,52 +133,54 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
 			Report r = ip.Report();
 			WorkClass wc = GetValue(r);
 
-			wc.Data = GetFilteredData(r, row);
+			wc.Data = await GetFilteredData(r, row);
 
-			if (!AnyRows(ip, wc.Data))		// if no rows return
+			if (!await AnyRows(ip, wc.Data))		// if no rows return
 				return;					//   nothing left to do
 
 			RunSetGrouping(r, wc);
 
-			base.Run(ip, row);
+            await base.Run(ip, row);
 
-			if (!ip.ListStart(this, row))	
-				return;							// renderer doesn't want to continue
-						   
-			RunGroups(ip, wc, wc.Groups);
+			if (!await ip.ListStart(this, row))	
+				return;                         // renderer doesn't want to continue
 
-			ip.ListEnd(this, row);
+            await RunGroups(ip, wc, wc.Groups);
+
+            await ip.ListEnd(this, row);
 			RemoveValue(r);
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		async override internal Task RunPage(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
-			if (IsHidden(r, row))
+			if (await IsHidden(r, row))
 				return;
 
 			WorkClass wc = GetValue(r);
-			wc.Data = GetFilteredData(r, row);
+			wc.Data = await GetFilteredData(r, row);
 
 			SetPagePositionBegin(pgs);
 
-			if (!AnyRowsPage(pgs, wc.Data))		// if no rows return
+			if (!await AnyRowsPage(pgs, wc.Data))		// if no rows return
 				return;						//   nothing left to do
 
 			RunPageRegionBegin(pgs);
 
 			RunSetGrouping(pgs.Report, wc);
 
-			RunPageGroups(pgs, wc, wc.Groups);
+            await RunPageGroups(pgs, wc, wc.Groups);
 
 			RunPageRegionEnd(pgs);
 			SetPagePositionEnd(pgs, pgs.CurrentPage.YOffset);
 			RemoveValue(r);
+
+			return;
 		}
 
 		private void RunSetGrouping(Report rpt, WorkClass wc)
@@ -302,7 +306,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void RunGroups(IPresent ip, WorkClass wc, List<GroupEntry> groupEntries)
+		private async Task RunGroups(IPresent ip, WorkClass wc, List<GroupEntry> groupEntries)
 		{
 			foreach (GroupEntry ge in groupEntries)
 			{
@@ -325,7 +329,7 @@ namespace fyiReporting.RDL
 					{
 						ip.ListEntryBegin(this,  wc.Data.Data[r]);
                         if (_ReportItems != null)
-						    _ReportItems.Run(ip, wc.Data.Data[r]);
+                            await _ReportItems.Run(ip, wc.Data.Data[r]);
 						ip.ListEntryEnd(this, wc.Data.Data[r]);
 					}
 				}
@@ -335,14 +339,14 @@ namespace fyiReporting.RDL
 
 					// pass the first row of the group
                     if (_ReportItems != null)
-					    _ReportItems.Run(ip, wc.Data.Data[ge.StartRow]);
+                        await _ReportItems.Run(ip, wc.Data.Data[ge.StartRow]);
 
 					ip.ListEntryEnd(this, wc.Data.Data[ge.StartRow]);
 				}
 			}
 		}
 
-		private void RunPageGroups(Pages pgs, WorkClass wc, List<GroupEntry> groupEntries)
+		private async Task RunPageGroups(Pages pgs, WorkClass wc, List<GroupEntry> groupEntries)
 		{
 			Report rpt = pgs.Report;
 			Page p = pgs.CurrentPage;
@@ -374,7 +378,7 @@ namespace fyiReporting.RDL
 					for (int r=ge.StartRow; r <= ge.EndRow; r++)
 					{
 						row = wc.Data.Data[r];
-						height = HeightOfList(rpt, pgs.G, row);
+						height = await HeightOfList(rpt, pgs.G, row);
                         
                         if (p.YOffset + height > pagebottom && !p.IsEmpty())		// need another page for this row?
                             p = RunPageNew(pgs, p);					// yes; if at end this page is empty
@@ -382,12 +386,12 @@ namespace fyiReporting.RDL
                         float saveYoffset = p.YOffset;              // this can be affected by other page items
                         if (Style != null) {
 	                        var border = new PageRectangle();
-	                        SetPagePositionAndStyle(rpt, border, row);
+                            await SetPagePositionAndStyle(rpt, border, row);
 	                        p.AddObject(border);
                         }
 
                         if (_ReportItems != null)
-						    _ReportItems.RunPage(pgs, row, listoffset);
+                            await _ReportItems.RunPage(pgs, row, listoffset);
 
                         if (p == pgs.CurrentPage)       // did subitems force new page?
                         {   // no use the height of the list
@@ -398,7 +402,7 @@ namespace fyiReporting.RDL
                             p = pgs.CurrentPage;        // set to new page
                             if (this.Style != null)
                             {
-                                p.YOffset += this.Style.EvalPaddingBottom(rpt, row);
+                                p.YOffset += await this.Style.EvalPaddingBottom(rpt, row);
                             }
                         }
 					}
@@ -410,14 +414,14 @@ namespace fyiReporting.RDL
 
 					// pass the first row of the group
 					row = wc.Data.Data[ge.StartRow];
-					height = HeightOfList(rpt, pgs.G, row);
+					height = await HeightOfList(rpt, pgs.G, row);
                     
                     if (p.YOffset + height > pagebottom && !p.IsEmpty())		// need another page for this row?
                         p = RunPageNew(pgs, p);					// yes; if at end this page is empty
                     float saveYoffset = p.YOffset;              // this can be affected by other page items
                     
                     if (_ReportItems != null)
-                        _ReportItems.RunPage(pgs, row, listoffset);
+                        await _ReportItems.RunPage(pgs, row, listoffset);
 
 
                     if (p == pgs.CurrentPage)       // did subitems force new page?
@@ -429,7 +433,7 @@ namespace fyiReporting.RDL
                         p = pgs.CurrentPage;        // set to new page
                         if (this.Style != null)
                         {
-                            p.YOffset += this.Style.EvalPaddingBottom(rpt, row);
+                            p.YOffset += await this.Style.EvalPaddingBottom(rpt, row);
                         }
                     }
 					
@@ -472,7 +476,7 @@ namespace fyiReporting.RDL
 			set {  _Grouping = value; }
 		}
 
-		internal float HeightOfList(Report rpt, Graphics g, Row r)
+		internal async Task<float> HeightOfList(Report rpt, Graphics g, Row r)
 		{		   
 			WorkClass wc = GetValue(rpt);
 
@@ -484,9 +488,9 @@ namespace fyiReporting.RDL
 			foreach (Textbox tb in this._GrowList)
 			{
 				float top = (float) (tb.Top == null? 0.0 : tb.Top.Points);
-				height = top + tb.RunTextCalcHeight(rpt, g, r);
+				height = top + await tb.RunTextCalcHeight(rpt, g, r);
 				if (tb.Style != null)
-					height += (tb.Style.EvalPaddingBottom(rpt, r) + tb.Style.EvalPaddingTop(rpt, r));
+					height += (await tb.Style.EvalPaddingBottom(rpt, r) + await tb.Style.EvalPaddingTop(rpt, r));
 				defnHeight = Math.Max(height, defnHeight);
 			}
 			wc.CalcHeight = defnHeight;

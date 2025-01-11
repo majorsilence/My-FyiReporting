@@ -35,6 +35,7 @@ using System.Drawing.Imaging;
 using System.Text;
 using System.Xml;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -355,7 +356,7 @@ function findObject(id) {
 		}
 
 		// handle the Action tag
-		private string Action(Action a, Row r, string t, string tooltip)
+		private async Task<string> Action(Action a, Row r, string t, string tooltip)
 		{
 			if (a == null)
 				return t;
@@ -363,7 +364,7 @@ function findObject(id) {
 			string result = t;
 			if (a.Hyperlink != null)
 			{	// Handle a hyperlink
-				string url = a.HyperLinkValue(this.r, r);
+				string url = await a.HyperLinkValue(this.r, r);
 				if (tooltip == null)
 					result = String.Format("<a target=\"_top\" href=\"{0}\">{1}</a>", url, t);
 				else
@@ -381,7 +382,7 @@ function findObject(id) {
 					bool bFirst = !_Asp;		// ASP already have an argument
 					foreach (DrillthroughParameter dtp in a.Drill.DrillthroughParameters.Items)
 					{
-						if (!dtp.OmitValue(this.r, r))
+						if (!await dtp.OmitValue(this.r, r))
 						{
 							if (bFirst)
 							{	// First parameter - prefixed by '?'
@@ -408,7 +409,7 @@ function findObject(id) {
 			}
 			else if (a.BookmarkLink != null)
 			{	// Handle a bookmark
-				string bm = a.BookmarkLinkValue(this.r, r);
+				string bm = await a.BookmarkLinkValue(this.r, r);
 				if (tooltip == null)
 					result = String.Format("<a href=\"#{0}\">{1}</a>", bm, t);
 				else
@@ -738,9 +739,9 @@ function findObject(id) {
 				tw.WriteLine("</div></td></tr>");
 		}
 
-		public void Textbox(Textbox tb, string t, Row row)
+		public async Task Textbox(Textbox tb, string t, Row row)
 		{
-            if (tb.IsHtml(this.r, row))		// we leave the text as is (except to handle unicode) when request is to treat as html
+            if (await tb.IsHtml(this.r, row))		// we leave the text as is (except to handle unicode) when request is to treat as html
             {                               //   this can screw up the generated HTML if not properly formed HTML
                 t = XmlUtil.HtmlAnsi(t);
             }
@@ -750,10 +751,10 @@ function findObject(id) {
 				t = XmlUtil.XmlAnsi(t);
 
 				// handle any specified bookmark
-				t = Bookmark(tb.BookmarkValue(this.r, row), t);
+				t = Bookmark(await tb.BookmarkValue(this.r, row), t);
 
 				// handle any specified actions
-				t = Action(tb.Action, row, t, tb.ToolTipValue(this.r, row));
+				t = await Action(tb.Action, row, t, await tb.ToolTipValue(this.r, row));
 			}
 			// determine if we're in a tablecell
 			Type tp = tb.Parent.Parent.GetType();
@@ -791,7 +792,7 @@ function findObject(id) {
 				tw.Write("</td>");
 		}
 
-		public void DataRegionNoRows(DataRegion d, string noRowsMsg)			// no rows in table
+		public Task DataRegionNoRows(DataRegion d, string noRowsMsg)			// no rows in table
 		{
 			if (noRowsMsg == null)
 				noRowsMsg = "";
@@ -810,21 +811,22 @@ function findObject(id) {
 				string cssName = CssAdd(d.Style, d, null);	// get the style name for this item
 				tw.Write("<div class='{0}'>{1}</div>", cssName, noRowsMsg);
 			}
+			return Task.CompletedTask;
 		}
 
 		// Lists
-		public bool ListStart(List l, Row r)
+		public async Task<bool> ListStart(List l, Row r)
 		{
 			// identifiy reportitem it if necessary
-			string bookmark = l.BookmarkValue(this.r, r);
+			string bookmark = await l.BookmarkValue(this.r, r);
 			if (bookmark != null)	// 
 				tw.WriteLine("<div id=\"{0}\">", bookmark);		// can't use the table id since we're using for css style
 			return true;
 		}
 
-		public void ListEnd(List l, Row r)
+		public async Task ListEnd(List l, Row r)
 		{
-			string bookmark = l.BookmarkValue(this.r, r);
+			string bookmark = await l.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				tw.WriteLine("</div>"); 
 		}
@@ -843,7 +845,7 @@ function findObject(id) {
 		}
 
 		// Tables					// Report item table
-		public bool TableStart(Table t, Row row)
+		public async Task<bool> TableStart(Table t, Row row)
 		{
 			string cssName = CssAdd(t.Style, t, row);	// get the style name for this item
 
@@ -853,12 +855,12 @@ function findObject(id) {
 				this.bScriptTableSort = true;
 			}
 
-			string bookmark = t.BookmarkValue(this.r, row);
+			string bookmark = await t.BookmarkValue(this.r, row);
 			if (bookmark != null)
 				tw.WriteLine("<div id=\"{0}\">", bookmark);		// can't use the table id since we're using for css style
 
 			// Calculate the width of all the columns
-			int width = t.WidthInPixels(this.r, row);
+			int width = await t.WidthInPixels(this.r, row);
 			if (width <= 0)
 				tw.WriteLine("<table id='{0}'>", cssName);
 			else
@@ -893,9 +895,9 @@ function findObject(id) {
 			return bReturn;
 		}
 
-		public void TableEnd(Table t, Row row)
+		public async Task TableEnd(Table t, Row row)
 		{
-			string bookmark = t.BookmarkValue(this.r, row);
+			string bookmark = await t.BookmarkValue(this.r, row);
 			if (bookmark != null)
 				tw.WriteLine("</div>"); 
 			tw.WriteLine("</table>");
@@ -932,7 +934,7 @@ function findObject(id) {
 			tw.WriteLine("</thead>");
 		}
 
-		public void TableRowStart(TableRow tr, Row row)
+		public async Task TableRowStart(TableRow tr, Row row)
 		{
 			tw.Write("\t<tr");
 			ReportLink rl = tr.Parent.Parent;
@@ -954,7 +956,7 @@ function findObject(id) {
 			if (v != null &&
 				v.Hidden != null)
 			{
-				bool bHide = v.Hidden.EvaluateBoolean(this.r, row);
+				bool bHide = await v.Hidden.EvaluateBoolean(this.r, row);
 				if (bHide)
 					tw.Write(" style=\"display:none;\"");
 			}
@@ -1127,9 +1129,9 @@ function findObject(id) {
 			return;
 		}
 
-        public bool MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
+        public async Task<bool> MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
 		{
-			string bookmark = m.BookmarkValue(this.r, r);
+			string bookmark = await m.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				tw.WriteLine("<div id=\"{0}\">", bookmark);		// can't use the table id since we're using for css style
 
@@ -1144,7 +1146,7 @@ function findObject(id) {
 		{
 		}
 
-		public void MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+		public async Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
 		{
 			if (ri == null)			// Empty cell?
 			{
@@ -1155,7 +1157,7 @@ function findObject(id) {
 
 			string cssName = CssAdd(ri.Style, ri, r, false, h, w);	// get the style name for this item
 
-			tw.Write("<td id='{0}'", cssName);
+			await tw.WriteAsync($"<td id='{cssName}'");
 			if (colSpan != 1)
 			{
 				tw.Write(" colspan={0}", colSpan);
@@ -1179,7 +1181,7 @@ function findObject(id) {
 			tw.Write(">");
 		}
 
-		public void MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
+		public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
 		{
 			if (_SkipMatrixCols == 0)
 				tw.Write("</td>");
@@ -1190,7 +1192,7 @@ function findObject(id) {
 			}
 			else
 				_SkipMatrixCols--;
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void MatrixRowStart(Matrix m, int row, Row r)
@@ -1205,17 +1207,17 @@ function findObject(id) {
 			tw.WriteLine("</tr>");
 		}
 
-		public void MatrixEnd(Matrix m, Row r)				// called last
+		public async Task MatrixEnd(Matrix m, Row r)				// called last
 		{
 			tw.Write("</table>");
 
-			string bookmark = m.BookmarkValue(this.r, r);
+			string bookmark = await m.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				tw.WriteLine("</div>");		
 			return;
 		}
 
-		public void Chart(Chart c, Row r, ChartBase cb)
+		public async Task Chart(Chart c, Row r, ChartBase cb)
 		{
 			string relativeName;
 
@@ -1235,14 +1237,14 @@ function findObject(id) {
 			// Create syntax in a string buffer
 			StringWriter sw = new StringWriter();
 
-			string bookmark = c.BookmarkValue(this.r, r);
+			string bookmark = await c.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				sw.WriteLine("<div id=\"{0}\">", bookmark);		// can't use the table id since we're using for css style
 
 			string cssName = CssAdd(c.Style, c, null);	// get the style name for this item
 
 			sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
-			string tooltip = c.ToolTipValue(this.r, r);
+			string tooltip = await c.ToolTipValue(this.r, r);
 			if (tooltip != null)
 				sw.Write(" alt=\"{0}\"", tooltip);
 			if (c.Height != null)
@@ -1258,7 +1260,7 @@ function findObject(id) {
 			return;
 		}
 
-		public void Image(Image i, Row r, string mimeType, Stream ioin)
+		public async Task Image(Image i, Row r, string mimeType, Stream ioin)
 		{
 			string relativeName;
 			string suffix;
@@ -1317,7 +1319,7 @@ function findObject(id) {
 			// Create syntax in a string buffer
 			StringWriter sw = new StringWriter();
 
-			string bookmark = i.BookmarkValue(this.r, r);
+			string bookmark = await i.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				sw.WriteLine("<div id=\"{0}\">", bookmark);		// we're using for css style
 
@@ -1325,7 +1327,7 @@ function findObject(id) {
 
 			sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
 
-			string tooltip = i.ToolTipValue(this.r, r);
+			string tooltip = await i.ToolTipValue(this.r, r);
 			if (tooltip != null)
 				sw.Write(" alt=\"{0}\"", tooltip);
             int h = i.Height == null? -1: i.Height.PixelsY;
@@ -1355,7 +1357,7 @@ function findObject(id) {
 			return;
 		}
 
-		public void Line(Line l, Row r)
+		public async Task Line(Line l, Row r)
 		{
 			bool bVertical;
 			string t;
@@ -1383,7 +1385,7 @@ function findObject(id) {
 				height = l.Height == null? "0px": l.Height.CSS;
 				// width comes from the BorderWidth
 				if (s != null && s.BorderWidth != null && s.BorderWidth.Default != null)
-					width = s.BorderWidth.Default.EvaluateString(this.r, r);
+					width = await s.BorderWidth.Default.EvaluateString(this.r, r);
 				else
 					width = "1px";
 			}
@@ -1392,13 +1394,13 @@ function findObject(id) {
 				width = l.Width == null? "0px": l.Width.CSS;
 				// height comes from the BorderWidth
 				if (s != null && s.BorderWidth != null && s.BorderWidth.Default != null)
-					height = s.BorderWidth.Default.EvaluateString(this.r, r);
+					height = await s.BorderWidth.Default.EvaluateString(this.r, r);
 				else
 					height = "1px";
 			}
 
 			if (s != null && s.BorderColor != null && s.BorderColor.Default != null)
-				color = s.BorderColor.Default.EvaluateString(this.r, r);
+				color = await s.BorderColor.Default.EvaluateString(this.r, r);
 			else
 				color = "black";
 			
@@ -1406,11 +1408,11 @@ function findObject(id) {
 			return;
 		}
 
-		public bool RectangleStart(RDL.Rectangle rect, Row r)
+		public async Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
 		{
 			string cssName = CssAdd(rect.Style, rect, r);	// get the style name for this item
 
-			string bookmark = rect.BookmarkValue(this.r, r);
+			string bookmark = await rect.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				tw.WriteLine("<div id=\"{0}\">", bookmark);		// can't use the table id since we're using for css style
 
@@ -1424,26 +1426,27 @@ function findObject(id) {
 			return true;
 		}
 
-		public void RectangleEnd(RDL.Rectangle rect, Row r)
+		public async Task RectangleEnd(RDL.Rectangle rect, Row r)
 		{
 			tw.WriteLine("</tr></table>");
-			string bookmark = rect.BookmarkValue(this.r, r);
+			string bookmark = await rect.BookmarkValue(this.r, r);
 			if (bookmark != null)
 				tw.WriteLine("</div>"); 
 			return;
 		}
 
 		// Subreport:  
-		public void Subreport(Subreport s, Row r)
+		public async Task Subreport(Subreport s, Row r)
 		{
 			string cssName = CssAdd(s.Style, s, r);	// get the style name for this item
 
 			tw.WriteLine("<div class='{0}'>", cssName);
 
-			s.ReportDefn.Run(this);
+            await s.ReportDefn.Run(this);
 			
 			tw.WriteLine("</div>");
-		}
+            return;
+        }
 		public void GroupingStart(Grouping g)			// called at start of grouping
 		{
 		}

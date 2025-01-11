@@ -25,6 +25,7 @@ using System;
 using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -172,20 +173,20 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Label != null)
-				_Label.FinalPass();
+                await _Label.FinalPass();
 			if (_GroupExpressions != null)
-				_GroupExpressions.FinalPass();
+                await _GroupExpressions.FinalPass();
 			if (_Custom != null)
-				_Custom.FinalPass();
+                await _Custom.FinalPass();
 			if (_Filters != null)
-				_Filters.FinalPass();
+                await _Filters.FinalPass();
 			if (_ParentGroup != null)
-				_ParentGroup.FinalPass();
+                await _ParentGroup.FinalPass();
             if (_PageBreakCondition != null)
-                _PageBreakCondition.FinalPass();
+                await _PageBreakCondition.FinalPass();
 
             // Determine if group is defined inside of a Matrix;  these get
             //   different runtime expression handling in FunctionAggr
@@ -255,11 +256,11 @@ namespace fyiReporting.RDL
 			set {  _PageBreakAtEnd = value; }
 		}
 
-        internal bool PageBreakCondition(Report r, Row row, bool SeMancaDefinizione)
+        internal async Task<bool> PageBreakCondition(Report r, Row row, bool SeMancaDefinizione)
         {
             bool result;
             if (_PageBreakCondition != null)
-                result = _PageBreakCondition.EvaluateBoolean(r, row);
+                result = await _PageBreakCondition.EvaluateBoolean(r, row);
             else
                 result = SeMancaDefinizione;
             return result;

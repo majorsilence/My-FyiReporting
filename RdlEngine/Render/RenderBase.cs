@@ -42,6 +42,7 @@ using Drawing2D = System.Drawing.Imaging;
 using System.Text;
 using fyiReporting.RDL.Utility;
 using System.Security;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -77,7 +78,7 @@ namespace fyiReporting.RDL
 
 
         #region abstract methods
-        internal protected void  AddLine(float x, float y, float x2, float y2, StyleInfo si)
+        internal protected void AddLine(float x, float y, float x2, float y2, StyleInfo si)
         {
             AddLine(x, y, x2, y2, si.BWidthTop, si.BColorTop, si.BStyleTop);
         }
@@ -92,13 +93,13 @@ namespace fyiReporting.RDL
         internal abstract protected void AddBookmark(PageText pt);
 
         internal abstract protected void AddLine(float x, float y, float x2, float y2, float width, Drawing.Color c, BorderStyleEnum ls);
-       
-      
+
+
         /// <summary>
         /// Add image to the page.
         /// </summary>
         /// <returns>string Image name</returns>
-        internal abstract protected void AddImage(string name,  StyleInfo si,
+        internal abstract protected void AddImage(string name, StyleInfo si,
             Drawing2D.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
             byte[] im, int samplesW, int samplesH, string url, string tooltip);
 
@@ -111,17 +112,17 @@ namespace fyiReporting.RDL
         /// <param name="patterns"></param>
         internal abstract protected void AddPolygon(Drawing.PointF[] pts, StyleInfo si, string url);
 
-      
+
         /// <summary>
         /// Page Rectangle element at the X Y position
         /// </summary>
         /// <returns></returns>
-        internal abstract protected void AddRectangle(float x, float y, float height, float width, StyleInfo si, string url,  string tooltip);
+        internal abstract protected void AddRectangle(float x, float y, float height, float width, StyleInfo si, string url, string tooltip);
         /// <summary>
         /// Draw a pie
         /// </summary>
         /// <returns></returns>
-        internal abstract protected void AddPie(float x, float y, float height, float width, StyleInfo si, string url,  string tooltip);
+        internal abstract protected void AddPie(float x, float y, float height, float width, StyleInfo si, string url, string tooltip);
 
         /// <summary>
         /// Draw a curve
@@ -130,25 +131,25 @@ namespace fyiReporting.RDL
         internal abstract protected void AddCurve(Drawing.PointF[] pts, StyleInfo si);
 
 
-      
+
         //25072008 GJL Draw 4 bezier curves to approximate a circle
         internal abstract protected void AddEllipse(float x, float y, float height, float width, StyleInfo si, string url);
 
-        
+
 
         /// <summary>
         /// Page Text element at the X Y position; multiple lines handled
         /// </summary>
         /// <returns></returns>
         internal abstract protected void AddText(float x, float y, float height, float width, string[] sa,
-            StyleInfo si,  float[] tw, bool bWrap, string url, bool bNoClip, string tooltip);
+            StyleInfo si, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip);
 
         #endregion
 
         //Replaced from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
         public void Dispose() { }
 
-      
+
         public RenderBase(Report rep, IStreamGen sg)
         {
             _streamGen = sg.GetStream();
@@ -182,9 +183,9 @@ namespace fyiReporting.RDL
             {
                 PageSize = new PdfPageSize((int)_report.ReportDefinition.PageWidth.ToPoints(),
                                        (int)_report.ReportDefinition.PageHeight.ToPoints());
-             
+
                 //Create a Page 
-                CreatePage();               
+                CreatePage();
                 ProcessPage(pgs, p);
                 // after a page
                 AfterProcessPage();
@@ -242,12 +243,12 @@ namespace fyiReporting.RDL
                         {
                             currX = startX + (i * imW);
                             currY = startY + (j * imH);
-                       
-                           
 
-                                AddImage( bgImg.Name,bgImg.SI, bgImg.ImgFormat,
-                                                currX, currY, imW, imH, Drawing.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
-                           
+
+
+                            AddImage(bgImg.Name, bgImg.SI, bgImg.ImgFormat,
+                                            currX, currY, imW, imH, Drawing.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+
                         }
                     }
                 }
@@ -265,10 +266,10 @@ namespace fyiReporting.RDL
                     PageText pt = pi as PageText;
                     float[] textwidth;
                     string[] sa = MeasureString(pt, pgs.G, out textwidth);
-                   
+
 
                     AddText(pt.X, pt.Y, pt.H, pt.W, sa, pt.SI, textwidth, pt.CanGrow, pt.HyperLink, pt.NoClip, pt.Tooltip);
-                    
+
                     if (pt.Bookmark != null)
                     {
                         AddBookmark(pt);
@@ -309,10 +310,10 @@ namespace fyiReporting.RDL
                             break;
                         case ImageSizingEnum.Clip:
 
-							//Set samples size
-							i.GetImageData((int)r2.Width, (int)r2.Height);
+                            //Set samples size
+                            i.GetImageData((int)r2.Width, (int)r2.Height);
 
-							adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
+                            adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
                                             Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
                             clipRect = new Drawing.RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
@@ -347,9 +348,9 @@ namespace fyiReporting.RDL
                     else
                     {
 #endif
-                       
-                            AddImage(i.Name,  i.SI, i.ImgFormat,
-                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData((int)clipRect.Width, (int)clipRect.Height), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+
+                        AddImage(i.Name, i.SI, i.ImgFormat,
+                        adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData((int)clipRect.Width, (int)clipRect.Height), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
 #if !DRAWINGCOMPAT
                     }
 #endif
@@ -359,14 +360,14 @@ namespace fyiReporting.RDL
                 if (pi is PageRectangle)
                 {
                     PageRectangle pr = pi as PageRectangle;
-                    AddRectangle(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink,  pi.Tooltip);
+                    AddRectangle(pr.X, pr.Y, pr.H, pr.W, pi.SI, pi.HyperLink, pi.Tooltip);
                     continue;
                 }
                 if (pi is PagePie)
                 {   // TODO
                     PagePie pp = pi as PagePie;
                     // 
-                    AddPie(pp.X, pp.Y, pp.H, pp.W, pi.SI, pi.HyperLink,  pi.Tooltip);
+                    AddPie(pp.X, pp.Y, pp.H, pp.W, pi.SI, pi.HyperLink, pi.Tooltip);
                     continue;
                 }
                 if (pi is PagePolygon)
@@ -386,7 +387,7 @@ namespace fyiReporting.RDL
 
         }
 
-       
+
         private string[] MeasureString(PageText pt, Drawing.Graphics g, out float[] width)
         {
             StyleInfo si = pt.SI;
@@ -665,7 +666,7 @@ namespace fyiReporting.RDL
             return new Drawing.SizeF(mr.Width, mr.Height);
         }
 
-     
+
         // Body: main container for the report
         public void BodyStart(Body b)
         {
@@ -691,22 +692,25 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void Textbox(Textbox tb, string t, Row row)
+        public Task Textbox(Textbox tb, string t, Row row)
         {
+            return Task.CompletedTask;
         }
 
-        public void DataRegionNoRows(DataRegion d, string noRowsMsg)
+        public Task DataRegionNoRows(DataRegion d, string noRowsMsg)
         {
+            return Task.CompletedTask;
         }
 
         // Lists
-        public bool ListStart(List l, Row r)
+        public Task<bool> ListStart(List l, Row r)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void ListEnd(List l, Row r)
+        public Task ListEnd(List l, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void ListEntryBegin(List l, Row r)
@@ -718,13 +722,14 @@ namespace fyiReporting.RDL
         }
 
         // Tables					// Report item table
-        public bool TableStart(Table t, Row row)
+        public Task<bool> TableStart(Table t, Row row)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void TableEnd(Table t, Row row)
+        public Task TableEnd(Table t, Row row)
         {
+            return Task.CompletedTask;
         }
 
         public void TableBodyStart(Table t, Row row)
@@ -751,8 +756,9 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void TableRowStart(TableRow tr, Row row)
+        public Task TableRowStart(TableRow tr, Row row)
         {
+            return Task.CompletedTask;
         }
 
         public void TableRowEnd(TableRow tr, Row row)
@@ -769,21 +775,23 @@ namespace fyiReporting.RDL
             return;
         }
 
-        public bool MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
+        public Task<bool> MatrixStart(Matrix m, MatrixCellEntry[,] matrix, Row r, int headerRows, int maxRows, int maxCols)				// called first
         {
-            return true;
+            return Task.FromResult(true);
         }
 
         public void MatrixColumns(Matrix m, MatrixColumns mc)	// called just after MatrixStart
         {
         }
 
-        public void MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+        public Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
         {
+            return Task.CompletedTask;
         }
 
-        public void MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
+        public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void MatrixRowStart(Matrix m, int row, Row r)
@@ -794,34 +802,39 @@ namespace fyiReporting.RDL
         {
         }
 
-        public void MatrixEnd(Matrix m, Row r)				// called last
+        public Task MatrixEnd(Matrix m, Row r)				// called last
         {
+            return Task.CompletedTask;
         }
 
-        public void Chart(Chart c, Row r, ChartBase cb)
+        public Task Chart(Chart c, Row r, ChartBase cb)
         {
+            return Task.CompletedTask;
         }
 
-        public void Image(fyiReporting.RDL.Image i, Row r, string mimeType, Stream ior)
+        public Task Image(fyiReporting.RDL.Image i, Row r, string mimeType, Stream ior)
         {
+            return Task.CompletedTask;
         }
 
-        public void Line(Line l, Row r)
+        public Task Line(Line l, Row r)
         {
-            return;
+            return Task.CompletedTask;
         }
 
-        public bool RectangleStart(fyiReporting.RDL.Rectangle rect, Row r)
+        public Task<bool> RectangleStart(fyiReporting.RDL.Rectangle rect, Row r)
         {
-            return true;
+            return Task.FromResult(true);
         }
 
-        public void RectangleEnd(fyiReporting.RDL.Rectangle rect, Row r)
+        public Task RectangleEnd(fyiReporting.RDL.Rectangle rect, Row r)
         {
+            return Task.CompletedTask;
         }
 
-        public void Subreport(Subreport s, Row r)
+        public Task Subreport(Subreport s, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void GroupingStart(Grouping g)			// called at start of grouping

@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -157,14 +158,14 @@ namespace fyiReporting.RDL
 
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			if (_Query != null)			// query must be resolved before fields
-				_Query.FinalPass();
+			if (_Query != null)         // query must be resolved before fields
+                await _Query.FinalPass();
 			if (_Fields != null)
-				_Fields.FinalPass();
+                await _Fields.FinalPass();
 			if (_Filters != null)
-				_Filters.FinalPass();
+                await _Filters.FinalPass();
 			return;
 		}
 
@@ -175,7 +176,7 @@ namespace fyiReporting.RDL
 			_HideDuplicates.Add(tb);
 		}
 
-		internal bool GetData(Report rpt)
+		internal async Task<bool> GetData(Report rpt)
 		{
 			ResetHideDuplicates(rpt);
 
@@ -188,7 +189,7 @@ namespace fyiReporting.RDL
                     xdata = _XmlRowData;					// didn't find any data
                 }
 
-				bRows = _Query.GetData(rpt, xdata, _Fields, _Filters);	// get the data (and apply the filters
+				bRows = await _Query.GetData(rpt, xdata, _Fields, _Filters);	// get the data (and apply the filters
 				return bRows;
 			}
 
@@ -197,7 +198,7 @@ namespace fyiReporting.RDL
                 return bRows;
             }
 
-			bRows = _Query.GetData(rpt, this._Fields, _Filters);	// get the data (and apply the filters
+			bRows = await _Query.GetData(rpt, this._Fields, _Filters);	// get the data (and apply the filters
             return bRows;
 		}
 
@@ -244,24 +245,24 @@ namespace fyiReporting.RDL
 			return d;
 		}
 
-		internal void SetData(Report rpt, IDataReader dr)
+		internal async Task SetData(Report rpt, IDataReader dr)
 		{
-			Query.SetData(rpt, dr, _Fields, _Filters);		// get the data (and apply the filters
+            await Query.SetData(rpt, dr, _Fields, _Filters);		// get the data (and apply the filters
 		}
 
-		internal void SetData(Report rpt, DataTable dt)
+		internal async Task SetData(Report rpt, DataTable dt)
 		{
-			Query.SetData(rpt, dt, _Fields, _Filters);
+            await Query.SetData(rpt, dt, _Fields, _Filters);
 		}
 
-		internal void SetData(Report rpt, XmlDocument xmlDoc)
+		internal async Task SetData(Report rpt, XmlDocument xmlDoc)
 		{
-			Query.SetData(rpt, xmlDoc, _Fields, _Filters);
+            await Query.SetData(rpt, xmlDoc, _Fields, _Filters);
 		}
 
-		internal void SetData(Report rpt, IEnumerable ie)
+		internal async Task SetData(Report rpt, IEnumerable ie)
 		{
-			Query.SetData(rpt, ie, _Fields, _Filters);
+            await Query.SetData(rpt, ie, _Fields, _Filters);
 		}
 
 		internal void ResetHideDuplicates(Report rpt)

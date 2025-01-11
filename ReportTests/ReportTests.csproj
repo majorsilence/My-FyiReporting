@@ -62,6 +62,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DocumentFormat.OpenXml" />
+		<PackageReference Include="Microsoft.Data.Sqlite" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnit3TestAdapter" />

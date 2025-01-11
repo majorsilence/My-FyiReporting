@@ -29,6 +29,7 @@ using System.Xml;
 using System.Reflection;
 using RdlEngine.Resources;
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -87,7 +88,7 @@ namespace fyiReporting.RDL
 		/// <param name="lu">The NameLookUp class used to resolve names.</param>
 		/// <param name="expr">The expression to be parsed.</param>
 		/// <returns>An expression that can be run after validation and binding.</returns>
-		internal IExpr Parse(NameLookup lu, string expr)
+		internal async Task<IExpr> Parse(NameLookup lu, string expr)
 		{
 			_InAggregate = false;
 
@@ -95,7 +96,7 @@ namespace fyiReporting.RDL
 				return new Constant(expr);		//   this is a constant value
 
 			idLookup = lu;	
-			IExpr e = this.ParseExpr(new StringReader(expr));
+			IExpr e = await this.ParseExpr(new StringReader(expr));
 			
 			if (e == null)					// Didn't get an expression?
 				e = new Constant(expr);		//  then provide a constant
@@ -124,7 +125,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="reader">The TextReader value to be parsed.</param>
 		/// <returns>A parsed Program instance.</returns>
-		private IExpr ParseExpr(TextReader reader)
+		private async Task<IExpr> ParseExpr(TextReader reader)
 		{
 			IExpr result=null;
 			Lexer lexer = new Lexer(reader);
@@ -134,7 +135,7 @@ namespace fyiReporting.RDL
 			{
 				tokens.Extract();		// skip over the equal
 				curToken = tokens.Extract();	// set up the first token
-				MatchExprAndOr(out result);	// start with lowest precedence and work up
+				result = await MatchExprAndOr();	// start with lowest precedence and work up
 			}
 
 			if (curToken.Type != TokenTypes.EOF)
@@ -144,18 +145,18 @@ namespace fyiReporting.RDL
 		}
 
 		// ExprAndOr: 
-		private void MatchExprAndOr(out IExpr result)
+		private async Task<IExpr> MatchExprAndOr()
 		{
 			TokenTypes t;			// remember the type
 
 			IExpr lhs;
-			MatchExprNot(out lhs);
-			result = lhs;			// in case we get no matches
+			lhs = await MatchExprNot();
+			IExpr result = lhs;			// in case we get no matches
 			while ((t = curToken.Type) == TokenTypes.AND || t == TokenTypes.OR)
 			{
 				curToken = tokens.Extract();
 				IExpr rhs;
-				MatchExprNot(out rhs);
+				rhs = await MatchExprNot();
 				bool bBool = (rhs.GetTypeCode() == TypeCode.Boolean &&
 					lhs.GetTypeCode() == TypeCode.Boolean);
 				if (!bBool)
@@ -172,9 +173,11 @@ namespace fyiReporting.RDL
 				}
 				lhs = result;		// in case we have more AND/OR s
 			}
+
+			return result;
 		}
 		
-		private void MatchExprNot(out IExpr result)
+		private async Task<IExpr> MatchExprNot()
 		{
 			TokenTypes t;			// remember the type
 			t = curToken.Type;
@@ -182,22 +185,23 @@ namespace fyiReporting.RDL
 			{
 				curToken = tokens.Extract();
 			}
-			MatchExprRelop(out result);
+			IExpr result = await MatchExprRelop();
 			if (t == TokenTypes.NOT)
 			{
 				if (result.GetTypeCode() != TypeCode.Boolean)
 					throw new ParserException(Strings.Parser_ErrorP_NOTRequiresBoolean + GetLocationInfo(curToken));
 				result = new FunctionNot(result);
 			}
+			return result;
 		}
 
 		// ExprRelop: 
-		private void MatchExprRelop(out IExpr result)
+		private async Task<IExpr> MatchExprRelop()
 		{
-			TokenTypes t;			// remember the type
-
+			TokenTypes t;           // remember the type
+			IExpr result = null;
 			IExpr lhs;
-			MatchExprAddSub(out lhs);
+			lhs = await MatchExprAddSub();
 			result = lhs;			// in case we get no matches
 			while ((t = curToken.Type) == TokenTypes.EQUAL ||
 				t == TokenTypes.NOTEQUAL ||
@@ -208,7 +212,7 @@ namespace fyiReporting.RDL
 			{
 				curToken = tokens.Extract();
 				IExpr rhs;
-				MatchExprAddSub(out rhs);
+				rhs = await MatchExprAddSub();
 
 				switch(t)
 				{
@@ -233,21 +237,22 @@ namespace fyiReporting.RDL
 				}
 				lhs = result;		// in case we continue the loop
 			}
+			return result;
 		}
 
 		// ExprAddSub: PlusMinusOperator Term ExprRhs
-		private void MatchExprAddSub(out IExpr result)
+		private async Task<IExpr> MatchExprAddSub()
 		{
-			TokenTypes t;			// remember the type
-
+			TokenTypes t;           // remember the type
+			IExpr result=null;
 			IExpr lhs;
-			MatchExprMultDiv(out lhs);
+			lhs = await MatchExprMultDiv();
 			result = lhs;			// in case we get no matches
 			while ((t = curToken.Type) == TokenTypes.PLUS || t == TokenTypes.PLUSSTRING || t == TokenTypes.MINUS)
 			{
 				curToken = tokens.Extract();
 				IExpr rhs;
-				MatchExprMultDiv(out rhs);
+				rhs = await MatchExprMultDiv();
 				TypeCode lt = lhs.GetTypeCode();
 				TypeCode rt = rhs.GetTypeCode();
 				bool bDecimal = (rt == TypeCode.Decimal &&
@@ -285,14 +290,16 @@ namespace fyiReporting.RDL
 				}
 				lhs = result;		// in case continue in the loop
 			}
+			return result;
 		}
 
 		// TermRhs: MultDivOperator Factor TermRhs
-		private void MatchExprMultDiv(out IExpr result)
+		private async Task<IExpr> MatchExprMultDiv()
 		{
+			IExpr result = null;
 			TokenTypes t;			// remember the type
 			IExpr lhs;
-			MatchExprExp(out lhs);
+			lhs = await MatchExprExp();
 			result = lhs;			// in case we get no matches
 			while ((t = curToken.Type) == TokenTypes.FORWARDSLASH ||
 				t == TokenTypes.STAR ||
@@ -300,7 +307,7 @@ namespace fyiReporting.RDL
 			{
 				curToken = tokens.Extract();
 				IExpr rhs;
-				MatchExprExp(out rhs);
+				rhs = await MatchExprExp();
 				bool bDecimal = (rhs.GetTypeCode() == TypeCode.Decimal &&
 					lhs.GetTypeCode() == TypeCode.Decimal);
 				switch (t)
@@ -323,33 +330,39 @@ namespace fyiReporting.RDL
 				}
 				lhs = result;		// in case continue in the loop
 			}
-		}
+
+			return result;
+        }
 
 		// TermRhs: ExpOperator Factor TermRhs
-		private void MatchExprExp(out IExpr result)
+		private async Task<IExpr> MatchExprExp()
 		{
-			IExpr lhs;
-			MatchExprUnary(out lhs);
+            IExpr result = null;
+            IExpr lhs;
+			lhs = await MatchExprUnary();
 			if (curToken.Type == TokenTypes.EXP)
 			{
 				curToken = tokens.Extract();
 				IExpr rhs;
-				MatchExprUnary(out rhs);
+				rhs = await MatchExprUnary();
 				result = new FunctionExp(lhs, rhs);	
 			}
 			else
 				result = lhs;
+
+			return result;
 		}
 		
-		private void MatchExprUnary(out IExpr result)
+		private async Task<IExpr> MatchExprUnary()
 		{
+			IExpr result = null;
 			TokenTypes t;			// remember the type
 			t = curToken.Type;
 			if (t == TokenTypes.PLUS || t == TokenTypes.MINUS)
 			{
 				curToken = tokens.Extract();
 			}
-			MatchExprParen(out result);
+            result = await MatchExprParen();
 			if (t == TokenTypes.MINUS)
 			{
 				if (result.GetTypeCode() == TypeCode.Decimal)
@@ -359,57 +372,64 @@ namespace fyiReporting.RDL
 				else
 					result = new FunctionUnaryMinus(result);
 			}
+
+			return result;
 		}
 		
 		// Factor: ( Expr ) | BaseType | - BaseType | - ( Expr )
-		private void MatchExprParen(out IExpr result)
+		private async Task<IExpr> MatchExprParen()
 		{
-			// Match- ( Expr )
-			if (curToken.Type == TokenTypes.LPAREN)
+			IExpr result = null;
+            // Match- ( Expr )
+            if (curToken.Type == TokenTypes.LPAREN)
 			{	// trying to match ( Expr )
 				curToken = tokens.Extract();
-				MatchExprAndOr(out result);
+				result = await MatchExprAndOr();
 				if (curToken.Type != TokenTypes.RPAREN)
 					throw new ParserException(Strings.Parser_ErrorP_BracketExpected + GetLocationInfoWithValue(curToken));
 				curToken = tokens.Extract();
 			}
 			else
-				MatchBaseType(out result);
+				result = await MatchBaseType();
+
+			return result;
 		}
 
 		// BaseType: FuncIdent | NUMBER | QUOTE   - note certain types are restricted in expressions
-		private void MatchBaseType(out IExpr result)
+		private async Task<IExpr> MatchBaseType()
 		{
-			if (MatchFuncIDent(out result))
-				return;
+			var r = await MatchFuncIDent();
+
+            if (r.match)
+				return r.result;
 
 			switch (curToken.Type)
 			{
 				case TokenTypes.NUMBER:
-					result = new ConstantDecimal(curToken.Value);
+					r.result = new ConstantDecimal(curToken.Value);
 					break;
 				case TokenTypes.DATETIME:
-					result = new ConstantDateTime(curToken.Value);
+					r.result = new ConstantDateTime(curToken.Value);
 					break;
 				case TokenTypes.DOUBLE:
-					result = new ConstantDouble(curToken.Value);
+					r.result = new ConstantDouble(curToken.Value);
 					break;
 				case TokenTypes.INTEGER:
-					result = new ConstantInteger(curToken.Value);
+					r.result = new ConstantInteger(curToken.Value);
 					break;
 				case TokenTypes.QUOTE:
-					result = new ConstantString(curToken.Value);
+					r.result = new ConstantString(curToken.Value);
 					break;
 				default:
 					throw new ParserException(Strings.Parser_ErrorP_IdentifierExpected + GetLocationInfoWithValue(curToken));
 			}
 			curToken = tokens.Extract();
 
-			return;
+			return r.result;
 		}
 
 		// FuncIDent: IDENTIFIER ( [Expr] [, Expr]*) | IDENTIFIER
-		private bool MatchFuncIDent(out IExpr result)
+		private async Task<(bool match, IExpr result)> MatchFuncIDent()
 		{
 			IExpr e;
 			string fullname;			// will hold the full name
@@ -418,10 +438,10 @@ namespace fyiReporting.RDL
 			string thirdPart;			// will hold third part of name
 			bool bOnePart;				// simple name: no ! or . in name
 
-			result = null;
+			IExpr result = null;
 
 			if (curToken.Type != TokenTypes.IDENTIFIER)
-				return false;
+				return (false, result);
 
 			// Disentangle method calls from collection references
 			method = fullname = curToken.Value;
@@ -484,7 +504,7 @@ namespace fyiReporting.RDL
 					}
 					else
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldSupportsValueAndIsMissing, method));
-					return true;
+					return (true, result);
                 case "Parameters":  // see ResolveParametersMethod for resolution of MultiValue parameter function reference
 					ReportParameter p = idLookup.LookupParameter(method);
 					if (p == null)
@@ -503,7 +523,7 @@ namespace fyiReporting.RDL
                         r.SetParameterMethod("Count", null);
                     
                     result = r;
-                    return true;
+                    return (true, result);
 				case "ReportItems":
 					Textbox t = idLookup.LookupReportItem(method);
 					if (t == null)
@@ -511,25 +531,25 @@ namespace fyiReporting.RDL
 					if (thirdPart != null && thirdPart != "Value")
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_ItemSupportsValue, method));
 					result = new FunctionTextbox(t, idLookup.ExpressionName);	
-					return true;
+					return (true, result);
 				case "Globals":
 					e = idLookup.LookupGlobal(method);
 					if (e == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_GlobalsNotFound, method));
 					result = e;
-					return true;
+					return (true, result);
 				case "User":
 					e = idLookup.LookupUser(method);
 					if (e == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_UserVarNotFound, method));
 					result = e;
-					return true;
+					return (true, result);
 				case "Recursive":	// Only valid for some aggregate functions
 					result = new IdentifierKey(IdentifierKeyEnum.Recursive);
-					return true;
+					return (true, result);
 				case "Simple":		// Only valid for some aggregate functions
 					result = new IdentifierKey(IdentifierKeyEnum.Simple);
-					return true;
+					return (true, result);
 				default:
 					if (!bOnePart)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_UnknownIdentifer, fullname));
@@ -545,7 +565,7 @@ namespace fyiReporting.RDL
 							result = new Identifier(method);
 							break;
 					}
-					return true;
+					return (true, result);
 			}
 
 			// We've got an function reference
@@ -613,7 +633,7 @@ namespace fyiReporting.RDL
 				else
 					throw new ParserException(Strings.Parser_ErrorP_Invalid_function_arguments + GetLocationInfoWithValue(curToken));
 				
-				MatchExprAndOr(out e);
+				e = await MatchExprAndOr();
 				if (e == null)
 					throw new ParserException(Strings.Parser_ErrorP_ExpectingComma + GetLocationInfoWithValue(curToken));
 
@@ -743,85 +763,85 @@ namespace fyiReporting.RDL
 					result = new FunctionUserCollection(idLookup.User, args[0]);
 					break;
 				case "sum":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrSum aggrFS = new FunctionAggrSum(_DataCache, args[0], scope);
 					aggrFS.LevelCheck = bSimple;
 					result = aggrFS;
 					break;
 				case "avg":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrAvg aggrFA = new FunctionAggrAvg(_DataCache, args[0], scope);
 					aggrFA.LevelCheck = bSimple;
 					result = aggrFA;
 					break;
 				case "min":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrMin aggrFMin = new FunctionAggrMin(_DataCache, args[0], scope);
 					aggrFMin.LevelCheck = bSimple;
 					result = aggrFMin;
 					break;
 				case "max":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrMax aggrFMax = new FunctionAggrMax(_DataCache, args[0], scope);
 					aggrFMax.LevelCheck = bSimple;
 					result = aggrFMax;
 					break;
 				case "first":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					result = new FunctionAggrFirst(_DataCache, args[0], scope);
 					break;
 				case "last":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					result = new FunctionAggrLast(_DataCache, args[0], scope);
 					break;
 				case "next":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					result = new FunctionAggrNext(_DataCache, args[0], scope);
 					break;
 				case "previous":
-				    scope = ResolveAggrScope(args, 2, out bSimple);
+				    (scope, bSimple) = await ResolveAggrScope(args, 2);
 					result = new FunctionAggrPrevious(_DataCache, args[0], scope);
 					break;
 				case "level":
-					scope = ResolveAggrScope(args, 1, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 1);
 					result = new FunctionAggrLevel(scope);
 					break;
                 case "aggregate":
-                    scope = ResolveAggrScope(args, 2, out bSimple);
+                    (scope, bSimple) = await ResolveAggrScope(args, 2);
                     FunctionAggrArray aggr = new FunctionAggrArray(_DataCache, args[0], scope);
                     aggr.LevelCheck = bSimple;
                     result = aggr;
                     break;
                 case "count":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrCount aggrFC = new FunctionAggrCount(_DataCache, args[0], scope);
 					aggrFC.LevelCheck = bSimple;
 					result = aggrFC;
 					break;
 				case "countrows":
-					scope = ResolveAggrScope(args, 1, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 1);
 					FunctionAggrCountRows aggrFCR = new FunctionAggrCountRows(scope);
 					aggrFCR.LevelCheck = bSimple;
 					result = aggrFCR;
 					break;
                 case "countdistinct":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrCountDistinct aggrFCD = new FunctionAggrCountDistinct(_DataCache, args[0], scope);
 					aggrFCD.LevelCheck = bSimple;
 					result = aggrFCD;
 					break;
 				case "rownumber":
-					scope = ResolveAggrScope(args, 1, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 1);
 					IExpr texpr = new ConstantDouble("0");
 					result = new FunctionAggrRvCount(_DataCache, texpr, scope);
 					break;
 				case "runningvalue":
 					if (args.Length < 2 || args.Length > 3)
 						throw new ParserException(Strings.Parser_ErrorP_RunningValue_takes_2_or_3_arguments + GetLocationInfo(curToken));
-					string aggrFunc = args[1].EvaluateString(null, null);
+					string aggrFunc = await args[1].EvaluateString(null, null);
 					if (aggrFunc == null)
 						throw new ParserException(Strings.Parser_ErrorP_RunningValueArgumentInvalid + GetLocationInfo(curToken));
-					scope = ResolveAggrScope(args, 3, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 3);
 					switch(aggrFunc.ToLower())
 					{
 						case "sum":
@@ -856,25 +876,25 @@ namespace fyiReporting.RDL
 					}
 					break;
 				case "stdev":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrStdev aggrSDev = new FunctionAggrStdev(_DataCache, args[0], scope);
 					aggrSDev.LevelCheck = bSimple;
 					result = aggrSDev;
 					break;
 				case "stdevp":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrStdevp aggrSDevP = new FunctionAggrStdevp(_DataCache, args[0], scope);
 					aggrSDevP.LevelCheck = bSimple;
 					result = aggrSDevP;
 					break;
 				case "var":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrVar aggrVar = new FunctionAggrVar(_DataCache, args[0], scope);
 					aggrVar.LevelCheck = bSimple;
 					result = aggrVar;
 					break;
 				case "varp":
-					scope = ResolveAggrScope(args, 2, out bSimple);
+					(scope, bSimple) = await ResolveAggrScope(args, 2);
 					FunctionAggrVarp aggrVarP = new FunctionAggrVarp(_DataCache, args[0], scope);
 					aggrVarP.LevelCheck = bSimple;
 					result = aggrVarP;
@@ -884,7 +904,7 @@ namespace fyiReporting.RDL
 					break;
 			}
 
-			return true;
+			return (true, result);
 		}
 
 		private bool IsAggregate(string method, bool onePart)
@@ -921,18 +941,18 @@ namespace fyiReporting.RDL
 			return rc;
 		}
 
-		private object ResolveAggrScope(IExpr[] args, int indexOfScope, out bool bSimple)
+		private async Task<(object scope, bool bSimple)> ResolveAggrScope(IExpr[] args, int indexOfScope)
 		{
 			object scope;
 			
-			bSimple = true;
+			bool bSimple = true;
 
             if (args.Length == 0 && indexOfScope > 1)
                 throw new ParserException(Strings.Parser_ErrorP_AggregateMust1Argument);
 
 			if (args.Length >= indexOfScope)
 			{
-				string n = args[indexOfScope-1].EvaluateString(null, null);
+				string n = await args[indexOfScope-1].EvaluateString(null, null);
 				if (idLookup.IsPageScope)
 					throw new ParserException(string.Format(Strings.Parser_ErrorP_ScopeNotSpecifiedInHeaderOrFooter,n));
 
@@ -968,7 +988,7 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			return scope;
+			return (scope, bSimple);
 		}
 
         private IExpr ResolveParametersMethod(string pname, string vf, IExpr[] args)

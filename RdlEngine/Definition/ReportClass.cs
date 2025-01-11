@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -67,9 +68,9 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Class InstanceName is required but not specified or invalid for " + _ClassName==null? "<unknown name>": _ClassName);
 		}
 		
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal object Load(Report rpt)

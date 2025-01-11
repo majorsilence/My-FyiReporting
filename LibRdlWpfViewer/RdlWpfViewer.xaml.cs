@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,14 +25,14 @@ namespace LibRdlWpfViewer
             InitializeComponent();
         }
 
-        public void Rebuild()
+        public async Task Rebuild()
         {
-            this.reportViewer.Rebuild();
+            await this.reportViewer.Rebuild();
         }
 
-        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+        public async Task SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
-            this.reportViewer.SaveAs(FileName, type);
+            await this.reportViewer.SaveAs(FileName, type);
         }
 
         public Uri SourceFile
@@ -52,10 +53,11 @@ namespace LibRdlWpfViewer
             {
                 return this.reportViewer.SourceRdl;
             }
-            set
-            {
-                this.reportViewer.SourceRdl = value;
-            }
+        }
+
+        public async Task SetSourceRdl(string value)
+        {
+            await this.reportViewer.SetSourceRdl(value);
         }
 
         public string Parameters

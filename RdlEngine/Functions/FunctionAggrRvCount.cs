@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -58,12 +58,12 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return (object) EvaluateInt32(rpt, row);
+			return (object)await EvaluateInt32(rpt, row);
 		}
 		
-		public int EvaluateInt32(Report rpt, Row row)
+		public async Task<int> EvaluateInt32(Report rpt, Row row)
 		{
 			bool bSave=true;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -79,7 +79,7 @@ namespace fyiReporting.RDL
 
 			int count;
 
-			object currentValue = _Expr.Evaluate(rpt, row);
+			object currentValue = await _Expr.Evaluate(rpt, row);
 			int incr = currentValue == null? 0: 1;
 			if (row == startrow)
 			{
@@ -95,25 +95,25 @@ namespace fyiReporting.RDL
 			return count;
 		}
 
-        public double EvaluateDouble(Report rpt, Row row)
+        public async Task<double> EvaluateDouble(Report rpt, Row row)
         {
-            return (double)EvaluateInt32(rpt, row);
+            return (double)await EvaluateInt32(rpt, row);
         }
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return (decimal) EvaluateInt32(rpt, row);
+			return (decimal)await EvaluateInt32(rpt, row);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = EvaluateDouble(rpt, row);
+			object result = await EvaluateDouble(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 		private int GetValue(Report rpt)

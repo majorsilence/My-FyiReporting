@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -55,26 +54,26 @@ namespace fyiReporting.RDL
 			return TypeCode.Decimal;
 		}
 
-		public IExpr ConstantOptimization()
+		public async Task<IExpr> ConstantOptimization()
 		{
-			_lhs = _lhs.ConstantOptimization();
-			_rhs = _rhs.ConstantOptimization();
-			bool bLeftConst = _lhs.IsConstant();
-			bool bRightConst = _rhs.IsConstant();
+			_lhs = await _lhs.ConstantOptimization();
+			_rhs = await _rhs.ConstantOptimization();
+			bool bLeftConst = await _lhs.IsConstant();
+			bool bRightConst = await _rhs.IsConstant();
 			if (bLeftConst && bRightConst)
 			{
-				decimal d = EvaluateDecimal(null, null);
+				decimal d = await EvaluateDecimal(null, null);
 				return new ConstantDecimal(d);
 			}
 			else if (bRightConst)
 			{
-				decimal d = _rhs.EvaluateDecimal(null, null);
+				decimal d = await _rhs.EvaluateDecimal(null, null);
 				if (d == 0m)
 					return _lhs;
 			}
 			else if (bLeftConst)
 			{
-				decimal d = _lhs.EvaluateDecimal(null, null);
+				decimal d = await _lhs.EvaluateDecimal(null, null);
 				if (d == 0m)
 					return _rhs;
 			}
@@ -83,48 +82,48 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateDecimal(rpt, row);
+			return await EvaluateDecimal(rpt, row);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			decimal result = EvaluateDecimal(rpt, row);
+			decimal result = await EvaluateDecimal(rpt, row);
 
 			return Convert.ToDouble(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            decimal result = EvaluateDecimal(rpt, row);
+            decimal result = await EvaluateDecimal(rpt, row);
 
             return Convert.ToInt32(result);
         }
 
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			decimal lhs = _lhs.EvaluateDecimal(rpt, row);
-			decimal rhs = _rhs.EvaluateDecimal(rpt, row);
+			decimal lhs = await _lhs.EvaluateDecimal(rpt, row);
+			decimal rhs = await _rhs.EvaluateDecimal(rpt, row);
 
 			return (decimal) (lhs+rhs);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			decimal result = EvaluateDecimal(rpt, row);
+			decimal result = await EvaluateDecimal(rpt, row);
 			return result.ToString();
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			decimal result = EvaluateDecimal(rpt, row);
+			decimal result = await EvaluateDecimal(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			decimal result = EvaluateDecimal(rpt, row);
+			decimal result = await EvaluateDecimal(rpt, row);
 			return Convert.ToBoolean(result);
 		}
 	}

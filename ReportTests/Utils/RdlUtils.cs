@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 namespace ReportTests.Utils
 {
     public static class RdlUtils
     {
-        public static Report GetReport(Uri uri2Rdl)
+        public static async Task<Report> GetReport(Uri uri2Rdl)
         {
             //string cwd = System.Environment.CurrentDirectory;
 
@@ -24,7 +25,7 @@ namespace ReportTests.Utils
             rdlp = new RDLParser(source);
             // RDLParser takes RDL XML and Parse compiles the report
 
-            r = rdlp.Parse();
+            r = await rdlp.Parse();
             if (r.ErrorMaxSeverity > 0)
             {
 

@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -64,9 +63,9 @@ namespace fyiReporting.RDL
 			return TypeCode.Object;			
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
 		public IdentifierKeyEnum Value
@@ -74,44 +73,44 @@ namespace fyiReporting.RDL
 			get {return _Value;}
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{	
-			return _Value;
+			return Task.FromResult(_Value as object);
 		}
 
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return Double.NaN;
+			return Task.FromResult(Double.NaN);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return Decimal.MinValue;
+			return Task.FromResult(Decimal.MinValue);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return int.MinValue;
+            return Task.FromResult(int.MinValue);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
 			return null;
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return DateTime.MinValue;
+			return Task.FromResult(DateTime.MinValue);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 	}
 }

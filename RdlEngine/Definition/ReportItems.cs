@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -109,11 +110,11 @@ namespace fyiReporting.RDL
             }
         }
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (ReportItem ri in _Items)
-			{
-				ri.FinalPass();
+			{		
+				await ri.FinalPass(); 
 			}
 			_Items.Sort();				// sort on ZIndex; y, x (see ReportItem compare routine)
 
@@ -128,21 +129,21 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			foreach (ReportItem ri in _Items)
 			{
-				ri.Run(ip, row);
+				await ri.Run(ip, row);
 			}
 			return;
 		}
 
-		internal void RunPage(Pages pgs, Row row, float xOffset)
+		internal async Task RunPage(Pages pgs, Row row, float xOffset)
 		{
 			SetXOffset(pgs.Report, xOffset);
 			foreach (ReportItem ri in _Items)
 			{
-				ri.RunPage(pgs, row);
+                await ri.RunPage(pgs, row);
 			}
 			return;
 		}

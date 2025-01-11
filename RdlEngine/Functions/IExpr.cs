@@ -22,6 +22,7 @@
 */
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -33,16 +34,16 @@ namespace fyiReporting.RDL
 	internal interface IExpr
 	{
 		TypeCode GetTypeCode();			// return the type of the expression
-		bool IsConstant();				// expression returns a constant
-		IExpr ConstantOptimization();	// constant optimization
+		Task<bool> IsConstant();				// expression returns a constant
+		Task<IExpr> ConstantOptimization();	// constant optimization
 
 		// Evaluate is for interpretation
-		object Evaluate(Report r, Row row);				// return an object
-		string EvaluateString(Report r, Row row);		// return a string
-		double EvaluateDouble(Report r, Row row);		// return a double
-		decimal EvaluateDecimal(Report r, Row row);		// return a decimal
-        int EvaluateInt32(Report r, Row row);           // return an Int32
-		DateTime EvaluateDateTime(Report r, Row row);	// return a DateTime
-		bool EvaluateBoolean(Report r, Row row);		// return boolean
+		Task<object> Evaluate(Report r, Row row);				// return an object
+		Task<string> EvaluateString(Report r, Row row);		// return a string
+		Task<double> EvaluateDouble(Report r, Row row);		// return a double
+		Task<decimal> EvaluateDecimal(Report r, Row row);		// return a decimal
+		Task<int> EvaluateInt32(Report r, Row row);           // return an Int32
+		Task<DateTime> EvaluateDateTime(Report r, Row row);	// return a DateTime
+		Task<bool> EvaluateBoolean(Report r, Row row);		// return boolean
 	}
 }

@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -64,12 +64,12 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return _tc==TypeCode.Decimal? (object) EvaluateDecimal(rpt, row): (object) EvaluateDouble(rpt, row);
+			return _tc==TypeCode.Decimal? (object)await EvaluateDecimal(rpt, row): (object) await EvaluateDouble(rpt, row);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
 			bool bSave=true;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -85,7 +85,7 @@ namespace fyiReporting.RDL
 			double temp;
 			foreach (Row r in re)
 			{
-				temp = _Expr.EvaluateDouble(rpt, r);
+				temp = await _Expr.EvaluateDouble(rpt, r);
 				if (temp.CompareTo(double.NaN) != 0)
 				{
 					sum += temp;
@@ -104,13 +104,13 @@ namespace fyiReporting.RDL
 			return result;
 		}
         
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
             if (row == null)
                 return int.MinValue;
-            return Convert.ToInt32(EvaluateDouble(rpt, row));
+            return Convert.ToInt32(await EvaluateDouble(rpt, row));
         }		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
 			bool bSave;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -126,7 +126,7 @@ namespace fyiReporting.RDL
 			decimal temp;
 			foreach (Row r in re)
 			{
-				temp = _Expr.EvaluateDecimal(rpt, r);
+				temp = await _Expr.EvaluateDecimal(rpt, r);
 				if (temp != decimal.MinValue)		// indicate null value
 				{
 					sum += temp;
@@ -144,15 +144,15 @@ namespace fyiReporting.RDL
 			return result;
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 

@@ -27,6 +27,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -62,21 +63,21 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
 			switch (_tc)
 			{
 				case TypeCode.Decimal:
-					return (object) EvaluateDecimal(rpt, row);
+					return (object)await EvaluateDecimal(rpt, row);
 				case TypeCode.Object:
 					return EvaluateObject(rpt, row);
 				case TypeCode.Double:
 				default:
-					return (object) EvaluateDouble(rpt, row);
+					return (object)await EvaluateDouble(rpt, row);
 			}
 		}
 
-		public object EvaluateObject(Report rpt, Row row)
+		public async Task<object> EvaluateObject(Report rpt, Row row)
 		{
 			bool bSave;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -92,7 +93,7 @@ namespace fyiReporting.RDL
 
 			foreach (Row r in re)
 			{
-				temp = _Expr.Evaluate(rpt, r);
+				temp = await _Expr.Evaluate(rpt, r);
 				if (temp != null)
 				{
 					if (sum != null)
@@ -108,7 +109,7 @@ namespace fyiReporting.RDL
 
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
 			bool bSave=true;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -123,7 +124,7 @@ namespace fyiReporting.RDL
 			double temp;
 			foreach (Row r in re)
 			{
-				temp = _Expr.EvaluateDouble(rpt, r);
+				temp = await _Expr.EvaluateDouble(rpt, r);
 				if (temp.CompareTo(double.NaN) != 0)
 					sum += temp;
 			}
@@ -133,13 +134,13 @@ namespace fyiReporting.RDL
 			return sum;
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            double result = EvaluateDouble(rpt, row);
+            double result = await EvaluateDouble(rpt, row);
             return Convert.ToInt32(result);
         }
 
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
 			bool bSave;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -154,7 +155,7 @@ namespace fyiReporting.RDL
 			decimal temp;
 			foreach (Row r in re)
 			{
-				temp = _Expr.EvaluateDecimal(rpt, r);
+				temp = await _Expr.EvaluateDecimal(rpt, r);
 				if (temp != decimal.MinValue)		// indicate null value
 					sum += temp;
 			}
@@ -164,15 +165,15 @@ namespace fyiReporting.RDL
 			return sum;
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 

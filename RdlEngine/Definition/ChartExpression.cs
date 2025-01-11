@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -100,31 +101,31 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 			if (_Values != null)
-				_Values.FinalPass();
+                await _Values.FinalPass();
             if (_DataPoint != null)
-                _DataPoint.FinalPass();
+                await _DataPoint.FinalPass();
             if (_ChartLabel != null)
-                _ChartLabel.FinalPass();
+                await _ChartLabel.FinalPass();
             if (_PlotType != null)
-                _PlotType.FinalPass();
+                await _PlotType.FinalPass();
             if (_YAxis != null)
-                _YAxis.FinalPass();
+                await _YAxis.FinalPass();
             if (_NoMarker != null)
-                _NoMarker.FinalPass();
+                await _NoMarker.FinalPass();
             if (_LineSize != null)
-                _LineSize.FinalPass();
+                await _LineSize.FinalPass();
             if (_Colour != null)
-                _Colour.FinalPass();
+                await _Colour.FinalPass();
             return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		override internal Task Run(IPresent ip, Row row)
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal Expression Value

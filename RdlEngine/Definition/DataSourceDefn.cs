@@ -99,12 +99,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, string.Format("Either ConnectionProperties or DataSourceReference must be specified for DataSource {0} but not both.", this._Name.Nm));
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_ConnectionProperties != null)
-				_ConnectionProperties.FinalPass();
+                await _ConnectionProperties.FinalPass();
 
-			ConnectDataSource(null);
+            await ConnectDataSource(null);
 			return;
 		}
 
@@ -130,7 +130,7 @@ namespace fyiReporting.RDL
 				cp1.IntegratedSecurity == cp2.IntegratedSecurity);
 		}
 
-		internal bool ConnectDataSource(Report rpt)
+		async internal Task<bool> ConnectDataSource(Report rpt)
         {
             IDbConnection cn = GetConnection(rpt);
             if (cn != null)
@@ -140,7 +140,7 @@ namespace fyiReporting.RDL
 
             if (_DataSourceReference != null)
             {
-                ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
+                await ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
             }
 
             if (_ConnectionProperties == null ||
@@ -153,10 +153,17 @@ namespace fyiReporting.RDL
             try
             {
                 cn = RdlEngineConfig.GetConnection(_ConnectionProperties.DataProvider,
-                    _ConnectionProperties.Connectstring(rpt));
+                    await _ConnectionProperties.Connectstring(rpt));
                 if (cn != null)
                 {
-                    cn.Open();
+					if (cn is DbConnection dbConnection)
+					{
+						await dbConnection.OpenAsync();
+                    }
+					else
+					{
+						cn.Open();
+					}
                     rc = true;
                 }
             }
@@ -179,7 +186,7 @@ namespace fyiReporting.RDL
 
             if (_DataSourceReference != null)
             {
-                ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
+                await ConnectDataSourceReference(rpt);	// this will create a _ConnectionProperties
             }
 
             if (_ConnectionProperties == null ||
@@ -192,7 +199,7 @@ namespace fyiReporting.RDL
             try
             {
                 cn = RdlEngineConfig.GetConnection(_ConnectionProperties.DataProvider,
-                    _ConnectionProperties.Connectstring(rpt));
+                    await _ConnectionProperties.Connectstring(rpt));
                 if (cn != null)
                 {
                     if (cn is DbConnection dbConnection)
@@ -246,7 +253,7 @@ namespace fyiReporting.RDL
             return cn;
         }
 
-        void ConnectDataSourceReference(Report rpt)
+        async Task ConnectDataSourceReference(Report rpt)
 		{
 			if (_ConnectionProperties != null)
 				return;
@@ -278,7 +285,7 @@ namespace fyiReporting.RDL
 				XmlNode xNodeLoop = xDoc.FirstChild;
 				
 				_ConnectionProperties = new ConnectionProperties(OwnerReport, this, xNodeLoop);
-                _ConnectionProperties.FinalPass();
+                await _ConnectionProperties.FinalPass();
 			}
 			catch (Exception e)
 			{

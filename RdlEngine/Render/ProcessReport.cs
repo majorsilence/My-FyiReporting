@@ -84,7 +84,7 @@ namespace fyiReporting.RDL
 		{
             await r.RunGetData(parms);
 
-			r.RunRender(_sg, type);
+            await r.RunRender(_sg, type);
 
 			return;
 		}

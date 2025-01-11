@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -70,12 +71,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "ColumnGrouping requires either the DynamicColumns element or StaticColumns element but not both.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DynamicColumns != null)
-				_DynamicColumns.FinalPass();
+                await _DynamicColumns.FinalPass();
 			if (_StaticColumns != null)
-				_StaticColumns.FinalPass();
+                await _StaticColumns.FinalPass();
 			return ;
 		}
 

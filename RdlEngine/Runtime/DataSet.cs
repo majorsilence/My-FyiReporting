@@ -27,6 +27,7 @@ using System.Collections;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -45,19 +46,19 @@ namespace fyiReporting.RDL
 			_dsd = dsd;
 		}
 
-		public void SetData(IDataReader dr)
+		public async Task SetData(IDataReader dr)
 		{
-			_dsd.Query.SetData(_rpt, dr, _dsd.Fields, _dsd.Filters);		// get the data (and apply the filters
+            await _dsd.Query.SetData(_rpt, dr, _dsd.Fields, _dsd.Filters);		// get the data (and apply the filters
 		}
 
-		public void SetData(DataTable dt)
+		public async Task SetData(DataTable dt)
 		{
-			_dsd.Query.SetData(_rpt, dt, _dsd.Fields, _dsd.Filters);
+            await _dsd.Query.SetData(_rpt, dt, _dsd.Fields, _dsd.Filters);
 		}
 
-		public void SetData(XmlDocument xmlDoc)
+		public async Task SetData(XmlDocument xmlDoc)
 		{
-			_dsd.Query.SetData(_rpt, xmlDoc, _dsd.Fields, _dsd.Filters);
+            await _dsd.Query.SetData(_rpt, xmlDoc, _dsd.Fields, _dsd.Filters);
 		}
 
         /// <summary>
@@ -70,14 +71,14 @@ namespace fyiReporting.RDL
         /// </summary>
         /// <param name="ie"></param>
         /// <param name="collection"></param>
-		public void SetData(IEnumerable ie, bool collection = false)
+		public async Task SetData(IEnumerable ie, bool collection = false)
 		{
-			_dsd.Query.SetData(_rpt, ie, _dsd.Fields, _dsd.Filters, collection);
+            await _dsd.Query.SetData(_rpt, ie, _dsd.Fields, _dsd.Filters, collection);
 		}
 
-        public void SetSource(string sql)
+        public async Task SetSource(string sql)
         {
-            _dsd.Query.CommandText.SetSource(sql);
+            await _dsd.Query.CommandText.SetSource(sql);
         }
 
 

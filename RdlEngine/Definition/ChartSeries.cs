@@ -22,6 +22,7 @@
 */
 				// 20022008 AJM GJL - Added Second Y axis support
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -90,10 +91,10 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "ChartSeries requires the DataPoints element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Datapoints != null)
-				_Datapoints.FinalPass();
+                await _Datapoints.FinalPass();
 			return;
 		}
 

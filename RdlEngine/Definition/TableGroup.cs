@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -81,19 +82,19 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "TableGroup requires the Grouping element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Grouping != null)
-				_Grouping.FinalPass();
+                await _Grouping.FinalPass();
 			if (_Sorting != null)
-				_Sorting.FinalPass();
+                await _Sorting.FinalPass();
 			if (_Header != null)
-				_Header.FinalPass();
+                await _Header.FinalPass();
 			if (_Footer != null)
-				_Footer.FinalPass();
+                await _Footer.FinalPass();
 			if (_Visibility != null)
 			{
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 				if (_Visibility.ToggleItem != null)
 				{
 					_ToggleTextbox = (Textbox) (OwnerReport.LUReportItems[_Visibility.ToggleItem]);

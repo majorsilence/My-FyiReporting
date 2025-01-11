@@ -27,6 +27,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
+
 #if DRAWINGCOMPAT
 using Majorsilence.Drawing;
 #else
@@ -83,11 +85,11 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "TableRow requires the Height element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_TableCells.FinalPass();
+            await _TableCells.FinalPass();
 			if (_Visibility != null)
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 
 			foreach (TableCell tc in _TableCells.Items)
 			{
@@ -110,23 +112,23 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
-			if (this.Visibility != null && Visibility.IsHidden(ip.Report(), row))
+			if (this.Visibility != null && await Visibility.IsHidden(ip.Report(), row))
 				return;
 
-			ip.TableRowStart(this, row);
-			_TableCells.Run(ip, row);
+            await ip.TableRowStart(this, row);
+            await _TableCells.Run(ip, row);
 			ip.TableRowEnd(this, row);
 			return ;
 		}
  
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
-			if (this.Visibility != null && Visibility.IsHidden(pgs.Report, row))
+			if (this.Visibility != null && await Visibility.IsHidden(pgs.Report, row))
 				return;
 
-			_TableCells.RunPage(pgs, row);
+            await _TableCells.RunPage(pgs, row);
 
 			WorkClass wc = GetWC(pgs.Report);
 			pgs.CurrentPage.YOffset += wc.CalcHeight;
@@ -144,14 +146,14 @@ namespace fyiReporting.RDL
 			get { return  _Height; }
 			set {  _Height = value; }
 		}
-        internal float HeightOfRow(Pages pgs, Row r)
+        internal async Task<float> HeightOfRow(Pages pgs, Row r)
         {
-            return HeightOfRow(pgs.Report, pgs.G, r);
+            return await HeightOfRow(pgs.Report, pgs.G, r);
         }
-		internal float HeightOfRow(Report rpt, Graphics g, Row r)
+		internal async Task<float> HeightOfRow(Report rpt, Graphics g, Row r)
 		{
 			WorkClass wc = GetWC(rpt);
-			if (this.Visibility != null && Visibility.IsHidden(rpt, r))
+			if (this.Visibility != null && await Visibility.IsHidden(rpt, r))
 			{
 				wc.CalcHeight = 0;
 				return 0;
@@ -169,9 +171,9 @@ namespace fyiReporting.RDL
 			foreach (Textbox tb in this._GrowList)
 			{
                 int ci = tb.TC.ColIndex;
-                if (tcs[ci].IsHidden(rpt, r))    // if column is hidden don't use in calculation
+                if (await tcs[ci].IsHidden(rpt, r))    // if column is hidden don't use in calculation
                     continue;
-				height = Math.Max(height, tb.RunTextCalcHeight(rpt, g, r));
+				height = Math.Max(height, await tb.RunTextCalcHeight(rpt, g, r));
 			}
 			wc.CalcHeight = Math.Max(height, defnHeight);
 			return wc.CalcHeight;

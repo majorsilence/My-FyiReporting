@@ -34,6 +34,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.Threading;
 using System.Net;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -97,16 +98,16 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Value != null)
-				_Value.FinalPass();
+                await _Value.FinalPass();
 			if (_MIMEType != null)
-				_MIMEType.FinalPass();
+                await _MIMEType.FinalPass();
 			if (_BackgroundRepeat != null)
-				_BackgroundRepeat.FinalPass();
+                await _BackgroundRepeat.FinalPass();
 
-			_ConstantImage = this.IsConstant();
+			_ConstantImage = await this.IsConstant();
 			return;
 		}
 
@@ -129,7 +130,7 @@ namespace fyiReporting.RDL
 			return sb.ToString();
 		}
 
-		internal bool IsConstant()
+		internal async Task<bool> IsConstant()
 		{
 			if (_Source == StyleBackgroundImageSourceEnum.Database)
 				return false;
@@ -137,17 +138,17 @@ namespace fyiReporting.RDL
 			bool rc = true;
 
 			if (_Value != null)
-				rc = _Value.IsConstant();
+				rc = await _Value.IsConstant();
 			if (!rc)
 				return false;
 
 			if (_BackgroundRepeat != null)
-				rc = _BackgroundRepeat.IsConstant();
+				rc = await _BackgroundRepeat.IsConstant();
 
 			return rc;
 		}
 	
-		internal PageImage GetPageImage(Report rpt, Row row)
+		internal async Task<PageImage> GetPageImage(Report rpt, Row row)
 		{
 			string mtype=null; 
 			Stream strm=null;
@@ -165,7 +166,7 @@ namespace fyiReporting.RDL
 
 			try 
 			{
-				strm = GetImageStream(rpt, row, out mtype);
+				(strm, mtype) = await GetImageStream(rpt, row);
                 if (strm == null)
                 {
                     rpt.rl.LogError(4, string.Format("Unable to load image {0}.", 
@@ -204,7 +205,7 @@ namespace fyiReporting.RDL
 				pi.SI = new StyleInfo();	// this will just default everything
 				if (_BackgroundRepeat != null)
 				{
-					string r = _BackgroundRepeat.EvaluateString(rpt, row).ToLower();
+					string r = (await _BackgroundRepeat.EvaluateString(rpt, row)).ToLower();
 					switch (r)
 					{
 						case "repeat":
@@ -242,9 +243,9 @@ namespace fyiReporting.RDL
 			return pi;
 		}
 
-		Stream GetImageStream(Report rpt, Row row, out string mtype)
+		async Task<(Stream stream, string mtype)> GetImageStream(Report rpt, Row row)
 		{
-			mtype=null; 
+			string mtype=null; 
 			Stream strm=null;
 			try 
 			{
@@ -252,20 +253,20 @@ namespace fyiReporting.RDL
 				{
 					case StyleBackgroundImageSourceEnum.Database:
 						if (_MIMEType == null)
-							return null;
-						mtype = _MIMEType.EvaluateString(rpt, row);
+							return (null, mtype);
+						mtype = await _MIMEType.EvaluateString(rpt, row);
 						object o = _Value.Evaluate(rpt, row);
 						strm = new MemoryStream((byte[]) o);
 						break;
 					case StyleBackgroundImageSourceEnum.Embedded:
-						string name = _Value.EvaluateString(rpt, row);
+						string name = await _Value.EvaluateString(rpt, row);
 						EmbeddedImage ei = (EmbeddedImage) OwnerReport.LUEmbeddedImages[name];
 						mtype = ei.MIMEType;
 						byte[] ba = Convert.FromBase64String(ei.ImageData);
 						strm = new MemoryStream(ba);
 						break;
 					case StyleBackgroundImageSourceEnum.External:
-                        string fname = _Value.EvaluateString(rpt, row);
+                        string fname = await _Value.EvaluateString(rpt, row);
                         mtype = Image.GetMimeType(fname);
                         if (fname.StartsWith("http:") ||
                             fname.StartsWith("file:") ||
@@ -279,7 +280,7 @@ namespace fyiReporting.RDL
                             strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);
                         break;
 					default:
-						return null;
+						return (null, mtype);
 				}
 			}
 			catch
@@ -291,7 +292,7 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			return strm;
+			return (strm, mtype);
 		}
 
 		static internal string GetCSSDefaults()

@@ -30,6 +30,7 @@ using System.Collections;
 using System.Collections.Specialized;
 
 using fyiReporting.RDL;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RdlDesktop
@@ -96,7 +97,7 @@ namespace fyiReporting.RdlDesktop
 		}
 
 		// Build an HTML page for directories
-		public string ProcessDirectory(string directory)
+		public async Task<string> ProcessDirectory(string directory)
 		{
 			StringWriter sw = new StringWriter();
 			DirectoryInfo di;
@@ -123,8 +124,8 @@ namespace fyiReporting.RdlDesktop
 					fi = new FileInfo(filename); 
 					if (fi.Exists)
 					{
-						string mimeType;
-						byte[] ba = ProcessReportFile(directory + "index.rdl", filename, null, fi.LastWriteTime, out mimeType);
+			
+						(byte[] ba, string mimeType) = await ProcessReportFile(directory + "index.rdl", filename, null, fi.LastWriteTime);
 						result = Encoding.ASCII.GetString(ba);
 					}
 				}
@@ -184,12 +185,12 @@ namespace fyiReporting.RdlDesktop
 		}
 
 		// Handle the processing of a report
-		private byte[] ProcessReportFile(string url, string file, string parms, DateTime lastUpdateTime, out string mimeType)
+		private async Task<(byte[] Report, string MimeType)> ProcessReportFile(string url, string file, string parms, DateTime lastUpdateTime)
 		{
 			byte[] result=null;
 			string source;
 
-			mimeType = "text/html";			// set the default
+			string mimeType = "text/html";			// set the default
 
 			// try finding report in the server cache!
 			IList il = _server.Cache.Find(url + (parms==null?"":parms), lastUpdateTime);
@@ -206,22 +207,21 @@ namespace fyiReporting.RdlDesktop
 					if (_server.TraceLevel >= 0) 
 						Console.WriteLine("Cache read exception in ProcessReportFile: {0} {1}", il[0], ex.Message);
 				}
-				return result;
+				return (result,mimeType);
 			}
 
 			// Obtain the source
 			if (!ProcessReportGetSource(file, out source))
 			{
-				return Encoding.ASCII.GetBytes(source);		// we got an error opening file; source contains html error text
+				return (Encoding.ASCII.GetBytes(source), mimeType);		// we got an error opening file; source contains html error text
 			}
 
 			// Compile the report
-			string msgs="";
-			Report report = ProcessReportCompile(file, source, out msgs);
+			(Report report, string msgs) = await ProcessReportCompile(file, source);
 			if (report == null)
 			{
 				mimeType = "text/html";			// force to html
-				return Encoding.ASCII.GetBytes(String.Format("<H2>Report '{0}' has the following syntax errors.</H2><p>{1}", url, msgs));
+				return (Encoding.ASCII.GetBytes(String.Format("<H2>Report '{0}' has the following syntax errors.</H2><p>{1}", url, msgs)), mimeType);
 			}
 
 			// Obtain the result HTML from running the report
@@ -260,7 +260,7 @@ namespace fyiReporting.RdlDesktop
 				
 				ProcessReport pr = new ProcessReport(report, sg);
 
-				pr.Run(ld, type);
+                await pr.Run(ld, type);
 
 				// handle any error messages
 				if (report.ErrorMaxSeverity > 0)
@@ -338,7 +338,7 @@ namespace fyiReporting.RdlDesktop
 				mimeType = "text/html";			// force to html
 			}
 			
-			return result;
+			return (result, mimeType);
 		}
 
 		private ListDictionary ProcessReportGetParms(string parms)
@@ -386,19 +386,19 @@ namespace fyiReporting.RdlDesktop
 			return true;
 		}
 
-		private Report ProcessReportCompile(string file, string prog, out string msgs)
+		private async Task<(Report Report, string Msgs)> ProcessReportCompile(string file, string prog)
 		{
 			// Now parse the file
 			RDLParser rdlp;
 			Report r;
-			msgs = "";
+			string msgs = "";
 			try
 			{
 				rdlp =  new RDLParser(prog);
 				rdlp.Folder = Path.GetDirectoryName(file);
 				rdlp.DataSourceReferencePassword = new NeedPassword(this.GetPassword);
 
-				r = rdlp.Parse();
+				r = await rdlp.Parse();
 				if (r.ErrorMaxSeverity > 0) 
 				{
 					// have errors fill out the msgs 
@@ -428,7 +428,7 @@ namespace fyiReporting.RdlDesktop
 			}
 
 
-			return r;
+			return (r, msgs);
 		}
   
 		private string GetPassword()
@@ -533,7 +533,7 @@ namespace fyiReporting.RdlDesktop
 		}
 
 		//This method Accepts new connection 
-		public void HandleConnection(object state)
+		public async Task HandleConnection()
 		{
 			DateTime sDateTime;			// start date time
 			int iStartPos = 0;
@@ -636,7 +636,7 @@ namespace fyiReporting.RdlDesktop
 			if (sRequestedFile.Length == 0 )
 			{
 				string directoryHTML;
-				directoryHTML = ProcessDirectory(sDirName);
+				directoryHTML = await ProcessDirectory(sDirName);
 				SendHeader(sHttpVersion, "text/html", directoryHTML.Length, " 200 OK", null, ref mySocket);
 
 				SendToBrowser(directoryHTML, ref mySocket);
@@ -690,7 +690,7 @@ namespace fyiReporting.RdlDesktop
 				else
 					url = sRequest;
 				string mtype;
-				byte[] ba = ProcessReportFile(url, sPhysicalFilePath, sParameters, fi.LastWriteTime, out mtype);
+				(byte[] ba, mtype) = await ProcessReportFile(url, sPhysicalFilePath, sParameters, fi.LastWriteTime);
 				SendHeader(sHttpVersion, mtype, ba.Length, " 200 OK", fileTime, ref mySocket);
 				SendToBrowser(ba, ref mySocket);
 				mySocket.Close();

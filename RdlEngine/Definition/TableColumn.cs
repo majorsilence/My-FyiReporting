@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -68,10 +69,10 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "TableColumn requires the Width element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Visibility != null)
-				_Visibility.FinalPass();
+                await _Visibility.FinalPass();
 			return;
 		}
 
@@ -103,11 +104,11 @@ namespace fyiReporting.RDL
 			set {  _Visibility = value; }
 		}
 
-		internal bool IsHidden(Report rpt, Row r)
+		internal async Task<bool> IsHidden(Report rpt, Row r)
 		{
 			if (_Visibility == null)
 				return false;
-			return _Visibility.IsHidden(rpt, r);
+			return await _Visibility.IsHidden(rpt, r);
 		}
 
 		private WorkClass GetWC(Report rpt)

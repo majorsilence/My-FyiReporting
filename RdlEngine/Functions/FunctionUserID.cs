@@ -22,7 +22,7 @@
 */
 using System;
 using System.IO;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -46,58 +46,58 @@ namespace fyiReporting.RDL
 			return TypeCode.String;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
 		// Evaluate is for interpretation  
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return EvaluateString(rpt, row);
+			return await EvaluateString(rpt, row);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{	
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToDouble(result);		
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 
 			return Convert.ToDecimal(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            string result = EvaluateString(rpt, row);
+            string result = await EvaluateString(rpt, row);
 
             return Convert.ToInt32(result);
         }
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
 			if (rpt == null || rpt.UserID == null)
-				return Environment.UserName;
+				return Task.FromResult(Environment.UserName);
 			else
-				return rpt.UserID;
+				return Task.FromResult(rpt.UserID);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			string result = EvaluateString(rpt, row);
+			string result = await EvaluateString(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 	}
 }

@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -75,7 +76,7 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "DataSetReference ValueField is required but not specified for" + _DataSetName==null? "<unknown name>": _DataSetName);
 		}
 		
-		override internal void FinalPass()
+		override internal Task FinalPass()
 		{
 			_ds = OwnerReport.DataSetsDefn[this._DataSetName];
 			if (_ds == null)
@@ -98,7 +99,7 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			return;
+			return Task.CompletedTask;
 		}
 
 		internal string DataSetName
@@ -119,10 +120,8 @@ namespace fyiReporting.RDL
 			set {  _LabelField = value; }
 		}
 
-		internal void SupplyValues(Report rpt, out string[] displayValues, out object[] dataValues)
+		internal async Task<(string[] displayValues, object[] dataValues)> SupplyValues(Report rpt)
 		{
-			displayValues = null;
-			dataValues = null;
 			Rows rows = _ds.Query.GetMyData(rpt);
 			if (rows == null)		// do we already have data?
 			{
@@ -130,17 +129,17 @@ namespace fyiReporting.RDL
 				//   should mark a dataset as only having one retrieval???
 				bool lConnect = _ds.Query.DataSourceDefn.IsConnected(rpt);
 				if (!lConnect)
-					_ds.Query.DataSourceDefn.ConnectDataSource(rpt);	// connect; since not already connected
-				_ds.GetData(rpt);									// get the data
+					await _ds.Query.DataSourceDefn.ConnectDataSource(rpt);  // connect; since not already connected
+                await _ds.GetData(rpt);									// get the data
 				if (!lConnect)										// if we connected; then
 					_ds.Query.DataSourceDefn.CleanUp(rpt);				//   we cleanup
 				rows = _ds.Query.GetMyData(rpt);
 				if (rows == null)			// any data now?
-					return;					// no out of luck
+					return (null, null);					// no out of luck
 			}
 
-			displayValues = new string[rows.Data.Count];
-			dataValues = new object[displayValues.Length];
+			var displayValues = new string[rows.Data.Count];
+			var dataValues = new object[displayValues.Length];
 			int index=0;
 			object o;
 			foreach (Row r in rows.Data)
@@ -153,6 +152,7 @@ namespace fyiReporting.RDL
 					displayValues[index] = o.ToString();
 				index++;
 			}
-		}
+			return (displayValues, dataValues);
+        }
 	}
 }

@@ -38,11 +38,12 @@ using fyiReporting.RDL;
 namespace fyiReporting.RdlViewer
 {
     using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
-	/// RdlViewer displays RDL files or syntax. 
-	/// </summary>
-	public partial class RdlViewer : System.Windows.Forms.UserControl
+    /// RdlViewer displays RDL files or syntax. 
+    /// </summary>
+    public partial class RdlViewer : System.Windows.Forms.UserControl
     {
         public delegate void HyperlinkEventHandler(object source, HyperlinkEventArgs e);
 
@@ -300,7 +301,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _ShowParameters;
             }
             set
@@ -329,9 +331,9 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// Causes the find panel to find the next item
         /// </summary>
-        public void FindNext()
+        public async Task FindNext()
         {
-            _FindCtl.FindNext();
+            await _FindCtl.FindNext();
         }
 
         /// <summary>
@@ -415,7 +417,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 if (_pgs == null)
                     return 0;
                 else
@@ -472,7 +475,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _Report;
             }
         }
@@ -480,12 +484,12 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// Forces the report to get rebuilt especially after changing parameters or data.
         /// </summary>
-        public void Rebuild()
+        public async Task Rebuild()
         {
             // Aulofee customization - start. Code added (2 lines) to avoid to execute twice GetPages and so the SQL query (custo end). 
             if (_pgs == null)
             {
-                LoadPageIfNeeded();
+                await LoadPageIfNeeded();
 
                 if (_Report == null)
                     throw new Exception(Strings.RdlViewer_Error_Report_must_be_loaded_prior_to_Rebuild_being_called);
@@ -493,7 +497,7 @@ namespace fyiReporting.RdlViewer
             }
             else
             {
-                _pgs = GetPages(_Report);
+                _pgs = await GetPages(_Report);
             }
             _DrawPanel.Pgs = _pgs;
             _vScroll.Value = 0;
@@ -592,7 +596,8 @@ namespace fyiReporting.RdlViewer
                 _loadFailed = false;            // attempt to load the report
                 if (this.Visible)
                 {
-                    LoadPageIfNeeded();         // force load of report
+                    // HACK: async
+                    Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();         // force load of report
                     this._DrawPanel.Invalidate();
                 }
             }
@@ -605,20 +610,22 @@ namespace fyiReporting.RdlViewer
         public string SourceRdl
         {
             get { return _SourceRdl; }
-            set
+        }
+
+        public async Task SetSourceRdl(string value)
+        {
+            _SourceRdl = value;
+            if (value != null)
+                _SourceFileName = null;
+            _pgs = null;                // reset pages
+            _DrawPanel.Pgs = null;
+            _loadFailed = false;            // attempt to load the report	
+            _vScroll.Value = _hScroll.Value = 0;
+            if (this.Visible)
             {
-                _SourceRdl = value;
-                if (value != null)
-                    _SourceFileName = null;
-                _pgs = null;                // reset pages
-                _DrawPanel.Pgs = null;
-                _loadFailed = false;            // attempt to load the report	
-                _vScroll.Value = _hScroll.Value = 0;
-                if (this.Visible)
-                {
-                    LoadPageIfNeeded();         // force load of report
-                    this._DrawPanel.Invalidate();
-                }
+                // HACK: async
+                await LoadPageIfNeeded();
+                this._DrawPanel.Invalidate();
             }
         }
 
@@ -725,7 +732,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _PageHeight;
             }
         }
@@ -737,7 +745,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _PageWidth;
             }
         }
@@ -749,7 +758,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _ReportDescription;
             }
         }
@@ -761,7 +771,8 @@ namespace fyiReporting.RdlViewer
         {
             get
             {
-                LoadPageIfNeeded();
+                // HACK: async
+                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
                 return _ReportAuthor;
             }
         }
@@ -811,9 +822,9 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// Print the report.
         /// </summary>
-        public void Print(PrintDocument pd)
+        public async Task Print(PrintDocument pd)
         {
-            LoadPageIfNeeded();
+            await LoadPageIfNeeded();
 
             pd.PrintPage += new PrintPageEventHandler(PrintPage);
 
@@ -909,9 +920,9 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         /// <param name="FileName">Name of the file to be saved to.</param>
         /// <param name="type">Type of file to save.  Should be "pdf", "xml", "html", "mhtml", "csv", "rtf", "excel", "tif".</param>
-        public void SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+        public async Task SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
         {
-            LoadPageIfNeeded();
+            await LoadPageIfNeeded();
 
 
             OneFileStreamGen sg = new OneFileStreamGen(FileName, true); // overwrite with this name
@@ -919,7 +930,7 @@ namespace fyiReporting.RdlViewer
                 type == OutputPresentationType.TIF || type == OutputPresentationType.TIFBW))
             {
                 var ld = GetParameters();        // split parms into dictionary
-                _Report.RunGetData(ld);                     // obtain the data (again)
+                await _Report.RunGetData(ld);                     // obtain the data (again)
             }
             try
             {
@@ -940,26 +951,26 @@ namespace fyiReporting.RdlViewer
                         _Report.RunRenderTif(sg, _pgs, false);
                         break;
                     case OutputPresentationType.CSV:
-                        _Report.RunRender(sg, OutputPresentationType.CSV);
+                        await _Report.RunRender(sg, OutputPresentationType.CSV);
                         break;
                     case OutputPresentationType.Word:
                     case OutputPresentationType.RTF:
-                        _Report.RunRender(sg, OutputPresentationType.RTF);
+                        await _Report.RunRender(sg, OutputPresentationType.RTF);
                         break;
                     case OutputPresentationType.ExcelTableOnly:
-                        _Report.RunRender(sg, OutputPresentationType.ExcelTableOnly);
+                        await _Report.RunRender(sg, OutputPresentationType.ExcelTableOnly);
                         break;
                     case OutputPresentationType.Excel2007:
-                        _Report.RunRender(sg, OutputPresentationType.Excel2007);
+                        await _Report.RunRender(sg, OutputPresentationType.Excel2007);
                         break;
                     case OutputPresentationType.XML:
-                        _Report.RunRender(sg, OutputPresentationType.XML);
+                        await _Report.RunRender(sg, OutputPresentationType.XML);
                         break;
                     case OutputPresentationType.HTML:
-                        _Report.RunRender(sg, OutputPresentationType.HTML);
+                        await _Report.RunRender(sg, OutputPresentationType.HTML);
                         break;
                     case OutputPresentationType.MHTML:
-                        _Report.RunRender(sg, OutputPresentationType.MHTML);
+                        await _Report.RunRender(sg, OutputPresentationType.MHTML);
                         break;
                     default:
                         throw new Exception(Strings.RdlViewer_Error_UnsupportedExtension);
@@ -982,9 +993,9 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         /// <param name="search"></param>
         /// <returns>null if not found</returns>
-        public PageItem Find(string search)
+        public async Task<PageItem> Find(string search)
         {
-            return Find(search, null, RdlViewerFinds.None);
+            return await Find(search, null, RdlViewerFinds.None);
         }
 
         /// <summary>
@@ -995,9 +1006,9 @@ namespace fyiReporting.RdlViewer
         /// <param name="position">PageItem after which to start search.  null starts at beginning</param>
         /// <param name="options">Multiple options can be or'ed together.</param>
         /// <returns>null if not found</returns>
-        public PageItem Find(string search, PageItem position, RdlViewerFinds options)
+        public async Task<PageItem> Find(string search, PageItem position, RdlViewerFinds options)
         {
-            LoadPageIfNeeded();
+            await LoadPageIfNeeded();
 
             if (_pgs == null || _pgs.Count == 0)       // no report nothing to find
                 return null;
@@ -1064,9 +1075,9 @@ namespace fyiReporting.RdlViewer
             return found;
         }
 
-        public void ScrollToPageItem(PageItem pi)
+        public async Task ScrollToPageItem(PageItem pi)
         {
-            LoadPageIfNeeded();
+            await LoadPageIfNeeded();
             if (_pgs == null || _pgs.PageCount <= 0)    // nothing to scroll to
                 return;
 
@@ -1115,7 +1126,7 @@ namespace fyiReporting.RdlViewer
             }
         }
 
-        private void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
+        private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             // Only handle one paint at a time
             lock (this)
@@ -1130,7 +1141,7 @@ namespace fyiReporting.RdlViewer
             {
                 if (!_InLoading)                // If we're in the process of loading don't paint
                 {
-                    LoadPageIfNeeded();             // make sure we have something to show
+                    await LoadPageIfNeeded();             // make sure we have something to show
 
                     if (_zoom < 0)
                         CalcZoom();             // new report or resize client requires new zoom factor
@@ -1249,7 +1260,7 @@ namespace fyiReporting.RdlViewer
         }
 
         // Obtain the Pages by running the report
-        private Report GetReport()
+        private async Task<Report> GetReport()
         {
             string prog;
 
@@ -1281,7 +1292,7 @@ namespace fyiReporting.RdlViewer
                 // Cross objects
                 rdlp.OnSubReportGetContent.SubReportGetContent = dSubReportGetContent;
 
-                r = rdlp.Parse();
+                r = await rdlp.Parse();
                 if (r.ErrorMaxSeverity > 0)
                 {
                     _errorMsgs = r.ErrorItems;      // keep a copy of the errors
@@ -1446,16 +1457,16 @@ namespace fyiReporting.RdlViewer
             return sb.ToString();
         }
 
-        private Pages GetPages()
+        private async Task<Pages> GetPages()
         {
-            this._Report = GetReport();
+            this._Report = await GetReport();
             if (_loadFailed)			// retry on failure; this will get error report
-                this._Report = GetReport();
+                this._Report = await GetReport();
 
-            return GetPages(this._Report);
+            return await GetPages(this._Report);
         }
 
-        private Pages GetPages(Report report)
+        private async Task<Pages> GetPages(Report report)
         {
             Pages pgs = null;
 
@@ -1463,9 +1474,9 @@ namespace fyiReporting.RdlViewer
 
             try
             {
-                report.RunGetData(ld);
+                await report.RunGetData(ld);
 
-                pgs = report.BuildPages();
+                pgs = await report.BuildPages();
 
                 if (report.ErrorMaxSeverity > 0)
                 {
@@ -1577,7 +1588,7 @@ namespace fyiReporting.RdlViewer
         /// Call LoadPageIfNeeded when a routine requires the report to be loaded in order
         /// to fulfill the request.
         /// </summary>
-        private void LoadPageIfNeeded()
+        private async Task LoadPageIfNeeded()
         {
             if (_pgs == null)
             {
@@ -1598,8 +1609,8 @@ namespace fyiReporting.RdlViewer
                     }
                     _InLoading = true;
                     savec = this.Cursor;                // this could take a while so put up wait cursor
-                    this.Cursor = Cursors.WaitCursor;
-                    _pgs = GetPages();
+                    this.Cursor = Cursors.WaitCursor;              
+                    _pgs = await GetPages();
                     _DrawPanel.Pgs = _pgs;
                     CalcZoom();                         // this could affect zoom
                 }
@@ -1737,7 +1748,7 @@ namespace fyiReporting.RdlViewer
             }
         }
 
-        private void ParametersViewClick(object sender, System.EventArgs e)
+        private async void ParametersViewClick(object sender, System.EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             System.Threading.Thread t = null;
@@ -1791,7 +1802,7 @@ namespace fyiReporting.RdlViewer
                         System.Threading.Thread.Sleep(1);
                     }
                 }
-                _pgs = GetPages(this._Report);
+                _pgs = await GetPages(this._Report);
                 _DrawPanel.Pgs = _pgs;
                 _vScroll.Value = 0;
                 CalcZoom();
@@ -2004,7 +2015,7 @@ namespace fyiReporting.RdlViewer
             ChangePageEvent();
         }
 
-        private void DrawPanelKeyDown(object sender, KeyEventArgs e)
+        private async void DrawPanelKeyDown(object sender, KeyEventArgs e)
         {
             // Force scroll up and down
             if (e.KeyCode == Keys.Down)
@@ -2060,7 +2071,7 @@ namespace fyiReporting.RdlViewer
                     if (last.Count > 0)
                     {
                         PageItem lastItem = last[last.Count - 1];
-                        this.ScrollToPageItem(lastItem);
+                        await this.ScrollToPageItem(lastItem);
                         e.Handled = true;
                     }
                 }

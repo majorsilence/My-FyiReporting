@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -61,49 +60,49 @@ namespace fyiReporting.RDL
 			return TypeCode.Object;			// TODO
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;
+			return Task.FromResult(false);
 		}
 
-		public IExpr ConstantOptimization()
+		public Task<IExpr> ConstantOptimization()
 		{	
-			return this;
+			return Task.FromResult(this as IExpr);
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{	
-			return _Value;
+			return Task.FromResult(_Value as object);
 		}
 
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return Convert.ToDouble(Evaluate(rpt, row));
+			return Convert.ToDouble(await Evaluate(rpt, row));
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return Convert.ToDecimal(Evaluate(rpt, row));
+			return Convert.ToDecimal(await Evaluate(rpt, row));
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return Convert.ToInt32(Evaluate(rpt, row));
+            return Convert.ToInt32(await Evaluate(rpt, row));
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return Convert.ToString(Evaluate(rpt, row));
+			return Convert.ToString(await Evaluate(rpt, row));
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return Convert.ToDateTime(Evaluate(rpt, row));
+			return Convert.ToDateTime(await Evaluate(rpt, row));
 		}
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return Convert.ToBoolean(Evaluate(rpt, row));
+			return Convert.ToBoolean(await Evaluate(rpt, row));
 		}
 	}
 }

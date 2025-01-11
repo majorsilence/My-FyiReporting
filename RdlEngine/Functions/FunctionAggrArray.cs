@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -57,7 +57,7 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public Task<object> Evaluate(Report rpt, Row row)
 		{
             bool bSave = true;
             RowEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -79,32 +79,32 @@ namespace fyiReporting.RDL
                 if (bSave)
                     SetValue(rpt, v);
             }
-            return v;
+            return Task.FromResult(v);
         }
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return double.MinValue;
+			return Task.FromResult(double.MinValue);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return decimal.MinValue;
+			return Task.FromResult(decimal.MinValue);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return int.MinValue;
+            return Task.FromResult(int.MinValue);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public Task<string> EvaluateString(Report rpt, Row row)
 		{
 			return null;
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-            return DateTime.MinValue;
+            return Task.FromResult(DateTime.MinValue);
 		}
 
 		private object GetValue(Report rpt)

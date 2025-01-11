@@ -35,6 +35,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Net;
+using System.Threading.Tasks;
 
 
 namespace fyiReporting.RDL
@@ -43,35 +44,36 @@ namespace fyiReporting.RDL
     /// Represents an image.  Source of image can from database, external or embedded. 
     ///</summary>
     [Serializable]
-	internal class Image : ReportItem
-	{
-		ImageSourceEnum _ImageSource;	// Identifies the source of the image:
-		Expression _Value;		// See Source. Expected datatype is string or
-								// binary, depending on Source. If the Value is
-								// null, no image is displayed.
-		Expression _MIMEType;	// (string) An expression, the value of which is the
-								//	MIMEType for the image.
-								//	Valid values are: image/bmp, image/jpeg,
-								//	image/gif, image/png, image/x-png
-								// Required if Source = Database. Ignored otherwise.
-		ImageSizingEnum _Sizing;	// Defines the behavior if the image does not fit within the specified size.
-	
-		bool _ConstantImage;	// true if Image is a constant at runtime
+    internal class Image : ReportItem
+    {
+        ImageSourceEnum _ImageSource;   // Identifies the source of the image:
+        Expression _Value;      // See Source. Expected datatype is string or
+                                // binary, depending on Source. If the Value is
+                                // null, no image is displayed.
+        Expression _MIMEType;   // (string) An expression, the value of which is the
+                                //	MIMEType for the image.
+                                //	Valid values are: image/bmp, image/jpeg,
+                                //	image/gif, image/png, image/x-png
+                                // Required if Source = Database. Ignored otherwise.
+        ImageSizingEnum _Sizing;    // Defines the behavior if the image does not fit within the specified size.
+
+        bool _ConstantImage;	// true if Image is a constant at runtime
 
         string _EmbeddedImageData; // only for RenderHtml and embeddedImage. we need the embedded image code for html.
 
         private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905        
 
-		private static void CopyStream(Stream src, Stream dst)
-		{
-			byte[] buffer = new byte[16 * 1024];
+        private static void CopyStream(Stream src, Stream dst)
+        {
+            byte[] buffer = new byte[16 * 1024];
             int bytesRead;
 
-            while ((bytesRead = src.Read(buffer, 0, buffer.Length)) > 0) {
+            while ((bytesRead = src.Read(buffer, 0, buffer.Length)) > 0)
+            {
                 dst.Write(buffer, 0, bytesRead);
             }
-		}
-		
+        }
+
         /// <summary>
         /// Only gets set for Images which contain urls rather than coming from the database etc..
         /// </summary>
@@ -79,292 +81,292 @@ namespace fyiReporting.RDL
         {
             get { return imageUrl; }
             private set { imageUrl = value; }
-        }      
-        
-		internal Image(ReportDefn r, ReportLink p, XmlNode xNode):base(r,p,xNode)
-		{
-			_ImageSource=ImageSourceEnum.Unknown;
-			_Value=null;
-			_MIMEType=null;
-			_Sizing=ImageSizingEnum.AutoSize;
-			_ConstantImage = false;
+        }
 
-			// Loop thru all the child nodes
-			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
-			{
-				if (xNodeLoop.NodeType != XmlNodeType.Element)
-					continue;
-				switch (xNodeLoop.Name)
-				{
-					case "Source":
-						_ImageSource = fyiReporting.RDL.ImageSource.GetStyle(xNodeLoop.InnerText);
-						break;
-					case "Value":
-						_Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
-						break;
-					case "MIMEType":
-						_MIMEType = new Expression(r, this, xNodeLoop, ExpressionType.String);
-						break;
-					case "Sizing":
-						_Sizing = ImageSizing.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
-						break;
-					default:
-						if (ReportItemElement(xNodeLoop))	// try at ReportItem level
-							break;
-						// don't know this element - log it
-						OwnerReport.rl.LogError(4, "Unknown Image element " + xNodeLoop.Name + " ignored.");
-						break;
-				}
-			}
-			if (_ImageSource==ImageSourceEnum.Unknown)
-				OwnerReport.rl.LogError(8, "Image requires a Source element.");
-			if (_Value == null)
-				OwnerReport.rl.LogError(8, "Image requires the Value element.");
-		}
+        internal Image(ReportDefn r, ReportLink p, XmlNode xNode) : base(r, p, xNode)
+        {
+            _ImageSource = ImageSourceEnum.Unknown;
+            _Value = null;
+            _MIMEType = null;
+            _Sizing = ImageSizingEnum.AutoSize;
+            _ConstantImage = false;
 
-		// Handle parsing of function in final pass
-		override internal void FinalPass()
-		{
-			base.FinalPass();
+            // Loop thru all the child nodes
+            foreach (XmlNode xNodeLoop in xNode.ChildNodes)
+            {
+                if (xNodeLoop.NodeType != XmlNodeType.Element)
+                    continue;
+                switch (xNodeLoop.Name)
+                {
+                    case "Source":
+                        _ImageSource = fyiReporting.RDL.ImageSource.GetStyle(xNodeLoop.InnerText);
+                        break;
+                    case "Value":
+                        _Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
+                        break;
+                    case "MIMEType":
+                        _MIMEType = new Expression(r, this, xNodeLoop, ExpressionType.String);
+                        break;
+                    case "Sizing":
+                        _Sizing = ImageSizing.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+                        break;
+                    default:
+                        if (ReportItemElement(xNodeLoop))   // try at ReportItem level
+                            break;
+                        // don't know this element - log it
+                        OwnerReport.rl.LogError(4, "Unknown Image element " + xNodeLoop.Name + " ignored.");
+                        break;
+                }
+            }
+            if (_ImageSource == ImageSourceEnum.Unknown)
+                OwnerReport.rl.LogError(8, "Image requires a Source element.");
+            if (_Value == null)
+                OwnerReport.rl.LogError(8, "Image requires the Value element.");
+        }
 
-			_Value.FinalPass();
-			if (_MIMEType != null)
-				_MIMEType.FinalPass();
+        // Handle parsing of function in final pass
+        async override internal Task FinalPass()
+        {
+            await base.FinalPass();
 
-			_ConstantImage = this.IsConstant();
-			
-			return;
-		}
+            await _Value.FinalPass();
+            if (_MIMEType != null)
+                await _MIMEType.FinalPass();
 
-		// Returns true if the image and style remain constant at runtime
-		bool IsConstant()
-		{
-			
-			if (_Value.IsConstant())
-			{
-				if (_MIMEType == null || _MIMEType.IsConstant())
-				{
-//					if (this.Style == null || this.Style.ConstantStyle)
-//						return true;
-					return true;	// ok if style changes
-				}
-			}
-			return false;
-		}
+            _ConstantImage = await this.IsConstant();
 
-		override internal void Run(IPresent ip, Row row)
-		{
-			base.Run(ip, row);
+            return;
+        }
 
-			string mtype=null; 
-			Stream strm=null;
-			try 
-			{
-				strm = GetImageStream(ip.Report(), row, out mtype);
+        // Returns true if the image and style remain constant at runtime
+        async Task<bool> IsConstant()
+        {
 
-				ip.Image(this, row, mtype, strm);
-			}
-			catch
-			{
-				// image failed to load;  continue processing
-			}
-			finally
-			{
-				if (strm != null)
-					strm.Close();
-			}
-			return;
-		}
+            if (await _Value.IsConstant())
+            {
+                if (_MIMEType == null || await _MIMEType.IsConstant())
+                {
+                    //					if (this.Style == null || this.Style.ConstantStyle)
+                    //						return true;
+                    return true;    // ok if style changes
+                }
+            }
+            return false;
+        }
 
-		override internal void RunPage(Pages pgs, Row row)
-		{
-			Report r = pgs.Report;
-            bool bHidden = IsHidden(r, row);
+        async override internal Task Run(IPresent ip, Row row)
+        {
+            await base.Run(ip, row);
 
-			WorkClass wc = GetWC(r);
-			string mtype=null; 
-			Stream strm=null;
-			Drawing.Image im=null;
+            string mtype = null;
+            Stream strm = null;
+            try
+            {
+                (strm, mtype) = await GetImageStream(ip.Report(), row);
 
-			SetPagePositionBegin(pgs);
+                await ip.Image(this, row, mtype, strm);
+            }
+            catch
+            {
+                // image failed to load;  continue processing
+            }
+            finally
+            {
+                if (strm != null)
+                    strm.Close();
+            }
+            return;
+        }
+
+        override internal async Task RunPage(Pages pgs, Row row)
+        {
+            Report r = pgs.Report;
+            bool bHidden = await IsHidden(r, row);
+
+            WorkClass wc = GetWC(r);
+            string mtype = null;
+            Stream strm = null;
+            Drawing.Image im = null;
+
+            SetPagePositionBegin(pgs);
             if (bHidden)
             {
                 PageImage pi = new PageImage(ImageFormat.Jpeg, (byte[])null, 0, 0);
-                this.SetPagePositionAndStyle(r, pi, row);
+                await this.SetPagePositionAndStyle(r, pi, row);
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
                 return;
             }
 
-			if (wc.PgImage != null)
-			{	// have we already generated this one
-				// reuse most of the work; only position will likely change
-				PageImage pi = new PageImage(wc.PgImage.ImgFormat, wc.PgImage.GetImageData(), wc.PgImage.SamplesW, wc.PgImage.SamplesH);
-				pi.Name = wc.PgImage.Name;				// this is name it will be shared under
-				pi.Sizing = this._Sizing;
-				this.SetPagePositionAndStyle(r, pi, row);
-				pgs.CurrentPage.AddObject(pi);
+            if (wc.PgImage != null)
+            {   // have we already generated this one
+                // reuse most of the work; only position will likely change
+                PageImage pi = new PageImage(wc.PgImage.ImgFormat, wc.PgImage.GetImageData(), wc.PgImage.SamplesW, wc.PgImage.SamplesH);
+                pi.Name = wc.PgImage.Name;              // this is name it will be shared under
+                pi.Sizing = this._Sizing;
+                await this.SetPagePositionAndStyle(r, pi, row);
+                pgs.CurrentPage.AddObject(pi);
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
-				return;
-			}
+                return;
+            }
 
-			try 
-			{
-				strm = GetImageStream(r, row, out mtype);
+            try
+            {
+                (strm, mtype) = await GetImageStream(r, row);
                 if (strm == null)
                 {
                     r.rl.LogError(4, string.Format("Unable to load image {0}.", this.Name.Nm));
                     return;
                 }
-				im = Drawing.Image.FromStream(strm);
-				int height = im.Height;
-				int width = im.Width;
-				MemoryStream ostrm = new MemoryStream();
-				strm.Position = 0;
-				ImageFormat imf;
-				switch(mtype.ToLower())
-				{	
-					case "image/jpeg" :
-						imf = ImageFormat.Jpeg;
-						CopyStream(strm, ostrm);
-						break;
-					case "image/png":
-						imf = ImageFormat.Png;
-						CopyStream(strm, ostrm);
-						break;
-					default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
-						imf = ImageFormat.Jpeg;
-						ImageCodecInfo[] info;
-						info = ImageCodecInfo.GetImageEncoders();
-						Drawing.Imaging.EncoderParameters encoderParameters;
-						encoderParameters = new Drawing.Imaging.EncoderParameters(1);
-						encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
-						ImageCodecInfo codec = null;
-						for (int i = 0; i < info.Length; i++)
-						{
-							if (info[i].FormatDescription == "JPEG")
-							{
-								codec = info[i];
-								break;
-							}
-						}
-						im.Save(ostrm, codec, encoderParameters);
-						break;
-				}
+                im = Drawing.Image.FromStream(strm);
+                int height = im.Height;
+                int width = im.Width;
+                MemoryStream ostrm = new MemoryStream();
+                strm.Position = 0;
+                ImageFormat imf;
+                switch (mtype.ToLower())
+                {
+                    case "image/jpeg":
+                        imf = ImageFormat.Jpeg;
+                        CopyStream(strm, ostrm);
+                        break;
+                    case "image/png":
+                        imf = ImageFormat.Png;
+                        CopyStream(strm, ostrm);
+                        break;
+                    default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
+                        imf = ImageFormat.Jpeg;
+                        ImageCodecInfo[] info;
+                        info = ImageCodecInfo.GetImageEncoders();
+                        Drawing.Imaging.EncoderParameters encoderParameters;
+                        encoderParameters = new Drawing.Imaging.EncoderParameters(1);
+                        encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
+                        ImageCodecInfo codec = null;
+                        for (int i = 0; i < info.Length; i++)
+                        {
+                            if (info[i].FormatDescription == "JPEG")
+                            {
+                                codec = info[i];
+                                break;
+                            }
+                        }
+                        im.Save(ostrm, codec, encoderParameters);
+                        break;
+                }
 
-				byte[] ba = ostrm.ToArray();
-				ostrm.Close();
-				PageImage pi = new PageImage(imf, ba, width, height);
-				pi.Sizing = this._Sizing;
-				this.SetPagePositionAndStyle(r, pi, row);
+                byte[] ba = ostrm.ToArray();
+                ostrm.Close();
+                PageImage pi = new PageImage(imf, ba, width, height);
+                pi.Sizing = this._Sizing;
+                await this.SetPagePositionAndStyle(r, pi, row);
 
-				pgs.CurrentPage.AddObject(pi);
-				if (_ConstantImage)
-				{
-					wc.PgImage = pi;
-					// create unique name; PDF generation uses this to optimize the saving of the image only once
-					pi.Name = "pi" + Interlocked.Increment(ref Parser.Counter).ToString();	// create unique name
-				}
+                pgs.CurrentPage.AddObject(pi);
+                if (_ConstantImage)
+                {
+                    wc.PgImage = pi;
+                    // create unique name; PDF generation uses this to optimize the saving of the image only once
+                    pi.Name = "pi" + Interlocked.Increment(ref Parser.Counter).ToString();  // create unique name
+                }
 
                 SetPagePositionEnd(pgs, pi.Y + pi.H);
             }
-			catch (Exception e)
-			{	
-				// image failed to load, continue processing
-				r.rl.LogError(4, "Image load failed.  " + e.Message);
-			}
-			finally
-			{
-				if (strm != null)
-					strm.Close();
-				if (im != null)
-					im.Dispose();
-			}
-			return;
-		}
+            catch (Exception e)
+            {
+                // image failed to load, continue processing
+                r.rl.LogError(4, "Image load failed.  " + e.Message);
+            }
+            finally
+            {
+                if (strm != null)
+                    strm.Close();
+                if (im != null)
+                    im.Dispose();
+            }
+            return;
+        }
 
-		Stream GetImageStream(Report rpt, Row row, out string mtype)
-		{
-			mtype=null; 
-			Stream strm=null;
-			try 
-			{
-				switch (this.ImageSource)
-				{
-					case ImageSourceEnum.Database:
-						if (_MIMEType == null)
-							return null;
-						mtype = _MIMEType.EvaluateString(rpt, row);
-						object o = _Value.Evaluate(rpt, row);
-						strm = new MemoryStream((byte[]) o);
-						break;
-					case ImageSourceEnum.Embedded:
-						string name = _Value.EvaluateString(rpt, row);
-						EmbeddedImage ei = (EmbeddedImage) OwnerReport.LUEmbeddedImages[name];
-						mtype = ei.MIMEType;
-						byte[] ba = Convert.FromBase64String(ei.ImageData);
+        async Task<(Stream stream, string mtype)> GetImageStream(Report rpt, Row row)
+        {
+            string mtype = null;
+            Stream strm = null;
+            try
+            {
+                switch (this.ImageSource)
+                {
+                    case ImageSourceEnum.Database:
+                        if (_MIMEType == null)
+                            return (null, mtype);
+                        mtype = await _MIMEType.EvaluateString(rpt, row);
+                        object o = _Value.Evaluate(rpt, row);
+                        strm = new MemoryStream((byte[])o);
+                        break;
+                    case ImageSourceEnum.Embedded:
+                        string name = await _Value.EvaluateString(rpt, row);
+                        EmbeddedImage ei = (EmbeddedImage)OwnerReport.LUEmbeddedImages[name];
+                        mtype = ei.MIMEType;
+                        byte[] ba = Convert.FromBase64String(ei.ImageData);
                         _EmbeddedImageData = ei.ImageData; // we need this for html embedded image
                         strm = new MemoryStream(ba);
-						break;
-					case ImageSourceEnum.External:
-						//Added Image URL from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
-                        string fname = this.ImageUrl = _Value.EvaluateString(rpt, row);
-						mtype = GetMimeType(fname);
-						if (fname.StartsWith("http:") ||
-							fname.StartsWith("file:") ||
-							fname.StartsWith("https:"))
-						{
-							WebRequest wreq = WebRequest.Create(fname);
-							WebResponse wres = wreq.GetResponse();
-							strm = wres.GetResponseStream();
-						}
-						else
-							strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);		
-						break;
-					default:
-						return null;
-				}
-			}
-			catch (Exception e)
-			{
-				if (strm != null)
-				{
-					strm.Close();
-					strm = null;
-				}
-				rpt.rl.LogError(4, string.Format("Unable to load image. {0}", e.Message));
-			}
+                        break;
+                    case ImageSourceEnum.External:
+                        //Added Image URL from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
+                        string fname = this.ImageUrl = await _Value.EvaluateString(rpt, row);
+                        mtype = GetMimeType(fname);
+                        if (fname.StartsWith("http:") ||
+                            fname.StartsWith("file:") ||
+                            fname.StartsWith("https:"))
+                        {
+                            WebRequest wreq = WebRequest.Create(fname);
+                            WebResponse wres = wreq.GetResponse();
+                            strm = wres.GetResponseStream();
+                        }
+                        else
+                            strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);
+                        break;
+                    default:
+                        return (null, mtype);
+                }
+            }
+            catch (Exception e)
+            {
+                if (strm != null)
+                {
+                    strm.Close();
+                    strm = null;
+                }
+                rpt.rl.LogError(4, string.Format("Unable to load image. {0}", e.Message));
+            }
 
-			return strm;
-		}
+            return (strm, mtype);
+        }
 
-		internal ImageSourceEnum ImageSource
-		{
-			get { return  _ImageSource; }
-			set {  _ImageSource = value; }
-		}
+        internal ImageSourceEnum ImageSource
+        {
+            get { return _ImageSource; }
+            set { _ImageSource = value; }
+        }
 
-		internal Expression Value
-		{
-			get { return  _Value; }
-			set {  _Value = value; }
-		}
+        internal Expression Value
+        {
+            get { return _Value; }
+            set { _Value = value; }
+        }
 
-		internal Expression MIMEType
-		{
-			get { return  _MIMEType; }
-			set {  _MIMEType = value; }
-		}
+        internal Expression MIMEType
+        {
+            get { return _MIMEType; }
+            set { _MIMEType = value; }
+        }
 
-		internal ImageSizingEnum Sizing
-		{
-			get { return  _Sizing; }
-			set {  _Sizing = value; }
-		}
+        internal ImageSizingEnum Sizing
+        {
+            get { return _Sizing; }
+            set { _Sizing = value; }
+        }
 
-		internal bool ConstantImage
-		{
-			get { return _ConstantImage; }
-		}
+        internal bool ConstantImage
+        {
+            get { return _ConstantImage; }
+        }
 
         internal string EmbeddedImageData
         {
@@ -373,58 +375,58 @@ namespace fyiReporting.RDL
 
 
         static internal string GetMimeType(string file)
-		{
-			String fileExt;
-			
-			int startPos = file.LastIndexOf(".") + 1;
+        {
+            String fileExt;
 
-			fileExt = file.Substring(startPos).ToLower();
+            int startPos = file.LastIndexOf(".") + 1;
 
-			switch (fileExt)
-			{
-				case "bmp":
-					return "image/bmp";
-				case "jpeg":
-				case "jpe":
-				case "jpg":
-				case "jfif":
-					return "image/jpeg";
-				case "gif":
-					return "image/gif";
-				case "png":
-					return "image/png";
-				case "tif":
-				case "tiff":
-					return "image/tiff";
-				default:
-					return null;
-			}
-		}
+            fileExt = file.Substring(startPos).ToLower();
 
-		private WorkClass GetWC(Report rpt)
-		{
-			WorkClass wc = rpt.Cache.Get(this, "wc") as WorkClass;
-			if (wc == null)
-			{
-				wc = new WorkClass();
-				rpt.Cache.Add(this, "wc", wc);
-			}
-			return wc;
-		}
+            switch (fileExt)
+            {
+                case "bmp":
+                    return "image/bmp";
+                case "jpeg":
+                case "jpe":
+                case "jpg":
+                case "jfif":
+                    return "image/jpeg";
+                case "gif":
+                    return "image/gif";
+                case "png":
+                    return "image/png";
+                case "tif":
+                case "tiff":
+                    return "image/tiff";
+                default:
+                    return null;
+            }
+        }
 
-		private void RemoveImageWC(Report rpt)
-		{
-			rpt.Cache.Remove(this, "wc");
-		}
+        private WorkClass GetWC(Report rpt)
+        {
+            WorkClass wc = rpt.Cache.Get(this, "wc") as WorkClass;
+            if (wc == null)
+            {
+                wc = new WorkClass();
+                rpt.Cache.Add(this, "wc", wc);
+            }
+            return wc;
+        }
 
-		class WorkClass
-		{
-			internal PageImage PgImage;	// When ConstantImage is true this will save the PageImage for reuse
-			internal WorkClass()
-			{
-				PgImage=null;
-			}
-		}
+        private void RemoveImageWC(Report rpt)
+        {
+            rpt.Cache.Remove(this, "wc");
+        }
 
-	}
+        class WorkClass
+        {
+            internal PageImage PgImage; // When ConstantImage is true this will save the PageImage for reuse
+            internal WorkClass()
+            {
+                PgImage = null;
+            }
+        }
+
+    }
 }

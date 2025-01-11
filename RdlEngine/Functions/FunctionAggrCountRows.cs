@@ -24,8 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -52,46 +51,46 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return (object) EvaluateInt32(rpt, row);
+			return (object)await EvaluateInt32(rpt, row);
 		}
 		
-		public int EvaluateInt32(Report rpt, Row row)
+		public Task<int> EvaluateInt32(Report rpt, Row row)
 		{
 			bool bSave=true;
 			RowEnumerable re = this.GetDataScope(rpt, row, out bSave);
 			if (re == null)
-				return 0;
+				return Task.FromResult(0);
 
 			int count = re.LastRow - re.FirstRow + 1;
 
-			return count;
+			return Task.FromResult(count);
 		}
 
-        public double EvaluateDouble(Report rpt, Row row)
+        public async Task<double> EvaluateDouble(Report rpt, Row row)
         {
-            int d = EvaluateInt32(rpt, row);
+            int d = await EvaluateInt32(rpt, row);
 
             return Convert.ToDouble(d);
         }
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			int d = EvaluateInt32(rpt, row);
+			int d = await EvaluateInt32(rpt, row);
 
 			return Convert.ToDecimal(d);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			double result = EvaluateDouble(rpt, row);
+			double result = await EvaluateDouble(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 	}

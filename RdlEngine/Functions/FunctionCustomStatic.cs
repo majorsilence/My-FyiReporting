@@ -24,6 +24,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using RdlEngine.Resources;
 
 
@@ -67,18 +68,18 @@ namespace fyiReporting.RDL
 			return _ReturnTypeCode;
 		}
 
-		public bool IsConstant()
+		public Task<bool> IsConstant()
 		{
-			return false;		// Can't know what the function does
+			return Task.FromResult(false);		// Can't know what the function does
 		}
 
-		public IExpr ConstantOptimization()
+		public async Task<IExpr> ConstantOptimization()
 		{
 			// Do constant optimization on all the arguments
 			for (int i=0; i < _Args.GetLength(0); i++)
 			{
 				IExpr e = (IExpr)_Args[i];
-				_Args[i] = e.ConstantOptimization();
+				_Args[i] = await e.ConstantOptimization();
 			}
 
 			// Can't assume that the function doesn't vary
@@ -87,7 +88,7 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
 			// get the results
 			object[] argResults = new object[_Args.Length];
@@ -95,7 +96,7 @@ namespace fyiReporting.RDL
 			bool bUseArg=true;
 			foreach(IExpr a  in _Args)
 			{
-				argResults[i] = a.Evaluate(rpt, row);
+				argResults[i] = await a.Evaluate(rpt, row);
 				if (argResults[i] != null && argResults[i].GetType() != _ArgTypes[i])
 					bUseArg = false;
 				i++;
@@ -119,35 +120,35 @@ namespace fyiReporting.RDL
 			return returnVal;
 		}
 
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			return Convert.ToDouble(Evaluate(rpt, row));
+			return Convert.ToDouble(await Evaluate(rpt, row));
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			return Convert.ToDecimal(Evaluate(rpt, row));
+			return Convert.ToDecimal(await Evaluate(rpt, row));
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            return Convert.ToInt32(Evaluate(rpt, row));
+            return Convert.ToInt32(await Evaluate(rpt, row));
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			return Convert.ToString(Evaluate(rpt, row));
+			return Convert.ToString(await Evaluate(rpt, row));
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			return Convert.ToDateTime(Evaluate(rpt, row));
+			return Convert.ToDateTime(await Evaluate(rpt, row));
 		}
 
 
-		public bool EvaluateBoolean(Report rpt, Row row)
+		public async Task<bool> EvaluateBoolean(Report rpt, Row row)
 		{
-			return Convert.ToBoolean(Evaluate(rpt, row));
+			return Convert.ToBoolean(await Evaluate(rpt, row));
 		}
 
 		public string Cls

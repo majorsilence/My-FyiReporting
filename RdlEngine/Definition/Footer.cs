@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -65,28 +66,28 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "TableRows element is required with a Footer but not specified.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_TableRows.FinalPass();
+            await _TableRows.FinalPass();
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
-			_TableRows.Run(ip, row);
+            await _TableRows.Run(ip, row);
 			return;
 		}
 
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
 
 			Page p = pgs.CurrentPage;
-			if (p.YOffset + HeightOfRows(pgs, row) > pgs.BottomOfPage)
+			if (p.YOffset + await HeightOfRows(pgs, row) > pgs.BottomOfPage)
 			{
 				p = OwnerTable.RunPageNew(pgs, p);
-				OwnerTable.RunPageHeader(pgs, row, false, null);
+                await OwnerTable.RunPageHeader(pgs, row, false, null);
 			}
-			_TableRows.RunPage(pgs, row);
+            await _TableRows.RunPage(pgs, row);
 
 			return;
 		}
@@ -97,9 +98,9 @@ namespace fyiReporting.RDL
 			set {  _TableRows = value; }
 		}
 
-		internal float HeightOfRows(Pages pgs, Row r)
+		internal async Task<float> HeightOfRows(Pages pgs, Row r)
 		{
-			return _TableRows.HeightOfRows(pgs, r);
+			return await _TableRows.HeightOfRows(pgs, r);
 		}
 
 		internal bool RepeatOnNewPage

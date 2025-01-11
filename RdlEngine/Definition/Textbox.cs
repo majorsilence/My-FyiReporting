@@ -33,6 +33,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -143,10 +144,10 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
-			_Value.FinalPass();
+            await base.FinalPass();
+            await _Value.FinalPass();
 
             //The Changes below were added from Forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
 			if (this.DataElementName == null && this.Name == null)
@@ -172,7 +173,7 @@ namespace fyiReporting.RDL
 			}
 
 			if (_ToggleImage != null)
-				_ToggleImage.FinalPass();
+                await _ToggleImage.FinalPass();
 
 			if (_HideDuplicates != null)
 			{
@@ -225,15 +226,15 @@ namespace fyiReporting.RDL
 			tbr.PreviousPage=null;	
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
 			Report rpt = ip.Report();
-			base.Run(ip, row);
+            await base.Run(ip, row);
 
 			TextboxRuntime tbr = TextboxRuntime.GetTextboxRuntime(rpt, this);
 
 			tbr.RunCount++;		// Increment the run count
-			string t = RunText(rpt, row);
+			string t = await RunText(rpt, row);
 			bool bDup =	RunTextIsDuplicate(tbr, t, null);
 			if (bDup)
 			{
@@ -241,20 +242,20 @@ namespace fyiReporting.RDL
 					return;
 				t = "";		// still need to put out the cell
 			}
-			ip.Textbox(this, t, row);
+            await ip.Textbox(this, t, row);
 
 			if (!bDup)
 				tbr.PreviousText=t;	// set for next time
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		override internal async Task RunPage(Pages pgs, Row row)
 		{
 			Report r = pgs.Report;
 			TextboxRuntime tbr = TextboxRuntime.GetTextboxRuntime(r, this);
 
 			tbr.RunCount++;		// Increment the run count
 
-            bool bHidden = IsHidden(r, row);
+            bool bHidden = await IsHidden(r, row);
 
 			SetPagePositionBegin(pgs);
 
@@ -262,7 +263,7 @@ namespace fyiReporting.RDL
             if (bHidden)
                 t = "";
             else
-                t = RunText(r, row);	// get the text
+                t = await RunText(r, row);	// get the text
 
 			bool bDup =	RunTextIsDuplicate(tbr, t, pgs.CurrentPage);
 			if (bDup)
@@ -273,14 +274,14 @@ namespace fyiReporting.RDL
 			}
 			PageText pt;
 			PageTextHtml pth=null;
-			if (IsHtml(r, row))
+			if (await IsHtml(r, row))
 				pt = pth = new PageTextHtml(t);
 			else
 				pt = new PageText(t);
-			SetPagePositionAndStyle(r, pt, row);
+            await SetPagePositionAndStyle(r, pt, row);
 			if (this.CanGrow && tbr.RunHeight == 0)	// when textbox is in a DataRegion this will already be called
 			{
-				this.RunTextCalcHeight(r, pgs.G, row, pt as PageTextHtml);
+                await this.RunTextCalcHeight(r, pgs.G, row, pt as PageTextHtml);
 			}
 			pt.H = Math.Max(pt.H, tbr.RunHeight);		// reset height
 			if (pt.SI.BackgroundImage != null)
@@ -321,10 +322,11 @@ namespace fyiReporting.RDL
 			SetPagePositionEnd(pgs, pt.Y+pt.H);
 			if (pth != null)
 				pth.Reset();
-			if (this.CanGrow && !Value.IsConstant())
+			if (this.CanGrow && !await Value.IsConstant())
 			{
 				tbr.RunHeight = 0;					// need to recalculate
 			}
+			return;
 		}
 
 		// routine to determine if text is considered to be a duplicate;
@@ -339,9 +341,9 @@ namespace fyiReporting.RDL
 			return false;
 		}
 
-		internal string RunText(Report rpt, Row row)
+		internal async Task<string> RunText(Report rpt, Row row)
 		{
-			object o = Evaluate(rpt, row);
+			object o = await Evaluate(rpt, row);
             // AJM 15082008: Suppress NaN from appearing in a textbox
             if (o is double) 
             {
@@ -350,8 +352,8 @@ namespace fyiReporting.RDL
                     o = null; 
                 } 
             }   
-			string t = Style.GetFormatedString(rpt, this.Style, row, o, _Value.GetTypeCode());
-            if (IsHtml(rpt, row) && t != null && t.Contains("<expr>"))
+			string t = await Style.GetFormatedString(rpt, this.Style, row, o, _Value.GetTypeCode());
+            if (await IsHtml(rpt, row) && t != null && t.Contains("<expr>"))
             {
                 string[] parts = HTMLEXPR.Split(t);
                 StringBuilder sb = new StringBuilder(t.Length);
@@ -371,16 +373,16 @@ namespace fyiReporting.RDL
 			return t;
 		}
 
-		internal float RunTextCalcHeight(Report rpt, Graphics g, Row row)
+		internal async Task<float> RunTextCalcHeight(Report rpt, Graphics g, Row row)
 		{
-			return RunTextCalcHeight(rpt, g, row, null);
+			return await RunTextCalcHeight(rpt, g, row, null);
 		}
 		
-		internal float RunTextCalcHeight(Report rpt, Graphics g, Row row, PageTextHtml pth)
+		internal async Task<float> RunTextCalcHeight(Report rpt, Graphics g, Row row, PageTextHtml pth)
 		{	// normally only called when CanGrow is true
 			Size s = Size.Empty;
 
-			if (IsHidden(rpt, row))
+			if (await IsHidden(rpt, row))
 				return 0;
 
 			object o = Evaluate(rpt, row);
@@ -390,36 +392,36 @@ namespace fyiReporting.RDL
 
 			if (this.Style != null)
 			{
-				width -= (Style.EvalPaddingLeftPx(rpt, row) + Style.EvalPaddingRightPx(rpt, row));
+				width -= (await Style.EvalPaddingLeftPx(rpt, row) + await Style.EvalPaddingRightPx(rpt, row));
 
-				if (this.IsHtml(rpt, row))
+				if (await this.IsHtml(rpt, row))
 				{
 					if (pth == null)
 					{
 						pth = new PageTextHtml(o==null? "": o.ToString());
-						SetPagePositionAndStyle(rpt, pth, row);
+						await SetPagePositionAndStyle(rpt, pth, row);
 					}
 					pth.Build(g);
 					s.Height = RSize.PixelsFromPoints(pth.TotalHeight);
 				}
 				else
-					s = Style.MeasureString(rpt, g, o, tc, row, width);
+					s = await Style.MeasureString(rpt, g, o, tc, row, width);
 			}
 			else	// call the class static method
-				s = Style.MeasureStringDefaults(rpt, g, o, tc, row, width);
+				s = await Style.MeasureStringDefaults(rpt, g, o, tc, row, width);
 
 			TextboxRuntime tbr = TextboxRuntime.GetTextboxRuntime(rpt, this);
 			tbr.RunHeight = RSize.PointsFromPixels(g, s.Height);
 			if (Style != null)
-				tbr.RunHeight += (Style.EvalPaddingBottom(rpt, row) + Style.EvalPaddingTop(rpt, row));
+				tbr.RunHeight += (await Style.EvalPaddingBottom(rpt, row) + await Style.EvalPaddingTop(rpt, row));
 			return tbr.RunHeight;
 		}
 
-		internal object Evaluate(Report rpt, Row r)
+		internal async Task<object> Evaluate(Report rpt, Row r)
 		{
 			if(r == null || lastValueForRow != r || lastValueForReport != rpt)
 			{
-				lastEvaluatedValue = _Value.Evaluate(rpt, r);
+				lastEvaluatedValue = await _Value.Evaluate(rpt, r);
 				lastValueForReport = rpt;
 				lastValueForRow = r;
 			}
@@ -451,11 +453,11 @@ namespace fyiReporting.RDL
 			set {  _HideDuplicates = value; }
 		}
 
-		internal bool IsHtml(Report rpt, Row row)
+		internal async Task<bool> IsHtml(Report rpt, Row row)
 		{
 			if (this.Style == null || this.Style.Format == null)
 				return false;
-			string format = Style.Format.EvaluateString(rpt, row);
+			string format = await Style.Format.EvaluateString(rpt, row);
 			if (format == null)
 				return false;
 			return format.ToLower() == "html";

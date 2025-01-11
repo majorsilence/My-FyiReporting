@@ -176,7 +176,7 @@ namespace fyiReporting.RdlGtk3
 
                     if (System.IO.File.Exists(filename))
                     {
-                        string parameters = this.GetParameters(new Uri(filename));
+                        string parameters = await this.GetParameters(new Uri(filename));
                         await this.reportviewer1.LoadReport(new Uri(filename), parameters);
                     }
                 }
@@ -224,12 +224,12 @@ namespace fyiReporting.RdlGtk3
             //this.reportviewer1.LastPage();
         }
 
-        private string GetParameters(Uri sourcefile)
+        private async Task<string> GetParameters(Uri sourcefile)
         {
             string parameters = "";
             string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
             fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
-            parser.Parse();
+            await parser.Parse();
 
             if (parser.Report.UserReportParameters.Count > 0)
             {

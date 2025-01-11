@@ -23,6 +23,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -64,11 +65,11 @@ namespace fyiReporting.RDL
                 _Items.TrimExcess();
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (StaticRow r in _Items)
 			{
-				r.FinalPass();
+                await r.FinalPass();
 			}
 			return;
 		}

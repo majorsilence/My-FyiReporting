@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -73,11 +74,11 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (TableColumn tc in _Items)
 			{
-				tc.FinalPass();
+                await tc.FinalPass();
 			}
 			return;
 		}
@@ -92,13 +93,13 @@ namespace fyiReporting.RDL
 		}
 
 		// calculate the XPositions of all the columns
-		internal void CalculateXPositions(Report rpt, float startpos, Row row)
+		internal async Task CalculateXPositions(Report rpt, float startpos, Row row)
 		{
 			float x = startpos;
 
 			foreach (TableColumn tc in _Items)
 			{
-				if (tc.IsHidden(rpt, row))
+				if (await tc.IsHidden(rpt, row))
 					continue;
 				tc.SetXPosition(rpt, x);
 				x += tc.Width.Points;

@@ -22,6 +22,7 @@
 //   limitations under the License.
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -35,9 +36,9 @@ namespace fyiReporting.RdlGtk3
 
         #region IPdfWriter implementation
 
-        public byte[] GetFileBytes(Report report)
+        public async Task<byte[]> GetFileBytes(Report report)
         {
-            var pages = report.BuildPages();
+            var pages = await report.BuildPages();
             int width = (int)report.PageWidthPoints;
             int height = (int)report.PageHeightPoints;
             string filename = string.Format("gen-{0}.pdf", Guid.NewGuid());

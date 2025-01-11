@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -66,12 +67,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "CategoryGrouping requires either DynamicCategories element or StaticCategories element, but not both.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DynamicCategories != null)
-				_DynamicCategories.FinalPass();
+                await _DynamicCategories.FinalPass();
 			if (_StaticCategories != null)
-				_StaticCategories.FinalPass();
+                await _StaticCategories.FinalPass();
 			return;
 		}
 

@@ -105,19 +105,13 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        internal override void FinalPass()
-        {
-			// HACK:
-            Task.Run(async ()=> await FinalPassAsync()).GetAwaiter().GetResult();
-        }
-
         // Handle parsing of function in final pass
-        internal override async Task FinalPassAsync()
+        internal override async Task FinalPass()
         {
             if (_CommandText != null)
-                _CommandText.FinalPass();
+                await _CommandText.FinalPass();
             if (_QueryParameters != null)
-                _QueryParameters.FinalPass();
+                await _QueryParameters.FinalPass();
 
             // verify the data source
             DataSourceDefn ds = null;
@@ -138,13 +132,13 @@ namespace fyiReporting.RDL
                 return;
 
             // Treat this as a SQL statement
-            String sql = _CommandText.EvaluateString(null, null);
+            String sql = await _CommandText.EvaluateString(null, null);
             IDbCommand cmSQL = null;
             IDataReader dr = null;
             try
             {
                 cmSQL = cnSQL.CreateCommand();
-                cmSQL.CommandText = AddParametersAsLiterals(null, cnSQL, sql, false);
+                cmSQL.CommandText = await AddParametersAsLiterals(null, cnSQL, sql, false);
                 if (this._QueryCommandType == QueryCommandTypeEnum.StoredProcedure)
                     cmSQL.CommandType = CommandType.StoredProcedure;
 
@@ -194,7 +188,7 @@ namespace fyiReporting.RDL
             }
         }
 
-		internal bool GetData(Report rpt, Fields flds, Filters f)
+		internal async Task<bool> GetData(Report rpt, Fields flds, Filters f)
 		{
 			Rows uData = this.GetMyUserData(rpt);
 			if (uData != null)
@@ -219,13 +213,13 @@ namespace fyiReporting.RDL
 			}
 
 			Rows _Data = new Rows(rpt, null,null,null);		// no sorting and grouping at base data
-			String sql = _CommandText.EvaluateString(rpt, null);
+			String sql = await _CommandText.EvaluateString(rpt, null);
 			IDbCommand cmSQL=null;
 			IDataReader dr=null;
 			try 
 			{
 				cmSQL = cnSQL.CreateCommand();		
-				cmSQL.CommandText = AddParametersAsLiterals(rpt, cnSQL, sql, true);
+				cmSQL.CommandText = await AddParametersAsLiterals(rpt, cnSQL, sql, true);
                 if (this._QueryCommandType == QueryCommandTypeEnum.StoredProcedure)
                     cmSQL.CommandType = CommandType.StoredProcedure;
                 if (this._Timeout > 0)
@@ -281,7 +275,7 @@ namespace fyiReporting.RDL
 				}
                 ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
 				if (f != null)
-					f.ApplyFinalFilters(rpt, _Data, false);	
+                    await f.ApplyFinalFilters(rpt, _Data, false);	
 //#if DEBUG
 //				rpt.rl.LogError(4, "Rows Read:" + ar.Count.ToString() + " SQL:" + sql );
 //#endif
@@ -306,7 +300,7 @@ namespace fyiReporting.RDL
         }
 
 		// Obtain the data from the XML
-		internal bool GetData(Report rpt, string xmlData, Fields flds, Filters f)
+		internal async Task<bool> GetData(Report rpt, string xmlData, Fields flds, Filters f)
 		{
 			Rows uData = this.GetMyUserData(rpt);
 			if (uData != null)
@@ -399,7 +393,7 @@ namespace fyiReporting.RDL
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
             if (f != null)
             {
-                f.ApplyFinalFilters(rpt, _Data, false);
+                await f.ApplyFinalFilters(rpt, _Data, false);
             }
 
 			SetMyData(rpt, _Data);
@@ -407,7 +401,7 @@ namespace fyiReporting.RDL
 
 		}
 
-		internal void SetData(Report rpt, IEnumerable ie, Fields flds, Filters f, bool collection = false)
+		internal async Task SetData(Report rpt, IEnumerable ie, Fields flds, Filters f, bool collection = false)
 		{
 			if (ie == null)			// Does user want to remove user data?
 			{	
@@ -485,12 +479,12 @@ namespace fyiReporting.RDL
 			}
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
 			if (f != null)
-				f.ApplyFinalFilters(rpt, rows, false);
+                await f.ApplyFinalFilters(rpt, rows, false);
 
 			SetMyUserData(rpt, rows);
 		}
 
-		internal void SetData(Report rpt, IDataReader dr, Fields flds, Filters f)
+		internal async Task SetData(Report rpt, IDataReader dr, Fields flds, Filters f)
 		{
 			if (dr == null)			// Does user want to remove user data?
 			{	
@@ -520,12 +514,12 @@ namespace fyiReporting.RDL
 			}
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
 			if (f != null)
-				f.ApplyFinalFilters(rpt, rows, false);
+                await f.ApplyFinalFilters(rpt, rows, false);
 
 			SetMyUserData(rpt, rows);
 		}
 
-		internal void SetData(Report rpt, DataTable dt, Fields flds, Filters f)
+		internal async Task SetData(Report rpt, DataTable dt, Fields flds, Filters f)
 		{
 			if (dt == null)			// Does user want to remove user data?
 			{	
@@ -561,12 +555,12 @@ namespace fyiReporting.RDL
 			}
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
 			if (f != null)
-				f.ApplyFinalFilters(rpt, rows, false);
+                await f.ApplyFinalFilters(rpt, rows, false);
 
 			SetMyUserData(rpt, rows);
 		}
 
-		internal void SetData(Report rpt, XmlDocument xmlDoc, Fields flds, Filters f)
+		internal async Task SetData(Report rpt, XmlDocument xmlDoc, Fields flds, Filters f)
 		{
 			if (xmlDoc == null)			// Does user want to remove user data?
 			{	
@@ -628,7 +622,7 @@ namespace fyiReporting.RDL
 
             ar.TrimExcess();		// free up any extraneous space; can be sizeable for large # rows
 			if (f != null)
-				f.ApplyFinalFilters(rpt, rows, false);
+                await f.ApplyFinalFilters(rpt, rows, false);
 
 			SetMyUserData(rpt, rows);
 		}
@@ -670,7 +664,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		private string AddParametersAsLiterals(Report rpt, IDbConnection cn, string sql, bool bValue)
+		private async Task<string> AddParametersAsLiterals(Report rpt, IDbConnection cn, string sql, bool bValue)
 		{
 			// No parameters means nothing to do
 			if (this._QueryParameters == null ||
@@ -710,7 +704,7 @@ namespace fyiReporting.RDL
 				string svalue;
 				if (bValue)
 				{	// use the value provided
-                    svalue = this.ParameterValue(rpt, qp);
+                    svalue = await this.ParameterValue(rpt, qp);
 				}
 				else
 				{	// just need a place holder value that will pass parsing
@@ -742,12 +736,12 @@ namespace fyiReporting.RDL
 			return sb.ToString();
 		}
 
-        private string ParameterValue(Report rpt, QueryParameter qp)
+        private async Task<string> ParameterValue(Report rpt, QueryParameter qp)
         {
             if (!qp.IsArray)
             {
                 // handle non-array
-                string svalue = qp.Value.EvaluateString(rpt, null);
+                string svalue = await qp.Value.EvaluateString(rpt, null);
                 if (svalue == null)
                     svalue = "null";
                 else switch (qp.Value.Expr.GetTypeCode())
@@ -764,7 +758,7 @@ namespace fyiReporting.RDL
             }
 
             StringBuilder sb = new StringBuilder();
-            ArrayList ar = qp.Value.Evaluate(rpt, null) as ArrayList;
+            ArrayList ar = await qp.Value.Evaluate(rpt, null) as ArrayList;
 
             if (ar == null)
                 return null;

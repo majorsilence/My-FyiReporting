@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -75,14 +76,14 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			if (_Hyperlink != null) 
-				_Hyperlink.FinalPass();
-			if (_Drillthrough != null) 
-				_Drillthrough.FinalPass();
-			if (_BookmarkLink != null) 
-				_BookmarkLink.FinalPass();
+			if (_Hyperlink != null)
+                await _Hyperlink.FinalPass();
+			if (_Drillthrough != null)
+                await _Drillthrough.FinalPass();
+			if (_BookmarkLink != null)
+                await _BookmarkLink.FinalPass();
 			return;
 		}
 
@@ -92,12 +93,12 @@ namespace fyiReporting.RDL
 			set { _Hyperlink = value; }
 		}
 
-		internal String HyperLinkValue(Report rpt, Row r)
+		internal async Task<String> HyperLinkValue(Report rpt, Row r)
 		{
 			if (_Hyperlink == null)
 				return null;
 
-			return _Hyperlink.EvaluateString(rpt, r);
+			return await _Hyperlink.EvaluateString(rpt, r);
 		}
 
 		internal Drillthrough Drill
@@ -112,12 +113,12 @@ namespace fyiReporting.RDL
 			set { _BookmarkLink = value; }
 		}
 
-		internal String BookmarkLinkValue(Report rpt, Row r)
+		internal async Task<String> BookmarkLinkValue(Report rpt, Row r)
 		{
 			if (_BookmarkLink == null)
 				return null;
 
-			return _BookmarkLink.EvaluateString(rpt, r);
+			return await _BookmarkLink.EvaluateString(rpt, r);
 		}
 	}
 }

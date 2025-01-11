@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -57,12 +57,12 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
-			return (object) EvaluateInt32(rpt, row);
+			return (object)await EvaluateInt32(rpt, row);
 		}
 		
-		public int EvaluateInt32(Report rpt, Row row)
+		public async Task<int> EvaluateInt32(Report rpt, Row row)
 		{
 			bool bSave=true;
 			IEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -76,7 +76,7 @@ namespace fyiReporting.RDL
 				int count=0;
 				foreach (Row r in re)
 				{
-					temp = _Expr.Evaluate(rpt, r);
+					temp = await _Expr.Evaluate(rpt, r);
 					if (temp != null)
 					{
 						count++;
@@ -90,29 +90,29 @@ namespace fyiReporting.RDL
 			return  v;
 		}
 
-        public double EvaluateDouble(Report rpt, Row row)
+        public async Task<double> EvaluateDouble(Report rpt, Row row)
         {
-            int d = EvaluateInt32(rpt, row);
+            int d = await EvaluateInt32(rpt, row);
 
             return Convert.ToDouble(d);
         }
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			double d = EvaluateDouble(rpt, row);
+			double d = await EvaluateDouble(rpt, row);
 
 			return Convert.ToDecimal(d);
 		}
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			double result = EvaluateDouble(rpt, row);
+			double result = await EvaluateDouble(rpt, row);
 			return Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return Convert.ToDateTime(result);
 		}
 

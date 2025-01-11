@@ -24,6 +24,7 @@
 using System;
 using System.Xml;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -79,18 +80,18 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_Default != null)
-				_Default.FinalPass();
+                await _Default.FinalPass();
 			if (_Left != null)
-				_Left.FinalPass();
+                await _Left.FinalPass();
 			if (_Right != null)
-				_Right.FinalPass();
+                await _Right.FinalPass();
 			if (_Top != null)
-				_Top.FinalPass();
+                await _Top.FinalPass();
 			if (_Bottom != null)
-				_Bottom.FinalPass();
+                await _Bottom.FinalPass();
 			return;
 		}
 
@@ -119,36 +120,36 @@ namespace fyiReporting.RDL
 			return sb.ToString();
 		}
 
-		internal bool IsConstant()
+		internal async Task<bool> IsConstant()
 		{
 			bool rc = true;
 
 			if (_Default != null)
-				rc = _Default.IsConstant();
+				rc = await _Default.IsConstant();
 
 			if (!rc)
 				return false;
 
 			if (_Left != null)
-				rc = _Left.IsConstant();
+				rc = await _Left.IsConstant();
 
 			if (!rc)
 				return false;
 
 			if (_Right != null)
-				rc = _Right.IsConstant();
+				rc = await _Right.IsConstant();
 
 			if (!rc)
 				return false;
 
 			if (_Top != null)
-				rc = _Top.IsConstant();
+				rc = await _Top.IsConstant();
 
 			if (!rc)
 				return false;
 
 			if (_Bottom != null)
-				rc = _Bottom.IsConstant();
+				rc = await _Bottom.IsConstant();
 
 			return rc;
 		}
@@ -164,12 +165,12 @@ namespace fyiReporting.RDL
 			set {  _Default = value; }
 		}
  
-		internal BorderStyleEnum EvalDefault(Report rpt, Row r)
+		internal async Task<BorderStyleEnum> EvalDefault(Report rpt, Row r)
 		{
 			if (_Default == null)
 				return BorderStyleEnum.None;
 
-			string bs = _Default.EvaluateString(rpt, r);
+			string bs = await _Default.EvaluateString(rpt, r);
 			return GetBorderStyle(bs, BorderStyleEnum.Solid);
 		}
 
@@ -179,12 +180,12 @@ namespace fyiReporting.RDL
 			set {  _Left = value; }
 		}
 
-		internal BorderStyleEnum EvalLeft(Report rpt, Row r)
+		internal async Task<BorderStyleEnum> EvalLeft(Report rpt, Row r)
 		{
 			if (_Left == null)
-				return EvalDefault(rpt, r);
+				return await EvalDefault(rpt, r);
 
-			string bs = _Left.EvaluateString(rpt, r);
+			string bs = await _Left.EvaluateString(rpt, r);
 			return GetBorderStyle(bs, BorderStyleEnum.Solid);
 		}
 
@@ -194,12 +195,12 @@ namespace fyiReporting.RDL
 			set {  _Right = value; }
 		}
 
-		internal BorderStyleEnum EvalRight(Report rpt, Row r)
+		internal async Task<BorderStyleEnum> EvalRight(Report rpt, Row r)
 		{
 			if (_Right == null)
-				return EvalDefault(rpt, r);
+				return await EvalDefault(rpt, r);
 
-			string bs = _Right.EvaluateString(rpt, r);
+			string bs = await _Right.EvaluateString(rpt, r);
 			return GetBorderStyle(bs, BorderStyleEnum.Solid);
 		}
 
@@ -209,12 +210,12 @@ namespace fyiReporting.RDL
 			set {  _Top = value; }
 		}
 
-		internal BorderStyleEnum EvalTop(Report rpt, Row r)
+		internal async Task<BorderStyleEnum> EvalTop(Report rpt, Row r)
 		{
 			if (_Top == null)
-				return EvalDefault(rpt, r);
+				return await EvalDefault(rpt, r);
 
-			string bs = _Top.EvaluateString(rpt, r);
+			string bs = await _Top.EvaluateString(rpt, r);
 			return GetBorderStyle(bs, BorderStyleEnum.Solid);
 		}
 
@@ -224,12 +225,12 @@ namespace fyiReporting.RDL
 			set {  _Bottom = value; }
 		}
 
-		internal BorderStyleEnum EvalBottom(Report rpt, Row r)
+		internal async Task<BorderStyleEnum> EvalBottom(Report rpt, Row r)
 		{
 			if (_Bottom == null)
-				return EvalDefault(rpt, r);
+				return await EvalDefault(rpt, r);
 
-			string bs = _Bottom.EvaluateString(rpt, r);
+			string bs = await _Bottom.EvaluateString(rpt, r);
 			return GetBorderStyle(bs, BorderStyleEnum.Solid);
 		}
 

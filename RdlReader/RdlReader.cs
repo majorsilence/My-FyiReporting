@@ -36,6 +36,7 @@ using System.Collections.Generic;
 namespace fyiReporting.RdlReader
 {
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
@@ -168,7 +169,7 @@ namespace fyiReporting.RdlReader
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
@@ -236,7 +237,7 @@ namespace fyiReporting.RdlReader
                 {
                     if (!string.IsNullOrWhiteSpace(printerName))
                     {
-                        SilentPrint(reportFile, parameters, printerName);
+                        await SilentPrint(reportFile, parameters, printerName);
                         return;
                     }
 
@@ -259,13 +260,13 @@ namespace fyiReporting.RdlReader
 
         }
 
-        public static void SilentPrint(string reportPath, string parameters, string printerName = null)
+        public static async Task SilentPrint(string reportPath, string parameters, string printerName = null)
         {
             var rdlViewer = new fyiReporting.RdlViewer.RdlViewer();
             rdlViewer.Visible = false;
             rdlViewer.SourceFile = new Uri(reportPath);
             rdlViewer.Parameters = parameters;
-            rdlViewer.Rebuild();
+            await rdlViewer.Rebuild();
 
             var pd = new PrintDocument();
             pd.DocumentName = rdlViewer.SourceFile.LocalPath;
@@ -293,7 +294,7 @@ namespace fyiReporting.RdlReader
                     pd.PrinterSettings.FromPage = rdlViewer.PageCurrent;
                 }
 
-                rdlViewer.Print(pd);
+                await rdlViewer.Print(pd);
             }
             catch (Exception ex)
             {
@@ -418,7 +419,7 @@ namespace fyiReporting.RdlReader
                 mcOpen.Activate();
         }
 
-        private void menuFilePrint_Click(object sender, EventArgs e)
+        private async void menuFilePrint_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -454,7 +455,7 @@ namespace fyiReporting.RdlReader
                     {
                         pd.PrinterSettings.FromPage = mc.Viewer.PageCurrent;
                     }
-                    mc.Viewer.Print(pd);
+                    await mc.Viewer.Print(pd);
                 }
                 catch (Exception ex)
                 {
@@ -464,7 +465,7 @@ namespace fyiReporting.RdlReader
             printChild = null;
         }
 
-        private void menuFileSaveAs_Click(object sender, EventArgs e)
+        private async void menuFileSaveAs_Click(object sender, EventArgs e)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -547,7 +548,7 @@ namespace fyiReporting.RdlReader
 
             if (type != OutputPresentationType.Internal)
             {
-                try { mc.Viewer.SaveAs(sfd.FileName, type); }
+                try { await mc.Viewer.SaveAs(sfd.FileName, type); }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
@@ -574,7 +575,7 @@ namespace fyiReporting.RdlReader
             mc.Viewer.Copy();
         }
 
-        private void menuFind_Click(object sender, System.EventArgs ea)
+        private async void menuFind_Click(object sender, System.EventArgs ea)
         {
             MDIChild mc = this.ActiveMdiChild as MDIChild;
             if (mc == null)
@@ -582,7 +583,7 @@ namespace fyiReporting.RdlReader
 
             if (!mc.Viewer.ShowFindPanel)
                 mc.Viewer.ShowFindPanel = true;
-            mc.Viewer.FindNext();
+            await mc.Viewer.FindNext();
         }
 
         private void menuSelection_Click(object sender, System.EventArgs ea)

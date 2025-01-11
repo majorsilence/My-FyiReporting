@@ -28,6 +28,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -148,10 +149,10 @@ namespace fyiReporting.RDL
 		}
 
 		// Handle parsing of function in final pass
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			_FilterExpression.FinalPass();
-			_FilterValues.FinalPass();
+            await _FilterExpression.FinalPass();
+            await _FilterValues.FinalPass();
 			return;
 		}
 
@@ -212,12 +213,12 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		internal void Apply(Report rpt, Rows data)
+		internal async Task Apply(Report rpt, Rows data)
 		{
 			if (this._FilterOperatorSingleRow)
 				ApplySingleRowFilter(rpt, data);
 			else
-				ApplyTopBottomFilter(rpt, data);
+                await ApplyTopBottomFilter(rpt, data);
 		}
 
 		private void ApplySingleRowFilter(Report rpt, Rows data)
@@ -237,14 +238,14 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void ApplyTopBottomFilter(Report rpt, Rows data)
+		private async Task ApplyTopBottomFilter(Report rpt, Rows data)
 		{
 			if (data.Data.Count <= 0)		// No data; nothing to do
 				return;
 
 			// Get the filter value and validate it 
 			FilterValue fv = this._FilterValues.Items[0];
-			double val = fv.Expression.EvaluateDouble(rpt, data.Data[0]);
+			double val = await fv.Expression.EvaluateDouble(rpt, data.Data[0]);
 			if (val <= 0)			// if less than equal 0; then request results in no data
 			{
 				data.Data.Clear();

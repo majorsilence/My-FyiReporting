@@ -23,6 +23,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -80,11 +81,11 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (Field f in _Items.Values)
 			{
-				f.FinalPass();
+                await f.FinalPass();
 			}
 			return;
 		}

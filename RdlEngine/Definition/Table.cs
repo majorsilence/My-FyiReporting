@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Diagnostics;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -170,31 +171,31 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
-			base.FinalPass();
+            await base.FinalPass();
 			float totalHeight=0;
 
 			if (_TableColumns != null)
-				_TableColumns.FinalPass();
+                await _TableColumns.FinalPass();
 			if (_Header != null)
 			{
-				_Header.FinalPass();
+                await _Header.FinalPass();
 				totalHeight += _Header.TableRows.DefnHeight();
 			}
 			if (_TableGroups != null)
 			{
-				_TableGroups.FinalPass();
+                await _TableGroups.FinalPass();
 				totalHeight += _TableGroups.DefnHeight();
 			}
 			if (_Details != null)
 			{
-				_Details.FinalPass();
+                await _Details.FinalPass();
 				totalHeight += _Details.TableRows.DefnHeight();
 			}
 			if (_Footer != null)
 			{
-				_Footer.FinalPass();
+                await _Footer.FinalPass();
 				totalHeight += _Footer.TableRows.DefnHeight();
 			}
 
@@ -206,7 +207,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void Run(IPresent ip, Row row)
+		async override internal Task Run(IPresent ip, Row row)
 		{
 			Report r = ip.Report();
 			TableWorkClass wc = GetValue(r);
@@ -214,14 +215,14 @@ namespace fyiReporting.RDL
             if (_IsGrid)
                 wc.Data = Rows.CreateOneRow(r);
             else
-			    wc.Data = GetFilteredData(r, row);
+			    wc.Data = await GetFilteredData(r, row);
 
-			if (!AnyRows(ip, wc.Data))		// if no rows return
+			if (!await AnyRows(ip, wc.Data))		// if no rows return
 				return;					//   nothing left to do
 
 			RunPrep(r, row, wc);
 
-			if (!ip.TableStart(this, row))
+			if (!await ip.TableStart(this, row))
 				return;						// render doesn't want to continue
 
 			if (_TableColumns != null)
@@ -232,16 +233,16 @@ namespace fyiReporting.RDL
 			{
 				ip.TableHeaderStart(_Header, row);
 				Row frow = wc.Data.Data.Count > 0?  wc.Data.Data[0]: null;
-				_Header.Run(ip, frow);
+                await _Header.Run(ip, frow);
 				ip.TableHeaderEnd(_Header, row);
 			}
 						   
 			// Body
 			ip.TableBodyStart(this, row);
 			if (wc.RecursiveGroup != null)
-				RunRecursiveGroups(ip, wc);
+                await RunRecursiveGroups(ip, wc);
 			else
-				RunGroups(ip, wc.Groups, wc);
+                await RunGroups(ip, wc.Groups, wc);
 			ip.TableBodyEnd(this, row);
 
 			// Footer
@@ -249,29 +250,31 @@ namespace fyiReporting.RDL
 			{
 				ip.TableFooterStart(_Footer, row);
 				Row lrow = wc.Data.Data.Count > 0?  wc.Data.Data[wc.Data.Data.Count-1]: null;
-				_Footer.Run(ip, lrow);
+                await _Footer.Run(ip, lrow);
 				ip.TableFooterEnd(_Footer, row);
 			}
 
-			ip.TableEnd(this, row);
+            await ip.TableEnd(this, row);
 			RemoveValue(r);
+
+			return;
 		}
 
-		override internal void RunPage(Pages pgs, Row row)
+		async override internal Task RunPage(Pages pgs, Row row)
 		{	
 			Report r = pgs.Report;
-			if (IsHidden(r, row))
+			if (await IsHidden(r, row))
 				return;
 
 			TableWorkClass wc = GetValue(r);
             if (_IsGrid)
                 wc.Data = Rows.CreateOneRow(r);
             else
-                wc.Data = GetFilteredData(r, row);
+                wc.Data = await GetFilteredData(r, row);
 
 			SetPagePositionBegin(pgs);
 
-			if (!AnyRowsPage(pgs, wc.Data))		// if no rows return
+			if (!await AnyRowsPage(pgs, wc.Data))		// if no rows return
 				return;						//   nothing left to do
 
 			RunPrep(r, row, wc);
@@ -281,21 +284,21 @@ namespace fyiReporting.RDL
 			Page p = pgs.CurrentPage;
 			p.YOffset += this.RelativeY(r);
 
-			// Calculate the xpositions of the columns
-			TableColumns.CalculateXPositions(r, GetOffsetCalc(r) + LeftCalc(r), row);
+            // Calculate the xpositions of the columns
+            await TableColumns.CalculateXPositions(r, GetOffsetCalc(r) + LeftCalc(r), row);
 
-			RunPageHeader(pgs, wc.Data.Data[0], true, null);
+            await RunPageHeader(pgs, wc.Data.Data[0], true, null);
 
             if (wc.RecursiveGroup != null)
             {
-                RunRecursiveGroupsPage(pgs, wc);
+                await RunRecursiveGroupsPage(pgs, wc);
             }
             else
             {
                 float groupHeight = 0;
                 if (wc.Data.Data.Count > 0 && _Footer != null)
-                    groupHeight = _Footer.HeightOfRows(pgs, wc.Data.Data[0]);
-                RunGroupsPage(pgs, wc, wc.Groups, wc.Data.Data.Count - 1, groupHeight);
+                    groupHeight = await _Footer.HeightOfRows(pgs, wc.Data.Data[0]);
+                await RunGroupsPage(pgs, wc, wc.Groups, wc.Data.Data.Count - 1, groupHeight);
             }
 
 		    // Footer
@@ -303,7 +306,7 @@ namespace fyiReporting.RDL
             {
                 // Row == null means the inital/last page
                 Row lRow = wc.Data.Data.Count > 0 ? wc.Data.Data[wc.Data.Data.Count - 1] : null;
-                RunPageFooter(pgs, lRow, true);
+                await RunPageFooter(pgs, lRow, true);
             }
 
             // dst, use the code above
@@ -324,44 +327,45 @@ namespace fyiReporting.RDL
 
 			SetPagePositionEnd(pgs, pgs.CurrentPage.YOffset);
 			RemoveValue(r);
+			return;
 		}
 
         internal bool IsGrid { get { return _IsGrid; } }
 
-        internal void RunPageFooter(Pages pgs, Row row, bool bLast)
+        internal async Task RunPageFooter(Pages pgs, Row row, bool bLast)
         {
             if (_Footer != null && (_Footer.RepeatOnNewPage || bLast))
             {
                 Page p = pgs.CurrentPage;
-                if (p.YOffset + _Footer.HeightOfRows(pgs, row) > pgs.BottomOfPage)
+                if (p.YOffset + await _Footer.HeightOfRows(pgs, row) > pgs.BottomOfPage)
                 {
                     p = RunPageNew(pgs, p);
-                    RunPageHeader(pgs, row, false, null);
+                    await RunPageHeader(pgs, row, false, null);
                 }
-                _Footer.RunPage(pgs, row);                
+                await _Footer.RunPage(pgs, row);                
             }
         }
 
-        internal float GetPageFooterHeight(Pages pgs, Row row)
+        internal async Task<float> GetPageFooterHeight(Pages pgs, Row row)
         {
             // Calculate height of footer on every page
             float FooterHeight = 0;
 
             if (Footer != null && Footer.RepeatOnNewPage)
-                FooterHeight += Footer.HeightOfRows(pgs, row);
+                FooterHeight += await Footer.HeightOfRows(pgs, row);
 
             // Need add calculation for group footer which show on every page
             return FooterHeight;
         }
 
-		internal void RunPageHeader(Pages pgs, Row frow, bool bFirst, TableGroup stoptg)
+		internal async Task RunPageHeader(Pages pgs, Row frow, bool bFirst, TableGroup stoptg)
 		{
 			// Do the table headers
 			bool isEmpty = pgs.CurrentPage.IsEmpty();
 
 			if (_Header != null && (_Header.RepeatOnNewPage || bFirst))
 			{
-				_Header.RunPage(pgs, frow);
+                await _Header.RunPage(pgs, frow);
 				if (isEmpty)
 					pgs.CurrentPage.SetEmpty();		// Consider this empty of data
 			}
@@ -384,7 +388,7 @@ namespace fyiReporting.RDL
 				{
 					if (tg.Header.RepeatOnNewPage)
 					{
-						tg.Header.RunPage(pgs, frow);
+                        await tg.Header.RunPage(pgs, frow);
 					}
 				}
 			}
@@ -722,7 +726,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void RunGroups(IPresent ip, List<GroupEntry> groupEntries, TableWorkClass wc)
+		private async Task RunGroups(IPresent ip, List<GroupEntry> groupEntries, TableWorkClass wc)
 		{
 			Report rpt = ip.Report();
 			GroupEntry fge = (GroupEntry) (groupEntries[0]);
@@ -757,23 +761,23 @@ namespace fyiReporting.RDL
 							wc.GroupNestCount = RunGroupsCount(ge.NestedGroup, 0);
 						else
 							wc.GroupNestCount = (ge.EndRow - ge.StartRow + 1) * DetailsCount;
-						tg.Header.Run(ip, wc.Data.Data[ge.StartRow]);
+                        await tg.Header.Run(ip, wc.Data.Data[ge.StartRow]);
 						wc.GroupNestCount = 0;
 					}
 				}
 				// Handle the nested groups if any
 				if (ge.NestedGroup.Count > 0)
-					RunGroups(ip, ge.NestedGroup, wc);
+                    await RunGroups(ip, ge.NestedGroup, wc);
 				// If no nested groups then handle the detail rows for the group
 				else if (_Details != null)
 				{
 					if (ge.Group != null &&
 						ge.Group.Parent as TableGroup == null)
-					{	// Group defined on table; means that Detail rows only put out once per group
-						_Details.Run(ip, wc.Data, ge.StartRow, ge.StartRow);
+					{   // Group defined on table; means that Detail rows only put out once per group
+                        await _Details.Run(ip, wc.Data, ge.StartRow, ge.StartRow);
 					}
 					else
-						_Details.Run(ip, wc.Data, ge.StartRow, ge.EndRow);
+                        await _Details.Run(ip, wc.Data, ge.StartRow, ge.EndRow);
 				}
 
 				// Do the group footer
@@ -783,7 +787,7 @@ namespace fyiReporting.RDL
 					{
 						TableGroup tg = ge.Group.Parent as TableGroup;	// detail groups will result in null
 						if (tg != null && tg.Footer != null)
-							tg.Footer.Run(ip, wc.Data.Data[ge.EndRow]);
+                            await tg.Footer.Run(ip, wc.Data.Data[ge.EndRow]);
 					}
 					ip.GroupingInstanceEnd(ge.Group);
 				}
@@ -792,7 +796,7 @@ namespace fyiReporting.RDL
 				ip.GroupingEnd(fge.Group);
 		}
 
-        private void RunGroupsPage(Pages pgs, TableWorkClass wc, List<GroupEntry> groupEntries, int endRow, float groupHeight)
+        private async Task RunGroupsPage(Pages pgs, TableWorkClass wc, List<GroupEntry> groupEntries, int endRow, float groupHeight)
 		{
 			Report rpt = pgs.Report;
 			foreach (GroupEntry ge in groupEntries)
@@ -817,10 +821,10 @@ namespace fyiReporting.RDL
 					TableGroup tg = ge.Group.Parent as TableGroup;
                      //   if (ge.Group.PageBreakAtStart && !pgs.CurrentPage.IsEmpty())
 					 // Add check PageBreakCondition not only PageBreakAtStart
-                    if (ge.Group.PageBreakAtStart && ge.Group.PageBreakCondition(rpt, wc.Data.Data[ge.StartRow], ge.Group.PageBreakAtStart) && !pgs.CurrentPage.IsEmpty())
+                    if (ge.Group.PageBreakAtStart && await ge.Group.PageBreakCondition(rpt, wc.Data.Data[ge.StartRow], ge.Group.PageBreakAtStart) && !pgs.CurrentPage.IsEmpty())
                     {
 						RunPageNew(pgs, pgs.CurrentPage);
-						RunPageHeader(pgs, wc.Data.Data[ge.StartRow], false, tg);
+                        await RunPageHeader(pgs, wc.Data.Data[ge.StartRow], false, tg);
 					}
 
 					if (tg != null && tg.Header != null)
@@ -831,11 +835,11 @@ namespace fyiReporting.RDL
 						else
 							wc.GroupNestCount = (ge.EndRow - ge.StartRow + 1) * DetailsCount;
 
-						tg.Header.RunPage(pgs, wc.Data.Data[ge.StartRow]);
+                        await tg.Header.RunPage(pgs, wc.Data.Data[ge.StartRow]);
 						wc.GroupNestCount = 0;
 					}
 				}
-				float footerHeight = RunGroupsFooterHeight(pgs, wc, ge);
+				float footerHeight = await RunGroupsFooterHeight(pgs, wc, ge);
 
 
                 if (ge.EndRow == endRow && (  Footer != null ? !Footer.RepeatOnNewPage: true))
@@ -845,18 +849,18 @@ namespace fyiReporting.RDL
       
 				// Handle the nested groups if any
 				if (ge.NestedGroup.Count > 0)
-					RunGroupsPage(pgs, wc, ge.NestedGroup, ge.EndRow, footerHeight);
+                    await RunGroupsPage(pgs, wc, ge.NestedGroup, ge.EndRow, footerHeight);
 				// If no nested groups then handle the detail rows for the group
 				else if (_Details != null)
 				{
 					if (ge.Group != null &&
 						ge.Group.Parent as TableGroup == null)
-					{	// Group defined on table; means that Detail rows only put out once per group
-						_Details.RunPage(pgs, wc.Data, ge.StartRow, ge.StartRow, footerHeight);
+					{   // Group defined on table; means that Detail rows only put out once per group
+                        await _Details.RunPage(pgs, wc.Data, ge.StartRow, ge.StartRow, footerHeight);
 					}
 					else
 					{
-						_Details.RunPage(pgs, wc.Data, ge.StartRow, ge.EndRow, footerHeight);
+                        await _Details.RunPage(pgs, wc.Data, ge.StartRow, ge.EndRow, footerHeight);
 					}
 				}
 				else	// When no details we need to figure out whether any more fits on a page
@@ -865,7 +869,7 @@ namespace fyiReporting.RDL
 					if (p.YOffset + footerHeight > pgs.BottomOfPage) //	Do we need new page to fit footer?
 					{
 						p = RunPageNew(pgs, p);
-						RunPageHeader(pgs, wc.Data.Data[ge.EndRow], false, null);
+                        await RunPageHeader(pgs, wc.Data.Data[ge.EndRow], false, null);
 					}
 				}
 
@@ -874,19 +878,19 @@ namespace fyiReporting.RDL
 				{
 					TableGroup tg = ge.Group.Parent as TableGroup;	// detail groups will result in null
 					if (tg != null && tg.Footer != null)
-						tg.Footer.RunPage(pgs, wc.Data.Data[ge.EndRow]);
+                        await tg.Footer.RunPage(pgs, wc.Data.Data[ge.EndRow]);
 
 					if (ge.Group.PageBreakAtEnd && !pgs.CurrentPage.IsEmpty())
 					{
 						RunPageNew(pgs, pgs.CurrentPage);
-						RunPageHeader(pgs, wc.Data.Data[ge.StartRow], false, tg);
+                        await RunPageHeader(pgs, wc.Data.Data[ge.StartRow], false, tg);
 					}
 				}
 
 			}
 		}
 
-		private float RunGroupsFooterHeight(Pages pgs, TableWorkClass wc, GroupEntry ge)
+		private async Task<float> RunGroupsFooterHeight(Pages pgs, TableWorkClass wc, GroupEntry ge)
 		{
 			Grouping g = ge.Group;
 			if (g == null)
@@ -896,7 +900,7 @@ namespace fyiReporting.RDL
 			if (tg == null || tg.Footer == null)
 				return 0;
 
-			return tg.Footer.HeightOfRows(pgs, wc.Data.Data[ge.EndRow]);
+			return await tg.Footer.HeightOfRows(pgs, wc.Data.Data[ge.EndRow]);
 		}
 
         private int RunGroupsCount(List<GroupEntry> groupEntries, int count)
@@ -928,7 +932,7 @@ namespace fyiReporting.RDL
 				RunGroupsSetGroups(rpt, wc, ge.NestedGroup);
 		}
 
-		private void RunRecursiveGroups(IPresent ip, TableWorkClass wc)
+		private async Task RunRecursiveGroups(IPresent ip, TableWorkClass wc)
 		{
 			List<Row> rows=wc.Data.Data;
 			Row r;
@@ -953,12 +957,12 @@ namespace fyiReporting.RDL
 				{
 					bHeader = false;
 					if (header != null)
-						header.Run(ip, r);
+                        await header.Run(ip, r);
 				}
 
 				if (_Details != null)
 				{
-					_Details.Run(ip, wc.Data, iRow, iRow);
+                    await _Details.Run(ip, wc.Data, iRow, iRow);
 				}
 
 				// determine need for group headers and/or footers
@@ -968,17 +972,17 @@ namespace fyiReporting.RDL
 					if (r.Level > r2.Level)
 					{
 						if (footer != null)
-							footer.Run(ip, r);
+                            await footer.Run(ip, r);
 					}
 					else if (r.Level < r2.Level)
 						bHeader = true;
 				}
 			}
 			if (footer != null)
-				footer.Run(ip, rows[rows.Count-1] as Row);
+                await footer.Run(ip, rows[rows.Count-1] as Row);
 		}
 
-		private void RunRecursiveGroupsPage(Pages pgs, TableWorkClass wc)
+		private async Task RunRecursiveGroupsPage(Pages pgs, TableWorkClass wc)
 		{
 			List<Row> rows=wc.Data.Data;
 			Row r;
@@ -1005,16 +1009,16 @@ namespace fyiReporting.RDL
 					if (header != null)
 					{
 						Page p = pgs.CurrentPage;			// this can change after running a row
-						float height = p.YOffset + header.HeightOfRows(pgs, r);
+						float height = p.YOffset + await header.HeightOfRows(pgs, r);
 						if (height > pgs.BottomOfPage)
 						{
 							p = RunPageNew(pgs, p);
-							RunPageHeader(pgs, r, false, null);
+                            await RunPageHeader(pgs, r, false, null);
 							if (!header.RepeatOnNewPage)
-								header.RunPage(pgs, r);
+                                await header.RunPage(pgs, r);
 						}
 						else
-							header.RunPage(pgs, r);
+                            await header.RunPage(pgs, r);
 					}
 				}
 
@@ -1030,7 +1034,7 @@ namespace fyiReporting.RDL
 						if (footer != null)
 						{
 							bFooter = true;
-							footerHeight = footer.HeightOfRows(pgs, r);
+							footerHeight = await footer.HeightOfRows(pgs, r);
 						}
 					}
 					else if (r.Level < r2.Level)
@@ -1039,15 +1043,15 @@ namespace fyiReporting.RDL
 
 				if (_Details != null)
 				{
-					_Details.RunPage(pgs, wc.Data, iRow, iRow, footerHeight);
+                    await _Details.RunPage(pgs, wc.Data, iRow, iRow, footerHeight);
 				}
 
 				// and output the footer if needed
 				if (bFooter)
-					footer.RunPage(pgs, r);
+                    await footer.RunPage(pgs, r);
 			}
 			if (footer != null)
-				footer.RunPage(pgs, rows[rows.Count-1] as Row);
+                await footer.RunPage(pgs, rows[rows.Count-1] as Row);
 		}
 
 		internal TableColumns TableColumns
@@ -1126,13 +1130,13 @@ namespace fyiReporting.RDL
 			return wc.GroupNestCount;
 		}
 
-		internal int WidthInPixels(Report rpt, Row row)
+		internal async Task<int> WidthInPixels(Report rpt, Row row)
 		{
 			// Calculate this based on the sum of TableColumns
 			int width=0;
 			foreach (TableColumn tc in this.TableColumns.Items)
 			{
-                if (tc.Visibility == null || !tc.Visibility.Hidden.EvaluateBoolean(rpt, row))
+                if (tc.Visibility == null || !await tc.Visibility.Hidden.EvaluateBoolean(rpt, row))
 					width += tc.Width.PixelsX;
 			}
 			return width;

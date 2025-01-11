@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -61,10 +62,10 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "MatrixRow requires the MatrixCells element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_MatrixCells != null)
-				_MatrixCells.FinalPass();
+                await _MatrixCells.FinalPass();
 			return;
 		}
 

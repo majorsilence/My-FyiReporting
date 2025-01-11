@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -90,12 +91,12 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Subtotal requires the ReportItems element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_ReportItems != null)
-				_ReportItems.FinalPass();
+                await _ReportItems.FinalPass();
 			if (_Style != null)
-				_Style.FinalPass();
+                await _Style.FinalPass();
 			return;
 		}
 

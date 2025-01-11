@@ -24,6 +24,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Xml;
 
 
@@ -60,7 +61,7 @@ namespace fyiReporting.RDL
 			}
 		}
 		
-		internal void SetRuntimeValues(Report rpt, IDictionary parms)
+		internal async Task SetRuntimeValues(Report rpt, IDictionary parms)
 		{
 			// Fill the values to use in the report parameters
 			foreach (string pname in parms.Keys)	// Loop thru the passed parameters
@@ -77,14 +78,14 @@ namespace fyiReporting.RDL
                 object parmValue = parms[pname];
                 if (parmValue is string && rp.ValidValues != null)
                 {
-                    string[] dvs = rp.ValidValues.DisplayValues(rpt);
+                    string[] dvs = await rp.ValidValues.DisplayValues(rpt);
                     if (dvs != null && dvs.Length > 0)
                     {
                         for (int i = 0; i < dvs.Length; i++)
                         {
                             if (dvs[i] == (string) parmValue)
                             {
-                                object[] dv = rp.ValidValues.DataValues(rpt);
+                                object[] dv = await rp.ValidValues.DataValues(rpt);
                                 parmValue = dv[i];
                                 break;
                             }
@@ -97,11 +98,11 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			foreach (ReportParameter rp in _Items.Values)
 			{
-				rp.FinalPass();
+                await rp.FinalPass();
 			}
 			return;
 		}

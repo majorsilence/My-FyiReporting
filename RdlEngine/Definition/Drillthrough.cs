@@ -22,6 +22,7 @@
 */
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace fyiReporting.RDL
@@ -62,10 +63,10 @@ namespace fyiReporting.RDL
 				OwnerReport.rl.LogError(8, "Drillthrough requires the ReportName element.");
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			if (_DrillthroughParameters != null)
-				_DrillthroughParameters.FinalPass();
+                await _DrillthroughParameters.FinalPass();
 			return;
 		}
 

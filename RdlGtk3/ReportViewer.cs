@@ -285,7 +285,7 @@ namespace fyiReporting.RdlGtk3
                 this.Parameters = new ListDictionary();
 
             // Compile the report 
-            report = this.GetReport(source);
+            report = await this.GetReport(source);
             if (report == null)
                 return;
             AddParameterControls();
@@ -298,7 +298,7 @@ namespace fyiReporting.RdlGtk3
             if (ShowParameters)
                 SetParametersFromControls();
             await report.RunGetData(Parameters);
-            pages = report.BuildPages();
+            pages = await report.BuildPages();
 
             foreach (Gtk.Widget w in vboxPages.AllChildren)
             {
@@ -378,7 +378,7 @@ namespace fyiReporting.RdlGtk3
             return ld;
         }
 
-        private Report GetReport(string reportSource)
+        private async Task<Report> GetReport(string reportSource)
         {
             // Now parse the file 
 
@@ -391,7 +391,7 @@ namespace fyiReporting.RdlGtk3
             rdlp.OverwriteInSubreport = overwriteSubreportConnection;
             // RDLParser takes RDL XML and Parse compiles the report
 
-            r = rdlp.Parse();
+            r = await rdlp.Parse();
             if (r.ErrorMaxSeverity > 0)
             {
                 foreach (string emsg in r.ErrorItems)
@@ -748,7 +748,7 @@ namespace fyiReporting.RdlGtk3
                                 {
                                     // Must use the RunGetData before each export or there is no data.
                                     await report.RunGetData(this.Parameters);
-                                    ExportReport(report, filename, exportType);
+                                    await ExportReport(report, filename, exportType);
                                     break;
                                 }
                                 else
@@ -762,7 +762,7 @@ namespace fyiReporting.RdlGtk3
                                 //If no files with the same name found in directory
                                 // Must use the RunGetData before each export or there is no data.
                                 await report.RunGetData(this.Parameters);
-                                ExportReport(report, filename, exportType);
+                                await ExportReport(report, filename, exportType);
                                 break;
                             }
                         }
@@ -772,7 +772,7 @@ namespace fyiReporting.RdlGtk3
                         //If no files found in directory
                         // Must use the RunGetData before each export or there is no data.
                         await report.RunGetData(this.Parameters);
-                        ExportReport(report, filename, exportType);
+                        await ExportReport(report, filename, exportType);
                     }
                 }
                 catch (Exception ex)
@@ -799,14 +799,14 @@ namespace fyiReporting.RdlGtk3
         /// <param name='FileName'>
         /// File name.
         /// </param>
-        private void ExportReport(Report report, string FileName, OutputPresentationType exportType)
+        private async Task ExportReport(Report report, string FileName, OutputPresentationType exportType)
         {
             OneFileStreamGen sg = null;
 
             try
             {
                 sg = new OneFileStreamGen(FileName, true);
-                report.RunRender(sg, exportType);
+                await report.RunRender(sg, exportType);
             }
             catch (Exception ex)
             {

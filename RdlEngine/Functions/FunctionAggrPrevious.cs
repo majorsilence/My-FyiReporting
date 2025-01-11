@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
+using System.Threading.Tasks;
 using fyiReporting.RDL;
 
 
@@ -59,7 +59,7 @@ namespace fyiReporting.RDL
 			return _tc;
 		}
 
-		public object Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
 			object v = null;
 			if (row == null)
@@ -77,43 +77,43 @@ namespace fyiReporting.RDL
 				crow = r;
 			}
 			if (crow != null)
-				v = _Expr.Evaluate(rpt, crow);
+				v = await _Expr.Evaluate(rpt, crow);
 			return v;
 		}
 
-		public override bool EvaluateBoolean(Report rpt,Row row)
+		public override async Task<bool> EvaluateBoolean(Report rpt,Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result == null? false: Convert.ToBoolean(result);
 		}
 		
-		public double EvaluateDouble(Report rpt, Row row)
+		public async Task<double> EvaluateDouble(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result == null? double.MinValue: Convert.ToDouble(result);
 		}
 		
-		public decimal EvaluateDecimal(Report rpt, Row row)
+		public async Task<decimal> EvaluateDecimal(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result == null? decimal.MinValue: Convert.ToDecimal(result);
 		}
 
-        public int EvaluateInt32(Report rpt, Row row)
+        public async Task<int> EvaluateInt32(Report rpt, Row row)
         {
-            object result = Evaluate(rpt, row);
+            object result = await Evaluate(rpt, row);
             return result == null ? int.MinValue : Convert.ToInt32(result);
         }
 
-		public string EvaluateString(Report rpt, Row row)
+		public async Task<string> EvaluateString(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result == null? null: Convert.ToString(result);
 		}
 
-		public DateTime EvaluateDateTime(Report rpt, Row row)
+		public async Task<DateTime> EvaluateDateTime(Report rpt, Row row)
 		{
-			object result = Evaluate(rpt, row);
+			object result = await Evaluate(rpt, row);
 			return result == null? DateTime.MinValue: Convert.ToDateTime(result);
 		}
 

@@ -98,11 +98,12 @@ namespace fyiReporting.RDL
 		IDictionary _LUDynamicNames;	// for dynamic names
 		IDictionary _LUAggrScope;	// Datasets, Dataregions, grouping names
 		IDictionary _LUEmbeddedImages;	// Embedded images
-		string _ParseFolder;			// temporary folder for looking up things during parse/finalpass
+		readonly string _ParseFolder;			// temporary folder for looking up things during parse/finalpass
 		Type _CodeType;			// used for parsing of expressions; DONT USE AT RUNTIME
 
 		string _OverwriteConnectionString; // To overwrite ConnectionString
 		bool _OverwriteInSubreport; // Overwrite ConnectionString in subreport too
+		readonly XmlNode _xNode;
 
         /// <summary>
         /// EBN 31/03/2014
@@ -116,50 +117,54 @@ namespace fyiReporting.RDL
         }
 
 		// Constructor
-		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount, CrossDelegate crossdel, string overwriteConnectionString, bool overwriteInSubreport)		// report has no parents
+		internal ReportDefn(XmlNode xNode, ReportLog replog, string folder, NeedPassword getpswd, int objcount, CrossDelegate crossdel,
+			string overwriteConnectionString, bool overwriteInSubreport)        // report has no parents
 		{
-			rl = replog;				// used for error reporting
-			_ObjectCount = objcount;	// starting number for objects in this report; 0 other than for subreports
+            _xNode = xNode;
+            rl = replog;                // used for error reporting
+			_ObjectCount = objcount;    // starting number for objects in this report; 0 other than for subreports
 			GetDataSourceReferencePassword = getpswd;
 			_ParseFolder = folder;
 			_Description = null;
-			_Author = null;		
+			_Author = null;
 			_AutoRefresh = -1;
 			_DataSourcesDefn = null;
-			_DataSetsDefn = null;	
-			_Body = null;		
-			_Width = null;		
-			_PageHeader = null;	
-			_PageFooter = null;	
-			_PageHeight = null;	
-			_PageWidth = null;	
-			_LeftMargin = null;	
+			_DataSetsDefn = null;
+			_Body = null;
+			_Width = null;
+			_PageHeader = null;
+			_PageFooter = null;
+			_PageHeight = null;
+			_PageWidth = null;
+			_LeftMargin = null;
 			_RightMargin = null;
-			_TopMargin = null;	
+			_TopMargin = null;
 			_BottomMargin = null;
 			_EmbeddedImages = null;
-			_Language = null;	
-			_CodeModules = null;	
+			_Language = null;
+			_CodeModules = null;
 			_Code = null;
-			_Classes = null;	
-			_DataTransform = null;	
-			_DataSchema = null;		
+			_Classes = null;
+			_DataTransform = null;
+			_DataSchema = null;
 			_DataElementName = null;
 			_DataElementStyle = DataElementStyleEnum.AttributeNormal;
-			_LUReportItems = new Hashtable();		// to hold all the textBoxes
-			_LUAggrScope = new ListDictionary();	// to hold all dataset, dataregion, grouping names
-			_LUEmbeddedImages = new ListDictionary();	// probably not very many
+			_LUReportItems = new Hashtable();       // to hold all the textBoxes
+			_LUAggrScope = new ListDictionary();    // to hold all dataset, dataregion, grouping names
+			_LUEmbeddedImages = new ListDictionary();   // probably not very many
 			_LUDynamicNames = new Hashtable();
-            _DataCache = new List<ICacheData>();
-            
-            // EBN 30/03/2014
-            SubReportGetContent = crossdel;
+			_DataCache = new List<ICacheData>();
+
+			// EBN 30/03/2014
+			SubReportGetContent = crossdel;
 
 			_OverwriteConnectionString = overwriteConnectionString;
 			_OverwriteInSubreport = overwriteInSubreport;
+		}
 
+		public async Task InitializeAsync() { 
 			// Run thru the attributes
-			foreach(XmlAttribute xAttr in xNode.Attributes)
+			foreach(XmlAttribute xAttr in _xNode.Attributes)
 			{
 				switch (xAttr.Name)
 				{
@@ -170,7 +175,7 @@ namespace fyiReporting.RDL
 			}
 
 			// Loop thru all the child nodes
-			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
+			foreach(XmlNode xNodeLoop in _xNode.ChildNodes)
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
@@ -266,7 +271,7 @@ namespace fyiReporting.RDL
 
 			if (rl.MaxSeverity <= 4)	// don't do final pass if already have serious errors
 			{
-				FinalPass(folder);	// call final parser pass for expression resolution
+				await FinalPass(_ParseFolder);	// call final parser pass for expression resolution
 			}
 
 			// Cleanup any dangling resources
@@ -275,7 +280,7 @@ namespace fyiReporting.RDL
 		}
 
 		//
-		void FinalPass(string folder)
+		async Task FinalPass(string folder)
 		{
 			// Now do some addition validation and final preparation
 
@@ -291,35 +296,35 @@ namespace fyiReporting.RDL
 			_LUUser.Add("Language", new FunctionUserLanguage());
 			if (_CodeModules != null)
 			{
-				_CodeModules.FinalPass();
+                await _CodeModules.FinalPass();
 				_CodeModules.LoadModules();
 			}
 			if (_Classes != null)
 			{
-				_Classes.FinalPass();
+                await _Classes.FinalPass();
 				// _Classes.Load();
 			}
 			if (_Code != null)
 			{
-				_Code.FinalPass();
+                await _Code.FinalPass();
 				_CodeType = _Code.CodeType();
 			}
 
-			if (_ReportParameters != null)		// report parameters might be used in data source connection strings
-				_ReportParameters.FinalPass();
+			if (_ReportParameters != null)      // report parameters might be used in data source connection strings
+                await _ReportParameters.FinalPass();
 			if (_DataSourcesDefn != null)
-				_DataSourcesDefn.FinalPass();
+                await _DataSourcesDefn.FinalPass();
 			if (_DataSetsDefn != null)
-				_DataSetsDefn.FinalPass();
-			_Body.FinalPass();
+				await _DataSetsDefn.FinalPass();
+            await _Body.FinalPass();
 			if (_PageHeader != null)
-				_PageHeader.FinalPass();
+                await _PageHeader.FinalPass();
 			if (_PageFooter != null)
-				_PageFooter.FinalPass();
+                await _PageFooter.FinalPass();
 			if (_EmbeddedImages != null)
-				_EmbeddedImages.FinalPass();
+                await _EmbeddedImages.FinalPass();
 			if (_Language != null)
-				_Language.FinalPass();
+                await _Language.FinalPass();
 
             _DataCache.TrimExcess();	// reduce size of array of expressions that cache data
 			return;
@@ -353,7 +358,7 @@ namespace fyiReporting.RDL
 			// Step 1- set the parameter values for the runtime
             if (parms != null && ReportParameters != null)
             {
-                ReportParameters.SetRuntimeValues(rpt, parms);	// set the parameters
+                await ReportParameters.SetRuntimeValues(rpt, parms);	// set the parameters
             }
 
 			// Step 2- prep the datasources (ie connect and execute the queries)
@@ -366,7 +371,7 @@ namespace fyiReporting.RDL
 			if (_DataSetsDefn != null)
 			{
 				ResetCachedData(rpt);
-				bRows = _DataSetsDefn.GetData(rpt);
+				bRows = await _DataSetsDefn.GetData(rpt);
 			}
 
 			// Step 4- cleanup any DB connections
@@ -402,7 +407,7 @@ namespace fyiReporting.RDL
             }
 		}
 
-		internal void Run(IPresent ip)
+		internal async Task Run(IPresent ip)
 		{
 			if (_Subreport == null)
 			{	// do true intialization
@@ -411,15 +416,15 @@ namespace fyiReporting.RDL
 
 			if (ip.IsPagingNeeded())
 			{
-				RunPage(ip);
+                await RunPage(ip);
 			}
 			else
 			{
 				if (_PageHeader != null && !(ip is RenderXml))
-					_PageHeader.Run(ip, null);
-				_Body.Run(ip, null);
+                    await _PageHeader.Run(ip, null);
+                await _Body.Run(ip, null);
 				if (_PageFooter != null && !(ip is RenderXml))
-					_PageFooter.Run(ip, null);
+                    await _PageFooter.Run(ip, null);
 			}
 
 			if (_Subreport == null)
@@ -429,7 +434,7 @@ namespace fyiReporting.RDL
 				_DataSourcesDefn.CleanUp(ip.Report());	// datasets may not have been cleaned up
 		}
 
-		internal void RunPage(IPresent ip)
+		internal async Task RunPage(IPresent ip)
 		{
 			Pages pgs = new Pages(ip.Report());
 			try
@@ -437,17 +442,17 @@ namespace fyiReporting.RDL
 				Page p = new Page(1);				// kick it off with a new page
 				pgs.AddPage(p);
 
-				// Create all the pages
-				_Body.RunPage(pgs);
+                // Create all the pages
+                await _Body.RunPage(pgs);
 
  				if (pgs.LastPage.IsEmpty()&& pgs.PageCount > 1)	// get rid of extraneous pages which
 					pgs.RemoveLastPage();			//   can be caused by region page break at end
 
 				// Now create the headers and footers for all the pages (as needed)
 				if (_PageHeader != null)
-					_PageHeader.RunPage(pgs);
+                    await _PageHeader.RunPage(pgs);
 				if (_PageFooter != null)
-					_PageFooter.RunPage(pgs);
+                    await _PageFooter.RunPage(pgs);
 
                 pgs.SortPageItems();             // Handle ZIndex ordering of pages
 
@@ -698,7 +703,7 @@ namespace fyiReporting.RDL
 			set {  _Language = value; }
 		}
 
-		internal string EvalLanguage(Report rpt, Row r)
+		internal async Task<string> EvalLanguage(Report rpt, Row r)
 		{
 			if (_Language == null)
 			{
@@ -706,7 +711,7 @@ namespace fyiReporting.RDL
 				return ci.Name;				
 			}
 
-			return _Language.EvaluateString(rpt, r);
+			return await _Language.EvaluateString(rpt, r);
 		}
 
 		internal CodeModules CodeModules

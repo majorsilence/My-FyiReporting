@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using RdlEngine.Resources;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -69,54 +70,54 @@ namespace fyiReporting.RDL
                 _Items.TrimExcess();
 		}
 		
-		override internal void FinalPass()
+		async override internal Task FinalPass()
 		{
 			_HeightOfRows = 0;
 			foreach (TableRow t in _Items)
 			{
 				_HeightOfRows += t.Height.Points;
-				t.FinalPass();
+                await t.FinalPass();
 				_CanGrow |= t.CanGrow;
 			}
 
 			return;
 		}
 
-		internal void Run(IPresent ip, Row row)
+		internal async Task Run(IPresent ip, Row row)
 		{
 			foreach (TableRow t in _Items)
 			{
-				t.Run(ip, row);
+                await t.Run(ip, row);
 			}
 			return;
 		}
 
-		internal void RunPage(Pages pgs, Row row)
+		internal async Task RunPage(Pages pgs, Row row)
 		{
-			RunPage(pgs, row, false);
+            await RunPage(pgs, row, false);
 		}
 
-		internal void RunPage(Pages pgs, Row row, bool bCheckRows)
+		internal async Task RunPage(Pages pgs, Row row, bool bCheckRows)
 		{
 			if (bCheckRows)
 			{	// we need to check to see if a row will fit on the page
 				foreach (TableRow t in _Items)
 				{
 					Page p = pgs.CurrentPage;			// this can change after running a row
-					float hrows = t.HeightOfRow(pgs, row);	// height of this row
+					float hrows = await t.HeightOfRow(pgs, row);	// height of this row
 					float height = p.YOffset + hrows;
 					if (height > pgs.BottomOfPage)
 					{
 						p = OwnerTable.RunPageNew(pgs, p);
-						OwnerTable.RunPageHeader(pgs, row, false, null);
+                        await OwnerTable.RunPageHeader(pgs, row, false, null);
 					}
-					t.RunPage(pgs, row);
+                    await t.RunPage(pgs, row);
 				}
 			}
 			else
 			{	// all rows will fit on the page
 				foreach (TableRow t in _Items)
-					t.RunPage(pgs, row);
+                    await t.RunPage(pgs, row);
 			}
 			return;
 		}
@@ -145,7 +146,7 @@ namespace fyiReporting.RDL
 			return height;
 		}
 
-		internal float HeightOfRows(Pages pgs, Row r)
+		internal async Task<float> HeightOfRows(Pages pgs, Row r)
 		{
 			if (!this._CanGrow)
 				return _HeightOfRows;
@@ -153,7 +154,7 @@ namespace fyiReporting.RDL
 			float height=0;
 			foreach (TableRow tr in this._Items)
 			{
-				height += tr.HeightOfRow(pgs, r);
+				height += await tr.HeightOfRow(pgs, r);
 			}
 
 			return Math.Max(height, _HeightOfRows);
