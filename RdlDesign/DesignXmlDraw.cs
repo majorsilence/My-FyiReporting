@@ -1207,7 +1207,7 @@ namespace fyiReporting.RdlDesign
 				switch (xNodeLoop.Name)
 				{
 					case "Textbox":
-						rir = DrawTextbox(xNodeLoop, r);
+						rir = await DrawTextbox(xNodeLoop, r);
 						break;
 					case "Table":
                     case "fyi:Grid":
@@ -1217,7 +1217,7 @@ namespace fyiReporting.RdlDesign
 						rir = await DrawImage(xNodeLoop, r);
 						break;
                     case "CustomReportItem":
-                        rir = DrawCustomReportItem(xNodeLoop, r);
+                        rir = await DrawCustomReportItem(xNodeLoop, r);
                         break;
 					case "Rectangle":
 						rir = await DrawRectangle(xNodeLoop, r);
@@ -1229,13 +1229,13 @@ namespace fyiReporting.RdlDesign
 						rir = await DrawMatrix(xNodeLoop, r);
 						break;
 					case "Subreport":
-						rir = DrawSubreport(xNodeLoop, r);
+						rir = await DrawSubreport(xNodeLoop, r);
 						break;
 					case "Chart":
-						rir = DrawChart(xNodeLoop, r);
+						rir = await DrawChart(xNodeLoop, r);
 						break;
 					case "Line":
-						rir = DrawLine(xNodeLoop, r);
+						rir = await DrawLine(xNodeLoop, r);
 						break;
 				}
                 // Josh:
@@ -1243,7 +1243,7 @@ namespace fyiReporting.RdlDesign
                 // "off paper".
                 if (!r.Contains(rir))
                 {
-                    DrawOutOfBounds(xNodeLoop, r);
+                    await DrawOutOfBounds(xNodeLoop, r);
                 }
 				if (!rir.IsEmpty)
 				{
@@ -1450,11 +1450,11 @@ namespace fyiReporting.RdlDesign
 				ri.RemoveChild(w);
 		}
 
-		private RectangleF DrawChart(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawChart(XmlNode xNode, RectangleF r)
 		{
 			RectangleF ir = GetReportItemRect(xNode, r);
 			XmlNode title = this.GetNamedChildNode(xNode, "Title");
-			StyleInfo csi = GetStyleInfo(xNode);
+			StyleInfo csi = await GetStyleInfo(xNode);
 			csi.TextAlign = TextAlignEnum.Left;
 			if (title != null)
 			{
@@ -1465,7 +1465,7 @@ namespace fyiReporting.RdlDesign
 				else
 					caption = "Chart: " + caption;
 				// Blend the styles of the chart and the title; 
-				StyleInfo tsi = GetStyleInfo(title);
+				StyleInfo tsi = await GetStyleInfo(title);
 				csi.FontFamily = tsi.FontFamily;
 				csi.FontSize = tsi.FontSize;
 				csi.FontStyle = tsi.FontStyle;
@@ -1479,13 +1479,13 @@ namespace fyiReporting.RdlDesign
 			return ir;
 		}
 
-		private RectangleF DrawCustomReportItem(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawCustomReportItem(XmlNode xNode, RectangleF r)
 		{
 			RectangleF ir = GetReportItemRect(xNode, r);
 			if (!ir.IntersectsWith(_clip))
 				return ir;
 
-			StyleInfo si = GetStyleInfo(xNode);
+			StyleInfo si = await GetStyleInfo(xNode);
 
 			XmlNode tNode = this.GetNamedChildNode(xNode, "Type");
 			if (tNode == null)
@@ -1532,7 +1532,7 @@ namespace fyiReporting.RdlDesign
             if (!ir.IntersectsWith(_clip))
                 return ir;
 
-            StyleInfo si = GetStyleInfo(xNode);
+            StyleInfo si = await GetStyleInfo(xNode);
 
             XmlNode sNode = this.GetNamedChildNode(xNode, "Source");
             XmlNode vNode = this.GetNamedChildNode(xNode, "Value");
@@ -1849,7 +1849,7 @@ namespace fyiReporting.RdlDesign
 		private async Task<RectangleF> DrawList(XmlNode xNode, RectangleF r)
 		{
 			RectangleF listR = GetReportItemRect(xNode, r);
-			StyleInfo si = GetStyleInfo(xNode);
+			StyleInfo si = await GetStyleInfo(xNode);
 			DrawBackground(listR, si);
 			DrawBorder(si, listR);
 
@@ -1861,13 +1861,13 @@ namespace fyiReporting.RdlDesign
 			return listR;
 		}
 
-		private RectangleF DrawLine(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawLine(XmlNode xNode, RectangleF r)
 		{
 			PointF l1;
 			PointF l2;
 					
 			GetLineEnds(xNode, r, out l1, out l2);
-			StyleInfo si = GetStyleInfo(xNode);
+			StyleInfo si = await GetStyleInfo(xNode);
 
 			BorderStyleEnum ls = si.BStyleLeft;
 			if (!(ls == BorderStyleEnum.Solid ||
@@ -1914,7 +1914,7 @@ namespace fyiReporting.RdlDesign
 
 		private async Task<RectangleF> DrawRectangle(XmlNode xNode, RectangleF r)
 		{
-			StyleInfo si = GetStyleInfo(xNode);
+			StyleInfo si = await GetStyleInfo(xNode);
 			RectangleF ri = GetReportItemRect(xNode, r);
 			DrawBackground(ri, si);
 			DrawBorder(si, ri);
@@ -2060,9 +2060,9 @@ namespace fyiReporting.RdlDesign
 		}
 
         // Josh: Draws the "out of bounds" area of the "off paper" controls.
-        private void DrawOutOfBounds(XmlNode xNode, RectangleF r)
+        private async Task DrawOutOfBounds(XmlNode xNode, RectangleF r)
         {
-            StyleInfo si = GetStyleInfo(xNode);
+            StyleInfo si = await GetStyleInfo(xNode);
             RectangleF ri = GetOutOfBoundsRightReportItemRect(xNode, r);
 			si.BackgroundColor = OUTITEMCOLOR;
 
@@ -2081,13 +2081,13 @@ namespace fyiReporting.RdlDesign
         }
  
 
-		private RectangleF DrawSubreport(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawSubreport(XmlNode xNode, RectangleF r)
 		{
 			RectangleF tr = GetReportItemRect(xNode, r);		
 			string subreport = this.GetElementValue(xNode, "ReportName", "<not specified>");
 			string title = string.Format("Subreport: {0}", subreport);
 
-			DrawString(title, GetStyleInfo(xNode), tr, false);
+			DrawString(title, await GetStyleInfo(xNode), tr, false);
 			return tr;
 		}
 
@@ -2110,7 +2110,7 @@ namespace fyiReporting.RdlDesign
 			List<XmlNode> trs = GetTableRows(xNode);
 			tr.Height = GetTableRowsHeight(trs);
 
-			DrawBackground(tr, GetStyleInfo(xNode));
+			DrawBackground(tr, await GetStyleInfo(xNode));
 
 			// Loop thru the TableRows and the columns in each of them to get at the
 			//  individual cell
@@ -2369,9 +2369,9 @@ namespace fyiReporting.RdlDesign
 			return r;
 		}
 
-		private RectangleF DrawTextbox(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawTextbox(XmlNode xNode, RectangleF r)
 		{
-			StyleInfo si = GetStyleInfo(xNode);
+			StyleInfo si = await GetStyleInfo(xNode);
 			if (si.Color == Color.Empty)
 				si.Color = Color.Black;
 
@@ -2462,7 +2462,7 @@ namespace fyiReporting.RdlDesign
 			return node;
 		}
 
-		internal StyleInfo GetStyleInfo(XmlNode xNode)
+		internal async Task<StyleInfo> GetStyleInfo(XmlNode xNode)
 		{
 			StyleInfo si = new StyleInfo();
 			XmlNode sNode= this.GetNamedChildNode(xNode, "Style");
@@ -2496,7 +2496,7 @@ namespace fyiReporting.RdlDesign
 						si.BackgroundGradientEndColor = GetStyleColor(xNodeLoop.InnerText);
 						break;
 					case "BackgroundImage":
-						GetStyleInfoBackgroundImage(xNodeLoop, si);
+						await GetStyleInfoBackgroundImage(xNodeLoop, si);
 						break;
 					case "FontStyle":
 						si.FontStyle = StyleInfo.GetFontStyle(xNodeLoop.InnerText, FontStyleEnum.Normal);
@@ -2707,9 +2707,9 @@ namespace fyiReporting.RdlDesign
 			si.BWidthRight = r == null? def: GetSize(r);
 		}
 
-		private void GetStyleInfoBackgroundImage(XmlNode xNode, StyleInfo si)
-		{
-//  TODO: this is problematic since it require a PageImage
+        private async Task GetStyleInfoBackgroundImage(XmlNode xNode, StyleInfo si)
+        {
+            //  TODO: this is problematic since it require a PageImage
             Stream strm = null;
             System.Drawing.Image im = null;
             ImageRepeat repeat = ImageRepeat.Repeat;
@@ -2766,9 +2766,11 @@ namespace fyiReporting.RdlDesign
                         val.StartsWith("file:") ||
                         val.StartsWith("https:"))
                     {
-                        WebRequest wreq = WebRequest.Create(val);
-                        WebResponse wres = wreq.GetResponse();
-                        strm = wres.GetResponseStream();
+                        using HttpClient httpClient = new HttpClient();
+						httpClient.AddMajorsilenceReportingUserAgent();
+                        HttpResponseMessage response = await httpClient.GetAsync(val);
+                        response.EnsureSuccessStatusCode();
+                        strm = await response.Content.ReadAsStreamAsync();
                     }
                     else
                         strm = new FileStream(val, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -2778,9 +2780,9 @@ namespace fyiReporting.RdlDesign
                 {
                     im = GetImageEmbedded(val);
                 }
-				int height = im.Height;							// save height and width
-				int width = im.Width;
-				MemoryStream ostrm = new MemoryStream();
+                int height = im.Height;							// save height and width
+                int width = im.Width;
+                MemoryStream ostrm = new MemoryStream();
                 System.Drawing.Imaging.ImageCodecInfo[] info;
                 info = ImageCodecInfo.GetImageEncoders();
                 EncoderParameters encoderParameters;
@@ -2797,12 +2799,12 @@ namespace fyiReporting.RdlDesign
                 }
                 im.Save(ostrm, codec, encoderParameters);
 
-				byte[] ba = ostrm.ToArray();
-				ostrm.Close();
-				si.BackgroundImage = new PageImage(ImageFormat.Jpeg, ba, width, height);	// Create an image
+                byte[] ba = ostrm.ToArray();
+                ostrm.Close();
+                si.BackgroundImage = new PageImage(ImageFormat.Jpeg, ba, width, height);	// Create an image
                 si.BackgroundImage.Repeat = repeat;
             }
-            catch 
+            catch
             {
                 // we just won't end up drawing the background image;
             }
