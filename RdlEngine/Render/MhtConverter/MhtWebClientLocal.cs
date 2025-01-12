@@ -27,8 +27,10 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -201,91 +203,80 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// download URL contents to an array of bytes, using HTTP compression if possible
 		/// </summary>
-		public byte[] DownloadBytes(string url)
+		public async Task<byte[]> DownloadBytes(string url)
 		{
-			GetUrlData(url);
+			await GetUrlData(url);
 			return _ResponseBytes;
 		}
 
-		/// <summary>
-		/// returns a collection of bytes from a Url
-		/// </summary>
-		/// <param name="url">The URL to retrieve</param>
-		public void GetUrlData(string url)
-		{
-			Uri uri = new Uri(url);
-			if (!uri.IsFile)
-				throw new UriFormatException("url is not a local file");
+        // ...
 
-			FileWebRequest request = WebRequest.Create(url) as FileWebRequest;
-			if (request == null)
-			{
-				this.Clear();
-				return;
-			}
-			
-			request.Method = "GET";
-			
-			// download the target URL
-			FileWebResponse response = (FileWebResponse) request.GetResponse();
+        public async Task GetUrlData(string url)
+        {
+            Uri uri = new Uri(url);
+            if (!uri.IsFile)
+                throw new UriFormatException("url is not a local file");
 
-			// convert response stream to byte array
-			using (Stream stream = response.GetResponseStream())
-			{
-				ExtendedBinaryReader extReader = new ExtendedBinaryReader(stream);
-				_ResponseBytes = extReader.ReadToEnd();
-			}
-			
-			// For local operations, we consider the data are never compressed. Else, the "Content-Encoding" field
-			// in the headers would be "gzip" or "deflate". This could be handled quite easily with SharpZipLib for instance.
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    this.Clear();
+                    return;
+                }
 
-			// sometimes URL is indeterminate, eg, "http://website.com/myfolder"
-			// in that case the folder and file resolution MUST be done on 
-			// the server, and returned to the client as ContentLocation
-			_ContentLocation = response.Headers["Content-Location"];
-			if (_ContentLocation == null)
-				_ContentLocation = "";
-			
-			// if we have string content, determine encoding type
-			// (must cast to prevent null)
-			// HACK We determine the content type based on the uri extension, 
-			// as the header returned by the FileWebResponse is always "application/octet-stream" (hard coded in .NET!!)
-			// text/html
-			string ext = Path.GetExtension(uri.LocalPath).TrimStart(new char[]{'.'});
-			switch (ext)
-			{
-					// What's important here is to identify TEXT mime types. Because, the default will resort to binary file.
-				case "htm":		
-				case "html":	_DetectedContentType = "text/html";			break;
-				case "css":		_DetectedContentType = "text/css";			break;
-				case "csv":		_DetectedContentType = "text/csv";			break;
-				case "rtf":		_DetectedContentType = "text/rtf";			break;
-				case "aspx":
-				case "xsl":
-				case "xml":		_DetectedContentType = "text/xml";			break;
+                _ResponseBytes = await response.Content.ReadAsByteArrayAsync();
 
-				case "bmp":		_DetectedContentType = "image/bmp";			break;
-				case "gif":		_DetectedContentType = "image/gif";			break;
-				case "ico":		_DetectedContentType = "image/x-icon";		break;
-				case "jpg":
-				case "jpeg":	_DetectedContentType = "image/jpeg";		break;
-				case "png":		_DetectedContentType = "image/png";			break;
-				case "tif":
-				case "tiff":	_DetectedContentType = "image/tiff";		break;
+                // For local operations, we consider the data are never compressed. Else, the "Content-Encoding" field
+                // in the headers would be "gzip" or "deflate". This could be handled quite easily with SharpZipLib for instance.
 
-				case "js":		_DetectedContentType = "application/x-javascript";			break;
-				default:		
-					// Line commented: we don't change it
-					_DetectedContentType = response.Headers["Content-Type"];	// Always "application/octet-stream" ...
-					break;
-			}
-			if (_DetectedContentType == null)
-				_DetectedContentType = "";
-			if (ResponseIsBinary)
-				_DetectedEncoding = null;
-			else if (_ForcedEncoding == null)
-				_DetectedEncoding = DetectEncoding(_DetectedContentType, _ResponseBytes);
-		}
+                // sometimes URL is indeterminate, eg, "http://website.com/myfolder"
+                // in that case the folder and file resolution MUST be done on 
+                // the server, and returned to the client as ContentLocation
+                _ContentLocation = response.Content.Headers.ContentLocation?.ToString() ?? "";
+
+                // if we have string content, determine encoding type
+                // (must cast to prevent null)
+                // HACK We determine the content type based on the uri extension, 
+                // as the header returned by the FileWebResponse is always "application/octet-stream" (hard coded in .NET!!)
+                // text/html
+                string ext = Path.GetExtension(uri.LocalPath).TrimStart(new char[] { '.' });
+                switch (ext)
+                {
+                    // What's important here is to identify TEXT mime types. Because, the default will resort to binary file.
+                    case "htm":
+                    case "html": _DetectedContentType = "text/html"; break;
+                    case "css": _DetectedContentType = "text/css"; break;
+                    case "csv": _DetectedContentType = "text/csv"; break;
+                    case "rtf": _DetectedContentType = "text/rtf"; break;
+                    case "aspx":
+                    case "xsl":
+                    case "xml": _DetectedContentType = "text/xml"; break;
+
+                    case "bmp": _DetectedContentType = "image/bmp"; break;
+                    case "gif": _DetectedContentType = "image/gif"; break;
+                    case "ico": _DetectedContentType = "image/x-icon"; break;
+                    case "jpg":
+                    case "jpeg": _DetectedContentType = "image/jpeg"; break;
+                    case "png": _DetectedContentType = "image/png"; break;
+                    case "tif":
+                    case "tiff": _DetectedContentType = "image/tiff"; break;
+
+                    case "js": _DetectedContentType = "application/x-javascript"; break;
+                    default:
+                        // Line commented: we don't change it
+                        _DetectedContentType = response.Content.Headers.ContentType?.ToString() ?? ""; // Always "application/octet-stream" ...
+                        break;
+                }
+                if (_DetectedContentType == null)
+                    _DetectedContentType = "";
+                if (ResponseIsBinary)
+                    _DetectedEncoding = null;
+                else if (_ForcedEncoding == null)
+                    _DetectedEncoding = DetectEncoding(_DetectedContentType, _ResponseBytes);
+            }
+        }
 
 		#endregion Public methods
 		

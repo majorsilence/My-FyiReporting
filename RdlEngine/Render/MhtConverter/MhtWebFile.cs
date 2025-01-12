@@ -31,6 +31,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using RdlEngine.Resources;
 
@@ -431,10 +432,10 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Download this file from the target URL
 		/// </summary>
-		public void Download()
+		public async Task Download()
 		{
 			Debug.Write("Downloading " + this._Url + "  ..");
-			DownloadBytes();
+			await DownloadBytes();
 			
 			if (_DownloadException == null)
 				Debug.WriteLine("OK");
@@ -456,18 +457,18 @@ namespace fyiReporting.RDL
 		/// download ALL externally referenced files in this file's html, not recursively,
 		/// to the default download path for this page
 		/// </summary>
-		public void DownloadExternalFiles()
+		public async Task DownloadExternalFiles()
 		{
-			this.DownloadExternalFiles(this.ExternalFilesFolder, false);
+			await this.DownloadExternalFiles(this.ExternalFilesFolder, false);
 		}
 
 		/// <summary>
 		/// download ALL externally referenced files in this file's html, potentially recursively,
 		/// to the default download path for this page
 		/// </summary>
-		public void DownloadExternalFiles(bool recursive)
+		public async Task DownloadExternalFiles(bool recursive)
 		{
-			this.DownloadExternalFiles(this.ExternalFilesFolder, recursive);
+			await this.DownloadExternalFiles(this.ExternalFilesFolder, recursive);
 		}
 
 		/// <summary>
@@ -508,7 +509,10 @@ namespace fyiReporting.RDL
 		public override string ToString()
 		{
 			if (!_WasDownloaded)
-				Download();
+			{
+				// HACK: async
+				Task.Run(async () => await Download()).GetAwaiter().GetResult();
+			}
 			
 			if (!_WasDownloaded || _DownloadedBytes.Length <= 0)
 				return "";
@@ -650,7 +654,7 @@ namespace fyiReporting.RDL
 		/// place the bytes downloaded in _DownloadedBytes
 		/// if an exception occurs, capture it in _DownloadException
 		/// </summary>
-		void DownloadBytes()
+		async Task DownloadBytes()
 		{
 			if (this.WasDownloaded)
 				return;
@@ -658,7 +662,7 @@ namespace fyiReporting.RDL
 			// always download to memory first
 			try
 			{
-				_DownloadedBytes = _Builder.WebClient.DownloadBytes(_Url);
+				_DownloadedBytes = await _Builder.WebClient.DownloadBytes(_Url);
 				_WasDownloaded = true;
 			}
 			catch (WebException ex)
@@ -684,7 +688,7 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Download a single externally referenced file (if we haven't already downloaded it)
 		/// </summary>
-		void DownloadExternalFile(string url, string targetFolder, bool recursive)
+		async Task DownloadExternalFile(string url, string targetFolder, bool recursive)
 		{
 			bool isNew;
 			MhtWebFile wf;
@@ -701,7 +705,7 @@ namespace fyiReporting.RDL
 				isNew = true;
 			}
 
-			wf.Download();
+			await wf.Download();
 			
 			if (isNew)
 			{
@@ -711,7 +715,7 @@ namespace fyiReporting.RDL
 				// if this is an HTML file, it has dependencies of its own;
 				// download them into a subfolder
 				if ((wf.IsHtml || wf.IsCss) && recursive)
-					wf.DownloadExternalFiles(recursive);
+					await wf.DownloadExternalFiles(recursive);
 			}
 		}
 
@@ -719,7 +723,7 @@ namespace fyiReporting.RDL
 		/// download ALL externally referenced files in this html, potentially recursively
 		/// to a specific download path
 		/// </summary>
-		void DownloadExternalFiles(string targetFolder, bool recursive)
+		async Task DownloadExternalFiles(string targetFolder, bool recursive)
 		{
 			NameValueCollection fileCollection = ExternalHtmlFiles();
 			if (!fileCollection.HasKeys())
@@ -728,7 +732,7 @@ namespace fyiReporting.RDL
 			Debug.WriteLine("Downloading all external files collected from URL:");
 			Debug.WriteLine("    " + this.Url);
 			foreach (string key in fileCollection.Keys)
-				DownloadExternalFile(fileCollection[key], targetFolder, recursive);
+				await DownloadExternalFile(fileCollection[key], targetFolder, recursive);
 		}
 
 		/// <summary>

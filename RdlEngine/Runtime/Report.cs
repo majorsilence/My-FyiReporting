@@ -263,7 +263,7 @@ namespace fyiReporting.RDL
 				// Create the mht file (into a temporary file position)
 				MhtBuilder mhtConverter = new MhtBuilder();
 				string fileName = Path.ChangeExtension(Path.GetTempFileName(), "mht");
-				mhtConverter.SavePageArchive(fileName, "file://" + tempHtmlReportFileName);
+                await mhtConverter.SavePageArchive(fileName, "file://" + tempHtmlReportFileName);
 
 				// clean up the temporary files
 				foreach (string tempFileName in temp.FileList)

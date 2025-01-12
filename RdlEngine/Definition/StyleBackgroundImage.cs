@@ -35,6 +35,7 @@ using System.Globalization;
 using System.Threading;
 using System.Net;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 
 namespace fyiReporting.RDL
@@ -243,57 +244,62 @@ namespace fyiReporting.RDL
 			return pi;
 		}
 
-		async Task<(Stream stream, string mtype)> GetImageStream(Report rpt, Row row)
-		{
-			string mtype=null; 
-			Stream strm=null;
-			try 
-			{
-				switch (this._Source)
-				{
-					case StyleBackgroundImageSourceEnum.Database:
-						if (_MIMEType == null)
-							return (null, mtype);
-						mtype = await _MIMEType.EvaluateString(rpt, row);
-						object o = _Value.Evaluate(rpt, row);
-						strm = new MemoryStream((byte[]) o);
-						break;
-					case StyleBackgroundImageSourceEnum.Embedded:
-						string name = await _Value.EvaluateString(rpt, row);
-						EmbeddedImage ei = (EmbeddedImage) OwnerReport.LUEmbeddedImages[name];
-						mtype = ei.MIMEType;
-						byte[] ba = Convert.FromBase64String(ei.ImageData);
-						strm = new MemoryStream(ba);
-						break;
-					case StyleBackgroundImageSourceEnum.External:
+        async Task<(Stream stream, string mtype)> GetImageStream(Report rpt, Row row)
+        {
+            string mtype = null;
+            Stream strm = null;
+            try
+            {
+                switch (this._Source)
+                {
+                    case StyleBackgroundImageSourceEnum.Database:
+                        if (_MIMEType == null)
+                            return (null, mtype);
+                        mtype = await _MIMEType.EvaluateString(rpt, row);
+                        object o = _Value.Evaluate(rpt, row);
+                        strm = new MemoryStream((byte[])o);
+                        break;
+                    case StyleBackgroundImageSourceEnum.Embedded:
+                        string name = await _Value.EvaluateString(rpt, row);
+                        EmbeddedImage ei = (EmbeddedImage)OwnerReport.LUEmbeddedImages[name];
+                        mtype = ei.MIMEType;
+                        byte[] ba = Convert.FromBase64String(ei.ImageData);
+                        strm = new MemoryStream(ba);
+                        break;
+                    case StyleBackgroundImageSourceEnum.External:
                         string fname = await _Value.EvaluateString(rpt, row);
                         mtype = Image.GetMimeType(fname);
                         if (fname.StartsWith("http:") ||
                             fname.StartsWith("file:") ||
                             fname.StartsWith("https:"))
                         {
-                            WebRequest wreq = WebRequest.Create(fname);
-                            WebResponse wres = wreq.GetResponse();
-                            strm = wres.GetResponseStream();
+                            using (HttpClient client = new HttpClient())
+                            {
+                                HttpResponseMessage response = await client.GetAsync(fname);
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    strm = await response.Content.ReadAsStreamAsync();
+                                }
+                            }
                         }
                         else
                             strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);
                         break;
-					default:
-						return (null, mtype);
-				}
-			}
-			catch
-			{
-				if (strm != null)
-				{
-					strm.Close();
-					strm = null;
-				}
-			}
+                    default:
+                        return (null, mtype);
+                }
+            }
+            catch
+            {
+                if (strm != null)
+                {
+                    strm.Close();
+                    strm = null;
+                }
+            }
 
-			return (strm, mtype);
-		}
+            return (strm, mtype);
+        }
 
 		static internal string GetCSSDefaults()
 		{

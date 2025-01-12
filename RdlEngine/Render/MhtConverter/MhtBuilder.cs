@@ -29,6 +29,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using RdlEngine.Resources;
 
 namespace fyiReporting.RDL
@@ -342,13 +343,13 @@ namespace fyiReporting.RDL
 		/// returns the root HTML we'll use to generate everything else;
 		/// this is tracked in the _HtmlFile object, which is always FileStorage.Memory
 		/// </summary>
-		void DownloadHtmlFile(string url)
+		async Task DownloadHtmlFile(string url)
 		{
 			if (url != "")
 				Url = url;
             
 			_HtmlFile.WasAppended = false;
-			_HtmlFile.Download();
+			await _HtmlFile.Download();
 			if (!_HtmlFile.WasDownloaded)
 				throw new Exception(string.Format(Strings.MhtBuilder_Error_UnableDownload, Url, _HtmlFile.DownloadException.Message), _HtmlFile.DownloadException);
 		}
@@ -410,9 +411,9 @@ namespace fyiReporting.RDL
 		/// using exclusively in-memory storage
 		/// </summary>
 		/// <returns>string representation of MHT file</returns>
-		public string GetPageArchive()
+		public async Task<string> GetPageArchive()
 		{
-			return GetPageArchive(string.Empty);
+			return await GetPageArchive(string.Empty);
 		}
 
 		/// <summary>
@@ -421,12 +422,12 @@ namespace fyiReporting.RDL
 		/// </summary>
 		/// <param name="url">fully qualified URL you wish to render to Mht</param>
 		/// <returns>string representation of MHT file</returns>
-		public string GetPageArchive(string url)
+		public async Task<string> GetPageArchive(string url)
 		{
-			DownloadHtmlFile(url);
-		
-			// download all references
-			_HtmlFile.DownloadExternalFiles(_AllowRecursion);
+            await DownloadHtmlFile(url);
+
+            // download all references
+            await _HtmlFile.DownloadExternalFiles(_AllowRecursion);
 			
 			// build the Mht 
 			AppendMhtHeader(_HtmlFile);
@@ -442,9 +443,9 @@ namespace fyiReporting.RDL
 		/// <param name="outputFilePath">path to generate to, or filename to generate</param>
 		/// <param name="st">type of storage to use when generating the Mht archive</param>
 		/// <returns>the complete path of the Mht archive file that was generated</returns>
-		public string SavePageArchive(string outputFilePath)
+		public async Task<string> SavePageArchive(string outputFilePath)
 		{
-			return SavePageArchive(outputFilePath, string.Empty);
+			return await SavePageArchive(outputFilePath, string.Empty);
 		}
 
 		/// <summary>
@@ -455,16 +456,16 @@ namespace fyiReporting.RDL
 		/// <param name="st">type of storage to use when generating the Mht archive</param>
 		/// <param name="url">fully qualified URL you wish to save as Mht</param>
 		/// <returns>the complete path of the Mht archive file that was generated</returns>
-		public string SavePageArchive(string outputFilePath, string url)
+		public async Task<string> SavePageArchive(string outputFilePath, string url)
 		{
 			ValidateFilename(outputFilePath, ".mht");
-			DownloadHtmlFile(url);
+            await DownloadHtmlFile(url);
         
 			_HtmlFile.DownloadPath = outputFilePath;
 			_HtmlFile.UseHtmlTitleAsFilename = true;
-            
-			// download all references
-			_HtmlFile.DownloadExternalFiles(_AllowRecursion);
+
+            // download all references
+            await _HtmlFile.DownloadExternalFiles(_AllowRecursion);
             
 			// build the Mht 
 			AppendMhtHeader(_HtmlFile);
