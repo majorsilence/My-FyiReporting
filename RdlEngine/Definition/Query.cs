@@ -142,7 +142,7 @@ namespace fyiReporting.RDL
                 if (this._QueryCommandType == QueryCommandTypeEnum.StoredProcedure)
                     cmSQL.CommandType = CommandType.StoredProcedure;
 
-                AddParameters(null, cnSQL, cmSQL, false);
+                await AddParameters(null, cnSQL, cmSQL, false);
                 if (cmSQL is DbCommand dbCommand)
                 {
                     dr = await dbCommand.ExecuteReaderAsync(CommandBehavior.SchemaOnly).ConfigureAwait(false);
@@ -224,8 +224,8 @@ namespace fyiReporting.RDL
                     cmSQL.CommandType = CommandType.StoredProcedure;
                 if (this._Timeout > 0)
 					cmSQL.CommandTimeout = this._Timeout;
-				
-				AddParameters(rpt, cnSQL, cmSQL, true);
+
+                await AddParameters(rpt, cnSQL, cmSQL, true);
 				dr = cmSQL.ExecuteReader(CommandBehavior.SingleResult);
 
                 List<Row> ar = new List<Row>();
@@ -264,7 +264,7 @@ namespace fyiReporting.RDL
 					}
 
 					// Apply the filters
-					if (f == null || f.Apply(rpt, or))
+					if (f == null || await f.Apply(rpt, or))
 					{
 						or.RowNumber = rowCount;	// 
 						rowCount++;
@@ -382,7 +382,7 @@ namespace fyiReporting.RDL
                     }
 				}
 				// Apply the filters 
-				if (f == null || f.Apply(rpt, or))
+				if (f == null || await f.Apply(rpt, or))
 				{
 					or.RowNumber = rowCount;	// 
 					rowCount++;
@@ -468,7 +468,7 @@ namespace fyiReporting.RDL
                 }
 
 				// Apply the filters 
-				if (f == null || f.Apply(rpt, or))
+				if (f == null || await f.Apply(rpt, or))
 				{
 					or.RowNumber = rowCount;	// 
 					rowCount++;
@@ -503,7 +503,7 @@ namespace fyiReporting.RDL
 				Row or = new Row(rows, dr.FieldCount);
 				dr.GetValues(or.Data);
 				// Apply the filters 
-				if (f == null || f.Apply(rpt, or))
+				if (f == null || await f.Apply(rpt, or))
 				{
 					or.RowNumber = rowCount;	// 
 					rowCount++;
@@ -544,7 +544,7 @@ namespace fyiReporting.RDL
 					or.Data[fld.ColumnNumber] = dr[fld.DataField];
 				}
 				// Apply the filters 
-				if (f == null || f.Apply(rpt, or))
+				if (f == null || await f.Apply(rpt, or))
 				{
 					or.RowNumber = rowCount;	// 
 					rowCount++;
@@ -612,7 +612,7 @@ namespace fyiReporting.RDL
 					}
 				}
 				// Apply the filters 
-				if (f == null || f.Apply(rpt, or))
+				if (f == null || await f.Apply(rpt, or))
 				{
 					or.RowNumber = rowCount;	// 
 					rowCount++;
@@ -627,7 +627,7 @@ namespace fyiReporting.RDL
 			SetMyUserData(rpt, rows);
 		}
 
-		private void AddParameters(Report rpt, IDbConnection cn, IDbCommand cmSQL, bool bValue)
+		private async Task AddParameters(Report rpt, IDbConnection cn, IDbCommand cmSQL, bool bValue)
 		{
 			// any parameters to substitute
 			if (this._QueryParameters == null ||
@@ -649,7 +649,7 @@ namespace fyiReporting.RDL
 				    paramName = qp.Name.Nm;
 			    else
 				    paramName = "@" + qp.Name.Nm;
-			    object pvalue= bValue? qp.Value.Evaluate(rpt, null): null;
+			    object pvalue= bValue? await qp.Value.Evaluate(rpt, null): null;
 				IDbDataParameter dp = cmSQL.CreateParameter();
 
 				dp.ParameterName = paramName;

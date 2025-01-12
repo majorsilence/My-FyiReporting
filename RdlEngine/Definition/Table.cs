@@ -218,9 +218,9 @@ namespace fyiReporting.RDL
 			    wc.Data = await GetFilteredData(r, row);
 
 			if (!await AnyRows(ip, wc.Data))		// if no rows return
-				return;					//   nothing left to do
+				return;                 //   nothing left to do
 
-			RunPrep(r, row, wc);
+            await RunPrep(r, row, wc);
 
 			if (!await ip.TableStart(this, row))
 				return;						// render doesn't want to continue
@@ -275,9 +275,9 @@ namespace fyiReporting.RDL
 			SetPagePositionBegin(pgs);
 
 			if (!await AnyRowsPage(pgs, wc.Data))		// if no rows return
-				return;						//   nothing left to do
+				return;                     //   nothing left to do
 
-			RunPrep(r, row, wc);
+            await RunPrep(r, row, wc);
 
 			RunPageRegionBegin(pgs);
 
@@ -398,7 +398,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		void RunPrep(Report rpt, Row row, TableWorkClass wc)
+		async Task RunPrep(Report rpt, Row row, TableWorkClass wc)
 		{
 			GroupEntry[] currentGroups; 
 
@@ -424,7 +424,7 @@ namespace fyiReporting.RDL
 				wc.Data = new Rows(rpt, _TableGroups, gr, srt);
 				wc.Data.Data = saveData;
 				wc.Data.Sort();
-				PrepGroups(rpt, wc);
+                await PrepGroups(rpt, wc);
 			}
 
 			// If we haven't formed any groups then form one with all rows
@@ -473,7 +473,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		private void PrepGroups(Report rpt, TableWorkClass wc)
+		private async Task PrepGroups(Report rpt, TableWorkClass wc)
 		{
 			wc.RecursiveGroup = null;		
 			if (_TableGroups == null)
@@ -530,7 +530,7 @@ namespace fyiReporting.RDL
 				if (gea.Count != 1)		// Limitiation of implementation
 					throw new Exception(Strings.Table_Error_RecursiveGroupsMustOnlyGroupDefinition);
 
-				PrepRecursiveGroup(rpt, wc);	// only one group and it's recursive: optimization 
+                await PrepRecursiveGroup(rpt, wc);	// only one group and it's recursive: optimization 
 				return;
 			}
 
@@ -560,7 +560,7 @@ namespace fyiReporting.RDL
 				foreach (GroupExpression ge in gea)
 				{
 					if (((Grouping)(ge.Parent.Parent)).ParentGroup == null)	
-						grpValues[i++] = ge.Expression.Evaluate(rpt, row);
+						grpValues[i++] = await ge.Expression.Evaluate(rpt, row);
 					else
 						grpValues[i++] = null;	// Want all the parentGroup to evaluate equal
 				}
@@ -615,7 +615,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void PrepRecursiveGroup(Report rpt, TableWorkClass wc)
+		private async Task PrepRecursiveGroup(Report rpt, TableWorkClass wc)
 		{
 			// Prepare for processing recursive group
 			Grouping g = wc.RecursiveGroup;
@@ -670,12 +670,12 @@ namespace fyiReporting.RDL
 
 				// look backward for starting row; 
 				//   in case of duplicates, BinarySearch can land on any of the rows
-                object cmpvalue = groupExpr.Evaluate(rpt, r);
+                object cmpvalue = await groupExpr.Evaluate(rpt, r);
 
 				int sRow = iMainRow-1;
 				while (sRow >= 0)
 				{
-					object v = parentExpr.Evaluate(rpt, odata[sRow]);
+					object v = await parentExpr.Evaluate(rpt, odata[sRow]);
 					if (Filter.ApplyCompare(tc, cmpvalue, v) != 0)
 						break;
 					sRow--;
@@ -685,7 +685,7 @@ namespace fyiReporting.RDL
 				int eRow = iMainRow+1;
 				while (eRow < odata.Count)
 				{
-					object v = parentExpr.Evaluate(rpt, odata[eRow]);
+					object v = await parentExpr.Evaluate(rpt, odata[eRow]);
 					if (Filter.ApplyCompare(tc, cmpvalue, v) != 0)
 						break;
 					eRow++;
@@ -1211,8 +1211,9 @@ namespace fyiReporting.RDL
 
 		public int Compare(Row x, Row y)
 		{
-            object xv = parentExpr.Evaluate(rpt, x);
-            object yv = groupExpr.Evaluate(rpt, y);
+			// HACK: async
+            object xv = Task.Run(async () => await parentExpr.Evaluate(rpt, x)).GetAwaiter().GetResult();
+            object yv = Task.Run(async () => await groupExpr.Evaluate(rpt, y)).GetAwaiter().GetResult();
 
 			return -Filter.ApplyCompare(_Type, yv, xv);
 		}
@@ -1244,10 +1245,12 @@ namespace fyiReporting.RDL
 				
 				int index = x1.Group.GetIndex(rpt);
 				wc.Data.CurrentGroups[index] = x1;
-				object o1 = sb.SortExpression.Evaluate(rpt, wc.Data.Data[x1.StartRow]);
+				// HACK: async
+				object o1 = Task.Run(async () => await sb.SortExpression.Evaluate(rpt, wc.Data.Data[x1.StartRow])).GetAwaiter().GetResult();
 				index = y1.Group.GetIndex(rpt);	
 				wc.Data.CurrentGroups[index] = y1;
-				object o2 = sb.SortExpression.Evaluate(rpt, wc.Data.Data[y1.StartRow]);
+				// HACK: async
+				object o2 = Task.Run(async () => await sb.SortExpression.Evaluate(rpt, wc.Data.Data[y1.StartRow])).GetAwaiter().GetResult();
 
 				rc = Filter.ApplyCompare(tc, o1, o2);
 				if (rc != 0)

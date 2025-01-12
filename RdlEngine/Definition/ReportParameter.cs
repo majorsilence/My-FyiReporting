@@ -415,7 +415,10 @@ namespace fyiReporting.RDL
 				if (_DefaultValue == null)
 				{
 					if (_rp.DefaultValue != null)
-						_DefaultValue = _rp.DefaultValue.ValuesCalc(this._rpt);
+					{
+						// HACK: async
+						_DefaultValue = Task.Run(async () => await _rp.DefaultValue.ValuesCalc(this._rpt)).GetAwaiter().GetResult();
+					}
 				}
 				return _DefaultValue;
 			}

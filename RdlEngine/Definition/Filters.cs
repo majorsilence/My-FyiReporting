@@ -74,13 +74,13 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal bool Apply(Report rpt, Row datarow)
+		internal async Task<bool> Apply(Report rpt, Row datarow)
 		{
 			foreach (Filter f in _Items)
 			{
 				if (!f.FilterOperatorSingleRow)		// have to handle Top/Bottom in ApplyFinalFilters
 					return true;
-				if (!f.Apply(rpt, datarow))
+				if (!await f.Apply(rpt, datarow))
 					return false;
 			}
 			return true;

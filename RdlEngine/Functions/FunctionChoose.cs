@@ -80,7 +80,7 @@ namespace fyiReporting.RDL
 			if (i >= _expr.Length || i <= 0)
 				return null;
 			
-			return _expr[i].Evaluate(rpt, row);
+			return await _expr[i].Evaluate(rpt, row);
 		}
 
 		public async Task<bool> EvaluateBoolean(Report rpt, Row row)

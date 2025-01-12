@@ -363,7 +363,7 @@ namespace fyiReporting.RDL
                     {
                         string expr = s.Substring(6, s.Length - 13);
                         DynamicExpression de = new DynamicExpression(rpt, this, expr, row);
-                        sb.Append(de.Evaluate(rpt, row));
+                        sb.Append(await de.Evaluate(rpt, row));
                     }
                     else
                         sb.Append(s);
@@ -385,7 +385,7 @@ namespace fyiReporting.RDL
 			if (await IsHidden(rpt, row))
 				return 0;
 
-			object o = Evaluate(rpt, row);
+			object o = await Evaluate(rpt, row);
 
 			TypeCode tc = _Value.GetTypeCode();
 			int width = this.WidthCalc(rpt, g);

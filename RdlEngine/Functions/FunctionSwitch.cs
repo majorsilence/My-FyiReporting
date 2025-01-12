@@ -79,7 +79,7 @@ namespace fyiReporting.RDL
 				result = await _expr[i].EvaluateBoolean(rpt, row);
 				if (result)
 				{
-					object o = _expr[i+1].Evaluate(rpt, row);
+					object o = await _expr[i+1].Evaluate(rpt, row);
 					// We may need to convert to same type as first type
 					if (i == 0 || _tc == _expr[i+1].GetTypeCode())	// first typecode will always match 
 						return o;

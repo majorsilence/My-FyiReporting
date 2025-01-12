@@ -25,6 +25,7 @@ using System;
 using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RDL
 {
@@ -207,8 +208,9 @@ namespace fyiReporting.RDL
 			{
 				foreach (RowsSortExpression se in _SortBy)
 				{
-					o1 = se.expr.Evaluate(this._Rpt, r1);
-					o2 = se.expr.Evaluate(this._Rpt, r2);
+					// HACK: async
+					o1 = Task.Run(async () => await se.expr.Evaluate(this._Rpt, r1)).GetAwaiter().GetResult();
+					o2 = Task.Run(async () => await se.expr.Evaluate(this._Rpt, r2)).GetAwaiter().GetResult();
 					tc = se.expr.GetTypeCode();
 					rc = Filter.ApplyCompare(tc, o1, o2);
 					if (rc != 0)

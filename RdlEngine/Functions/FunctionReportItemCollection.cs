@@ -91,7 +91,7 @@ namespace fyiReporting.RDL
 			if (tb == null)
 				return null;
 
-			return tb.Evaluate(rpt, row);
+			return await tb.Evaluate(rpt, row);
 		}
 		
 		public virtual async Task<double> EvaluateDouble(Report rpt, Row row)

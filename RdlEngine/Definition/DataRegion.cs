@@ -287,7 +287,7 @@ namespace fyiReporting.RDL
 				List<Row> ar = new List<Row>();
 				foreach (Row r in data.Data)
 				{
-					if (_Filters.Apply(rpt, r))
+					if (await _Filters.Apply(rpt, r))
 						ar.Add(r);
 				}
                 ar.TrimExcess();

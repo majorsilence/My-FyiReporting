@@ -132,7 +132,7 @@ namespace fyiReporting.RDL
         {
             ArrayList ar = await p.GetRuntimeValues(rpt);
             
-            object va = this._arg == null ? null : _arg.Evaluate(rpt, row);
+            object va = this._arg == null ? null : await _arg.Evaluate(rpt, row);
 
             switch(_type) 
             {

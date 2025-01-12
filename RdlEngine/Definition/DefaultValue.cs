@@ -80,7 +80,7 @@ namespace fyiReporting.RDL
 		internal async Task<object[]> GetValue(Report rpt)
 		{
 			if (_Values != null)
-				return ValuesCalc(rpt);
+				return await ValuesCalc(rpt);
 			object[] dValues = this.GetDataValues(rpt);
 			if (dValues != null)
 				return dValues;
@@ -99,7 +99,7 @@ namespace fyiReporting.RDL
 			set {  _Values = value; }
 		}
 
-		internal object[] ValuesCalc(Report rpt)
+		internal async Task<object[]> ValuesCalc(Report rpt)
 		{
 			if (_Values == null)
 				return null;
@@ -107,7 +107,7 @@ namespace fyiReporting.RDL
 			int index=0;
 			foreach (Expression v in _Values)
 			{
-				result[index++] = v.Evaluate(rpt, null);
+				result[index++] = await v.Evaluate(rpt, null);
 			}
 			return result;
 		}

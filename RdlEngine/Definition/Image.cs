@@ -298,7 +298,7 @@ namespace fyiReporting.RDL
                         if (_MIMEType == null)
                             return (null, mtype);
                         mtype = await _MIMEType.EvaluateString(rpt, row);
-                        object o = _Value.Evaluate(rpt, row);
+                        object o = await _Value.Evaluate(rpt, row);
                         strm = new MemoryStream((byte[])o);
                         break;
                     case ImageSourceEnum.Embedded:

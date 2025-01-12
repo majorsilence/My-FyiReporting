@@ -156,7 +156,7 @@ namespace fyiReporting.RDL
 			}
 			else
 			{
-				SetSubreportParameters(r, row);
+                await SetSubreportParameters(r, row);
                 await r.RunGetData(null);
 			}
 
@@ -206,7 +206,7 @@ namespace fyiReporting.RDL
 			}
 			else
 			{
-				SetSubreportParameters(r, row);		// apply the parameters
+                await SetSubreportParameters(r, row);		// apply the parameters
 				bRows = await r.RunGetData(null);
 			}
 
@@ -355,7 +355,7 @@ namespace fyiReporting.RDL
 			return prog;
 		}
 
-		private void SetSubreportParameters(Report rpt, Row row)
+		private async Task SetSubreportParameters(Report rpt, Row row)
 		{
 			UserReportParameter userp;
 			foreach (SubreportParameter srp in _Parameters.Items)
@@ -374,7 +374,7 @@ namespace fyiReporting.RDL
 					throw new Exception(
 						string.Format(Strings.Subreport_Error_SubreportNotParameter, _ReportName, srp.Name.Nm));
 				}
-				object v = srp.Value.Evaluate(rpt, row);
+				object v = await srp.Value.Evaluate(rpt, row);
 				userp.Value = v;
 			}
 		}

@@ -141,9 +141,9 @@ namespace fyiReporting.RDL
 			wc.Data = await GetFilteredData(r, row);
 
 			if (!await AnyRows(ip, wc.Data))		// if no rows return
-				return;					//   nothing left to do
+				return;                 //   nothing left to do
 
-			RunSetGrouping(r, wc);
+            await RunSetGrouping(r, wc);
 
             await base.Run(ip, row);
 
@@ -172,7 +172,7 @@ namespace fyiReporting.RDL
 
 			RunPageRegionBegin(pgs);
 
-			RunSetGrouping(pgs.Report, wc);
+            await RunSetGrouping(pgs.Report, wc);
 
             await RunPageGroups(pgs, wc, wc.Groups);
 
@@ -183,7 +183,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void RunSetGrouping(Report rpt, WorkClass wc)
+		private async Task RunSetGrouping(Report rpt, WorkClass wc)
 		{
 			GroupEntry[] currentGroups; 
 
@@ -195,7 +195,7 @@ namespace fyiReporting.RDL
 				wc.Data = new Rows(rpt, null, _Grouping, _Sorting);
 				wc.Data.Data = saveData.Data;
 				wc.Data.Sort();
-				PrepGroups(rpt, wc);
+                await PrepGroups(rpt, wc);
 			}
 			// If we haven't formed any groups then form one with all rows
 			if (wc.Groups == null)
@@ -217,7 +217,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private void PrepGroups(Report rpt, WorkClass wc)
+		private async Task PrepGroups(Report rpt, WorkClass wc)
 		{
 			if (_Grouping == null)
 				return;
@@ -254,7 +254,7 @@ namespace fyiReporting.RDL
 				i=0;
 				foreach (GroupExpression ge in gea)  // Could optimize to only calculate as needed in comparison loop below??
 				{
-					grpValues[i++] = ge.Expression.Evaluate(rpt, row);
+					grpValues[i++] = await ge.Expression.Evaluate(rpt, row);
 				}
 
 				// For first row we just primed the pump; action starts on next row

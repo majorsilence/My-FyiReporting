@@ -546,7 +546,7 @@ namespace fyiReporting.RDL
             int maxWidth = 0;
             for (int iRow = 1; iRow <= CategoryCount; iRow++)
             {
-                object v = this.GetCategoryValue(rpt, iRow, out tc);
+                (object v, tc) = await this.GetCategoryValue(rpt, iRow);
                 Drawing.Size tSize;
                 if (s == null)
                     tSize = await Style.MeasureStringDefaults(rpt, g, v, tc, null, int.MaxValue);
@@ -630,7 +630,7 @@ namespace fyiReporting.RDL
             bool date = false; //used for confirming dealing with date data
             int PreviousLocation = rect.Left; //used to keep track of previous gridline location on x axis - set to x position of category axis at start
             TypeCode tc;
-            object first = this.GetCategoryValue(rpt, 1, out tc);
+            (object first, tc) = await this.GetCategoryValue(rpt, 1);
             if (first != null)
             {
                 switch (tc)
@@ -650,7 +650,7 @@ namespace fyiReporting.RDL
             }
             for (int iRow = 1; iRow <= CategoryCount; iRow++)
             {
-                object v = this.GetCategoryValue(rpt, iRow, out tc);
+                (object v, tc) = await this.GetCategoryValue(rpt, iRow);
                 //make sure we are dealing with datetime type
                 if (date)
                 {

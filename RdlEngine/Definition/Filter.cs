@@ -157,11 +157,11 @@ namespace fyiReporting.RDL
 		}
 
 		// Apply the filters to a row to determine if row is valid
-		internal bool Apply(Report rpt, Row datarow)
+		internal async Task<bool> Apply(Report rpt, Row datarow)
 		{
-			object left = _FilterExpression.Evaluate(rpt, datarow);
+			object left = await _FilterExpression.Evaluate(rpt, datarow);
 			TypeCode tc = _FilterExpression.GetTypeCode();
-			object right = ((FilterValue)(_FilterValues.Items[0])).Expression.Evaluate(rpt, datarow);
+			object right = await ((FilterValue)(_FilterValues.Items[0])).Expression.Evaluate(rpt, datarow);
 			switch (_FilterOperator)
 			{
 				case FilterOperatorEnum.Equal:
@@ -190,7 +190,7 @@ namespace fyiReporting.RDL
 				case FilterOperatorEnum.In:
 					foreach (FilterValue fv in _FilterValues.Items)
 					{
-						right = fv.Expression.Evaluate(rpt, datarow);
+						right = await fv.Expression.Evaluate(rpt, datarow);
                         if (right is ArrayList)         // this can only happen with MultiValue parameters
                         {   // check each object in the array
                             foreach (object v in right as ArrayList)
@@ -206,7 +206,7 @@ namespace fyiReporting.RDL
 				case FilterOperatorEnum.Between:
 					if (ApplyCompare(tc, left, right) < 0)
 						return false;
-					right = ((FilterValue)(_FilterValues.Items[1])).Expression.Evaluate(rpt, datarow);
+					right = await ((FilterValue)(_FilterValues.Items[1])).Expression.Evaluate(rpt, datarow);
 					return ApplyCompare(tc, left, right) <= 0? true: false;
 				default:
 					return true;
@@ -216,12 +216,12 @@ namespace fyiReporting.RDL
 		internal async Task Apply(Report rpt, Rows data)
 		{
 			if (this._FilterOperatorSingleRow)
-				ApplySingleRowFilter(rpt, data);
+                await ApplySingleRowFilter(rpt, data);
 			else
                 await ApplyTopBottomFilter(rpt, data);
 		}
 
-		private void ApplySingleRowFilter(Report rpt, Rows data)
+		private async Task ApplySingleRowFilter(Report rpt, Rows data)
 		{
 			List<Row> ar = data.Data;
 			// handle a single row operator; by looping thru the rows and applying
@@ -230,7 +230,7 @@ namespace fyiReporting.RDL
 			while (iRow < ar.Count)
 			{
 				Row datarow = ar[iRow];
-				if (Apply(rpt, datarow))
+				if (await Apply(rpt, datarow))
 					iRow++;
 				else
 					ar.RemoveAt(iRow);
@@ -292,13 +292,13 @@ namespace fyiReporting.RDL
 
 			List<Row> ar = data.Data;
 			TypeCode tc = _FilterExpression.GetTypeCode();
-			object o = this._FilterExpression.Evaluate(rpt, data.Data[ival]);
+			object o = await this._FilterExpression.Evaluate(rpt, data.Data[ival]);
 
 			// adjust the ival based on duplicate values
 			ival++;
 			while (ival < ar.Count)
 			{
-				object n = this._FilterExpression.Evaluate(rpt, data.Data[ival]);
+				object n = await this._FilterExpression.Evaluate(rpt, data.Data[ival]);
 				if (ApplyCompare(tc, o, n) != 0)
 					break;
 				ival++;

@@ -676,7 +676,7 @@ namespace fyiReporting.RDL
                 return;
 
             Row r = FirstChartRow(rpt);
-            object title = t.Caption.Evaluate(rpt, r);
+            object title = await t.Caption.Evaluate(rpt, r);
             if (t.Style != null)
             {
                 await t.Style.DrawString(rpt, g, title, t.Caption.GetTypeCode(), r, rect);
@@ -696,7 +696,7 @@ namespace fyiReporting.RDL
                 return size;
 
             Row r = FirstChartRow(rpt);
-            object title = t.Caption.Evaluate(rpt, r);
+            object title = await t.Caption.Evaluate(rpt, r);
             if (t.Style != null)
                 size = await t.Style.MeasureString(rpt, g, title, t.Caption.GetTypeCode(), r, int.MaxValue);
             else
@@ -742,13 +742,14 @@ namespace fyiReporting.RDL
 
         }
 
-        protected object GetCategoryValue(Report rpt, int row, out TypeCode tc)
+        protected async Task<(object value, TypeCode tc)> GetCategoryValue(Report rpt, int row)
         {
             MatrixCellEntry mce = _DataDefn[row, 0];
+            TypeCode tc;
             if (mce == null)
             {
                 tc = TypeCode.String;
-                return "";                  // Not sure what this really means TODO:
+                return ("", tc);                  // Not sure what this really means TODO:
             }
 
             Row lrow;
@@ -759,9 +760,9 @@ namespace fyiReporting.RDL
                 lrow = null;
             ChartExpression ce = (ChartExpression)(mce.DisplayItem);
 
-            object v = ce.Value.Evaluate(rpt, lrow);
+            object v = await ce.Value.Evaluate(rpt, lrow);
             tc = ce.Value.GetTypeCode();
-            return v;
+            return (v, tc);
         }
 
         protected async Task<double> GetDataValue(Report rpt, int row, int col)
@@ -960,7 +961,7 @@ namespace fyiReporting.RDL
             }
             else
             {       // Evaluate the DataLable value for the display
-                v = dp.DataLabel.Value.Evaluate(rpt, lrow);
+                v = await dp.DataLabel.Value.Evaluate(rpt, lrow);
                 tc = dp.DataLabel.Value.GetTypeCode();
             }
 

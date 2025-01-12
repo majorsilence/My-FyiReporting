@@ -57,7 +57,7 @@ namespace fyiReporting.RDL
 		}
 
 		// Evaluate is for interpretation  (and is relatively slow)
-		public Task<object> Evaluate(Report rpt, Row row)
+		public async Task<object> Evaluate(Report rpt, Row row)
 		{
             bool bSave = true;
             RowEnumerable re = this.GetDataScope(rpt, row, out bSave);
@@ -71,7 +71,7 @@ namespace fyiReporting.RDL
                 ArrayList ar = new ArrayList(Math.Max(1,re.LastRow - re.FirstRow + 1));
                 foreach (Row r in re)
                 {
-                    temp = _Expr.Evaluate(rpt, r);
+                    temp = await _Expr.Evaluate(rpt, r);
                     ar.Add(temp);
                 }
 
@@ -79,7 +79,7 @@ namespace fyiReporting.RDL
                 if (bSave)
                     SetValue(rpt, v);
             }
-            return Task.FromResult(v);
+			return v;
         }
 		
 		public Task<double> EvaluateDouble(Report rpt, Row row)

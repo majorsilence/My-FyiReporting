@@ -259,7 +259,7 @@ namespace fyiReporting.RDL
             foreach (CustomProperty cp in _Properties)
             {
                 string name = await cp.Name.EvaluateString(rpt, row);
-                object val = cp.Value.Evaluate(rpt, row);
+                object val = await cp.Value.Evaluate(rpt, row);
                 try { dict.Add(name, val); }
                 catch
                 {

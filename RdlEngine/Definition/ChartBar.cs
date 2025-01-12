@@ -278,7 +278,7 @@ namespace fyiReporting.RDL
             int maxWidth = 0;
             for (int iRow = 1; iRow <= CategoryCount; iRow++)
             {
-                object v = this.GetCategoryValue(rpt, iRow, out tc);
+                (object v, tc) = await this.GetCategoryValue(rpt, iRow);
                 Drawing.Size tSize;
                 if (s == null)
                     tSize = await Style.MeasureStringDefaults(rpt, g, v, tc, null, int.MaxValue);
@@ -316,7 +316,7 @@ namespace fyiReporting.RDL
             TypeCode tc;
             for (int iRow = 1; iRow <= CategoryCount; iRow++)
             {
-                object v = this.GetCategoryValue(rpt, iRow, out tc);
+                (object v, tc) = await this.GetCategoryValue(rpt, iRow);
 
                 int drawLoc = (int)(rect.Top + ((iRow - 1) * ((double)rect.Height / CategoryCount)));
 
