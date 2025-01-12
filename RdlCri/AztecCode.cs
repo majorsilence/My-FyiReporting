@@ -38,9 +38,9 @@ namespace fyiReporting.CRI
         internal void DrawImage(ref Drawing.Bitmap bm, string aztecCode)
         {
 #if DRAWINGCOMPAT
-            var writer = new ZXing.BarcodeWriter<SkiaSharp.SKBitmap>();
+            var writer = new ZXing.SkiaSharp.BarcodeWriter();
 #elif NETSTANDARD2_0 || NET5_0_OR_GREATER
-            var writer = new ZXing.BarcodeWriter<Drawing.Bitmap>();
+            var writer = new ZXing.Windows.Compatibility.BarcodeWriter();
 #else
             var writer = new ZXing.BarcodeWriter();
 #endif
