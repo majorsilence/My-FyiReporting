@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RdlEngine.Utility
 {
-    internal static class HttpClientExtension
+    public static class HttpClientExtension
     {
         public static void AddMajorsilenceReportingUserAgent(this HttpClient client)
         {

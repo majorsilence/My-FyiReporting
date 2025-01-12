@@ -23,6 +23,7 @@
 
 using fyiReporting.RDL;
 using fyiReporting.RdlDesign.Resources;
+using RdlEngine.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +34,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -969,7 +972,7 @@ namespace fyiReporting.RdlDesign
 		/// <param name="hScroll">Horizontal scroll position</param>
 		/// <param name="vScroll">Vertical scroll position</param>
 		/// <param name="clipRectangle"></param>
-		internal void Draw(Graphics ag, float hScroll, float vScroll, System.Drawing.Rectangle clipRectangle)
+		internal async Task Draw(Graphics ag, float hScroll, float vScroll, System.Drawing.Rectangle clipRectangle)
 		{
 			g = ag;
 			
@@ -998,9 +1001,9 @@ namespace fyiReporting.RdlDesign
 
 			float yLoc=0;
 			
-			yLoc += DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageHeaderRegion_Title);
-			yLoc += DrawReportPrimaryRegions(bodyNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_BodyRegion_Title);
-			yLoc += DrawReportPrimaryRegions(pfNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageFooterRegion_Title);
+			yLoc += await DrawReportPrimaryRegions(phNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageHeaderRegion_Title);
+			yLoc += await DrawReportPrimaryRegions(bodyNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_BodyRegion_Title);
+			yLoc += await DrawReportPrimaryRegions(pfNode, LEFTGAP, yLoc, Strings.DesignXmlDraw_PageFooterRegion_Title);
 
 		}
 
@@ -1088,7 +1091,7 @@ namespace fyiReporting.RdlDesign
 			return xNode;
 		}
 
-		private float DrawReportPrimaryRegions(XmlNode xNode, float xLoc, float yLoc, string title)
+		private async Task<float> DrawReportPrimaryRegions(XmlNode xNode, float xLoc, float yLoc, string title)
 		{
             RectangleF TempRect = new RectangleF();  // To be used on grid backgroung design
 
@@ -1162,7 +1165,7 @@ namespace fyiReporting.RdlDesign
             // Draws the items before the band
             // so that the items will appear "below" the band.
             //Items
-            DrawReportItems(items, b); // now draw the report items
+            await DrawReportItems(items, b); // now draw the report items
             //End Items 
 
             //Band and Text 
@@ -1185,7 +1188,7 @@ namespace fyiReporting.RdlDesign
 			return CurrentSectionheight+BANDHEIGHT;
 		}
 
-		private void DrawReportItems(XmlNode xNode, RectangleF r)
+		private async Task DrawReportItems(XmlNode xNode, RectangleF r)
 		{
 			if (xNode == null)
 				return;
@@ -1208,22 +1211,22 @@ namespace fyiReporting.RdlDesign
 						break;
 					case "Table":
                     case "fyi:Grid":
-						rir = DrawTable(xNodeLoop, r);
+						rir = await DrawTable(xNodeLoop, r);
 						break;
 					case "Image":
-						rir = DrawImage(xNodeLoop, r);
+						rir = await DrawImage(xNodeLoop, r);
 						break;
                     case "CustomReportItem":
                         rir = DrawCustomReportItem(xNodeLoop, r);
                         break;
 					case "Rectangle":
-						rir = DrawRectangle(xNodeLoop, r);
+						rir = await DrawRectangle(xNodeLoop, r);
 						break;
 					case "List":
-						rir = DrawList(xNodeLoop, r);
+						rir = await DrawList(xNodeLoop, r);
 						break;
 					case "Matrix":
-						rir = DrawMatrix(xNodeLoop, r);
+						rir = await DrawMatrix(xNodeLoop, r);
 						break;
 					case "Subreport":
 						rir = DrawSubreport(xNodeLoop, r);
@@ -1523,7 +1526,7 @@ namespace fyiReporting.RdlDesign
 		}
 
 
-        private RectangleF DrawImage(XmlNode xNode, RectangleF r)
+        private async Task<RectangleF> DrawImage(XmlNode xNode, RectangleF r)
         {
             RectangleF ir = GetReportItemRect(xNode, r);
             if (!ir.IntersectsWith(_clip))
@@ -1542,7 +1545,7 @@ namespace fyiReporting.RdlDesign
             switch (sNode.InnerText)
             {
                 case "External":
-                    if (DrawImageExternal(xNode, sNode, vNode, si, ir))
+                    if (await DrawImageExternal(xNode, sNode, vNode, si, ir))
                         ir = GetReportItemRect(xNode, r);
 
                     DrawBorder(si, ir);
@@ -1670,49 +1673,54 @@ namespace fyiReporting.RdlDesign
             return im;
         }
 
-		private bool DrawImageExternal(XmlNode iNode, XmlNode sNode, XmlNode vNode, StyleInfo si, RectangleF r)
-		{
-			Stream strm=null;
-			System.Drawing.Image im=null;
-			bool bResize = false;
-			try 
-			{
-				if (vNode.InnerText[0] == '=')
-				{	// Image is an expression; can't calculate at design time
-					DrawString(string.Format("Image: {0}",vNode.InnerText), si, r);
-				}
-				else
-				{
-					// TODO: should probably put this into cached memory: instead of reading all the time
-					string fname = vNode.InnerText;
-					if (fname.StartsWith("http:") ||
-						fname.StartsWith("file:") ||
-						fname.StartsWith("https:"))
-					{
-						WebRequest wreq = WebRequest.Create(fname);
-						WebResponse wres = wreq.GetResponse();
-						strm = wres.GetResponseStream();
-					}
-					else
-						strm = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read);
-					im = System.Drawing.Image.FromStream(strm);
-					// Draw based on sizing options
-					bResize = DrawImageSized(iNode, im, si, r);
-				}
-			}
-			catch (Exception e)
-			{
-				DrawString(string.Format("Image: {0}",e.Message), si, r);
-			}
-			finally
-			{
-				if (strm != null)
-					strm.Close();
-				if (im != null)
-					im.Dispose();
-			}
-			return bResize;
-		}
+        
+
+        private async Task<bool> DrawImageExternal(XmlNode iNode, XmlNode sNode, XmlNode vNode, StyleInfo si, RectangleF r)
+        {
+            Stream strm = null;
+            System.Drawing.Image im = null;
+            bool bResize = false;
+            try
+            {
+                if (vNode.InnerText[0] == '=')
+                {   // Image is an expression; can't calculate at design time
+                    DrawString(string.Format("Image: {0}", vNode.InnerText), si, r);
+                }
+                else
+                {
+                    // TODO: should probably put this into cached memory: instead of reading all the time
+                    string fname = vNode.InnerText;
+                    if (fname.StartsWith("http:") || fname.StartsWith("file:") || fname.StartsWith("https:"))
+                    {
+
+                        using HttpClient httpClient = new HttpClient();
+						httpClient.AddMajorsilenceReportingUserAgent();
+                        HttpResponseMessage response =await  httpClient.GetAsync(fname);
+                        response.EnsureSuccessStatusCode();
+                        strm = await response.Content.ReadAsStreamAsync();
+                    }
+                    else
+                    {
+                        strm = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    }
+                    im = System.Drawing.Image.FromStream(strm);
+                    // Draw based on sizing options
+                    bResize = DrawImageSized(iNode, im, si, r);
+                }
+            }
+            catch (Exception e)
+            {
+                DrawString(string.Format("Image: {0}", e.Message), si, r);
+            }
+            finally
+            {
+                if (strm != null)
+                    strm.Close();
+                if (im != null)
+                    im.Dispose();
+            }
+            return bResize;
+        }
         
         ImageSizingEnum GetSizing(XmlNode iNode)
         {
@@ -1838,7 +1846,7 @@ namespace fyiReporting.RdlDesign
 			return bResize;
 		}
 
-		private RectangleF DrawList(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawList(XmlNode xNode, RectangleF r)
 		{
 			RectangleF listR = GetReportItemRect(xNode, r);
 			StyleInfo si = GetStyleInfo(xNode);
@@ -1848,7 +1856,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode items = this.GetNamedChildNode(xNode, "ReportItems");
 
 			if (items != null)
-				DrawReportItems(items, listR);
+				await DrawReportItems(items, listR);
 
 			return listR;
 		}
@@ -1872,7 +1880,7 @@ namespace fyiReporting.RdlDesign
 			return r;
 		}
 
-		private RectangleF DrawMatrix(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawMatrix(XmlNode xNode, RectangleF r)
 		{
 			RectangleF mr = GetReportItemRect(xNode, r);		// get the matrix rectangle
 			if (mr.IsEmpty)
@@ -1893,7 +1901,7 @@ namespace fyiReporting.RdlDesign
 					if (mi.ReportItem != null)
 					{
 						RectangleF cr = new RectangleF(xpos, ypos, mi.Width, mi.Height);
-						this.DrawReportItems(mi.ReportItem, cr);
+						await this.DrawReportItems(mi.ReportItem, cr);
 					}
 					float width = matrix[1,col].Width;
 					xpos += width;
@@ -1904,7 +1912,7 @@ namespace fyiReporting.RdlDesign
 			return mr;
 		}
 
-		private RectangleF DrawRectangle(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawRectangle(XmlNode xNode, RectangleF r)
 		{
 			StyleInfo si = GetStyleInfo(xNode);
 			RectangleF ri = GetReportItemRect(xNode, r);
@@ -1914,7 +1922,7 @@ namespace fyiReporting.RdlDesign
 			XmlNode items = this.GetNamedChildNode(xNode, "ReportItems");
 
 			if (items != null)
-				DrawReportItems(items, ri);
+				await DrawReportItems(items, ri);
 			
 			return ri;
 		}
@@ -2083,7 +2091,7 @@ namespace fyiReporting.RdlDesign
 			return tr;
 		}
 
-		private RectangleF DrawTable(XmlNode xNode, RectangleF r)
+		private async Task<RectangleF> DrawTable(XmlNode xNode, RectangleF r)
 		{
 			RectangleF tr = GetReportItemRect(xNode, r);		// get the table rectangle
 			if (tr.IsEmpty)
@@ -2128,7 +2136,7 @@ namespace fyiReporting.RdlDesign
 					}
 
 					RectangleF cellR = new RectangleF(xPos, yPos, width, h);
-					DrawReportItems(GetNamedChildNode(tcell, "ReportItems"), cellR);
+					await DrawReportItems(GetNamedChildNode(tcell, "ReportItems"), cellR);
 					xPos += width;
 					col+=colSpan;
 				}

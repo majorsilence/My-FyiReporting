@@ -1080,7 +1080,7 @@ namespace fyiReporting.RdlDesign
             }   
         }
 
-		private void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
+		private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
 		{
 			// Only handle one paint at a time
 			lock (this)
@@ -1097,7 +1097,7 @@ namespace fyiReporting.RdlDesign
 				if (this._ReportDoc == null)		// if no report force the simplest one
 					CreateEmptyReportDoc();
 
-				_DrawPanel.Draw(g, PointsX(_hScroll.Value), PointsY(_vScroll.Value),	
+				await _DrawPanel.Draw(g, PointsX(_hScroll.Value), PointsY(_vScroll.Value),	
 					e.ClipRectangle);
 			}
 			catch (Exception ex) 
