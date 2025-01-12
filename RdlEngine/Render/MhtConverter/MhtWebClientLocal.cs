@@ -24,6 +24,7 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
+using RdlEngine.Utility;
 using System;
 using System.IO;
 using System.Net;
@@ -219,6 +220,7 @@ namespace fyiReporting.RDL
 
             using (HttpClient client = new HttpClient())
             {
+                client.AddMajorsilenceReportingUserAgent();
                 HttpResponseMessage response = await client.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
                 {

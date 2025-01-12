@@ -37,6 +37,7 @@ using System.Net;
 using RdlEngine.Resources;
 using System.Net.Http;
 using System.Threading.Tasks;
+using RdlEngine.Utility;
 
 namespace fyiReporting.RDL
 {
@@ -461,6 +462,7 @@ namespace fyiReporting.RDL
                 {
                     using (HttpClient client = new HttpClient())
                     {
+						client.AddMajorsilenceReportingUserAgent();
                         strm = await client.GetStreamAsync(src);
                     }
                 }

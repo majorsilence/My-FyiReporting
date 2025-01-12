@@ -36,6 +36,7 @@ using System.Threading;
 using System.Net;
 using System.Threading.Tasks;
 using System.Net.Http;
+using RdlEngine.Utility;
 
 
 namespace fyiReporting.RDL
@@ -275,6 +276,7 @@ namespace fyiReporting.RDL
                         {
                             using (HttpClient client = new HttpClient())
                             {
+                                client.AddMajorsilenceReportingUserAgent();
                                 HttpResponseMessage response = await client.GetAsync(fname);
                                 if (response.IsSuccessStatusCode)
                                 {

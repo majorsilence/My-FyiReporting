@@ -194,6 +194,7 @@ namespace fyiReporting.Data
             {
                 using (HttpClient client = new HttpClient())
                 {
+                    client.AddMajorsilenceReportingUserAgent();
                     HttpResponseMessage response = await client.GetAsync(fname);
                     response.EnsureSuccessStatusCode();
                     strm = await response.Content.ReadAsStreamAsync();

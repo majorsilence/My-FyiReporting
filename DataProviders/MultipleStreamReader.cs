@@ -132,6 +132,7 @@ namespace fyiReporting.Data
                 fname.StartsWith("file:") ||
                 fname.StartsWith("https:"))
             {
+                _httpClient.AddMajorsilenceReportingUserAgent();
                 HttpResponseMessage response = await _httpClient.GetAsync(fname);
                 response.EnsureSuccessStatusCode();
                 strm = await response.Content.ReadAsStreamAsync();
