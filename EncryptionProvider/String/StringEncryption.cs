@@ -11,7 +11,7 @@ namespace EncryptionProvider.String
     {
         private readonly Random random;
         private readonly byte[] key;
-        private readonly RijndaelManaged rm;
+        private readonly Aes aes;
         private readonly UTF8Encoding encoder;
 
         public StringEncryption(string pass)
@@ -32,8 +32,8 @@ namespace EncryptionProvider.String
             }
 
             //make sure that the length of the password is divisible by 4
-            int padding = sb.Length%4;
-            if (padding > 0 )
+            int padding = sb.Length % 4;
+            if (padding > 0)
             {
                 for (int i = 4; i > padding; i--)
                 {
@@ -42,10 +42,9 @@ namespace EncryptionProvider.String
             }
 
             this.random = new Random();
-            this.rm = new RijndaelManaged();
+            this.aes = Aes.Create();
             this.encoder = new UTF8Encoding();
             this.key = Convert.FromBase64String(sb.ToString());
-
         }
 
         public string Encrypt(string unencrypted)
@@ -71,13 +70,13 @@ namespace EncryptionProvider.String
 
         private byte[] Encrypt(byte[] buffer, byte[] vector)
         {
-            var encryptor = this.rm.CreateEncryptor(this.key, vector);
+            var encryptor = this.aes.CreateEncryptor(this.key, vector);
             return this.Transform(buffer, encryptor);
         }
 
         private byte[] Decrypt(byte[] buffer, byte[] vector)
         {
-            var decryptor = this.rm.CreateDecryptor(this.key, vector);
+            var decryptor = this.aes.CreateDecryptor(this.key, vector);
             return this.Transform(buffer, decryptor);
         }
 
@@ -91,6 +90,5 @@ namespace EncryptionProvider.String
 
             return stream.ToArray();
         }
-
     }
 }
