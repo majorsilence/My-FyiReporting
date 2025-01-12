@@ -42,7 +42,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReportItem pri;
 
-        internal PropertyVisibility(PropertyReportItem ri)
+        public PropertyVisibility(PropertyReportItem ri)
         {
             pri = ri;
         }
@@ -105,7 +105,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyVisibilityUIEditor : UITypeEditor
     {
-        internal PropertyVisibilityUIEditor()
+        public PropertyVisibilityUIEditor()
         {
         }
 

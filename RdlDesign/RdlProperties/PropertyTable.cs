@@ -44,7 +44,7 @@ namespace fyiReporting.RdlDesign
        Editor(typeof(PropertyTableUIEditor), typeof(System.Drawing.Design.UITypeEditor))]
     internal class PropertyTable : PropertyDataRegion
     {
-        internal PropertyTable(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
+        public PropertyTable(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
             : base(d, dc, ris)
         {
         }
@@ -66,7 +66,7 @@ namespace fyiReporting.RdlDesign
     }
     internal class PropertyTableUIEditor : UITypeEditor
     {
-        internal PropertyTableUIEditor()
+        public PropertyTableUIEditor()
         {
         }
 

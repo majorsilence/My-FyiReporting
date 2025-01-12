@@ -44,7 +44,7 @@ namespace fyiReporting.RdlDesign
         string _expr;
         //ArrayList _list;
 
-        internal PropertyExpr(string ex)
+        public PropertyExpr(string ex)
         {
             _expr = ex;
         }
@@ -111,7 +111,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyExprUIEditor : UITypeEditor
     {
-        internal PropertyExprUIEditor()
+        public PropertyExprUIEditor()
         {
         }
 

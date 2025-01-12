@@ -41,7 +41,7 @@ namespace fyiReporting.RdlDesign
         string[] _names;
         string[] _subitems;
 
-        internal PropertyBackground(PropertyReportItem ri)
+        public PropertyBackground(PropertyReportItem ri)
         {
             pri = ri;
             _names = null;
@@ -188,7 +188,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyBackgroundUIEditor : UITypeEditor
     {
-        internal PropertyBackgroundUIEditor()
+        public PropertyBackgroundUIEditor()
         {
         }
 
@@ -272,7 +272,7 @@ namespace fyiReporting.RdlDesign
         string[] _names;
         string[] _subitems;
 
-        internal PropertyBackgroundImage(PropertyReportItem ri, string[] names)
+        public PropertyBackgroundImage(PropertyReportItem ri, string[] names)
         {
             pri = ri;
             _names = names;

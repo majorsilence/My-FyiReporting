@@ -44,7 +44,7 @@ namespace fyiReporting.RdlDesign
         string[] _subitems;
         string[] _names;
 
-        internal PropertyBorder(PropertyReportItem ri)
+        public PropertyBorder(PropertyReportItem ri)
         {
             pri = ri;
             _names = null;
@@ -124,7 +124,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyBorderUIEditor : UITypeEditor
     {
-        internal PropertyBorderUIEditor()
+        public PropertyBorderUIEditor()
         {
         }
 

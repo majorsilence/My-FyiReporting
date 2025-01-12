@@ -42,7 +42,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReportItem pri;
 
-        internal PropertyAction(PropertyReportItem ri)
+        public PropertyAction(PropertyReportItem ri)
         {
             pri = ri;
         }
@@ -115,7 +115,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyActionUIEditor : UITypeEditor
     {
-        internal PropertyActionUIEditor()
+        public PropertyActionUIEditor()
         {
         }
 

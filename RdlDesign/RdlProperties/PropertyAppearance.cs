@@ -40,7 +40,7 @@ namespace fyiReporting.RdlDesign
         string[] _subitems;
         string[] _names;
 
-        internal PropertyAppearance(PropertyReportItem ri)
+        public PropertyAppearance(PropertyReportItem ri)
         {
             pri = ri;
             _names = null;
@@ -299,7 +299,7 @@ namespace fyiReporting.RdlDesign
 
     internal class PropertyAppearanceUIEditor : UITypeEditor
     {
-        internal PropertyAppearanceUIEditor()
+        public PropertyAppearanceUIEditor()
         {
         }
 
