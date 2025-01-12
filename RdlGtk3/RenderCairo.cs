@@ -416,7 +416,6 @@ namespace fyiReporting.RdlGtk3
             Rectangle ink;
             layout.GetExtents(out ink, out logical);
             double height = logical.Height / Scale.PangoScale;
-            double y = 0;
             double x = 0;
 
             switch (si.VerticalAlign)
@@ -508,7 +507,6 @@ namespace fyiReporting.RdlGtk3
             Rectangle ink;
             layout.GetExtents(out ink, out logical);
             double height = logical.Height / Scale.PangoScale;
-            double y = 0;
             double x = 0;
 
             switch (si.VerticalAlign)
