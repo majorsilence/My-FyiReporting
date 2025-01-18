@@ -170,17 +170,11 @@ namespace fyiReporting.RdlDesktop
 		private void GetConfigInfo()
 		{
 			_mimes = new Hashtable();
-			string majorsilenceReporting = Path.Combine(Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting");
-			string optFileName = Path.Combine(majorsilenceReporting, "config.xml");
+			string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "config.xml");
 			if (!File.Exists(optFileName))
 			{
 				if (File.Exists("config.xml"))
 				{
-					if (!Directory.Exists(majorsilenceReporting))
-					{
-						Directory.CreateDirectory(majorsilenceReporting);
-					}
 					File.Copy("config.xml", optFileName);
 				}
 			}

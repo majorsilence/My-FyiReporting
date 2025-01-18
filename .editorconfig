@@ -244,4 +244,10 @@ dotnet_naming_style.begins_with_i.word_separator =
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 # CA2000: Dispose objects before losing scope
-dotnet_diagnostic.CA2000.severity = warning
+#dotnet_diagnostic.CA2000.severity = warning
+
+# CA2007: Do not directly await a Task without calling ConfigureAwait
+#dotnet_diagnostic.CA2007.severity = warning
+
+# CA4014: async code not awaited.  See https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014
+dotnet_diagnostic.CA4014.severity = error

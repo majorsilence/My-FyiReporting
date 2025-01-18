@@ -78,7 +78,7 @@ namespace fyiReporting.RdlDesktop
 					catch (Exception e)
 					{
 						Console.WriteLine("File read error: {0} ", e );
-						throw e;
+						throw;
 					}
 					finally
 					{

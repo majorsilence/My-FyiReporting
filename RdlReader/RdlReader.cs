@@ -43,7 +43,7 @@ namespace fyiReporting.RdlReader
     /// </summary>
     public partial class RdlReader : IMessageFilter
     {
-        static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "readerstate.xml");
+        static readonly string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "readerstate.xml");
         SortedList _RecentFiles = null;
 
         /// <summary>

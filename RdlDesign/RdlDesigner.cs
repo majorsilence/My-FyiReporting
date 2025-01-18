@@ -69,7 +69,7 @@ namespace fyiReporting.RdlDesign
 		// The version should match what is set in program.cs
 		static readonly string IpcFileName = string.Format("\\fyiIpcData{0}.txt", typeof(Program).Assembly.GetName().Version.ToString().Replace(".", ""));
 
-		static readonly string optFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MajorsilenceReporting", "designerstate.xml");
+		static readonly string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "designerstate.xml");
 		SortedList<DateTime, string> _RecentFiles = null;
 		List<Uri> _CurrentFiles = null;     // temporary variable for current files
 		List<string> _Toolbar = null;           // temporary variable for toolbar entries
@@ -2066,7 +2066,7 @@ namespace fyiReporting.RdlDesign
 			e.SelectAll();
 		}
 
-		private void menuEditFind_Click(object sender, System.EventArgs ea)
+		private async void menuEditFind_Click(object sender, System.EventArgs ea)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			// These menus require an MDIChild in order to work
@@ -2078,7 +2078,7 @@ namespace fyiReporting.RdlDesign
 			{
 				if (!e.PreviewCtl.ShowFindPanel)
 					e.PreviewCtl.ShowFindPanel = true;
-				e.PreviewCtl.FindNext();
+				await e.PreviewCtl.FindNext();
 			}
 			else
 			{
