@@ -4,7 +4,7 @@
 
     Private Sub ButtonSelectReport_Click(sender As Object, e As EventArgs) Handles ButtonSelectReport.Click
 
-        If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If OpenFileDialog1.ShowDialog = System.Windows.Forms.DialogResult.OK Then
 
             file = OpenFileDialog1.FileName
 

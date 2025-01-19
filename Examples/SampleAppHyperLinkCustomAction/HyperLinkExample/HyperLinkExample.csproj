@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -14,8 +14,7 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Data.DataSetExtensions" />
-	<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
+	</ItemGroup>
 </Project>

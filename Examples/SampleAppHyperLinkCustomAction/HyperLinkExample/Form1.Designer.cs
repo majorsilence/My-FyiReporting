@@ -58,7 +58,6 @@
             this.rdlViewer1.ShowWaitDialog = true;
             this.rdlViewer1.Size = new System.Drawing.Size(558, 323);
             this.rdlViewer1.SourceFile = null;
-            this.rdlViewer1.SourceRdl = null;
             this.rdlViewer1.TabIndex = 0;
             this.rdlViewer1.UseTrueMargins = true;
             this.rdlViewer1.Zoom = 0.664902F;

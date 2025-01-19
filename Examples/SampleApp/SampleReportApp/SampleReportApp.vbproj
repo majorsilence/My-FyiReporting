@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <StartupObject>SampleReportApp.My.MyApplication</StartupObject>
     <MyType>WindowsForms</MyType>
@@ -62,10 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="iTextSharp.LGPLv2.Core" />
-    <PackageReference Include="MajorsilenceReporting-Core" />
-    <PackageReference Include="MajorsilenceReporting-Viewer" />
+	<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
     <PackageReference Include="SharpZipLib" />
-    <PackageReference Include="System.Data.DataSetExtensions" />
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="ZXing.Net" />
   </ItemGroup>

@@ -20,19 +20,7 @@ namespace SampleApp2_SetData
         public Form1()
         {
             InitializeComponent();
-
-            // TODO: You must change this connection string to match where your database is
-            string connectionString = @"Data Source=/home/peter/Projects/My-FyiReporting/Examples/northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;";
-            var cn = new SqliteConnection(connectionString);
-            var cmd = new SqliteCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT CategoryID, CategoryName, Description FROM Categories;";
-            cmd.Connection = cn;
-      
-
         }
-
-       
 
         private void InitializeViewer()
         {
@@ -45,11 +33,7 @@ namespace SampleApp2_SetData
             this.rdlViewer1.Name = "rdlViewer1";
 
             this.rdlViewer1.Size = new System.Drawing.Size(731, 381);
-
-
         }
-
-       
 
         private void InitializeComponent()
         {
@@ -58,11 +42,9 @@ namespace SampleApp2_SetData
             reportStrip = new fyiReporting.RdlViewer.ViewerToolstrip(rdlViewer1);
             //reportStrip.Location = new Point(0, 0);
             this.Controls.Add(reportStrip);
-       
 
-         
             this.SuspendLayout();
- 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 462);
@@ -70,10 +52,6 @@ namespace SampleApp2_SetData
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-
         }
-
-
-
     }
 }
