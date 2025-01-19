@@ -30,6 +30,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -80,6 +81,7 @@ namespace fyiReporting.RdlDesign
         public DesignCtl()
 		{
 			InitializeComponent();
+            this.DoubleBuffered = true;
 			// Get our graphics DPI					   
 			Graphics g = null;			
 			try
@@ -108,6 +110,7 @@ namespace fyiReporting.RdlDesign
 			_hScroll.Enabled = false;
 
 			_DrawPanel = new DesignXmlDraw();
+
 			_DrawPanel.Paint += new PaintEventHandler(this.DrawPanelPaint);
 			_DrawPanel.MouseUp += new MouseEventHandler(this.DrawPanelMouseUp);
 			_DrawPanel.MouseDown += new MouseEventHandler(this.DrawPanelMouseDown);
@@ -1082,42 +1085,70 @@ namespace fyiReporting.RdlDesign
             }   
         }
 
-		private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
-		{
-			// Only handle one paint at a time
-			lock (this)
-			{
-				if (_InPaint)
-					return;
-				_InPaint=true;
-			}
+        private Bitmap _buffer;
+        // HACK: async shenanigans
+        bool doGraphicsDraw;
+        private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            // HACK: async shenanigans
+            if (doGraphicsDraw && _buffer != null)
+            {
+                e.Graphics.DrawImage(_buffer, 0, 0);
+                _buffer.Dispose();
+                _buffer = null;
+                doGraphicsDraw = false;
+            }
+            else
+            {
+                // HACK: async shenanigans
+                await Internal_DrawPanelPaint();
+                doGraphicsDraw = true;
+                // HACK: async shenanigans, force a repaint where e.Graphics is still valid
+                _DrawPanel.Refresh();       
+            }
+        }
 
-			Graphics g = e.Graphics;
+        private async Task Internal_DrawPanelPaint()
+        {
+            // Only handle one paint at a time
+            lock (this)
+            {
+                if (_InPaint)
+                    return;
+                _InPaint = true;
+            }
 
-			try			// never want to die in here
-			{
-				if (this._ReportDoc == null)		// if no report force the simplest one
-					CreateEmptyReportDoc();
+            // Create a self-contained Graphics object
+            _buffer = new Bitmap(Math.Max(1, _DrawPanel.Width), Math.Max(1, _DrawPanel.Height));
+            using (Graphics g = Graphics.FromImage(_buffer))
+            {
+                try // never want to die in here
+                {
+                    if (this._ReportDoc == null) // if no report force the simplest one
+                        CreateEmptyReportDoc();
 
-				await _DrawPanel.Draw(g, PointsX(_hScroll.Value), PointsY(_vScroll.Value),	
-					e.ClipRectangle);
-			}
-			catch (Exception ex) 
-			{	// don't want to kill process if we die -- put up some kind of error message
-				StringFormat format = new StringFormat();
-				string msg = string.Format("Error drawing report.  Likely error in syntax.  Switch to syntax and correct report syntax.{0}{1}{0}{2}", 
-					Environment.NewLine, ex.Message, ex.StackTrace) ;
-				g.DrawString(msg, this.Font, Brushes.Black, new Rectangle(2, 2, this.Width, this.Height), format);
+                    //g.ClipBounds;
+                    var clip = new Rectangle(PixelsX(_hScroll.Value), PixelsY(_vScroll.Value),
+                        PixelsX(_DrawPanel.Width), PixelsY(_DrawPanel.Height));
+                    // Draw the report asynchronously
+                    await _DrawPanel.Draw(g, PointsX(_hScroll.Value), PointsY(_vScroll.Value), clip);
+                }
+                catch (Exception ex)
+                { // don't want to kill process if we die -- put up some kind of error message
+                    StringFormat format = new StringFormat();
+                    string msg = string.Format("Error drawing report. Likely error in syntax. Switch to syntax and correct report syntax.{0}{1}{0}{2}",
+                        Environment.NewLine, ex.Message, ex.StackTrace);
+                    g.DrawString(msg, this.Font, Brushes.Black, new Rectangle(2, 2, this.Width, this.Height), format);
+                }
+            }
 
-			}		
-			
-			lock (this)
-			{
-				_InPaint=false;
-			}
-		}
+            lock (this)
+            {
+                _InPaint = false;
+            }
+        }
 
-		private void CreateEmptyReportDoc()
+        private void CreateEmptyReportDoc()
 		{
 			XmlDocument xDoc = new XmlDocument();
 			xDoc.PreserveWhitespace = false;
@@ -3423,7 +3454,18 @@ namespace fyiReporting.RdlDesign
 			MenuSubreportPaste.Enabled = bEnable;
 			MenuTablePaste.Enabled = bEnable;
 		}
-	}
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Dispose managed resources
+                _buffer?.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
+    }
 
 	public class SubReportEventArgs : EventArgs
 	{
