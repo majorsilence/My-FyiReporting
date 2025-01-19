@@ -18,7 +18,7 @@ namespace SampleApp2_SetData
             Application.SetCompatibleTextRenderingDefault(false);
             Form frm = new Form();
             fyiReporting.RdlDesign.RdlUserControl ctl = new fyiReporting.RdlDesign.RdlUserControl();
-            ctl.OpenFile(@"C:\Users\Peter\Projects\My-FyiReporting\Examples\Examples\FileDirectoryTest.rdl");
+            ctl.OpenFile(@"C:\Users\peter\source\repos\My-FyiReporting\Examples\Examples\FileDirectoryTest.rdl");
             ctl.Dock = DockStyle.Fill;
             frm.Controls.Add(ctl);
 

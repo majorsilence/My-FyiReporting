@@ -10,6 +10,11 @@
   <ItemGroup>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+	<ItemGroup>
+		<Content Include="..\..\..\RdlEngine\RdlEngineConfig.xml" Link="RdlEngineConfig.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Majorsilence.Reporting.ReportDesigner" />
   </ItemGroup>

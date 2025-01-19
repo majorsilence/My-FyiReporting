@@ -56,10 +56,11 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="RdlEngineConfig.Linux.xml" />
-    <Content Include="RdlEngineConfig.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="..\..\..\RdlEngine\RdlEngineConfig.xml" Link="RdlEngineConfig.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="iTextSharp.LGPLv2.Core" />
 	<PackageReference Include="Majorsilence.Reporting.RdlViewer" />

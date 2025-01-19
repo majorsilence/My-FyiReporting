@@ -14,7 +14,13 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\RdlEngine\RdlEngineConfig.xml" Link="RdlEngineConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
+		<PackageReference Include="Majorsilence.Reporting.RdlCri" />
 	</ItemGroup>
 </Project>
