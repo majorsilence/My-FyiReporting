@@ -58,7 +58,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyImage _pi;
 
-        internal PropertyImageI(PropertyImage pi)
+        public PropertyImageI(PropertyImage pi)
         {
             _pi = pi;
         }
@@ -183,7 +183,7 @@ namespace fyiReporting.RdlDesign
     #region UIEditor  
     internal class PropertyImageUIEditor : UITypeEditor
     {
-        internal PropertyImageUIEditor()
+        public PropertyImageUIEditor()
         {
         }
 

@@ -34,7 +34,7 @@ namespace fyiReporting.RdlDesign
     [DefaultProperty("Value")]
     internal class PropertyTextbox : PropertyReportItem
     {
-        internal PropertyTextbox(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+        public PropertyTextbox(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
 

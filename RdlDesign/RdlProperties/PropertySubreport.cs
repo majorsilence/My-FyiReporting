@@ -36,7 +36,7 @@ namespace fyiReporting.RdlDesign
     
     internal class PropertySubreport : PropertyReportItem
     {
-        internal PropertySubreport(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+        public PropertySubreport(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
 

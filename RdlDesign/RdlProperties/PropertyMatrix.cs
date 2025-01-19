@@ -41,7 +41,7 @@ namespace fyiReporting.RdlDesign
     [TypeConverter(typeof(PropertyMatrixConverter))]
     internal class PropertyMatrix : PropertyDataRegion
     {
-        internal PropertyMatrix(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
+        public PropertyMatrix(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
             : base(d, dc, ris)
         {
         }

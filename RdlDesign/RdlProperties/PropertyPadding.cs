@@ -36,14 +36,14 @@ namespace fyiReporting.RdlDesign
         string[] _names;
         string[] _subitems;
 
-        internal PropertyPadding(PropertyReportItem pri)
+        public PropertyPadding(PropertyReportItem pri)
         {
             _pri = pri;
             _names = null;
             _subitems = new string[] { "Style", "" };
         }
 
-        internal PropertyPadding(PropertyReportItem ri, params string[] names)
+        public PropertyPadding(PropertyReportItem ri, params string[] names)
         {
             _pri = ri;
             _names = names;

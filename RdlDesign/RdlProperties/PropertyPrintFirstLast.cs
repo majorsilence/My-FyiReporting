@@ -37,7 +37,7 @@ namespace fyiReporting.RdlDesign
         PropertyReport _pr;
         XmlNode _parent;
 
-        internal PropertyPrintFirstLast(PropertyReport pr, XmlNode phNode)
+        public PropertyPrintFirstLast(PropertyReport pr, XmlNode phNode)
         {
             _pr = pr;
             _parent = phNode;

@@ -30,7 +30,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     internal class PropertyRectangle : PropertyReportItem
     {
-        internal PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+        public PropertyRectangle(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
 

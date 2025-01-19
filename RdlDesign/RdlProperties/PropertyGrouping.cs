@@ -42,7 +42,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReportItem pri;
 
-        internal PropertyGrouping(PropertyReportItem ri)
+        public PropertyGrouping(PropertyReportItem ri)
         {
             pri = ri;
         }

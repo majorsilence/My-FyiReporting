@@ -35,7 +35,7 @@ namespace fyiReporting.RdlDesign
     [TypeConverter(typeof(PropertyListConverter))]
     internal class PropertyList : PropertyDataRegion
     {
-        internal PropertyList(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
+        public PropertyList(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
             : base(d, dc, ris)
         {
         }

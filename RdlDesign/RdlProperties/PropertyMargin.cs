@@ -34,7 +34,7 @@ namespace fyiReporting.RdlDesign
     {
         PropertyReport _pr;
 
-        internal PropertyMargin(PropertyReport pr)
+        public PropertyMargin(PropertyReport pr)
         {
             _pr = pr;
         }

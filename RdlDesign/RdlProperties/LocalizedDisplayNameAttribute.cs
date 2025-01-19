@@ -5,7 +5,7 @@ namespace fyiReporting.RdlDesign
 {
 	internal class LocalizedDisplayNameAttribute : DisplayNameAttribute
 	{
-		internal LocalizedDisplayNameAttribute(string displayName)
+		public LocalizedDisplayNameAttribute(string displayName)
 			: base(displayName)
 		{
 		}

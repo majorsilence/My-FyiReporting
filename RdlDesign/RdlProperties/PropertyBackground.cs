@@ -48,7 +48,7 @@ namespace fyiReporting.RdlDesign
             _subitems = new string[] { "Style", "" };
         }
 
-        internal PropertyBackground(PropertyReportItem ri, params string[] names)
+        public PropertyBackground(PropertyReportItem ri, params string[] names)
         {
             pri = ri;
             _names = names;

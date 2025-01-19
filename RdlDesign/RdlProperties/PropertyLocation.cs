@@ -36,7 +36,7 @@ namespace fyiReporting.RdlDesign
         string _left;
         string _top;
 
-        internal PropertyLocation(PropertyReportItem pri, string x, string y)
+        public PropertyLocation(PropertyReportItem pri, string x, string y)
         {
             _pri = pri;
             _left = x;

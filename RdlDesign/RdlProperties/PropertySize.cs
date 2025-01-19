@@ -36,7 +36,7 @@ namespace fyiReporting.RdlDesign
         string _h;
         string _w;
 
-        internal PropertySize(PropertyReportItem pri, string h, string w)
+        public PropertySize(PropertyReportItem pri, string h, string w)
         {
             _pri = pri;
             _h = h;

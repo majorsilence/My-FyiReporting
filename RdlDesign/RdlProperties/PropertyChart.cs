@@ -34,7 +34,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     internal class PropertyChart : PropertyDataRegion
     {
-        internal PropertyChart(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+        public PropertyChart(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
 

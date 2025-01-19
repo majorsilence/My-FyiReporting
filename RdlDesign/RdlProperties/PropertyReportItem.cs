@@ -50,7 +50,7 @@ namespace fyiReporting.RdlDesign
         bool InMatrix = false;
         bool bCustom = false;
 
-        internal PropertyReportItem(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
+        public PropertyReportItem(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris)
         {
             _Draw = d;
             _DesignCtl = dc; 

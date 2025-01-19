@@ -32,7 +32,7 @@ namespace fyiReporting.RdlDesign
     /// </summary>
     internal class PropertyDataRegion : PropertyReportItem
     {
-        internal PropertyDataRegion(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
+        public PropertyDataRegion(DesignXmlDraw d, DesignCtl dc, List<XmlNode> ris) : base(d, dc, ris)
         {
         }
         

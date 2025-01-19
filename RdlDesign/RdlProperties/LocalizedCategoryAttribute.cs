@@ -6,7 +6,7 @@ namespace fyiReporting.RdlDesign
 {
 	internal class LocalizedCategoryAttribute : CategoryAttribute
 	{
-		internal LocalizedCategoryAttribute(string category)
+		public LocalizedCategoryAttribute(string category)
 			: base(category)
 		{
 		}

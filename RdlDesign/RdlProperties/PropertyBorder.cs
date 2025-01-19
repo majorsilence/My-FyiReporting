@@ -51,7 +51,7 @@ namespace fyiReporting.RdlDesign
             _subitems = new string[] { "Style", "", "" };
         }
 
-        internal PropertyBorder(PropertyReportItem ri, params string[] names)
+        public PropertyBorder(PropertyReportItem ri, params string[] names)
         {
             pri = ri;
             _names = names;
