@@ -169,7 +169,7 @@ namespace fyiReporting.RdlReader
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static async Task Main()
+        static void Main()
         {
             bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
@@ -237,7 +237,8 @@ namespace fyiReporting.RdlReader
                 {
                     if (!string.IsNullOrWhiteSpace(printerName))
                     {
-                        await SilentPrint(reportFile, parameters, printerName);
+                        // HACK: async
+                        Task.Run(async ()=> await SilentPrint(reportFile, parameters, printerName)).GetAwaiter().GetResult();
                         return;
                     }
 
@@ -257,7 +258,6 @@ namespace fyiReporting.RdlReader
             }
 
             Application.Run(new RdlReader(bMono));
-
         }
 
         public static async Task SilentPrint(string reportPath, string parameters, string printerName = null)
