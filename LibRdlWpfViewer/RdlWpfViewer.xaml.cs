@@ -41,10 +41,11 @@ namespace LibRdlWpfViewer
             {
                 return this.reportViewer.SourceFile;
             }
-            set
-            {
-                this.reportViewer.SourceFile = value;
-            }
+        }
+
+        public async Task SetSourceFile(Uri value)
+        {
+            await this.reportViewer.SetSourceFile(value);
         }
 
         public string SourceRdl

@@ -29,6 +29,7 @@ using System.Data;
 using System.Drawing.Printing;
 using fyiReporting.RDL;
 using fyiReporting.RdlViewer;
+using System.Threading.Tasks;
 
 namespace fyiReporting.RdlReader
 {
@@ -68,11 +69,12 @@ namespace fyiReporting.RdlReader
         public Uri SourceFile
         {
             get { return this.rdlViewer1.SourceFile; }
-            set
-            {
-                this.rdlViewer1.SourceFile = value;
-                this.rdlViewer1.Refresh();		// force the repaint
-            }
+        }
+
+        public async Task SetSourceFile(Uri file)
+        {
+            await this.rdlViewer1.SetSourceFile(file);
+            this.rdlViewer1.Refresh();		// force the repaint
         }
 
         /// <summary>

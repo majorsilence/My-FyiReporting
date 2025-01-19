@@ -53,7 +53,7 @@ namespace fyiReporting.RdlViewer
                 return;
             }
 
-            Viewer.SourceFile = new Uri(dlg.FileName);
+            await Viewer.SetSourceFile(new Uri(dlg.FileName));
             await Viewer.Rebuild();
 
             currentPage.Text = Viewer.PageCurrent.ToString();

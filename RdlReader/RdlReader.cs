@@ -70,6 +70,11 @@ namespace fyiReporting.RdlReader
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlReader_Closing);
             _GetPassword = new RDL.NeedPassword(this.GetPassword);
 
+            this.Load += RdlReader_Load;
+        }
+
+        public async void RdlReader_Load(object sender, EventArgs e) 
+        { 
             // open up the current files if any
             if (_CurrentFiles != null)
             {
@@ -79,7 +84,7 @@ namespace fyiReporting.RdlReader
                     mc.MdiParent = this;
                     mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
 
-                    mc.SourceFile = dict.Key;
+                    await mc.SetSourceFile(dict.Key);
                     if (dict.Value != string.Empty)
                     {
                         mc.Parameters = dict.Value;
@@ -264,7 +269,7 @@ namespace fyiReporting.RdlReader
         {
             var rdlViewer = new fyiReporting.RdlViewer.RdlViewer();
             rdlViewer.Visible = false;
-            rdlViewer.SourceFile = new Uri(reportPath);
+            await rdlViewer.SetSourceFile(new Uri(reportPath));
             rdlViewer.Parameters = parameters;
             await rdlViewer.Rebuild();
 
@@ -365,7 +370,7 @@ namespace fyiReporting.RdlReader
             Environment.Exit(0);
         }
 
-        private void menuFileOpen_Click(object sender, EventArgs e)
+        private async void menuFileOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Strings.RdlReader_menuFileOpen_Click_Filter;
@@ -376,22 +381,22 @@ namespace fyiReporting.RdlReader
             {
                 foreach (string file in ofd.FileNames)
                 {
-                    CreateMDIChild(new Uri(file), false);
+                    await CreateMDIChild(new Uri(file), false);
                 }
                 RecentFilesMenu();
             }
         }
 
-        private void menuRecentItem_Click(object sender, System.EventArgs e)
+        private async void menuRecentItem_Click(object sender, System.EventArgs e)
         {
             ToolStripMenuItem m = (ToolStripMenuItem)sender;
             Uri file = new Uri(m.Text.Substring(2));
 
-            CreateMDIChild(file, true);
+            await CreateMDIChild(file, true);
         }
 
         // Create an MDI child.   Only creates it if not already open
-        private void CreateMDIChild(Uri file, bool bMenuUpdate)
+        private async Task CreateMDIChild(Uri file, bool bMenuUpdate)
         {
             MDIChild mcOpen = null;
             if (file != null)
@@ -410,7 +415,7 @@ namespace fyiReporting.RdlReader
                 MDIChild mc = new MDIChild(this.ClientRectangle.Width * 3 / 4, this.ClientRectangle.Height * 3 / 4);
                 mc.MdiParent = this;
                 mc.Viewer.GetDataSourceReferencePassword = _GetPassword;
-                mc.SourceFile = file;
+                await mc.SetSourceFile(file);
                 mc.Text = file == null ? string.Empty : file.LocalPath;
                 NoteRecentFiles(file, bMenuUpdate);
                 mc.Show();

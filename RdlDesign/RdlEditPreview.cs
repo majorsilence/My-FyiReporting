@@ -772,7 +772,6 @@ namespace fyiReporting.RdlDesign
 			this.rdlPreview.ShowFindPanel = false;
 			this.rdlPreview.ShowParameterPanel = true;
 			this.rdlPreview.ShowWaitDialog = true;
-			this.rdlPreview.SourceFile = null;
 			this.rdlPreview.UseTrueMargins = true;
 			this.rdlPreview.Zoom = 0.5495112F;
 			this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;

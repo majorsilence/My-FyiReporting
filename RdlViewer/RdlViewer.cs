@@ -585,21 +585,21 @@ namespace fyiReporting.RdlViewer
             {
                 return _SourceFileName;
             }
-            set
+        }
+
+        public async Task SetSourceFile(Uri value)
+        {
+            _SourceFileName = value;
+            if (value != null)
+                _SourceRdl = null;
+            _vScroll.Value = _hScroll.Value = 0;
+            _pgs = null;                // reset pages, only if SourceRdl is also unavailable
+            _DrawPanel.Pgs = null;
+            _loadFailed = false;            // attempt to load the report
+            if (this.Visible)
             {
-                _SourceFileName = value;
-                if (value != null)
-                    _SourceRdl = null;
-                _vScroll.Value = _hScroll.Value = 0;
-                _pgs = null;                // reset pages, only if SourceRdl is also unavailable
-                _DrawPanel.Pgs = null;
-                _loadFailed = false;            // attempt to load the report
-                if (this.Visible)
-                {
-                    // HACK: async
-                    Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();         // force load of report
-                    this._DrawPanel.Invalidate();
-                }
+                await LoadPageIfNeeded();         // force load of report
+                this._DrawPanel.Invalidate();
             }
         }
 
