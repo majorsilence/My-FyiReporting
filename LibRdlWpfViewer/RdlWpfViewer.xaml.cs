@@ -73,12 +73,9 @@ namespace LibRdlWpfViewer
             }
         }
 
-        public fyiReporting.RDL.Report Report
+        public async Task<fyiReporting.RDL.Report> Report()
         {
-            get
-            {
-                return this.reportViewer.Report;
-            }
+            return await this.reportViewer.Report();       
         }
 
     }

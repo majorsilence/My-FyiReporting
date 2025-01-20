@@ -192,6 +192,7 @@ namespace fyiReporting.RdlViewer
 
         public RdlViewer()
         {
+            this.DoubleBuffered = true;
             // CustomReportItem init 
             RdlEngineConfig.GetCustomReportTypes();
 
@@ -471,14 +472,10 @@ namespace fyiReporting.RdlViewer
         /// <summary>
         /// Gets the report definition.
         /// </summary>
-        public Report Report
+        public async Task<Report> Report()
         {
-            get
-            {
-                // HACK: async
-                Task.Run(async () => await LoadPageIfNeeded()).GetAwaiter().GetResult();
-                return _Report;
-            }
+            await LoadPageIfNeeded();
+            return _Report;    
         }
 
         /// <summary>
@@ -1126,6 +1123,9 @@ namespace fyiReporting.RdlViewer
             }
         }
 
+        private Bitmap _buffer;
+        // HACK: async shenanigans
+        bool doGraphicsDraw;
         private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             // Only handle one paint at a time
@@ -1135,28 +1135,43 @@ namespace fyiReporting.RdlViewer
                     return;
                 _InPaint = true;
             }
-
-            Graphics g = e.Graphics;
+     
             try         // never want to die in here
             {
                 if (!_InLoading)                // If we're in the process of loading don't paint
-                {
-                    await LoadPageIfNeeded();             // make sure we have something to show
+                {             
+                    if (doGraphicsDraw && _buffer != null)
+                    {
+                        e.Graphics.DrawImage(_buffer, 0, 0);
+                        _buffer.Dispose();
+                        _buffer = null;            
+                    }
+                    else
+                    {
+                        await LoadPageIfNeeded();             // make sure we have something to show
 
-                    if (_zoom < 0)
-                        CalcZoom();             // new report or resize client requires new zoom factor
+                        if (_zoom < 0)
+                            CalcZoom();             // new report or resize client requires new zoom factor
 
-                    // Draw the page
-                    await _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
-                        PointsX(_hScroll.Value), PointsY(_vScroll.Value),
-                        e.ClipRectangle,
-                        _HighlightItem, _HighlightText, _HighlightCaseSensitive, _HighlightAll);
+                        // Draw the page
+                        _buffer = new Bitmap(Math.Max(1, _DrawPanel.Width), Math.Max(1, _DrawPanel.Height));
+                        using (Graphics g = Graphics.FromImage(_buffer))
+                        {
+                            await _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
+                            PointsX(_hScroll.Value), PointsY(_vScroll.Value),
+                            e.ClipRectangle,
+                            _HighlightItem, _HighlightText, _HighlightCaseSensitive, _HighlightAll);                         
+                        }
+
+                        doGraphicsDraw = true;
+                        _DrawPanel.Invalidate();       // force a redraw
+                    }
                 }
             }
             catch (Exception ex)
             {   // don't want to kill process if we die
                 using (Font font = new Font("Arial", 8))
-                    g.DrawString(ex.Message + "\r\n" + ex.StackTrace, font, Brushes.Black, 0, 0);
+                    e.Graphics.DrawString(ex.Message + "\r\n" + ex.StackTrace, font, Brushes.Black, 0, 0);
             }
 
             lock (this)

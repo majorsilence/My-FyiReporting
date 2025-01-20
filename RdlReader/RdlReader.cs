@@ -56,6 +56,8 @@ namespace fyiReporting.RdlReader
 
         public RdlReader(bool mono)
         {
+            this.DoubleBuffered = true;
+
             bMono = mono;
             GetStartupState();
 
