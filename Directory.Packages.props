@@ -22,6 +22,7 @@
     <PackageVersion Include="NPOI" Version="2.7.0" />
     <PackageVersion Include="NUnit" Version="4.1.0" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageVersion Include="PdfPig" Version="0.1.9" />
     <PackageVersion Include="SharpZipLib" Version="1.4.2" />
     <PackageVersion Include="SkiaSharp" Version="2.88.9" />
     <PackageVersion Include="System.Data.DataSetExtensions" Version="4.5.0" />

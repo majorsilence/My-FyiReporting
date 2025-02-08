@@ -6,6 +6,8 @@ using Majorsilence.Reporting.RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using UglyToad.PdfPig;
+using System.Linq;
 
 namespace Majorsilence.Reporting.RdlCreator.Tests
 {
@@ -16,12 +18,12 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         string dataProvider = "Microsoft.Data.Sqlite";
 
         [Test]
-        public async Task TestMethod1()
+        public async Task CsvExport()
         {
             var create = new RdlCreator.Create();
             var report = GenerateTestData();
             var fyiReport = await create.GenerateRdl(report);
-            var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
+            using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
             await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
             var text = ms.GetText();
@@ -39,6 +41,48 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
 ""Seafood"",""Seaweed and fish""
 ""1 of 1""
 "));
+        }
+
+        [Test]
+        public async Task PdfStreamExport()
+        {
+            var create = new RdlCreator.Create();
+            var report = GenerateTestData();
+            var fyiReport = await create.GenerateRdl(report);
+            using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
+            await fyiReport.RunGetData(null);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
+            var pdfStream = ms.GetStream();
+
+            pdfStream.Position = 0;
+            using var pdfDocument = PdfDocument.Open(pdfStream);
+            var text = string.Join(" ", pdfDocument.GetPages().SelectMany(page => page.GetWords()).Select(word => word.Text));
+
+            Assert.That(text, Is.Not.Null);
+            Assert.That(text, Is.EqualTo("Test Data Set Report CategoryID CategoryName Description Beverages Soft drinks, coffees, teas, beers, and ales Condiments Sweet and savory sauces, relishes, spreads, and seasonings Confections Desserts, candies, and sweet breads Dairy Products Cheeses Grains/Cereals Breads, crackers, pasta, and cereal Meat/Poultry Prepared meats Produce Dried fruit and bean curd Seafood Seaweed and fish 1 of 1"));
+        }
+
+        [Test]
+        public async Task PdfDiskExport()
+        {
+            var create = new RdlCreator.Create();
+            var report = GenerateTestData();
+            var fyiReport = await create.GenerateRdl(report);
+            using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
+            await fyiReport.RunGetData(null);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
+            var pdfStream = ms.GetStream();
+            pdfStream.Position = 0;
+
+            using var fileStream = new FileStream("PdfDiskExport.pdf", FileMode.Create, FileAccess.Write);
+            pdfStream.CopyTo(fileStream);
+            await fileStream.DisposeAsync();
+
+            using var pdfDocument = PdfDocument.Open("PdfDiskExport.pdf");
+            var text = string.Join(" ", pdfDocument.GetPages().SelectMany(page => page.GetWords()).Select(word => word.Text));
+
+            Assert.That(text, Is.Not.Null);
+            Assert.That(text, Is.EqualTo("Test Data Set Report CategoryID CategoryName Description Beverages Soft drinks, coffees, teas, beers, and ales Condiments Sweet and savory sauces, relishes, spreads, and seasonings Confections Desserts, candies, and sweet breads Dairy Products Cheeses Grains/Cereals Breads, crackers, pasta, and cereal Meat/Poultry Prepared meats Produce Dried fruit and bean curd Seafood Seaweed and fish 1 of 1"));
         }
 
         private string NormalizeEOL(string input)
