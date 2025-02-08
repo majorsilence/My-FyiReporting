@@ -46,8 +46,7 @@ namespace fyiReporting.CRI
             var writer = new ZXing.BarcodeWriter();
 #endif
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
-
-			writer.Options.Hints.Add(new KeyValuePair<EncodeHintType, object>(EncodeHintType.CHARACTER_SET, "UTF-8"));
+            writer.Options.Hints[EncodeHintType.CHARACTER_SET] = "UTF-8";
 
             Drawing.Graphics g = null;
             g = Drawing.Graphics.FromImage(bm);
@@ -59,8 +58,16 @@ namespace fyiReporting.CRI
 			writer.Options.Height = barHeight;
 			writer.Options.Width = barWidth;
 
-
-			bm = writer.Write(qrcode);
+            try
+            {
+                // TODO: move to program startup
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            }
+            catch (InvalidOperationException)
+            {
+                // The provider has already been registered.
+            }
+            bm = writer.Write(qrcode);
          
         }
 

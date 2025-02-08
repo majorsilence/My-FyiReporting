@@ -25,7 +25,24 @@ namespace fyiReporting.RdlCreator
 
             var rdlp = new RDLParser(xml);
             var fyiReport = await rdlp.Parse();
+
+            ValidateReport(fyiReport);
+
             return fyiReport;
+        }
+
+        private static void ValidateReport(RDL.Report fyiReport)
+        {
+            if (fyiReport.ErrorMaxSeverity > 0)
+            {
+                if (fyiReport.ErrorMaxSeverity > 4)
+                {
+                    var errorMessages = string.Join(Environment.NewLine, fyiReport.ErrorItems.Cast<string>());
+                    int severity = fyiReport.ErrorMaxSeverity;
+                    fyiReport.ErrorReset();
+                    throw new Exception($"Errors encountered with severity {severity}:{Environment.NewLine}{errorMessages}");
+                }
+            }
         }
 
         public async Task<fyiReporting.RDL.Report> GenerateRdl(DataTable data,
@@ -52,7 +69,7 @@ namespace fyiReporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        Textbox = new Textbox
+                        ReportItem = new Textbox
                         {
                             Name = $"TextboxH{colName}",
                             Value = new Value { Text = colName },
@@ -65,7 +82,7 @@ namespace fyiReporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        Textbox = new Textbox
+                        ReportItem = new Textbox
                         {
                             Name = $"TextBoxB{colName}",
                             Value = new Value { Text = $"=Fields!{colName}.Value" },
@@ -87,8 +104,8 @@ namespace fyiReporting.RdlCreator
                 rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
 
             var rdlp = new RDLParser(xml);
-
             var fyiReport = await rdlp.Parse();
+            ValidateReport(fyiReport);
             await fyiReport.DataSets["Data"].SetData(data);
             return fyiReport;
         }
@@ -119,7 +136,7 @@ namespace fyiReporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        Textbox = new Textbox
+                        ReportItem = new Textbox
                         {
                             Name = $"TextboxH{colName}",
                             Value = new Value { Text = colName },
@@ -132,7 +149,7 @@ namespace fyiReporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        Textbox = new Textbox
+                        ReportItem = new Textbox
                         {
                             Name = $"TextBoxB{colName}",
                             Value = new Value { Text = $"=Fields!{colName}.Value" },
@@ -156,6 +173,7 @@ namespace fyiReporting.RdlCreator
             var rdlp = new RDLParser(xml);
 
             var fyiReport = await rdlp.Parse();
+            ValidateReport(fyiReport);
             await fyiReport.DataSets["Data"].SetData(data);
             return fyiReport;
         }
@@ -198,7 +216,7 @@ namespace fyiReporting.RdlCreator
                             {
                                 ReportItems = new TableCellReportItems()
                                 {
-                                    Textbox = new Textbox
+                                    ReportItem = new Textbox
                                     {
                                         Name = $"TextboxH{colName}",
                                         Value = new Value { Text = colName },
@@ -211,7 +229,7 @@ namespace fyiReporting.RdlCreator
                             {
                                 ReportItems = new TableCellReportItems()
                                 {
-                                    Textbox = new Textbox
+                                    ReportItem = new Textbox
                                     {
                                         Name = $"TextBoxB{colName}",
                                         Value = new Value { Text = $"=Fields!{colName}.Value" },
@@ -239,7 +257,7 @@ namespace fyiReporting.RdlCreator
 
             var rdlp = new RDLParser(xml);
             var fyiReport = await rdlp.Parse();
-
+            ValidateReport(fyiReport);
             return fyiReport;
         }
 

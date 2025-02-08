@@ -25,18 +25,18 @@ namespace fyiReporting.RdlCreator.Tests
             await fyiReport.RunGetData(null);
             await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
             var text = ms.GetText();
-           
+
             Assert.That(text, Is.Not.Null);
             Assert.That(NormalizeEOL(text), Is.EqualTo(@"""Test Data Set Report""
 ""CategoryID"",""CategoryName"",""Description""
-1,""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
-2,""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
-3,""Confections"",""Desserts, candies, and sweet breads""
-4,""Dairy Products"",""Cheeses""
-5,""Grains/Cereals"",""Breads, crackers, pasta, and cereal""
-6,""Meat/Poultry"",""Prepared meats""
-7,""Produce"",""Dried fruit and bean curd""
-8,""Seafood"",""Seaweed and fish""
+""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
+""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
+""Confections"",""Desserts, candies, and sweet breads""
+""Dairy Products"",""Cheeses""
+""Grains/Cereals"",""Breads, crackers, pasta, and cereal""
+""Meat/Poultry"",""Prepared meats""
+""Produce"",""Dried fruit and bean curd""
+""Seafood"",""Seaweed and fish""
 ""1 of 1""
 "));
         }
@@ -142,13 +142,13 @@ namespace fyiReporting.RdlCreator.Tests
                                         {
                                             TableCell = new List<TableCell>
                                             {
-                                                new TableCell {  ReportItems= new TableCellReportItems(){ Textbox = new Textbox { Name = "Textbox2",
+                                                new TableCell {  ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Textbox2",
                                                     Value = new Value { Text = "CategoryID" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){Textbox = new Textbox { Name = "Textbox3",
+                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox3",
                                                     Value = new Value { Text = "CategoryName" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){Textbox = new Textbox { Name = "Textbox4",
+                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox4",
                                                     Value = new Value { Text = "Description" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } }
                                             }
@@ -168,12 +168,32 @@ namespace fyiReporting.RdlCreator.Tests
                                         {
                                             TableCell = new List<TableCell>
                                             {
-                                                new TableCell { ReportItems= new TableCellReportItems(){ Textbox = new Textbox { Name = "CategoryID",
-                                                    Value = new Value { Text = "=Fields!CategoryID.Value" }, CanGrow = "false" } } },
-                                                new TableCell { ReportItems = new TableCellReportItems(){ Textbox = new Textbox { Name = "CategoryName",
+                                                new TableCell {
+                                                    ReportItems= new TableCellReportItems()
+                                                    {
+                                                         ReportItem = new CustomReportItems()
+                                                         {
+                                                             Name = "QrCode",
+                                                             Type = "QR Code",
+                                                             Width = "35.91mm",
+                                                             Height = "35.91mm",
+                                                             CustomProperties = new CustomProperties
+                                                             {
+
+                                                                 CustomProperty = new CustomProperty()
+                                                                 {
+                                                                    Name = "QrCode",
+                                                                    Value = "=Fields!CategoryID.Value"
+                                                                 }
+                                                             }
+                                                         }
+                                                    }
+                                                },
+                                                new TableCell { ReportItems = new TableCellReportItems(){ ReportItem = new Textbox { Name = "CategoryName",
                                                     Value = new Value { Text = "=Fields!CategoryName.Value" }, CanGrow = "true" } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ Textbox = new Textbox { Name = "Description",
+                                                new TableCell { ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Description",
                                                     Value = new Value { Text = "=Fields!Description.Value" }, CanGrow = "true" } } }
+                                                
                                             }
                                         }
                                     }
