@@ -32,7 +32,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
 
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 namespace fyiReporting.CRI
 {

@@ -29,7 +29,7 @@ using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Information about the data source (e.g. a database connection string).

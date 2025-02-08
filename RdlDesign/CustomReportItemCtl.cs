@@ -31,9 +31,9 @@ using System.Xml;
 using System.Text;
 using System.IO;
 using System.Reflection;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// CustomReportItemCtl provides property values for a CustomReportItem

@@ -29,10 +29,10 @@ using System.Threading;
 using System.Xml;
 using System.Collections;
 using System.Reflection;
-using fyiReporting.RdlDesktop.Resources;
+using Majorsilence.Reporting.RdlDesktop.Resources;
 
 
-namespace fyiReporting.RdlDesktop
+namespace Majorsilence.Reporting.RdlDesktop
 {
 	class RdlDesktop
 	{
@@ -170,7 +170,7 @@ namespace fyiReporting.RdlDesktop
 		private void GetConfigInfo()
 		{
 			_mimes = new Hashtable();
-			string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "config.xml");
+			string optFileName = Path.Combine(Majorsilence.Reporting.Rdl.Utility.Paths.MajorsilenceRoamingFolder(), "config.xml");
 			if (!File.Exists(optFileName))
 			{
 				if (File.Exists("config.xml"))

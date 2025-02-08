@@ -25,7 +25,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal class DelimitedTextWriter 
     {

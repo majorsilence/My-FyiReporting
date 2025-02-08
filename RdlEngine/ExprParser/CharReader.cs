@@ -22,9 +22,9 @@
 */
 using System;
 using System.IO;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// char reader simply reads entire file into a string and processes.

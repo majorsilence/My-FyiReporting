@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Ordered list of values used as a default for a parameter

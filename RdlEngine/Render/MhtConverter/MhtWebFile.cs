@@ -33,9 +33,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// represents an external file referenced in our parent HTML at the target URL

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RdlEngine.Utility
+namespace Majorsilence.Reporting.Rdl.Utility
 {
     public static class HttpClientExtension
     {

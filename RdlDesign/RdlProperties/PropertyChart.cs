@@ -1,4 +1,4 @@
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -27,7 +27,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Globalization;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyChart - The Chart Properties

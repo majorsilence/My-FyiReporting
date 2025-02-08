@@ -27,9 +27,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	internal enum SingleCtlTypeEnum
 	{

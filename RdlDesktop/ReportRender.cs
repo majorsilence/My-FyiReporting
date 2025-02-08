@@ -24,9 +24,9 @@
 using System;	
 using System.Collections;
 using System.Text;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlDesktop
+namespace Majorsilence.Reporting.RdlDesktop
 {
 	/// <summary>
 	/// Summary description for ParameterHtml.

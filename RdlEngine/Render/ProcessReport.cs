@@ -21,13 +21,13 @@
    the website www.fyiReporting.com.
 */
 using System;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	
 	///<summary>

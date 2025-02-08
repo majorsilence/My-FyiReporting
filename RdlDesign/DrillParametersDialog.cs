@@ -30,11 +30,11 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text;
 using System.IO;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Drillthrough reports; pick report and specify parameters

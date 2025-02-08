@@ -27,10 +27,10 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Definition of the filter on a DataSet.  If boolean expression evaluates to false
@@ -95,7 +95,7 @@ namespace fyiReporting.RDL
 						_FilterExpression = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
 					case "Operator":
-						_FilterOperator = RDL.FilterOperator.GetStyle(xNodeLoop.InnerText);
+						_FilterOperator = Rdl.FilterOperator.GetStyle(xNodeLoop.InnerText);
 						if (_FilterOperator == FilterOperatorEnum.Unknown)
 							OwnerReport.rl.LogError(8, "Unknown Filter operator '" + xNodeLoop.InnerText + "'.");
 						break;

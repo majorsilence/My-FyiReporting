@@ -25,21 +25,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw = Majorsilence.Drawing;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw = System.Drawing;
 using System.Drawing.Imaging;
 #endif
 using System.Text;
 using System.IO;
 using System.Net;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Net.Http;
 using System.Threading.Tasks;
-using RdlEngine.Utility;
+using Majorsilence.Reporting.Rdl.Utility;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// PageTextHtml handles text that should to be formatted as HTML.  It only handles
@@ -72,9 +72,9 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		public async Task Build(Drawing.Graphics g)
+		public async Task Build(Draw.Graphics g)
 		{
-           Drawing.Drawing2D.Matrix transform = g.Transform;
+            Draw.Drawing2D.Matrix transform = g.Transform;
             try
             {
                 g.ResetTransform();
@@ -87,7 +87,7 @@ namespace fyiReporting.RDL
             return;
         }
 
-		private async Task BuildPrivate(Drawing.Graphics g)
+		private async Task BuildPrivate(Draw.Graphics g)
         {
             PageText model = new PageText("");
             model.AllowSelect = false;
@@ -126,7 +126,7 @@ namespace fyiReporting.RDL
 			si.BStyleBottom = si.BStyleLeft = si.BStyleRight = si.BStyleTop = BorderStyleEnum.None;
 			pt.SI.TextAlign = TextAlignEnum.Left;
 			pt.SI.VerticalAlign = VerticalAlignEnum.Top;
-			si.BackgroundColor = Drawing.Color.Empty;
+			si.BackgroundColor = Draw.Color.Empty;
 			si.BackgroundGradientType = BackgroundGradientTypeEnum.None;
 			si.BackgroundImage = null;
 
@@ -138,7 +138,7 @@ namespace fyiReporting.RDL
 			float maxLineHeight=0;
 			float maxDescent=0;
 			float descent;				// working value for descent
-			Drawing.SizeF ms;
+			Draw.SizeF ms;
 			bool bWhiteSpace=false;
 			List<PageItem> lineItems = new List<PageItem>();
             bool bIsOrderedList = false;
@@ -434,10 +434,10 @@ namespace fyiReporting.RDL
 				return;
 			model.HyperLink = model.Tooltip = href;
 			si.TextDecoration = TextDecorationEnum.Underline;
-			si.Color = Drawing.Color.Blue;
+			si.Color = Draw.Color.Blue;
 		}
 
-        private async Task<PageImage> BuildImage(Drawing.Graphics g, string token, StyleInfo oldsi, PageText model)
+        private async Task<PageImage> BuildImage(Draw.Graphics g, string token, StyleInfo oldsi, PageText model)
         {
             PageTextHtmlCmdLexer hc = new PageTextHtmlCmdLexer(token.Substring(4));
             Hashtable ht = hc.Lex();
@@ -453,7 +453,7 @@ namespace fyiReporting.RDL
             string align = (string)ht["align"];
 
             Stream strm = null;
-            Drawing.Image im = null;
+            Draw.Image im = null;
             PageImage pi = null;
             try
             {
@@ -471,7 +471,7 @@ namespace fyiReporting.RDL
                     strm = new FileStream(src, System.IO.FileMode.Open, FileAccess.Read);
                 }
 
-                im = Drawing.Image.FromStream(strm);
+                im = Draw.Image.FromStream(strm);
                 int h = im.Height;
                 int w = im.Width;
                 MemoryStream ostrm = new MemoryStream();
@@ -797,20 +797,20 @@ namespace fyiReporting.RDL
 			return ht;
 		}
 
-		private Drawing.SizeF MeasureString(string s, StyleInfo si, Drawing.Graphics g, out float descent)
+		private Draw.SizeF MeasureString(string s, StyleInfo si, Draw.Graphics g, out float descent)
 		{
-			Drawing.Font drawFont=null;
-			Drawing.StringFormat drawFormat=null;
-			Drawing.SizeF ms = Drawing.SizeF.Empty;
+			Draw.Font drawFont=null;
+			Draw.StringFormat drawFormat=null;
+			Draw.SizeF ms = Draw.SizeF.Empty;
 			descent = 0;				
 			if (s == null || s.Length == 0)
 				return ms;
 			try
 			{
 				// STYLE
-				Drawing.FontStyle fs = 0;
+				Draw.FontStyle fs = 0;
 				if (si.FontStyle == FontStyleEnum.Italic)
-					fs |= Drawing.FontStyle.Italic;
+					fs |= Draw.FontStyle.Italic;
 
 				// WEIGHT
 				switch (si.FontWeight)
@@ -822,33 +822,33 @@ namespace fyiReporting.RDL
 					case FontWeightEnum.W700:
 					case FontWeightEnum.W800:
 					case FontWeightEnum.W900:
-						fs |= Drawing.FontStyle.Bold;
+						fs |= Draw.FontStyle.Bold;
 						break;
 					default:
 						break;
 				}
 				try
 				{
-					Drawing.FontFamily ff = si.GetFontFamily();
-					drawFont = new Drawing.Font(ff, si.FontSize, fs);
+					Draw.FontFamily ff = si.GetFontFamily();
+					drawFont = new Draw.Font(ff, si.FontSize, fs);
 					// following algorithm comes from the C# Font Metrics documentation
 					float descentPixel = si.FontSize * ff.GetCellDescent(fs) / ff.GetEmHeight(fs);
 					descent = RSize.PointsFromPixels(g, descentPixel);
 				}
 				catch
 				{
-					drawFont = new Drawing.Font("Arial", si.FontSize, fs);	// usually because font not found
+					drawFont = new Draw.Font("Arial", si.FontSize, fs);	// usually because font not found
 					descent = 0;
 				}
-				drawFormat = new Drawing.StringFormat();
-				drawFormat.Alignment = Drawing.StringAlignment.Near;
+				drawFormat = new Draw.StringFormat();
+				drawFormat.Alignment = Draw.StringAlignment.Near;
 
-				Drawing.CharacterRange[] cr = {new Drawing.CharacterRange(0, s.Length)};
+				Draw.CharacterRange[] cr = {new Draw.CharacterRange(0, s.Length)};
 				drawFormat.SetMeasurableCharacterRanges(cr);
-				Drawing.Region[] rs = new Drawing.Region[1];
-				rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0,0,float.MaxValue,float.MaxValue),
+				Draw.Region[] rs = new Draw.Region[1];
+				rs = g.MeasureCharacterRanges(s, drawFont, new Draw.RectangleF(0,0,float.MaxValue,float.MaxValue),
 					drawFormat);
-				Drawing.RectangleF mr = rs[0].GetBounds(g);
+				Draw.RectangleF mr = rs[0].GetBounds(g);
 
 				ms.Height = RSize.PointsFromPixels(g, mr.Height);	// convert to points from pixels
 				ms.Width = RSize.PointsFromPixels(g, mr.Width);		// convert to points from pixels

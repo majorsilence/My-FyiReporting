@@ -24,7 +24,7 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-using RdlEngine.Utility;
+using Majorsilence.Reporting.Rdl.Utility;
 using System;
 using System.IO;
 using System.Net;
@@ -33,7 +33,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	class MhtWebClientLocal
 	{

@@ -1,4 +1,4 @@
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     partial class DialogWait
     {

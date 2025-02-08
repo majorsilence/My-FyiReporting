@@ -22,14 +22,14 @@
 */
 
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	
 	///<summary>

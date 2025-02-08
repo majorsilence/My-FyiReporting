@@ -24,7 +24,7 @@
 using System;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	///Indicates whether textboxes should render as elements or attributes.

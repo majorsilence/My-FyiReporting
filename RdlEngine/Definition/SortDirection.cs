@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Handle sort direction enumeration: ascending, descending.

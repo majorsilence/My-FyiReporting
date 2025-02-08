@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
-using fyiReporting.RdlDesign.RdlProperties;
+using Majorsilence.Reporting.RdlDesign.RdlProperties;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	internal class LocalizedDisplayNameAttribute : DisplayNameAttribute
 	{

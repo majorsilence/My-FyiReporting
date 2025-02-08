@@ -21,10 +21,10 @@
    the website www.fyiReporting.com.
 */
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// If function caches data then this must be implemented and constructor must place in 

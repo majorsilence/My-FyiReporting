@@ -23,13 +23,13 @@
 
 using System;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Class for defining chart layout.  For example, the plot area of a chart.
@@ -42,14 +42,14 @@ namespace fyiReporting.RDL
 		int _RightMargin;
 		int _TopMargin;
 		int _BottomMargin;
-		Drawing.Rectangle _PlotArea;
+		Draw2.Rectangle _PlotArea;
 	
 		internal ChartLayout(int width, int height)
 		{
 			_Width = width;
 			_Height = height;
 			_LeftMargin = _RightMargin = _TopMargin = _BottomMargin = 0;
-			_PlotArea = Drawing.Rectangle.Empty;
+			_PlotArea = Draw2.Rectangle.Empty;
 		}
 		
 		internal int Width
@@ -63,28 +63,28 @@ namespace fyiReporting.RDL
 		internal int LeftMargin
 		{
 			get { return  _LeftMargin; }
-            set { _LeftMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
+            set { _LeftMargin = value; _PlotArea = Draw2.Rectangle.Empty; }
 		}
 		internal int RightMargin
 		{
 			get { return  _RightMargin; }
-            set { _RightMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
+            set { _RightMargin = value; _PlotArea = Draw2.Rectangle.Empty; }
 		}
 		internal int TopMargin
 		{
 			get { return  _TopMargin; }
-            set { _TopMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
+            set { _TopMargin = value; _PlotArea = Draw2.Rectangle.Empty; }
 		}
 		internal int BottomMargin
 		{
 			get { return  _BottomMargin; }
-            set { _BottomMargin = value; _PlotArea = Drawing.Rectangle.Empty; }
+            set { _BottomMargin = value; _PlotArea = Draw2.Rectangle.Empty; }
 		}
-		internal Drawing.Rectangle PlotArea
+		internal Draw2.Rectangle PlotArea
 		{
 			get 
 			{ 
-				if (_PlotArea == Drawing.Rectangle.Empty)
+				if (_PlotArea == Draw2.Rectangle.Empty)
 				{
 					int w = _Width - _LeftMargin - _RightMargin;
 					if (w <= 0)
@@ -93,7 +93,7 @@ namespace fyiReporting.RDL
 					if (h <= 0)
 						throw new Exception(Strings.ChartLayout_Error_PlotAreaHeightIs0);
 				
-					_PlotArea = new Drawing.Rectangle(_LeftMargin, _TopMargin, w, h); 
+					_PlotArea = new Draw2.Rectangle(_LeftMargin, _TopMargin, w, h); 
 				}
 
 				return _PlotArea;

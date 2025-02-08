@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The collection of parameters for a subreport.

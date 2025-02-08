@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Chart type and marker definition and processing.

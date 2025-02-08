@@ -28,7 +28,7 @@ using System.Text;
 using System.Drawing;
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// MatrixView:  builds a simplfied representation of the matrix so that it

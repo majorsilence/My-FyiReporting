@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {       
     internal class DrawRects : DrawBase
     {
@@ -66,7 +66,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 UInt32 NumberOfRects = _br.ReadUInt32();
                 EMFPen EMFp = (EMFPen)ObjectTable[ObjectID];
-                Drawing.Pen p = EMFp.myPen;
+                Draw2.Pen p = EMFp.myPen;
                 if (Compressed)
                 {
                     DoCompressed(NumberOfRects, _br, p);
@@ -90,7 +90,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfRects, BinaryReader _br, Drawing.Pen p)
+        private void DoFloat(UInt32 NumberOfRects, BinaryReader _br, Draw2.Pen p)
         {
             for (int i = 0; i < NumberOfRects; i++)
             {
@@ -102,7 +102,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoCompressed(UInt32 NumberOfRects, BinaryReader _br, Drawing.Pen p)
+        private void DoCompressed(UInt32 NumberOfRects, BinaryReader _br, Draw2.Pen p)
         {
             for (int i = 0; i < NumberOfRects; i++)
             {
@@ -114,13 +114,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Drawing.Pen p)
+        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Draw2.Pen p)
         {
             BorderStyleEnum ls = getLineStyle(p);           
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
+                   Draw2.SolidBrush theBrush = (Draw2.SolidBrush)p.Brush;
                     PageRectangle pl = new PageRectangle();
                     pl.X = X + (recX * SCALEFACTOR);
                     pl.Y = Y + (recY * SCALEFACTOR);

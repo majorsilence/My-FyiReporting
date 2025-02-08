@@ -23,7 +23,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyRectangle - The Rectangle specific Properties

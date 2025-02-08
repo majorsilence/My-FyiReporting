@@ -25,17 +25,17 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using System.Drawing.Imaging;
 #endif
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     ///CustomReportItem describes a report item that is not natively defined in RDL.  The 
@@ -141,7 +141,7 @@ namespace fyiReporting.RDL
             {
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
 				Type a = cri.GetType();
-				Drawing.Bitmap bm = null;
+				Draw2.Bitmap bm = null;
                 await SetProperties(rpt, row, cri);
 				int width = WidthCalc(rpt, null) -
 					(Style == null ? 0 :
@@ -149,7 +149,7 @@ namespace fyiReporting.RDL
 				int height = RSize.PixelsFromPoints(this.HeightOrOwnerHeight) -
 					(Style == null ? 0 :
 						(await Style.EvalPaddingTopPx(rpt, row) + await Style.EvalPaddingBottomPx(rpt, row)));
-				bm = new Drawing.Bitmap(width, height);
+				bm = new Draw2.Bitmap(width, height);
 				cri.DrawImage(ref bm);
 
 				MemoryStream ostrm = new MemoryStream();
@@ -157,10 +157,10 @@ namespace fyiReporting.RDL
 				//bm.Save(ostrm, IMAGEFORMAT);	// generate a jpeg   TODO: get png to work with pdf
 				ImageCodecInfo[] info;
 				info = ImageCodecInfo.GetImageEncoders();
-				Drawing.Imaging.EncoderParameters encoderParameters;
-				encoderParameters = new Drawing.Imaging.EncoderParameters(1);
+				Draw2.Imaging.EncoderParameters encoderParameters;
+				encoderParameters = new Draw2.Imaging.EncoderParameters(1);
 				// 20022008 AJM GJL - Using centralised image quality
-				encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
+				encoderParameters.Param[0] = new Draw2.Imaging.EncoderParameter(Draw2.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
 				ImageCodecInfo codec = null;
 				for(int i = 0; i < info.Length; i++) {
 					if(info[i].FormatDescription == "JPEG") {
@@ -203,9 +203,9 @@ namespace fyiReporting.RDL
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
                 await SetProperties(pgs.Report, row, cri);
                 
-                Drawing.Imaging.EncoderParameters encoderParameters = new Drawing.Imaging.EncoderParameters(1);
+                Draw2.Imaging.EncoderParameters encoderParameters = new Draw2.Imaging.EncoderParameters(1);
                 // 20022008 AJM GJL - Using centralised image quality
-                encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
+                encoderParameters.Param[0] = new Draw2.Imaging.EncoderParameter(Draw2.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
                 ImageCodecInfo codec = ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
 
                 PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
@@ -237,9 +237,9 @@ namespace fyiReporting.RDL
             return;
         }
 
-        byte[] GenerateImage(ImageCodecInfo codec, Drawing.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
+        byte[] GenerateImage(ImageCodecInfo codec, Draw2.Imaging.EncoderParameters parameters, int width, int height, ICustomReportItem cri)
 		{
-			Drawing.Bitmap bm = new Drawing.Bitmap(width, height);
+			Draw2.Bitmap bm = new Draw2.Bitmap(width, height);
 			cri.DrawImage(ref bm);
 
 			MemoryStream ostrm = new MemoryStream();

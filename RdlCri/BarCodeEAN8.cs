@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 #if DRAWINGCOMPAT
 using Majorsilence.Drawing;
 #else

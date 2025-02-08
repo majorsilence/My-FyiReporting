@@ -27,13 +27,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 using System.Globalization;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The style of the border colors.  Expressions for all sides as well as default expression.
@@ -172,13 +172,13 @@ namespace fyiReporting.RDL
 			set {  _Default = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalDefault(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalDefault(Report rpt, Row r)
 		{
 			if (_Default == null)
-				return Drawing.Color.Black;
+				return Draw2.Color.Black;
 			
 			string c = await _Default.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 
 		internal Expression Left
@@ -187,13 +187,13 @@ namespace fyiReporting.RDL
 			set {  _Left = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalLeft(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalLeft(Report rpt, Row r)
 		{
 			if (_Left == null)
 				return await EvalDefault(rpt, r);
 			
 			string c = await _Left.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 
 		internal Expression Right
@@ -202,13 +202,13 @@ namespace fyiReporting.RDL
 			set {  _Right = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalRight(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalRight(Report rpt, Row r)
 		{
 			if (_Right == null)
 				return await EvalDefault(rpt, r);
 			
 			string c = await _Right.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 
 		internal Expression Top
@@ -217,13 +217,13 @@ namespace fyiReporting.RDL
 			set {  _Top = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalTop(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalTop(Report rpt, Row r)
 		{
 			if (_Top == null)
 				return await EvalDefault(rpt, r);
 			
 			string c = await _Top.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 
 		internal Expression Bottom
@@ -232,13 +232,13 @@ namespace fyiReporting.RDL
 			set {  _Bottom = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalBottom(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalBottom(Report rpt, Row r)
 		{
 			if (_Bottom == null)
 				return await EvalDefault(rpt, r);
 			
 			string c = await _Bottom.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 	}
 }

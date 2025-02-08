@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace fyiReporting.RdlDesktop.Resources {
+namespace Majorsilence.Reporting.RdlDesktop.Resources {
     using System;
     
     

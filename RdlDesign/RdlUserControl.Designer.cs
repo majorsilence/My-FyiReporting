@@ -1,4 +1,4 @@
-﻿namespace fyiReporting.RdlDesign
+﻿namespace Majorsilence.Reporting.RdlDesign
 {
     partial class RdlUserControl
     {
@@ -30,8 +30,8 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlUserControl));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.rdlEditPreview1 = new fyiReporting.RdlDesign.RdlEditPreview();
-			this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
+			this.rdlEditPreview1 = new Majorsilence.Reporting.RdlDesign.RdlEditPreview();
+			this.mainProperties = new Majorsilence.Reporting.RdlDesign.PropertyCtl();
 			this.mainTB = new System.Windows.Forms.ToolStrip();
 			this.newToolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.openToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -75,10 +75,10 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-			this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+			this.foreColorPicker1 = new Majorsilence.Reporting.RdlDesign.ColorPicker();
+			this.backColorPicker1 = new Majorsilence.Reporting.RdlDesign.ColorPicker();
 			this.mainTC = new System.Windows.Forms.TabControl();
-			if (fyiReporting.RDL.Utility.Runtime.IsMono == false)
+			if (Rdl.Utility.Runtime.IsMono == false)
 			{
 				((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			}
@@ -112,7 +112,7 @@
 			this.rdlEditPreview1.SelectedText = "";
 			this.rdlEditPreview1.SelectionTool = false;
 			this.rdlEditPreview1.Zoom = 1F;
-			this.rdlEditPreview1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.UseZoom;
+			this.rdlEditPreview1.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.UseZoom;
 			// 
 			// mainProperties
 			// 
@@ -146,7 +146,7 @@
 			// newToolStripButton1
 			// 
 			this.newToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.newToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_new;
+			this.newToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.document_new;
 			resources.ApplyResources(this.newToolStripButton1, "newToolStripButton1");
 			this.newToolStripButton1.Name = "newToolStripButton1";
 			this.newToolStripButton1.Tag = "New";
@@ -155,7 +155,7 @@
 			// openToolStripButton1
 			// 
 			this.openToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.openToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_open;
+			this.openToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.document_open;
 			resources.ApplyResources(this.openToolStripButton1, "openToolStripButton1");
 			this.openToolStripButton1.Name = "openToolStripButton1";
 			this.openToolStripButton1.Tag = "Open";
@@ -164,7 +164,7 @@
 			// saveToolStripButton1
 			// 
 			this.saveToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.saveToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_save;
+			this.saveToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.document_save;
 			resources.ApplyResources(this.saveToolStripButton1, "saveToolStripButton1");
 			this.saveToolStripButton1.Name = "saveToolStripButton1";
 			this.saveToolStripButton1.Tag = "Save";
@@ -173,7 +173,7 @@
 			// cutToolStripButton1
 			// 
 			this.cutToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.cutToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_cut;
+			this.cutToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.edit_cut;
 			resources.ApplyResources(this.cutToolStripButton1, "cutToolStripButton1");
 			this.cutToolStripButton1.Name = "cutToolStripButton1";
 			this.cutToolStripButton1.Tag = "Cut";
@@ -182,7 +182,7 @@
 			// copyToolStripButton1
 			// 
 			this.copyToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_copy;
+			this.copyToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.edit_copy;
 			resources.ApplyResources(this.copyToolStripButton1, "copyToolStripButton1");
 			this.copyToolStripButton1.Name = "copyToolStripButton1";
 			this.copyToolStripButton1.Tag = "Copy";
@@ -191,7 +191,7 @@
 			// pasteToolStripButton1
 			// 
 			this.pasteToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.pasteToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_paste;
+			this.pasteToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.edit_paste;
 			resources.ApplyResources(this.pasteToolStripButton1, "pasteToolStripButton1");
 			this.pasteToolStripButton1.Name = "pasteToolStripButton1";
 			this.pasteToolStripButton1.Tag = "Paste";
@@ -200,7 +200,7 @@
 			// undoToolStripButton1
 			// 
 			this.undoToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.undoToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.edit_undo;
+			this.undoToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.edit_undo;
 			resources.ApplyResources(this.undoToolStripButton1, "undoToolStripButton1");
 			this.undoToolStripButton1.Name = "undoToolStripButton1";
 			this.undoToolStripButton1.Tag = "Undo";
@@ -217,7 +217,7 @@
 			// chartToolStripButton1
 			// 
 			this.chartToolStripButton1.CheckOnClick = true;
-			this.chartToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.chart;
+			this.chartToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.chart;
 			resources.ApplyResources(this.chartToolStripButton1, "chartToolStripButton1");
 			this.chartToolStripButton1.Name = "chartToolStripButton1";
 			this.chartToolStripButton1.Tag = "Chart";
@@ -242,7 +242,7 @@
 			// imageToolStripButton1
 			// 
 			this.imageToolStripButton1.CheckOnClick = true;
-			this.imageToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.Image;
+			this.imageToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.Image;
 			resources.ApplyResources(this.imageToolStripButton1, "imageToolStripButton1");
 			this.imageToolStripButton1.Name = "imageToolStripButton1";
 			this.imageToolStripButton1.Tag = "Image";
@@ -324,7 +324,7 @@
 			this.boldToolStripButton1.CheckOnClick = true;
 			this.boldToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.boldToolStripButton1, "boldToolStripButton1");
-			this.boldToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_bold;
+			this.boldToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_text_bold;
 			this.boldToolStripButton1.Name = "boldToolStripButton1";
 			this.boldToolStripButton1.Tag = "bold";
 			this.boldToolStripButton1.Click += new System.EventHandler(this.boldToolStripButton1_Click);
@@ -334,7 +334,7 @@
 			this.italiacToolStripButton1.CheckOnClick = true;
 			this.italiacToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.italiacToolStripButton1, "italiacToolStripButton1");
-			this.italiacToolStripButton1.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_italic;
+			this.italiacToolStripButton1.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_text_italic;
 			this.italiacToolStripButton1.Name = "italiacToolStripButton1";
 			this.italiacToolStripButton1.Tag = "italic";
 			this.italiacToolStripButton1.Click += new System.EventHandler(this.italiacToolStripButton1_Click);
@@ -344,7 +344,7 @@
 			this.underlineToolStripButton2.CheckOnClick = true;
 			this.underlineToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.underlineToolStripButton2, "underlineToolStripButton2");
-			this.underlineToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_text_underline;
+			this.underlineToolStripButton2.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_text_underline;
 			this.underlineToolStripButton2.Name = "underlineToolStripButton2";
 			this.underlineToolStripButton2.Tag = "underline";
 			this.underlineToolStripButton2.Click += new System.EventHandler(this.underlineToolStripButton2_Click);
@@ -352,7 +352,7 @@
 			// leftAlignToolStripButton2
 			// 
 			this.leftAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.leftAlignToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_left;
+			this.leftAlignToolStripButton2.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_justify_left;
 			resources.ApplyResources(this.leftAlignToolStripButton2, "leftAlignToolStripButton2");
 			this.leftAlignToolStripButton2.Name = "leftAlignToolStripButton2";
 			this.leftAlignToolStripButton2.Tag = "Left Align";
@@ -361,7 +361,7 @@
 			// centerAlignToolStripButton2
 			// 
 			this.centerAlignToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.centerAlignToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_center;
+			this.centerAlignToolStripButton2.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_justify_center;
 			resources.ApplyResources(this.centerAlignToolStripButton2, "centerAlignToolStripButton2");
 			this.centerAlignToolStripButton2.Name = "centerAlignToolStripButton2";
 			this.centerAlignToolStripButton2.Tag = "Center Align";
@@ -370,7 +370,7 @@
 			// rightAlignToolStripButton3
 			// 
 			this.rightAlignToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.rightAlignToolStripButton3.Image = global::fyiReporting.RdlDesign.Properties.Resources.format_justify_right;
+			this.rightAlignToolStripButton3.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.format_justify_right;
 			resources.ApplyResources(this.rightAlignToolStripButton3, "rightAlignToolStripButton3");
 			this.rightAlignToolStripButton3.Name = "rightAlignToolStripButton3";
 			this.rightAlignToolStripButton3.Tag = "Right Align";
@@ -395,7 +395,7 @@
 			// printToolStripButton2
 			// 
 			this.printToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.printToolStripButton2.Image = global::fyiReporting.RdlDesign.Properties.Resources.document_print;
+			this.printToolStripButton2.Image = global::Majorsilence.Reporting.RdlDesign.Properties.Resources.document_print;
 			resources.ApplyResources(this.printToolStripButton2, "printToolStripButton2");
 			this.printToolStripButton2.Name = "printToolStripButton2";
 			this.printToolStripButton2.Tag = "Print";
@@ -548,7 +548,7 @@
 			this.Name = "RdlUserControl";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			if (fyiReporting.RDL.Utility.Runtime.IsMono == false)
+			if (Rdl.Utility.Runtime.IsMono == false)
 			{
 				((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			}

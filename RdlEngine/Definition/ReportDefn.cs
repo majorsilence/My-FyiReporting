@@ -29,10 +29,10 @@ using System.IO;
 using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Delegate used to ask for a Data Source Reference password used to decrypt the file.
@@ -254,7 +254,7 @@ namespace fyiReporting.RDL
 						_DataElementName = xNodeLoop.InnerText;
 						break;
 					case "DataElementStyle":
-						_DataElementStyle = fyiReporting.RDL.DataElementStyle.GetStyle(xNodeLoop.InnerText, this.rl);
+						_DataElementStyle = Majorsilence.Reporting.Rdl.DataElementStyle.GetStyle(xNodeLoop.InnerText, this.rl);
 						break;
 					default:
 						// don't know this element - log it

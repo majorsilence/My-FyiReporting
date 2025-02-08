@@ -26,10 +26,10 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Text;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The definition of a Subreport (report name, parameters, ...).

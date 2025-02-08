@@ -20,7 +20,7 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using ScintillaNET;
 using System;
 using System.Collections;
@@ -32,9 +32,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Linq;
-using fyiReporting.RdlDesign.Syntax;
+using Majorsilence.Reporting.RdlDesign.Syntax;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// DialogListOfStrings: puts up a dialog that lets a user enter a list of strings
@@ -282,7 +282,7 @@ namespace fyiReporting.RdlDesign
             ar.AddRange(StaticLists.FunctionList);
 
             // Build list of methods in the VBFunctions class
-            fyiReporting.RDL.FontStyleEnum fsi = FontStyleEnum.Italic; // just want a class from RdlEngine.dll assembly
+            Majorsilence.Reporting.Rdl.FontStyleEnum fsi = FontStyleEnum.Italic; // just want a class from RdlEngine.dll assembly
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;
@@ -384,7 +384,7 @@ namespace fyiReporting.RdlDesign
             ar.AddRange(StaticLists.FunctionList);
 
             // Build list of methods in the  VBFunctions class
-            fyiReporting.RDL.FontStyleEnum fsi = FontStyleEnum.Italic;	// just want a class from RdlEngine.dll assembly
+            Majorsilence.Reporting.Rdl.FontStyleEnum fsi = FontStyleEnum.Italic;	// just want a class from RdlEngine.dll assembly
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;

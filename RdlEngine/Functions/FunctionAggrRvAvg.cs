@@ -27,10 +27,10 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Aggregate function: RunningValue avg

@@ -24,9 +24,9 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Text;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// A simple Lexer that is used to create a list of parameters.

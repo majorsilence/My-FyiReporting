@@ -26,7 +26,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	internal class SimpleButton : Button
 	{

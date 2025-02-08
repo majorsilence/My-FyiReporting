@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The query to use to obtain a list of values for a parameter.   See ValidValues.

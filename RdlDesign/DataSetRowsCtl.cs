@@ -30,9 +30,9 @@ using System.Xml;
 using System.Text;
 using System.IO;
 using System.Globalization;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Control supports the properties for DataSet/Rows elements.  This is an extension to 
@@ -97,7 +97,7 @@ namespace fyiReporting.RdlDesign
 
                 string type = dr["TypeName"] as string;
                 Type t = type == null || type.Length == 0? typeof(string): 
-                    fyiReporting.RDL.DataType.GetStyleType(type);
+                    Majorsilence.Reporting.Rdl.DataType.GetStyleType(type);
 				_DataTable.Columns.Add(new DataColumn(name,t));
 			}
 		}

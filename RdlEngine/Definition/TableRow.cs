@@ -26,7 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
 #if DRAWINGCOMPAT
@@ -35,7 +35,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// TableRow represents a Row in a table.  This can be part of a header, footer, or detail definition.

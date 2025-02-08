@@ -24,9 +24,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Summary description for StyleCtl.
@@ -120,7 +120,7 @@ namespace fyiReporting.RdlDesign
 				InitDefaultValues(repNode, repParm);
 
 				string nullable  = _Draw.GetElementValue(repNode, "Nullable", "false");
-				repParm.AllowNull = (nullable.ToLower() == "true"); // fyiReporting.RDL.XmlUtil can do it
+				repParm.AllowNull = (nullable.ToLower() == "true"); // Majorsilence.Reporting.Rdl.XmlUtil can do it
 				string allowBlank  = _Draw.GetElementValue(repNode, "AllowBlank", "false");
 				repParm.AllowBlank = (allowBlank.ToLower() == "true");
                 string mvalue = _Draw.GetElementValue(repNode, "MultiValue", "false");

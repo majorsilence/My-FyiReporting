@@ -30,9 +30,9 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text;
 using System.IO;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// DialogValidValues allow user to provide ValidValues: Value and Label lists

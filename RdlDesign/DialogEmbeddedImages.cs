@@ -8,11 +8,11 @@ using System.Xml;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for DialogDataSourceRef.

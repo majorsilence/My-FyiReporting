@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Validation;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using NUnit.Framework;
 using ReportTests.Utils;
 

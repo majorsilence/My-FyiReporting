@@ -1,4 +1,4 @@
-﻿using fyiReporting.RDL;
+﻿using Majorsilence.Reporting.Rdl;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace fyiReporting.RdlCreator
+namespace Majorsilence.Reporting.RdlCreator
 {
     public class Create
     {
-        public async Task<fyiReporting.RDL.Report> GenerateRdl(Report report)
+        public async Task<Rdl.Report> GenerateRdl(Report report)
         {
             var serializer = new XmlSerializer(typeof(Report));
             string xml;
@@ -31,7 +31,7 @@ namespace fyiReporting.RdlCreator
             return fyiReport;
         }
 
-        private static void ValidateReport(RDL.Report fyiReport)
+        private static void ValidateReport(Rdl.Report fyiReport)
         {
             if (fyiReport.ErrorMaxSeverity > 0)
             {
@@ -45,7 +45,7 @@ namespace fyiReporting.RdlCreator
             }
         }
 
-        public async Task<fyiReporting.RDL.Report> GenerateRdl(DataTable data,
+        public async Task<Rdl.Report> GenerateRdl(DataTable data,
             string description = "",
             string author = "",
             string pageHeight = "11in",
@@ -110,7 +110,7 @@ namespace fyiReporting.RdlCreator
             return fyiReport;
         }
 
-        public async Task<fyiReporting.RDL.Report> GenerateRdl<T>(IEnumerable<T> data,
+        public async Task<Rdl.Report> GenerateRdl<T>(IEnumerable<T> data,
             string description = "",
             string author = "",
             string pageHeight = "11in",
@@ -178,7 +178,7 @@ namespace fyiReporting.RdlCreator
             return fyiReport;
         }
 
-        public async Task<fyiReporting.RDL.Report> GenerateRdl(string dataProvider,
+        public async Task<Rdl.Report> GenerateRdl(string dataProvider,
             string connectionString,
             string commandText,
             CommandType commandType = CommandType.Text,

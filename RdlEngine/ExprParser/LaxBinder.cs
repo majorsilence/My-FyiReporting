@@ -28,7 +28,7 @@ using System;
 using System.Reflection;
 using System.Globalization;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     public class LaxBinder : Binder
     {

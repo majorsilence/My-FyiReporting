@@ -31,7 +31,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal enum EmfObjectType
     { 

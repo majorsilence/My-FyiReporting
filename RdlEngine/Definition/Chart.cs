@@ -28,14 +28,14 @@ using System.Threading.Tasks;
 
 
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Imaging = Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using Imaging = System.Drawing.Imaging;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// Defines the Chart.  A DataRegion and ReportItem
@@ -145,7 +145,7 @@ namespace fyiReporting.RDL
 						_PlotArea = new PlotArea(r, this, xNodeLoop);
 						break;
 					case "ChartElementOutput":
-						_ChartElementOutput = fyiReporting.RDL.ChartElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_ChartElementOutput = Majorsilence.Reporting.Rdl.ChartElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
                     case "HyneWonderfulVector": //AJM GJL 14082008
                     case "RenderAsVector":
@@ -388,7 +388,7 @@ namespace fyiReporting.RDL
         private async Task<Page> RunPage_Bitmap(Pages pgs, Row row, Report rpt, ChartBase cb)
         {
             Page p;
-            Drawing.Image im = cb.Image(rpt);   // Grab the image
+            Draw2.Image im = cb.Image(rpt);   // Grab the image
             int height = im.Height;                         // save height and width
             int width = im.Width;
 

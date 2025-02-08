@@ -26,15 +26,15 @@ using System.Xml;
 using System.IO;
 using System.Text;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw = Majorsilence.Drawing;
 using Drawing2D = Majorsilence.Drawing.Drawing2D;
 #else
-using Drawing = System.Drawing;
+using Draw = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;
 #endif
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// StyleInfo (borders, fonts, background, padding, ...)
@@ -46,19 +46,19 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Color of the left border
 		/// </summary>
-		public Drawing.Color BColorLeft;		// (Color) Color of the left border
+		public Draw.Color BColorLeft;		// (Color) Color of the left border
 		/// <summary>
 		/// Color of the right border
 		/// </summary>
-		public Drawing.Color BColorRight;		// (Color) Color of the right border
+		public Draw.Color BColorRight;		// (Color) Color of the right border
 		/// <summary>
 		/// Color of the top border
 		/// </summary>
-		public Drawing.Color BColorTop;		// (Color) Color of the top border
+		public Draw.Color BColorTop;		// (Color) Color of the top border
 		/// <summary>
 		/// Color of the bottom border
 		/// </summary>
-		public Drawing.Color BColorBottom;	// (Color) Color of the bottom border
+		public Draw.Color BColorBottom;	// (Color) Color of the bottom border
 		// _BorderStyle
 		/// <summary>
 		/// Style of the left border
@@ -97,7 +97,7 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// Color of the background
 		/// </summary>
-		public Drawing.Color BackgroundColor;			//(Color) Color of the background
+		public Draw.Color BackgroundColor;			//(Color) Color of the background
         public string BackgroundColorText;		//(Textual Color) Color of the background
         /// <summary>
 		/// The type of background gradient
@@ -112,7 +112,7 @@ namespace fyiReporting.RDL
 		/// </summary>
 		public patternTypeEnum PatternType;
 		
-		public Drawing.Color BackgroundGradientEndColor;	//(Color) End color for the background gradient.
+		public Draw.Color BackgroundGradientEndColor;	//(Color) End color for the background gradient.
 		/// <summary>
 		/// A background image for the report item.
 		/// </summary>
@@ -152,7 +152,7 @@ namespace fyiReporting.RDL
 		/// <summary>
 		/// The foreground color	Default: Black
 		/// </summary>
-		public Drawing.Color Color;			// (Color) The foreground color	Default: Black
+		public Draw.Color Color;			// (Color) The foreground color	Default: Black
         public string ColorText;    // (Color-text)
         /// <summary>
 		/// Padding between the left edge of the report item.
@@ -208,15 +208,15 @@ namespace fyiReporting.RDL
 		/// </summary>
 		public StyleInfo()
 		{
-			BColorLeft = BColorRight = BColorTop = BColorBottom = Drawing.Color.Black;	// (Color) Color of the bottom border
+			BColorLeft = BColorRight = BColorTop = BColorBottom = Draw.Color.Black;	// (Color) Color of the bottom border
 			BStyleLeft = BStyleRight = BStyleTop = BStyleBottom = BorderStyleEnum.None;
 			// _BorderWdith
 			BWidthLeft = BWidthRight = BWidthTop = BWidthBottom = 1;
 
-			BackgroundColor = Drawing.Color.Empty;
+			BackgroundColor = Draw.Color.Empty;
             BackgroundColorText = string.Empty;
 			BackgroundGradientType = BackgroundGradientTypeEnum.None;
-			BackgroundGradientEndColor = Drawing.Color.Empty;
+			BackgroundGradientEndColor = Draw.Color.Empty;
 			BackgroundImage = null;
 
 			FontStyle = FontStyleEnum.Normal;
@@ -231,7 +231,7 @@ namespace fyiReporting.RDL
 			TextDecoration = TextDecorationEnum.None;
 			TextAlign = TextAlignEnum.General;
 			VerticalAlign = VerticalAlignEnum.Top;
-			Color = Drawing.Color.Black;
+			Color = Draw.Color.Black;
             ColorText = "Black";
             PaddingLeft = PaddingRight = PaddingTop = PaddingBottom = 0;
 			LineHeight = 0;
@@ -266,7 +266,7 @@ namespace fyiReporting.RDL
 		/// Gets the FontFamily instance using the FontFamily string.  This supports lists of fonts.
 		/// </summary>
 		/// <returns></returns>
-		public Drawing.FontFamily GetFontFamily()
+		public Draw.FontFamily GetFontFamily()
 		{
 			return GetFontFamily(_FontFamily);
 		}
@@ -275,10 +275,10 @@ namespace fyiReporting.RDL
 		/// Gets the FontFamily instance using the passed face name.  This supports lists of fonts.
 		/// </summary>
 		/// <returns></returns>
-		static public Drawing.FontFamily GetFontFamily(string fface)
+		static public Draw.FontFamily GetFontFamily(string fface)
 		{
 			string[] choices = fface.Split(',');
-			Drawing.FontFamily ff=null;
+			Draw.FontFamily ff=null;
 			foreach (string val in choices)
 			{
 				try 
@@ -307,14 +307,14 @@ namespace fyiReporting.RDL
 							font = val;
 							break;
 					}
-					ff = new Drawing.FontFamily(font);
+					ff = new Draw.FontFamily(font);
 					if (ff != null)
 						break;
 				}
 				catch {}	// if font doesn't exist we will go to the next
 			}
 			if (ff == null)
-				ff = new Drawing.FontFamily("Arial");
+				ff = new Draw.FontFamily("Arial");
 			return ff;
 		}
 		/// <summary>

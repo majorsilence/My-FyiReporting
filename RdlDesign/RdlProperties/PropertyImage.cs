@@ -1,4 +1,4 @@
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -30,7 +30,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyImage - The Image specific Properties

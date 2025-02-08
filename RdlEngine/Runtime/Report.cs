@@ -29,11 +29,11 @@ using System.IO;
 using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Main Report definition; this is the top of the tree that contains the complete

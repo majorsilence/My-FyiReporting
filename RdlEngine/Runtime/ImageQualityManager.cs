@@ -25,7 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     class ImageQualityManager
     {

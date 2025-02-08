@@ -24,11 +24,11 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// The Financial class holds a number of static functions relating to financial

@@ -2,7 +2,7 @@
 using System.Threading;
 using RdlMapFile.RdlProperties;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
 	internal class LocalizedCategoryAttribute : CategoryAttribute
 	{

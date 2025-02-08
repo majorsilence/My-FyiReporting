@@ -14,7 +14,7 @@ namespace RdlViewer.Tests
         [Test]
         public void SetJsonParameterWithAmpersAndSpecialValues()
         {
-            var sut = new fyiReporting.RdlViewer.RdlViewer();
+            var sut = new Majorsilence.Reporting.RdlViewer.RdlViewer();
 
             var paramDic = new Dictionary<string, string>();
 
@@ -38,7 +38,7 @@ namespace RdlViewer.Tests
         [Test]
         public bool SetParametersWithAmpersandSeparation(string key, string value)
         {
-            var sut = new fyiReporting.RdlViewer.RdlViewer();
+            var sut = new Majorsilence.Reporting.RdlViewer.RdlViewer();
 
             var paramString = key + "=" + value;
 

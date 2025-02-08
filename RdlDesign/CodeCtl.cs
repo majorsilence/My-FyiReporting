@@ -35,9 +35,9 @@ using System.Reflection;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using Microsoft.VisualBasic;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for CodeCtl.
@@ -218,7 +218,7 @@ namespace fyiReporting.RdlDesign
             lines.Add("Imports Microsoft.VisualBasic");
             lines.Add("Imports System.Convert");
             lines.Add("Imports System.Math");
-            lines.Add("Imports fyiReporting.RDL");
+            lines.Add("Imports Majorsilence.Reporting.Rdl");
             lines.Add("Namespace fyiReporting.vbgen");
             string classname = "MyClass" + unique;
             lines.Add("Public Class " + classname);

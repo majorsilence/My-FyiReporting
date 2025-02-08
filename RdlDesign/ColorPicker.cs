@@ -23,7 +23,7 @@ using System.Drawing;
 */
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// It's very crazy control. Need replace it. TODO

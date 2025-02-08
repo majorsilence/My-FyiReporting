@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace fyiReporting.RdlDesign.Syntax
+namespace Majorsilence.Reporting.RdlDesign.Syntax
 {
 	public class RdlScriptLexer
 	{
@@ -301,7 +301,7 @@ namespace fyiReporting.RdlDesign.Syntax
 			globals = new HashSet<string>(StaticLists.ArrayToFormattedList(StaticLists.GlobalList, "", ""));
 			//Methods
 			var methodsList = StaticLists.FunctionList.Select(x => x.Substring(0, x.IndexOf("("))).ToList();
-			fyiReporting.RDL.FontStyleEnum fsi = fyiReporting.RDL.FontStyleEnum.Italic;	// just want a class from RdlEngine.dll assembly
+			Rdl.FontStyleEnum fsi = Majorsilence.Reporting.Rdl.FontStyleEnum.Italic;	// just want a class from RdlEngine.dll assembly
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;

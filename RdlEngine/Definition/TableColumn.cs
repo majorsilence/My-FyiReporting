@@ -26,7 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// TableColumn definition and processing.

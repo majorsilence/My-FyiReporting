@@ -25,9 +25,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// A simple lexer that is used by PageTextHtml to break an HTML string into components.

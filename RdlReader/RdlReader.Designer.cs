@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlReader
+namespace Majorsilence.Reporting.RdlReader
 {
 	public partial class RdlReader : System.Windows.Forms.Form
 	{

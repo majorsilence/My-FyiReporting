@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using System;
 
 
-namespace fyiReporting.RdlCreator
+namespace Majorsilence.Reporting.RdlCreator
 {
 
     public class Body

@@ -26,7 +26,7 @@ using System.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The type (dotted, solid, ...) of border.  Expressions for all sides as well as default expression.

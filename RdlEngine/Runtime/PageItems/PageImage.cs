@@ -6,7 +6,7 @@ using Majorsilence.Drawing.Imaging;
 using System.Drawing.Imaging;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	public class PageImage : PageItem, ICloneable
 	{

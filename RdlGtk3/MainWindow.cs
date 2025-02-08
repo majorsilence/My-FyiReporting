@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Gtk;
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
     public class MainWindow : Gtk.Window
     {
@@ -18,7 +18,7 @@ namespace fyiReporting.RdlGtk3
         private Gtk.SpinButton CurrentPage;
         private Gtk.Label PageCountLabel;
         private Gtk.ScrolledWindow scrolledwindow1;
-        private fyiReporting.RdlGtk3.ReportViewer reportviewer1;
+        private Majorsilence.Reporting.RdlGtk3.ReportViewer reportviewer1;
 
         public MainWindow()
             : base(Gtk.WindowType.Toplevel)
@@ -241,17 +241,17 @@ namespace fyiReporting.RdlGtk3
         {
             string parameters = "";
             string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
-            fyiReporting.RDL.RDLParser parser = new fyiReporting.RDL.RDLParser(sourceRdl);
+            Majorsilence.Reporting.Rdl.RDLParser parser = new Majorsilence.Reporting.Rdl.RDLParser(sourceRdl);
             await parser.Parse();
 
             if (parser.Report.UserReportParameters.Count > 0)
             {
-                foreach (fyiReporting.RDL.UserReportParameter rp in parser.Report.UserReportParameters)
+                foreach (Rdl.UserReportParameter rp in parser.Report.UserReportParameters)
                 {
                     parameters += "&" + rp.Name + "=";
                 }
 
-                fyiReporting.RdlGtk3.ParameterPrompt prompt = new fyiReporting.RdlGtk3.ParameterPrompt();
+                Majorsilence.Reporting.RdlGtk3.ParameterPrompt prompt = new Majorsilence.Reporting.RdlGtk3.ParameterPrompt();
                 prompt.Parameters = parameters;
 
                 if (prompt.Run() == (int)Gtk.ResponseType.Ok)

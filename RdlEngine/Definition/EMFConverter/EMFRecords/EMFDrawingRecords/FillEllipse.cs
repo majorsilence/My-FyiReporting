@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal class FillEllipse : DrawBase
     {
@@ -67,7 +67,7 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                Drawing.Brush b;
+                Draw2.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -75,7 +75,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
+                    b = new Draw2.SolidBrush(Draw2.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -114,13 +114,13 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single Xp, Single Yp, Single Wid, Single Hgt, Drawing.Brush b)
+        private void DoInstructions(Single Xp, Single Yp, Single Wid, Single Hgt, Draw2.Brush b)
         {
             switch (b.GetType().Name)
             {
                 case "SolidBrush":
-                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)b;
-                   Drawing.Color col = theBrush.Color;  
+                   Draw2.SolidBrush theBrush = (Draw2.SolidBrush)b;
+                   Draw2.Color col = theBrush.Color;  
                     PageEllipse pl = new PageEllipse();
                     pl.X = X + (Xp * SCALEFACTOR);
                     pl.Y = Y + (Yp * SCALEFACTOR);

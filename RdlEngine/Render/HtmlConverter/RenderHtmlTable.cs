@@ -22,7 +22,7 @@
 */
 
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 
     ///<summary>
@@ -1396,7 +1396,7 @@ function findObject(id) {
             return;
         }
 
-        public async Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
+        public async Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
         {
             string cssName = CssAdd(rect.Style, rect, r);   // get the style name for this item
 
@@ -1414,7 +1414,7 @@ function findObject(id) {
             return true;
         }
 
-        public async Task RectangleEnd(RDL.Rectangle rect, Row r)
+        public async Task RectangleEnd(Rdl.Rectangle rect, Row r)
         {
             tw.WriteLine("</tr></table>");
             string bookmark = await rect.BookmarkValue(this.r, r);

@@ -32,7 +32,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Our sample PropertyTab.  It is connected to an instance of FunkyButton

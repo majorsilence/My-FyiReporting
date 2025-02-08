@@ -30,9 +30,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 #endif
 using System.Runtime.InteropServices;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     public class EMF
     {

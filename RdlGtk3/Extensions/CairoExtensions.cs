@@ -27,12 +27,12 @@
 using System;
 using Cairo;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
 	public static class CairoExtensions
 	{
@@ -659,7 +659,7 @@ namespace fyiReporting.RdlGtk3
 			return path;
 		}
 		
-		public static Color ToCairoColor (this Drawing.Color color)
+		public static Color ToCairoColor (this Draw2.Color color)
 		{
 			return new Color (color.R / 255f, color.G / 255f, color.B / 255f, color.A / 255f);
 		}

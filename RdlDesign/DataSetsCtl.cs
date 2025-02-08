@@ -20,15 +20,15 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using fyiReporting.RdlDesign.Resources;
-using fyiReporting.RdlDesign.Syntax;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for StyleCtl.

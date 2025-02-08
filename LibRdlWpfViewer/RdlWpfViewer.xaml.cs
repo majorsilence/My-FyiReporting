@@ -30,7 +30,7 @@ namespace LibRdlWpfViewer
             await this.reportViewer.Rebuild();
         }
 
-        public async Task SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+        public async Task SaveAs(string FileName, Majorsilence.Reporting.Rdl.OutputPresentationType type)
         {
             await this.reportViewer.SaveAs(FileName, type);
         }
@@ -73,7 +73,7 @@ namespace LibRdlWpfViewer
             }
         }
 
-        public async Task<fyiReporting.RDL.Report> Report()
+        public async Task<Majorsilence.Reporting.Rdl.Report> Report()
         {
             return await this.reportViewer.Report();       
         }

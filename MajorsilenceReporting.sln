@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportDesigner", "RdlDesign
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlDesktop", "RdlDesktop\RdlDesktop.csproj", "{D605B305-BB81-441C-B909-DEA35F33C8BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlEngine", "RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Majorsilence.Reporting.RdlEngine", "RdlEngine\Majorsilence.Reporting.RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlMapFile", "RdlMapFile\RdlMapFile.csproj", "{342676DA-226D-437F-AAC2-2FEA68EBC466}"
 EndProject

@@ -24,7 +24,7 @@
 using System;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// A Row in a data set.

@@ -29,7 +29,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Filters specification: used for DataRegions (List, Chart, Table, Matrix), DataSets, group instances

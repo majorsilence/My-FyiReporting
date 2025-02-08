@@ -23,7 +23,7 @@
 
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// When Query is database SQL; QueryColumn represents actual database column.

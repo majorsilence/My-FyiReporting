@@ -5,10 +5,10 @@ using System.Drawing;
 using System.Resources;
 using System.Reflection;
 using System.IO;
-using fyiReporting.RDL;
-using fyiReporting.RdlViewer.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlViewer.Resources;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     public class ViewerToolstrip : ToolStrip
     {
@@ -113,41 +113,41 @@ namespace fyiReporting.RdlViewer
             {
                 ext = dlg.FileName.Substring(i + 1).ToLower();
             }
-            fyiReporting.RDL.OutputPresentationType type = fyiReporting.RDL.OutputPresentationType.Internal;
+            Majorsilence.Reporting.Rdl.OutputPresentationType type = Majorsilence.Reporting.Rdl.OutputPresentationType.Internal;
             switch (ext)
             {
                 case "pdf":
-                    type = fyiReporting.RDL.OutputPresentationType.PDF;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.PDF;
                     break;
                 case "xml":
-                    type = fyiReporting.RDL.OutputPresentationType.XML;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.XML;
                     break;
                 case "html":
-                    type = fyiReporting.RDL.OutputPresentationType.HTML;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.HTML;
                     break;
                 case "htm":
-                    type = fyiReporting.RDL.OutputPresentationType.HTML;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.HTML;
                     break;
                 case "csv":
-                    type = fyiReporting.RDL.OutputPresentationType.CSV;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.CSV;
                     break;
                 case "rtf":
-                    type = fyiReporting.RDL.OutputPresentationType.RTF;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.RTF;
                     break;
                 case "mht":
-                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.MHTML;
                     break;
                 case "mhtml":
-                    type = fyiReporting.RDL.OutputPresentationType.MHTML;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.MHTML;
                     break;
                 case "xlsx":
                     type = dlg.FilterIndex == 7 ? OutputPresentationType.ExcelTableOnly : OutputPresentationType.Excel2007;
                     break;
                 case "tif":
-                    type = fyiReporting.RDL.OutputPresentationType.TIF;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.TIF;
                     break;
                 case "tiff":
-                    type = fyiReporting.RDL.OutputPresentationType.TIF;
+                    type = Majorsilence.Reporting.Rdl.OutputPresentationType.TIF;
                     break;
                 default:
                     MessageBox.Show(String.Format("{0} is not a valid file type. File extension must be PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.", dlg.FileName),

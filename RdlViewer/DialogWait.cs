@@ -29,9 +29,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using fyiReporting.RdlViewer.Resources;
+using Majorsilence.Reporting.RdlViewer.Resources;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     public partial class DialogWait : Form
     {

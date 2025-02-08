@@ -32,9 +32,9 @@
 */
 
 
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlViewer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -48,7 +48,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// RdlDesigner is used for building and previewing RDL based reports.
@@ -57,10 +57,10 @@ namespace fyiReporting.RdlDesign
 	/// The designer can be used from other applications by adding a reference to
 	/// RdelDesigner.exe to your projects.
 	/// <code lang="cs>
-	/// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel", true);
+	/// Majorsilence.Reporting.RdlDesign.RdlDesigner designer = new Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel", true);
 	/// </code>
 	/// <code lang="vb">
-	/// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel", true)
+	/// Dim designer As New Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel", true)
 	/// designer.Show() 
 	/// </code>
 	/// </example>
@@ -69,14 +69,14 @@ namespace fyiReporting.RdlDesign
 		// The version should match what is set in program.cs
 		static readonly string IpcFileName = string.Format("\\fyiIpcData{0}.txt", typeof(Program).Assembly.GetName().Version.ToString().Replace(".", ""));
 
-		static readonly string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "designerstate.xml");
+		static readonly string optFileName = Path.Combine(Majorsilence.Reporting.Rdl.Utility.Paths.MajorsilenceRoamingFolder(), "designerstate.xml");
 		SortedList<DateTime, string> _RecentFiles = null;
 		List<Uri> _CurrentFiles = null;     // temporary variable for current files
 		List<string> _Toolbar = null;           // temporary variable for toolbar entries
 		List<Uri> _TempReportFiles = null;      // temporary files created for report browsing
 		int _RecentFilesMax = 5;            // # of items in recent files
 		Process _ServerProcess = null;      // process for the RdlDesktop.exe --
-		private RDL.NeedPassword _GetPassword;
+		private Rdl.NeedPassword _GetPassword;
 		private string _DataSourceReferencePassword = null;
 		private bool bGotPassword = false;
 		private bool bMono = DesignerUtility.IsMono();
@@ -136,12 +136,12 @@ namespace fyiReporting.RdlDesign
 		/// <example>
 		/// An example of opening a designer form and loading one report.
 		/// <code lang="cs">
-		/// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+		/// Majorsilence.Reporting.RdlDesign.RdlDesigner designer = new Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel");
 		/// designer.Show();
 		/// designer.OpenFile(@"Path\to\a\report.rdl");
 		/// </code>
 		/// <code lang="vb">
-		/// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+		/// Dim designer As New Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel")
 		/// designer.Show() 
 		/// designer.OpenFile("Path\to\a\report.rdl")
 		/// </code>
@@ -212,7 +212,7 @@ namespace fyiReporting.RdlDesign
 
 			this.MdiChildActivate += new EventHandler(RdlDesigner_MdiChildActivate);
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlDesigner_Closing);
-			_GetPassword = new RDL.NeedPassword(this.GetPassword);
+			_GetPassword = new Rdl.NeedPassword(this.GetPassword);
 
 			InitToolbar();
 
@@ -382,7 +382,7 @@ namespace fyiReporting.RdlDesign
 			set { _RecentFilesMax = value; }
 		}
 
-		internal RDL.NeedPassword SharedDatasetPassword
+		internal Rdl.NeedPassword SharedDatasetPassword
 		{
 			get { return _GetPassword; }
 		}
@@ -1733,7 +1733,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.CSV);
+			mc.Export(Rdl.OutputPresentationType.CSV);
 			return;
 		}
 
@@ -1743,7 +1743,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.ExcelTableOnly);
+			mc.Export(Rdl.OutputPresentationType.ExcelTableOnly);
 			return;
 		}
 
@@ -1753,7 +1753,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.RTF);
+			mc.Export(Rdl.OutputPresentationType.RTF);
 			return;
 		}
 
@@ -1763,7 +1763,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.XML);
+			mc.Export(Rdl.OutputPresentationType.XML);
 			return;
 		}
 
@@ -1773,7 +1773,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.HTML);
+			mc.Export(Rdl.OutputPresentationType.HTML);
 			return;
 		}
 
@@ -1783,7 +1783,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.MHTML);
+			mc.Export(Rdl.OutputPresentationType.MHTML);
 			return;
 		}
 
@@ -1800,11 +1800,11 @@ namespace fyiReporting.RdlDesign
 
 			if (oldStyle)
 			{
-				mc.Export(fyiReporting.RDL.OutputPresentationType.PDFOldStyle);
+				mc.Export(Rdl.OutputPresentationType.PDFOldStyle);
 			}
 			else
 			{
-				mc.Export(fyiReporting.RDL.OutputPresentationType.PDF);
+				mc.Export(Rdl.OutputPresentationType.PDF);
 			}
 			return;
 		}
@@ -1815,7 +1815,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.TIF);
+			mc.Export(Rdl.OutputPresentationType.TIF);
 			return;
 		}
 
@@ -3864,7 +3864,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.Word);
+			mc.Export(Rdl.OutputPresentationType.Word);
 			return;
 		}
 
@@ -3874,7 +3874,7 @@ namespace fyiReporting.RdlDesign
 			if (mc == null)
 				return;
 
-			mc.Export(fyiReporting.RDL.OutputPresentationType.Excel2007);
+			mc.Export(Rdl.OutputPresentationType.Excel2007);
 			return;
 		}
 

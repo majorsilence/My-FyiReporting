@@ -27,11 +27,11 @@ using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web.Caching;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
-namespace fyiReporting.RdlAsp
+namespace Majorsilence.Reporting.RdlAsp
 {
     /// <summary>
     /// Summary description for RdlListReports.

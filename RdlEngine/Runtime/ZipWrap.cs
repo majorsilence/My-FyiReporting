@@ -26,9 +26,9 @@ using System.Collections;
 using System.Reflection;
 using System.IO;
 using System.Text;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     /// <summary>
     /// ZipWrap loads the SharpZipLib dll and facilitates the wrapping of ZipOutputStream and ZipEntry 

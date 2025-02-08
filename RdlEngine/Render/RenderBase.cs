@@ -32,19 +32,19 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
-using Drawing2D = Majorsilence.Drawing.Imaging;
+using Draw2 = Majorsilence.Drawing;
+using Drawing2D = Majorsilence.Draw2.Imaging;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using Drawing2D = System.Drawing.Imaging;
 #endif
 using System.Text;
-using fyiReporting.RDL.Utility;
+using Majorsilence.Reporting.Rdl.Utility;
 using System.Security;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 
 
@@ -91,7 +91,7 @@ namespace fyiReporting.RDL
         internal abstract protected void AfterProcessPage();
         internal abstract protected void AddBookmark(PageText pt);
 
-        internal abstract protected void AddLine(float x, float y, float x2, float y2, float width, Drawing.Color c, BorderStyleEnum ls);
+        internal abstract protected void AddLine(float x, float y, float x2, float y2, float width, Draw2.Color c, BorderStyleEnum ls);
 
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace fyiReporting.RDL
         /// </summary>
         /// <returns>string Image name</returns>
         internal abstract protected void AddImage(string name, StyleInfo si,
-            Drawing2D.ImageFormat imf, float x, float y, float width, float height, Drawing.RectangleF clipRect,
+            Drawing2D.ImageFormat imf, float x, float y, float width, float height, Draw2.RectangleF clipRect,
             byte[] im, int samplesW, int samplesH, string url, string tooltip);
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace fyiReporting.RDL
         /// <param name="si"></param>
         /// <param name="url"></param>
         /// <param name="patterns"></param>
-        internal abstract protected void AddPolygon(Drawing.PointF[] pts, StyleInfo si, string url);
+        internal abstract protected void AddPolygon(Draw2.PointF[] pts, StyleInfo si, string url);
 
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace fyiReporting.RDL
         /// Draw a curve
         /// </summary>
         /// <returns></returns>
-        internal abstract protected void AddCurve(Drawing.PointF[] pts, StyleInfo si);
+        internal abstract protected void AddCurve(Draw2.PointF[] pts, StyleInfo si);
 
 
 
@@ -246,7 +246,7 @@ namespace fyiReporting.RDL
 
 
                             AddImage(bgImg.Name, bgImg.SI, bgImg.ImgFormat,
-                                            currX, currY, imW, imH, Drawing.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
+                                            currX, currY, imW, imH, Draw2.RectangleF.Empty, bgImg.GetImageData(), bgImg.SamplesW, bgImg.SamplesH, null, pi.Tooltip);
 
                         }
                     }
@@ -297,14 +297,14 @@ namespace fyiReporting.RDL
                     PageImage i = pi as PageImage;
 
                     //Duc Phan added 20 Dec, 2007 to support sized image 
-                    Drawing.RectangleF r2 = new Drawing.RectangleF(i.X + i.SI.PaddingLeft, i.Y + i.SI.PaddingTop, i.W - i.SI.PaddingLeft - i.SI.PaddingRight, i.H - i.SI.PaddingTop - i.SI.PaddingBottom);
+                    Draw2.RectangleF r2 = new Draw2.RectangleF(i.X + i.SI.PaddingLeft, i.Y + i.SI.PaddingTop, i.W - i.SI.PaddingLeft - i.SI.PaddingRight, i.H - i.SI.PaddingTop - i.SI.PaddingBottom);
 
-                    Drawing.RectangleF adjustedRect;   // work rectangle 
-                    Drawing.RectangleF clipRect = Drawing.RectangleF.Empty;
+                    Draw2.RectangleF adjustedRect;   // work rectangle 
+                    Draw2.RectangleF clipRect = Draw2.RectangleF.Empty;
                     switch (i.Sizing)
                     {
                         case ImageSizingEnum.AutoSize:
-                            adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
+                            adjustedRect = new Draw2.RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.Clip:
@@ -312,9 +312,9 @@ namespace fyiReporting.RDL
                             //Set samples size
                             i.GetImageData((int)r2.Width, (int)r2.Height);
 
-                            adjustedRect = new Drawing.RectangleF(r2.Left, r2.Top,
+                            adjustedRect = new Draw2.RectangleF(r2.Left, r2.Top,
                                             Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
-                            clipRect = new Drawing.RectangleF(r2.Left, r2.Top,
+                            clipRect = new Draw2.RectangleF(r2.Left, r2.Top,
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.FitProportional:
@@ -332,7 +332,7 @@ namespace fyiReporting.RDL
                             {   // this means the rectangle height must be corrected 
                                 height = width * ratioIm;
                             }
-                            adjustedRect = new Drawing.RectangleF(r2.X, r2.Y, width, height);
+                            adjustedRect = new Draw2.RectangleF(r2.X, r2.Y, width, height);
                             break;
                         case ImageSizingEnum.Fit:
                         default:
@@ -340,7 +340,7 @@ namespace fyiReporting.RDL
                             break;
                     }
 #if !DRAWINGCOMPAT
-                    if (i.ImgFormat == System.Drawing.Imaging.ImageFormat.Wmf || i.ImgFormat == System.Drawing.Imaging.ImageFormat.Emf)
+                    if (i.ImgFormat == Draw2.Imaging.ImageFormat.Wmf || i.ImgFormat == Draw2.Imaging.ImageFormat.Emf)
                     {
                         //We dont want to add it - its already been broken down into page items;
                     }
@@ -387,22 +387,22 @@ namespace fyiReporting.RDL
         }
 
 
-        private string[] MeasureString(PageText pt, Drawing.Graphics g, out float[] width)
+        private string[] MeasureString(PageText pt, Draw2.Graphics g, out float[] width)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
 
-            Drawing.Font drawFont = null;
-            Drawing.StringFormat drawFormat = null;
-            Drawing.SizeF ms;
+            Draw2.Font drawFont = null;
+            Draw2.StringFormat drawFormat = null;
+            Draw2.SizeF ms;
             string[] sa = null;
             width = null;
             try
             {
                 // STYLE
-                Drawing.FontStyle fs = 0;
+                Draw2.FontStyle fs = 0;
                 if (si.FontStyle == FontStyleEnum.Italic)
-                    fs |= Drawing.FontStyle.Italic;
+                    fs |= Draw2.FontStyle.Italic;
 
                 // WEIGHT
                 switch (si.FontWeight)
@@ -414,15 +414,15 @@ namespace fyiReporting.RDL
                     case FontWeightEnum.W700:
                     case FontWeightEnum.W800:
                     case FontWeightEnum.W900:
-                        fs |= Drawing.FontStyle.Bold;
+                        fs |= Draw2.FontStyle.Bold;
                         break;
                     default:
                         break;
                 }
 
-                drawFont = new Drawing.Font(StyleInfo.GetFontFamily(si.FontFamilyFull), si.FontSize, fs);
-                drawFormat = new Drawing.StringFormat();
-                drawFormat.Alignment = Drawing.StringAlignment.Near;
+                drawFont = new Draw2.Font(StyleInfo.GetFontFamily(si.FontFamilyFull), si.FontSize, fs);
+                drawFormat = new Draw2.StringFormat();
+                drawFormat.Alignment = Draw2.StringAlignment.Near;
 
                 // Measure string   
                 //  pt.NoClip indicates that this was generated by PageTextHtml Build.  It has already word wrapped.
@@ -469,7 +469,7 @@ namespace fyiReporting.RDL
                     // 1) break line into parts; then build up again keeping track of word positions
                     string[] parts = fl.Split(WORDBREAK);	// this is the maximum split of lines
                     StringBuilder sb = new StringBuilder(fl.Length);
-                    Drawing.CharacterRange[] cra = new Drawing.CharacterRange[parts.Length];
+                    Draw2.CharacterRange[] cra = new Draw2.CharacterRange[parts.Length];
                     for (int i = 0; i < parts.Length; i++)
                     {
                         int sc = sb.Length;	 // starting character
@@ -477,7 +477,7 @@ namespace fyiReporting.RDL
                         if (i != parts.Length - 1)  // last item doesn't need blank
                             sb.Append(" ");
                         int ec = sb.Length;
-                        Drawing.CharacterRange cr = new Drawing.CharacterRange(sc, ec - sc);
+                        Draw2.CharacterRange cr = new Draw2.CharacterRange(sc, ec - sc);
                         cra[i] = cr;			// add to character array
                     }
 
@@ -489,8 +489,8 @@ namespace fyiReporting.RDL
 
                     // 3) Loop thru creating new lines as needed
                     int startLoc = 0;
-                    Drawing.CharacterRange crs = cra[startLoc];
-                    Drawing.CharacterRange cre = cra[startLoc];
+                    Draw2.CharacterRange crs = cra[startLoc];
+                    Draw2.CharacterRange cre = cra[startLoc];
                     float cwidth = wordLocations[0].end;	// length of the first
                     float bwidth = wordLocations[0].start;  // characters need a little extra on start
                     string ts;
@@ -549,7 +549,7 @@ namespace fyiReporting.RDL
         /// <summary>
         /// Measures the location of an arbritrary # of words within a string
         /// </summary>
-        private WordStartFinish[] MeasureString(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat, Drawing.CharacterRange[] cra)
+        private WordStartFinish[] MeasureString(string s, Draw2.Graphics g, Draw2.Font drawFont, Draw2.StringFormat drawFormat, Draw2.CharacterRange[] cra)
         {
             if (cra.Length <= MEASUREMAX)		// handle the simple case of < MEASUREMAX words
                 return MeasureString32(s, g, drawFont, drawFormat, cra);
@@ -559,7 +559,7 @@ namespace fyiReporting.RDL
             int ip = cra.Length % MEASUREMAX;		// # of partial entries needed for last array (if any)
             WordStartFinish[] sz = new WordStartFinish[cra.Length];	// this is the final result;
             float startPos = 0;
-            Drawing.CharacterRange[] cra32 = new Drawing.CharacterRange[MEASUREMAX];	// fill out			
+            Draw2.CharacterRange[] cra32 = new Draw2.CharacterRange[MEASUREMAX];	// fill out			
             int icra = 0;						// index thru the cra 
             for (int i = 0; i < mcra; i++)
             {
@@ -589,7 +589,7 @@ namespace fyiReporting.RDL
             if (ip > 0)
             {
                 // resize the range array
-                cra32 = new Drawing.CharacterRange[ip];
+                cra32 = new Draw2.CharacterRange[ip];
                 // fill out the new array
                 int ticra = icra;
                 for (int j = 0; j < cra32.Length; j++)
@@ -623,20 +623,20 @@ namespace fyiReporting.RDL
         /// <param name="drawFormat"></param>
         /// <param name="cra"></param>
         /// <returns></returns>
-        private WordStartFinish[] MeasureString32(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat, Drawing.CharacterRange[] cra)
+        private WordStartFinish[] MeasureString32(string s, Draw2.Graphics g, Draw2.Font drawFont, Draw2.StringFormat drawFormat, Draw2.CharacterRange[] cra)
         {
             if (s == null || s.Length == 0)
                 return null;
 
             drawFormat.SetMeasurableCharacterRanges(cra);
-            Drawing.Region[] rs = new Drawing.Region[cra.Length];
-            rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0, 0, float.MaxValue, float.MaxValue),
+            Draw2.Region[] rs = new Draw2.Region[cra.Length];
+            rs = g.MeasureCharacterRanges(s, drawFont, new Draw2.RectangleF(0, 0, float.MaxValue, float.MaxValue),
                 drawFormat);
             WordStartFinish[] sz = new WordStartFinish[cra.Length];
             int isz = 0;
-            foreach (Drawing.Region r in rs)
+            foreach (Draw2.Region r in rs)
             {
-                Drawing.RectangleF mr = r.GetBounds(g);
+                Draw2.RectangleF mr = r.GetBounds(g);
                 sz[isz].start = Measurement.PointsFromPixels(mr.Left, g.DpiX);
                 sz[isz].end = Measurement.PointsFromPixels(mr.Right, g.DpiX);
                 isz++;
@@ -650,19 +650,19 @@ namespace fyiReporting.RDL
             internal float end;
         }
 
-        private Drawing.SizeF MeasureString(string s, Drawing.Graphics g, Drawing.Font drawFont, Drawing.StringFormat drawFormat)
+        private Draw2.SizeF MeasureString(string s, Draw2.Graphics g, Draw2.Font drawFont, Draw2.StringFormat drawFormat)
         {
             if (s == null || s.Length == 0)
-                return Drawing.SizeF.Empty;
+                return Draw2.SizeF.Empty;
 
-            Drawing.CharacterRange[] cr = { new Drawing.CharacterRange(0, s.Length) };
+            Draw2.CharacterRange[] cr = { new Draw2.CharacterRange(0, s.Length) };
             drawFormat.SetMeasurableCharacterRanges(cr);
-            Drawing.Region[] rs = new Drawing.Region[1];
-            rs = g.MeasureCharacterRanges(s, drawFont, new Drawing.RectangleF(0, 0, float.MaxValue, float.MaxValue),
+            Draw2.Region[] rs = new Draw2.Region[1];
+            rs = g.MeasureCharacterRanges(s, drawFont, new Draw2.RectangleF(0, 0, float.MaxValue, float.MaxValue),
                 drawFormat);
-            Drawing.RectangleF mr = rs[0].GetBounds(g);
+            Draw2.RectangleF mr = rs[0].GetBounds(g);
 
-            return new Drawing.SizeF(mr.Width, mr.Height);
+            return new Draw2.SizeF(mr.Width, mr.Height);
         }
 
 
@@ -811,7 +811,7 @@ namespace fyiReporting.RDL
             return Task.CompletedTask;
         }
 
-        public Task Image(fyiReporting.RDL.Image i, Row r, string mimeType, Stream ior)
+        public Task Image(Rdl.Image i, Row r, string mimeType, Stream ior)
         {
             return Task.CompletedTask;
         }
@@ -821,12 +821,12 @@ namespace fyiReporting.RDL
             return Task.CompletedTask;
         }
 
-        public Task<bool> RectangleStart(fyiReporting.RDL.Rectangle rect, Row r)
+        public Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
         {
             return Task.FromResult(true);
         }
 
-        public Task RectangleEnd(fyiReporting.RDL.Rectangle rect, Row r)
+        public Task RectangleEnd(Rdl.Rectangle rect, Row r)
         {
             return Task.CompletedTask;
         }

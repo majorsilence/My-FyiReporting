@@ -29,9 +29,9 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// FontCtl

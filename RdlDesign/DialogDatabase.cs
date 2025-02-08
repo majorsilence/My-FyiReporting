@@ -34,11 +34,11 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Globalization;
 using System.Xml;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for DialogDatabase.

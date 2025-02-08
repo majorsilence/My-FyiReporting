@@ -22,7 +22,7 @@
 */
 
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,14 +33,14 @@ using System.Threading.Tasks;
 
 
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using System.Drawing.Imaging;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 
     ///<summary>
@@ -54,9 +54,9 @@ namespace fyiReporting.RDL
 		StringWriter tw;			// temporary location where the output is going
 		IStreamGen _sg;				// stream generater
         System.Collections.Generic.List<string> _Fonts;        // list of fonts used
-        System.Collections.Generic.List<Drawing.Color> _Colors;         // list of colors used
-        Drawing.Bitmap _bm=null;			// bm and
-        Drawing.Graphics _g=null;			//		  g are needed when calculating string heights
+        System.Collections.Generic.List<Draw2.Color> _Colors;         // list of colors used
+        Draw2.Bitmap _bm=null;			// bm and
+        Draw2.Graphics _g=null;			//		  g are needed when calculating string heights
 
         // some matrix generation variables
         int[] _MatrixColumnWidths;    // column widths for matrix
@@ -73,7 +73,7 @@ namespace fyiReporting.RDL
 
 			tw = new StringWriter();	// will hold the bulk of the RTF until we generate
             _Fonts = new System.Collections.Generic.List<string>();
-            _Colors = new System.Collections.Generic.List<Drawing.Color>();
+            _Colors = new System.Collections.Generic.List<Draw2.Color>();
         }
         public void Dispose() 
 		{
@@ -100,14 +100,14 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		private Drawing.Graphics GetGraphics
+		private Draw2.Graphics GetGraphics
 		{
 			get 
 			{
 				if (_g == null)
 				{
-					_bm = new Drawing.Bitmap(10, 10);
-					_g = Drawing.Graphics.FromImage(_bm);
+					_bm = new Draw2.Bitmap(10, 10);
+					_g = Draw2.Graphics.FromImage(_bm);
 				}
 				return _g;
 			}
@@ -165,7 +165,7 @@ namespace fyiReporting.RDL
         private void PutColorTable(TextWriter ftw)
         {
             ftw.Write(@"{\colortbl;");
-            foreach (Drawing.Color color in _Colors)
+            foreach (Draw2.Color color in _Colors)
             {
                 ftw.Write(@"\red{0}\green{1}\blue{2};", color.R, color.G, color.B);
             }
@@ -655,7 +655,7 @@ namespace fyiReporting.RDL
 
 		public Task Chart(Chart c, Row row, ChartBase cb)
 		{
-           Drawing.Image im = cb.Image(r);
+           Draw2.Image im = cb.Image(r);
             
             PutImage(im, im.Width, im.Height);
             
@@ -666,7 +666,7 @@ namespace fyiReporting.RDL
         }
         public Task Image(Image i, Row r, string mimeType, Stream ioin)
         {
-            using (Drawing.Image im = Drawing.Image.FromStream(ioin))
+            using (Draw2.Image im = Draw2.Image.FromStream(ioin))
             {
                 PutImage(im, i.Width == null ? 0 : i.Width.PixelsX, i.Height == null ? 0 : i.Height.PixelsY);
             }
@@ -697,7 +697,7 @@ namespace fyiReporting.RDL
         /// <param name="ioin"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-		void PutImage(Drawing.Image im, int width, int height)
+		void PutImage(Draw2.Image im, int width, int height)
 		{
             MemoryStream ostrm = new MemoryStream();
             ImageFormat imf;
@@ -738,12 +738,12 @@ namespace fyiReporting.RDL
 			return Task.CompletedTask;
 		}
 
-		public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
+		public Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
 		{
 			return Task.FromResult(true);
 		}
 
-		public Task RectangleEnd(RDL.Rectangle rect, Row r)
+		public Task RectangleEnd(Rdl.Rectangle rect, Row r)
 		{
             return Task.CompletedTask;
         }

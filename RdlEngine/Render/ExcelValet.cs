@@ -38,7 +38,7 @@ using System.Text.RegularExpressions;
 
 
 //using ICSharpCode.SharpZipLib.Zip;
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal class ExcelValet
     {

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     public partial class DialogListOfStrings : System.Windows.Forms.Form
 	{

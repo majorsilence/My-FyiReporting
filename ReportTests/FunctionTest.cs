@@ -14,7 +14,7 @@ namespace ReportTests
             // disable test.  travis ci does not have x11
             //string cwd = System.Environment.CurrentDirectory;
            
-            //var rdlView = new fyiReporting.RdlViewer.RdlViewer();
+            //var rdlView = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             //rdlView.SourceFile = new Uri(System.IO.Path.Combine(cwd,"Reports", "FunctionTest.rdl"));
             //rdlView.Parameters += string.Format("ConnectionString={0}", DatabaseInfo.Connection);
             //rdlView.Rebuild();
@@ -31,7 +31,7 @@ namespace ReportTests
             //    System.IO.File.Delete(pdf);
             //}
 
-            //rdlView.SaveAs(pdf, fyiReporting.RDL.OutputPresentationType.PDF);
+            //rdlView.SaveAs(pdf, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
 
             
             

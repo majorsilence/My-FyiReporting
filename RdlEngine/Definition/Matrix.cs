@@ -28,7 +28,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     ///  Represents the report item (and Data region) for a matrix (cross-tabulation)

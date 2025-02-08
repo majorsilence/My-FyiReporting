@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	public partial class RdlDesigner : System.Windows.Forms.Form
 	{
@@ -163,7 +163,7 @@ namespace fyiReporting.RdlDesign
 			this.lineToolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.fxToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
 			this.ctlEditTextbox = new System.Windows.Forms.ToolStripTextBox();
-			this.zoomControl = new fyiReporting.RdlDesign.ToolStripUserZoomControl();
+			this.zoomControl = new Majorsilence.Reporting.RdlDesign.ToolStripUserZoomControl();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.boldToolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.italiacToolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -190,8 +190,8 @@ namespace fyiReporting.RdlDesign
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.foreColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
-			this.backColorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+			this.foreColorPicker1 = new Majorsilence.Reporting.RdlDesign.ColorPicker();
+			this.backColorPicker1 = new Majorsilence.Reporting.RdlDesign.ColorPicker();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -201,7 +201,7 @@ namespace fyiReporting.RdlDesign
 			this.MenuTBClose = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuTBSave = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuTBCloseAllButThis = new System.Windows.Forms.ToolStripMenuItem();
-			this.mainProperties = new fyiReporting.RdlDesign.PropertyCtl();
+			this.mainProperties = new Majorsilence.Reporting.RdlDesign.PropertyCtl();
 			this.menuStrip1.SuspendLayout();
 			this.mainTB.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
@@ -1275,7 +1275,7 @@ namespace fyiReporting.RdlDesign
 			this.zoomControl.BackColor = System.Drawing.Color.White;
 			resources.ApplyResources(this.zoomControl, "zoomControl");
 			this.zoomControl.Name = "zoomControl";
-			this.zoomControl.ZoomChanged += new System.EventHandler<fyiReporting.RdlDesign.UserZoomControl.CambiaValori>(this.ZoomControl1_ValueChanged);
+			this.zoomControl.ZoomChanged += new System.EventHandler<Majorsilence.Reporting.RdlDesign.UserZoomControl.CambiaValori>(this.ZoomControl1_ValueChanged);
 			// 
 			// toolStrip1
 			// 

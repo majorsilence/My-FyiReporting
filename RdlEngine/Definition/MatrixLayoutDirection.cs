@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Handle Matrix layout direction enumeration: LTR (left to right), RTL (right to left)

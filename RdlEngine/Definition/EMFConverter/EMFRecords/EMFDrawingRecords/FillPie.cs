@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal class FillPie : DrawBase
     {
@@ -63,7 +63,7 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                Drawing.Brush b;
+                Draw2.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -71,7 +71,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
+                    b = new Draw2.SolidBrush(Draw2.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(Single StartAngle,Single SweepAngle, BinaryReader _br, Drawing.Brush b)
+        private void DoFloat(Single StartAngle,Single SweepAngle, BinaryReader _br, Draw2.Brush b)
         {
                 Single recX = _br.ReadSingle();
                 Single recY = _br.ReadSingle();
@@ -113,7 +113,7 @@ namespace fyiReporting.RDL
                 DoInstructions(recX, recY, recWidth, recHeight, b, StartAngle, SweepAngle);          
         }
 
-        private void DoCompressed(Single StartAngle, Single SweepAngle, BinaryReader _br, Drawing.Brush b)
+        private void DoCompressed(Single StartAngle, Single SweepAngle, BinaryReader _br, Draw2.Brush b)
         {
             Int16 recX = _br.ReadInt16();
             Int16 recY = _br.ReadInt16();
@@ -122,7 +122,7 @@ namespace fyiReporting.RDL
             DoInstructions(recX, recY, recWidth, recHeight, b, StartAngle, SweepAngle);            
         }
 
-        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Drawing.Brush b, Single StartAngle, Single SweepAngle)
+        private void DoInstructions(Single recX, Single recY, Single recWidth, Single recHeight, Draw2.Brush b, Single StartAngle, Single SweepAngle)
         {
 
             PagePie pl = new PagePie();
@@ -138,18 +138,18 @@ namespace fyiReporting.RDL
             switch (b.GetType().Name)
             {
                 case "SolidBrush":
-                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)b;
+                   Draw2.SolidBrush theBrush = (Draw2.SolidBrush)b;
                     SI.Color = theBrush.Color;
                     SI.BackgroundColor = theBrush.Color;
                     break;
                 case "LinearGradientBrush":
-                   Drawing.Drawing2D.LinearGradientBrush linBrush = (Drawing.Drawing2D.LinearGradientBrush)b;
+                   Draw2.Drawing2D.LinearGradientBrush linBrush = (Draw2.Drawing2D.LinearGradientBrush)b;
                     SI.BackgroundGradientType = BackgroundGradientTypeEnum.LeftRight;
                     SI.BackgroundColor = linBrush.LinearColors[0];
                     SI.BackgroundGradientEndColor = linBrush.LinearColors[1];
                     break;
                 case "HatchBrush":
-                   Drawing.Drawing2D.HatchBrush hatBrush = (Drawing.Drawing2D.HatchBrush)b;
+                   Draw2.Drawing2D.HatchBrush hatBrush = (Draw2.Drawing2D.HatchBrush)b;
                     SI.BackgroundColor = hatBrush.BackgroundColor;
                     SI.Color = hatBrush.ForegroundColor;
 

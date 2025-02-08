@@ -1,5 +1,5 @@
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -28,7 +28,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Text;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties
@@ -231,7 +231,7 @@ namespace fyiReporting.RdlDesign
             get
             {
                 string v = GetValue("DataElementOutput", "Auto");
-                return fyiReporting.RDL.DataElementOutput.GetStyle(v);
+                return Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(v);
             }
             set
             {

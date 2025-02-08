@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 #if DRAWINGCOMPAT
@@ -44,7 +44,7 @@ namespace RdlEngine.Render.ExcelConverter
 			Lines = new List<ExcelLine>();
 		}
 
-		public void AddImage(fyiReporting.RDL.Image image, int pictureIndex)
+		public void AddImage(Majorsilence.Reporting.Rdl.Image image, int pictureIndex)
 		{
 			var img = new ExcelImage(image, pictureIndex);
 			float top = image.Top.Points;
@@ -58,7 +58,7 @@ namespace RdlEngine.Render.ExcelConverter
 			Images.Add(img);
 		}
 
-		public void AddLine(fyiReporting.RDL.Line line, float borderWidth)
+		public void AddLine(Majorsilence.Reporting.Rdl.Line line, float borderWidth)
 		{
 			var l = new ExcelLine(line);
 			float top = line.Top.Points;
@@ -161,7 +161,7 @@ namespace RdlEngine.Render.ExcelConverter
 				if(rl is PageHeader || rl is PageFooter || rl is Body) {
 					break;
 				}
-				if((rl is DataRegion || rl is fyiReporting.RDL.Rectangle) && !(rl is CustomReportItem)) {
+				if((rl is DataRegion || rl is Majorsilence.Reporting.Rdl.Rectangle) && !(rl is CustomReportItem)) {
 					top += (rl as ReportItem).Top.Points;
 					left += (rl as ReportItem).Left.Points;
 				}

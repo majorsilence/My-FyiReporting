@@ -35,7 +35,7 @@ using System.Text;
 using RdlMapFile.Resources;
 using System.ComponentModel;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
 
 	/// <summary>

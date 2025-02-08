@@ -28,11 +28,11 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 using System.Data.Common;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Information about the data source (e.g. a database connection string).
@@ -279,7 +279,7 @@ namespace fyiReporting.RDL
 				if (pswd == null)
 					throw new Exception(Strings.DataSourceDefn_Error_NoPasswordForDSR);
 
-				string xml = RDL.DataSourceReference.Retrieve(file, pswd);
+				string xml = Rdl.DataSourceReference.Retrieve(file, pswd);
 				XmlDocument xDoc = new XmlDocument();
 				xDoc.LoadXml(xml);
 				XmlNode xNodeLoop = xDoc.FirstChild;

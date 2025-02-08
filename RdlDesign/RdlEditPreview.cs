@@ -20,10 +20,10 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
-using fyiReporting.RdlDesign.Syntax;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Syntax;
+using Majorsilence.Reporting.RdlViewer;
 using ScintillaNET;
 using System;
 using System.Drawing;
@@ -31,7 +31,7 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for RdlEditPreview.
@@ -46,7 +46,7 @@ namespace fyiReporting.RdlDesign
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private fyiReporting.RdlViewer.RdlViewer rdlPreview;
+		private Majorsilence.Reporting.RdlViewer.RdlViewer rdlPreview;
 		private System.Windows.Forms.TabPage tpDesign;
 		private DesignCtl dcDesign;
 
@@ -706,7 +706,7 @@ namespace fyiReporting.RdlDesign
 			this.tpEditor = new System.Windows.Forms.TabPage();
 			this.scintilla1 = new ScintillaNET.Scintilla();
 			this.tpBrowser = new System.Windows.Forms.TabPage();
-			this.rdlPreview = new fyiReporting.RdlViewer.RdlViewer();
+			this.rdlPreview = new Majorsilence.Reporting.RdlViewer.RdlViewer();
 			this.tcEHP.SuspendLayout();
 			this.tpEditor.SuspendLayout();
 			this.tpBrowser.SuspendLayout();
@@ -767,14 +767,14 @@ namespace fyiReporting.RdlDesign
 			this.rdlPreview.PageCurrent = 1;
 			this.rdlPreview.Parameters = "";
 			this.rdlPreview.ReportName = null;
-			this.rdlPreview.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
+			this.rdlPreview.ScrollMode = Majorsilence.Reporting.RdlViewer.ScrollModeEnum.Continuous;
 			this.rdlPreview.SelectTool = false;
 			this.rdlPreview.ShowFindPanel = false;
 			this.rdlPreview.ShowParameterPanel = true;
 			this.rdlPreview.ShowWaitDialog = true;
 			this.rdlPreview.UseTrueMargins = true;
 			this.rdlPreview.Zoom = 0.5495112F;
-			this.rdlPreview.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
+			this.rdlPreview.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.FitWidth;
 			// 
 			// RdlEditPreview
 			// 
@@ -976,7 +976,7 @@ namespace fyiReporting.RdlDesign
 			get {return this.rdlPreview.PageWidth;}
 		}
 
-		public fyiReporting.RdlViewer.RdlViewer Viewer
+		public Majorsilence.Reporting.RdlViewer.RdlViewer Viewer
 		{
 			get {return this.rdlPreview;}
 		}

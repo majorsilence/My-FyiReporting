@@ -28,7 +28,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     class EMFFont : EMFRecordObject
     {

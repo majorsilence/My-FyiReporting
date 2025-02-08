@@ -24,7 +24,7 @@ using System.ComponentModel;            // need this for the properties metadata
 using System.Drawing;
 using System.Xml;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties

@@ -6,21 +6,21 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using fyiReporting.RdlDesign.Resources;
-using fyiReporting.RdlViewer;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Globalization;
 using System.Xml;
 using System.Drawing.Printing;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     public partial class RdlUserControl : UserControl
     {
 
 
-        private RDL.NeedPassword _GetPassword;
+        private Rdl.NeedPassword _GetPassword;
         private bool bGotPassword = false;
         private string _DataSourceReferencePassword = null;
         public delegate void RdlChangeHandler(object sender, EventArgs e);
@@ -37,7 +37,7 @@ namespace fyiReporting.RdlDesign
             InitializeComponent();
 
 
-            _GetPassword = new RDL.NeedPassword(this.GetPassword);
+            _GetPassword = new Rdl.NeedPassword(this.GetPassword);
 
 
             rdlEditPreview1.OnSelectionChanged += SelectionChanged;
@@ -59,12 +59,12 @@ namespace fyiReporting.RdlDesign
         /// <example>
         /// An example of opening a designer form and loading one report.
         /// <code lang="cs">
-        /// fyiReporting.RdlDesign.RdlDesigner designer = new fyiReporting.RdlDesign.RdlDesigner("myFyiChannel");
+        /// Majorsilence.Reporting.RdlDesign.RdlDesigner designer = new Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel");
         /// designer.Show();
         /// designer.OpenFile(@"Path\to\a\report.rdl");
         /// </code>
         /// <code lang="vb">
-        /// Dim designer As New fyiReporting.RdlDesign.RdlDesigner("myFyiChannel")
+        /// Dim designer As New Majorsilence.Reporting.RdlDesign.RdlDesigner("myFyiChannel")
         /// designer.Show() 
         /// designer.OpenFile("Path\to\a\report.rdl")
         /// </code>
@@ -82,7 +82,7 @@ namespace fyiReporting.RdlDesign
             OpenReport(filePath, null);
         }
 
-        public fyiReporting.RdlViewer.RdlViewer Viewer
+        public Majorsilence.Reporting.RdlViewer.RdlViewer Viewer
         {
             get { return rdlEditPreview1.Viewer; }
         }
@@ -165,7 +165,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        internal RDL.NeedPassword SharedDatasetPassword
+        internal Rdl.NeedPassword SharedDatasetPassword
         {
             get { return _GetPassword; }
         }
@@ -706,7 +706,7 @@ namespace fyiReporting.RdlDesign
             }
         }
 
-        public bool Export(fyiReporting.RDL.OutputPresentationType type)
+        public bool Export(Rdl.OutputPresentationType type)
         {
             SaveFileDialog sfd = new SaveFileDialog();
 			sfd.Title = string.Format(Strings.MDIChild_Export_ExportTitleFormat, type.ToString().ToUpper());
@@ -1217,43 +1217,43 @@ namespace fyiReporting.RdlDesign
         private void pdfToolStripButton2_Click(object sender, EventArgs e)
         {
 
-            Export(fyiReporting.RDL.OutputPresentationType.PDF);
+            Export(Rdl.OutputPresentationType.PDF);
 
         }
 
         private void htmlToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.HTML);
+            Export(Rdl.OutputPresentationType.HTML);
         }
 
         private void excelToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.Excel2007);
+            Export(Rdl.OutputPresentationType.Excel2007);
         }
 
         private void XmlToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.XML);
+            Export(Rdl.OutputPresentationType.XML);
         }
 
         private void MhtToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.MHTML);
+            Export(Rdl.OutputPresentationType.MHTML);
         }
 
         private void CsvToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.CSV);
+            Export(Rdl.OutputPresentationType.CSV);
         }
 
         private void RtfToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.RTF);
+            Export(Rdl.OutputPresentationType.RTF);
         }
 
         private void TifToolStripButton2_Click(object sender, EventArgs e)
         {
-            Export(fyiReporting.RDL.OutputPresentationType.TIF);
+            Export(Rdl.OutputPresentationType.TIF);
         }
 
         private void foreColorPicker1_Validated(object sender, EventArgs e)

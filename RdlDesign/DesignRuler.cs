@@ -30,7 +30,7 @@ using System.Globalization;
 using System.Net;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 
 	/// <summary>

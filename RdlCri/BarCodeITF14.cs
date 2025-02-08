@@ -1,4 +1,4 @@
-﻿using fyiReporting.RDL;
+﻿using Majorsilence.Reporting.Rdl;
 using System;
 using System.Collections.Generic;
 using System.Linq;

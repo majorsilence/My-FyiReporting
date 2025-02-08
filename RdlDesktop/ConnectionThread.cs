@@ -29,11 +29,11 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RdlDesktop
+namespace Majorsilence.Reporting.RdlDesktop
 {
 	class ConnectionThread
 	{
@@ -418,7 +418,7 @@ namespace fyiReporting.RdlDesktop
 				{
 					r.Folder = Path.GetDirectoryName(file);
 					r.Name = Path.GetFileNameWithoutExtension(file);
-					r.GetDataSourceReferencePassword = new RDL.NeedPassword(GetPassword);
+					r.GetDataSourceReferencePassword = new Rdl.NeedPassword(GetPassword);
 				}
 			}
 			catch (Exception ex)

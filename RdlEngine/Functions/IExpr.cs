@@ -23,10 +23,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// The IExpr interface should be implemented when you want to create a built-in function.

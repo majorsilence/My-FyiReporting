@@ -25,11 +25,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Imaging = Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using Imaging = System.Drawing.Imaging;
 #endif
 using System.Text;
@@ -38,7 +39,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Column chart definition and processing
@@ -57,30 +58,30 @@ namespace fyiReporting.RDL
 #if !DRAWINGCOMPAT
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
 			{
-				using (Drawing.Graphics g1 = Drawing.Graphics.FromImage(_bm))
+				using (Draw2.Graphics g1 = Draw2.Graphics.FromImage(_bm))
 				{
 					_aStream = new System.IO.MemoryStream();
 					IntPtr HDC = g1.GetHdc();
-					//_mf = new System.Drawing.Imaging.Metafile(_aStream, HDC);
-					_mf = new Imaging.Metafile(_aStream, HDC, new Drawing.RectangleF(0, 0, _bm.Width, _bm.Height),
+					//_mf = new System.Draw2.Imaging.Metafile(_aStream, HDC);
+					_mf = new Imaging.Metafile(_aStream, HDC, new Draw2.RectangleF(0, 0, _bm.Width, _bm.Height),
 						Imaging.MetafileFrameUnit.Pixel);
 					g1.ReleaseHdc(HDC);
 				}
 			}
 
-			using(Drawing.Graphics g = Drawing.Graphics.FromImage(_mf != null ? _mf : _bm))
+			using(Draw2.Graphics g = Draw2.Graphics.FromImage(_mf != null ? _mf : _bm))
 #else
-            using (Drawing.Graphics g = Drawing.Graphics.FromImage(_bm))
+            using (Draw2.Graphics g = Draw2.Graphics.FromImage(_bm))
 #endif
             {
                 // 06122007AJM Used to Force Higher Quality
-                g.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = Drawing.Drawing2D.PixelOffsetMode.None;
-                g.CompositingQuality = Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = Draw2.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = Draw2.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = Draw2.Drawing2D.PixelOffsetMode.None;
+                g.CompositingQuality = Draw2.Drawing2D.CompositingQuality.HighQuality;
 
 				// Adjust the top margin to depend on the title height
-				Drawing.Size titleSize = await DrawTitleMeasure(rpt, g, ChartDefn.Title);
+				Draw2.Size titleSize = await DrawTitleMeasure(rpt, g, ChartDefn.Title);
 				Layout.TopMargin = titleSize.Height;
 
 				double max=0,min=0; // Get the max and min values
@@ -89,13 +90,13 @@ namespace fyiReporting.RDL
                 await DrawChartStyle(rpt, g);
 
                 // Draw title; routine determines if necessary
-                await DrawTitle(rpt, g, ChartDefn.Title, new Drawing.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
+                await DrawTitle(rpt, g, ChartDefn.Title, new Draw2.Rectangle(0, 0, _bm.Width, Layout.TopMargin));
 
 				Layout.LeftMargin = 0;
                 Layout.RightMargin = 0;
 
 				// Draw legend
-				Drawing.Rectangle lRect = await DrawLegend(rpt, g, false, true);
+				Draw2.Rectangle lRect = await DrawLegend(rpt, g, false, true);
 
 				Layout.BottomMargin = 0;
 
@@ -113,7 +114,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-        private async Task DrawMap(Report rpt, Drawing.Graphics g, string mapfile, double max, double min)
+        private async Task DrawMap(Report rpt, Draw2.Graphics g, string mapfile, double max, double min)
         {
             string file = XmlUtil.XmlFileExists(mapfile);
 
@@ -137,15 +138,15 @@ namespace fyiReporting.RDL
                     List<MapPolygon> pl = mp.GetPolygon(sv);
                     if (pl == null)
                         continue;
-                    Drawing.Brush br = new Drawing.SolidBrush(XmlUtil.ColorFromHtml(c, Drawing.Color.Transparent));
+                    Draw2.Brush br = new Draw2.SolidBrush(XmlUtil.ColorFromHtml(c, Draw2.Color.Transparent));
                     foreach (MapPolygon mpoly in pl)
                     {
-	                    Drawing.PointF[] polygon = mpoly.Polygon;
-	                    Drawing.PointF[] drawpoly = new Drawing.PointF[polygon.Length];
+	                    Draw2.PointF[] polygon = mpoly.Polygon;
+	                    Draw2.PointF[] drawpoly = new Draw2.PointF[polygon.Length];
                         // make points relative to plotarea --- need to scale this as well
                         for (int ip = 0; ip < drawpoly.Length; ip++)
                         {
-                            drawpoly[ip] = new Drawing.PointF(Layout.PlotArea.X + (polygon[ip].X * scale), Layout.PlotArea.Y + (polygon[ip].Y * scale));
+                            drawpoly[ip] = new Draw2.PointF(Layout.PlotArea.X + (polygon[ip].X * scale), Layout.PlotArea.Y + (polygon[ip].Y * scale));
                         }
                         g.FillPolygon(br, drawpoly);
                         if (_showToolTips)
@@ -155,7 +156,7 @@ namespace fyiReporting.RDL
                             sb.Append(sv.Replace('|', '/'));        // we treat '|' as a separator character; don't allow in string
                             sb.Append(' ');
                             sb.Append(c.Replace('|', '/'));
-                            foreach (Drawing.PointF pf in drawpoly)
+                            foreach (Draw2.PointF pf in drawpoly)
                                 sb.AppendFormat(NumberFormatInfo.InvariantInfo, "|{0}|{1}", pf.X, pf.Y);
                             g.AddMetafileComment(new System.Text.ASCIIEncoding().GetBytes(sb.ToString()));
                         }

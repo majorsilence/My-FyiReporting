@@ -28,11 +28,11 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-using fyiReporting.RdlViewer.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlViewer.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     /// <summary>
     /// PageDrawing draws to a graphics context the loaded Pages class.   This 
@@ -1104,7 +1104,7 @@ namespace fyiReporting.RdlViewer
 
             float widthPen = w;
             if (g.PageUnit == GraphicsUnit.Pixel)
-                widthPen=RDL.Utility.Measurement.PixelsFromPoints(w, g.DpiX);
+                widthPen=Rdl.Utility.Measurement.PixelsFromPoints(w, g.DpiX);
             using (Pen p = new Pen(c, widthPen))
             {
                 switch (bs)

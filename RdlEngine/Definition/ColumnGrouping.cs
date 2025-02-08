@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// ColumnGrouping definition and processing.

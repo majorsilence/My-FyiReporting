@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using RdlMapFile.RdlProperties;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
 	public class LocalizedDescriptionAttribute : DescriptionAttribute
 	{

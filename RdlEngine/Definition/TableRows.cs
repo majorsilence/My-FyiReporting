@@ -25,10 +25,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// TableRows definition and processing.

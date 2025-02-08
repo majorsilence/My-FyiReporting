@@ -24,7 +24,7 @@
 using System;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Style Background image source enumeration

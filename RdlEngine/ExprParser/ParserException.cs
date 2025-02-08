@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Represents an exception throwed by lexer and parser.

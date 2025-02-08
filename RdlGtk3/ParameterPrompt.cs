@@ -1,6 +1,6 @@
 using System;
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
     public partial class ParameterPrompt : Gtk.Dialog
     {

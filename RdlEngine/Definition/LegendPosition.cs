@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Handle Legend position enumeration: TopLeft, LeftTop, ...

@@ -26,7 +26,7 @@ using System.Drawing;
 using System.Text;
 using System.Xml;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties

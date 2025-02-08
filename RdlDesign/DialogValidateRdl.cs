@@ -28,9 +28,9 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for DialogAbout.

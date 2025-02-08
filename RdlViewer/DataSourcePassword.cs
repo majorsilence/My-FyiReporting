@@ -25,10 +25,10 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using fyiReporting.RDL;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlViewer;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     /// <summary>
     /// Summary description for ZoomTo.

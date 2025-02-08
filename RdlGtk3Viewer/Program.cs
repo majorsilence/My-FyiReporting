@@ -7,7 +7,7 @@ namespace RdlGtk3Viewer
         public static void Main(string[] args)
         {
             Application.Init();
-            var win = new fyiReporting.RdlGtk3.MainWindow();
+            var win = new Majorsilence.Reporting.RdlGtk3.MainWindow();
             win.Show();
             Application.Run();
         }

@@ -25,10 +25,10 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Process a custom static method invokation.

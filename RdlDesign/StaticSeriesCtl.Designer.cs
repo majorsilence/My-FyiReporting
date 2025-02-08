@@ -1,4 +1,4 @@
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     partial class StaticSeriesCtl
     {
@@ -56,7 +56,7 @@ namespace fyiReporting.RdlDesign
 			this.label7 = new System.Windows.Forms.Label();
 			this.cbLine = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
-			this.colorPicker1 = new fyiReporting.RdlDesign.ColorPicker();
+			this.colorPicker1 = new Majorsilence.Reporting.RdlDesign.ColorPicker();
 			this.SuspendLayout();
 			// 
 			// label1

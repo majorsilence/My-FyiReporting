@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     public class Program
     {

@@ -20,7 +20,7 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     /// <summary>
     /// Specify the page size in 1/72 inches units.

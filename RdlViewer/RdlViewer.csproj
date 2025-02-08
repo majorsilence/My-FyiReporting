@@ -59,7 +59,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" />

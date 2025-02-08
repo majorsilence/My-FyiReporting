@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Chart series definition and processing.
@@ -62,7 +62,7 @@ namespace fyiReporting.RDL
 						_Datapoints = new DataPoints(r, this, xNodeLoop);
 						break;
 					case "PlotType":
-						_PlotType = fyiReporting.RDL.PlotType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_PlotType = Majorsilence.Reporting.Rdl.PlotType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
                     case "YAxis":
                     case "fyi:YAxis":

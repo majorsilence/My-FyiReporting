@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     internal partial class SingleCtlDialog : System.Windows.Forms.Form
 	{

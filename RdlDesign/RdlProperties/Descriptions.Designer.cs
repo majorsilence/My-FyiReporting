@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace fyiReporting.RdlDesign.RdlProperties {
+namespace Majorsilence.Reporting.RdlDesign.RdlProperties {
     using System;
     
     

@@ -33,7 +33,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// PropertyReportItem - The ReportItem Properties

@@ -1,4 +1,4 @@
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     partial class MapFile
     {

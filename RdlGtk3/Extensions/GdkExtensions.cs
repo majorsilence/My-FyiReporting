@@ -28,7 +28,7 @@ using System;
 using Gdk;
 using NPOI.POIFS.Storage;
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
 	public static class GdkExtensions
 	{

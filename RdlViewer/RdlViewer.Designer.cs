@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
 	public partial class RdlViewer
 	{
@@ -29,7 +29,7 @@ private void InitializeComponent()
 			this._RunButton = new System.Windows.Forms.Button();
 			this._hScroll = new System.Windows.Forms.HScrollBar();
 			this._vScroll = new System.Windows.Forms.VScrollBar();
-			this._DrawPanel = new fyiReporting.RdlViewer.PageDrawing();
+			this._DrawPanel = new Majorsilence.Reporting.RdlViewer.PageDrawing();
 			this.SuspendLayout();
 			// 
 			// _RunButton

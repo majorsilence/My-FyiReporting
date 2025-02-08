@@ -1,5 +1,5 @@
 ﻿using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using NPOI.Util;
 using NPOI.XSSF.UserModel;
 

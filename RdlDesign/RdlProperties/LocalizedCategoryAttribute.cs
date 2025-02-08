@@ -1,8 +1,8 @@
-﻿using fyiReporting.RdlDesign.RdlProperties;
+﻿using Majorsilence.Reporting.RdlDesign.RdlProperties;
 using System.ComponentModel;
 using System.Threading;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	internal class LocalizedCategoryAttribute : CategoryAttribute
 	{

@@ -25,7 +25,7 @@ using System;
 using System.Collections;
 using System.IO;
 
-namespace fyiReporting.RdlDesktop
+namespace Majorsilence.Reporting.RdlDesktop
 {
 	class FileCache
 	{

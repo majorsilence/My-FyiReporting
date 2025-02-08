@@ -26,11 +26,11 @@ using System.IO;
 using System.Reflection;
 using System.Globalization;
 
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Obtain the the Field's value from a row.

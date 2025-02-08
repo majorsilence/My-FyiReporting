@@ -32,7 +32,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The Size definition.  Held in a normalized format but convertible to multiple measurements.
@@ -44,7 +44,7 @@ namespace fyiReporting.RDL
         internal const decimal PARTS_PER_INCH = 2540;   //25.4 mm/inch
         internal const decimal PARTS_PER_CM = 1000;     //10 mm/cm
         internal const decimal PARTS_PER_MM = 100;
-        internal const decimal PARTS_PER_POINT = (decimal)(PARTS_PER_INCH / fyiReporting.RDL.Utility.Measurement.POINTSIZE_M);
+        internal const decimal PARTS_PER_POINT = (decimal)(PARTS_PER_INCH / Majorsilence.Reporting.Rdl.Utility.Measurement.POINTSIZE_M);
         internal const decimal PARTS_PER_PICA = (decimal)(PARTS_PER_POINT * 12M);
 
 		int _Size;					// Normalized size in 1/100,000 meters
@@ -245,7 +245,7 @@ namespace fyiReporting.RDL
 
         static public float ToPoints(int size)
         {
-            return (float)((double)size / (double)PARTS_PER_INCH * fyiReporting.RDL.Utility.Measurement.POINTSIZE_F);
+            return (float)((double)size / (double)PARTS_PER_INCH * Majorsilence.Reporting.Rdl.Utility.Measurement.POINTSIZE_F);
         }
 
         /// <summary>

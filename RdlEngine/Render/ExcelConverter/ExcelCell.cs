@@ -4,7 +4,7 @@ using Majorsilence.Drawing;
 #else
 using System.Drawing;
 #endif
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using NPOI.SS.UserModel;
 
 namespace RdlEngine.Render.ExcelConverter

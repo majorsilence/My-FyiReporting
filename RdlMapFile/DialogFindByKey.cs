@@ -28,7 +28,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// Summary description for DialogFindByKey.

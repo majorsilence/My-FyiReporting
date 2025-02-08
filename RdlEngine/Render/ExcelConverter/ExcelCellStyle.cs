@@ -5,7 +5,7 @@ using Drawing = Majorsilence.Drawing;
 using Drawing = System.Drawing;
 #endif
 using System.Linq;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -176,16 +176,16 @@ namespace RdlEngine.Render.ExcelConverter
 		//Borders
 
 		//top
-		private fyiReporting.RDL.BorderStyleEnum borderTop;
+		private Majorsilence.Reporting.Rdl.BorderStyleEnum borderTop;
 		private Drawing.Color borderTopColor;
 		private short borderTopWidth;
 
-		public void SetBorderTop(fyiReporting.RDL.BorderStyleEnum style)
+		public void SetBorderTop(Majorsilence.Reporting.Rdl.BorderStyleEnum style)
 		{
 			SetBorderTop(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderTop(fyiReporting.RDL.BorderStyleEnum style, float width, Drawing.Color color)
+		public void SetBorderTop(Majorsilence.Reporting.Rdl.BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderTopColor = color;
 			borderTop = style;
@@ -207,16 +207,16 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		//right
-		private fyiReporting.RDL.BorderStyleEnum borderRight;
+		private Majorsilence.Reporting.Rdl.BorderStyleEnum borderRight;
 		private Drawing.Color borderRightColor;
 		private short borderRightWidth;
 
-		public void SetBorderRight(fyiReporting.RDL.BorderStyleEnum style)
+		public void SetBorderRight(Majorsilence.Reporting.Rdl.BorderStyleEnum style)
 		{
 			SetBorderRight(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderRight(fyiReporting.RDL.BorderStyleEnum style, float width, Drawing.Color color)
+		public void SetBorderRight(Majorsilence.Reporting.Rdl.BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderRightColor = color;
 			borderRight = style;
@@ -240,16 +240,16 @@ namespace RdlEngine.Render.ExcelConverter
 
 
 		//bottom
-		private fyiReporting.RDL.BorderStyleEnum borderBottom;
+		private Majorsilence.Reporting.Rdl.BorderStyleEnum borderBottom;
 		private Drawing.Color borderBottomColor;
 		private short borderBottomWidth;
 
-		public void SetBorderBottom(fyiReporting.RDL.BorderStyleEnum style)
+		public void SetBorderBottom(Majorsilence.Reporting.Rdl.BorderStyleEnum style)
 		{
 			SetBorderBottom(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderBottom(fyiReporting.RDL.BorderStyleEnum style, float width, Drawing.Color color)
+		public void SetBorderBottom(Majorsilence.Reporting.Rdl.BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderBottomColor = color;
 			borderBottom = style;
@@ -271,16 +271,16 @@ namespace RdlEngine.Render.ExcelConverter
 		}
 
 		//left
-		private fyiReporting.RDL.BorderStyleEnum borderLeft;
+		private Majorsilence.Reporting.Rdl.BorderStyleEnum borderLeft;
 		private Drawing.Color borderLeftColor;
 		private short borderLeftWidth;
 
-		public void SetBorderLeft(fyiReporting.RDL.BorderStyleEnum style)
+		public void SetBorderLeft(Majorsilence.Reporting.Rdl.BorderStyleEnum style)
 		{
 			SetBorderLeft(style, 1, Drawing.Color.Black);
 		}
 
-		public void SetBorderLeft(fyiReporting.RDL.BorderStyleEnum style, float width, Drawing.Color color)
+		public void SetBorderLeft(Majorsilence.Reporting.Rdl.BorderStyleEnum style, float width, Drawing.Color color)
 		{
 			borderLeftColor = color;
 			borderLeft = style;
@@ -402,12 +402,12 @@ namespace RdlEngine.Render.ExcelConverter
 			return c1.RGB.SequenceEqual(c2.RGB);
 		}
 
-		public BorderStyle ConvertBorderStyle(fyiReporting.RDL.BorderStyleEnum style, short width)
+		public BorderStyle ConvertBorderStyle(Majorsilence.Reporting.Rdl.BorderStyleEnum style, short width)
 		{
 			switch(style) {
-				case fyiReporting.RDL.BorderStyleEnum.None:
+				case Majorsilence.Reporting.Rdl.BorderStyleEnum.None:
 					return BorderStyle.None;
-				case fyiReporting.RDL.BorderStyleEnum.Solid:
+				case Majorsilence.Reporting.Rdl.BorderStyleEnum.Solid:
 					if(width <= 1) {
 						return BorderStyle.Thin;
 					}
@@ -416,11 +416,11 @@ namespace RdlEngine.Render.ExcelConverter
 					} else {
 						return BorderStyle.Thick;
 					}
-				case fyiReporting.RDL.BorderStyleEnum.Dotted:
+				case Majorsilence.Reporting.Rdl.BorderStyleEnum.Dotted:
 					return BorderStyle.Dotted;
-				case fyiReporting.RDL.BorderStyleEnum.Dashed:
+				case Majorsilence.Reporting.Rdl.BorderStyleEnum.Dashed:
 					return BorderStyle.Dashed;
-				case fyiReporting.RDL.BorderStyleEnum.Double:
+				case Majorsilence.Reporting.Rdl.BorderStyleEnum.Double:
 					return BorderStyle.Double;
 				default:
 					return BorderStyle.Hair;

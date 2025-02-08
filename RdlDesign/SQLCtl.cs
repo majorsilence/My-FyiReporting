@@ -30,7 +30,7 @@ using System.Windows.Forms;
 using System.Text;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for ReportCtl.

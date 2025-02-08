@@ -27,7 +27,7 @@ using System.Xml;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// TableCells definition and processing.

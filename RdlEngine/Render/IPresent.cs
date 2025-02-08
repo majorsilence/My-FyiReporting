@@ -23,10 +23,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Presentation: generation of presentation; e.g. html, pdf, xml, ...

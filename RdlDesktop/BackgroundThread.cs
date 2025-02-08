@@ -27,7 +27,7 @@ using System.Text;
 using System.Threading;
 using System.Diagnostics;
 
-namespace fyiReporting.RdlDesktop
+namespace Majorsilence.Reporting.RdlDesktop
 {
 	class BackgroundThread
 	{

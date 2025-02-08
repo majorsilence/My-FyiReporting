@@ -25,7 +25,7 @@ using System;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// DataPoint definition and processing.
@@ -85,7 +85,7 @@ namespace fyiReporting.RDL
 						_DataElementName = xNodeLoop.InnerText;
 						break;
 					case "DataElementOutput":
-						_DataElementOutput = fyiReporting.RDL.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	
 						// don't know this element - log it

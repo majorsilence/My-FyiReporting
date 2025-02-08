@@ -28,7 +28,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>
 	<PropertyGroup />
 </Project>

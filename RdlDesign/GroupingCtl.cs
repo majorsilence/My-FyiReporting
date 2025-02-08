@@ -28,9 +28,9 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 using System.Text;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Grouping specification: used for DataRegions (List, Chart, Table, Matrix), DataSets, group instances

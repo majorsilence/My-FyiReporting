@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 
 
-namespace fyiReporting.RdlCreator
+namespace Majorsilence.Reporting.RdlCreator
 {
     public class TableColumns
     {

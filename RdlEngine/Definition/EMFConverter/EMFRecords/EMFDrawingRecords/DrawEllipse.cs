@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal class DrawEllipse : DrawBase
     {
@@ -65,7 +65,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
 
                 EMFPen EMFp = (EMFPen)ObjectTable[ObjectID];
-                Drawing.Pen p = EMFp.myPen;
+                Draw2.Pen p = EMFp.myPen;
 
                 if (Compressed)
                 {
@@ -97,15 +97,15 @@ namespace fyiReporting.RDL
                     _fs.Dispose();
             }
         }
-        private void DoEllipse(Drawing.Pen p, Single Xp, Single Yp, Single Wid, Single Hgt)
+        private void DoEllipse(Draw2.Pen p, Single Xp, Single Yp, Single Wid, Single Hgt)
         {
             BorderStyleEnum ls = getLineStyle(p);
 
-            Drawing.Color col = Drawing.Color.Black;
+            Draw2.Color col = Draw2.Color.Black;
 
             if (p.Brush.GetType().Name.Equals("SolidBrush"))
             {
-               Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
+               Draw2.SolidBrush theBrush = (Draw2.SolidBrush)p.Brush;
                 col = theBrush.Color;
             }
 

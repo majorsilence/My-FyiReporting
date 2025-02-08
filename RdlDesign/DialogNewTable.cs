@@ -6,10 +6,10 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Text;
 using System.Xml;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for DialogDataSourceRef.

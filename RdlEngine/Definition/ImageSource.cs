@@ -24,7 +24,7 @@
 using System;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	///  Handles the Image source enumeration.  External, Embedded, Database

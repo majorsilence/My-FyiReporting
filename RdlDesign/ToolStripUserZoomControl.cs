@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     //Declare a class that inherits from ToolStripControlHost.
     public class ToolStripUserZoomControl : ToolStripControlHost

@@ -26,7 +26,7 @@ using System.Xml;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// In Matrix, the dynamic columns with what subtotal information is needed.

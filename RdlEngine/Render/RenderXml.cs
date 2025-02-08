@@ -22,13 +22,13 @@
 */
 
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	
 	///<summary>
@@ -362,7 +362,7 @@ namespace fyiReporting.RDL
             return Task.CompletedTask;
         }
 
-		public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
+		public Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
 		{
 			bool rc=true;
 			switch (rect.DataElementOutput)
@@ -387,7 +387,7 @@ namespace fyiReporting.RDL
 			return Task.FromResult(rc);
 		}
 
-		public Task RectangleEnd(RDL.Rectangle rect, Row r)
+		public Task RectangleEnd(Rdl.Rectangle rect, Row r)
 		{
 			if (rect.DataElementOutput != DataElementOutputEnum.Output)
 				return Task.CompletedTask;

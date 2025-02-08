@@ -28,7 +28,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertySubreport - The Rectangle specific Properties

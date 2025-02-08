@@ -25,7 +25,7 @@ using System;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlReader
+namespace Majorsilence.Reporting.RdlReader
 {
     /// <summary>
     /// Summary description for DialogAbout.

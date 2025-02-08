@@ -18,19 +18,19 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Reflection;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using System.Drawing.Imaging;
 #endif
 
 using System.Text.RegularExpressions;
 using System.Globalization;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlCmd
+namespace Majorsilence.Reporting.RdlCmd
 {
 	/// <summary>
 	/// RdlCmd is a batch report generation program.  It takes a report definition
@@ -319,7 +319,7 @@ namespace fyiReporting.RdlCmd
 				{
 					r.Folder = folder;
 					r.Name = Path.GetFileNameWithoutExtension(file);
-					r.GetDataSourceReferencePassword = new RDL.NeedPassword(GetPassword);
+					r.GetDataSourceReferencePassword = new Rdl.NeedPassword(GetPassword);
 				}
 			}
 			catch(Exception e)
@@ -438,7 +438,7 @@ namespace fyiReporting.RdlCmd
 		{
 			Pages pgs = await report.BuildPages();
 			FileStream strm=null;
-			Drawing.Image im=null;
+			Draw2.Image im=null;
 
 			// Handle any parameters
 			float x = 0;		// x position of image
@@ -488,7 +488,7 @@ namespace fyiReporting.RdlCmd
 				try 
 				{
 					strm = new FileStream(fname, System.IO.FileMode.Open, FileAccess.Read);		
-					im = Drawing.Image.FromStream(strm);
+					im = Draw2.Image.FromStream(strm);
 					int height = im.Height;
 					int width = im.Width;
 					MemoryStream ostrm = new MemoryStream();
@@ -497,12 +497,12 @@ namespace fyiReporting.RdlCmd
                       * 06122007AJM */
  					ImageFormat imf = ImageFormat.Jpeg;
  					//im.Save(ostrm, imf);
-                    Drawing.Imaging.ImageCodecInfo[] info;
+                    Draw2.Imaging.ImageCodecInfo[] info;
                     info = ImageCodecInfo.GetImageEncoders();
                     EncoderParameters encoderParameters;
                     encoderParameters = new EncoderParameters(1);
                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
-                    Drawing.Imaging.ImageCodecInfo codec = null;
+                    Draw2.Imaging.ImageCodecInfo codec = null;
                     for (int i = 0; i < info.Length; i++)
                     {
                         if (info[i].FormatDescription == "JPEG")

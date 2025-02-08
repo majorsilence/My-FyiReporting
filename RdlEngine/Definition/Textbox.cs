@@ -35,7 +35,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// The Textbox definition.  Inherits from ReportItem.
@@ -116,7 +116,7 @@ namespace fyiReporting.RDL
 						_ToggleImage = new ToggleImage(r, this, xNodeLoop);
 						break;
 					case "DataElementStyle":
-						_DataElementStyle = fyiReporting.RDL.DataElementStyle.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_DataElementStyle = Majorsilence.Reporting.Rdl.DataElementStyle.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:
 						if (ReportItemElement(xNodeLoop))	// try at ReportItem level

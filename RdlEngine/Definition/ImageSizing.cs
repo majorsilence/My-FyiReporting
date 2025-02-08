@@ -24,7 +24,7 @@
 using System;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Handle the image size enumeration.  AutoSize, Fit, FitProportional, Clip

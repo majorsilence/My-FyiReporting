@@ -26,7 +26,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     /// <summary>
     /// DialogMessage is used in place of a message box when the text can be large

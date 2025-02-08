@@ -23,7 +23,7 @@
 
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Handle MarkerType enumeration: Square, circle, ...

@@ -27,12 +27,12 @@ using System.IO;
 using System.Globalization;
 using System.Xml;
 using System.Reflection;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// <p>Language parser.   Recursive descent parser.  Precedence of operators

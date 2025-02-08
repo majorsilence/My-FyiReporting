@@ -28,10 +28,10 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text;
 using System.Reflection;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// DialogFilterOperator: puts up a dialog that lets a user pick a Filter Operator

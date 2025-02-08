@@ -5,7 +5,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	public class PageCurve : PageItem, ICloneable
 	{

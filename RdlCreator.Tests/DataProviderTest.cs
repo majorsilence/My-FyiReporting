@@ -2,13 +2,13 @@
 using System.IO;
 using System.Xml.Serialization;
 using System;
-using fyiReporting.RdlCreator;
+using Majorsilence.Reporting.RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 using Microsoft.Identity.Client;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlCreator.Tests
+namespace Majorsilence.Reporting.RdlCreator.Tests
 {
     [TestFixture]
     public class DataProviderTest
@@ -46,9 +46,9 @@ namespace fyiReporting.RdlCreator.Tests
                 connectionString,
                 "SELECT CategoryID, CategoryName, Description FROM Categories",
                 pageHeaderText: "DataProviderTest TestMethod1");
-            var ms = new fyiReporting.RDL.MemoryStreamGen();
+            var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
@@ -77,9 +77,9 @@ namespace fyiReporting.RdlCreator.Tests
                 pageHeaderText: "DataProviderTest TestMethod1");
 
             string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcelLegacy.xls");
-            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            var ofs = new Majorsilence.Reporting.Rdl.OneFileStreamGen(filepath, true);
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.ExcelTableOnly);
+            await fyiReport.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.ExcelTableOnly);
 
             Assert.Multiple(() =>
             {
@@ -99,9 +99,9 @@ namespace fyiReporting.RdlCreator.Tests
                 pageHeaderText: "DataProviderTest TestMethod1");
 
             string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcel.xlsx");
-            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            var ofs = new Majorsilence.Reporting.Rdl.OneFileStreamGen(filepath, true);
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.Excel2007);
+            await fyiReport.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.Excel2007);
 
             Assert.That(System.IO.File.Exists(filepath), Is.True);
         }
@@ -117,9 +117,9 @@ namespace fyiReporting.RdlCreator.Tests
                 pageHeaderText: "DataProviderTest TestMethod1");
 
             string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodExcelDataOnly.xlsx");
-            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            var ofs = new Majorsilence.Reporting.Rdl.OneFileStreamGen(filepath, true);
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.Excel2007DataOnly);
+            await fyiReport.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.Excel2007DataOnly);
 
             Assert.That(System.IO.File.Exists(filepath), Is.True);
         }
@@ -135,9 +135,9 @@ namespace fyiReporting.RdlCreator.Tests
                 pageHeaderText: "DataProviderTest TestMethod1");
 
             string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "TestMethodPdf.pdf");
-            var ofs = new fyiReporting.RDL.OneFileStreamGen(filepath, true);
+            var ofs = new Majorsilence.Reporting.Rdl.OneFileStreamGen(filepath, true);
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ofs, fyiReporting.RDL.OutputPresentationType.PDF);
+            await fyiReport.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
 
             Assert.Multiple(() =>
             {
@@ -165,9 +165,9 @@ namespace fyiReporting.RdlCreator.Tests
             var create = new RdlCreator.Create();
             var fyiReport = await create.GenerateRdl(dt,
                 pageHeaderText: "DataProviderTest TestMethod1");
-            var ms = new fyiReporting.RDL.MemoryStreamGen();
+            var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
@@ -210,9 +210,9 @@ namespace fyiReporting.RdlCreator.Tests
             var create = new RdlCreator.Create();
             var fyiReport = await create.GenerateRdl(data,
                 pageHeaderText: "DataProviderTest TestMethod1");
-            var ms = new fyiReporting.RDL.MemoryStreamGen();
+            var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);

@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     internal enum EMFBrushType
     {
@@ -42,7 +42,7 @@ namespace fyiReporting.RDL
     class EMFBrush : EMFRecordObject
     {
         //public EMFBrushType BrushType;
-        public Drawing.Brush myBrush;
+        public Draw2.Brush myBrush;
         
         internal EMFBrush()
         {
@@ -106,7 +106,7 @@ namespace fyiReporting.RDL
             Single Y = _br.ReadSingle();
             Single Width = _br.ReadSingle();
             Single Height = _br.ReadSingle();
-            Drawing.RectangleF rf = new Drawing.RectangleF(X,Y,Width,Height);
+            Draw2.RectangleF rf = new Draw2.RectangleF(X,Y,Width,Height);
 
             byte sA, sR, sG, sB;
             sB = _br.ReadByte();
@@ -121,9 +121,9 @@ namespace fyiReporting.RDL
             eA = _br.ReadByte();
 
             _br.ReadBytes(8);            
-           Drawing.Drawing2D.LinearGradientBrush tmpB = new Drawing.Drawing2D.LinearGradientBrush(rf, 
-               Drawing.Color.FromArgb(sA, sR, sG, sB), Drawing.Color.FromArgb(eA, eR, eG, eB), 0f);
-            tmpB.WrapMode = (Drawing.Drawing2D.WrapMode)WrapMode;
+           Draw2.Drawing2D.LinearGradientBrush tmpB = new Draw2.Drawing2D.LinearGradientBrush(rf, 
+               Draw2.Color.FromArgb(sA, sR, sG, sB), Draw2.Color.FromArgb(eA, eR, eG, eB), 0f);
+            tmpB.WrapMode = (Draw2.Drawing2D.WrapMode)WrapMode;
             
 
             bool BrushDataTransform = ((BrushFlags & 0x00000002) == 0x00000002);
@@ -189,8 +189,8 @@ namespace fyiReporting.RDL
             bR = _br.ReadByte();
             bA = _br.ReadByte(); 
             
-            myBrush = new Drawing.Drawing2D.HatchBrush((Drawing.Drawing2D.HatchStyle) HatchStyle,
-                Drawing.Color.FromArgb(fA,fR,fG,fB),Drawing.Color.FromArgb(bA,bR,bG,bB));
+            myBrush = new Draw2.Drawing2D.HatchBrush((Draw2.Drawing2D.HatchStyle) HatchStyle,
+                Draw2.Color.FromArgb(fA,fR,fG,fB),Draw2.Color.FromArgb(bA,bR,bG,bB));
             
             
     		
@@ -201,7 +201,7 @@ namespace fyiReporting.RDL
     {        
         public EmfSolidBrush(byte A, byte R, byte G, byte B)
         {            
-            myBrush = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
+            myBrush = new Draw2.SolidBrush(Draw2.Color.FromArgb(A, R, G, B));
         }
         public EmfSolidBrush(BinaryReader _br)
         {            
@@ -210,7 +210,7 @@ namespace fyiReporting.RDL
             G = _br.ReadByte();
             R = _br.ReadByte();
             A = _br.ReadByte();   
-            myBrush = new Drawing.SolidBrush(Drawing.Color.FromArgb(A,R,G,B));
+            myBrush = new Draw2.SolidBrush(Draw2.Color.FromArgb(A,R,G,B));
         }
     }
 }

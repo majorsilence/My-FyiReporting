@@ -23,10 +23,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// DateTime Report started; actually the time that data is retrieved

@@ -32,11 +32,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using System.Reflection;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 using System.Data.Common;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// Query representation against a data source.  Holds the data at runtime.
@@ -76,7 +76,7 @@ namespace fyiReporting.RDL
                         _DataSourceName = xNodeLoop.InnerText;
                         break;
                     case "CommandType":
-                        _QueryCommandType = fyiReporting.RDL.QueryCommandType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+                        _QueryCommandType = Majorsilence.Reporting.Rdl.QueryCommandType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
                         break;
                     case "CommandText":
                         _CommandText = new Expression(r, this, xNodeLoop, ExpressionType.String);

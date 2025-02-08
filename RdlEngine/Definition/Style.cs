@@ -28,15 +28,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Drawing2D = Majorsilence.Drawing.Drawing2D;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;
 #endif
 using System.Globalization;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Style (borders, fonts, background, padding, ...) of a ReportItem.
@@ -316,7 +316,7 @@ namespace fyiReporting.RDL
 			return;
 		}
 
-		internal async Task DrawBackground(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
+		internal async Task DrawBackground(Report rpt, Draw2.Graphics g, Row r, Draw2.Rectangle rect)
 		{
 			Drawing2D.LinearGradientBrush linGrBrush = null;
 
@@ -327,10 +327,10 @@ namespace fyiReporting.RDL
 				string bgt = await this.BackgroundGradientType.EvaluateString(rpt, r);
 				string bgc = await this.BackgroundColor.EvaluateString(rpt, r);
 				
-				Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
+				Draw2.Color c = XmlUtil.ColorFromHtml(bgc, Draw2.Color.White, rpt);
 
 				string bgec = await this.BackgroundGradientEndColor.EvaluateString(rpt, r);
-				Drawing.Color ec = XmlUtil.ColorFromHtml(bgec, Drawing.Color.White, rpt);
+				Draw2.Color ec = XmlUtil.ColorFromHtml(bgec, Draw2.Color.White, rpt);
 
 				switch (bgt)
 				{
@@ -371,33 +371,33 @@ namespace fyiReporting.RDL
 				if (this.BackgroundColor != null)
 				{
 					string bgc = await this.BackgroundColor.EvaluateString(rpt, r);
-					Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
+					Draw2.Color c = XmlUtil.ColorFromHtml(bgc, Draw2.Color.White, rpt);
 
-					using (Drawing.SolidBrush sb = new Drawing.SolidBrush(c)) {
+					using (Draw2.SolidBrush sb = new Draw2.SolidBrush(c)) {
 						g.FillRectangle(sb, rect);
 					}
 				}
 			}
 		}
  
-		internal async Task DrawBackgroundCircle(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
+		internal async Task DrawBackgroundCircle(Report rpt, Draw2.Graphics g, Row r, Draw2.Rectangle rect)
 		{
 			// Don't use the gradient in this case (since it won't match) the rest of the 
 			//    background.  (Routine is only used by ChartPie in the doughnut case.)
 			if (this.BackgroundColor != null)
 			{
 				string bgc = await this.BackgroundColor.EvaluateString(rpt, r);
-				Drawing.Color c = XmlUtil.ColorFromHtml(bgc, Drawing.Color.White, rpt);
+				Draw2.Color c = XmlUtil.ColorFromHtml(bgc, Draw2.Color.White, rpt);
 
-				using (Drawing.SolidBrush sb = new Drawing.SolidBrush(c)) {
+				using (Draw2.SolidBrush sb = new Draw2.SolidBrush(c)) {
 					g.FillEllipse(sb, rect);
-					g.DrawEllipse(Drawing.Pens.Black, rect);
+					g.DrawEllipse(Draw2.Pens.Black, rect);
 				}
 			}
 		}
 
 		// Draw a border using the current style
-		internal async Task DrawBorder(Report rpt, Drawing.Graphics g, Row r, Drawing.Rectangle rect)
+		internal async Task DrawBorder(Report rpt, Draw2.Graphics g, Row r, Draw2.Rectangle rect)
 		{
 			if (this.BorderStyle == null)
 				return;
@@ -405,10 +405,10 @@ namespace fyiReporting.RDL
 			StyleBorderStyle bs = this.BorderStyle;
 
 			// Create points for each part of rectangular border
-			Drawing.Point tl = new Drawing.Point(rect.Left, rect.Top);
-			Drawing.Point tr = new Drawing.Point(rect.Right, rect.Top);
-			Drawing.Point bl = new Drawing.Point(rect.Left, rect.Bottom);
-			Drawing.Point br = new Drawing.Point(rect.Right, rect.Bottom);
+			Draw2.Point tl = new Draw2.Point(rect.Left, rect.Top);
+			Draw2.Point tr = new Draw2.Point(rect.Right, rect.Top);
+			Draw2.Point bl = new Draw2.Point(rect.Left, rect.Bottom);
+			Draw2.Point br = new Draw2.Point(rect.Right, rect.Bottom);
 			// Determine characteristics for each line to be drawn
 			BorderStyleEnum topBS, bottomBS, leftBS, rightBS;
 			topBS = bottomBS = leftBS = rightBS = BorderStyleEnum.None;
@@ -442,35 +442,35 @@ namespace fyiReporting.RDL
 				}
 			}
 
-			Drawing.Color topColor, bottomColor, leftColor, rightColor;
-			topColor = bottomColor = leftColor = rightColor = Drawing.Color.Black;
+			Draw2.Color topColor, bottomColor, leftColor, rightColor;
+			topColor = bottomColor = leftColor = rightColor = Draw2.Color.Black;
 			if (BorderColor != null)
 			{
 				if (BorderColor.Default != null)
 				{
 					v = await BorderColor.Default.EvaluateString(rpt, r);
 					topColor = bottomColor = leftColor = rightColor = 
-						XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+						XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 				}
 				if (BorderColor.Top != null)
 				{
 					v = await BorderColor.Top.EvaluateString(rpt, r);
-					topColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+					topColor = XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 				}
 				if (BorderColor.Bottom != null)
 				{
 					v = await BorderColor.Bottom.EvaluateString(rpt, r);
-					bottomColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+					bottomColor = XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 				}
 				if (BorderColor.Left != null)
 				{
 					v = await BorderColor.Left.EvaluateString(rpt, r);
-					leftColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+					leftColor = XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 				}
 				if (BorderColor.Right != null)
 				{
 					v = await BorderColor.Right.EvaluateString(rpt, r);
-					rightColor = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+					rightColor = XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 				}
 			}
 
@@ -503,8 +503,8 @@ namespace fyiReporting.RDL
 			// top line
 			if (topBS != BorderStyleEnum.None)
 			{
-				using (Drawing.Brush b = new Drawing.SolidBrush(topColor))
-				using (Drawing.Pen p = new Drawing.Pen(b, topWidth))
+				using (Draw2.Brush b = new Draw2.SolidBrush(topColor))
+				using (Draw2.Pen p = new Draw2.Pen(b, topWidth))
 				{
 					DrawBorderDashStyle(p, topBS);
 					g.DrawLine(p, tl, tr);
@@ -513,8 +513,8 @@ namespace fyiReporting.RDL
 			// right line
 			if (rightBS != BorderStyleEnum.None)
 			{
-				using (Drawing.Brush b = new Drawing.SolidBrush(rightColor))
-				using (Drawing.Pen p = new Drawing.Pen(b, rightWidth))
+				using (Draw2.Brush b = new Draw2.SolidBrush(rightColor))
+				using (Draw2.Pen p = new Draw2.Pen(b, rightWidth))
 				{
 					DrawBorderDashStyle(p, rightBS);
 					g.DrawLine(p, tr, br);
@@ -523,8 +523,8 @@ namespace fyiReporting.RDL
 			// bottom line
 			if (bottomBS != BorderStyleEnum.None)
 			{
-				using (Drawing.Brush b = new Drawing.SolidBrush(bottomColor))
-				using (Drawing.Pen p = new Drawing.Pen(b, bottomWidth))
+				using (Draw2.Brush b = new Draw2.SolidBrush(bottomColor))
+				using (Draw2.Pen p = new Draw2.Pen(b, bottomWidth))
 				{
 					DrawBorderDashStyle(p, bottomBS);
 					g.DrawLine(p, br, bl);
@@ -533,8 +533,8 @@ namespace fyiReporting.RDL
 			// left line
 			if (leftBS != BorderStyleEnum.None)
 			{
-				using (Drawing.Brush b = new Drawing.SolidBrush(leftColor))
-				using (Drawing.Pen p = new Drawing.Pen(b, leftWidth))
+				using (Draw2.Brush b = new Draw2.SolidBrush(leftColor))
+				using (Draw2.Pen p = new Draw2.Pen(b, leftWidth))
 				{
 					DrawBorderDashStyle(p, leftBS);
 					g.DrawLine(p, bl, tl);
@@ -542,7 +542,7 @@ namespace fyiReporting.RDL
 			}
 		}
 
-		private void DrawBorderDashStyle(Drawing.Pen p, BorderStyleEnum bs)
+		private void DrawBorderDashStyle(Draw2.Pen p, BorderStyleEnum bs)
 		{
 			switch (bs)
 			{
@@ -583,10 +583,10 @@ namespace fyiReporting.RDL
 		}
 
 		// Draw a line into the specified graphics object using the current style
-		internal async Task DrawStyleLine(Report rpt, Drawing.Graphics g, Row r, Drawing.Point s, Drawing.Point e)
+		internal async Task DrawStyleLine(Report rpt, Draw2.Graphics g, Row r, Draw2.Point s, Draw2.Point e)
 		{
 			int width;
-			Drawing.Color color;
+			Draw2.Color color;
 			BorderStyleEnum bs;
 
 			// Border Width default is used for the line width
@@ -599,10 +599,10 @@ namespace fyiReporting.RDL
 			if (BorderColor != null && BorderColor.Default != null)
 			{
 				string v = await BorderColor.Default.EvaluateString(rpt, r);
-				color = XmlUtil.ColorFromHtml(v, Drawing.Color.Black, rpt);
+				color = XmlUtil.ColorFromHtml(v, Draw2.Color.Black, rpt);
 			}
 			else
-				color = Drawing.Color.Black;
+				color = Draw2.Color.Black;
 			
 			if (BorderStyle != null && BorderStyle.Default != null)
 			{
@@ -612,8 +612,8 @@ namespace fyiReporting.RDL
 			else
 				bs = BorderStyleEnum.Solid;
 
-			using (var b = new Drawing.SolidBrush(color))
-			using (var p = new Drawing.Pen(b, width))
+			using (var b = new Draw2.SolidBrush(color))
+			using (var p = new Draw2.Pen(b, width))
 			{
 				DrawBorderDashStyle(p, bs);
 				g.DrawLine(p, s, e);
@@ -622,39 +622,39 @@ namespace fyiReporting.RDL
 
 		// Draw a string into the specified graphics object using the current style
 		//  information
-		internal async Task DrawString(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, Drawing.Rectangle rect)
+		internal async Task DrawString(Report rpt, Draw2.Graphics g, object o, TypeCode tc, Row r, Draw2.Rectangle rect)
 		{
 			// the string to draw
 			var s = await Style.GetFormatedString(rpt, this, r, o, tc);
 				
-			using (Drawing.Font drawFont = await GetFont(rpt, r)) // Font we'll draw with
-			using (Drawing.Brush drawBrush = await GetBrush(rpt, r)) // Brush we'll draw with
-			using (Drawing.StringFormat drawFormat = await GetStringFormat(rpt, r)) // StringFormat we'll draw with
+			using (Draw2.Font drawFont = await GetFont(rpt, r)) // Font we'll draw with
+			using (Draw2.Brush drawBrush = await GetBrush(rpt, r)) // Brush we'll draw with
+			using (Draw2.StringFormat drawFormat = await GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
 				// Draw string
-				drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
+				drawFormat.FormatFlags |= Draw2.StringFormatFlags.NoWrap;
 				g.DrawString(s, drawFont, drawBrush, rect, drawFormat);
 			}
 		}
 
-		static internal void DrawStringDefaults(Drawing.Graphics g, object o, Drawing.Rectangle rect)
+		static internal void DrawStringDefaults(Draw2.Graphics g, object o, Draw2.Rectangle rect)
 		{
 			// Just use defaults to Create font and brush.
-			using (var drawFont = new Drawing.Font("Arial", 10))
-			using (var drawBrush = new Drawing.SolidBrush(Drawing.Color.Black)) 
+			using (var drawFont = new Draw2.Font("Arial", 10))
+			using (var drawBrush = new Draw2.SolidBrush(Draw2.Color.Black)) 
 			// Set format of string.
-			using (var drawFormat = new Drawing.StringFormat())
+			using (var drawFormat = new Draw2.StringFormat())
 			{
-				drawFormat.Alignment = Drawing.StringAlignment.Center;
+				drawFormat.Alignment = Draw2.StringAlignment.Center;
 
 				// 06122007AJM Fixed so that long names are written vertically
 				// need to add w to make slightly bigger
-				Drawing.SizeF len = g.MeasureString(o.ToString() + "w", drawFont);
+				Draw2.SizeF len = g.MeasureString(o.ToString() + "w", drawFont);
 				if (len.Width > rect.Width)
 				{
-					drawFormat.FormatFlags = Drawing.StringFormatFlags.DirectionVertical;
-					rect = (new Drawing.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
-					drawFormat.Alignment = Drawing.StringAlignment.Near;
+					drawFormat.FormatFlags = Draw2.StringFormatFlags.DirectionVertical;
+					rect = (new Draw2.Rectangle(rect.X, rect.Y, rect.Width, (int)len.Width));
+					drawFormat.Alignment = Draw2.StringAlignment.Near;
 				}
 
 				// Draw string to image
@@ -664,61 +664,61 @@ namespace fyiReporting.RDL
 
 		// Calc size of a string with the specified graphics object using the current style
 		//  information
-		internal async Task<Drawing.Size> MeasureString(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
+		internal async Task<Draw2.Size> MeasureString(Report rpt, Draw2.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
 			string s = await Style.GetFormatedString(rpt, this, r, o, tc); // the string to draw
 
-			using (Drawing.Font drawFont = await GetFont(rpt, r)) // Font we'll draw with
-			using (Drawing.StringFormat drawFormat = await GetStringFormat(rpt, r)) // StringFormat we'll draw with
+			using (Draw2.Font drawFont = await GetFont(rpt, r)) // Font we'll draw with
+			using (Draw2.StringFormat drawFormat = await GetStringFormat(rpt, r)) // StringFormat we'll draw with
 			{
 				// Measure string
 				if (maxWidth == int.MaxValue)
-					drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
+					drawFormat.FormatFlags |= Draw2.StringFormatFlags.NoWrap;
 
 				// 06122007AJM need to add w to make slightly bigger
-				Drawing.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				return new Drawing.Size((int) Math.Ceiling(ms.Width), 
+				Draw2.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
+				return new Draw2.Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
 		}
 
 		// Measure a string using the defaults for a Style font
-		static internal async Task<Drawing.Size> MeasureStringDefaults(Report rpt, Drawing.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
+		static internal async Task<Draw2.Size> MeasureStringDefaults(Report rpt, Draw2.Graphics g, object o, TypeCode tc, Row r, int maxWidth)
 		{
 			string s = await Style.GetFormatedString(rpt, null, r, o, tc); // the string to draw
 
-			Drawing.Size size = Drawing.Size.Empty;
-			using (Drawing.Font drawFont = new Drawing.Font("Arial", 10)) // Font we'll draw with
-			using (Drawing.StringFormat drawFormat = new Drawing.StringFormat()) // StringFormat we'll draw with
+			Draw2.Size size = Draw2.Size.Empty;
+			using (Draw2.Font drawFont = new Draw2.Font("Arial", 10)) // Font we'll draw with
+			using (Draw2.StringFormat drawFormat = new Draw2.StringFormat()) // StringFormat we'll draw with
 			{
-				drawFormat.Alignment = Drawing.StringAlignment.Near;
+				drawFormat.Alignment = Draw2.StringAlignment.Near;
 
 				// Measure string
 				if (maxWidth == int.MaxValue)
-					drawFormat.FormatFlags |= Drawing.StringFormatFlags.NoWrap;
+					drawFormat.FormatFlags |= Draw2.StringFormatFlags.NoWrap;
                 // 06122007AJM need to add w to make slightly bigger
-                Drawing.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
-				return new Drawing.Size((int) Math.Ceiling(ms.Width), 
+                Draw2.SizeF ms = g.MeasureString(s + "w", drawFont, maxWidth, drawFormat);
+				return new Draw2.Size((int) Math.Ceiling(ms.Width), 
 					(int) Math.Ceiling(ms.Height));
 			}
 		}
 
-		internal async Task<Drawing.Brush> GetBrush(Report rpt, Row r)
+		internal async Task<Draw2.Brush> GetBrush(Report rpt, Row r)
 		{
-			Drawing.Brush drawBrush;
+			Draw2.Brush drawBrush;
 			// Get the brush information
 			if (this.Color != null)
 			{
 				string c = await this.Color.EvaluateString(rpt, r);
-				Drawing.Color color = XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
-				drawBrush = new Drawing.SolidBrush(color);
+				Draw2.Color color = XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
+				drawBrush = new Draw2.SolidBrush(color);
 			}
 			else
-				drawBrush = new Drawing.SolidBrush(Drawing.Color.Black);
+				drawBrush = new Draw2.SolidBrush(Draw2.Color.Black);
 			return drawBrush;
 		}
 
-		internal async Task<Drawing.Font> GetFont(Report rpt, Row r)
+		internal async Task<Draw2.Font> GetFont(Report rpt, Row r)
 		{
 			// Get the font information
 			// FAMILY
@@ -729,12 +729,12 @@ namespace fyiReporting.RDL
 				ff = "Arial";
 
 			// STYLE
-			Drawing.FontStyle fs = 0;
+			Draw2.FontStyle fs = 0;
 			if (this.FontStyle != null)
 			{
 				string fStyle = await this.FontStyle.EvaluateString(rpt, r);
 				if (fStyle == "Italic")
-					fs |= Drawing.FontStyle.Italic;
+					fs |= Draw2.FontStyle.Italic;
 			}
 			if (this.TextDecoration != null)
 			{
@@ -742,12 +742,12 @@ namespace fyiReporting.RDL
 				switch (td)
 				{
 					case "Underline":
-						fs |= Drawing.FontStyle.Underline;
+						fs |= Draw2.FontStyle.Underline;
 						break;
 					case "Overline":	// Don't support this
 						break;
 					case "LineThrough":
-						fs |= Drawing.FontStyle.Strikeout;
+						fs |= Draw2.FontStyle.Strikeout;
 						break;
 					case "None":
 					default:
@@ -768,7 +768,7 @@ namespace fyiReporting.RDL
 					case "700":
 					case "800":
 					case "900":
-						fs |= Drawing.FontStyle.Bold;
+						fs |= Draw2.FontStyle.Bold;
 						break;
 						// Nothing to do otherwise since we don't have finer gradations
 					case "normal":
@@ -793,31 +793,31 @@ namespace fyiReporting.RDL
 			else
 				size = 10;
 			
-			Drawing.FontFamily fFamily = StyleInfo.GetFontFamily(ff);
-			return new Drawing.Font(fFamily, size, fs);
+			Draw2.FontFamily fFamily = StyleInfo.GetFontFamily(ff);
+			return new Draw2.Font(fFamily, size, fs);
 		}
         
-        internal async Task<Drawing.StringFormat> GetStringFormat(Report rpt, Row r)
+        internal async Task<Draw2.StringFormat> GetStringFormat(Report rpt, Row r)
         {
-            return await GetStringFormat(rpt, r, Drawing.StringAlignment.Center);
+            return await GetStringFormat(rpt, r, Draw2.StringAlignment.Center);
         }
 
-		internal async Task<Drawing.StringFormat> GetStringFormat(Report rpt, Row r, Drawing.StringAlignment defTextAlign)
+		internal async Task<Draw2.StringFormat> GetStringFormat(Report rpt, Row r, Draw2.StringAlignment defTextAlign)
 		{
 			// Set format of string.
-			Drawing.StringFormat drawFormat = new Drawing.StringFormat();
+			Draw2.StringFormat drawFormat = new Draw2.StringFormat();
 			
 			if (this.Direction != null)
 			{
 				string dir = await this.Direction.EvaluateString(rpt, r);
 				if (dir == "RTL")
-					drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionRightToLeft;
+					drawFormat.FormatFlags |= Draw2.StringFormatFlags.DirectionRightToLeft;
 			}
 			if (this.WritingMode != null)
 			{
 				string wm = await this.WritingMode.EvaluateString(rpt, r);
 				if (wm == "tb-rl")
-					drawFormat.FormatFlags |= Drawing.StringFormatFlags.DirectionVertical;
+					drawFormat.FormatFlags |= Draw2.StringFormatFlags.DirectionVertical;
 			}
 
 			if (this.TextAlign != null)
@@ -826,17 +826,17 @@ namespace fyiReporting.RDL
 				switch (ta.ToLower())
 				{
 					case "left":
-						drawFormat.Alignment = Drawing.StringAlignment.Near;
+						drawFormat.Alignment = Draw2.StringAlignment.Near;
 						break;
 					case "right":
-						drawFormat.Alignment = Drawing.StringAlignment.Far;
+						drawFormat.Alignment = Draw2.StringAlignment.Far;
 						break;
 					case "general":
                         drawFormat.Alignment = defTextAlign;
                         break;
                     case "center":
                     default:
-						drawFormat.Alignment = Drawing.StringAlignment.Center;
+						drawFormat.Alignment = Draw2.StringAlignment.Center;
 						break;
 				}
 			}
@@ -850,20 +850,20 @@ namespace fyiReporting.RDL
 				{
 					case "top":
 					default:
-						drawFormat.LineAlignment = Drawing.StringAlignment.Near;
+						drawFormat.LineAlignment = Draw2.StringAlignment.Near;
 						break;
 					case "bottom":
-						drawFormat.LineAlignment = Drawing.StringAlignment.Far;
+						drawFormat.LineAlignment = Draw2.StringAlignment.Far;
 						break;
 					case "middle":
-						drawFormat.LineAlignment = Drawing.StringAlignment.Center;
+						drawFormat.LineAlignment = Draw2.StringAlignment.Center;
 						break;
 				}
 			}
 			else
-				drawFormat.LineAlignment = Drawing.StringAlignment.Near;
+				drawFormat.LineAlignment = Draw2.StringAlignment.Near;
 
-			drawFormat.Trimming = Drawing.StringTrimming.None;
+			drawFormat.Trimming = Draw2.StringTrimming.None;
 			return drawFormat;
 		}
 
@@ -1019,7 +1019,7 @@ namespace fyiReporting.RDL
 			si.BackgroundColor = await this.EvalBackgroundColor(rpt, r);
 			// When background color not specified; and reportitem part of table
 			//   use the tables background color
-			if (si.BackgroundColor == Drawing.Color.Empty)
+			if (si.BackgroundColor == Draw2.Color.Empty)
 			{
 				ReportItem ri = this.Parent as ReportItem;
 				if (ri != null)
@@ -1263,19 +1263,19 @@ namespace fyiReporting.RDL
 			return rc;
 		}
 
-		internal async Task<Drawing.Rectangle> PaddingAdjust(Report rpt, Row r, Drawing.Rectangle rect, bool bAddIn)
+		internal async Task<Draw2.Rectangle> PaddingAdjust(Report rpt, Row r, Draw2.Rectangle rect, bool bAddIn)
 		{
 			int pbottom = await this.EvalPaddingBottomPx(rpt, r);
 			int ptop = await this.EvalPaddingTopPx(rpt, r);
 			int pleft = await this.EvalPaddingLeftPx(rpt, r);
 			int pright = await this.EvalPaddingRightPx(rpt, r);
 
-			Drawing.Rectangle rt;
+			Draw2.Rectangle rt;
 			if (bAddIn)		// add in when trying to size the object
-				rt = new Drawing.Rectangle(rect.Left - pleft, rect.Top - ptop, 
+				rt = new Draw2.Rectangle(rect.Left - pleft, rect.Top - ptop, 
 					rect.Width + pleft + pright, rect.Height + ptop + pbottom);
 			else			// otherwise you want the rectangle of the embedded object
-				rt = new Drawing.Rectangle(rect.Left + pleft, rect.Top + ptop, 
+				rt = new Draw2.Rectangle(rect.Left + pleft, rect.Top + ptop, 
 					rect.Width - pleft - pright, rect.Height - ptop - pbottom);
 			return rt;
 		}
@@ -1304,13 +1304,13 @@ namespace fyiReporting.RDL
 			set {  _BackgroundColor = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalBackgroundColor(Report rpt, Row row)
+		internal async Task<Draw2.Color> EvalBackgroundColor(Report rpt, Row row)
 		{
 			if (_BackgroundColor == null)
-				return Drawing.Color.Empty;
+				return Draw2.Color.Empty;
 
 			string c = await _BackgroundColor.EvaluateString(rpt, row);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Empty, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Empty, rpt);
 		}
 
 		internal Expression BackgroundGradientType
@@ -1334,13 +1334,13 @@ namespace fyiReporting.RDL
 			set {  _BackgroundGradientEndColor = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalBackgroundGradientEndColor(Report rpt, Row r)
+		internal async Task<Draw2.Color> EvalBackgroundGradientEndColor(Report rpt, Row r)
 		{
 			if (_BackgroundGradientEndColor == null)
-				return Drawing.Color.Empty;
+				return Draw2.Color.Empty;
 
 			string c = await _BackgroundGradientEndColor.EvaluateString(rpt, r);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Empty, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Empty, rpt);
 		}
 
 		internal StyleBackgroundImage BackgroundImage
@@ -1516,13 +1516,13 @@ namespace fyiReporting.RDL
 			set {  _Color = value; }
 		}
 
-		internal async Task<Drawing.Color> EvalColor(Report rpt, Row row)
+		internal async Task<Draw2.Color> EvalColor(Report rpt, Row row)
 		{
 			if (_Color == null)
-				return Drawing.Color.Black;
+				return Draw2.Color.Black;
 
 			string c = await _Color.EvaluateString(rpt, row);
-			return XmlUtil.ColorFromHtml(c, Drawing.Color.Black, rpt);
+			return XmlUtil.ColorFromHtml(c, Draw2.Color.Black, rpt);
 		}
 
 		internal Expression PaddingLeft

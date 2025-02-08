@@ -25,10 +25,10 @@ using System;
 using System.Xml;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 using Majorsilence.Drawing.Imaging;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using System.Drawing.Imaging;
 #endif
 using System.Collections;
@@ -37,10 +37,10 @@ using System.Threading;
 using System.Net;
 using System.Threading.Tasks;
 using System.Net.Http;
-using RdlEngine.Utility;
+using Majorsilence.Reporting.Rdl.Utility;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// Represents an image.  Source of image can from database, external or embedded. 
@@ -101,7 +101,7 @@ namespace fyiReporting.RDL
                 switch (xNodeLoop.Name)
                 {
                     case "Source":
-                        _ImageSource = fyiReporting.RDL.ImageSource.GetStyle(xNodeLoop.InnerText);
+                        _ImageSource = Majorsilence.Reporting.Rdl.ImageSource.GetStyle(xNodeLoop.InnerText);
                         break;
                     case "Value":
                         _Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
@@ -188,7 +188,7 @@ namespace fyiReporting.RDL
             WorkClass wc = GetWC(r);
             string mtype = null;
             Stream strm = null;
-            Drawing.Image im = null;
+            Draw2.Image im = null;
 
             SetPagePositionBegin(pgs);
             if (bHidden)
@@ -219,7 +219,7 @@ namespace fyiReporting.RDL
                     r.rl.LogError(4, string.Format("Unable to load image {0}.", this.Name.Nm));
                     return;
                 }
-                im = Drawing.Image.FromStream(strm);
+                im = Draw2.Image.FromStream(strm);
                 int height = im.Height;
                 int width = im.Width;
                 MemoryStream ostrm = new MemoryStream();
@@ -239,9 +239,9 @@ namespace fyiReporting.RDL
                         imf = ImageFormat.Jpeg;
                         ImageCodecInfo[] info;
                         info = ImageCodecInfo.GetImageEncoders();
-                        Drawing.Imaging.EncoderParameters encoderParameters;
-                        encoderParameters = new Drawing.Imaging.EncoderParameters(1);
-                        encoderParameters.Param[0] = new Drawing.Imaging.EncoderParameter(Drawing.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
+                        Draw2.Imaging.EncoderParameters encoderParameters;
+                        encoderParameters = new Draw2.Imaging.EncoderParameters(1);
+                        encoderParameters.Param[0] = new Draw2.Imaging.EncoderParameter(Draw2.Imaging.Encoder.Quality, ImageQualityManager.EmbeddedImageQuality);
                         ImageCodecInfo codec = null;
                         for (int i = 0; i < info.Length; i++)
                         {

@@ -28,12 +28,12 @@ using System.Drawing.Printing;
 using System.Xml;
 using System.IO;
 using RdlReader.Resources;
-using fyiReporting.RDL;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlViewer;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
-namespace fyiReporting.RdlReader
+namespace Majorsilence.Reporting.RdlReader
 {
     using System.Diagnostics;
     using System.Threading.Tasks;
@@ -43,14 +43,14 @@ namespace fyiReporting.RdlReader
     /// </summary>
     public partial class RdlReader : IMessageFilter
     {
-        static readonly string optFileName = Path.Combine(RdlEngine.Utility.Paths.MajorsilenceRoamingFolder(), "readerstate.xml");
+        static readonly string optFileName = Path.Combine(Majorsilence.Reporting.Rdl.Utility.Paths.MajorsilenceRoamingFolder(), "readerstate.xml");
         SortedList _RecentFiles = null;
 
         /// <summary>
         /// Uri, Parameter
         /// </summary>
         Dictionary<Uri, String> _CurrentFiles = null;			// temporary variable for current files
-        private RDL.NeedPassword _GetPassword;
+        private Rdl.NeedPassword _GetPassword;
         private string _DataSourceReferencePassword = null;
         private bool bMono;
 
@@ -70,7 +70,7 @@ namespace fyiReporting.RdlReader
             Application.AddMessageFilter(this);
 
             this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlReader_Closing);
-            _GetPassword = new RDL.NeedPassword(this.GetPassword);
+            _GetPassword = new Rdl.NeedPassword(this.GetPassword);
 
             this.Load += RdlReader_Load;
         }
@@ -269,7 +269,7 @@ namespace fyiReporting.RdlReader
 
         public static async Task SilentPrint(string reportPath, string parameters, string printerName = null)
         {
-            var rdlViewer = new fyiReporting.RdlViewer.RdlViewer();
+            var rdlViewer = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             rdlViewer.Visible = false;
             await rdlViewer.SetSourceFile(new Uri(reportPath));
             rdlViewer.Parameters = parameters;

@@ -28,7 +28,7 @@ using Drawing = Majorsilence.Drawing;
 using Drawing = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
      internal class EMFSetPageTransform
     {

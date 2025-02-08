@@ -7,7 +7,7 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>fyiReporting.RdlDesktop</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<StartupObject>fyiReporting.RdlDesktop.RdlDesktop</StartupObject>
+		<StartupObject>Majorsilence.Reporting.RdlDesktop.RdlDesktop</StartupObject>
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
@@ -35,7 +35,7 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\Strings.resx">

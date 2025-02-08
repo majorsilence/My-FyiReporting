@@ -29,7 +29,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Aggregate function: sum

@@ -1,6 +1,6 @@
 using System;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	public class PageText : PageItem, ICloneable
 	{

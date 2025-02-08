@@ -25,7 +25,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// Summary description for DialogAbout.

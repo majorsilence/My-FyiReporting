@@ -31,9 +31,9 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyMatrix - The Table Properties

@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	///  Collection of Filter values to compare against in a filter.  Cardinality depends 

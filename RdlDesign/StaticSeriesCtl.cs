@@ -33,7 +33,7 @@ using System.Xml;
 //This NEW class allows the modifying of static series on a chart. GJL & AJM
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     public partial class StaticSeriesCtl : UserControl, IProperty
      {

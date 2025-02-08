@@ -27,7 +27,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
 using System.Web.Caching;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
@@ -35,7 +35,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlAsp
+namespace Majorsilence.Reporting.RdlAsp
 {
     /// <summary>
     /// Summary description for Class1.
@@ -280,13 +280,13 @@ namespace fyiReporting.RdlAsp
                     ReportHelper.SaveCachedReport(report, file, _cache);
                 }
                 // Set the user context information: ID, language
-                ReportHelper.SetUserContext(report, this.HttpContext, new RDL.NeedPassword(GetPassword));
+                ReportHelper.SetUserContext(report, this.HttpContext, new Rdl.NeedPassword(GetPassword));
 
                 // Obtain the data if report is being generated
                 if (!_NoShow)
                 {
                     await report.RunGetData(ld);
-                    Generate(report);
+                    await Generate(report);
                 }
             }
             catch (Exception exe)
@@ -371,14 +371,14 @@ namespace fyiReporting.RdlAsp
             return items;
         }
 
-        private void Generate(Report report)
+        private async Task Generate(Report report)
         {
             MemoryStreamGen sg = null;
             try
             {
                 sg = new MemoryStreamGen("ShowFile?type=", null, this.RenderType);
 
-                report.RunRender(sg, _RenderType, Guid.NewGuid().ToString());
+                await report.RunRender(sg, _RenderType, Guid.NewGuid().ToString());
                 _CSS = "";
                 _JavaScript = "";
                 switch (_RenderType)
@@ -491,7 +491,7 @@ namespace fyiReporting.RdlAsp
                 {
                     r.Folder = folder;
                     r.Name = Path.GetFileNameWithoutExtension(file);
-                    r.GetDataSourceReferencePassword = new RDL.NeedPassword(GetPassword);
+                    r.GetDataSourceReferencePassword = new Rdl.NeedPassword(GetPassword);
                 }
             }
             catch (Exception e)

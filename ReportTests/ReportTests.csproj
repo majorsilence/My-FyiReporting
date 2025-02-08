@@ -13,7 +13,7 @@
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlDesign\ReportDesigner.csproj" />
 		<ProjectReference Include="..\RdlDesktop\RdlDesktop.csproj" />
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 		<ProjectReference Include="..\RdlMapFile\RdlMapFile.csproj" />
 		<ProjectReference Include="..\RdlReader\RdlReader.csproj" />
 		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />

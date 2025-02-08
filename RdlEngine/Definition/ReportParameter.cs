@@ -27,7 +27,7 @@ using System.Collections;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Represent a report parameter (name, default value, runtime value,

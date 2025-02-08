@@ -5,11 +5,11 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Text;
 using System.Xml;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Summary description for DialogDataSourceRef.

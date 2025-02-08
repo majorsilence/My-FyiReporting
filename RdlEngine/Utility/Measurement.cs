@@ -37,7 +37,7 @@ using Drawing = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;
 #endif
 
-namespace fyiReporting.RDL.Utility
+namespace Majorsilence.Reporting.Rdl.Utility
 {
     /// <summary>
     /// A utility class that contains additional 

@@ -27,11 +27,11 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.Drawing.Printing;
-using fyiReporting.RDL;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlViewer;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlReader
+namespace Majorsilence.Reporting.RdlReader
 {
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
@@ -42,7 +42,7 @@ namespace fyiReporting.RdlReader
 
         public MDIChild(int width, int height)
         {
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            this.rdlViewer1 = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             this.SuspendLayout();
             // 
             // rdlViewer1

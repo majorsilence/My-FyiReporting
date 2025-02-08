@@ -26,7 +26,7 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Collection of fields for a DataSet.

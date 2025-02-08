@@ -24,10 +24,10 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using Pango;
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
     public class RenderCairo : IDisposable
     {

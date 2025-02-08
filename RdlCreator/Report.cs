@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 
 
-namespace fyiReporting.RdlCreator
+namespace Majorsilence.Reporting.RdlCreator
 {
     // Report class representing the root element
     [XmlRoot(ElementName = "Report", Namespace = "http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition")]

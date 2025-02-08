@@ -25,12 +25,12 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Handles calling function in the Code element

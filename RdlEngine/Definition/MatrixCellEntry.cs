@@ -24,7 +24,7 @@
 using System;
 using System.Collections;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Runtime data structure representing the group hierarchy

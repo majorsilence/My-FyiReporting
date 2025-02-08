@@ -1,4 +1,4 @@
-﻿using fyiReporting.RdlDesign;
+﻿using Majorsilence.Reporting.RdlDesign;
 using NUnit.Framework;
 using System;
 

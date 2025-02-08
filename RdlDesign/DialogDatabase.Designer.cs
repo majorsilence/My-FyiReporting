@@ -1,4 +1,4 @@
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     public partial class DialogDatabase : System.Windows.Forms.Form
 	{
@@ -76,12 +76,12 @@ namespace fyiReporting.RdlDesign
             this.ReportSyntax = new System.Windows.Forms.TabPage();
             this.tbReportSyntax = new System.Windows.Forms.TextBox();
             this.ReportPreview = new System.Windows.Forms.TabPage();
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            this.rdlViewer1 = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.rbEmpty = new System.Windows.Forms.RadioButton();
-            this.reportParameterCtl1 = new fyiReporting.RdlDesign.ReportParameterCtl();
+            this.reportParameterCtl1 = new Majorsilence.Reporting.RdlDesign.ReportParameterCtl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -519,14 +519,14 @@ namespace fyiReporting.RdlDesign
             this.rdlViewer1.PageCurrent = 1;
             this.rdlViewer1.Parameters = "";
             this.rdlViewer1.ReportName = null;
-            this.rdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
+            this.rdlViewer1.ScrollMode = Majorsilence.Reporting.RdlViewer.ScrollModeEnum.Continuous;
             this.rdlViewer1.SelectTool = false;
             this.rdlViewer1.ShowFindPanel = false;
             this.rdlViewer1.ShowParameterPanel = true;
             this.rdlViewer1.ShowWaitDialog = true;
             this.rdlViewer1.UseTrueMargins = true;
             this.rdlViewer1.Zoom = 0.7061753F;
-            this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
+            this.rdlViewer1.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.FitWidth;
             // 
             // btnCancel
             // 
@@ -622,7 +622,7 @@ namespace fyiReporting.RdlDesign
         private System.Windows.Forms.TextBox tbReportDescription;
         private System.Windows.Forms.TextBox tbReportAuthor;
         private System.Windows.Forms.Panel panel2;
-        private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
+        private Majorsilence.Reporting.RdlViewer.RdlViewer rdlViewer1;
         private System.Windows.Forms.TabPage ReportParameters;
         private System.Windows.Forms.TabControl tcDialog;
         private System.Windows.Forms.TabPage TabularGroup;
@@ -660,7 +660,7 @@ namespace fyiReporting.RdlDesign
         private System.Windows.Forms.TextBox textBoxSqlPassword;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxSqlUser;
-        private fyiReporting.RdlDesign.ReportParameterCtl reportParameterCtl1;
+        private Majorsilence.Reporting.RdlDesign.ReportParameterCtl reportParameterCtl1;
         private System.Windows.Forms.RadioButton rbEmpty;
     }
 }

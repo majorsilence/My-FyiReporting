@@ -1,5 +1,5 @@
 ﻿using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using NPOI.Util;
 namespace RdlEngine.Render.ExcelConverter
 {

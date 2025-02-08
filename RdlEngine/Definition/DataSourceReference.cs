@@ -27,7 +27,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// Utitlity class for reading and writing a DataSourceReference file

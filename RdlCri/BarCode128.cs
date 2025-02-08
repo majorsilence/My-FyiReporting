@@ -5,7 +5,7 @@ using Drawing = Majorsilence.Drawing;
 #else
 using Drawing = System.Drawing;
 #endif
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Text;
 using System.Xml;
 using System.ComponentModel;

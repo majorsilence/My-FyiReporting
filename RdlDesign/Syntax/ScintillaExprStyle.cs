@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlDesign.Syntax
+namespace Majorsilence.Reporting.RdlDesign.Syntax
 {
     public class ScintillaExprStyle
     {

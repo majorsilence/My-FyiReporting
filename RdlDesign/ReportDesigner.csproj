@@ -189,7 +189,7 @@
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
 	</ItemGroup>
 	<ItemGroup>	

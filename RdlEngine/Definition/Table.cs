@@ -27,10 +27,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Diagnostics;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Table definition and processing.  Inherits from DataRegion which inherits from ReportItem.
@@ -103,7 +103,7 @@ namespace fyiReporting.RDL
 						_DetailDataCollectionName = xNodeLoop.InnerText;
 						break;
 					case "DetailDataElementOutput":
-						_DetailDataElementOutput = fyiReporting.RDL.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_DetailDataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	
 						if (DataRegionElement(xNodeLoop))	// try at DataRegion level

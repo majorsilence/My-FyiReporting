@@ -24,7 +24,7 @@
 using System;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Three value state; true, false, auto (dependent on context)

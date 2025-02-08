@@ -20,8 +20,8 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// DesignCtl is a designer view of an RDL report

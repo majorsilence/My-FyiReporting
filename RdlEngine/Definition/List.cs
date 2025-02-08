@@ -32,7 +32,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Represents the report item for a List (i.e. absolute positioning)
@@ -84,7 +84,7 @@ namespace fyiReporting.RDL
 						_DataInstanceName = xNodeLoop.InnerText;
 						break;
 					case "DataInstanceElementOutput":
-						_DataInstanceElementOutput = fyiReporting.RDL.DataInstanceElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_DataInstanceElementOutput = Majorsilence.Reporting.Rdl.DataInstanceElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	
 						if (DataRegionElement(xNodeLoop))	// try at DataRegion level

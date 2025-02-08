@@ -32,10 +32,10 @@ using System.Drawing.Printing;
 using System.Text;
 using EncryptionProvider;
 using EncryptionProvider.String;
-using fyiReporting.RdlViewer.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlViewer.Resources;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -917,7 +917,7 @@ namespace fyiReporting.RdlViewer
         /// </summary>
         /// <param name="FileName">Name of the file to be saved to.</param>
         /// <param name="type">Type of file to save.  Should be "pdf", "xml", "html", "mhtml", "csv", "rtf", "excel", "tif".</param>
-        public async Task SaveAs(string FileName, fyiReporting.RDL.OutputPresentationType type)
+        public async Task SaveAs(string FileName, Majorsilence.Reporting.Rdl.OutputPresentationType type)
         {
             await LoadPageIfNeeded();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     public class CrossDelegate
     {

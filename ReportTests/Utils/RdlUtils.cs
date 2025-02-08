@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 namespace ReportTests.Utils
 {
@@ -13,7 +13,7 @@ namespace ReportTests.Utils
         {
             //string cwd = System.Environment.CurrentDirectory;
 
-            //var rdlView = new fyiReporting.RdlViewer.RdlViewer();
+            //var rdlView = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             //rdlView.SourceFile = new Uri(System.IO.Path.Combine(cwd,"Reports", "FunctionTest.rdl"));
             string filePath = uri2Rdl.LocalPath;
             // Now parse the file 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 namespace RdlEngine.Render.ExcelConverter
 {
 	internal class ExcelTable

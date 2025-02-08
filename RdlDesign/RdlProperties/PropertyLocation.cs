@@ -24,7 +24,7 @@ using System;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Globalization;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyExpr - 

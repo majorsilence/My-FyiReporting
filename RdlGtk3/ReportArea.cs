@@ -24,7 +24,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using Cairo;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Collections.Generic;
 using Gtk;
 using System.Linq;
@@ -34,7 +34,7 @@ using Drawing = Majorsilence.Drawing;
 using Drawing = System.Drawing;
 #endif
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
 	[System.ComponentModel.ToolboxItem(true)]
     public class ReportArea : Gtk.DrawingArea

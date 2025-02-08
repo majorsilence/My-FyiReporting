@@ -25,12 +25,12 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Handles references to the report item collection.

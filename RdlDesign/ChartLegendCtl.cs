@@ -29,7 +29,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Summary description for ChartCtl.

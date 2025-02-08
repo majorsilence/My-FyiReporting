@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Xml;
 using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
 	internal class Undo
 	{ 

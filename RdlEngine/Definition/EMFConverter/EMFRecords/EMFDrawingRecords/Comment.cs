@@ -23,14 +23,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
-    //takes the record data and returns the instructions for drawing...I guess.    
+    //takes the record data and returns the instructions for Draw2...I guess.    
     internal class Comment : DrawBase
     {
         internal Comment(Single Xin, Single Yin, Single WidthIn, Single HeightIn, System.Collections.Hashtable ObjectTableIn)
@@ -78,7 +78,7 @@ namespace fyiReporting.RDL
                     pp.SI = si;
                     //si.BackgroundColor = Color.Blue;// Just a test to see where the tooltip is being drawn
                     string[] ttd = PData.Split('|');
-                    Drawing.PointF[] pts = new Drawing.PointF[(ttd.Length - 1) / 2];
+                    Draw2.PointF[] pts = new Draw2.PointF[(ttd.Length - 1) / 2];
                     pp.Points = pts;
                     pp.Tooltip = ttd[0].Split(':')[1];
                     for (int i = 0; i < pts.Length; i++)

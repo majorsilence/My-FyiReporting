@@ -26,10 +26,10 @@ using System.Xml;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Threading;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// A report expression: includes original source, parsed expression and type information.

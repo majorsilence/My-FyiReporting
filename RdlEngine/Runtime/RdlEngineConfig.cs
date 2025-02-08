@@ -31,10 +31,10 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
 using System.IO;
-using RdlEngine.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary> 
     /// Handle SQL configuration and connections 

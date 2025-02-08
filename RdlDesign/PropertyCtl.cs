@@ -28,9 +28,9 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Summary description for ReportCtl.

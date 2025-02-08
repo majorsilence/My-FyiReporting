@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace fyiReporting.RdlViewer.Resources {
+namespace Majorsilence.Reporting.RdlViewer.Resources {
     using System;
     
     

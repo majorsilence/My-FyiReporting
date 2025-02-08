@@ -29,11 +29,11 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Text;
-using fyiReporting.RdlViewer.Resources;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.RdlViewer.Resources;
+using Majorsilence.Reporting.Rdl;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlViewer
+namespace Majorsilence.Reporting.RdlViewer
 {
 	/// <summary>
 	/// RdlViewerFind finds text inside of the RdlViewer control

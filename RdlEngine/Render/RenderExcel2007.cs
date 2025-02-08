@@ -33,7 +33,7 @@ using NPOI.SS.Util;
 using NPOI.Util;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Renders a report to Excel 2007.   This handles some page formating but does not do true page formatting.
@@ -450,12 +450,12 @@ namespace fyiReporting.RDL
 			excelBuilder.AddLine(l, borderWidth);
 		}
 
-		public Task<bool> RectangleStart(RDL.Rectangle rect, Row r)
+		public Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
 		{
 			return Task.FromResult(true);
 		}
 
-		public Task RectangleEnd(RDL.Rectangle rect, Row r)
+		public Task RectangleEnd(Rdl.Rectangle rect, Row r)
 		{
 			return Task.CompletedTask;
 		}

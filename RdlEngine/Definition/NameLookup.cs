@@ -24,7 +24,7 @@
 using System;
 using System.Collections;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Parsing name lookup.  Fields, parameters, report items, globals, user, aggregate scopes, grouping,...

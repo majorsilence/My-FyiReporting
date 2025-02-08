@@ -4,7 +4,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Collections;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     internal partial class MDIChild : Form
 	{
@@ -15,7 +15,7 @@ TabPage _Tab;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIChild));
-			this.rdlDesigner = new fyiReporting.RdlDesign.RdlEditPreview();
+			this.rdlDesigner = new Majorsilence.Reporting.RdlDesign.RdlEditPreview();
 			this.SuspendLayout();
 			// 
 			// rdlDesigner
@@ -27,14 +27,14 @@ TabPage _Tab;
 			this.rdlDesigner.SelectedText = "";
 			this.rdlDesigner.SelectionTool = false;
 			this.rdlDesigner.Zoom = 1F;
-			this.rdlDesigner.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.UseZoom;
-			this.rdlDesigner.OnRdlChanged += new fyiReporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_RdlChanged);
-			this.rdlDesigner.OnHeightChanged += new fyiReporting.RdlDesign.DesignCtl.HeightEventHandler(this.rdlDesigner_HeightChanged);
-			this.rdlDesigner.OnSelectionChanged += new fyiReporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_SelectionChanged);
-			this.rdlDesigner.OnSelectionMoved += new fyiReporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_SelectionMoved);
-			this.rdlDesigner.OnReportItemInserted += new fyiReporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_ReportItemInserted);
-			this.rdlDesigner.OnDesignTabChanged += new fyiReporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_DesignTabChanged);
-			this.rdlDesigner.OnOpenSubreport += new fyiReporting.RdlDesign.DesignCtl.OpenSubreportEventHandler(this.rdlDesigner_OpenSubreport);
+			this.rdlDesigner.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.UseZoom;
+			this.rdlDesigner.OnRdlChanged += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_RdlChanged);
+			this.rdlDesigner.OnHeightChanged += new Majorsilence.Reporting.RdlDesign.DesignCtl.HeightEventHandler(this.rdlDesigner_HeightChanged);
+			this.rdlDesigner.OnSelectionChanged += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_SelectionChanged);
+			this.rdlDesigner.OnSelectionMoved += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_SelectionMoved);
+			this.rdlDesigner.OnReportItemInserted += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_ReportItemInserted);
+			this.rdlDesigner.OnDesignTabChanged += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_DesignTabChanged);
+			this.rdlDesigner.OnOpenSubreport += new Majorsilence.Reporting.RdlDesign.DesignCtl.OpenSubreportEventHandler(this.rdlDesigner_OpenSubreport);
 			// 
 			// MDIChild
 			// 

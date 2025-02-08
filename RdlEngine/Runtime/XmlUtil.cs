@@ -33,7 +33,7 @@ using System.Drawing;			// for Color class
 #endif
 using System.Reflection;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Some utility classes consisting entirely of static routines.

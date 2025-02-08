@@ -27,7 +27,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// ChartExpression definition and processing.

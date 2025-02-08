@@ -24,7 +24,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
-		<ProjectReference Include="..\RdlEngine\RdlEngine.csproj" />
+		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
 	</ItemGroup>
 	<ItemGroup>

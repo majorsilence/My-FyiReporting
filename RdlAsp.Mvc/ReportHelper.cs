@@ -28,10 +28,10 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
 using System.Web.Caching;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace fyiReporting.RdlAsp
+namespace Majorsilence.Reporting.RdlAsp
 {
     internal class ReportHelper
     {

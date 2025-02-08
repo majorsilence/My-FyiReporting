@@ -23,12 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     class DrawBase
     {
@@ -40,27 +40,27 @@ namespace fyiReporting.RDL
         protected Single Height;
         protected List<PageItem> items;
 
-        protected static BorderStyleEnum getLineStyle(Drawing.Pen p)
+        protected static BorderStyleEnum getLineStyle(Draw2.Pen p)
         {
             BorderStyleEnum ls = BorderStyleEnum.Solid;
             switch (p.DashStyle)
             {               
-                case Drawing.Drawing2D.DashStyle.Dash:
+                case Draw2.Drawing2D.DashStyle.Dash:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case Drawing.Drawing2D.DashStyle.DashDot:
+                case Draw2.Drawing2D.DashStyle.DashDot:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case Drawing.Drawing2D.DashStyle.DashDotDot:
+                case Draw2.Drawing2D.DashStyle.DashDotDot:
                     ls = BorderStyleEnum.Dashed;
                     break;
-                case Drawing.Drawing2D.DashStyle.Dot: 
+                case Draw2.Drawing2D.DashStyle.Dot: 
                     ls = BorderStyleEnum.Dotted;
                     break;
-                case Drawing.Drawing2D.DashStyle.Solid:
+                case Draw2.Drawing2D.DashStyle.Solid:
                     ls = BorderStyleEnum.Solid;
                     break;
-                case Drawing.Drawing2D.DashStyle.Custom:
+                case Draw2.Drawing2D.DashStyle.Custom:
                     ls = BorderStyleEnum.Solid;
                     break;
                 default:                   

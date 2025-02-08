@@ -28,12 +28,12 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using Gtk;
 using System.Threading.Tasks;
-using Strings = RdlEngine.Resources.Strings;
+using Strings = Majorsilence.Reporting.RdlEngine.Resources.Strings;
 
-namespace fyiReporting.RdlGtk3
+namespace Majorsilence.Reporting.RdlGtk3
 {
     [System.ComponentModel.ToolboxItem(true)]
     public partial class ReportViewer : Gtk.Bin

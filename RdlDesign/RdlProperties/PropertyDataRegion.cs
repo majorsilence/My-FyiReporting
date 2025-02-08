@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyChart - The Chart Properties

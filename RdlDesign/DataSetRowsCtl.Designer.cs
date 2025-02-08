@@ -1,4 +1,4 @@
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	partial class DataSetRowsCtl
 	{

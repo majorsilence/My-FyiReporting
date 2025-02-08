@@ -26,7 +26,7 @@ using System.Xml;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// CodeModule definition and processing.

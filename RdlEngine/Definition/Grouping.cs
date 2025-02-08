@@ -27,7 +27,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Grouping definition: expressions forming group, paging forced when group changes, ...
@@ -149,7 +149,7 @@ namespace fyiReporting.RDL
 						_DataCollectionName = xNodeLoop.InnerText;
 						break;
 					case "DataElementOutput":
-						_DataElementOutput = fyiReporting.RDL.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+						_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	
 						// don't know this element - log it

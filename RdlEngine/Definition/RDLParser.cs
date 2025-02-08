@@ -25,11 +25,11 @@ using System.Collections;
 using System.IO;
 using System.Globalization;
 using System.Xml;
-using fyiReporting.RDL;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	///	The RDLParser class takes an XML representation (either string or DOM) of a

@@ -28,7 +28,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyAction - 

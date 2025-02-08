@@ -1,7 +1,7 @@
 ﻿using ScintillaNET;
 using System.Drawing;
 
-namespace fyiReporting.RdlDesign.Syntax
+namespace Majorsilence.Reporting.RdlDesign.Syntax
 {
     public class ScintillaSqlStyle
     {

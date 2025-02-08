@@ -21,9 +21,9 @@
    the website www.fyiReporting.com.
 */
 
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
-using RdlEngine.Utility;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 
 	/// <summary>

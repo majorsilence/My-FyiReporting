@@ -32,10 +32,10 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyTable - The Table Properties

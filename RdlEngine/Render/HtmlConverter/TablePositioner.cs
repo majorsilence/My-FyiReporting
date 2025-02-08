@@ -22,7 +22,7 @@
 */
 
 using System;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	
 	///<summary>

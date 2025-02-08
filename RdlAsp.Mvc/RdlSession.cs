@@ -24,9 +24,9 @@
 using System;
 using System.Web;
 using System.Collections;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RdlAsp
+namespace Majorsilence.Reporting.RdlAsp
 {
 	/// <summary>
 	/// RdlSession holds some session specific information

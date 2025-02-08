@@ -27,10 +27,10 @@ using System.Reflection;
 using System.Text;
 
 
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// The VBFunctions class holds a number of static functions for support VB functions.

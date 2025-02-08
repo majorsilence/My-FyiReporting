@@ -30,12 +30,12 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Xml;
 using EncryptionProvider;
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
-using fyiReporting.RdlViewer;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlViewer;
 using EncryptionProvider.String;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// RdlReader is a application for displaying reports based on RDL.
@@ -243,7 +243,7 @@ namespace fyiReporting.RdlDesign
             return bOK;
         }
 
-        public bool Export(fyiReporting.RDL.OutputPresentationType type)
+        public bool Export(Rdl.OutputPresentationType type)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = string.Format(Strings.MDIChild_Export_ExportTitleFormat, type.ToString().ToUpper());
@@ -614,7 +614,7 @@ namespace fyiReporting.RdlDesign
             return;
         }
 
-        public fyiReporting.RdlViewer.RdlViewer Viewer
+        public Majorsilence.Reporting.RdlViewer.RdlViewer Viewer
         {
             get { return rdlDesigner.Viewer; }
         }

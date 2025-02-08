@@ -1,6 +1,6 @@
 using System;
 
-namespace fyiReporting.RDL.Utility
+namespace Majorsilence.Reporting.Rdl.Utility
 {
 	public class Runtime
 	{

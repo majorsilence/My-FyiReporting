@@ -36,7 +36,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Code represents the Code report element. 
@@ -84,7 +84,7 @@ namespace fyiReporting.RDL
             lines.Add("Imports Microsoft.VisualBasic");
             lines.Add("Imports System.Convert");
             lines.Add("Imports System.Math");
-            lines.Add("Imports fyiReporting.RDL");
+            lines.Add("Imports Majorsilence.Reporting.Rdl");
             lines.Add("Namespace fyiReporting.vbgen");
 			_Classname = "MyClass" + unique;
 			lines.Add("Public Class " + _Classname);

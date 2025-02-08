@@ -1,4 +1,4 @@
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 /* ====================================================================
    Copyright (C) 2004-2008  fyiReporting Software, LLC
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// PropertyTextbox - The Textbox Properties
@@ -106,7 +106,7 @@ namespace fyiReporting.RdlDesign
             get
             {
                 string v = GetValue("DataElementStyle", "Auto");
-                return fyiReporting.RDL.DataElementStyle.GetStyle(v);
+                return Majorsilence.Reporting.Rdl.DataElementStyle.GetStyle(v);
             }
             set
             {

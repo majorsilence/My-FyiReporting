@@ -23,15 +23,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
-    //takes the record data and returns the instructions for drawing...I guess.    
+    //takes the record data and returns the instructions for Draw2...I guess.    
     internal class DrawString : DrawBase
     {
         internal DrawString(Single Xin, Single Yin, Single WidthIn, Single HeightIn,System.Collections.Hashtable ObjectTableIn)
@@ -66,7 +66,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 //PJR20220801 - (int) Math.Pow(2,7) !=128 it's 127!!! Argh!!!
                 bool BrushIsARGB = ((RealFlags >> 7) & 1) == 1; //((RealFlags & (int)Math.Pow(2, 7)) == (int)Math.Pow(2, 7));
-                Drawing.Brush b;
+                Draw2.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -74,7 +74,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
+                    b = new Draw2.SolidBrush(Draw2.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -95,8 +95,8 @@ namespace fyiReporting.RDL
                 System.Text.UnicodeEncoding d = new System.Text.UnicodeEncoding();
                 d.GetChars(_br.ReadBytes((int)StringLength * 2), 0, (int)StringLength * 2, StringData, 0);
                 EMFFont EF = (EMFFont)ObjectTable[(byte)ObjectID];
-                Drawing.Font f = EF.myFont;
-                Drawing.StringFormat sf;
+                Draw2.Font f = EF.myFont;
+                Draw2.StringFormat sf;
                 if (ObjectTable.Contains((byte)FormatID))
                 {
                     EMFStringFormat ESF = (EMFStringFormat)ObjectTable[(byte)FormatID];
@@ -104,7 +104,7 @@ namespace fyiReporting.RDL
                 }
                 else
                 {
-                    sf = new Drawing.StringFormat();
+                    sf = new Draw2.StringFormat();
                 }
 
                 DoInstructions(f, sf, b, recX, recY, recWidth, recHeight, new String(StringData));
@@ -123,12 +123,12 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Drawing.Font f, Drawing.StringFormat sf, Drawing.Brush br, Single recX, Single recY, Single recWidth, Single recHeight, String Text)
+        private void DoInstructions(Draw2.Font f, Draw2.StringFormat sf, Draw2.Brush br, Single recX, Single recY, Single recWidth, Single recHeight, String Text)
         {
-            Drawing.Color Col = Drawing.Color.Black;
+            Draw2.Color Col = Draw2.Color.Black;
             if (br.GetType().Name.Equals("SolidBrush"))
             {
-                Drawing.SolidBrush sb = (Drawing.SolidBrush)br;
+                Draw2.SolidBrush sb = (Draw2.SolidBrush)br;
                 Col = sb.Color;
             }
 
@@ -146,24 +146,24 @@ namespace fyiReporting.RDL
             if (f.Italic) {SI.FontStyle = FontStyleEnum.Italic;}
             if (f.Bold) { SI.FontWeight = FontWeightEnum.Bold; }
             if (f.Underline) { SI.TextDecoration = TextDecorationEnum.Underline; }
-            if (sf.LineAlignment == Drawing.StringAlignment.Center)
+            if (sf.LineAlignment == Draw2.StringAlignment.Center)
             {
                 SI.TextAlign = TextAlignEnum.Center;
             }
-            else if (sf.LineAlignment == Drawing.StringAlignment.Far)
+            else if (sf.LineAlignment == Draw2.StringAlignment.Far)
             {
                 SI.TextAlign = TextAlignEnum.Right;
             }
 
-            if (sf.Alignment == Drawing.StringAlignment.Center)
+            if (sf.Alignment == Draw2.StringAlignment.Center)
             {
                 SI.VerticalAlign = VerticalAlignEnum.Middle;
             }
-            else if (sf.Alignment == Drawing.StringAlignment.Far)
+            else if (sf.Alignment == Draw2.StringAlignment.Far)
             {
                 SI.VerticalAlign = VerticalAlignEnum.Bottom;
             }
-            if ((sf.FormatFlags & Drawing.StringFormatFlags.DirectionVertical) == Drawing.StringFormatFlags.DirectionVertical)
+            if ((sf.FormatFlags & Draw2.StringFormatFlags.DirectionVertical) == Draw2.StringFormatFlags.DirectionVertical)
             {
                 SI.WritingMode = WritingModeEnum.tb_rl;
             }

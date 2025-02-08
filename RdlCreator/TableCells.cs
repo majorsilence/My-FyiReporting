@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace fyiReporting.RdlCreator
+namespace Majorsilence.Reporting.RdlCreator
 {
     public class TableCells
     {

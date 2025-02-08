@@ -24,7 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     static class RdlMapFile
     {

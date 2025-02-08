@@ -25,10 +25,10 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using fyiReporting.RDL;
+using Majorsilence.Reporting.Rdl;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	/// <summary>
 	/// Choose function of the form Choose(int, expr1, expr2, ...)

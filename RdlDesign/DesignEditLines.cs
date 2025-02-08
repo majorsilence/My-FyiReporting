@@ -29,7 +29,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Net;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 
 	/// <summary>

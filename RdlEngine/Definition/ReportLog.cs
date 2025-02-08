@@ -25,10 +25,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Error logging (parse and runtime) within report.

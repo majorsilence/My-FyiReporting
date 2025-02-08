@@ -21,7 +21,7 @@
    the website www.fyiReporting.com.
 */
 
-using RdlEngine.Resources;
+using Majorsilence.Reporting.RdlEngine.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
     ///<summary>
     /// Represents all the pages of a report.  Needed when you need

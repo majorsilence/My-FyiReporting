@@ -29,7 +29,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.IO;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	/// <summary>
 	/// Summary description for ModulesClassesCtl.

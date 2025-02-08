@@ -2,12 +2,12 @@
 using System.IO;
 using System.Xml.Serialization;
 using System;
-using fyiReporting.RdlCreator;
+using Majorsilence.Reporting.RdlCreator;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace fyiReporting.RdlCreator.Tests
+namespace Majorsilence.Reporting.RdlCreator.Tests
 {
     [TestFixture]
     public class ManualReportDefinitionTest
@@ -21,9 +21,9 @@ namespace fyiReporting.RdlCreator.Tests
             var create = new RdlCreator.Create();
             var report = GenerateTestData();
             var fyiReport = await create.GenerateRdl(report);
-            var ms = new fyiReporting.RDL.MemoryStreamGen();
+            var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ms, fyiReporting.RDL.OutputPresentationType.CSV);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);

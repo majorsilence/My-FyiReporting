@@ -27,7 +27,7 @@ using System.Collections.Specialized;
 using System.Xml;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Contains list of DataSource about how to connect to sources of data used by the DataSets.

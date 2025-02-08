@@ -20,8 +20,8 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
-using fyiReporting.RDL;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.Rdl;
+using Majorsilence.Reporting.RdlDesign.Resources;
 using Microsoft.Win32;
 using System;
 using System.Collections;
@@ -37,7 +37,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
     /// <summary>
     /// Static utility classes used in the Rdl Designer
@@ -155,7 +155,7 @@ namespace fyiReporting.RdlDesign
                 if (!filename.EndsWith(".dsr", StringComparison.InvariantCultureIgnoreCase))
                     filename += ".dsr";
 
-                xml = RDL.DataSourceReference.Retrieve(filename, pswd);
+                xml = Rdl.DataSourceReference.Retrieve(filename, pswd);
             }
             catch
             {
@@ -199,7 +199,7 @@ namespace fyiReporting.RdlDesign
                 if (!filename.EndsWith(".dsr", StringComparison.InvariantCultureIgnoreCase))
                     filename += ".dsr";
 
-                xml = RDL.DataSourceReference.Retrieve(filename, pswd);
+                xml = Rdl.DataSourceReference.Retrieve(filename, pswd);
             }
             catch
             {

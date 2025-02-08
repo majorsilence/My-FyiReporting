@@ -39,7 +39,7 @@ using System.Windows;
 using System.Drawing;
 using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     /// <summary>
     /// Enumeration defining the various shape types. Each shapefile

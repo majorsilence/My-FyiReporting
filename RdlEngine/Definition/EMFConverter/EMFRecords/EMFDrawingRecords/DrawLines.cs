@@ -23,14 +23,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
-    //takes the record data and returns the instructions for drawing...I guess.    
+    //takes the record data and returns the instructions for Draw2...I guess.    
     internal class DrawLines : DrawBase
     {
         internal DrawLines(Single Xin, Single Yin, Single WidthIn, Single HeightIn,System.Collections.Hashtable ObjectTableIn)
@@ -73,7 +73,7 @@ namespace fyiReporting.RDL
                 _br = new BinaryReader(_ms);
                 UInt32 NumberOfPoints = _br.ReadUInt32(); 
                 EMFPen Emfp = (EMFPen)ObjectTable[ObjectID];
-                Drawing.Pen p = Emfp.myPen;               
+                Draw2.Pen p = Emfp.myPen;               
                 //EMFBrush b = p.myBrush;                
                 if (Compressed)
                 {
@@ -103,17 +103,17 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
+        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Draw2.Pen p)
         {
-            Drawing.PointF[] Points = new Drawing.PointF[NumberOfPoints];
+            Draw2.PointF[] Points = new Draw2.PointF[NumberOfPoints];
             bool first = true;
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 Points[i].X = _br.ReadSingle();
                 Points[i].Y = _br.ReadSingle();
             }
-            Drawing.PointF PointA = new Drawing.PointF();
-            Drawing.PointF PointB = new Drawing.PointF();
+            Draw2.PointF PointA = new Draw2.PointF();
+            Draw2.PointF PointB = new Draw2.PointF();
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 if (first)
@@ -130,22 +130,22 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoRelative(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
+        private void DoRelative(UInt32 NumberOfPoints, BinaryReader _br, Draw2.Pen p)
         {
             throw new NotSupportedException("Relative Points are not supported");
         }
 
-        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Pen p)
+        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Draw2.Pen p)
         {
             bool first = true;
-            Drawing.Point[] Points = new Drawing.Point[NumberOfPoints];            
+            Draw2.Point[] Points = new Draw2.Point[NumberOfPoints];            
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 Points[i].X = _br.ReadInt16();
                 Points[i].Y = _br.ReadInt16();
             }
-            Drawing.Point PointA= new Drawing.Point();
-            Drawing.Point PointB = new Drawing.Point();
+            Draw2.Point PointA= new Draw2.Point();
+            Draw2.Point PointB = new Draw2.Point();
             for (int i = 0; i < NumberOfPoints; i++)
             {
                 if (first)
@@ -162,7 +162,7 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoInstructions(Single Xa,Single Xb, Single Ya, Single Yb,Drawing.Pen p)
+        private void DoInstructions(Single Xa,Single Xb, Single Ya, Single Yb,Draw2.Pen p)
         {
             BorderStyleEnum ls = getLineStyle(p);
            
@@ -170,7 +170,7 @@ namespace fyiReporting.RDL
             switch (p.Brush.GetType().Name)
             {
                 case "SolidBrush":
-                   Drawing.SolidBrush theBrush = (Drawing.SolidBrush)p.Brush;
+                   Draw2.SolidBrush theBrush = (Draw2.SolidBrush)p.Brush;
                     PageLine pl = new PageLine();
                     pl.X = X + (Xa * SCALEFACTOR);
                     pl.Y = Y + (Ya * SCALEFACTOR);

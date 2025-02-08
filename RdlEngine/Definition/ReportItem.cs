@@ -34,7 +34,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace fyiReporting.RDL
+namespace Majorsilence.Reporting.Rdl
 {
 	///<summary>
 	/// Base class of all display items in a report.  e.g. Textbox, Matrix, Table, ...
@@ -192,7 +192,7 @@ namespace fyiReporting.RDL
 					_DataElementName = xNodeLoop.InnerText;
 					break;
 				case "DataElementOutput":
-					_DataElementOutput = fyiReporting.RDL.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
+					_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
                 case "rd:DefaultName":
                     break;      // MS tag: we don't use but don't want to generate a warning

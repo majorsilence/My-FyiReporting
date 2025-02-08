@@ -25,9 +25,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using fyiReporting.RdlDesign.Resources;
+using Majorsilence.Reporting.RdlDesign.Resources;
 
-namespace fyiReporting.RdlDesign
+namespace Majorsilence.Reporting.RdlDesign
 {
 	internal class Undo
 	{ 

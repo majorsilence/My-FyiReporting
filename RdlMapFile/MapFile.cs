@@ -33,7 +33,7 @@ using System.Xml;
 using System.IO;
 using RdlMapFile.Resources;
 
-namespace fyiReporting.RdlMapFile
+namespace Majorsilence.Reporting.RdlMapFile
 {
     public partial class MapFile : Form, IMessageFilter
     {

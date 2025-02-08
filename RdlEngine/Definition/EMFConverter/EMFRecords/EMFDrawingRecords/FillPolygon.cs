@@ -23,13 +23,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
-using Drawing2D = System.DrawingCore.Drawing2D;
+using Draw2 = Majorsilence.Drawing;
+using Drawing2D = Majorsilence.Drawing.Drawing2D;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 using Drawing2D = System.Drawing.Drawing2D;
 #endif
-namespace fyiReporting.RDL
+
+namespace Majorsilence.Reporting.Rdl
 {
     internal class FillPolygon : DrawBase
     {
@@ -64,7 +65,7 @@ namespace fyiReporting.RDL
 
                 _ms = new MemoryStream(RecordData);
                 _br = new BinaryReader(_ms);
-                Drawing.Brush b;
+                Draw2.Brush b;
                 if (BrushIsARGB)
                 {
                     byte A, R, G, B;
@@ -72,7 +73,7 @@ namespace fyiReporting.RDL
                     G = _br.ReadByte();
                     R = _br.ReadByte();
                     A = _br.ReadByte();
-                    b = new Drawing.SolidBrush(Drawing.Color.FromArgb(A, R, G, B));
+                    b = new Draw2.SolidBrush(Draw2.Color.FromArgb(A, R, G, B));
                 }
                 else
                 {
@@ -104,9 +105,9 @@ namespace fyiReporting.RDL
             }
         }
 
-        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Brush b)
+        private void DoFloat(UInt32 NumberOfPoints, BinaryReader _br, Draw2.Brush b)
         {
-            Drawing.PointF[] Ps = new Drawing.PointF[NumberOfPoints];
+            Draw2.PointF[] Ps = new Draw2.PointF[NumberOfPoints];
             for (int i = 0; i < NumberOfPoints; i++)
             {
                   
@@ -116,9 +117,9 @@ namespace fyiReporting.RDL
             DoInstructions(Ps, b);
         }
 
-        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Drawing.Brush b)
+        private void DoCompressed(UInt32 NumberOfPoints, BinaryReader _br, Draw2.Brush b)
         {
-            Drawing.PointF[] Ps = new Drawing.PointF[NumberOfPoints];
+            Draw2.PointF[] Ps = new Draw2.PointF[NumberOfPoints];
             for (int i = 0; i < NumberOfPoints; i++)
             { 
                 Int16 px = _br.ReadInt16();
@@ -129,7 +130,7 @@ namespace fyiReporting.RDL
             DoInstructions(Ps, b);
         }
 
-        private void DoInstructions(Drawing.PointF[] Ps, Drawing.Brush b)
+        private void DoInstructions(Draw2.PointF[] Ps, Draw2.Brush b)
         {
             PagePolygon pl = new PagePolygon();
             //pl.X = X * SCALEFACTOR;
@@ -140,7 +141,7 @@ namespace fyiReporting.RDL
             switch (b.GetType().Name)
             {
                 case "SolidBrush":
-                    Drawing.SolidBrush theBrush = (Drawing.SolidBrush)b;
+                    Draw2.SolidBrush theBrush = (Draw2.SolidBrush)b;
                     SI.Color = theBrush.Color;
                     SI.BackgroundColor = theBrush.Color;
                     break;
