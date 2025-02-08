@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlGtk3", "RdlGtk3\RdlGtk3.csproj", "{921488F1-F4FC-4438-920E-86E57442B253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlGtk3", "RdlGtk3\Majorsilence.Reporting.RdlGtk3.csproj", "{921488F1-F4FC-4438-920E-86E57442B253}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProviders", "DataProviders\DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProviders", "DataProviders\Majorsilence.Reporting.DataProviders.csproj", "{D9F4197F-52D2-49F0-8DAF-E2884733CF2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlEngine", "RdlEngine\RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlEngine", "RdlEngine\Majorsilence.Reporting.RdlEngine.csproj", "{C97E91F4-B310-44E2-9B6C-96775395722D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlCri", "RdlCri\RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlCri", "RdlCri\Majorsilence.Reporting.RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlGtk3Viewer", "RdlGtk3Viewer\RdlGtk3Viewer.csproj", "{72133ED0-23A1-47BB-B811-EF87C5D188C7}"
 EndProject
