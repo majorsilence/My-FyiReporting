@@ -562,7 +562,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             param[2] = Strings.ButtonSave_Text;
             param[3] = Gtk.ResponseType.Accept;
 
-            Gtk.FileChooserDialog fc =
+            using var fc =
                 new Gtk.FileChooserDialog(Strings.FileChooser_SaveFileTo_Title,
                     null,
                     Gtk.FileChooserAction.Save,
@@ -643,7 +643,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             if (!fc.Filters.Any())
             {
-                Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
                     Gtk.ButtonsType.Ok, false,
                     "Export in all document formats is prohibited");
 
@@ -755,7 +755,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                             if (files[i] == filename)
                             {
                                 //If found files with the same name in directory
-                                MessageDialog m = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Question,
+                                using var m = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Question,
                                     Gtk.ButtonsType.YesNo, false,
                                  Strings.SaveToFile_CheckIf_SameFilesInDir);
 
@@ -795,7 +795,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 }
                 catch (Exception ex)
                 {
-                    Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+                    using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
                                Gtk.ButtonsType.Ok, false,
                                $"Error Saving Copy of {fc.Filter?.Name}." + System.Environment.NewLine + ex.Message);
 
@@ -819,28 +819,19 @@ namespace Majorsilence.Reporting.RdlGtk3
         /// </param>
         private async Task ExportReport(Report report, string FileName, OutputPresentationType exportType)
         {
-            OneFileStreamGen sg = null;
-
             try
             {
-                sg = new OneFileStreamGen(FileName, true);
+                using var sg = new OneFileStreamGen(FileName, true);
                 await report.RunRender(sg, exportType);
             }
             catch (Exception ex)
             {
-                Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
+                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
                               Gtk.ButtonsType.Ok, false,
                               ex.Message);
 
                 m.Run();
                 m.Destroy();
-            }
-            finally
-            {
-                if (sg != null)
-                {
-                    sg.CloseMainStream();
-                }
             }
             return;
         }
@@ -851,27 +842,25 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public void PrintReport()
         {
-            using (PrintContext context = new PrintContext(Window.Handle))
+            using PrintContext context = new PrintContext(Window.Handle);
+            if (customPrintAction == null)
             {
-                if (customPrintAction == null)
-                {
-                    printing = new PrintOperation();
-                    printing.Unit = Unit.Points;
-                    printing.UseFullPage = true;
-                    printing.DefaultPageSetup = new PageSetup();
-                    printing.DefaultPageSetup.Orientation =
-                        report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
+                printing = new PrintOperation();
+                printing.Unit = Unit.Points;
+                printing.UseFullPage = true;
+                printing.DefaultPageSetup = new PageSetup();
+                printing.DefaultPageSetup.Orientation =
+                    report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
 
-                    printing.BeginPrint += HandlePrintBeginPrint;
-                    printing.DrawPage += HandlePrintDrawPage;
-                    printing.EndPrint += HandlePrintEndPrint;
+                printing.BeginPrint += HandlePrintBeginPrint;
+                printing.DrawPage += HandlePrintDrawPage;
+                printing.EndPrint += HandlePrintEndPrint;
 
-                    printing.Run(PrintOperationAction.PrintDialog, null);
-                }
-                else
-                {
-                    customPrintAction.Invoke(pages);
-                }
+                printing.Run(PrintOperationAction.PrintDialog, null);
+            }
+            else
+            {
+                customPrintAction.Invoke(pages);
             }
         }
 

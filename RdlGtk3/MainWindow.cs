@@ -169,40 +169,36 @@ namespace Majorsilence.Reporting.RdlGtk3
             param[2] = "Open";
             param[3] = Gtk.ResponseType.Accept;
 
-            using (Gtk.FileChooserDialog fc =
+            using var fc =
                 new Gtk.FileChooserDialog("Open File",
                     null,
                     Gtk.FileChooserAction.Open,
-                    param))
+                    param);
+
+            if (fc.Run() != (int)Gtk.ResponseType.Accept)
             {
+                fc.Destroy();
+                return;
+            }
 
-                if (fc.Run() != (int)Gtk.ResponseType.Accept)
-                {
-                    fc.Destroy();
-                    return;
-                }
+            try
+            {
+                string filename = fc.Filename;
+                fc.Destroy();
 
-                try
+                if (System.IO.File.Exists(filename))
                 {
-                    string filename = fc.Filename;
-                    fc.Destroy();
-
-                    if (System.IO.File.Exists(filename))
-                    {
-                        string parameters = await this.GetParameters(new Uri(filename));
-                        await this.reportviewer1.LoadReport(new Uri(filename), parameters);
-                    }
+                    string parameters = await this.GetParameters(new Uri(filename));
+                    await this.reportviewer1.LoadReport(new Uri(filename), parameters);
                 }
-                catch (Exception ex)
-                {
-                    using (Gtk.MessageDialog m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                                              Gtk.ButtonsType.Ok, false,
-                                              "Error Opening File." + System.Environment.NewLine + ex.Message))
-                    {
-                        m.Run();
-                        m.Destroy();
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+                                          Gtk.ButtonsType.Ok, false,
+                                          "Error Opening File." + System.Environment.NewLine + ex.Message);
+                m.Run();
+                m.Destroy();
             }
 
         }
@@ -241,7 +237,7 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             string parameters = "";
             string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
-            Majorsilence.Reporting.Rdl.RDLParser parser = new Majorsilence.Reporting.Rdl.RDLParser(sourceRdl);
+            var parser = new Rdl.RDLParser(sourceRdl);
             await parser.Parse();
 
             if (parser.Report.UserReportParameters.Count > 0)
@@ -251,7 +247,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     parameters += "&" + rp.Name + "=";
                 }
 
-                Majorsilence.Reporting.RdlGtk3.ParameterPrompt prompt = new Majorsilence.Reporting.RdlGtk3.ParameterPrompt();
+                using var prompt = new ParameterPrompt();
                 prompt.Parameters = parameters;
 
                 if (prompt.Run() == (int)Gtk.ResponseType.Ok)
