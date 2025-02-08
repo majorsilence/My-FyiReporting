@@ -1104,7 +1104,7 @@ namespace fyiReporting.RdlDesign
                 await Internal_DrawPanelPaint();
                 doGraphicsDraw = true;
                 // HACK: async shenanigans, force a repaint where e.Graphics is still valid
-                _DrawPanel.Refresh();       
+                _DrawPanel.Invalidate();       
             }
         }
 
