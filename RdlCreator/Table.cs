@@ -29,15 +29,26 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Table WithHeader(Header header)
+        public Table WithHeader(TableRow header, string repeatOnNewPage="true")
         {
-            this.Header = header;
+            this.Header = new Header()
+            {
+                TableRows = new TableRows()
+                {
+                    TableRow = header
+                },
+                RepeatOnNewPage = repeatOnNewPage
+            };
             return this;
         }
 
-        public Table WithDetails(Details details)
+        public Table WithDetails(TableRow row)
         {
-            this.Details = details;
+            this.Details = new Details();
+            this.Details.TableRows = new TableRows()
+            {
+                TableRow = row
+            };
             return this;
         }
 

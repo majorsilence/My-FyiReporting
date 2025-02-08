@@ -161,32 +161,25 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             .WithTableName("Table1")
             .WithDataSetName("Data")
             .WithNoRows("Query returned no rows!")
-            .WithHeader(new Header
+            .WithHeader(new TableRow
             {
-                TableRows = new TableRows
+                Height = "12pt",
+                TableCells = new TableCells()
                 {
-                    TableRow = new TableRow
+                    TableCell = new List<TableCell>
                     {
-                        Height = "12pt",
-                        TableCells = new TableCells()
-                        {
-                            TableCell = new List<TableCell>
-                                            {
-                                                new TableCell {  ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Textbox2",
-                                                    Value = new Value { Text = "CategoryID" },
-                                                    Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox3",
-                                                    Value = new Value { Text = "CategoryName" },
-                                                    Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox4",
-                                                    Value = new Value { Text = "Description" },
-                                                    Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } }
-                                            }
-                        }
+                        new TableCell {  ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Textbox2",
+                            Value = new Value { Text = "CategoryID" },
+                            Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
+                        new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox3",
+                            Value = new Value { Text = "CategoryName" },
+                            Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
+                        new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox4",
+                            Value = new Value { Text = "Description" },
+                            Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } }
                     }
-                },
-                RepeatOnNewPage = "true"
-            })
+                }
+            }, repeatOnNewPage: "true")
             .WithTableColumns(new TableColumns
             {
                 TableColumn = new List<TableColumn>
@@ -196,127 +189,116 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                 new TableColumn { Width = "1.375in" }
                             }
             })
-            .WithDetails(new Details
+            .WithDetails(new TableRow
             {
-                TableRows = new TableRows
+                Height = "12pt",
+                TableCells = new TableCells()
                 {
-                    TableRow = new TableRow
+                    TableCell = new List<TableCell>
                     {
-                        Height = "12pt",
-                        TableCells = new TableCells()
-                        {
-                            TableCell = new List<TableCell>
+                        new TableCell {
+                            ReportItems= new TableCellReportItems()
+                            {
+                                    ReportItem = new CustomReportItems()
+                                    {
+                                        Name = "QrCode",
+                                        Type = "QR Code",
+                                        Width = "35.91mm",
+                                        Height = "22pt",
+                                        CustomProperties = new CustomProperties
+                                        {
+                                            CustomProperty = new CustomProperty()
                                             {
-                                                new TableCell {
-                                                    ReportItems= new TableCellReportItems()
-                                                    {
-                                                         ReportItem = new CustomReportItems()
-                                                         {
-                                                             Name = "QrCode",
-                                                             Type = "QR Code",
-                                                             Width = "35.91mm",
-                                                             Height = "35.91mm",
-                                                             CustomProperties = new CustomProperties
-                                                             {
-                                                                 CustomProperty = new CustomProperty()
-                                                                 {
-                                                                    Name = "QrCode",
-                                                                    Value = "=Fields!CategoryID.Value"
-                                                                 }
-                                                             },
-                                                            CanGrow="true",
-                                                            Style = new Style
-                                                            {
-                                                                BorderStyle= new BorderStyle
-                                                                {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
-                                                                },
-                                                                BorderColor=new BorderColor
-                                                                {
-                                                                    Bottom = "Gray"
-                                                                },
-                                                                BorderWidth= new BorderWidth
-                                                                {
-                                                                    Bottom="1pt"
-                                                                }
-
-                                                            }
-                                                         }
-                                                    }
-                                                },
-                                                new TableCell
-                                                {
-                                                    ReportItems = new TableCellReportItems()
-                                                    {
-                                                        ReportItem = new Textbox {
-                                                            Name = "CategoryName",
-                                                            Value = new Value
-                                                             {
-                                                                Text = "=Fields!CategoryName.Value"
-                                                            },
-                                                            CanGrow = "true",
-                                                            Style = new Style
-                                                            {
-                                                                BorderStyle= new BorderStyle
-                                                                {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
-                                                                },
-                                                                BorderColor=new BorderColor
-                                                                {
-                                                                    Bottom = "Gray"
-                                                                },
-                                                                BorderWidth= new BorderWidth
-                                                                {
-                                                                    Bottom="1pt"
-                                                                }
-
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                new TableCell
-                                                {
-                                                    ReportItems= new TableCellReportItems()
-                                                    {
-                                                        ReportItem = new Textbox
-                                                        {
-                                                            Name = "Description",
-                                                            Value = new Value
-                                                            {
-                                                                Text = "=Fields!Description.Value"
-                                                            },
-                                                            CanGrow = "true",
-                                                            Style = new Style
-                                                            {
-                                                                BorderStyle= new BorderStyle
-                                                                {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
-                                                                },
-                                                                BorderColor=new BorderColor
-                                                                {
-                                                                    Bottom = "Gray"
-                                                                },
-                                                                BorderWidth= new BorderWidth
-                                                                {
-                                                                    Bottom="1pt"
-                                                                }
-
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                            Name = "QrCode",
+                                            Value = "=Fields!CategoryID.Value"
                                             }
+                                        },
+                                    CanGrow="true",
+                                    Style = new Style
+                                    {
+                                        BorderStyle= new BorderStyle
+                                        {
+                                            Default="None",
+                                            Bottom="Solid"
+                                        },
+                                        BorderColor=new BorderColor
+                                        {
+                                            Bottom = "Gray"
+                                        },
+                                        BorderWidth= new BorderWidth
+                                        {
+                                            Bottom="1pt"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new TableCell
+                        {
+                            ReportItems = new TableCellReportItems()
+                            {
+                                ReportItem = new Textbox {
+                                    Name = "CategoryName",
+                                    Value = new Value
+                                        {
+                                        Text = "=Fields!CategoryName.Value"
+                                    },
+                                    CanGrow = "true",
+                                    Style = new Style
+                                    {
+                                        BorderStyle= new BorderStyle
+                                        {
+                                            Default="None",
+                                            Bottom="Solid"
+                                        },
+                                        BorderColor=new BorderColor
+                                        {
+                                            Bottom = "Gray"
+                                        },
+                                        BorderWidth= new BorderWidth
+                                        {
+                                            Bottom="1pt"
+                                        }
+
+                                    }
+                                }
+                            }
+                        },
+                        new TableCell
+                        {
+                            ReportItems= new TableCellReportItems()
+                            {
+                                ReportItem = new Textbox
+                                {
+                                    Name = "Description",
+                                    Value = new Value
+                                    {
+                                        Text = "=Fields!Description.Value"
+                                    },
+                                    CanGrow = "true",
+                                    Style = new Style
+                                    {
+                                        BorderStyle= new BorderStyle
+                                        {
+                                            Default="None",
+                                            Bottom="Solid"
+                                        },
+                                        BorderColor=new BorderColor
+                                        {
+                                            Bottom = "Gray"
+                                        },
+                                        BorderWidth= new BorderWidth
+                                        {
+                                            Bottom="1pt"
+                                        }
+
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            })
-
-            ;
-
-
+            });
 
             return report;
         }
