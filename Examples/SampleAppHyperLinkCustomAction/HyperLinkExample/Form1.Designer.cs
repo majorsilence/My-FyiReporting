@@ -57,7 +57,6 @@
             this.rdlViewer1.ShowParameterPanel = true;
             this.rdlViewer1.ShowWaitDialog = true;
             this.rdlViewer1.Size = new System.Drawing.Size(558, 323);
-            this.rdlViewer1.SourceFile = null;
             this.rdlViewer1.TabIndex = 0;
             this.rdlViewer1.UseTrueMargins = true;
             this.rdlViewer1.Zoom = 0.664902F;
@@ -70,7 +69,7 @@
             this.ButtonReloadReport.Name = "ButtonReloadReport";
             this.ButtonReloadReport.Size = new System.Drawing.Size(141, 23);
             this.ButtonReloadReport.TabIndex = 6;
-            this.ButtonReloadReport.Text = "Reload Report";
+            this.ButtonReloadReport.Text = "Load Report";
             this.ButtonReloadReport.UseVisualStyleBackColor = true;
             this.ButtonReloadReport.Click += new System.EventHandler(this.ButtonReloadReport_Click);
             // 

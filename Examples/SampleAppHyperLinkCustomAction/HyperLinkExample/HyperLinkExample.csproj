@@ -22,5 +22,6 @@
 	<ItemGroup>
 		<PackageReference Include="Majorsilence.Reporting.RdlViewer" />
 		<PackageReference Include="Majorsilence.Reporting.RdlCri" />
+		<PackageReference Include="Microsoft.Data.Sqlite" />
 	</ItemGroup>
 </Project>

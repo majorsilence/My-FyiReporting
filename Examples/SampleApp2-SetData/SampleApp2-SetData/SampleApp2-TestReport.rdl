@@ -9,8 +9,8 @@
   <DataSources>
     <DataSource Name="DS1">
       <ConnectionProperties>
-        <DataProvider>SQLite</DataProvider>
-        <ConnectString>Data Source=C:\Path\Does\Not\Exist\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;</ConnectString>
+        <DataProvider>Microsoft.Data.Sqlite</DataProvider>
+        <ConnectString>Data Source=C:\Path\Does\Not\Exist\northwindEF.db</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>

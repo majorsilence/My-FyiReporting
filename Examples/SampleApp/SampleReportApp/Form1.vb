@@ -12,10 +12,10 @@
 
     End Sub
 
-    Private Sub ButtonReloadReport_Click(sender As Object, e As EventArgs) Handles ButtonReloadReport.Click
-        RdlViewer1.SourceFile = New Uri(file)
+    Private Async Sub ButtonReloadReport_Click(sender As Object, e As EventArgs) Handles ButtonReloadReport.Click
+        Await RdlViewer1.SetSourceFile(New Uri(file))
         RdlViewer1.Parameters = "ConnectionString=" & TextBox1.Text
-        RdlViewer1.Rebuild()
+        Await RdlViewer1.Rebuild()
     End Sub
 
 

@@ -54,7 +54,6 @@ Partial Class Form1
         Me.RdlViewer1.ShowParameterPanel = True
         Me.RdlViewer1.ShowWaitDialog = True
         Me.RdlViewer1.Size = New System.Drawing.Size(642, 295)
-        Me.RdlViewer1.SourceFile = Nothing
         Me.RdlViewer1.TabIndex = 0
         Me.RdlViewer1.UseTrueMargins = True
         Me.RdlViewer1.Zoom = 0.7681401!

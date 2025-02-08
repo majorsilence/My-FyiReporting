@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Microsoft.Data.Sqlite;
 
 namespace SampleApp2_SetData
@@ -17,26 +16,32 @@ namespace SampleApp2_SetData
         public Form1()
         {
             InitializeComponent();
+            rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            rdlViewer1.Dock = DockStyle.Fill;
+            this.Controls.Add(rdlViewer1);
+        }
 
+        private async void Form1_Load(object sender, EventArgs e)
+        {
             // TODO: You must change this connection string to match where your database is
-            string connectionString = @"Data Source=C:\Users\Peter\Projects\My-FyiReporting\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;";
-            SqliteConnection cn = new SqliteConnection(connectionString);
-            SqliteCommand cmd = new SqliteCommand();
+            string sqlFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\", @"..\", @"..\", @"..\", @"..\", "northwindEF.db");
+            string connectionString = $"Data Source={sqlFile}";
+
+            using SqliteConnection cn = new SqliteConnection(connectionString);
+            using SqliteCommand cmd = new SqliteCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT CategoryID, CategoryName, Description FROM Categories;";
             cmd.Connection = cn;
-            DataTable dt = GetTable(cmd);
+            DataTable dt = await GetTable(cmd);
 
-
-            string filepath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory() , "SampleApp2-TestReport.rdl");
-            rdlViewer1.SourceFile = new Uri(filepath);
-            rdlViewer1.Report.DataSets["Data"].SetData(dt);
-            //rdlViewer1.Report.DataSets["Data"].SetSource("SELECT CategoryID, CategoryName, Description FROM Categories where CategoryName = 'SeaFood'");
-            rdlViewer1.Rebuild();
+            string filepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SampleApp2-TestReport.rdl");
+            await rdlViewer1.SetSourceFile(new Uri(filepath));
+            await (await rdlViewer1.Report()).DataSets["Data"].SetData(dt);
+            await rdlViewer1.Rebuild();
         }
 
 
-        public DataTable GetTable(SqliteCommand cmd)
+        public async Task<DataTable> GetTable(SqliteCommand cmd)
         {
             System.Data.ConnectionState original = cmd.Connection.State;
             if (cmd.Connection.State == ConnectionState.Closed)
@@ -47,7 +52,7 @@ namespace SampleApp2_SetData
             DataTable dt = new DataTable();
             SqliteDataReader dr;
 
-            dr = cmd.ExecuteReader();
+            dr = await cmd.ExecuteReaderAsync();
             dt.Load(dr);
             dr.Close();
             dr.Dispose();
