@@ -24,6 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RdlCreator\RdlCreator.csproj" />
+		<ProjectReference Include="..\RdlCreator\Majorsilence.Reporting.RdlCreator.csproj" />
 	</ItemGroup>
 </Project>

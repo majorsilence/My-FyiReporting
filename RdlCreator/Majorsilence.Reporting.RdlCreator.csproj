@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<RootNamespace>fyiReporting.RdlCreator</RootNamespace>
 		<AssemblyName>RdlCreator</AssemblyName>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlCreator</PackageId>
