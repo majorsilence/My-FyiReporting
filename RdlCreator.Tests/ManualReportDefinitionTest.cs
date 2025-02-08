@@ -223,21 +223,96 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                              Height = "35.91mm",
                                                              CustomProperties = new CustomProperties
                                                              {
-
                                                                  CustomProperty = new CustomProperty()
                                                                  {
                                                                     Name = "QrCode",
                                                                     Value = "=Fields!CategoryID.Value"
                                                                  }
-                                                             }
+                                                             },
+                                                            CanGrow="true",
+                                                            Style = new Style
+                                                            {
+                                                                BorderStyle= new BorderStyle
+                                                                {
+                                                                    Default="None",
+                                                                    Bottom="Solid"
+                                                                },
+                                                                BorderColor=new BorderColor
+                                                                {
+                                                                    Bottom = "Gray"
+                                                                },
+                                                                BorderWidth= new BorderWidth
+                                                                {
+                                                                    Bottom="1pt"
+                                                                }
+
+                                                            }
                                                          }
                                                     }
                                                 },
-                                                new TableCell { ReportItems = new TableCellReportItems(){ ReportItem = new Textbox { Name = "CategoryName",
-                                                    Value = new Value { Text = "=Fields!CategoryName.Value" }, CanGrow = "true" } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Description",
-                                                    Value = new Value { Text = "=Fields!Description.Value" }, CanGrow = "true" } } }
-                                                
+                                                new TableCell
+                                                {
+                                                    ReportItems = new TableCellReportItems()
+                                                    {
+                                                        ReportItem = new Textbox {
+                                                            Name = "CategoryName",
+                                                            Value = new Value
+                                                             {
+                                                                Text = "=Fields!CategoryName.Value"
+                                                            },
+                                                            CanGrow = "true",
+                                                            Style = new Style
+                                                            {
+                                                                BorderStyle= new BorderStyle
+                                                                {
+                                                                    Default="None",
+                                                                    Bottom="Solid"
+                                                                },
+                                                                BorderColor=new BorderColor
+                                                                {
+                                                                    Bottom = "Gray"
+                                                                },
+                                                                BorderWidth= new BorderWidth
+                                                                {
+                                                                    Bottom="1pt"
+                                                                }
+
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                new TableCell
+                                                {
+                                                    ReportItems= new TableCellReportItems()
+                                                    {
+                                                        ReportItem = new Textbox
+                                                        {
+                                                            Name = "Description",
+                                                            Value = new Value
+                                                            {
+                                                                Text = "=Fields!Description.Value"
+                                                            },
+                                                            CanGrow = "true",
+                                                            Style = new Style
+                                                            {
+                                                                BorderStyle= new BorderStyle
+                                                                {
+                                                                    Default="None",
+                                                                    Bottom="Solid"
+                                                                },
+                                                                BorderColor=new BorderColor
+                                                                {
+                                                                    Bottom = "Gray"
+                                                                },
+                                                                BorderWidth= new BorderWidth
+                                                                {
+                                                                    Bottom="1pt"
+                                                                }
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }

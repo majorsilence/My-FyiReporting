@@ -1,6 +1,5 @@
 ﻿using System.Xml.Serialization;
 
-
 namespace Majorsilence.Reporting.RdlCreator
 {
     public class Style
@@ -13,5 +12,15 @@ namespace Majorsilence.Reporting.RdlCreator
 
         [XmlElement(ElementName = "TextAlign")]
         public string TextAlign { get; set; }
+
+        [XmlElement(ElementName = "BorderStyle")]
+        public BorderStyle BorderStyle { get; set; }
+
+        [XmlElement(ElementName = "BorderColor")]
+        public BorderColor BorderColor { get; set; }
+
+        [XmlElement(ElementName = "BorderWidth")]
+        public BorderWidth BorderWidth { get; set; }
+
     }
 }

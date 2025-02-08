@@ -15,5 +15,9 @@ namespace Majorsilence.Reporting.RdlCreator
 
         [XmlElement(ElementName = "CustomProperties")]
         public CustomProperties CustomProperties { get; set; }
+        [XmlElement(ElementName = "Style")]
+        public Style Style { get; set; }
+        [XmlElement(ElementName = "CanGrow")]
+        public string CanGrow { get; set; }
     }
 }
