@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Majorsilence.Reporting.Rdl;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 using System.ComponentModel;
 using System.Xml;
 using ZXing;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     public class QrCode : ICustomReportItem
     {
@@ -26,7 +26,7 @@ namespace fyiReporting.CRI
             return false;
         }
 
-        void ICustomReportItem.DrawImage(ref Drawing.Bitmap bm)
+        void ICustomReportItem.DrawImage(ref Draw2.Bitmap bm)
         {
             DrawImage(ref bm, _qrCode);
         }
@@ -36,7 +36,7 @@ namespace fyiReporting.CRI
         /// </summary>
         /// <param name="bm"></param>
         /// <param name="qrcode"></param>
-        internal void DrawImage(ref Drawing.Bitmap bm, string qrcode)
+        internal void DrawImage(ref Draw2.Bitmap bm, string qrcode)
         {
 #if DRAWINGCOMPAT
             var writer = new ZXing.SkiaSharp.BarcodeWriter();
@@ -48,8 +48,8 @@ namespace fyiReporting.CRI
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
             writer.Options.Hints[EncodeHintType.CHARACTER_SET] = "UTF-8";
 
-            Drawing.Graphics g = null;
-            g = Drawing.Graphics.FromImage(bm);
+            Draw2.Graphics g = null;
+            g = Draw2.Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
@@ -76,7 +76,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        void ICustomReportItem.DrawDesignerImage(ref Drawing.Bitmap bm)
+        void ICustomReportItem.DrawDesignerImage(ref Draw2.Bitmap bm)
         {
             DrawImage(ref bm, "https://github.com/majorsilence/My-FyiReporting");
         }

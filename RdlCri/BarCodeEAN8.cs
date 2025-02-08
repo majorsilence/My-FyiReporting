@@ -10,7 +10,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Xml;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     public class BarCodeEAN8 : ICustomReportItem
     {

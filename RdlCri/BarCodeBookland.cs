@@ -24,9 +24,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 using System.ComponentModel;            // need this for the properties metadata
 using System.Xml;
@@ -34,7 +34,7 @@ using System.Text.RegularExpressions;
 
 using Majorsilence.Reporting.Rdl;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     /// <summary>
     /// BarCodeBookland: create Bookland compatible BarCode images.
@@ -57,7 +57,7 @@ namespace fyiReporting.CRI
         /// Runtime: Draw the BarCode
         /// </summary>
         /// <param name="bm">Bitmap to draw the barcode in.</param>
-        public void DrawImage(ref Drawing.Bitmap bm)
+        public void DrawImage(ref Draw2.Bitmap bm)
         {
             _Ean13.DrawImage(ref bm);
         }
@@ -67,7 +67,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        public void DrawDesignerImage(ref Drawing.Bitmap bm)
+        public void DrawDesignerImage(ref Draw2.Bitmap bm)
         {
             _Ean13.DrawImage(bm, "978015602732");    // Yann Martel-Life of Pi
         }

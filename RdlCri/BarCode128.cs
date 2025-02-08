@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 using Majorsilence.Reporting.Rdl;
 using System.Text;
 using System.Xml;
 using System.ComponentModel;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
 	public class BarCode128 : ICustomReportItem
 	{
@@ -25,7 +25,7 @@ namespace fyiReporting.CRI
 			return false;
 		}
 
-		public void DrawImage(ref Drawing.Bitmap bm)
+		public void DrawImage(ref Draw2.Bitmap bm)
 		{
 			DrawImage(ref bm, _code128.ToUpper());
 		}
@@ -35,12 +35,12 @@ namespace fyiReporting.CRI
 		/// relied on since they aren't available.
 		/// </summary>
 		/// <param name="bm"></param>
-		public void DrawDesignerImage(ref Drawing.Bitmap bm)
+		public void DrawDesignerImage(ref Draw2.Bitmap bm)
 		{
 			DrawImage(ref bm, "MYFYI");
 		}
 
-		public void DrawImage(ref Drawing.Bitmap bm, string code128)
+		public void DrawImage(ref Draw2.Bitmap bm, string code128)
 		{
 #if DRAWINGCOMPAT
             var writer = new ZXing.SkiaSharp.BarcodeWriter();
@@ -51,8 +51,8 @@ namespace fyiReporting.CRI
 #endif
             writer.Format = ZXing.BarcodeFormat.CODE_128;
 
-			Drawing.Graphics g = null;
-			g = Drawing.Graphics.FromImage(bm);
+			Draw2.Graphics g = null;
+			g = Draw2.Graphics.FromImage(bm);
 			float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height,
 				OptimalHeight, OptimalWidth);
 

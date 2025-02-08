@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRdlWpfViewer", "LibRdlWp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlCmd", "RdlCmd\RdlCmd.csproj", "{3456CD50-7D14-4AA6-AAA1-AC3760BBC0F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlCri", "RdlCri\RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Majorsilence.Reporting.RdlCri", "RdlCri\Majorsilence.Reporting.RdlCri.csproj", "{9C9ECACA-0DEB-4517-8CF1-02C3D3EB128E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportDesigner", "RdlDesign\ReportDesigner.csproj", "{3E1D2C49-44A2-46A0-B107-9E8A87AE78A7}"
 EndProject

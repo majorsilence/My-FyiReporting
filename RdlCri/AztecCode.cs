@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Majorsilence.Reporting.Rdl;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+using Draw2 = Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using Draw2 = System.Drawing;
 #endif
 using System.ComponentModel;
 using System.Xml;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     public class AztecCode : ICustomReportItem
     {
@@ -25,7 +25,7 @@ namespace fyiReporting.CRI
             return false;
         }
 
-        void ICustomReportItem.DrawImage(ref Drawing.Bitmap bm)
+        void ICustomReportItem.DrawImage(ref Draw2.Bitmap bm)
         {
             DrawImage(ref bm, _aztecCode);
         }
@@ -35,7 +35,7 @@ namespace fyiReporting.CRI
         /// </summary>
         /// <param name="bm"></param>
         /// <param name="AztecCode"></param>
-        internal void DrawImage(ref Drawing.Bitmap bm, string aztecCode)
+        internal void DrawImage(ref Draw2.Bitmap bm, string aztecCode)
         {
 #if DRAWINGCOMPAT
             var writer = new ZXing.SkiaSharp.BarcodeWriter();
@@ -46,8 +46,8 @@ namespace fyiReporting.CRI
 #endif
             writer.Format = ZXing.BarcodeFormat.AZTEC;
 
-            Drawing.Graphics g = null;
-            g = Drawing.Graphics.FromImage(bm);
+            Draw2.Graphics g = null;
+            g = Draw2.Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);
@@ -66,7 +66,7 @@ namespace fyiReporting.CRI
         /// relied on since they aren't available.
         /// </summary>
         /// <param name="bm"></param>
-        void ICustomReportItem.DrawDesignerImage(ref Drawing.Bitmap bm)
+        void ICustomReportItem.DrawDesignerImage(ref Draw2.Bitmap bm)
         {
             DrawImage(ref bm, "https://github.com/majorsilence/My-FyiReporting");
         }

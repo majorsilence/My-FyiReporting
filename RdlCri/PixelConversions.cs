@@ -4,7 +4,7 @@ using Majorsilence.Drawing;
 using System.Drawing;
 #endif
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     internal class PixelConversions
     {

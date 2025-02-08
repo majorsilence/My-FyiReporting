@@ -15,7 +15,7 @@ using System.ComponentModel;
 using SkiaSharp;
 using System.IO;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     public class BarCodeITF14 : ICustomReportItem
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace fyiReporting.CRI
+namespace Majorsilence.Reporting.Cri
 {
     public class XmlHelpers
     {

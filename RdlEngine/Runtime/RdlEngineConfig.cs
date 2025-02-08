@@ -275,43 +275,43 @@ namespace Majorsilence.Reporting.Rdl
 	<CustomReportItems>
 		<CustomReportItem>
 			<Type>BarCode EAN-13</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCodeEAN13</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCodeEAN13</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>BarCode Bookland</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCodeBookland</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCodeBookland</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>QR Code</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.QrCode</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.QrCode</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>ITF-14</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCodeITF14</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCodeITF14</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>AztecCode</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.AztecCode</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.AztecCode</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>BarCode39</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCode39</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCode39</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>BarCode128</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCode128</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCode128</ClassName>
 		</CustomReportItem>
 		<CustomReportItem>
 			<Type>BarCodeEAN8</Type>
-			<CodeModule>RdlCri.dll</CodeModule>
-			<ClassName>fyiReporting.CRI.BarCodeEAN8</ClassName>
+			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Cri.BarCodeEAN8</ClassName>
 		</CustomReportItem>
 	</CustomReportItems>
 </config>";
