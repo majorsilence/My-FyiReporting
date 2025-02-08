@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RdlGtk3\RdlGtk3.csproj" />
+		<ProjectReference Include="..\RdlGtk3\Majorsilence.Reporting.RdlGtk3.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

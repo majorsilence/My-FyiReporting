@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<RootNamespace>fyiReporting.RdlGtk3</RootNamespace>
 		<AssemblyName>RdlGtk3</AssemblyName>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Majorsilence.Reporting.RdlGtk3</PackageId>
