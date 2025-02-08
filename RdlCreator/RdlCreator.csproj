@@ -10,7 +10,7 @@
 		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>

@@ -203,43 +203,43 @@ namespace Majorsilence.Reporting.Rdl
 		</DataSource>
 		<DataSource>
 			<DataProvider>XML</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.XmlConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.XmlConnection</ClassName>
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>WebService</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.WebServiceConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.WebServiceConnection</ClassName>
 			<TableSelect />
 			<Interface>WebService</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>WebLog</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.LogConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.LogConnection</ClassName>
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>Text</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.TxtConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.TxtConnection</ClassName>
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>iTunes</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.iTunesConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.iTunesConnection</ClassName>
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
 			<DataProvider>FileDirectory</DataProvider>
-			<CodeModule>DataProviders.dll</CodeModule>
-			<ClassName>fyiReporting.Data.FileDirConnection</ClassName>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.FileDirConnection</ClassName>
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
@@ -530,22 +530,22 @@ namespace Majorsilence.Reporting.Rdl
                     cn = new OleDbConnection(cstring);
                     break;
                 case "filedirectory":
-                    cn = new fyiReporting.Data.FileDirConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.FileDirConnection(cstring);
                     break;
                 case "xml":
-                    cn = new fyiReporting.Data.XmlConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.XmlConnection(cstring);
                     break;
                 case "webservice":
-                    cn = new fyiReporting.Data.WebServiceConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.WebServiceConnection(cstring);
                     break;
                 case "weblog":
-                    cn = new fyiReporting.Data.LogConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.LogConnection(cstring);
                     break;
                 case "text":
-                    cn = new fyiReporting.Data.TxtConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.TxtConnection(cstring);
                     break;
                 case "itunes":
-                    cn = new fyiReporting.Data.iTunesConnection(cstring);
+                    cn = new Majorsilence.Reporting.Data.iTunesConnection(cstring);
                     break;
                 default:
                     if (SqlEntries == null)

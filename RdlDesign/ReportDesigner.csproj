@@ -186,7 +186,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />

@@ -23,7 +23,7 @@
 using System;
 using System.IO;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// char reader simply reads entire file into a string and processes.

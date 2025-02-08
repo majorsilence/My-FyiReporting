@@ -25,7 +25,7 @@ using System.Xml;
 using System.Data;
 using System.Collections;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// TxtCommand allows specifying the command for a text file.

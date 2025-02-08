@@ -29,7 +29,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
     /// <summary>
     /// TxtDataReader handles reading txt files

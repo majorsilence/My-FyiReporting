@@ -10,7 +10,7 @@ namespace ReportTests
 		public void Test1()
 		{
 
-			var conn = new fyiReporting.Data.XmlConnection("RdlEngineconfig.xml");
+			var conn = new Majorsilence.Reporting.Data.XmlConnection("RdlEngineconfig.xml");
 			Assert.That(conn.Database == null);
 
 		}

@@ -28,7 +28,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
     /// Summary description for iTunesDataReader.

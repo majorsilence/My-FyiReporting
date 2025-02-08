@@ -22,7 +22,7 @@
 */
 using System;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// Types of tokens

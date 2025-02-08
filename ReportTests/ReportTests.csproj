@@ -8,7 +8,7 @@
 		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCmd\RdlCmd.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlDesign\ReportDesigner.csproj" />

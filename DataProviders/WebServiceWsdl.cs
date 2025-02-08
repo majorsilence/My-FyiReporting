@@ -39,7 +39,7 @@ using Microsoft.CSharp;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// WebServiceWsdl handles generation and caching of Assemblies containing WSDL proxies

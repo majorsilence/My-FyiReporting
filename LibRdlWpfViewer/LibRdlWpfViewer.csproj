@@ -31,7 +31,7 @@
 		<AppDesigner Include="Properties\" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\DataProviders\DataProviders.csproj" />
+		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCri\RdlCri.csproj" />
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />

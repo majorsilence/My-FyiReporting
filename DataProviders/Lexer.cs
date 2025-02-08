@@ -25,7 +25,7 @@ using System.IO;
 using System.Collections;
 using System.Text;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// A simple Lexer that is used by Parser.

@@ -35,7 +35,7 @@ using System.Web.Services.Protocols;
 #endif
 using System.Reflection;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// Summary description for Class1.

@@ -24,7 +24,7 @@
 using System;
 using System.Collections;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// Represents a list of the tokens.

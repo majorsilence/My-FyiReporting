@@ -28,7 +28,7 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
     /// <summary>
     /// MultipleStreamReader provides a logical single stream over multiple streams.  Only support ReadLine.

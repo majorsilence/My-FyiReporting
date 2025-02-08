@@ -24,7 +24,7 @@ using System;
 using System.Collections;
 using System.Data;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// XmlDataParameter

@@ -27,7 +27,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// LogDataReader handles reading log files

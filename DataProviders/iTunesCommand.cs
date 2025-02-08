@@ -25,7 +25,7 @@ using System.Xml;
 using System.Data;
 using System.Collections;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// iTunesCommand represents the command.  The user is allowed to specify the table needed.

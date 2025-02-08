@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
     internal static class HttpClientExtension
     {

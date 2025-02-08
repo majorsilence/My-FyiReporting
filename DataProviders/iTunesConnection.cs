@@ -25,7 +25,7 @@ using System.Xml;
 using System.Data;
 using System.IO;
 
-namespace fyiReporting.Data
+namespace Majorsilence.Reporting.Data
 {
 	/// <summary>
 	/// iTunesConnection handles connections for the iTunes XML file
