@@ -22,5 +22,8 @@ namespace Majorsilence.Reporting.RdlCreator
         [XmlElement(ElementName = "BorderWidth")]
         public BorderWidth BorderWidth { get; set; }
 
+        [XmlElement(ElementName = "BackgroundColor")]
+        public string BackgroundColor { get; set; }
+
     }
 }
