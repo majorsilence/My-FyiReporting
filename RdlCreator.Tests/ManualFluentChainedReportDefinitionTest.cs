@@ -178,13 +178,12 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             // Add a body to the report
 
             report
-            .WithBody()
-            .WithHeight("36pt")
-            .WithReportTable()
+            .WithBody("36pt")
+            .WithTable()
             .WithTableName("Table1")
-            .WithDataSetName("Data")
-            .WithNoRows("Query returned no rows!")
-            .WithHeader(new TableRow
+            .WithTableDataSetName("Data")
+            .WithTableNoRows("Query returned no rows!")
+            .WithTableHeader(new TableRow
             {
                 Height = "12pt",
                 TableCells = new TableCells()
@@ -212,7 +211,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                 new TableColumn { Width = "1.375in" }
                             }
             })
-            .WithDetails(new TableRow
+            .WithTableDetails(new TableRow
             {
                 Height = "12pt",
                 TableCells = new TableCells()
@@ -379,13 +378,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                 },
                 PrintOnFirstPage = "true",
                 PrintOnLastPage = "true"
-            });
-
-            // Add a body to the report
-
-            report
-            .WithBody()
-            .WithHeight("36pt")
+            })
+            .WithBody("36pt")
             .WithReportText(new Textbox
             {
                 Name = "Textbox1",

@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Majorsilence.Reporting.RdlCreator
 {
@@ -121,10 +122,13 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Body WithBody()
+        public Report WithBody(string height)
         {
-            Body = new Body();
-            return Body;
+            Body = new Body()
+            {
+                Height = height
+            };
+            return this;
         }
 
         public Report WithPageFooter(PageFooter pageFooter)
@@ -132,5 +136,82 @@ namespace Majorsilence.Reporting.RdlCreator
             PageFooter = pageFooter;
             return this;
         }
+
+        public Report WithTable()
+        {
+            this.Body.ReportItems = new ReportItemsBody()
+            {
+                Table = new Table(),
+                Text = new List<Textbox>()
+            };
+            return this;
+        }
+
+        public Report WithReportText(Textbox textbox)
+        {
+            if (this.Body.ReportItems == null)
+            {
+                this.Body.ReportItems = new ReportItemsBody()
+                {
+                    Text = new List<Textbox>()
+                };
+
+                this.Body.ReportItems.Text.Add(textbox);
+            }
+            else
+            {
+                this.Body.ReportItems.Text.Add(textbox);
+            }
+
+            return this;
+        }
+
+        public Report WithTableColumns(TableColumns tableColumns)
+        {
+            this.Body.ReportItems.Table.TableColumns = tableColumns;
+            return this;
+        }
+
+        public Report WithTableHeader(TableRow header, string repeatOnNewPage = "true")
+        {
+            this.Body.ReportItems.Table.Header = new Header()
+            {
+                TableRows = new TableRows()
+                {
+                    TableRow = header
+                },
+                RepeatOnNewPage = repeatOnNewPage
+            };
+            return this;
+        }
+
+        public Report WithTableDetails(TableRow row)
+        {
+            this.Body.ReportItems.Table.Details = new Details();
+            this.Body.ReportItems.Table.Details.TableRows = new TableRows()
+            {
+                TableRow = row
+            };
+            return this;
+        }
+
+        public Report WithTableDataSetName(string dataSetName)
+        {
+            this.Body.ReportItems.Table.DataSetName = dataSetName;
+            return this;
+        }
+
+        public Report WithTableNoRows(string noRows)
+        {
+            this.Body.ReportItems.Table.NoRows = noRows;
+            return this;
+        }
+
+        public Report WithTableName(string tableName)
+        {
+            this.Body.ReportItems.Table.TableName = tableName;
+            return this;
+        }
+
     }
 }
