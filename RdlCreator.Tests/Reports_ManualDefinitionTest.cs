@@ -12,7 +12,7 @@ using System.Linq;
 namespace Majorsilence.Reporting.RdlCreator.Tests
 {
     [TestFixture]
-    public class ManualReportDefinitionTest
+    public class Reports_ManualDefinitionTest
     {
         string connectionString = "Data Source=sqlitetestdb2.db;";
         string dataProvider = "Microsoft.Data.Sqlite";
@@ -143,7 +143,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                     Height = ".5in",
                     ReportItems = new ReportItemsHeader
                     {
-                        Textbox = new Textbox
+                        Textbox = new Text
                         {
                             Name = "Textbox1",
                             Top = ".1in",
@@ -186,13 +186,13 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                         {
                                             TableCell = new List<TableCell>
                                             {
-                                                new TableCell {  ReportItems= new TableCellReportItems(){ ReportItem = new Textbox { Name = "Textbox2",
+                                                new TableCell {  ReportItems= new TableCellReportItems(){ ReportItem = new Text { Name = "Textbox2",
                                                     Value = new Value { Text = "CategoryID" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox3",
+                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Text { Name = "Textbox3",
                                                     Value = new Value { Text = "CategoryName" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } },
-                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Textbox { Name = "Textbox4",
+                                                new TableCell { ReportItems= new TableCellReportItems(){ReportItem = new Text { Name = "Textbox4",
                                                     Value = new Value { Text = "Description" },
                                                     Style = new Style { TextAlign = "Center", FontWeight = "Bold" } } } }
                                             }
@@ -254,13 +254,13 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                 {
                                                     ReportItems = new TableCellReportItems()
                                                     {
-                                                        ReportItem = new Textbox {
+                                                        ReportItem = new Text {
                                                             Name = "CategoryName",
                                                             Value = new Value
                                                              {
                                                                 Text = "=Fields!CategoryName.Value"
                                                             },
-                                                            CanGrow = "true",
+                                                            CanGrow = true,
                                                             Style = new Style
                                                             {
                                                                 BorderStyle= new BorderStyle
@@ -285,14 +285,14 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                 {
                                                     ReportItems= new TableCellReportItems()
                                                     {
-                                                        ReportItem = new Textbox
+                                                        ReportItem = new Text
                                                         {
                                                             Name = "Description",
                                                             Value = new Value
                                                             {
                                                                 Text = "=Fields!Description.Value"
                                                             },
-                                                            CanGrow = "true",
+                                                            CanGrow = true,
                                                             Style = new Style
                                                             {
                                                                 BorderStyle= new BorderStyle
@@ -327,7 +327,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                     Height = "14pt",
                     ReportItems = new ReportItemsFooter
                     {
-                        Textbox = new Textbox
+                        Textbox = new Text
                         {
                             Name = "Textbox5",
                             Top = "1pt",

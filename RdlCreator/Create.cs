@@ -69,7 +69,7 @@ namespace Majorsilence.Reporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        ReportItem = new Textbox
+                        ReportItem = new Text
                         {
                             Name = $"TextboxH{colName}",
                             Value = new Value { Text = colName },
@@ -82,11 +82,11 @@ namespace Majorsilence.Reporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        ReportItem = new Textbox
+                        ReportItem = new Text
                         {
                             Name = $"TextBoxB{colName}",
                             Value = new Value { Text = $"=Fields!{colName}.Value" },
-                            CanGrow = "true"
+                            CanGrow = true
                         }
                     }
                 });
@@ -136,7 +136,7 @@ namespace Majorsilence.Reporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        ReportItem = new Textbox
+                        ReportItem = new Text
                         {
                             Name = $"TextboxH{colName}",
                             Value = new Value { Text = colName },
@@ -149,11 +149,11 @@ namespace Majorsilence.Reporting.RdlCreator
                 {
                     ReportItems = new TableCellReportItems()
                     {
-                        ReportItem = new Textbox
+                        ReportItem = new Text
                         {
                             Name = $"TextBoxB{colName}",
                             Value = new Value { Text = $"=Fields!{colName}.Value" },
-                            CanGrow = "true"
+                            CanGrow = true
                         }
                     }
                 });
@@ -216,7 +216,7 @@ namespace Majorsilence.Reporting.RdlCreator
                             {
                                 ReportItems = new TableCellReportItems()
                                 {
-                                    ReportItem = new Textbox
+                                    ReportItem = new Text
                                     {
                                         Name = $"TextboxH{colName}",
                                         Value = new Value { Text = colName },
@@ -229,11 +229,11 @@ namespace Majorsilence.Reporting.RdlCreator
                             {
                                 ReportItems = new TableCellReportItems()
                                 {
-                                    ReportItem = new Textbox
+                                    ReportItem = new Text
                                     {
                                         Name = $"TextBoxB{colName}",
                                         Value = new Value { Text = $"=Fields!{colName}.Value" },
-                                        CanGrow = "true"
+                                        CanGrow = true
                                     }
                                 }
                             });
@@ -311,7 +311,7 @@ namespace Majorsilence.Reporting.RdlCreator
                     Height = ".5in",
                     ReportItems = new ReportItemsHeader
                     {
-                        Textbox = new Textbox
+                        Textbox = new Text
                         {
                             Name = "Textbox1",
                             Top = ".1in",
@@ -381,7 +381,7 @@ namespace Majorsilence.Reporting.RdlCreator
                     Height = "14pt",
                     ReportItems = new ReportItemsFooter
                     {
-                        Textbox = new Textbox
+                        Textbox = new Text
                         {
                             Name = "Textbox5",
                             Top = "1pt",

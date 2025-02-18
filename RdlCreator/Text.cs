@@ -3,7 +3,7 @@
 
 namespace Majorsilence.Reporting.RdlCreator
 {
-    public class Textbox
+    public class Text
     {
         [XmlElement(ElementName = "Value")]
         public Value Value { get; set; }
@@ -27,6 +27,6 @@ namespace Majorsilence.Reporting.RdlCreator
         public string Height { get; set; }
 
         [XmlElement(ElementName = "CanGrow")]
-        public string CanGrow { get; set; }
+        public bool CanGrow { get; set; }
     }
 }

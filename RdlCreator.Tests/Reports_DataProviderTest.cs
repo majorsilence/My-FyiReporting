@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Majorsilence.Reporting.RdlCreator.Tests
 {
     [TestFixture]
-    public class DataProviderTest
+    public class Reports_DataProviderTest
     {
         string connectionString = "Data Source=sqlitetestdb2.db;";
         string dataProvider = "Microsoft.Data.Sqlite";

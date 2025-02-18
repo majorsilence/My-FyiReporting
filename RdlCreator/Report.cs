@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Majorsilence.Reporting.Rdl;
+using System;
+using System.Collections.Generic;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
 using System.Xml.Serialization;
 
 namespace Majorsilence.Reporting.RdlCreator
@@ -50,6 +54,7 @@ namespace Majorsilence.Reporting.RdlCreator
         public PageFooter PageFooter { get; set; }
 
         // Fluid style methods
+
         public Report WithDescription(string description)
         {
             Description = description;
@@ -131,6 +136,26 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
+        public Report WithBody(Body body)
+        {
+            Body = body;
+            return this;
+        }
+
+        public Report WithPageBreak(string yPos="1pt")
+        {
+            var pageBreakCard = new Card(this)
+            {
+                CanGrow = false,
+                Height = "0pt",
+                Width = "1pt",
+                PageBreakAtEnd = true,
+                Top=yPos
+            };
+            this.Body.ReportItems.Cards.Add(pageBreakCard);
+            return this;
+        }
+
         public Report WithPageFooter(PageFooter pageFooter)
         {
             PageFooter = pageFooter;
@@ -139,29 +164,41 @@ namespace Majorsilence.Reporting.RdlCreator
 
         public Report WithTable()
         {
-            this.Body.ReportItems = new ReportItemsBody()
-            {
-                Table = new Table(),
-                Text = new List<Textbox>()
-            };
+            InitReportItemBody(true);
             return this;
         }
 
-        public Report WithReportText(Textbox textbox)
+        public Report WithReportText(Text textbox)
+        {
+            InitReportItemBody(false);
+            this.Body.ReportItems.Text.Add(textbox);
+
+            return this;
+        }
+
+        private void InitReportItemBody(bool includeTable)
         {
             if (this.Body.ReportItems == null)
             {
                 this.Body.ReportItems = new ReportItemsBody()
                 {
-                    Text = new List<Textbox>()
+                    Text = new List<Text>(),
+                    Cards = new List<Card>(),
+                    CustomReportItems = new List<CustomReportItems>()
                 };
+            }
 
-                this.Body.ReportItems.Text.Add(textbox);
-            }
-            else
+            if (includeTable && this.Body.ReportItems.Table == null)
             {
-                this.Body.ReportItems.Text.Add(textbox);
+                this.Body.ReportItems.Table = new Table();
             }
+        }
+
+        public Report WithCard(Card card)
+        {
+            InitReportItemBody(false);
+
+            this.Body.ReportItems.Cards.Add(card);
 
             return this;
         }
