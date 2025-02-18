@@ -118,6 +118,13 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
+        public async Task<byte[]>Create()
+        {
+            using var ms = new MemoryStream();
+            await Create(ms);
+            return ms.ToArray();
+        }
+
         public async Task Create(Stream output)
         {
             using var itextDocument = new iTextSharp.text.Document();
