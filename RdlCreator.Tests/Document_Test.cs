@@ -19,10 +19,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         public async Task SinglePagePdfDiskExport()
         {
             var document = GenerateData(1);
-            var pdfBytes = await document.Create();
-
             using var fileStream = new FileStream("SinglePagePdf.pdf", FileMode.Create, FileAccess.Write);
-            fileStream.Write(pdfBytes);
+            await document.Create(fileStream);
             await fileStream.DisposeAsync();
 
             using var pdfDocument = PdfDocument.Open("SinglePagePdf.pdf");
@@ -37,10 +35,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         public async Task MultiPagePdfTest()
         {
             var document = GenerateData(2);
-            var pdfBytes = await document.Create();
-
             using var fileStream = new FileStream("MultiPagePdf.pdf", FileMode.Create, FileAccess.Write);
-            fileStream.Write(pdfBytes);
+            await document.Create(fileStream);
             await fileStream.DisposeAsync();
 
             using var pdfDocument = PdfDocument.Open("MultiPagePdf.pdf");
@@ -49,6 +45,18 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             Assert.That(text, Is.Not.Null);
             Assert.That(pdfDocument.NumberOfPages, Is.EqualTo(2));
             Assert.That(text, Is.EqualTo("Test Header Text Area 1 Lorem ipsum. 0 Test Header Text Area 1 Lorem ipsum. 1"));
+        }
+
+        [Test]
+        public async Task LoadTest()
+        {
+            var document = GenerateData(10000);
+            using var fileStream = new FileStream("LoadTestDocument.pdf", FileMode.Create, FileAccess.Write);
+            await document.Create(fileStream);
+            await fileStream.DisposeAsync();
+
+            using var pdfDocument = PdfDocument.Open("LoadTestDocument.pdf");
+            Assert.That(pdfDocument.NumberOfPages, Is.EqualTo(10000));
         }
 
         private RdlCreator.Document GenerateData(int pageCount = 1)

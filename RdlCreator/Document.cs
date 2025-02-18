@@ -118,11 +118,10 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public async Task<byte[]> Create()
+        public async Task Create(Stream output)
         {
-            using var pdfStream = new MemoryStream();
-            var itextDocument = new iTextSharp.text.Document();
-            var iTextCopy = new PdfCopy(itextDocument, pdfStream);
+            using var itextDocument = new iTextSharp.text.Document();
+            using var iTextCopy = new PdfCopy(itextDocument, output);
             itextDocument.Open();
 
             foreach (var page in Pages)
@@ -146,7 +145,7 @@ namespace Majorsilence.Reporting.RdlCreator
                 var pdf = ms.GetStream();
                 pdf.Position = 0;
 
-                var reader = new PdfReader(pdf);
+                using var reader = new PdfReader(pdf);
                 for (int i = 1; i <= reader.NumberOfPages; i++)
                 {
                     iTextCopy.AddPage(iTextCopy.GetImportedPage(reader, i));
@@ -156,7 +155,6 @@ namespace Majorsilence.Reporting.RdlCreator
             }
 
             itextDocument.Close();
-            return pdfStream.ToArray();
         }
 
 
