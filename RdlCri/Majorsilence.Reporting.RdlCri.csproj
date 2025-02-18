@@ -10,6 +10,7 @@
         <Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
