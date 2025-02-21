@@ -33,7 +33,7 @@ using System.Collections;
 using System.Collections.Generic;
 #if DRAWINGCOMPAT
 using Draw2 = Majorsilence.Drawing;
-using Drawing2D = Majorsilence.Draw2.Imaging;
+using Drawing2D = Majorsilence.Drawing.Imaging;
 using Majorsilence.Drawing.Imaging;
 #else
 using Draw2 = System.Drawing;

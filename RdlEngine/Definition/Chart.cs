@@ -301,7 +301,7 @@ namespace Majorsilence.Reporting.Rdl
 				cb = await RunChartBuild(rpt, row);                   // Build the chart
 
 #if DRAWINGCOMPAT
-                p = RunPage_Bitmap(pgs, row, rpt, cb);
+                p = await RunPage_Bitmap(pgs, row, rpt, cb);
 #else
 			    if (!await _isHYNEsWonderfulVector.EvaluateBoolean(rpt,row)) //AJM GJL 14082008 'Classic' Rendering 
                 {
