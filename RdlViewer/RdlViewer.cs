@@ -71,7 +71,6 @@ namespace Majorsilence.Reporting.RdlViewer
         }
 
         public NeedPassword GetDataSourceReferencePassword = null;
-        bool _InPaint = false;
         bool _InLoading = false;
         /// <summary>
         /// File name to use
@@ -1128,55 +1127,39 @@ namespace Majorsilence.Reporting.RdlViewer
         bool doGraphicsDraw;
         private async void DrawPanelPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            // Only handle one paint at a time
-            lock (this)
-            {
-                if (_InPaint)
-                    return;
-                _InPaint = true;
-            }
-     
             try         // never want to die in here
             {
-                if (!_InLoading)                // If we're in the process of loading don't paint
-                {             
-                    if (doGraphicsDraw && _buffer != null)
-                    {
-                        e.Graphics.DrawImage(_buffer, 0, 0);
-                        _buffer.Dispose();
-                        _buffer = null;            
-                    }
-                    else
-                    {
-                        await LoadPageIfNeeded();             // make sure we have something to show
-
-                        if (_zoom < 0)
-                            CalcZoom();             // new report or resize client requires new zoom factor
-
-                        // Draw the page
-                        _buffer = new Bitmap(Math.Max(1, _DrawPanel.Width), Math.Max(1, _DrawPanel.Height));
-                        using (Graphics g = Graphics.FromImage(_buffer))
-                        {
-                            await _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
-                            PointsX(_hScroll.Value), PointsY(_vScroll.Value),
-                            e.ClipRectangle,
-                            _HighlightItem, _HighlightText, _HighlightCaseSensitive, _HighlightAll);                         
-                        }
-
-                        doGraphicsDraw = true;
-                        _DrawPanel.Invalidate();       // force a redraw
-                    }
+                if (doGraphicsDraw && _buffer != null)
+                {            
+                    e.Graphics.DrawImage(_buffer, 0, 0);
+                    _buffer.Dispose();
+                    _buffer = null;            
                 }
+                else
+                {
+                    await LoadPageIfNeeded();             // make sure we have something to show
+
+                    if (_zoom < 0)
+                        CalcZoom();             // new report or resize client requires new zoom factor
+
+                    // Draw the page
+                    _buffer = new Bitmap(Math.Max(1, _DrawPanel.Width), Math.Max(1, _DrawPanel.Height));
+                    using (Graphics g = Graphics.FromImage(_buffer))
+                    {
+                        await _DrawPanel.Draw(g, _zoom, _leftMargin, _pageGap,
+                                PointsX(_hScroll.Value), PointsY(_vScroll.Value),
+                                e.ClipRectangle,
+                                _HighlightItem, _HighlightText, _HighlightCaseSensitive, _HighlightAll);                         
+                    }
+
+                    doGraphicsDraw = true;
+                    _DrawPanel.Invalidate();       // force a redraw
+                }         
             }
             catch (Exception ex)
             {   // don't want to kill process if we die
                 using (Font font = new Font("Arial", 8))
                     e.Graphics.DrawString(ex.Message + "\r\n" + ex.StackTrace, font, Brushes.Black, 0, 0);
-            }
-
-            lock (this)
-            {
-                _InPaint = false;
             }
         }
 
@@ -1628,6 +1611,7 @@ namespace Majorsilence.Reporting.RdlViewer
                     _pgs = await GetPages();
                     _DrawPanel.Pgs = _pgs;
                     CalcZoom();                         // this could affect zoom
+                    _DrawPanel.Invalidate();
                 }
                 finally
                 {
