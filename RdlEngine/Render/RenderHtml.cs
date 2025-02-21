@@ -1257,7 +1257,7 @@ function findObject(id) {
 			if (bookmark != null)
 				sw.Write("</div>");
 
-			tw.Write(Action(c.Action, r, sw.ToString(), tooltip));
+			tw.Write(await Action(c.Action, r, sw.ToString(), tooltip));
 			
 			return;
 		}
@@ -1309,7 +1309,7 @@ function findObject(id) {
 			}
 			finally
 			{
-				io.Flush();
+				await io.FlushAsync();
 				io.Close();
 			}
 
@@ -1355,8 +1355,7 @@ function findObject(id) {
 			if (bookmark != null)
 				sw.Write("</div>");
 
-			tw.Write(Action(i.Action, r, sw.ToString(), tooltip));
-			return;
+			tw.Write(await Action(i.Action, r, sw.ToString(), tooltip));
 		}
 
 		public async Task Line(Line l, Row r)
