@@ -27,11 +27,14 @@ namespace Majorsilence.Drawing
             Style = style;
 
             // Determine SkiaSharp style flags based on FontStyle
-            SKTypefaceStyle typefaceStyle = SKTypefaceStyle.Normal;
-            if ((style & FontStyle.Bold) != 0)
-                typefaceStyle |= SKTypefaceStyle.Bold;
-            if ((style & FontStyle.Italic) != 0)
-                typefaceStyle |= SKTypefaceStyle.Italic;
+            
+            var typefaceStyle = SKFontStyle.Normal;
+            if ((style & FontStyle.Bold) != 0 && (style & FontStyle.Italic) != 0)
+                typefaceStyle = SKFontStyle.BoldItalic;
+            else if ((style & FontStyle.Bold) != 0)
+                typefaceStyle = SKFontStyle.Bold;
+            else if ((style & FontStyle.Italic) != 0)
+                typefaceStyle = SKFontStyle.Italic;
 
             // Create the SkiaSharp Typeface based on the family and style
             _typeface = SKTypeface.FromFamilyName(fontFamily, typefaceStyle);

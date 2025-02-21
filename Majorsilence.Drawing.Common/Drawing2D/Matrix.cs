@@ -9,7 +9,7 @@ namespace Majorsilence.Drawing.Drawing2D
 
         public Matrix()
         {
-            _matrix = SKMatrix.MakeIdentity();
+            _matrix = SKMatrix.CreateIdentity();
         }
 
         public void Translate(float dx, float dy)
