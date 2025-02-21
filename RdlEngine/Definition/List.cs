@@ -327,7 +327,7 @@ namespace Majorsilence.Reporting.Rdl
 				{	// need to run all the rows since no group defined
 					for (int r=ge.StartRow; r <= ge.EndRow; r++)
 					{
-						ip.ListEntryBegin(this,  wc.Data.Data[r]);
+						await ip.ListEntryBegin(this,  wc.Data.Data[r]);
                         if (_ReportItems != null)
                             await _ReportItems.Run(ip, wc.Data.Data[r]);
 						ip.ListEntryEnd(this, wc.Data.Data[r]);
@@ -335,7 +335,7 @@ namespace Majorsilence.Reporting.Rdl
 				}
 				else
 				{	// need to process just whole group as a List entry
-					ip.ListEntryBegin(this,  wc.Data.Data[ge.StartRow]);
+					await ip.ListEntryBegin(this,  wc.Data.Data[ge.StartRow]);
 
 					// pass the first row of the group
                     if (_ReportItems != null)

@@ -96,7 +96,7 @@ namespace Majorsilence.Reporting.Rdl
 
 		}
 
-		public virtual void End()
+		public virtual Task End()
 		{
 			excelBuilder.CellsCorrection();
 			for(int i = 0; i < excelBuilder.Columns.Count; i++) {
@@ -218,7 +218,7 @@ namespace Majorsilence.Reporting.Rdl
 			}
 
 			workbook.Write(_sg.GetStream());
-			return;
+			return Task.CompletedTask;
 		}
 
 		private XSSFClientAnchor CreateAnchor(float top, float right, float bottom, float left)
@@ -324,8 +324,9 @@ namespace Majorsilence.Reporting.Rdl
 			return Task.CompletedTask;
 		}
 
-		public void ListEntryBegin(List l, Row r)
+		public Task ListEntryBegin(List l, Row r)
 		{
+            return Task.CompletedTask;
 		}
 
 		public void ListEntryEnd(List l, Row r)
@@ -385,9 +386,9 @@ namespace Majorsilence.Reporting.Rdl
 		{
 		}
 
-		public void TableCellStart(TableCell t, Row row)
+		public Task TableCellStart(TableCell t, Row row)
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void TableCellEnd(TableCell t, Row row)

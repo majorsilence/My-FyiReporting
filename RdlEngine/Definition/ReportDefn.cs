@@ -428,7 +428,7 @@ namespace Majorsilence.Reporting.Rdl
 			}
 
 			if (_Subreport == null)
-				ip.End();
+				await ip.End();
 
 			if (_DataSourcesDefn != null)
 				_DataSourcesDefn.CleanUp(ip.Report());	// datasets may not have been cleaned up

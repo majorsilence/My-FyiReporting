@@ -103,26 +103,26 @@ namespace Majorsilence.Reporting.Rdl
 		}
 
 		// Generate a CSS string from the specified styles
-		internal string GetCSS(Report rpt, Row row, bool bDefaults)
+		internal async Task<string> GetCSS(Report rpt, Row row, bool bDefaults)
 		{
 			StringBuilder sb = new StringBuilder();
 
 			if (_Default != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-color:{0};",_Default.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-color:{0};", await _Default.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("border-color:black;");
 
 			if (_Left != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-left:{0};",_Left.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-left:{0};", await _Left.EvaluateString(rpt, row));
 
 			if (_Right != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-right:{0};",_Right.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-right:{0};", await _Right.EvaluateString(rpt, row));
 
 			if (_Top != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-top:{0};",_Top.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-top:{0};", await _Top.EvaluateString(rpt, row));
 
 			if (_Bottom != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-bottom:{0};",_Bottom.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "border-bottom:{0};", await _Bottom.EvaluateString(rpt, row));
 
 			return sb.ToString();
 		}

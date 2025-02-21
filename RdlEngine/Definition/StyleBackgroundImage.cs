@@ -114,18 +114,18 @@ namespace Majorsilence.Reporting.Rdl
 		}
 
 		// Generate a CSS string from the specified styles
-		internal string GetCSS(Report rpt, Row row, bool bDefaults)
+		internal async Task<string> GetCSS(Report rpt, Row row, bool bDefaults)
 		{
 			StringBuilder sb = new StringBuilder();
 
 			// TODO: need to handle other types of sources
 			if (_Value != null && _Source==StyleBackgroundImageSourceEnum.External)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-image:url(\"{0}\");",_Value.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-image:url(\"{0}\");", await _Value.EvaluateString(rpt, row));
 			else if (bDefaults)
 				return "background-image:none;";	
             			
 			if (_BackgroundRepeat != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-repeat:{0};",_BackgroundRepeat.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-repeat:{0};", await _BackgroundRepeat.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-repeat:repeat;");
 

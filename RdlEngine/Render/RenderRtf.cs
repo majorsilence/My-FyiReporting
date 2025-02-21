@@ -113,11 +113,11 @@ namespace Majorsilence.Reporting.Rdl
 			}
 		}
 
-		public void End()
+		public async Task End()
 		{
             TextWriter ftw = _sg.GetTextWriter();	// the final text writer location
 
-            ftw.Write(@"{\rtf1\ansi");      // start of the rtf file
+            await ftw.WriteAsync(@"{\rtf1\ansi");      // start of the rtf file
 
             // information group
             PutInformationGroup(ftw);
@@ -418,9 +418,10 @@ namespace Majorsilence.Reporting.Rdl
             return Task.CompletedTask;
         }
 
-		public void ListEntryBegin(List l, Row r)
-		{
-		}
+		public Task ListEntryBegin(List l, Row r)
+        {
+            return Task.CompletedTask;
+        }
 
 		public void ListEntryEnd(List l, Row r)
 		{
@@ -561,9 +562,9 @@ namespace Majorsilence.Reporting.Rdl
 			tw.WriteLine(@"\row");
 		}
 
-		public void TableCellStart(TableCell t, Row row)
+		public Task TableCellStart(TableCell t, Row row)
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void TableCellEnd(TableCell t, Row row)

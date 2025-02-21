@@ -306,7 +306,7 @@ namespace Majorsilence.Reporting.Rdl
 		/// </summary>
 		/// <param name="sg"></param>
 		/// <param name="pgs"></param>
-		public void RunRenderPdf(IStreamGen sg, Pages pgs)
+		public async Task RunRenderPdf(IStreamGen sg, Pages pgs)
 		{
 			PageNumber = 1;		// reset page numbers
 			TotalPages = 1;
@@ -316,8 +316,8 @@ namespace Majorsilence.Reporting.Rdl
 			try
 			{
 				ip.Start();
-				ip.RunPages(pgs);
-				ip.End();
+				await ip.RunPages(pgs);
+				await ip.End();
 			}
 			finally
 			{

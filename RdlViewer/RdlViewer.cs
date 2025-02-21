@@ -934,11 +934,11 @@ namespace Majorsilence.Reporting.RdlViewer
                 {
                     case OutputPresentationType.PDF:
                         _Report.ItextPDF = true;
-                        _Report.RunRenderPdf(sg, _pgs);
+                        await _Report.RunRenderPdf(sg, _pgs);
                         break;
                     case OutputPresentationType.PDFOldStyle:
                         _Report.ItextPDF = false;
-                        _Report.RunRenderPdf(sg, _pgs);
+                        await _Report.RunRenderPdf(sg, _pgs);
                         break;
                     case OutputPresentationType.TIF:
                         await _Report.RunRenderTif(sg, _pgs, true);

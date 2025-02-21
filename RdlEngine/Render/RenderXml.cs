@@ -71,11 +71,11 @@ namespace Majorsilence.Reporting.Rdl
 			return;
 		}
 
-		public void End()
+		public async Task End()
 		{
 			ContainerIO cio = (ContainerIO) stkContainers.Pop();	// this pop should empty the stack
 			cio.WriteAttribute(">");
-			tw.WriteLine(cio.attribute_sb);
+			await tw.WriteLineAsync(cio.attribute_sb);
 			tw.WriteLine(cio.subelement_sb);
 			tw.WriteLine("</" + r.ReportDefinition.DataElementName + ">");
 
@@ -158,25 +158,25 @@ namespace Majorsilence.Reporting.Rdl
 			return Task.CompletedTask;
 		}
 
-		public void ListEntryBegin(List l, Row r)
+		public Task ListEntryBegin(List l, Row r)
 		{
 			string d;
 			if (l.Grouping == null)
 			{
 				if (l.DataElementOutput != DataElementOutputEnum.Output)
-					return;
+					return Task.CompletedTask;
 				d = string.Format("<{0}", l.DataInstanceName);
 			}
 			else
 			{
 				Grouping g = l.Grouping;
 				if (g.DataElementOutput != DataElementOutputEnum.Output)
-					return;
+					return Task.CompletedTask;
 				d = string.Format("<{0}", l.DataInstanceName);
 			}
 			PushContainer(l.DataInstanceName);
 
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void ListEntryEnd(List l, Row r)
@@ -300,9 +300,9 @@ namespace Majorsilence.Reporting.Rdl
 			return null;
 		}
 
-		public void TableCellStart(TableCell t, Row row)
+		public Task TableCellStart(TableCell t, Row row)
 		{
-			return;
+			return Task.CompletedTask;
 		}
 
 		public void TableCellEnd(TableCell t, Row row)

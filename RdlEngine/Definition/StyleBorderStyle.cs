@@ -96,26 +96,26 @@ namespace Majorsilence.Reporting.Rdl
 		}
 
 		// Generate a CSS string from the specified styles
-		internal string GetCSS(Report rpt, Row row, bool bDefaults)
+		internal async Task<string> GetCSS(Report rpt, Row row, bool bDefaults)
 		{
 			StringBuilder sb = new StringBuilder();
 
 			if (_Default != null)
-				sb.AppendFormat("border-style:{0};",_Default.EvaluateString(rpt, row));
+				sb.AppendFormat("border-style:{0};", await _Default.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("border-style:none;");
 
 			if (_Left != null)
-				sb.AppendFormat("border-left-style:{0};",_Left.EvaluateString(rpt, row));
+				sb.AppendFormat("border-left-style:{0};", await _Left.EvaluateString(rpt, row));
 
 			if (_Right != null)
-				sb.AppendFormat("border-right-style:{0};",_Right.EvaluateString(rpt, row));
+				sb.AppendFormat("border-right-style:{0};", await _Right.EvaluateString(rpt, row));
 
 			if (_Top != null)
-				sb.AppendFormat("border-top-style:{0};",_Top.EvaluateString(rpt, row));
+				sb.AppendFormat("border-top-style:{0};", await _Top.EvaluateString(rpt, row));
 
 			if (_Bottom != null)
-				sb.AppendFormat("border-bottom-style:{0};",_Bottom.EvaluateString(rpt, row));
+				sb.AppendFormat("border-bottom-style:{0};", await _Bottom.EvaluateString(rpt, row));
 
 			return sb.ToString();
 		}

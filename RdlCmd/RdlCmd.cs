@@ -542,7 +542,7 @@ namespace Majorsilence.Reporting.RdlCmd
 			}
 
 			// Now create the PDF
-			report.RunRenderPdf(sg, pgs);
+			await report.RunRenderPdf(sg, pgs);
 		}
 
 		private float Size(string t)

@@ -40,7 +40,7 @@ namespace Majorsilence.Reporting.Rdl
 
 		// General
 		void Start();								// called first
-		void End();									// called last
+		Task End();									// called last
 
 		// 
 		Task RunPages(Pages pgs);					// only called if IsPagingNeeded - 
@@ -64,7 +64,7 @@ namespace Majorsilence.Reporting.Rdl
 		// Lists
 		Task<bool> ListStart(List l, Row r);				// called first in list
 		Task ListEnd(List l, Row r);				// called last in list
-		void ListEntryBegin(List l, Row r);			// called to begin each list entry
+		Task ListEntryBegin(List l, Row r);			// called to begin each list entry
 		void ListEntryEnd(List l, Row r);			// called to end each list entry
 
 		// Tables					// Report item table
@@ -78,7 +78,7 @@ namespace Majorsilence.Reporting.Rdl
 		void TableHeaderEnd(Header h, Row r);		// 
 		Task TableRowStart(TableRow tr, Row r);		// row
 		void TableRowEnd(TableRow tr, Row r);		// 
-		void TableCellStart(TableCell t, Row r);	// report item will be called after
+		Task TableCellStart(TableCell t, Row r);	// report item will be called after
 		void TableCellEnd(TableCell t, Row r);		// report item will be called before
 
 		// Matrix					// Report item matrix

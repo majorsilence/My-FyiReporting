@@ -238,3 +238,4 @@ obj/
 
 /Examples/SampleAspDotNet/SampleAspDotNet/libSkiaSharp.dll
 /Examples/SampleAspDotNet/SampleAspDotNet/libSkiaSharp.dylib
+.DS_Store

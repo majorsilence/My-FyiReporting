@@ -456,16 +456,16 @@ function findObject(id) {
                 ftw.WriteLine("</style>");
         }
 
-        private string CssAdd(Style s, ReportLink rl, Row row)
+        private async Task<string> CssAdd(Style s, ReportLink rl, Row row)
         {
-            return CssAdd(s, rl, row, false, float.MinValue, float.MinValue);
+            return await CssAdd(s, rl, row, false, float.MinValue, float.MinValue);
         }
 
-        private string CssAdd(Style s, ReportLink rl, Row row, bool bForceRelative)
+        private async Task<string> CssAdd(Style s, ReportLink rl, Row row, bool bForceRelative)
         {
-            return CssAdd(s, rl, row, bForceRelative, float.MinValue, float.MinValue);
+            return await CssAdd(s, rl, row, bForceRelative, float.MinValue, float.MinValue);
         }
-        private string CssAdd(Style s, ReportLink rl, Row row, bool bForceRelative, float h, float w)
+        private async Task<string> CssAdd(Style s, ReportLink rl, Row row, bool bForceRelative, float h, float w)
         {
             string css;
             string prefix = CssPrefix(s, rl);
@@ -473,7 +473,7 @@ function findObject(id) {
                 bForceRelative = true;
 
             if (s != null)
-                css = prefix + "{" + CssPosition(rl, row, bForceRelative, h, w) + s.GetCSS(this.r, row, true) + "}";
+                css = prefix + "{" + CssPosition(rl, row, bForceRelative, h, w) + await s.GetCSS(this.r, row, true) + "}";
             else if (rl is Table || rl is Matrix)
                 css = prefix + "{" + CssPosition(rl, row, bForceRelative, h, w) + "border-collapse:collapse;}";
             else
@@ -638,11 +638,11 @@ function findObject(id) {
             return cssPrefix == null ? "" : cssPrefix;
         }
 
-        public void End()
+        public async Task End()
         {
             string bodyCssId;
             if (r.ReportDefinition.Body != null)
-                bodyCssId = CssAdd(r.ReportDefinition.Body.Style, r.ReportDefinition.Body, null);       // add the style for the body
+                bodyCssId = await CssAdd(r.ReportDefinition.Body.Style, r.ReportDefinition.Body, null);       // add the style for the body
             else
                 bodyCssId = null;
 
@@ -784,7 +784,7 @@ function findObject(id) {
             }
             else
             {   // Formatting must be specified
-                string cssName = CssAdd(tb.Style, tb, row); // get the style name for this item
+                string cssName = await CssAdd(tb.Style, tb, row); // get the style name for this item
 
                 tw.Write("<div class='{0}'>{1}</div>", cssName, t);
             }
@@ -793,7 +793,7 @@ function findObject(id) {
                 tw.Write("</td>");
         }
 
-        public Task DataRegionNoRows(DataRegion d, string noRowsMsg)            // no rows in table
+        public async Task DataRegionNoRows(DataRegion d, string noRowsMsg)            // no rows in table
         {
             if (noRowsMsg == null)
                 noRowsMsg = "";
@@ -809,11 +809,11 @@ function findObject(id) {
             }
             else
             {
-                string cssName = CssAdd(d.Style, d, null);  // get the style name for this item
+                string cssName = await CssAdd(d.Style, d, null);  // get the style name for this item
                 tw.Write("<div class='{0}'>{1}</div>", cssName, noRowsMsg);
             }
 
-            return Task.CompletedTask;
+            return;
         }
 
         // Lists
@@ -833,9 +833,9 @@ function findObject(id) {
                 tw.WriteLine("</div>");
         }
 
-        public void ListEntryBegin(List l, Row r)
+        public async Task ListEntryBegin(List l, Row r)
         {
-            string cssName = CssAdd(l.Style, l, r, true);   // get the style name for this item; force to be relative
+            string cssName = await CssAdd(l.Style, l, r, true);   // get the style name for this item; force to be relative
             tw.WriteLine();
             tw.WriteLine("<div class={0}>", cssName);
         }
@@ -849,7 +849,7 @@ function findObject(id) {
         // Tables					// Report item table
         public async Task<bool> TableStart(Table t, Row row)
         {
-            string cssName = CssAdd(t.Style, t, row);   // get the style name for this item
+            string cssName = await CssAdd(t.Style, t, row);   // get the style name for this item
 
             // Determine if report custom defn want this table to be sortable
             if (IsTableSortable(t))
@@ -977,13 +977,13 @@ function findObject(id) {
             tw.WriteLine("</tr>");
         }
 
-        public void TableCellStart(TableCell t, Row row)
+        public async Task TableCellStart(TableCell t, Row row)
         {
             string cellType = t.InTableHeader ? "th" : "td";
 
             ReportItem r = t.ReportItems.Items[0];
 
-            string cssName = CssAdd(r.Style, r, row);   // get the style name for this item
+            string cssName = await CssAdd(r.Style, r, row);   // get the style name for this item
 
             tw.Write("<{0} id='{1}'", cellType, cssName);
 
@@ -1138,7 +1138,7 @@ function findObject(id) {
                 tw.WriteLine("<div id=\"{0}\">", bookmark);     // can't use the table id since we're using for css style
 
             // output some of the table styles
-            string cssName = CssAdd(m.Style, m, r); // get the style name for this item
+            string cssName = await CssAdd(m.Style, m, r); // get the style name for this item
 
             tw.WriteLine("<table id='{0}'>", cssName);
             return true;
@@ -1148,16 +1148,16 @@ function findObject(id) {
         {
         }
 
-        public Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
+        public async Task MatrixCellStart(Matrix m, ReportItem ri, int row, int column, Row r, float h, float w, int colSpan)
         {
             if (ri == null)         // Empty cell?
             {
                 if (_SkipMatrixCols == 0)
                     tw.Write("<td>");
-                return Task.CompletedTask;
+                return;
             }
 
-            string cssName = CssAdd(ri.Style, ri, r, false, h, w);  // get the style name for this item
+            string cssName = await CssAdd(ri.Style, ri, r, false, h, w);  // get the style name for this item
 
             tw.Write("<td id='{0}'", cssName);
             if (colSpan != 1)
@@ -1181,7 +1181,7 @@ function findObject(id) {
             }
 
             tw.Write(">");
-            return Task.CompletedTask;
+            return;
         }
 
         public Task MatrixCellEnd(Matrix m, ReportItem ri, int row, int column, Row r)
@@ -1244,7 +1244,7 @@ function findObject(id) {
             if (bookmark != null)
                 sw.WriteLine("<div id=\"{0}\">", bookmark);     // can't use the table id since we're using for css style
 
-            string cssName = CssAdd(c.Style, c, null);  // get the style name for this item
+            string cssName = await CssAdd(c.Style, c, null);  // get the style name for this item
 
             sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
             string tooltip = await c.ToolTipValue(this.r, r);
@@ -1325,7 +1325,7 @@ function findObject(id) {
             if (bookmark != null)
                 sw.WriteLine("<div id=\"{0}\">", bookmark);     // we're using for css style
 
-            string cssName = CssAdd(i.Style, i, null);  // get the style name for this item
+            string cssName = await CssAdd(i.Style, i, null);  // get the style name for this item
 
             sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
 
@@ -1398,7 +1398,7 @@ function findObject(id) {
 
         public async Task<bool> RectangleStart(Rdl.Rectangle rect, Row r)
         {
-            string cssName = CssAdd(rect.Style, rect, r);   // get the style name for this item
+            string cssName = await CssAdd(rect.Style, rect, r);   // get the style name for this item
 
             string bookmark = await rect.BookmarkValue(this.r, r);
             if (bookmark != null)
@@ -1426,7 +1426,7 @@ function findObject(id) {
         // Subreport:  
         public async Task Subreport(Subreport s, Row r)
         {
-            string cssName = CssAdd(s.Style, s, r); // get the style name for this item
+            string cssName = await CssAdd(s.Style, s, r); // get the style name for this item
 
             tw.WriteLine("<div class='{0}'>", cssName);
 

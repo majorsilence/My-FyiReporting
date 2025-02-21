@@ -868,7 +868,7 @@ namespace Majorsilence.Reporting.Rdl
 		}
 
 		// Generate a CSS string from the specified styles
-		internal string GetCSS(Report rpt, Row row, bool bDefaults)
+		internal async Task<string> GetCSS(Report rpt, Row row, bool bDefaults)
 		{
 			WorkClass wc = GetWC(rpt);
 			if (wc != null && wc.CssStyle != null)	// When CssStyle is available; style is a constant
@@ -880,92 +880,92 @@ namespace Majorsilence.Reporting.Rdl
 				sb.Append("border-collapse:collapse;");	// collapse the borders
 
 			if (_BorderColor != null)
-				sb.Append(_BorderColor.GetCSS(rpt, row, bDefaults));
+				sb.Append(await _BorderColor.GetCSS(rpt, row, bDefaults));
 			else if (bDefaults)
 				sb.Append(StyleBorderColor.GetCSSDefaults());
 
 			if (_BorderStyle != null)
-				sb.Append(_BorderStyle.GetCSS(rpt, row, bDefaults));
+				sb.Append(await _BorderStyle.GetCSS(rpt, row, bDefaults));
 			else if (bDefaults)
 				sb.Append(StyleBorderStyle.GetCSSDefaults());
 
 			if (_BorderWidth != null)
-				sb.Append(_BorderWidth.GetCSS(rpt, row, bDefaults));
+				sb.Append(await _BorderWidth.GetCSS(rpt, row, bDefaults));
 			else if (bDefaults)
 				sb.Append(StyleBorderWidth.GetCSSDefaults());
 
 			if (_BackgroundColor != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-color:{0};",_BackgroundColor.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "background-color:{0};", await _BackgroundColor.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("background-color:transparent;");
 
 			if (_BackgroundImage != null)
-				sb.Append(_BackgroundImage.GetCSS(rpt, row, bDefaults));
+				sb.Append(await _BackgroundImage.GetCSS(rpt, row, bDefaults));
 			else if (bDefaults)
 				sb.Append(StyleBackgroundImage.GetCSSDefaults());
 
 			if (_FontStyle != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-style:{0};",_FontStyle.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-style:{0};",await _FontStyle.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("font-style:normal;");
 
 			if (_FontFamily != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-family:{0};",_FontFamily.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-family:{0};",await _FontFamily.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("font-family:Arial;");
 
 			if (_FontSize != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-size:{0};",_FontSize.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-size:{0};", await _FontSize.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("font-size:10pt;");
 
 			if (_FontWeight != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-weight:{0};",_FontWeight.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "font-weight:{0};",await _FontWeight.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("font-weight:normal;");
 
 			if (_TextDecoration != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "text-decoration:{0};",_TextDecoration.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "text-decoration:{0};",await _TextDecoration.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("text-decoration:none;");
 
 			if (_TextAlign != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "text-align:{0};",_TextAlign.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "text-align:{0};",await _TextAlign.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("");	// no CSS default for text align
 
 			if (_VerticalAlign != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "vertical-align:{0};",_VerticalAlign.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "vertical-align:{0};",await _VerticalAlign.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("vertical-align:top;");
 
 			if (_Color != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "color:{0};",_Color.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "color:{0};",await _Color.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("color:black;");
 
 			if (_PaddingLeft != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-left:{0};",_PaddingLeft.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-left:{0};",await _PaddingLeft.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("padding-left:0pt;");
 
 			if (_PaddingRight != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-right:{0};",_PaddingRight.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-right:{0};",await _PaddingRight.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("padding-right:0pt;");
 
 			if (_PaddingTop != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-top:{0};",_PaddingTop.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-top:{0};",await _PaddingTop.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("padding-top:0pt;");
 
 			if (_PaddingBottom != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-bottom:{0};",_PaddingBottom.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "padding-bottom:{0};",await _PaddingBottom.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("padding-bottom:0pt;");
 
 			if (_LineHeight != null)
-				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "line-height:{0};",_LineHeight.EvaluateString(rpt, row));
+				sb.AppendFormat(NumberFormatInfo.InvariantInfo, "line-height:{0};",await _LineHeight.EvaluateString(rpt, row));
 			else if (bDefaults)
 				sb.Append("line-height:normal;");
 

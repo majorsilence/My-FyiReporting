@@ -122,7 +122,7 @@ namespace Majorsilence.Reporting.Rdl
 			if (tc.Visibility != null && await tc.Visibility.IsHidden(ip.Report(), row))	// column visible?
 				return;													//  no nothing to do
 
-			ip.TableCellStart(this, row);
+			await ip.TableCellStart(this, row);
 
             await _ReportItems.Items[0].Run(ip, row);
 
