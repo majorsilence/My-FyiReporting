@@ -98,7 +98,7 @@ namespace Majorsilence.Reporting.Rdl
                 //Kind of MacOSX
                 if (IsOSX)
                 {
-                    return "/Library/Fonts";
+                    return "/System/Library/Fonts/Supplemental";
                 }
                 if (_osPlatform == (int)PlatformID.Unix)
                 {
