@@ -52,7 +52,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
-            Assert.That(NormalizeEOL(text), Is.EqualTo(@"""DataProviderTest TestMethod1""
+            Assert.That(NormalizeEOL(text), Is.EqualTo(NormalizeEOL(@"""DataProviderTest TestMethod1""
 ""CategoryID"",""CategoryName"",""Description""
 1,""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
 2,""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
@@ -63,7 +63,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
 7,""Produce"",""Dried fruit and bean curd""
 8,""Seafood"",""Seaweed and fish""
 ""1 of 1""
-"));
+")));
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
-            Assert.That(NormalizeEOL(text), Is.EqualTo(@"""DataProviderTest TestMethod1""
+            Assert.That(NormalizeEOL(text), Is.EqualTo(NormalizeEOL(@"""DataProviderTest TestMethod1""
 ""CategoryID"",""CategoryName"",""Description""
 1,""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
 2,""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
@@ -182,7 +182,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
 7,""Produce"",""Dried fruit and bean curd""
 8,""Seafood"",""Seaweed and fish""
 ""1 of 1""
-"));
+")));
         }
 
         class Category
@@ -216,7 +216,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
-            Assert.That(NormalizeEOL(text), Is.EqualTo(@"""DataProviderTest TestMethod1""
+            Assert.That(NormalizeEOL(text), Is.EqualTo(NormalizeEOL(@"""DataProviderTest TestMethod1""
 ""CategoryID"",""CategoryName"",""Description""
 1,""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
 2,""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
@@ -227,7 +227,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
 7,""Produce"",""Dried fruit and bean curd""
 8,""Seafood"",""Seaweed and fish""
 ""1 of 1""
-"));
+")));
         }
 
         private string NormalizeEOL(string input)
