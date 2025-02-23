@@ -29,7 +29,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
-            Assert.That(NormalizeEOL(text), Is.EqualTo(@"""Test Data Set Report""
+            Assert.That(NormalizeEOL(text), Is.EqualTo(NormalizeEOL(@"""Test Data Set Report""
 ""CategoryID"",""CategoryName"",""Description""
 ""Beverages"",""Soft drinks, coffees, teas, beers, and ales""
 ""Condiments"",""Sweet and savory sauces, relishes, spreads, and seasonings""
@@ -40,8 +40,24 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
 ""Produce"",""Dried fruit and bean curd""
 ""Seafood"",""Seaweed and fish""
 ""1 of 1""
-"));
+")));
         }
+        
+        [Test]
+        public async Task HtmlExport()
+        {
+            var create = new RdlCreator.Create();
+            var report = GenerateTestData();
+            var fyiReport = await create.GenerateRdl(report);
+            using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
+            await fyiReport.RunGetData(null);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.HTML);
+            var text = ms.GetText();
+
+            Assert.That(text, Is.Not.Null);
+            Assert.That(NormalizeEOL(text).Contains(@"<tr><td id='css4'><img src=""/aunk&unique=2"" class='css5'/></td><td id='css6'>Beverages</td><td id='css6'>Soft drinks, coffees, teas, beers, and ales</td></tr>"));
+        }
+        
 
         [Test]
         public async Task PdfStreamExport()
