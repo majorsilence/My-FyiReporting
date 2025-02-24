@@ -47,9 +47,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
+        run: dotnet restore MajorsilenceReporting.sln
       - name: Build
-        run: dotnet build -c Release MajorsilenceReporting-Linux-GtkViewer.sln --no-restore
+        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting-Linux-GtkViewer.sln
   mac-build:
     runs-on: macos-latest
     steps:
@@ -61,4 +61,4 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
       - name: Build
-        run: dotnet build -c Release MajorsilenceReporting-Linux-GtkViewer.sln --no-restore
+        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting.sln
