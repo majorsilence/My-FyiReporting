@@ -85,8 +85,9 @@ namespace Majorsilence.Reporting.Rdl
         {
         }
 
-        public void End()
+        public Task End()
         {
+            return Task.CompletedTask;
         }
 
         public async Task RunPages(Pages pgs)   // this does all the work 
@@ -895,8 +896,9 @@ namespace Majorsilence.Reporting.Rdl
             return Task.CompletedTask;
         }
 
-        public void ListEntryBegin(List l, Row r)
+        public Task ListEntryBegin(List l, Row r)
         {
+            return Task.CompletedTask;
         }
 
         public void ListEntryEnd(List l, Row r)
@@ -947,9 +949,9 @@ namespace Majorsilence.Reporting.Rdl
         {
         }
 
-        public void TableCellStart(TableCell t, Row row)
+        public Task TableCellStart(TableCell t, Row row)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         public void TableCellEnd(TableCell t, Row row)

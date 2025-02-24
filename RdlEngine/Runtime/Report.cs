@@ -345,7 +345,7 @@ namespace Majorsilence.Reporting.Rdl
             {
                 ip.Start();
                 await ip.RunPages(pgs);
-                ip.End();
+                await ip.End();
             }
             finally
             {
