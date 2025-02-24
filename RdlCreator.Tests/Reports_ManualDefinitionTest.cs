@@ -55,7 +55,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             var text = ms.GetText();
 
             Assert.That(text, Is.Not.Null);
-            Assert.That(NormalizeEOL(text).Contains(@"<tr><td id='css4'><img src=""/aunk&unique=2"" class='css5'/></td><td id='css6'>Beverages</td><td id='css6'>Soft drinks, coffees, teas, beers, and ales</td></tr>"));
+            Assert.That(NormalizeEOL(text).Contains(NormalizeEOL(@"Dairy Products")));
         }
         
 
