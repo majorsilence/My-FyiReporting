@@ -39,7 +39,7 @@ namespace Majorsilence.Drawing
             }
             else
             {
-                throw new ArgumentException("Invalid HTML color code length", nameof(html));
+                return Color.FromName(html);
             }
         }
     }
