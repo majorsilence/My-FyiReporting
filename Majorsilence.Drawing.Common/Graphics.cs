@@ -257,25 +257,50 @@ namespace Majorsilence.Drawing
 
         public SizeF MeasureString(string text, Font font)
         {
-            var skPaint = font.ToSkPaint();
-            var bounds = new SKRect();
-            skPaint.MeasureText(text, ref bounds);
-            return new SizeF(bounds.Width, bounds.Height);
+            return MeasureString(text, font, 0, StringFormat.GenericTypographic);
         }
 
         public SizeF MeasureString(string text, Font font, SizeF layoutArea, StringFormat stringFormat)
         {
-            var skPaint = font.ToSkPaint();
-            var bounds = new SKRect();
-            skPaint.MeasureText(text, ref bounds);
-            return new SizeF(bounds.Width, bounds.Height);
+            return MeasureString(text, font, (int)layoutArea.Width, stringFormat);
         }
 
         public SizeF MeasureString(string text, Font font, int maxWidth, StringFormat stringFormat)
         {
             var skPaint = font.ToSkPaint();
-            var bounds = new SKRect(0, 0, maxWidth, 0);
+            var bounds = new SKRect();
             skPaint.MeasureText(text, ref bounds);
+
+            if (maxWidth>0 && bounds.Width > maxWidth)
+            {
+                var lines = text.Split(' ');
+                var currentLine = string.Empty;
+                var height = 0f;
+                var width = 0f;
+
+                foreach (var word in lines)
+                {
+                    var testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
+                    skPaint.MeasureText(testLine, ref bounds);
+
+                    if (bounds.Width > maxWidth)
+                    {
+                        height += skPaint.TextSize;
+                        currentLine = word;
+                        skPaint.MeasureText(currentLine, ref bounds);
+                        width = Math.Max(width, bounds.Width);
+                    }
+                    else
+                    {
+                        currentLine = testLine;
+                        width = Math.Max(width, bounds.Width);
+                    }
+                }
+
+                height += skPaint.TextSize; // Add height for the last line
+                return new SizeF(width, height);
+            }
+
             return new SizeF(bounds.Width, bounds.Height);
         }
 
