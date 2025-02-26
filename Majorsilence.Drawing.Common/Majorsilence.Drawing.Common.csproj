@@ -4,7 +4,7 @@
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>

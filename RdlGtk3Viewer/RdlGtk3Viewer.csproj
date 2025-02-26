@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<RootNamespace>fyiReporting.RdlGtk3Viewer</RootNamespace>
 		<AssemblyName>RdlGtk3Viewer</AssemblyName>
-		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
