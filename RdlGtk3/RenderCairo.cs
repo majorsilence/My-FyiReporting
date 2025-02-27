@@ -225,8 +225,19 @@ namespace Majorsilence.Reporting.RdlGtk3
                         g.Save();
                         g.Rectangle(r2);
                         g.Clip();
-
-                        g.DrawPixbufRect(im, r2, scale);
+                        if(r2.Width > im.Width || r2.Height > im.Height)
+                        {
+                            var r3 = new Cairo.Rectangle(r2.X,
+                                     r2.Y,
+                                     im.Width,
+                                     im.Height);
+                            g.DrawPixbufRect(im, r3, scale);
+                        }
+                        else
+                        {
+                            g.DrawPixbufRect(im, r2, scale);
+                        }
+                       
                         g.Restore();
                         break;
                     case ImageSizingEnum.FitProportional:

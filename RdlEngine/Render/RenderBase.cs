@@ -308,14 +308,13 @@ namespace Majorsilence.Reporting.Rdl
                                             r2.Width, r2.Height);
                             break;
                         case ImageSizingEnum.Clip:
-
                             //Set samples size
-                            i.GetImageData((int)r2.Width, (int)r2.Height);
-
-                            adjustedRect = new Draw2.RectangleF(r2.Left, r2.Top,
-                                            Measurement.PointsFromPixels(i.SamplesW, pgs.G.DpiX), Measurement.PointsFromPixels(i.SamplesH, pgs.G.DpiY));
-                            clipRect = new Draw2.RectangleF(r2.Left, r2.Top,
-                                            r2.Width, r2.Height);
+                            var im = Draw2.Image.FromStream(new MemoryStream(i.GetImageData((int)r2.Width, (int)r2.Height)));
+                            float originalWidth = Measurement.PointsFromPixels(im.Width, pgs.G.DpiX);
+                            float originalHeight = Measurement.PointsFromPixels(im.Height, pgs.G.DpiY);
+                            adjustedRect = new Draw2.RectangleF(r2.Left, r2.Top, originalWidth, originalHeight);
+                            clipRect = new Draw2.RectangleF(r2.Left, r2.Top, r2.Width, r2.Height);
+                            im.Dispose();
                             break;
                         case ImageSizingEnum.FitProportional:
                             float height;
