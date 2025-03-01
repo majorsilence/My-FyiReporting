@@ -97,17 +97,29 @@ namespace Majorsilence.Reporting.Rdl
         {
             if (_bm == null)
                 Draw(rpt);
-            // _mf.Save(stream, im);
+#if !DRAWINGCOMPAT
+            if (_mf != null)
+            {
+                _mf.Save(stream, im);
+            }
+            else
+            {
+                _bm.Save(stream, im);
+            }
+#else
             _bm.Save(stream, im);
+#endif
         }
 
         internal Draw2.Image Image(Report rpt) // GJL 14082008 Using Vector Graphics
         {
             if (_bm == null)
                 Draw(rpt);
-
+#if !DRAWINGCOMPAT
+            return _mf == null? _bm : _mf;
+#else
             return _bm;
-            //return _mf;
+#endif
 
         }
 
