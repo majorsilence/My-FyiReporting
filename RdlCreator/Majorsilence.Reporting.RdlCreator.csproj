@@ -9,6 +9,10 @@
 		<WarningsAsErrors>4014</WarningsAsErrors>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">
+		<PackageId>Majorsilence.Reporting.RdlCreator.SkiaSharp</PackageId>
+		<AssemblyName>Majorsilence.Reporting.RdlCreator.SkiaSharp</AssemblyName>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCri\Majorsilence.Reporting.RdlCri.csproj" />

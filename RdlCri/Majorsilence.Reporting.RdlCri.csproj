@@ -12,6 +12,10 @@
 		<WarningsAsErrors>4014</WarningsAsErrors>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">
+		<PackageId>Majorsilence.Reporting.RdlCri.SkiaSharp</PackageId>
+		<AssemblyName>Majorsilence.Reporting.RdlCri.SkiaSharp</AssemblyName>
+	</PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
     </ItemGroup>

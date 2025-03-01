@@ -15,6 +15,10 @@
 		<WarningsAsErrors>4014</WarningsAsErrors>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">
+		<PackageId>Majorsilence.Reporting.DataProviders.SkiaSharp</PackageId>
+		<AssemblyName>Majorsilence.Reporting.DataProviders.SkiaSharp</AssemblyName>
+	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">
 			<Name>System</Name>
