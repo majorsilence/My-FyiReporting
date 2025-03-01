@@ -125,7 +125,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
     internal class PropertyFiltersUIEditor : UITypeEditor
     {
-        internal PropertyFiltersUIEditor()
+        public PropertyFiltersUIEditor()
         {
         }
 
