@@ -341,7 +341,7 @@ namespace Majorsilence.Reporting.RdlDesign
 				if (xNodeLoop == _RectNode)
 				{
 					_GetRect = rir;
-					throw new Exception("found it!");
+					throw new RdlException("found it!");
 				}
 			}
 		}
