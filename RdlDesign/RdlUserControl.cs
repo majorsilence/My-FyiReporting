@@ -747,11 +747,11 @@ namespace Majorsilence.Reporting.RdlDesign
 
             if (SourceFile != null)
             {
-                sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile.LocalPath) + "." + type;
+                sfd.FileName = Path.GetFileNameWithoutExtension(SourceFile.LocalPath) + "." + type.ToString().ToLower();
             }
             else
             {
-                sfd.FileName = "*." + type;
+                sfd.FileName = "*." + type.ToString().ToLower();
             }
 
             try
