@@ -79,7 +79,10 @@ namespace Majorsilence.Reporting.Rdl
                     case "CustomProperties":
                         _Properties = CustomProperties(xNodeLoop);
                         break;
-					default:
+                    case "Source":
+                        // HACK: support custom report items as embedded
+                        break;
+                    default:
 						if (ReportItemElement(xNodeLoop))	// try at ReportItem level
 							break; 
 						// don't know this element - log it

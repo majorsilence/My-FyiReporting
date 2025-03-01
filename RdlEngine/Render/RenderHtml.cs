@@ -1263,76 +1263,64 @@ function findObject(id) {
 		}
 
 		public async Task Image(Image i, Row r, string mimeType, Stream ioin)
-		{
-			string relativeName;
-			string suffix;
+        {
+            string relativeName;
+            string suffix;
 
-			switch (mimeType)
-			{
-				case "image/bmp":
-					suffix = "bmp";
-					break;
-				case "image/jpeg":
-					suffix = "jpeg";
-					break;
-				case "image/gif":
-					suffix = "gif";
-					break;
-				case "image/png":
-				case "image/x-png":
-					suffix = "png";
-					break;
-				default:
-					suffix = "unk";
-					break;
-			}
-			Stream io = _sg.GetIOStream(out relativeName, suffix);
-			try
-			{   
-				if (ioin.CanSeek)		// ioin.Length requires Seek support
-				{
-					byte[] ba = new byte[ioin.Length];
-					ioin.Read(ba, 0, ba.Length);
-					io.Write(ba, 0, ba.Length);
-				}
-				else
-				{
-					byte[] ba = new byte[1000];		// read a 1000 bytes at a time
-					while (true)
-					{
-						int length = ioin.Read(ba, 0, ba.Length);
-						if (length <= 0)
-							break;
-						io.Write(ba, 0, length);
-					}
-				}
-			}
-			finally
-			{
-				await io.FlushAsync();
-				io.Close();
-			}
+            switch (mimeType)
+            {
+                case "image/bmp":
+                    suffix = "bmp";
+                    break;
+                case "image/jpeg":
+                    suffix = "jpeg";
+                    break;
+                case "image/gif":
+                    suffix = "gif";
+                    break;
+                case "image/png":
+                case "image/x-png":
+                    suffix = "png";
+                    break;
+                default:
+                    suffix = "unk";
+                    break;
+            }
+
 
             if (i.ImageSource == ImageSourceEnum.Embedded) // embedded image in html
-                relativeName = "data:" + mimeType + ";base64," + i.EmbeddedImageData;
-            else                    
+            { 
+                if (!string.IsNullOrWhiteSpace(i.EmbeddedImageData))
+                {
+                    relativeName = "data:" + mimeType + ";base64," + i.EmbeddedImageData;
+                }
+                else
+                {
+                    relativeName = "data:" + mimeType + ";base64," + await WriteImageToBase64String(ioin);
+                }
+              
+            }
+            else
+            {
+                relativeName = await WriteImageToFile(ioin, suffix);
                 relativeName = FixupRelativeName(relativeName);
+            }
 
-			// Create syntax in a string buffer
-			StringWriter sw = new StringWriter();
+            // Create syntax in a string buffer
+            StringWriter sw = new StringWriter();
 
-			string bookmark = await i.BookmarkValue(this.r, r);
-			if (bookmark != null)
-				sw.WriteLine("<div id=\"{0}\">", bookmark);		// we're using for css style
+            string bookmark = await i.BookmarkValue(this.r, r);
+            if (bookmark != null)
+                sw.WriteLine("<div id=\"{0}\">", bookmark);     // we're using for css style
 
-			string cssName = await CssAdd(i.Style, i, null);	// get the style name for this item
+            string cssName = await CssAdd(i.Style, i, null);    // get the style name for this item
 
-			sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
+            sw.Write("<img src=\"{0}\" class='{1}'", relativeName, cssName);
 
-			string tooltip = await i.ToolTipValue(this.r, r);
-			if (tooltip != null)
-				sw.Write(" alt=\"{0}\"", tooltip);
-            int h = i.Height == null? -1: i.Height.PixelsY;
+            string tooltip = await i.ToolTipValue(this.r, r);
+            if (tooltip != null)
+                sw.Write(" alt=\"{0}\"", tooltip);
+            int h = i.Height == null ? -1 : i.Height.PixelsY;
             int w = i.Width == null ? -1 : i.Width.PixelsX;
             switch (i.Sizing)
             {
@@ -1349,16 +1337,60 @@ function findObject(id) {
                 case ImageSizingEnum.FitProportional:
                     break;          // would have to create an image to handle this
             }
-            
-			sw.Write("/>");
 
-			if (bookmark != null)
-				sw.Write("</div>");
+            sw.Write("/>");
 
-			tw.Write(await Action(i.Action, r, sw.ToString(), tooltip));
-		}
+            if (bookmark != null)
+                sw.Write("</div>");
 
-		public async Task Line(Line l, Row r)
+            tw.Write(await Action(i.Action, r, sw.ToString(), tooltip));
+        }
+
+        private async Task<string> WriteImageToBase64String(Stream ioin)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ioin.Position = 0;
+                await ioin.CopyToAsync(ms);
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+
+        private async Task<string> WriteImageToFile(Stream ioin, string suffix)
+        {
+            string relativeName;
+            Stream io = _sg.GetIOStream(out relativeName, suffix);
+            try
+            {
+                if (ioin.CanSeek)       // ioin.Length requires Seek support
+                {
+                    byte[] ba = new byte[ioin.Length];
+                    ioin.Read(ba, 0, ba.Length);
+                    io.Write(ba, 0, ba.Length);
+                }
+                else
+                {
+                    byte[] ba = new byte[1000];     // read a 1000 bytes at a time
+                    while (true)
+                    {
+                        int length = ioin.Read(ba, 0, ba.Length);
+                        if (length <= 0)
+                            break;
+                        io.Write(ba, 0, length);
+                    }
+                }
+            }
+            finally
+            {
+                await io.FlushAsync();
+                io.Close();
+            }
+
+            return relativeName;
+        }
+
+        public async Task Line(Line l, Row r)
 		{
 			bool bVertical;
 			string t;
