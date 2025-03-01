@@ -219,6 +219,10 @@
                           <Default>Solid</Default>
                         </BorderStyle>
                         <FontWeight>Bold</FontWeight>
+                        <BorderColor>
+                          <Bottom>Green</Bottom>
+                        </BorderColor>
+                        <BorderWidth />
                       </Style>
                     </Textbox>
                   </ReportItems>
@@ -431,18 +435,19 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                     <CustomReportItem Name="EmployeeID" >
+                    <CustomReportItem Name="EmployeeID">
                         <Type>QR Code</Type>
-                        <Height>35.91mm</Height>
-                        <Width>35.91mm</Width>
+                      <Height>30.91mm</Height>
+                      <Width>30.91mm</Width>
                         <CustomProperties>
                           <CustomProperty>
                             <Name>QrCode</Name>
                             <Value>=Fields!EmployeeID.Value</Value>
                           </CustomProperty>
                         </CustomProperties>
-                        <Left>61.73pt</Left>
-                        <Top>55.75pt</Top>
+                      <Left>1.13pt</Left>
+                      <Top>0.75pt</Top>
+                      <Source>Embedded</Source>
                      </CustomReportItem>
                   </ReportItems>
                 </TableCell>
@@ -470,9 +475,20 @@
                       <CanGrow>true</CanGrow>
                       <Style>
                         <BorderStyle>
-                          <Default>Solid</Default>
+                          <Default>None</Default>
+                          <Left>None</Left>
+                          <Right>None</Right>
+                          <Top>Solid</Top>
+                          <Bottom>Solid</Bottom>
                         </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderColor>
+                          <Bottom>Gray</Bottom>
+                          <Top>Gray</Top>
+                        </BorderColor>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
                       </Style>
                     </Textbox>
                   </ReportItems>
