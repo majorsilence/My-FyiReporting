@@ -71,7 +71,6 @@ namespace Majorsilence.Reporting.RdlViewer
         }
 
         public NeedPassword GetDataSourceReferencePassword = null;
-        bool _InLoading = false;
         /// <summary>
         /// File name to use
         /// </summary>
@@ -1605,7 +1604,7 @@ namespace Majorsilence.Reporting.RdlViewer
                             System.Threading.Thread.Sleep(1);
                         }
                     }
-                    _InLoading = true;
+
                     savec = this.Cursor;                // this could take a while so put up wait cursor
                     this.Cursor = Cursors.WaitCursor;              
                     _pgs = await GetPages();
@@ -1615,7 +1614,6 @@ namespace Majorsilence.Reporting.RdlViewer
                 }
                 finally
                 {
-                    _InLoading = false;
                     if (savec != null)
                         this.Cursor = savec;
                     if (t != null)

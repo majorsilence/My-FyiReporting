@@ -28,7 +28,6 @@ namespace RdlEngine.Render.ExcelConverter
 		public List<ExcelTable> Tables { get; private set; }
 
 		private float rowPosition = 0f;
-		private float tableLeftPosition = 0f;
 		private ExcelTable CurrentExcelTable = null;
 
 		public ExcelCellsBuilder()

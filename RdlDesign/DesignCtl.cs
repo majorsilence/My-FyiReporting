@@ -3513,7 +3513,6 @@ namespace Majorsilence.Reporting.RdlDesign
         private int y;
         private int delta;
         private Point location;
-        private float scale;
         public MouseButtons Button => button;
         public int Clicks => clicks;
         public int X => x;

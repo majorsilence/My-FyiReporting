@@ -100,14 +100,17 @@ namespace Majorsilence.Reporting.RdlDesktop
 			// main server loop
 			try
 			{
-				//start listing on the given port
-				if (this.bLocalOnly)
-				{
-					IPAddress ipAddress = Dns.GetHostEntry("localhost").AddressList[0];
-					myListener = new TcpListener(ipAddress, port) ;
-				}
-				else
-					myListener = new TcpListener(port);
+                //start listing on the given port
+                if (this.bLocalOnly)
+                {
+                    IPAddress ipAddress = Dns.GetHostEntry("localhost").AddressList[0];
+                    myListener = new TcpListener(ipAddress, port);
+                }
+                else
+                {
+                    IPAddress ipAddress = Dns.GetHostEntry("0.0.0.0").AddressList[0];
+                    myListener = new TcpListener(ipAddress, port);
+                }
 				myListener.Start();
 //				int maxThreads;				// worker threads in the thread pool
 //				int completionPortThreads;	// asynchronous I/O threads in the thread pool

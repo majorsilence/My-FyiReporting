@@ -3999,7 +3999,9 @@ namespace Majorsilence.Reporting.RdlDesign
 		{
 			_commands = value;
 		}
-		public override object InitializeLifetimeService()
+
+        [Obsolete]
+        public override object InitializeLifetimeService()
 		{
 			return null;
 		}
