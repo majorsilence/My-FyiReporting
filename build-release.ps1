@@ -30,7 +30,7 @@ Write-Host  $Version
 dotnet restore "./MajorsilenceReporting.sln"
 
 # ************* Begin anycpu *********************************************
-
+dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration Release-DrawingCompat --verbosity minimal
 dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration $pConfiguration --verbosity minimal
 
 $buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-designer-$pTargetFramework-anycpu"
