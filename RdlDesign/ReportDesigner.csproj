@@ -18,6 +18,8 @@
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0-windows</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">
