@@ -27,10 +27,12 @@ Get-ChildItem .\ -include bin,obj,build-output -Recurse | foreach ($_) { remove-
 $Version=""
 GetVersions([ref]$Version)
 Write-Host  $Version
-dotnet restore "./MajorsilenceReporting.sln"
+
 
 # ************* Begin anycpu *********************************************
+dotnet restore "./MajorsilenceReporting.sln" -c Release-DrawingCompat
 dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration Release-DrawingCompat --verbosity minimal
+dotnet restore "./MajorsilenceReporting.sln"
 dotnet build "$CURRENTPATH\MajorsilenceReporting.sln" --configuration $pConfiguration --verbosity minimal
 
 $buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-designer-$pTargetFramework-anycpu"
