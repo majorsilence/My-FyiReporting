@@ -52,7 +52,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
-		<ProjectReference Include="..\Majorsilence.Drawing.Common\Majorsilence.Drawing.Common.csproj" />
+		<ProjectReference Condition="'$(DefineConstants.Contains(DRAWINGCOMPAT))' == True" Include="..\Majorsilence.Drawing.Common\Majorsilence.Drawing.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\Strings.resx">
