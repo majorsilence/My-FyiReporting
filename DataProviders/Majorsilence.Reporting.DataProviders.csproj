@@ -30,9 +30,4 @@
 			<Name>System.XML</Name>
 		</Reference>
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
-		<Reference Include="System.Web.Services">
-			<Name>System.Web.Services</Name>
-		</Reference>
-	</ItemGroup>
 </Project>
