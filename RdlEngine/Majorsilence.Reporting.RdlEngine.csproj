@@ -17,7 +17,6 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">
 		<PackageId>Majorsilence.Reporting.RdlEngine.SkiaSharp</PackageId>
-		<AssemblyName>Majorsilence.Reporting.RdlEngine.SkiaSharp</AssemblyName>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Update="System">
