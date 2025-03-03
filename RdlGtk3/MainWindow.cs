@@ -169,7 +169,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             param[2] = "Open";
             param[3] = Gtk.ResponseType.Accept;
 
-            using var fc =
+            var fc =
                 new Gtk.FileChooserDialog("Open File",
                     null,
                     Gtk.FileChooserAction.Open,
@@ -194,7 +194,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
             catch (Exception ex)
             {
-                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
+                var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
                                           Gtk.ButtonsType.Ok, false,
                                           "Error Opening File." + System.Environment.NewLine + ex.Message);
                 m.Run();
