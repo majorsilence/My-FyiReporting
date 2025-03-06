@@ -905,12 +905,17 @@ namespace Majorsilence.Reporting.Rdl
         {
             return Math.Round(n, decimals);
         }
-		
-		/// <summary>
-		/// Return Local Newline
-		/// </summary>
-		/// <returns></returns>
-		static public string VbCrlf()
+
+        static public decimal Round(decimal n, int decimals, int rounding)
+        {
+            return Math.Round(n, decimals, (MidpointRounding)rounding);
+        }
+
+        /// <summary>
+        /// Return Local Newline
+        /// </summary>
+        /// <returns></returns>
+        static public string VbCrlf()
 		{
 			return Environment.NewLine;
 		}
