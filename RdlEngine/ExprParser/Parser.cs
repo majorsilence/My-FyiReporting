@@ -1090,10 +1090,10 @@ namespace Majorsilence.Reporting.Rdl
 						syscls = "System.Convert";
 						break;
 					case "Financial":
-						syscls = "fyiReporting.RDL.Financial";
+						syscls = "Majorsilence.Reporting.Rdl.Financial";
 						break;
 					default:
-						syscls = "fyiReporting.RDL.VBFunctions";
+						syscls = "Majorsilence.Reporting.Rdl.VBFunctions";
 						break;
 				}
 				if (syscls != null)

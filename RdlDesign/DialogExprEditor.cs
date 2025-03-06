@@ -286,11 +286,11 @@ namespace Majorsilence.Reporting.RdlDesign
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;
-            Type ft = a.GetType("fyiReporting.RDL.VBFunctions");
+            Type ft = a.GetType("Majorsilence.Reporting.Rdl.VBFunctions");
             BuildMethods(ar, ft, "");
 
             // build list of financial methods in Financial class
-            ft = a.GetType("fyiReporting.RDL.Financial");
+            ft = a.GetType("Majorsilence.Reporting.Rdl.Financial");
             BuildMethods(ar, ft, "Financial.");
 
             a = Assembly.GetAssembly("".GetType());
@@ -388,11 +388,11 @@ namespace Majorsilence.Reporting.RdlDesign
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;
-            Type ft = a.GetType("fyiReporting.RDL.VBFunctions");
+            Type ft = a.GetType("Majorsilence.Reporting.Rdl.VBFunctions");
             BuildMethods(ar, ft, "");
 
             // build list of financial methods in Financial class
-            ft = a.GetType("fyiReporting.RDL.Financial");
+            ft = a.GetType("Majorsilence.Reporting.Rdl.Financial");
             BuildMethods(ar, ft, "Financial.");
 
             a = Assembly.GetAssembly("".GetType());
