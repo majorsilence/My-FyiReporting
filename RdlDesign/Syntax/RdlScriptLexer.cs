@@ -305,14 +305,14 @@ namespace Majorsilence.Reporting.RdlDesign.Syntax
             Assembly a = Assembly.GetAssembly(fsi.GetType());
             if (a == null)
                 return;
-            Type ft = a.GetType("fyiReporting.RDL.VBFunctions");
+            Type ft = a.GetType("Majorsilence.Reporting.Rdl.VBFunctions");
             BuildMethods(methodsList, ft);
 			simpleMethods = new HashSet<string>(methodsList);
 			
 			// build list of methods in class
 			calssMethods = new Dictionary<string, HashSet<string>>();
 			methodsList = new List<string>();
-			ft = a.GetType("fyiReporting.RDL.Financial");
+			ft = a.GetType("Majorsilence.Reporting.Rdl.Financial");
 			BuildMethods(methodsList, ft);
 			calssMethods.Add("Financial", new HashSet<string>(methodsList));
 
