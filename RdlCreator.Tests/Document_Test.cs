@@ -48,6 +48,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         }
 
         [Test]
+        [Ignore("This test is slow.  Remove the ignore when you want to run it.")]
         public async Task LoadTest()
         {
             var document = GenerateData(10000);

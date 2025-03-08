@@ -250,8 +250,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                             {
                                                                 BorderStyle= new BorderStyle
                                                                 {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
+                                                                    Default=BorderStyleType.None,
+                                                                    Bottom=BorderStyleType.Solid
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
@@ -281,8 +281,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                             {
                                                                 BorderStyle= new BorderStyle
                                                                 {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
+                                                                    Default=BorderStyleType.None,
+                                                                    Bottom=BorderStyleType.Solid
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
@@ -313,8 +313,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                             {
                                                                 BorderStyle= new BorderStyle
                                                                 {
-                                                                    Default="None",
-                                                                    Bottom="Solid"
+                                                                    Default=BorderStyleType.None,
+                                                                    Bottom=BorderStyleType.Solid
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
