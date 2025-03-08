@@ -27,4 +27,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\RdlCreator\Majorsilence.Reporting.RdlCreator.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="test-image.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

@@ -114,6 +114,17 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
+        public Page WithImage(ReportItemImage image)
+        {
+            InitReportItemBody(false);
+            if (this.Body.ReportItems.Images == null)
+            {
+                this.Body.ReportItems.Images = new List<ReportItemImage>();
+            }
+            this.Body.ReportItems.Images.Add(image);
+            return this;
+        }
+
         private void InitReportItemBody(bool includeTable)
         {
             if (this.Body == null)

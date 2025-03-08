@@ -19,5 +19,8 @@ namespace Majorsilence.Reporting.RdlCreator
         [XmlElement("Rectangle", typeof(Card))]
         public List<Card> Cards { get; set; }
 
+        [XmlElement("Image", typeof(ReportItemImage))]
+        public List<ReportItemImage> Images { get; set; }
+
     }
 }
