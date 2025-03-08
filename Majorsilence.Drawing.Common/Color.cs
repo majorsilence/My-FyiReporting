@@ -116,6 +116,11 @@ namespace Majorsilence.Drawing
             A = a;
         }
 
+        public static Color FromRgb(int a, int r, int g, int b)
+        {
+            return new Color(r, g, b, a);
+        }
+
         public static Color FromName(string name)
         {
             switch (name.ToLower())
@@ -208,12 +213,12 @@ namespace Majorsilence.Drawing
             return new SKColor((byte)R, (byte)G, (byte)B, (byte)A);
         }
 
-//#if !DRAWINGCOMPAT
+#if !DRAWINGCOMPAT
         public static implicit operator System.Drawing.Color(Color p)
         {
             return System.Drawing.Color.FromArgb(p.A, p.R, p.G, p.B);
         }
-//#endif
+#endif
     }
 
 }

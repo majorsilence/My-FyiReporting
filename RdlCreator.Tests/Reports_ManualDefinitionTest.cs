@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 using UglyToad.PdfPig;
 using System.Linq;
 
+#if DRAWINGCOMPAT
+using Majorsilence.Drawing;
+#else
+using System.Drawing;
+#endif
+
 namespace Majorsilence.Reporting.RdlCreator.Tests
 {
     [TestFixture]
@@ -255,7 +261,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
-                                                                    Bottom = "Gray"
+                                                                    Bottom = Color.Green.Name
                                                                 },
                                                                 BorderWidth= new BorderWidth
                                                                 {
@@ -286,7 +292,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
-                                                                    Bottom = "Gray"
+                                                                    Bottom = Color.Green.Name
                                                                 },
                                                                 BorderWidth= new BorderWidth
                                                                 {
@@ -318,7 +324,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                                                                 },
                                                                 BorderColor=new BorderColor
                                                                 {
-                                                                    Bottom = "Gray"
+                                                                    Bottom = Color.Green.Name
                                                                 },
                                                                 BorderWidth= new BorderWidth
                                                                 {
