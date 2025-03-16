@@ -1165,7 +1165,7 @@ namespace Majorsilence.Reporting.RdlViewer
         private void DrawPanelResize(object sender, EventArgs e)
         {
             CalcZoom();                         // calc zoom
-            _DrawPanel.Refresh();
+            _DrawPanel.Invalidate();
         }
 
         private float POINTSIZEF = 72.27f;
