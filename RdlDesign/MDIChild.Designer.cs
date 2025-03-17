@@ -35,10 +35,11 @@ TabPage _Tab;
 			this.rdlDesigner.OnReportItemInserted += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_ReportItemInserted);
 			this.rdlDesigner.OnDesignTabChanged += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_DesignTabChanged);
 			this.rdlDesigner.OnOpenSubreport += new Majorsilence.Reporting.RdlDesign.DesignCtl.OpenSubreportEventHandler(this.rdlDesigner_OpenSubreport);
-			// 
-			// MDIChild
-			// 
-			resources.ApplyResources(this, "$this");
+            this.rdlDesigner.SaveRequested += new Majorsilence.Reporting.RdlDesign.RdlEditPreview.RdlChangeHandler(this.rdlDesigner_SaveRequested);
+            // 
+            // MDIChild
+            // 
+            resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.rdlDesigner);
 			this.Name = "MDIChild";

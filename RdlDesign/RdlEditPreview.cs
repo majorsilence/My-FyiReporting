@@ -59,6 +59,7 @@ namespace Majorsilence.Reporting.RdlDesign
         public event RdlChangeHandler OnSelectionMoved;
 		public event RdlChangeHandler OnReportItemInserted;
 		public event RdlChangeHandler OnDesignTabChanged;
+        public event RdlChangeHandler SaveRequested;
 		public event DesignCtl.OpenSubreportEventHandler OnOpenSubreport; 
 
 		// When toggling between the items we need to track who has latest changes
@@ -125,9 +126,19 @@ namespace Majorsilence.Reporting.RdlDesign
             //ScintillaNET Init
             ScintillaXMLStyle.ConfigureScintillaStyle(scintilla1);
 			scintilla1.SetSavePoint();
-		}
+            scintilla1.KeyDown += new KeyEventHandler(scintilla1_KeyDown);
+        }
 
-		void scintilla1_TextChanged(object sender, EventArgs e)
+        void scintilla1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                e.SuppressKeyPress = true;
+                SaveRequested?.Invoke(this, e);
+            }
+        }
+
+        void scintilla1_TextChanged(object sender, EventArgs e)
 		{
 			_DesignChanged = DesignTabs.Edit;
 			if (noFireRDLTextChanged)

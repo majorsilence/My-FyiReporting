@@ -593,6 +593,11 @@ namespace Majorsilence.Reporting.RdlDesign
             }
         }
 
+        private void rdlDesigner_SaveRequested(object sender, System.EventArgs e)
+        {
+            FileSave();
+        }
+
 
 
         private void SetTitle()
