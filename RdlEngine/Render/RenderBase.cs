@@ -297,7 +297,10 @@ namespace Majorsilence.Reporting.Rdl
                     PageImage i = pi as PageImage;
 
                     //Duc Phan added 20 Dec, 2007 to support sized image 
-                    Draw2.RectangleF r2 = new Draw2.RectangleF(i.X + i.SI.PaddingLeft, i.Y + i.SI.PaddingTop, i.W - i.SI.PaddingLeft - i.SI.PaddingRight, i.H - i.SI.PaddingTop - i.SI.PaddingBottom);
+                    Draw2.RectangleF r2 = new Draw2.RectangleF(i.X + i.SI.PaddingLeft,
+                        i.Y + i.SI.PaddingTop,
+                        PixelsX(i.W, pgs) - i.SI.PaddingLeft - i.SI.PaddingRight,
+                        PixelsY(i.H, pgs) - i.SI.PaddingTop - i.SI.PaddingBottom);
 
                     Draw2.RectangleF adjustedRect;   // work rectangle 
                     Draw2.RectangleF clipRect = Draw2.RectangleF.Empty;
@@ -310,10 +313,11 @@ namespace Majorsilence.Reporting.Rdl
                         case ImageSizingEnum.Clip:
                             //Set samples size
                             var im = Draw2.Image.FromStream(new MemoryStream(i.GetImageData((int)r2.Width, (int)r2.Height)));
+                          
                             float originalWidth = Measurement.PointsFromPixels(im.Width, pgs.G.DpiX);
                             float originalHeight = Measurement.PointsFromPixels(im.Height, pgs.G.DpiY);
                             adjustedRect = new Draw2.RectangleF(r2.Left, r2.Top, originalWidth, originalHeight);
-                            clipRect = new Draw2.RectangleF(r2.Left, r2.Top, r2.Width, r2.Height);
+                            clipRect = new Draw2.RectangleF(r2.Left, r2.Top, originalWidth,originalHeight);
                             im.Dispose();
                             break;
                         case ImageSizingEnum.FitProportional:
@@ -348,7 +352,10 @@ namespace Majorsilence.Reporting.Rdl
 #endif
 
                         AddImage(i.Name, i.SI, i.ImgFormat,
-                        adjustedRect.X, adjustedRect.Y, adjustedRect.Width, adjustedRect.Height, clipRect, i.GetImageData((int)clipRect.Width, (int)clipRect.Height), i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
+                            adjustedRect.X, adjustedRect.Y, adjustedRect.Width,
+                            adjustedRect.Height, clipRect, 
+                            i.GetImageData((int)clipRect.Width, (int)clipRect.Height),
+                            i.SamplesW, i.SamplesH, i.HyperLink, i.Tooltip);
 #if !DRAWINGCOMPAT
                     }
 #endif
@@ -385,6 +392,15 @@ namespace Majorsilence.Reporting.Rdl
 
         }
 
+        internal float PixelsX(float x, Pages pgs)
+        {
+            return (float)(x * pgs.G.DpiX / 72.0f);
+        }
+
+        internal float PixelsY(float y, Pages pgs)
+        {
+            return (float)(y * pgs.G.DpiY / 72.0f);
+        }
 
         private string[] MeasureString(PageText pt, Draw2.Graphics g, out float[] width)
         {
