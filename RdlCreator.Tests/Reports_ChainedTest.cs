@@ -28,6 +28,10 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         {
             var create = new RdlCreator.Create();
             var report = GenerateTestData();
+            report.Author = "Test Author";
+            report.Name = "Test Name";
+            report.Description = "Test Description";
+
             var fyiReport = await create.GenerateRdl(report);
             using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
@@ -38,8 +42,15 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             using var pdfDocument = PdfDocument.Open(pdfStream);
             var text = string.Join(" ", pdfDocument.GetPages().SelectMany(page => page.GetWords()).Select(word => word.Text));
 
-            Assert.That(text, Is.Not.Null);
-            Assert.That(text, Is.EqualTo("Test Data Set Report CategoryID CategoryName Description Beverages Soft drinks, coffees, teas, beers, and ales Condiments Sweet and savory sauces, relishes, spreads, and seasonings Confections Desserts, candies, and sweet breads Dairy Products Cheeses Grains/Cereals Breads, crackers, pasta, and cereal Meat/Poultry Prepared meats Produce Dried fruit and bean curd Seafood Seaweed and fish 1 of 1"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(pdfDocument.Information.Author, Is.EqualTo("Test Author"));
+                Assert.That(pdfDocument.Information.Title, Is.EqualTo("Test Name"));
+                Assert.That(pdfDocument.Information.Subject, Is.EqualTo("Test Description"));
+                Assert.That(pdfDocument.Information.Creator, Is.EqualTo("Majorsilence Reporting - RenderPdf_iTextSharp"));
+                Assert.That(text, Is.Not.Null);
+                Assert.That(text, Is.EqualTo("Test Data Set Report CategoryID CategoryName Description Beverages Soft drinks, coffees, teas, beers, and ales Condiments Sweet and savory sauces, relishes, spreads, and seasonings Confections Desserts, candies, and sweet breads Dairy Products Cheeses Grains/Cereals Breads, crackers, pasta, and cereal Meat/Poultry Prepared meats Produce Dried fruit and bean curd Seafood Seaweed and fish 1 of 1"));
+            });
         }
 
         [Test]

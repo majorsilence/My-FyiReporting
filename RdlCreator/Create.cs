@@ -55,7 +55,8 @@ namespace Majorsilence.Reporting.RdlCreator
             string leftMargin = ".25in",
             string rightMargin = ".25in",
             string bottomMargin = ".25in",
-            string pageHeaderText = "")
+            string pageHeaderText = "",
+            string name="")
         {
             var headerTableCells = new List<TableCell>();
             var bodyTableCells = new List<TableCell>();
@@ -101,7 +102,7 @@ namespace Majorsilence.Reporting.RdlCreator
 
             var xml = InternalReportCreation("", "",
                 "", description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
-                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields, name);
 
             var rdlp = new RDLParser(xml);
             var fyiReport = await rdlp.Parse();
@@ -120,7 +121,8 @@ namespace Majorsilence.Reporting.RdlCreator
             string leftMargin = ".25in",
             string rightMargin = ".25in",
             string bottomMargin = ".25in",
-            string pageHeaderText = "")
+            string pageHeaderText = "",
+            string name="")
         {
             var headerTableCells = new List<TableCell>();
             var bodyTableCells = new List<TableCell>();
@@ -168,7 +170,7 @@ namespace Majorsilence.Reporting.RdlCreator
 
             var xml = InternalReportCreation("", "",
                 "", description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
-                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields, name);
 
             var rdlp = new RDLParser(xml);
 
@@ -191,7 +193,8 @@ namespace Majorsilence.Reporting.RdlCreator
             string leftMargin = ".25in",
             string rightMargin = ".25in",
             string bottomMargin = ".25in",
-            string pageHeaderText = "")
+            string pageHeaderText = "",
+            string name = "")
         {
 
             var headerTableCells = new List<TableCell>();
@@ -253,7 +256,7 @@ namespace Majorsilence.Reporting.RdlCreator
 
             var xml = InternalReportCreation(dataProvider, connectionString,
                 commandText, description, author, pageHeight, pageWidth, width, topMargin, leftMargin,
-                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields);
+                rightMargin, bottomMargin, pageHeaderText, headerTableCells, bodyTableCells, fields, name);
 
             var rdlp = new RDLParser(xml);
             var fyiReport = await rdlp.Parse();
@@ -264,13 +267,15 @@ namespace Majorsilence.Reporting.RdlCreator
         private static string InternalReportCreation(string dataProvider, string connectionString,
             string commandText, string description, string author, string pageHeight, string pageWidth,
             string width, string topMargin, string leftMargin, string rightMargin, string bottomMargin,
-            string pageHeaderText, List<TableCell> headerTableCells, List<TableCell> bodyTableCells, List<Field> fields)
+            string pageHeaderText, List<TableCell> headerTableCells, List<TableCell> bodyTableCells, List<Field> fields,
+            string name)
         {
             // Create a new instance of the Report class
             var report = new Report
             {
                 Description = description,
                 Author = author,
+                Name=name,
                 PageHeight = pageHeight,
                 PageWidth = pageWidth,
                 Width = width,

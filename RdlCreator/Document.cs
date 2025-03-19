@@ -24,6 +24,9 @@ namespace Majorsilence.Reporting.RdlCreator
         [XmlElement(ElementName = "Author")]
         public string Author { get; set; }
 
+        [XmlElement(ElementName = "Name")]
+        public string Name { get; set; }
+
         [XmlElement(ElementName = "PageHeight")]
         public string PageHeight { get; set; }
 
@@ -59,6 +62,12 @@ namespace Majorsilence.Reporting.RdlCreator
         public Document WithAuthor(string author)
         {
             Author = author;
+            return this;
+        }
+
+        public Document WithName(string name)
+        {
+            Name = name;
             return this;
         }
 
@@ -161,6 +170,11 @@ namespace Majorsilence.Reporting.RdlCreator
                 reader.Close();
             }
 
+            itextDocument.AddAuthor(Author);
+            itextDocument.AddCreationDate();
+            itextDocument.AddCreator("Majorsilence Reporting - RenderPdf_iTextSharp");
+            itextDocument.AddSubject(Description);
+            itextDocument.AddTitle(Name);
             itextDocument.Close();
         }
 

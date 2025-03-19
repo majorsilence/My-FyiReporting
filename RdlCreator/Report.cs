@@ -17,6 +17,9 @@ namespace Majorsilence.Reporting.RdlCreator
         [XmlElement(ElementName = "Author")]
         public string Author { get; set; }
 
+        [XmlElement(ElementName = "Name")]
+        public string Name { get; set; }
+
         [XmlElement(ElementName = "PageHeight")]
         public string PageHeight { get; set; }
 
@@ -64,6 +67,12 @@ namespace Majorsilence.Reporting.RdlCreator
         public Report WithAuthor(string author)
         {
             Author = author;
+            return this;
+        }
+
+        public Report WithName(string name)
+        {
+            Name = name;
             return this;
         }
 

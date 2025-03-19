@@ -187,7 +187,10 @@ namespace Majorsilence.Reporting.Rdl
 					case "Author":
 						_Author = xNodeLoop.InnerText;
 						break;
-					case "AutoRefresh":
+                    case "Name":
+                        _Name = new Name(xNodeLoop.InnerText);
+                        break;
+                    case "AutoRefresh":
 						_AutoRefresh = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
 					case "DataSources":

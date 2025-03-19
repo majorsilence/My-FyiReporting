@@ -76,6 +76,33 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             Assert.That(text, Is.EqualTo("Test Header Text Area 1 Lorem ipsum. Hello World"));
         }
 
+        [Test]
+        public async Task PdfInfoAddedTest()
+        {
+            var document = GenerateData(2);
+            document.Author = "Test Author";
+            document.Name = "Test Name";
+            document.Description = "Test Description";
+
+            using var fileStream = new FileStream("PdfInfoAddedTest.pdf", FileMode.Create, FileAccess.Write);
+            await document.Create(fileStream);
+            await fileStream.DisposeAsync();
+            // Majorsilence Reporting - RenderPdf_iTextSharp
+
+            using var pdfDocument = PdfDocument.Open("PdfInfoAddedTest.pdf");
+            var text = string.Join(" ", pdfDocument.GetPages().SelectMany(page => page.GetWords()).Select(word => word.Text));
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(pdfDocument.Information.Author, Is.EqualTo("Test Author"));
+                Assert.That(pdfDocument.Information.Title, Is.EqualTo("Test Name"));
+                Assert.That(pdfDocument.Information.Subject, Is.EqualTo("Test Description"));
+                Assert.That(pdfDocument.Information.Creator, Is.EqualTo("Majorsilence Reporting - RenderPdf_iTextSharp"));
+                Assert.That(text, Is.Not.Null);
+                Assert.That(pdfDocument.NumberOfPages, Is.EqualTo(2));
+            });
+        }
+
         private RdlCreator.Document GenerateData(int pageCount = 1)
         {
             var document = new Document
