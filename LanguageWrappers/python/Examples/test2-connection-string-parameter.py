@@ -1,8 +1,13 @@
 import sys
 sys.path.append("..")
 import report
+import os
 
-rpt = report.Report('C:/Users/peter/Desktop/My-FyiReporting-master/Examples/SqliteExamples/SimpleTestConnectionString.rdl')
-rpt.set_parameter("ConnectionString", 'Data Source=C:/Users/peter/Desktop/My-FyiReporting-master/Examples/northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;')
-rpt.export("pdf", "C:/Users/peter/Desktop/test/hello3.pdf")
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+db_path = os.path.join(current_directory, '..', '..', '..', 'Examples', 'northwindEF.db')
+report_path = os.path.join(current_directory, '..', '..', '..', 'Examples', 'SqliteExamples', 'SimpleTestConnectionString.rdl')
+rpt = report.Report(report_path)
+rpt.set_parameter("ConnectionString", 'Data Source=' + db_path)
+rpt.export("pdf", os.path.join(current_directory, 'output', 'SimpleTestConnectionString.pdf'))
 

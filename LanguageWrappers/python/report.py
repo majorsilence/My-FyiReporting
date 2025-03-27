@@ -1,8 +1,9 @@
-from config import *
+import config
 import tempfile
 import os
 import shutil
 import subprocess
+import platform
 
 class Report :
 
@@ -33,21 +34,14 @@ class Report :
 			type = "pdf"
 		
 		
-	
-		global self_hosting_rdlcmd
-		global path_to_rdlcmd
-		global path_to_mono
-		global is_running_on_windows
-		
-		
 		cmd = []
-		if(self_hosting_rdlcmd == True or is_running_on_windows == True):
+		if platform.system() == 'Windows':
 			# if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
-			cmd.append(path_to_rdlcmd)
+			cmd.append(config.path_to_rdlcmd)
 		else:
 			# mono is required to run rdlcmd
-			cmd.append(path_to_mono)
-			cmd.append(path_to_rdlcmd)
+			cmd.append(config.path_to_dotnet)
+			cmd.append(config.path_to_rdlcmd)
 		
 		
 		fd, temp_name = tempfile.mkstemp()
@@ -60,7 +54,7 @@ class Report :
 		
 		# Add all parameters to report
 		count=0
-		print self.__parameters
+		print(self.__parameters)
 		for key in self.__parameters:
 			if (count == 0):
 				rdl_path = rdl_path + '?' + key + '=' + self.__parameters[key]
@@ -100,9 +94,13 @@ class Report :
 		fd, temp_name = tempfile.mkstemp()
 		os.close(fd);
 		self.export(type, temp_name)
-		f = open(temp_name, 'r+')
-		data = f.read()
-		f.close()
+		if type == "pdf" or type == "tif" or type == "rtf" or type == "xslx":
+			with open(temp_name, 'rb') as binary_file:
+				data = binary_file.read()
+		else:
+			with open(temp_name, 'r+') as text_file:
+				data = text_file.read()
+
 		os.remove(temp_name)
 	
 		return data
