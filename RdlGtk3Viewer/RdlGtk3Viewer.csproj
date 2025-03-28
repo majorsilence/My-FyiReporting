@@ -14,7 +14,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="GtkSharp" />
+		<PackageReference Include="Microsoft.Data.SqlClient" />
 		<PackageReference Include="Microsoft.Data.Sqlite" />
+		<PackageReference Include="Npgsql" />
 	</ItemGroup>
 
 </Project>
