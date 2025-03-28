@@ -527,7 +527,7 @@ namespace Majorsilence.Reporting.RdlDesign
             return;
         }
 
-        static internal DesktopConfig DesktopConfiguration
+        static public DesktopConfig DesktopConfiguration
         {
             get
             {
@@ -678,11 +678,11 @@ namespace Majorsilence.Reporting.RdlDesign
     }
 
 
-    internal class DesktopConfig
+    public class DesktopConfig
     {
-        internal string Directory;
-        internal string Port;
-	    internal string Language;
-        internal string Units;
+        public string Directory;
+        public string Port;
+        public string Language;
+        public string Units;
     }
 }

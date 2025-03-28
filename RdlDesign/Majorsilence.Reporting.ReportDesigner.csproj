@@ -3,9 +3,9 @@
 		<ProjectType>Local</ProjectType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
-		<AssemblyName>RdlDesigner</AssemblyName>
+		<AssemblyName>Majorsilence.Reporting.RdlDesigner</AssemblyName>
 		<DelaySign>false</DelaySign>
-		<OutputType>WinExe</OutputType>
+		<OutputType>Library</OutputType>
 		<RootNamespace>fyiReporting.RdlDesign</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<UseWindowsForms>true</UseWindowsForms>

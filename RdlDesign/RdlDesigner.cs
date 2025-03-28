@@ -67,7 +67,7 @@ namespace Majorsilence.Reporting.RdlDesign
 	public partial class RdlDesigner : IMessageFilter
 	{
 		// The version should match what is set in program.cs
-		static readonly string IpcFileName = string.Format("\\fyiIpcData{0}.txt", typeof(Program).Assembly.GetName().Version.ToString().Replace(".", ""));
+		static readonly string IpcFileName = string.Format("\\fyiIpcData{0}.txt", typeof(RdlDesigner).Assembly.GetName().Version.ToString().Replace(".", ""));
 
 		static readonly string optFileName = Path.Combine(Majorsilence.Reporting.Rdl.Utility.Paths.MajorsilenceRoamingFolder(), "designerstate.xml");
 		SortedList<DateTime, string> _RecentFiles = null;
