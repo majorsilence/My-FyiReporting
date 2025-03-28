@@ -3,6 +3,8 @@
 	<DataSources>
 		<DataSource>
 			<DataProvider>SQL</DataProvider>
+			<CodeModule>System.Data.SqlClient.dll</CodeModule>
+			<ClassName>System.Data.SqlClient.SqlConnection</ClassName>
 			<TableSelect>SELECT TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES ORDER BY 2, 1</TableSelect>
 			<Interface>SQL</Interface>
 		</DataSource>

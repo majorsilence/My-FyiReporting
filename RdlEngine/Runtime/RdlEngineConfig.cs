@@ -517,12 +517,6 @@ namespace Majorsilence.Reporting.Rdl
             IDbConnection cn = null;
             switch (provider.ToLower())
             {
-                case "sql":
-                    // can't connect unless information provided; 
-                    //   when user wants to set the connection programmatically this they should do this 
-                    if (cstring.Length > 0)
-                        cn = new SqlConnection(cstring);
-                    break;
                 case "odbc":
                     cn = new OdbcConnection(cstring);
                     break;

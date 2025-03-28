@@ -197,18 +197,11 @@
 	<ItemGroup>	
 		<PackageReference Include="Microsoft.Data.Edm" />
 		<PackageReference Include="Microsoft.Data.OData" />
-		<PackageReference Include="Microsoft.Data.Sqlite" />
 		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="System.Spatial" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net48' ">
-		<PackageReference Include="dotConnect.Express.for.PostgreSQL" />
-		<PackageReference Include="jacobslusser.ScintillaNET" />
-		<PackageReference Include="Microsoft.Data.Services.Client" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows' Or '$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="fernandreu.ScintillaNET" />
 		<PackageReference Include="Microsoft.Data.SqlClient" />
+		<PackageReference Include="System.Data.SqlClient" />
+		<PackageReference Include="fernandreu.ScintillaNET" />	
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="ChartCtl - Copy.cs" />

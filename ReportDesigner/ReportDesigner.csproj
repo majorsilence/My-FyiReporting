@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+	<PackageReference Include="Microsoft.Data.SqlClient" />
+	<PackageReference Include="System.Data.SqlClient" />
+	<PackageReference Include="System.Data.Odbc" />
+    <PackageReference Include="System.Data.OleDb" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RdlDesign\Majorsilence.Reporting.ReportDesigner.csproj" />
   </ItemGroup>
 
