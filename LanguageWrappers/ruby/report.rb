@@ -19,6 +19,13 @@ class Report
 		
 	end
 
+	def set_connection_string(connection_string)
+		#Set the connection string for the report
+		# connection_string - string - the connection string to use for the report
+		
+		@connection_string = connection_string
+	end
+
 	def export(type, export_path)
 		# Export report to a file on the server
 		# type - string - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
@@ -30,12 +37,12 @@ class Report
 		
 		
 		cmd = []
-		if($self_hosting_rdlcmd == true or $is_running_on_windows == true)
-			# if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
+		if Gem.win_platform?
+			# if self hosted or on windows we do not need to set the path to dotnet, rdlcmd can be run directly
 			cmd.push($path_to_rdlcmd)
 		else
-			# mono is required to run rdlcmd
-			cmd.push($path_to_mono)
+			# dotnet is required to run rdlcmd
+			cmd.push($path_to_dotnet)
 			cmd.push($path_to_rdlcmd)
 		end
 		
@@ -68,6 +75,12 @@ class Report
 		
 		#set the folder that the file will be exported
 		cmd.push('/o' + temp_folder)
+
+		if @connection_string
+			cmd.push('/c' + @connection_string)
+		end
+
+		#puts cmd.join(" ")
 		
 		IO.popen(cmd) do |io|
 			 # wait until process finished

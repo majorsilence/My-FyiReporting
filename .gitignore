@@ -241,3 +241,4 @@ obj/
 .DS_Store
 *.pyc
 /LanguageWrappers/python/Examples/output
+/LanguageWrappers/ruby/Examples/output
