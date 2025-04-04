@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import sys
 sys.path.append("..")
 import report
@@ -13,5 +15,10 @@ rpt = report.Report(report_path)
 rpt.set_parameter("TestParam1", 'I am a parameter value.')
 rpt.set_parameter("TestParam2", 'The second parameter.')
 rpt.set_connection_string('Data Source=' + db_path)
-rpt.export("pdf", os.path.join(current_directory, 'output', 'SimpleTest3WithParameters.pdf'))
+
+output_directory = os.path.join(current_directory, 'output')
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
+
+rpt.export("pdf", os.path.join(output_directory, 'test2-parameters.pdf'))
 
