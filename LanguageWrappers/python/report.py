@@ -9,6 +9,7 @@ class Report :
 
 	__report_path=""
 	__parameters = {}
+	__connection_string = None
 	
 	def __init__(self, report_path):
 		self.__report_path = report_path
@@ -22,7 +23,14 @@ class Report :
 		
 		self.__parameters.update({name:value})
 		
-	
+	def set_connection_string(self, connection_string):
+		'''
+		Set the connection string for the report
+		 connection_string - string - the connection string to use for the report
+		'''
+		
+		self.__connection_string = connection_string
+
 
 	def export(self, type, export_path):
 		'''
@@ -32,14 +40,13 @@ class Report :
 		'''
 		if (type != "pdf" and type != "csv" and type != "xslx" and type != "xml" and type != "rtf" and type != "tif" and type != "html"):
 			type = "pdf"
-		
-		
+			
 		cmd = []
 		if platform.system() == 'Windows':
-			# if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
+			# if self hosted or on windows we do not need to set the path to dotnet, rdlcmd can be run directly
 			cmd.append(config.path_to_rdlcmd)
 		else:
-			# mono is required to run rdlcmd
+			# dotnet is required to run rdlcmd
 			cmd.append(config.path_to_dotnet)
 			cmd.append(config.path_to_rdlcmd)
 		
@@ -54,7 +61,6 @@ class Report :
 		
 		# Add all parameters to report
 		count=0
-		print(self.__parameters)
 		for key in self.__parameters:
 			if (count == 0):
 				rdl_path = rdl_path + '?' + key + '=' + self.__parameters[key]
@@ -70,14 +76,18 @@ class Report :
 		
 		#set the folder that the file will be exported
 		cmd.append('/o' + temp_folder)
+
+		if self.__connection_string:
+			cmd.append('/c' + self.__connection_string+'')
 		
-		subprocess.call(cmd)
+		#print("Executing command:", cmd)
+
+		subprocess.run(cmd)
 
 		temp_pdf = temp_folder + os.sep + os.path.basename(temp_name) + "." + type
 		final_pdf = export_path
-		#echo(cmd)
+
 		shutil.copyfile(temp_pdf, final_pdf)
-		
 		os.remove(temp_name)
 		os.remove(temp_pdf)
 	

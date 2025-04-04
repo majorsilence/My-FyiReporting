@@ -65,6 +65,7 @@ namespace Majorsilence.Reporting.RdlCmd
 			string[] types=null;
 			string dir=null;
 			int returnCode=0;
+            string connectionStringOverwrite = string.Empty;
 			foreach(string s in args)
 			{
 				string t = s.Substring(0,2);
@@ -106,6 +107,10 @@ namespace Majorsilence.Reporting.RdlCmd
                     case "-u":
                         rc._user = s.Substring(2); // Allow the user to be set via a command line param (u) GJL AJM 12062008
                         break;
+                    case "/c":
+                    case "-c":
+                        connectionStringOverwrite = s.Substring(2);
+                        break;
                     default:
 						Console.WriteLine("Unknown command '{0}' ignored.", s);
 						returnCode = 4;
@@ -134,7 +139,7 @@ namespace Majorsilence.Reporting.RdlCmd
 
 			rc.returnCode = returnCode;
 
-            await rc.DoRender(dir, files, types);				
+            await rc.DoRender(dir, files, types, connectionStringOverwrite);				
 
 			return rc.returnCode;
 		}
@@ -145,7 +150,7 @@ namespace Majorsilence.Reporting.RdlCmd
 		}
 
 		// Render the report files with the requested types
-		private async Task DoRender(string dir, string[] files, string[] types)
+		private async Task DoRender(string dir, string[] files, string[] types, string connectionStringOverwrite)
 		{
 			string source;
 			Report report;
@@ -184,7 +189,7 @@ namespace Majorsilence.Reporting.RdlCmd
 					continue;					// error: process the rest of the files
 
 				// Compile the report
-				report = await this.GetReport(source, file);
+				report = await this.GetReport(source, file, connectionStringOverwrite);
                 report.UserID = _user; //Set the user of the report based on the parameter passed in GJL AJM 12062008
                 if (this._ShowStats)
                 {
@@ -247,16 +252,16 @@ namespace Majorsilence.Reporting.RdlCmd
 			// parms are separated by &
 			char[] breakChars = new char[] {'&'};
 			string[] ps = parms.Split(breakChars);
-			foreach (string p in ps)
-			{
-				int iEq = p.IndexOf("=");
-				if (iEq > 0)
-				{
-					string name = p.Substring(0, iEq);
-					string val = p.Substring(iEq+1);
-					ld.Add(name, val);	
-				}
-			}
+            foreach (string p in ps)
+            {
+                int iEq = p.IndexOf("=");
+                if (iEq > 0)
+                {
+                    string name = p.Substring(0, iEq);
+                    string val = p.Substring(iEq + 1);
+                    ld.Add(name, val);
+                }
+            }
 			return ld;
 		}
 
@@ -283,7 +288,7 @@ namespace Majorsilence.Reporting.RdlCmd
 			return prog;
 		}
 
-		private async Task<Report> GetReport(string prog, string file)
+		private async Task<Report> GetReport(string prog, string file, string connectionStringOverwrite)
 		{
 			// Now parse the file
 			RDLParser rdlp;
@@ -296,6 +301,11 @@ namespace Majorsilence.Reporting.RdlCmd
 					folder = Environment.CurrentDirectory;
 				rdlp.Folder = folder;
 				rdlp.DataSourceReferencePassword = new NeedPassword(this.GetPassword);
+                if (!string.IsNullOrWhiteSpace(connectionStringOverwrite))
+                {
+                    rdlp.OverwriteConnectionString = connectionStringOverwrite;
+                }
+                
 
 				r = await rdlp.Parse();
 				if (r.ErrorMaxSeverity > 0) 
