@@ -96,7 +96,6 @@ mkdir "$buildoutputpath_python"
 
 Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\config.xml "$buildoutputpath_python\config.xml"
 Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_python\" -Recurse
-Copy-Item ".\LanguageWrappers\python\config.py" "$buildoutputpath_python\config.py"
 Copy-Item ".\LanguageWrappers\python\report.py" "$buildoutputpath_python\report.py"
 
 cd Release-Builds
@@ -114,7 +113,6 @@ mkdir "$buildoutputpath_ruby"
 Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\config.xml "$buildoutputpath_ruby\config.xml"
 Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_ruby\" -Recurse
 
-Copy-Item ".\LanguageWrappers\ruby\config.rb" "$buildoutputpath_ruby\config.rb"
 Copy-Item ".\LanguageWrappers\ruby\report.rb" "$buildoutputpath_ruby\report.rb"
 
 cd Release-Builds
