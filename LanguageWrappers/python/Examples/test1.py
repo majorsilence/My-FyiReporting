@@ -10,6 +10,7 @@ import platform
 current_directory = os.path.dirname(os.path.abspath(__file__))
 base_directory = os.path.join(current_directory, '..', '..', '..')
 base_directory = os.path.abspath(base_directory)
+
 db_path = os.path.join(current_directory, '..', '..', '..', 'Examples', 'northwindEF.db')
 db_path = os.path.abspath(db_path)
 report_path = os.path.join(current_directory, '..', '..', '..', 'Examples', 'SqliteExamples', 'SimpleTest1.rdl')
@@ -26,12 +27,11 @@ else:
 
 path_to_rdlcmd = os.path.abspath(path_to_rdlcmd)
 
-# REPORT EXAMPLE
-rpt = report.Report(report_path, path_to_rdlcmd, path_to_dotnet)
-
 output_directory = os.path.join(current_directory, 'output')
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
 
+# REPORT EXAMPLE
+rpt = report.Report(report_path, path_to_rdlcmd, path_to_dotnet)
 rpt.set_connection_string('Data Source=' + db_path)
 rpt.export("pdf", os.path.join(output_directory, 'test1.pdf'))

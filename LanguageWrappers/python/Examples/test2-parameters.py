@@ -28,16 +28,15 @@ else:
 
 path_to_rdlcmd = os.path.abspath(path_to_rdlcmd)
 
+output_directory = os.path.join(current_directory, 'output')
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
+
 # REPORT EXAMPLE
 
 rpt = report.Report(report_path, path_to_rdlcmd, path_to_dotnet)
 rpt.set_parameter("TestParam1", 'I am a parameter value.')
 rpt.set_parameter("TestParam2", 'The second parameter.')
 rpt.set_connection_string('Data Source=' + db_path)
-
-output_directory = os.path.join(current_directory, 'output')
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
-
 rpt.export("pdf", os.path.join(output_directory, 'test2-parameters.pdf'))
 
