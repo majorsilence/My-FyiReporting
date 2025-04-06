@@ -1,18 +1,59 @@
-import config
 import tempfile
 import os
 import shutil
 import subprocess
-import platform
+
+
 
 class Report :
-
+	"""
+	Report Class
+	This class provides functionality to generate and export reports using the RDL (Report Definition Language) command-line tool. 
+	It supports exporting reports in various formats such as PDF, CSV, XLSX, XML, RTF, TIF, and HTML.
+	Usage:
+	1. Copy and paste the `report.py` file into your Python project.
+	2. Import the `Report` class into your script:
+		```python
+		import report
+		```
+	3. Create an instance of the `Report` class:
+		```python
+		rpt = report.Report(report_path="path_to_report.rdl", rdl_cmd_path="path_to_rdl_cmd.exe", path_to_dotnet="path_to_dotnet_executable")
+		```
+		- `report_path`: Path to the RDL file.
+		- `rdl_cmd_path`: Path to the RDL command-line executable.
+		- `path_to_dotnet`: (Optional) Path to the .NET executable, if required.
+	4. Set report parameters (if any):
+		```python
+		rpt.set_parameter("ParameterName", "ParameterValue")
+		```
+	5. Set the connection string (if required):
+		```python
+		rpt.set_connection_string("your_connection_string")
+		```
+	6. Export the report to a file:
+		```python
+		rpt.export(type="pdf", export_path="output_path.pdf")
+		```
+		- `type`: The export format. Supported formats are "pdf", "csv", "xslx", "xml", "rtf", "tif", "html". Defaults to "pdf".
+		- `export_path`: The path where the exported file will be saved.
+	7. Export the report to memory (for direct display):
+		```python
+		data = rpt.export_to_memory(type="pdf")
+		```
+		- `type`: The export format. Supported formats are "pdf", "csv", "xslx", "xml", "rtf", "tif", "html". Defaults to "pdf".
+		- Returns the exported report data as a string or binary, depending on the format.
+	"""
 	__report_path=""
 	__parameters = {}
 	__connection_string = None
+	__rdl_cmd_path=""
+	__path_to_dotnet = None
 	
-	def __init__(self, report_path):
+	def __init__(self, report_path: str, rdl_cmd_path: str, path_to_dotnet :str =None):
 		self.__report_path = report_path
+		self.__rdl_cmd_path = rdl_cmd_path
+		self.__path_to_dotnet = path_to_dotnet
 	
 	def set_parameter(self, name, value):
 		'''
@@ -23,7 +64,7 @@ class Report :
 		
 		self.__parameters.update({name:value})
 		
-	def set_connection_string(self, connection_string):
+	def set_connection_string(self, connection_string: str):
 		'''
 		Set the connection string for the report
 		 connection_string - string - the connection string to use for the report
@@ -32,7 +73,7 @@ class Report :
 		self.__connection_string = connection_string
 
 
-	def export(self, type, export_path):
+	def export(self, type : str, export_path : str):
 		'''
 		 Export report to a file on the server
 		 type - string - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
@@ -42,15 +83,11 @@ class Report :
 			type = "pdf"
 			
 		cmd = []
-		if platform.system() == 'Windows':
-			# if self hosted or on windows we do not need to set the path to dotnet, rdlcmd can be run directly
-			cmd.append(config.path_to_rdlcmd)
-		else:
-			# dotnet is required to run rdlcmd
-			cmd.append(config.path_to_dotnet)
-			cmd.append(config.path_to_rdlcmd)
-		
-		
+		if (self.__path_to_dotnet != None):
+			cmd.append(self.__path_to_dotnet)
+
+		cmd.append(self.__rdl_cmd_path)
+	
 		fd, temp_name = tempfile.mkstemp()
 		os.close(fd)
 		temp_folder = os.path.dirname(temp_name)
@@ -93,7 +130,7 @@ class Report :
 	
 
 
-	def export_to_memory(self, type):
+	def export_to_memory(self, type : str) -> bytes | str :
 		'''
 		Export report to memory for direct display on page
 		type - string - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
