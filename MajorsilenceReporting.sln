@@ -195,11 +195,9 @@ Global
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Debug-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
-		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Debug-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release-DrawingCompat|Any CPU.ActiveCfg = Release|Any CPU
-		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release-DrawingCompat|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
