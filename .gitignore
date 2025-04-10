@@ -242,3 +242,4 @@ obj/
 *.pyc
 /LanguageWrappers/python/Examples/output
 /LanguageWrappers/ruby/Examples/output
+/LanguageWrappers/php/Examples/output
