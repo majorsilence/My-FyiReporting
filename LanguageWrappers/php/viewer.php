@@ -1,5 +1,5 @@
 <?php
-namespace MyFyiReporting;
+namespace MajorsilenceReporting;
 
 require_once("report.php");
 

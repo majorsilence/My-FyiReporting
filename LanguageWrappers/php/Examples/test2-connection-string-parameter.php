@@ -1,4 +1,6 @@
 <?php
+// HOWTO run from command line:
+// php.exe -f test2-connection-string-parameter.php
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -8,9 +10,38 @@ date_default_timezone_set('America/Los_Angeles');
 require_once("../report.php");
 
 
-$rpt = new MyFyiReporting\Report('C:\Users\peter\Desktop\My-FyiReporting-master\Examples\SqliteExamples\SimpleTestConnectionString.rdl');
-$rpt->set_parameter("ConnectionString", 'Data Source=C:\Users\peter\Desktop\My-FyiReporting-master\Examples\northwindEF.db;Version=3;Pooling=True;Max Pool Size=100;');
-$rpt->export("pdf", "C:\\Users\\peter\\Desktop\\test\hello3.pdf");
+# SETUP
+$current_directory = dirname(__FILE__);
+$base_directory = realpath($current_directory . '/../../../');
+
+$db_path = realpath($current_directory . '/../../../Examples/northwindEF.db');
+$report_path = realpath($current_directory . '/../../../Examples/SqliteExamples/SimpleTest3WithParameters.rdl');
+
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    // If self-hosted or on Windows, we do not need to set the path to dotnet, rdlcmd can be run directly
+    $path_to_dotnet = null;
+    $path_to_rdlcmd = realpath($base_directory . '/RdlCmd/bin/Release/net8.0/win-x64/publish/RdlCmd.exe');
+} else {
+    // dotnet is required to run rdlcmd
+    // if a self contained build is used, the path to dotnet is not needed and the call should be to RdlCmd instead of RdlCmd.dll directly
+    // if a self contained build is not used, the path to dotnet is needed
+    $path_to_dotnet = 'dotnet';
+    $path_to_rdlcmd = realpath($base_directory . '/RdlCmd/bin/Debug/net8.0/RdlCmd.dll');
+}
+
+$output_directory = $current_directory . '/output';
+if (!file_exists($output_directory)) {
+    mkdir($output_directory, 0777, true);
+}
+
+
+# EXAMPLE REPORT
+
+$rpt = new MajorsilenceReporting\Report($report_path, $path_to_rdlcmd, $path_to_dotnet);
+$rpt->set_parameter("TestParam1", 'I am a parameter value.');
+$rpt->set_parameter("TestParam2", 'The second parameter.');
+$rpt->set_connection_string('Data Source=' . $db_path);
+$rpt->export("pdf", $output_directory . '/test2-parameters.pdf');
 
 
 ?>

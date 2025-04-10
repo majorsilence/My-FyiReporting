@@ -1,25 +1,21 @@
 <?php
-namespace MyFyiReporting;
-require_once("config.php");
-
+namespace MajorsilenceReporting;
 
 class Report {
 
 	private $report_path="";
+	private $rdl_cmd_path="";
+	private $dotnet_path="";
+	private $connection_string="";
 	private $parameters = array();
 	private $rdlcmd_dir = "";
 	
-	public function __construct($report_path){
+	public function __construct($report_path, $rdl_cmd_path, $dotnet_path = null){
 		$this->report_path = $report_path;
+		$this->rdl_cmd_path = $rdl_cmd_path;
+		$this->dotnet_path = $dotnet_path;
 		
-		global $path_to_rdlcmd;
-		
-		if (file_exists($path_to_rdlcmd) == false)
-		{
-			throw new \Exception("RdlCmd.exe not found.  Set path to RdlCmd.exe in config.php");
-		}
-		
-		$this->rdlcmd_dir = dirname($path_to_rdlcmd);
+		$this->rdlcmd_dir = dirname($rdl_cmd_path);
 	}
 
 	/**
@@ -32,6 +28,10 @@ class Report {
 		$this->parameters[$name] = $value;
 	}
 	
+	public function set_connection_string($connection_string){
+		$this->connection_string = $connection_string;
+	}
+
 	/**
 	* Export report to a file on the server
 	* @param string $type - Export type "pdf", "csv", "xslx", "xml", "rtf", "tif", "html".  If type does not match it will default to PDF.
@@ -41,30 +41,18 @@ class Report {
 		if ($type != "pdf" && $type != "csv" && $type != "xslx" && $type != "xml" && $type != "rtf" && $type != "tif" && $type != "html"){
 			$type = "pdf";
 		}
-		
-	
-		global $self_hosting_rdlcmd, $path_to_rdlcmd, $path_to_mono, $is_running_on_windows, $override_tmp_folder;
-		
-		
+
 		$cmd = "";
-		if($self_hosting_rdlcmd == true || $is_running_on_windows == true){
-			// if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
-			$cmd = '"' . $path_to_rdlcmd . '" ';
+		if ($this->dotnet_path != null){
+			$cmd = '"' . $this->dotnet_path . '" "' . $this->rdl_cmd_path . '" ';
 		}
 		else{
-			// mono is required to run rdlcmd
-			$cmd = '"' . $path_to_mono . '" "' . $path_to_rdlcmd . '" ';
+			// if self hosted or on windows we do not need to set the path to mono, rdlcmd can be run directly
+			$cmd = '"' . $this->rdl_cmd_path . '" ';
 		}
 		
-		$temp_folder = "";
-		if ($override_tmp_folder == "")
-		{
-			$temp_folder = sys_get_temp_dir();
-		}
-		else
-		{
-			$temp_folder = $override_tmp_folder;
-		}
+		$temp_folder = sys_get_temp_dir();
+
 			
 		$temp_name = tempnam($temp_folder, "majorsilencereporting");
 		copy($this->report_path, $temp_name);
@@ -92,6 +80,10 @@ class Report {
 		
 		//set the folder that the file will be exported
 		$cmd = $cmd . '"/o' . $temp_folder . '" ';
+
+		if (!empty($this->connection_string)) {
+			$cmd .= '"/c' . $this->connection_string . '" ';
+		}
 		
 		$cdir = getcwd();
 		chdir ($this->rdlcmd_dir);
@@ -147,7 +139,6 @@ class Report {
 	}
 	
 }
-
 
 
 
