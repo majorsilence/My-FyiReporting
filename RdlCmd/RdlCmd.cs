@@ -91,6 +91,10 @@ namespace Majorsilence.Reporting.RdlCmd
 					case "-t":
 						types = s.Substring(2).Split(breakChars);
 						break;
+                    case "--help":
+                    case "-help":
+                    case "-h":
+                    case "--h":
 					case "/?":
 					case "-?":
 						WriteHelp();
@@ -647,7 +651,9 @@ namespace Majorsilence.Reporting.RdlCmd
             Console.WriteLine("  xslx, xlsx_table, rtf, tif, tifb   e.g /tpdf+xml");
 			Console.WriteLine("/o is followed by the output directory.   The file name is the same as the");
 			Console.WriteLine("  input (or the rc:ofile parameter) except with the type as the extension.");
-			Console.WriteLine("/p is followed by the pass phrase needed by reports using a shared data source.");
+            Console.WriteLine("/c is followed by the connection string");
+            Console.WriteLine("  This will overwrite the connection string in the report definition.");
+            Console.WriteLine("/p is followed by the pass phrase needed by reports using a shared data source.");
 			Console.WriteLine("/s displays elapsed time statistics");
 			Console.WriteLine("/i is followed by an image filename to be stamped onto first page of the PDF.");
 			Console.WriteLine("  Location arguments x, y, h, w can optionally be passed using '?'");
