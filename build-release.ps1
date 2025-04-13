@@ -92,8 +92,14 @@ cd Release-Builds
 cd build-output	
 ..\7za.exe a -tzip $Version-majorsilence-reporting-designer-$pTargetFramework-anycpu.zip majorsilence-reporting-designer-$pTargetFramework-anycpu\
 ..\7za.exe a -tzip $Version-majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu\
-..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\
-..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-mapfile-$pTargetFrameworkGeneric-anycpu.zip majorsilence-reporting-mapfile-$pTargetFrameworkGeneric-anycpu\
+
+..\7za.exe a -tzip "$Version-majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu.zip" `
+  -x!"majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\$pTargetFrameworkGeneric\win-arm64\" `
+  -x!"majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\$pTargetFrameworkGeneric\win-x64\" `
+  "majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\"
+
+
 ..\7za.exe a -tzip $Version-majorsilence-reporting-viewer-$pTargetFramework-anycpu.zip majorsilence-reporting-viewer-$pTargetFramework-anycpu\
 ..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-self-contained.zip majorsilence-reporting-rdlcmd-self-contained\
 cd "$CURRENTPATH"
@@ -107,7 +113,6 @@ $buildoutputpath_php="$CURRENTPATH\Release-Builds\build-output\majorsilence-repo
 delete_files "$buildoutputpath_php"
 mkdir "$buildoutputpath_php"
 
-Copy-Item ".\LanguageWrappers\php\config.php" "$buildoutputpath_php\config.php"
 Copy-Item ".\LanguageWrappers\php\report.php" "$buildoutputpath_php\report.php"
 
 cd Release-Builds
