@@ -148,7 +148,7 @@ namespace Majorsilence.Reporting.Rdl
 		</DataSource>
 		<DataSource>
 			<DataProvider>MySQL.NET</DataProvider>
-			<CodeModule>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.3.7\Assemblies\v2.0\MySql.Data.dll</CodeModule>
+			<CodeModule>MySql.Data.dll</CodeModule>
 			<ClassName>MySql.Data.MySqlClient.MySqlConnection</ClassName>
 			<TableSelect>show tables</TableSelect>
 			<Interface>SQL</Interface>

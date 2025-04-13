@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<ApplicationIcon>App.ico</ApplicationIcon>
 		<AssemblyKeyContainerName></AssemblyKeyContainerName>
@@ -28,6 +28,7 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.SqlClient" />
 	  <PackageReference Include="Microsoft.Data.Sqlite" />
+	  <PackageReference Include="MySql.Data" />
 	  <PackageReference Include="Npgsql" />
 	</ItemGroup>
 	<ItemGroup>
