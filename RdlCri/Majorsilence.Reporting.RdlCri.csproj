@@ -22,10 +22,10 @@
         <PackageReference Include="BarcodeLib" />
         <PackageReference Include="ZXing.Net" />
     </ItemGroup>
-	<ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' != 'Debug-DrawingCompat' And '$(Configuration)' != 'Release-DrawingCompat'">
 		<PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" />
 	</ItemGroup>
-	<ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">
 		<PackageReference Include="ZXing.Net.Bindings.SkiaSharp" />
 	</ItemGroup>
 		
