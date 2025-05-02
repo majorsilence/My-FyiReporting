@@ -1,5 +1,6 @@
 ﻿using Majorsilence.Drawing.Drawing2D;
 using SkiaSharp;
+using System.Reflection;
 
 
 namespace Majorsilence.Drawing
@@ -96,6 +97,46 @@ namespace Majorsilence.Drawing
         public byte G { get; }
         public byte B { get; }
         public byte A { get; }
+
+        private string _name = null;
+        public string Name
+        {
+            get
+            {
+                if (_name != null)
+                {
+                    return _name;
+                }
+
+                _name = GetColorName(ToSkColor());
+                return _name;
+            }
+        }
+
+        private static string GetColorName(SKColor color)
+        {
+            // Get all public static properties of the SKColors class
+            var properties = typeof(SKColors).GetFields(BindingFlags.Public | BindingFlags.Static);
+
+            foreach (var property in properties)
+            {
+                // Get the value of the property (which is an SKColor)
+                if (property.GetValue(null) is SKColor skColor)
+                {
+                    // Compare the RGBA values
+                    if (skColor.Red == color.Red &&
+                        skColor.Green == color.Green &&
+                        skColor.Blue == color.Blue &&
+                        skColor.Alpha == color.Alpha)
+                    {
+                        return property.Name; // Return the name of the matching color
+                    }
+                }
+            }
+
+            return string.Empty; // No match found
+        }
+
 
         public bool IsEmpty => R == 0 && G == 0 && B == 0 && A == 0;
 
