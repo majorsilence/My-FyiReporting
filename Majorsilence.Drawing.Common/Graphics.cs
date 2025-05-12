@@ -300,14 +300,14 @@ namespace Majorsilence.Drawing
 
         public Region[] MeasureCharacterRanges(string text, Font font, RectangleF layoutRect, StringFormat stringFormat)
         {
-            var skPaint = font.ToSkPaint();
+            var skPaint = font.ToSkFont();
             var regions = new List<Region>();
 
             foreach (var range in stringFormat.MeasurableCharacterRanges)
             {
                 var substring = text.Substring(range.First, range.Length);
                 var bounds = new SKRect();
-                skPaint.MeasureText(substring, ref bounds);
+                skPaint.MeasureText(substring, out bounds);
 
                 var region = new Region(
                     (int)(layoutRect.X + bounds.Left),
