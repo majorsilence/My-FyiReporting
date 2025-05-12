@@ -7,7 +7,7 @@ namespace Majorsilence.Drawing
     public class Font : IDisposable
     {
         private SKTypeface _typeface;
-        private SKPaint _paint;
+        private SKFont _paint;
 
         // Properties for Family, Size, Style
         public string FontFamily { get; }
@@ -27,7 +27,7 @@ namespace Majorsilence.Drawing
             Style = style;
 
             // Determine SkiaSharp style flags based on FontStyle
-            
+
             var typefaceStyle = SKFontStyle.Normal;
             if ((style & FontStyle.Bold) != 0 && (style & FontStyle.Italic) != 0)
                 typefaceStyle = SKFontStyle.BoldItalic;
@@ -39,12 +39,9 @@ namespace Majorsilence.Drawing
             // Create the SkiaSharp Typeface based on the family and style
             _typeface = SKTypeface.FromFamilyName(fontFamily, typefaceStyle);
 
-            // Initialize the SKPaint for text rendering
-            _paint = new SKPaint
-            {
-                Typeface = _typeface,
-                TextSize = size
-            };
+            // Initialize the SKFont for text rendering
+            _paint = new SKFont(_typeface, size);
+
         }
 
         public Font(Drawing.FontFamily fontFamily, float size, FontStyle style)
@@ -60,15 +57,15 @@ namespace Majorsilence.Drawing
             }
 
             // Measure the height of a sample text to determine the font height
-            using (var paint = new SKPaint { Typeface = _typeface, TextSize = Size })
+            using (var paint = new SKFont(_typeface, Size))
             {
-                var metrics = paint.FontMetrics;
+                var metrics = paint.Metrics;
                 return Math.Ceiling(metrics.Descent - metrics.Ascent);
             }
         }
 
         // Property to get SKPaint (useful for drawing text)
-        public SKPaint ToSkPaint()
+        public SKFont ToSkFont()
         {
             return _paint;
         }

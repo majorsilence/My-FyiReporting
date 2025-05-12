@@ -175,18 +175,14 @@ namespace Majorsilence.Drawing
         public void DrawString(string s, Font font, Brush brush, PointF point)
         {
             var skPaint = brush.ToSkPaint();
-            skPaint.Typeface = SKTypeface.FromFamilyName(font.FontFamily);
-            skPaint.TextSize = font.Size;
-            _canvas.DrawText(s, point.X, point.Y, skPaint);
+            _canvas.DrawText(s, point.X, point.Y, font.ToSkFont(), skPaint);
         }
 
         public void DrawString(string s, Font font, Brush brush, Rectangle layoutRectangle, StringFormat format)
         {
             var skPaint = brush.ToSkPaint();
-            skPaint.Typeface = SKTypeface.FromFamilyName(font.FontFamily);
-            skPaint.TextSize = font.Size;
             var textBounds = new SKRect();
-            skPaint.MeasureText(s, ref textBounds);
+            font.ToSkFont().MeasureText(s, out textBounds);
             float x = layoutRectangle.X;
             float y = layoutRectangle.Y;
             if (format.Alignment == StringAlignment.Center)
@@ -205,18 +201,16 @@ namespace Majorsilence.Drawing
             {
                 y += layoutRectangle.Height - textBounds.Height;
             }
-            _canvas.DrawText(s, x, y, skPaint);
+            _canvas.DrawText(s, x, y, font.ToSkFont(), skPaint);
         }
 
         // Overloaded DrawString method to support RectangleF and StringFormat
         public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format)
         {
             var skPaint = brush.ToSkPaint();
-            skPaint.Typeface = SKTypeface.FromFamilyName(font.FontFamily);
-            skPaint.TextSize = font.Size;
 
             var textBounds = new SKRect();
-            skPaint.MeasureText(s, ref textBounds);
+            font.ToSkFont().MeasureText(s, out textBounds);
 
             float x = layoutRectangle.X;
             float y = layoutRectangle.Y;
@@ -239,7 +233,7 @@ namespace Majorsilence.Drawing
                 y += layoutRectangle.Height - textBounds.Height;
             }
 
-            _canvas.DrawText(s, x, y, skPaint);
+            _canvas.DrawText(s, x, y, font.ToSkFont(), skPaint);
         }
 
         // Dispose of the graphics object
@@ -267,9 +261,9 @@ namespace Majorsilence.Drawing
 
         public SizeF MeasureString(string text, Font font, int maxWidth, StringFormat stringFormat)
         {
-            var skPaint = font.ToSkPaint();
+            var skPaint = font.ToSkFont();
             var bounds = new SKRect();
-            skPaint.MeasureText(text, ref bounds);
+            skPaint.MeasureText(text, out bounds);
 
             if (maxWidth>0 && bounds.Width > maxWidth)
             {
@@ -281,13 +275,13 @@ namespace Majorsilence.Drawing
                 foreach (var word in lines)
                 {
                     var testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
-                    skPaint.MeasureText(testLine, ref bounds);
+                    skPaint.MeasureText(testLine, out bounds);
 
                     if (bounds.Width > maxWidth)
                     {
-                        height += skPaint.TextSize;
+                        height += skPaint.Size;
                         currentLine = word;
-                        skPaint.MeasureText(currentLine, ref bounds);
+                        skPaint.MeasureText(currentLine, out bounds);
                         width = Math.Max(width, bounds.Width);
                     }
                     else
@@ -297,7 +291,7 @@ namespace Majorsilence.Drawing
                     }
                 }
 
-                height += skPaint.TextSize; // Add height for the last line
+                height += skPaint.Size; // Add height for the last line
                 return new SizeF(width, height);
             }
 
