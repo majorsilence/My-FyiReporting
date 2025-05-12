@@ -31,7 +31,7 @@ namespace Majorsilence.Drawing
             Save(filename, format);  // Basic implementation
         }
 
-        public void Save(Stream stream, ImageFormat format)
+        public new void Save(Stream stream, ImageFormat format)
         {
             SKImage.FromBitmap(_skBitmap).Encode(format.ToSkImageEncodeFormat(), 100).SaveTo(stream);
         }
@@ -43,13 +43,14 @@ namespace Majorsilence.Drawing
         }
 
         // Dispose of the bitmap
-        public void Dispose()
+        public new void Dispose()
         {
+            base.Dispose();
             _skBitmap?.Dispose();
         }
 
         // Static method to create a bitmap from file
-        public static Bitmap FromFile(string filename)
+        public static new Bitmap FromFile(string filename)
         {
             return new Bitmap(filename);
         }

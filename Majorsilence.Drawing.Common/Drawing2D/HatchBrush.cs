@@ -21,7 +21,7 @@ namespace Majorsilence.Drawing.Drawing2D
             _backColor = backColor;
         }
 
-        internal SKPaint ToSkPaint()
+        internal new SKPaint ToSkPaint()
         {
             var paint = base.ToSkPaint();
             paint.Style = SKPaintStyle.Fill;

@@ -32,7 +32,7 @@ namespace Majorsilence.Drawing
 
         public static Point Empty => new Point(0, 0);
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is Point point)
             {

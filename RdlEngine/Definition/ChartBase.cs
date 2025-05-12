@@ -49,8 +49,8 @@ namespace Majorsilence.Reporting.Rdl
         protected Draw2.Bitmap _bm;
 #if !DRAWINGCOMPAT
         protected Imaging.Metafile _mf = null; // GJL 14082008 Using Vector Graphics
-#endif
         public System.IO.MemoryStream _aStream; // GJL 14082008 Using Vector Graphics
+#endif
         protected ChartLayout Layout;
         Draw2.Brush[] _SeriesBrush;
         ChartMarkerEnum[] _SeriesMarker;

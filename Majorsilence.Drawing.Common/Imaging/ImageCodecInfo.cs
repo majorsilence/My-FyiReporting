@@ -4,7 +4,7 @@
     public class ImageCodecInfo
     {
         public Guid Guid { get; set; }
-        public string MimeType { get; set; }
+        public required string MimeType { get; set; }
         public ImageFormat Format { get; set; }
         public string FormatDescription
         {

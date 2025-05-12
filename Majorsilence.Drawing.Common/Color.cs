@@ -98,7 +98,7 @@ namespace Majorsilence.Drawing
         public byte B { get; }
         public byte A { get; }
 
-        private string _name = null;
+        private string _name;
         public string Name
         {
             get
@@ -147,6 +147,7 @@ namespace Majorsilence.Drawing
             G = (byte)g;
             B = (byte)b;
             A = (byte)a;
+            _name = GetColorName(ToSkColor());
         }
 
         public Color(byte r, byte g, byte b, byte a = 255)
@@ -155,6 +156,7 @@ namespace Majorsilence.Drawing
             G = g;
             B = b;
             A = a;
+            _name = GetColorName(ToSkColor());
         }
 
         public static Color FromRgb(int a, int r, int g, int b)

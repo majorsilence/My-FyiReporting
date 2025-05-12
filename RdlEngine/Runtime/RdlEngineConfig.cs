@@ -559,7 +559,7 @@ namespace Majorsilence.Reporting.Rdl
 
                     object[] args = new object[] { cstring };
                     Assembly asm = sce.CodeModule;
-                    object? o = asm.CreateInstance(sce.ClassName, false,
+                    object o = asm.CreateInstance(sce.ClassName, false,
                                    BindingFlags.CreateInstance, null, args, null, null);
                     if (o == null)
                         throw new Exception(string.Format(Strings.RdlEngineConfig_Error_UnableCreateInstance, sce.ClassName, provider));
