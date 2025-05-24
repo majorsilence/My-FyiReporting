@@ -180,60 +180,68 @@ namespace Majorsilence.Drawing
 
         public void DrawString(string s, Font font, Brush brush, Rectangle layoutRectangle, StringFormat format)
         {
+            var skFont = font.ToSkFont();
             var skPaint = brush.ToSkPaint();
-            var textBounds = new SKRect();
-            font.ToSkFont().MeasureText(s, out textBounds);
+            float lineHeight = skFont.Metrics.Descent - skFont.Metrics.Ascent + skFont.Metrics.Leading;
             float x = layoutRectangle.X;
             float y = layoutRectangle.Y;
-            if (format.Alignment == StringAlignment.Center)
+            float maxWidth = layoutRectangle.Width;
+
+            var lines = s.Replace("\r\n", "\n").Split('\n');
+            foreach (var line in lines)
             {
-                x += (layoutRectangle.Width - textBounds.Width) / 2;
+                var words = line.Split(' ');
+                string currentLine = "";
+                foreach (var word in words)
+                {
+                    string testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
+                    var bounds = new SKRect();
+                    skFont.MeasureText(testLine, out bounds);
+
+                    if (maxWidth > 0 && bounds.Width > maxWidth)
+                    {
+                        // Draw currentLine
+                        if (!string.IsNullOrEmpty(currentLine))
+                        {
+                            float drawX = x;
+                            if (format.Alignment == StringAlignment.Center)
+                                drawX += (maxWidth - bounds.Width) / 2;
+                            else if (format.Alignment == StringAlignment.Far)
+                                drawX += maxWidth - bounds.Width;
+
+                            _canvas.DrawText(currentLine, drawX, y - skFont.Metrics.Ascent, skFont, skPaint);
+                            y += lineHeight;
+                        }
+                        currentLine = word;
+                    }
+                    else
+                    {
+                        currentLine = testLine;
+                    }
+                }
+                // Draw last line in this paragraph
+                if (!string.IsNullOrEmpty(currentLine))
+                {
+                    var bounds = new SKRect();
+                    skFont.MeasureText(currentLine, out bounds);
+                    float drawX = x;
+                    if (format.Alignment == StringAlignment.Center)
+                        drawX += (maxWidth - bounds.Width) / 2;
+                    else if (format.Alignment == StringAlignment.Far)
+                        drawX += maxWidth - bounds.Width;
+
+                    _canvas.DrawText(currentLine, drawX, y - skFont.Metrics.Ascent, skFont, skPaint);
+                    y += lineHeight;
+                }
             }
-            else if (format.Alignment == StringAlignment.Far)
-            {
-                x += layoutRectangle.Width - textBounds.Width;
-            }
-            if (format.LineAlignment == StringAlignment.Center)
-            {
-                y += (layoutRectangle.Height - textBounds.Height) / 2;
-            }
-            else if (format.LineAlignment == StringAlignment.Far)
-            {
-                y += layoutRectangle.Height - textBounds.Height;
-            }
-            _canvas.DrawText(s, x, y, font.ToSkFont(), skPaint);
         }
 
-        // Overloaded DrawString method to support RectangleF and StringFormat
+        // Overloaded DrawString for RectangleF
         public void DrawString(string s, Font font, Brush brush, RectangleF layoutRectangle, StringFormat format)
         {
-            var skPaint = brush.ToSkPaint();
-
-            var textBounds = new SKRect();
-            font.ToSkFont().MeasureText(s, out textBounds);
-
-            float x = layoutRectangle.X;
-            float y = layoutRectangle.Y;
-
-            if (format.Alignment == StringAlignment.Center)
-            {
-                x += (layoutRectangle.Width - textBounds.Width) / 2;
-            }
-            else if (format.Alignment == StringAlignment.Far)
-            {
-                x += layoutRectangle.Width - textBounds.Width;
-            }
-
-            if (format.LineAlignment == StringAlignment.Center)
-            {
-                y += (layoutRectangle.Height - textBounds.Height) / 2;
-            }
-            else if (format.LineAlignment == StringAlignment.Far)
-            {
-                y += layoutRectangle.Height - textBounds.Height;
-            }
-
-            _canvas.DrawText(s, x, y, font.ToSkFont(), skPaint);
+            DrawString(s, font, brush, new Rectangle(
+                (int)layoutRectangle.X, (int)layoutRectangle.Y,
+                (int)layoutRectangle.Width, (int)layoutRectangle.Height), format);
         }
 
         // Dispose of the graphics object
@@ -261,41 +269,74 @@ namespace Majorsilence.Drawing
 
         public SizeF MeasureString(string text, Font font, int maxWidth, StringFormat stringFormat)
         {
-            var skPaint = font.ToSkFont();
-            var bounds = new SKRect();
-            skPaint.MeasureText(text, out bounds);
+            var skFont = font.ToSkFont();
+            var lineHeightAdjustment = 1.1f;
+            float lineHeight = (skFont.Metrics.Descent - skFont.Metrics.Ascent + skFont.Metrics.Leading) * lineHeightAdjustment;
+            float maxLineWidth = 0f;
+            float totalHeight = 0f;
 
-            if (maxWidth>0 && bounds.Width > maxWidth)
+            if (string.IsNullOrEmpty(text))
+                return new SizeF(0, lineHeight);
+
+            var lines = text.Replace("\r\n", "\n").Split('\n');
+            foreach (var line in lines)
             {
-                var lines = text.Split(' ');
-                var currentLine = string.Empty;
-                var height = 0f;
-                var width = 0f;
-
-                foreach (var word in lines)
+                var words = line.Split(' ');
+                string currentLine = "";
+                foreach (var word in words)
                 {
-                    var testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
-                    skPaint.MeasureText(testLine, out bounds);
+                    string testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
+                    var bounds = new SKRect();
+                    skFont.MeasureText(testLine, out bounds);
 
-                    if (bounds.Width > maxWidth)
+                    if (maxWidth > 0 && bounds.Width > maxWidth)
                     {
-                        height += skPaint.Size;
-                        currentLine = word;
-                        skPaint.MeasureText(currentLine, out bounds);
-                        width = Math.Max(width, bounds.Width);
+                        // Commit currentLine, start new line
+                        if (!string.IsNullOrEmpty(currentLine))
+                        {
+                            var currentBounds = new SKRect();
+                            skFont.MeasureText(currentLine, out currentBounds);
+                            maxLineWidth = Math.Max(maxLineWidth, currentBounds.Width);
+                            totalHeight += lineHeight;
+                            currentLine = word; // Start new line with the current word
+                        }
+                        else
+                        {
+                            // The word itself is longer than maxWidth, commit it as its own line
+                            var wordBounds = new SKRect();
+                            skFont.MeasureText(word, out wordBounds);
+                            maxLineWidth = Math.Max(maxLineWidth, wordBounds.Width);
+                            totalHeight += lineHeight;
+                            currentLine = ""; // Start new line
+                        }
                     }
                     else
                     {
                         currentLine = testLine;
-                        width = Math.Max(width, bounds.Width);
                     }
                 }
+                // Commit last line in this paragraph (even if it's a single word)
+                if (!string.IsNullOrEmpty(currentLine))
+                {
+                    var currentBounds = new SKRect();
+                    skFont.MeasureText(currentLine, out currentBounds);
+                    maxLineWidth = Math.Max(maxLineWidth, currentBounds.Width);
+                    totalHeight += lineHeight;
 
-                height += skPaint.Size; // Add height for the last line
-                return new SizeF(width, height);
+                    // If the last line is more than 60% of the maxWidth, add a new blank line of height
+                    if (maxWidth > 0 && currentBounds.Width > 0.6f * maxWidth)
+                    {
+                        totalHeight += lineHeight;
+                    }
+                }
             }
 
-            return new SizeF(bounds.Width, bounds.Height);
+            // If at least one line, ensure totalHeight is at least one lineHeight
+            if (totalHeight < lineHeight)
+                totalHeight = lineHeight;
+
+            var padding = 1.5f;
+            return new SizeF(maxLineWidth, (totalHeight) * padding);
         }
 
         public Region[] MeasureCharacterRanges(string text, Font font, RectangleF layoutRect, StringFormat stringFormat)
@@ -309,11 +350,12 @@ namespace Majorsilence.Drawing
                 var bounds = new SKRect();
                 skPaint.MeasureText(substring, out bounds);
 
+                var padding = 1.2f;
                 var region = new Region(
                     (int)(layoutRect.X + bounds.Left),
                     (int)(layoutRect.Y + bounds.Top),
-                    (int)bounds.Width,
-                    (int)bounds.Height
+                    (int)(bounds.Width + 2 * padding),
+                    (int)(bounds.Height + 2  * padding)
                 );
 
                 regions.Add(region);
