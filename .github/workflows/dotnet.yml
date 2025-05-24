@@ -20,7 +20,7 @@ jobs:
       - name: Test
         run: dotnet test -c Release MajorsilenceReporting.sln --verbosity normal --collect:"XPlat Code Coverage" --logger:"trx"
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         if: success() || failure() # run this step even if previous step failed
         with:
           name: unit tests
@@ -33,7 +33,7 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nuget-packages
+          name: build-output
           path: |
             Release-Builds/build-output/*.*
             sbom.xml
@@ -48,8 +48,19 @@ jobs:
           dotnet-version: 8.0.x
       - name: Restore dependencies
         run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
-      - name: Build
+      - name: Build GtkViewer
         run: dotnet build -c Release-DrawingCompat MajorsilenceReporting-Linux-GtkViewer.sln
+      - name: Build MajorsilenceReporting DrawingCompat
+        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting.sln
+      - name: Test
+        run: dotnet test -c Release-DrawingCompat MajorsilenceReporting.sln --verbosity normal --collect:"XPlat Code Coverage" --logger:"trx"
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: unit tests
+          path: "**/TestResults/*.trx"
+          reporter: dotnet-trx
   mac-build:
     runs-on: macos-latest
     steps:
@@ -60,5 +71,16 @@ jobs:
           dotnet-version: 8.0.x
       - name: Restore dependencies
         run: dotnet restore MajorsilenceReporting-Linux-GtkViewer.sln
-      - name: Build
-        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting-Linux-GtkViewer.sln 
+      - name: Build GtkViewer
+        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting-Linux-GtkViewer.sln
+      - name: Build MajorsilenceReporting DrawingCompat
+        run: dotnet build -c Release-DrawingCompat MajorsilenceReporting.sln
+      - name: Test
+        run: dotnet test -c Release-DrawingCompat MajorsilenceReporting.sln --verbosity normal --collect:"XPlat Code Coverage" --logger:"trx"
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: unit tests
+          path: "**/TestResults/*.trx"
+          reporter: dotnet-trx
