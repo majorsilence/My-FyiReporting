@@ -76,6 +76,27 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
             Assert.That(text, Is.EqualTo("Test Data Set Report CategoryID CategoryName Description Beverages Soft drinks, coffees, teas, beers, and ales Condiments Sweet and savory sauces, relishes, spreads, and seasonings Confections Desserts, candies, and sweet breads Dairy Products Cheeses Grains/Cereals Breads, crackers, pasta, and cereal Meat/Poultry Prepared meats Produce Dried fruit and bean curd Seafood Seaweed and fish 1 of 1"));
         }
 
+        [Test]
+        public async Task HtmlDiskExport()
+        {
+            var create = new RdlCreator.Create();
+            var report = GenerateTestData();
+            var fyiReport = await create.GenerateRdl(report);
+            using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
+            await fyiReport.RunGetData(null);
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.HTML);
+            var pdfStream = ms.GetStream();
+            pdfStream.Position = 0;
+
+            using var fileStream = new FileStream("HtmlChainedDiskExport.html", FileMode.Create, FileAccess.Write);
+            pdfStream.CopyTo(fileStream);
+            await fileStream.DisposeAsync();
+
+            var text = await System.IO.File.ReadAllTextAsync("HtmlChainedDiskExport.html");
+            Assert.That(text.Contains("seasonings"));
+            Assert.That(text.Contains("bean curd"));
+        }
+
         private RdlCreator.Report GenerateTestData()
         {
 
