@@ -341,12 +341,10 @@ namespace Majorsilence.Reporting.RdlCreator
                             NoRows = "Query returned no rows!",
                             TableColumns = new TableColumns
                             {
-                                TableColumn = new List<TableColumn>
-                            {
-                                new TableColumn { Width = "1.25in" },
-                                new TableColumn { Width = "1.5in" },
-                                new TableColumn { Width = "1.375in" }
-                            }
+                                TableColumn = fields.Select(f => new TableColumn
+                                {
+                                    Width = "1in" // You can adjust the width as needed
+                                }).ToList()
                             },
                             Header = new Header
                             {

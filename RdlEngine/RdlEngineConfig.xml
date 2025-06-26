@@ -124,6 +124,13 @@
 			<Interface>File</Interface>
 		</DataSource>
 		<DataSource>
+			<DataProvider>Json</DataProvider>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.JsonConnection</ClassName>
+			<TableSelect />
+			<Interface>File</Interface>
+		</DataSource>
+		<DataSource>
 			<DataProvider>iTunes</DataProvider>
 			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
 			<ClassName>Majorsilence.Reporting.Data.iTunesConnection</ClassName>

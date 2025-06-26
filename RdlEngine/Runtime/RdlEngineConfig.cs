@@ -229,6 +229,13 @@ namespace Majorsilence.Reporting.Rdl
 			<TableSelect />
 			<Interface>File</Interface>
 		</DataSource>
+        <DataSource>
+			<DataProvider>Json</DataProvider>
+			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
+			<ClassName>Majorsilence.Reporting.Data.JsonConnection</ClassName>
+			<TableSelect />
+			<Interface>File</Interface>
+		</DataSource>
 		<DataSource>
 			<DataProvider>iTunes</DataProvider>
 			<CodeModule>Majorsilence.Reporting.DataProviders.dll</CodeModule>
@@ -537,6 +544,9 @@ namespace Majorsilence.Reporting.Rdl
                     break;
                 case "text":
                     cn = new Majorsilence.Reporting.Data.TxtConnection(cstring);
+                    break;
+                case "json":
+                    cn = new Majorsilence.Reporting.Data.JsonConnection(cstring);
                     break;
                 case "itunes":
                     cn = new Majorsilence.Reporting.Data.iTunesConnection(cstring);

@@ -1421,7 +1421,10 @@ namespace Majorsilence.Reporting.RdlDesign
                 case "PostgreSQL":
                 case "PostgreSQL_Devart":
                     tbConnection.Text = "Server=127.0.0.1;Port=5432;Database=myDataBase;User Id=myUsername;Password=myPassword;";
-                    break;               
+                    break;
+                case "Json":
+                    tbConnection.Text = "file=/path/to/file/or/http/call";
+                    break;
                 default:
                     tbConnection.Text = "";
                     break;
