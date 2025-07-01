@@ -35,15 +35,12 @@ namespace Majorsilence.Reporting.Data
 		JsonConnection _tc;			// connection we're running under
 		string _cmd;				// command to execute
 		// parsed constituents of the command
-		string _Url;				// url of the file 
 		string[] _Columns;			// hold the column list
 		DataParameterCollection _Parameters = new DataParameterCollection();
 
 		public JsonCommand(JsonConnection conn)
 		{
 			_tc = conn;
-            SetUrlFromConnection();
-
         }
 
 		internal string[] Columns
@@ -61,12 +58,11 @@ namespace Majorsilence.Reporting.Data
 					dp= _Parameters["@Url"] as IDbDataParameter;
 				// Then check to see if the Url value is a parameter?
 				if (dp == null)
-					dp = _Parameters[_Url] as IDbDataParameter;
+					dp = _Parameters[_tc.Url] as IDbDataParameter;
 				if (dp != null)
-					return dp.Value != null? dp.Value.ToString(): _Url;	// don't pass null; pass existing value
-				return _Url;	// the value must be a constant
+					return dp.Value != null? dp.Value.ToString(): _tc.Url;	// don't pass null; pass existing value
+				return _tc.Url;	// the value must be a constant
 			}
-			set {_Url = value;}
 		}
 
 		#region IDbCommand Members
@@ -155,35 +151,6 @@ namespace Majorsilence.Reporting.Data
 				throw new NotImplementedException("UpdatedRowSource not implemented");
 			}
 		}
-
-        private void SetUrlFromConnection()
-        {
-            string[] args = _tc.ConnectionString.Split(';');
-            string url = null;
-            foreach (string arg in args)
-            {
-                string[] param = arg.Trim().Split('=');
-                if (param == null || param.Length != 2)
-                    continue;
-                string key = param[0].Trim().ToLower();
-                string val = param[1];
-                switch (key)
-                {
-                    case "url":
-                    case "file":
-                        url = val;
-                        break;
-                    default:
-                        throw new ArgumentException(string.Format("{0} is an unknown parameter key", param[0]));
-                }
-            }
-
-            // User must specify both the url and the RowsXPath
-            if (url == null)
-                throw new ArgumentException("CommandText requires a 'Url=' parameter.");
-
-            _Url = url.Trim();
-        }
 
 		public string CommandText
 		{

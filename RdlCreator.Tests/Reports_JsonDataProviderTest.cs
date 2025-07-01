@@ -13,8 +13,20 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
     [TestFixture]
     public class Reports_JsonDataProviderTest
     {
-        string connectionString = "file=TestData.json";
         string dataProvider = "Json";
+
+        // Add this inside your Reports_JsonDataProviderTest class
+
+        // This property provides test cases for the Test1 method
+        private static IEnumerable<string> ConnectionStrings
+        {
+            get
+            {
+                yield return "file=TestData.json";
+                yield return "url=TestData.json;auth=Basic: PLACEHOLDER";
+                yield return "url=https://raw.githubusercontent.com/majorsilence/My-FyiReporting/refs/heads/master/RdlCreator.Tests/TestData.json;auth=basic: Placeholder";
+            }
+        }
 
         [SetUp]
         public void Setup()
@@ -35,7 +47,8 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
         }
 
         [Test]
-        public async Task Test1()
+        [TestCaseSource(nameof(ConnectionStrings))]
+        public async Task TestConnectionStrings(string connectionString)
         {
             var create = new RdlCreator.Create();
 

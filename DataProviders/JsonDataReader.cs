@@ -93,13 +93,24 @@ namespace Majorsilence.Reporting.Data
 
             if (fname.StartsWith("http:") || fname.StartsWith("https:"))
             {
-                using (HttpClient client = new HttpClient())
+                _tconn.Client.AddMajorsilenceReportingUserAgent();
+                // set auth if found in connection string
+                // via a request object
+
+                var request = new HttpRequestMessage(HttpMethod.Get, fname);
+
+                if (!string.IsNullOrWhiteSpace(_tconn.Auth))
                 {
-                    client.AddMajorsilenceReportingUserAgent();
-                    HttpResponseMessage response = await client.GetAsync(fname);
-                    response.EnsureSuccessStatusCode();
-                    strm = await response.Content.ReadAsStreamAsync();
+
+                    var authParts = _tconn.Auth.Split(':');
+                    string authScheme = authParts[0];
+                    string authParameters = authParts[1];
+                    request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(authScheme, authParameters);
                 }
+
+                HttpResponseMessage response = await _tconn.Client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                strm = await response.Content.ReadAsStreamAsync();
             }
             else if (fname.StartsWith("file:"))
             {
@@ -308,10 +319,7 @@ namespace Majorsilence.Reporting.Data
 
         public DataTable GetSchemaTable()
         {
-            if (_Names == null || _Names.Length == 0)
-            {
-                Initialize();
-            }
+            Initialize();
 
             var schemaTable = new DataTable("SchemaTable");
             schemaTable.Columns.Add("ColumnName", typeof(string));
@@ -371,10 +379,7 @@ namespace Majorsilence.Reporting.Data
 
         public bool NextResult()
         {
-            if (_Names == null || _Names.Length == 0)
-            {
-                Initialize();
-            }
+            Initialize();
 
             if (_currentIndex >= _rows.Count - 1)
             {
@@ -387,10 +392,7 @@ namespace Majorsilence.Reporting.Data
 
         public bool Read()
         {
-            if (_Names == null || _Names.Length == 0)
-            {
-                Initialize();
-            }
+            Initialize();
 
             _currentIndex++;
             return _currentIndex < _rows.Count;
@@ -398,6 +400,12 @@ namespace Majorsilence.Reporting.Data
 
         private void Initialize()
         {
+
+            if (_Names != null && _Names.Length != 0)
+            {
+                return;
+            }
+
             string json = Task.Run(async () => await ReadAllJsonAsync()).GetAwaiter().GetResult();
             _rows = ParseJsonRows(json);
 
