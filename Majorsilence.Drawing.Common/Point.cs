@@ -2,7 +2,7 @@
 
 namespace Majorsilence.Drawing
 {
-    public struct Point
+    public struct Point : IEquatable<Point>
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -51,5 +51,14 @@ namespace Majorsilence.Drawing
             return !(left == right);
         }
 
+        public bool Equals(Point other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
     }
 }
