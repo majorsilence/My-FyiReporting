@@ -105,8 +105,7 @@ namespace Majorsilence.Reporting.Rdl
             {
                 if (SqlEntries != null)         // we don't need to reinit with internal one 
                     return;
-                xDoc.InnerXml = @" 
-<?xml version=""1.0"" encoding=""utf-8""?>
+                xDoc.InnerXml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <config>
 	<DataSources>
 		<DataSource>
