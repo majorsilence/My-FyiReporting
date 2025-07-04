@@ -3,7 +3,7 @@
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
-	
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -30,6 +30,7 @@ using System.Web.Caching;
 using Majorsilence.Reporting.Rdl;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Caching.Memory;
 using System.Reflection;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace Majorsilence.Reporting.RdlAsp
         /// </summary>
         /// 
         private const string STATISTICS = "statistics";
+
         private string _ReportFile = null;
         private ArrayList _Errors = null;
         private int _MaxSeverity = 0;
@@ -57,7 +59,7 @@ namespace Majorsilence.Reporting.RdlAsp
         private string _Csv = null;
         private byte[] _Object = null;
         private string _ParameterHtml = null;
-        private OutputPresentationType _RenderType = OutputPresentationType.ASPHTML;
+        private OutputPresentationType _RenderType = OutputPresentationType.HTML;
         private string _PassPhrase = null;
         private bool _NoShow;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -69,13 +71,16 @@ namespace Majorsilence.Reporting.RdlAsp
             _cache = cache;
         }
 
-        public ContentResult Render()
+        public async Task<IActionResult> Render(string reportFile, string type = "html")
         {
+            await SetReportFile(reportFile);
+            this.RenderType = type;
+
             var htmlContent = new StringBuilder();
             if (_ReportFile == null)
             {
                 this.AddError(8, "ReportFile not specified.");
-                return Content("");
+                return Content("", "text/html");
             }
             else if (_ReportFile == STATISTICS)
             {
@@ -89,7 +94,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 // TODO -   shouldn't use control to write out object???
                 throw new Exception("_Object needed in render");
             }
-            else    // we never generated anything!
+            else // we never generated anything!
             {
                 if (_Errors != null)
                 {
@@ -108,13 +113,14 @@ namespace Majorsilence.Reporting.RdlAsp
                         htmlContent.AppendLine("</td>");
                         htmlContent.AppendLine("</tr>");
                     }
-                    htmlContent.AppendLine("</table>");
 
+                    htmlContent.AppendLine("</table>");
                 }
             }
 
-            return Content(htmlContent.ToString());
+            return Content(htmlContent.ToString(), "text/html");
         }
+
         /// <summary>
         /// When true report won't be shown but parameters (if any) will be
         /// </summary>
@@ -123,6 +129,7 @@ namespace Majorsilence.Reporting.RdlAsp
             get { return _NoShow; }
             set { _NoShow = value; }
         }
+
         public string RenderType
         {
             get
@@ -156,39 +163,49 @@ namespace Majorsilence.Reporting.RdlAsp
         public string ReportFile
         {
             get { return _ReportFile; }
-            set
-            {
-                _ReportFile = value;
-                // Clear out old report information (if any)
-                this._Errors = null;
-                this._MaxSeverity = 0;
-                _CSS = null;
-                _JavaScript = null;
-                _Html = null;
-                _ParameterHtml = null;
-
-                if (_ReportFile == STATISTICS)
-                {
-                    var sb = new StringBuilder();
-
-                    DoStatistics(ref sb);
-                    _Html = sb.ToString();
-
-                    return;
-                }
-
-                // Build the new report
-                string contentRootPath = _webHostEnvironment.ContentRootPath;
-                string pfile = Path.Combine(contentRootPath, _ReportFile);
-
-                // HACK: async
-                Task.Run(async () =>  await DoRender(pfile)).GetAwaiter().GetResult();
-            }
         }
+
+        private async Task SetReportFile(string value)
+        {
+            if (!value.EndsWith(".rdl"))
+            {
+                value += ".rdl"; // assume it's a rdl file
+            }
+
+            _ReportFile = FindReportFile(value);
+            // Clear out old report information (if any)
+            this._Errors = null;
+            this._MaxSeverity = 0;
+            _CSS = null;
+            _JavaScript = null;
+            _Html = null;
+            _ParameterHtml = null;
+
+            if (_ReportFile == STATISTICS)
+            {
+                var sb = new StringBuilder();
+
+                DoStatistics(ref sb);
+                _Html = sb.ToString();
+
+                return;
+            }
+
+            // Build the new report
+            string contentRootPath = _webHostEnvironment.ContentRootPath;
+            string pfile = Path.Combine(contentRootPath, _ReportFile);
+
+            // HACK: async
+            await DoRender(pfile);
+        }
+
 
         public string PassPhrase
         {
-            set { _PassPhrase = value; }
+            set
+            {
+                _PassPhrase = value;
+            }
         }
 
         private string GetPassword()
@@ -199,22 +216,34 @@ namespace Majorsilence.Reporting.RdlAsp
 
         public string Html
         {
-            get { return _Html; }
+            get
+            {
+                return _Html;
+            }
         }
 
         public string Xml
         {
-            get { return _Xml; }
+            get
+            {
+                return _Xml;
+            }
         }
 
         public string CSV
         {
-            get { return _Csv; }
+            get
+            {
+                return _Csv;
+            }
         }
 
         public byte[] Object
         {
-            get { return _Object; }
+            get
+            {
+                return _Object;
+            }
         }
 
         public ArrayList Errors
@@ -224,17 +253,26 @@ namespace Majorsilence.Reporting.RdlAsp
 
         public int MaxErrorSeverity
         {
-            get { return _MaxSeverity; }
+            get
+            {
+                return _MaxSeverity;
+            }
         }
 
         public string CSS
         {
-            get { return _CSS; }
+            get
+            {
+                return _CSS;
+            }
         }
 
         public string JavaScript
         {
-            get { return _JavaScript; }
+            get
+            {
+                return _JavaScript;
+            }
         }
 
         public string ParameterHtml
@@ -249,11 +287,10 @@ namespace Majorsilence.Reporting.RdlAsp
         // Render the report files with the requested types
         private async Task DoRender(string file)
         {
-
             string source;
             Report report = null;
 
-            var nvc = this.HttpContext.Request.Query;       // parameters
+            var nvc = this.HttpContext.Request.Query; // parameters
             ListDictionary ld = new ListDictionary();
             try
             {
@@ -270,7 +307,7 @@ namespace Majorsilence.Reporting.RdlAsp
                     // Obtain the source
                     source = ReportHelper.GetSource(file);
                     if (source == null)
-                        return;                 // GetSource reported the error
+                        return; // GetSource reported the error
 
                     // Compile the report
                     report = await this.GetReport(source, file);
@@ -279,6 +316,7 @@ namespace Majorsilence.Reporting.RdlAsp
 
                     ReportHelper.SaveCachedReport(report, file, _cache);
                 }
+
                 // Set the user context information: ID, language
                 ReportHelper.SetUserContext(report, this.HttpContext, new Rdl.NeedPassword(GetPassword));
 
@@ -295,8 +333,9 @@ namespace Majorsilence.Reporting.RdlAsp
             }
 
             if (_ParameterHtml == null)
-                _ParameterHtml = ReportHelper.GetParameterHtml(report, ld, this.HttpContext, _ReportFile, _NoShow); // build the parameter html
-
+                _ParameterHtml =
+                    ReportHelper.GetParameterHtml(report, ld, this.HttpContext, _ReportFile,
+                        _NoShow); // build the parameter html
         }
 
         private void AddError(int severity, string err, params object[] args)
@@ -315,7 +354,8 @@ namespace Majorsilence.Reporting.RdlAsp
             if (_MaxSeverity < severity)
                 _MaxSeverity = severity;
             if (_Errors == null)
-            {   // if we don't have any we can just start with this list
+            {
+                // if we don't have any we can just start with this list
                 _Errors = new ArrayList(errors);
                 return;
             }
@@ -347,17 +387,18 @@ namespace Majorsilence.Reporting.RdlAsp
             foreach (var de in cacheEntries)
             {
                 /*
-				if (de.Value is ReportDefn)
+                if (de.Value is ReportDefn)
                     htmlContent.AppendLine("<p>file=" + de);
-				else
+                else
                     htmlContent.AppendLine("<p>key=" + de);
-				*/
+                */
             }
         }
 
         private List<string> GetCacheEntries(IMemoryCache cache)
         {
-            var field = cache.GetType().GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
+            var field = cache.GetType()
+                .GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
             var collection = field.GetValue(cache) as ICollection;
             var items = new List<string>();
             if (collection != null)
@@ -385,7 +426,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 {
                     case OutputPresentationType.ASPHTML:
                     case OutputPresentationType.HTML:
-                        _CSS = report.CSS;//.Replace("position: relative;", "position: absolute;");
+                        _CSS = report.CSS; //.Replace("position: relative;", "position: absolute;");
                         _JavaScript = report.JavaScript;
                         _Html = sg.GetText();
                         break;
@@ -406,13 +447,12 @@ namespace Majorsilence.Reporting.RdlAsp
                 // Now save off the other streams in the session context for later use
                 IList strms = sg.MemoryList;
                 IList names = sg.MemoryNames;
-                for (int i = 1; i < sg.MemoryList.Count; i++)   // we skip the first one
+                for (int i = 1; i < sg.MemoryList.Count; i++) // we skip the first one
                 {
                     string n = names[i] as string;
                     MemoryStream ms = strms[i] as MemoryStream;
                     HttpContext.Session.Set(n, ms.ToArray());
                 }
-
             }
             catch (Exception e)
             {
@@ -441,7 +481,7 @@ namespace Majorsilence.Reporting.RdlAsp
             {
                 case "htm":
                 case "html":
-                    return OutputPresentationType.ASPHTML;
+                    return OutputPresentationType.HTML;
                 case "pdf":
                     return OutputPresentationType.PDF;
                 case "xml":
@@ -453,10 +493,43 @@ namespace Majorsilence.Reporting.RdlAsp
                 case "rtf":
                     return OutputPresentationType.RTF;
                 default:
-                    return OutputPresentationType.ASPHTML;
+                    return OutputPresentationType.HTML;
             }
         }
 
+        private string FindReportFile(string file)
+        {
+            string foundFile = null;
+            // If the file is not absolute, then we assume it is relative to the content root path
+            if (!Path.IsPathRooted(file))
+            {
+                foundFile = Path.Combine(_webHostEnvironment.ContentRootPath, file);
+            }
+
+            // Make sure the file exists
+            if (!System.IO.File.Exists(foundFile))
+            {
+                // recursively search for the file in the content root path
+                // This is a workaround for the case where the file might be in a subdirectory
+                // of the content root path, but the path provided is not absolute.
+                // TODO: read search directory from configuration
+                var di = new DirectoryInfo(_webHostEnvironment.ContentRootPath);
+                FileInfo[] files = di.GetFiles(file, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                {
+                    foundFile = files[0].FullName;
+                }
+            }
+
+            // If the file exists, return the full path
+            if (!System.IO.File.Exists(foundFile))
+            {
+                AddError(8, "Report file '{0}' does not exist.", foundFile);
+                return null;
+            }
+            
+            return foundFile;
+        }
 
         private async Task<Report> GetReport(string prog, string file)
         {
@@ -465,7 +538,7 @@ namespace Majorsilence.Reporting.RdlAsp
             Report r;
             try
             {
-                // Make sure RdlEngine is configed before we ever parse a program
+                // Make sure RdlEngine is configured before we ever parse a program
                 //   The config file must exist in the Bin directory.
                 string searchDir = this.ReportFile.StartsWith("~") ? "~/Bin" : "/Bin" + Path.DirectorySeparatorChar;
                 RdlEngineConfig.RdlEngineConfigInit(searchDir);
@@ -499,6 +572,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 r = null;
                 AddError(8, "Exception parsing report {0}.  {1}", file, e.Message);
             }
+
             return r;
         }
     }

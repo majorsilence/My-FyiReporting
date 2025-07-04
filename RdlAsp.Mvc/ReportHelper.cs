@@ -304,12 +304,11 @@ namespace Majorsilence.Reporting.RdlAsp
             NameValueCollection nvc;
 
             nvc = context.Request.QueryString;		// parameters
-            for (int i = 0; i < nvc.Count; i++)
+            foreach (var key in nvc.AllKeys)
             {
-                string key = nvc.GetKey(i);
                 if (!key.StartsWith("rs:"))
                     args.AppendFormat("&{0}={1}",
-                        System.Web.HttpUtility.UrlEncode(key), System.Web.HttpUtility.UrlEncode(nvc[i]));
+                        System.Web.HttpUtility.UrlEncode(key), System.Web.HttpUtility.UrlEncode(nvc[key]));
             }
             string sargs = args.ToString();
 

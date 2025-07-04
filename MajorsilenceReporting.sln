@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Majorsilence.Reporting.RdlC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlCreator.Tests", "RdlCreator.Tests\RdlCreator.Tests.csproj", "{9AC3B442-07B6-456D-B24A-80745EDC68DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdlAsp.Mvc", "RdlAsp.Mvc\RdlAsp.Mvc.csproj", "{8102B877-5D48-4D5B-AC8F-1FABFF56B69A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Majorsilence.Reporting.RdlAsp.Mvc", "RdlAsp.Mvc\Majorsilence.Reporting.RdlAsp.Mvc.csproj", "{8102B877-5D48-4D5B-AC8F-1FABFF56B69A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorsilence.Drawing.Common", "Majorsilence.Drawing.Common\Majorsilence.Drawing.Common.csproj", "{C4B7CC6B-FE22-48FA-B414-F96DB028F80F}"
 EndProject
@@ -49,6 +49,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDesigner", "ReportDesigner\ReportDesigner.csproj", "{33525C95-7190-40FD-81E8-FCA6B1FC941F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorsilence.Reporting.WebExample", "Majorsilence.Reporting.WebExample\Majorsilence.Reporting.WebExample.csproj", "{3EED618B-59E1-4743-8701-CEBE8E636942}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4FD35435-4E05-40B9-9C54-628ED02E4FE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +204,14 @@ Global
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33525C95-7190-40FD-81E8-FCA6B1FC941F}.Release-DrawingCompat|Any CPU.ActiveCfg = Release|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Debug-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Debug-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Release-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EED618B-59E1-4743-8701-CEBE8E636942}.Release-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,6 +220,7 @@ Global
 		{BD5BF1A8-E24F-4F6D-91D7-074CEEF727EC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A46C8EBE-29FC-4EEB-99E9-6011FA2D67EE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{9AC3B442-07B6-456D-B24A-80745EDC68DC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{3EED618B-59E1-4743-8701-CEBE8E636942} = {4FD35435-4E05-40B9-9C54-628ED02E4FE8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {926406B1-6334-4091-963D-93DEB6837CCB}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+  <TopMargin>.25in</TopMargin>
+  <LeftMargin>.25in</LeftMargin>
+  <RightMargin>.25in</RightMargin>
+  <BottomMargin>.25in</BottomMargin>
+  <PageHeader>
+    <Height>.5in</Height>
+    <ReportItems>
+      <Textbox Name="Header">
+        <Value>Test Header</Value>
+        <Style>
+          <FontSize>15pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+        </Style>
+        <Top>.1in</Top>
+        <Left>.1in</Left>
+        <Width>6in</Width>
+        <Height>.25in</Height>
+        <CanGrow>false</CanGrow>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <Value>Text Area 1</Value>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+        </Style>
+        <Top>.1in</Top>
+        <Left>.1in</Left>
+        <Width>6in</Width>
+        <Height>.25in</Height>
+        <CanGrow>false</CanGrow>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <Value>Lorem ipsum.</Value>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <BackgroundColor>gray</BackgroundColor>
+        </Style>
+        <Top>1in</Top>
+        <Left>1in</Left>
+        <Width>6in</Width>
+        <Height>4in</Height>
+        <CanGrow>false</CanGrow>
+      </Textbox>
+    </ReportItems>
+    <Height>10in</Height>
+    <Width>7.5in</Width>
+  </Body>
+  <PageFooter>
+    <Height>14pt</Height>
+    <ReportItems>
+      <Textbox Name="Footer">
+        <Value>0</Value>
+        <Style>
+          <FontSize>10pt</FontSize>
+          <FontWeight>Normal</FontWeight>
+        </Style>
+        <Top>1pt</Top>
+        <Left>10pt</Left>
+        <Width>3in</Width>
+        <Height>12pt</Height>
+        <CanGrow>false</CanGrow>
+      </Textbox>
+    </ReportItems>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+</Report>

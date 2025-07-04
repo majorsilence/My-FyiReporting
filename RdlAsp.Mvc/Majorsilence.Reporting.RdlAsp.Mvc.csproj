@@ -5,7 +5,7 @@
     </AssemblyKeyContainerName>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>fyiReporting.RdlAsp.Mvc</RootNamespace>
+    <RootNamespace>Majorsilence.Reporting.RdlAsp</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyTitle>RDL ASP</AssemblyTitle>
@@ -31,5 +31,8 @@
   <PropertyGroup />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ShowReport.cshtml" />
   </ItemGroup>
 </Project>
