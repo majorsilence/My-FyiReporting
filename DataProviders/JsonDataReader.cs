@@ -48,7 +48,6 @@ namespace Majorsilence.Reporting.Data
                                     // column information
         private List<Dictionary<string, object>> _rows;
         private int _currentIndex = -1;
-        bool bFirstRow;             // indicates that _Data has been filled with data of the 1st row
         string[] _Names;            // names of the columns
         Type[] _Types;              // types of the columns
 
@@ -143,7 +142,6 @@ namespace Majorsilence.Reporting.Data
             _sr?.Close();
             _sr = null;
             _currentIndex = -1;
-            bFirstRow = false;
         }
 
         public void Dispose()
@@ -386,7 +384,6 @@ namespace Majorsilence.Reporting.Data
                 return false; // No more results
             }
             _currentIndex = -1; // Reset to before the first row
-            bFirstRow = false; // Reset first row flag
             return true; // Indicate that there are more results
         }
 
