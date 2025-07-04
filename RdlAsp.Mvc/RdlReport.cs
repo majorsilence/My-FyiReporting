@@ -60,6 +60,7 @@ namespace Majorsilence.Reporting.RdlAsp
         private byte[] _Object = null;
         private string _ParameterHtml = null;
         private OutputPresentationType _RenderType = OutputPresentationType.HTML;
+        private string contentType = "text/html";
         private string _PassPhrase = null;
         private bool _NoShow;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -73,14 +74,14 @@ namespace Majorsilence.Reporting.RdlAsp
 
         public async Task<IActionResult> Render(string reportFile, string type = "html")
         {
-            await SetReportFile(reportFile);
             this.RenderType = type;
+            await SetReportFile(reportFile);
 
             var htmlContent = new StringBuilder();
             if (_ReportFile == null)
             {
                 this.AddError(8, "ReportFile not specified.");
-                return Content("", "text/html");
+                return Content("", contentType);
             }
             else if (_ReportFile == STATISTICS)
             {
@@ -91,8 +92,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 htmlContent.AppendLine(_Html);
             else if (_Object != null)
             {
-                // TODO -   shouldn't use control to write out object???
-                throw new Exception("_Object needed in render");
+                return File(_Object, contentType);
             }
             else // we never generated anything!
             {
@@ -118,7 +118,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 }
             }
 
-            return Content(htmlContent.ToString(), "text/html");
+            return Content(htmlContent.ToString(), contentType);
         }
 
         /// <summary>
@@ -481,18 +481,25 @@ namespace Majorsilence.Reporting.RdlAsp
             {
                 case "htm":
                 case "html":
+                    contentType = "text/html";
                     return OutputPresentationType.HTML;
                 case "pdf":
+                    contentType = "application/pdf";
                     return OutputPresentationType.PDF;
                 case "xml":
+                    contentType = "text/xml";
                     return OutputPresentationType.XML;
                 case "csv":
+                    contentType = "text/csv";
                     return OutputPresentationType.CSV;
                 case "xlsx":
+                    contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                     return OutputPresentationType.ExcelTableOnly;
                 case "rtf":
+                    contentType = "application/rtf";
                     return OutputPresentationType.RTF;
                 default:
+                    contentType = "text/html";
                     return OutputPresentationType.HTML;
             }
         }
@@ -527,7 +534,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 AddError(8, "Report file '{0}' does not exist.", foundFile);
                 return null;
             }
-            
+
             return foundFile;
         }
 
@@ -540,7 +547,11 @@ namespace Majorsilence.Reporting.RdlAsp
             {
                 // Make sure RdlEngine is configured before we ever parse a program
                 //   The config file must exist in the Bin directory.
-                string searchDir = this.ReportFile.StartsWith("~") ? "~/Bin" : "/Bin" + Path.DirectorySeparatorChar;
+                string[] searchDir =
+                {
+                    this.ReportFile.StartsWith("~") ? "~/Bin" : "/Bin" + Path.DirectorySeparatorChar,
+                    System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                };
                 RdlEngineConfig.RdlEngineConfigInit(searchDir);
 
                 rdlp = new RDLParser(prog);

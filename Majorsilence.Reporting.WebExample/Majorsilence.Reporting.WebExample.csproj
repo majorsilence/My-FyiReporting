@@ -20,5 +20,12 @@
     <ItemGroup>
       <Folder Include="Views\Shared\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\RdlEngine\RdlEngineConfig.xml">
+        <Link>RdlEngineConfig.xml</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
     
 </Project>
