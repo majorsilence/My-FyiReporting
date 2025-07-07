@@ -26,11 +26,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
-using System.Web.Caching;
 using Majorsilence.Reporting.Rdl;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Caching.Memory;
 using System.Reflection;
 using System.Collections.Generic;
@@ -65,13 +63,18 @@ namespace Majorsilence.Reporting.RdlAsp
         private bool _NoShow;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMemoryCache _cache;
+        private readonly Settings _settings;
 
-        public RdlReport(IWebHostEnvironment webHostEnvironment, IMemoryCache cache)
+        public RdlReport(IWebHostEnvironment webHostEnvironment, IMemoryCache cache,
+            Settings settings)
         {
             _webHostEnvironment = webHostEnvironment;
             _cache = cache;
+            _settings = settings;
         }
 
+        [HttpGet]
+        [Route("msr/RdlReport/ShowFile/{reportFile}/{type?}")]
         public async Task<IActionResult> Render(string reportFile, string type = "html")
         {
             this.RenderType = type;
@@ -363,8 +366,6 @@ namespace Majorsilence.Reporting.RdlAsp
             // Need to copy all items in the errors array
             foreach (string err in errors)
                 _Errors.Add(err);
-
-            return;
         }
 
         private void DoStatistics(ref StringBuilder htmlContent)
@@ -383,16 +384,7 @@ namespace Majorsilence.Reporting.RdlAsp
             htmlContent.AppendLine($"<p>{cacheEntries.Count} items are in the cache");
             htmlContent.AppendLine($"<p>{s.CacheHits} cache hits");
             htmlContent.AppendLine($"<p>{s.CacheMisses} cache misses");
-
-            foreach (var de in cacheEntries)
-            {
-                /*
-                if (de.Value is ReportDefn)
-                    htmlContent.AppendLine("<p>file=" + de);
-                else
-                    htmlContent.AppendLine("<p>key=" + de);
-                */
-            }
+            
         }
 
         private List<string> GetCacheEntries(IMemoryCache cache)
@@ -507,13 +499,8 @@ namespace Majorsilence.Reporting.RdlAsp
         private string FindReportFile(string file)
         {
             string foundFile = null;
-            // If the file is not absolute, then we assume it is relative to the content root path
-            if (!Path.IsPathRooted(file))
-            {
-                foundFile = Path.Combine(_webHostEnvironment.ContentRootPath, file);
-            }
-
-            // Make sure the file exists
+            foundFile = Path.Combine(_settings.ReportsFolder, file);
+            
             if (!System.IO.File.Exists(foundFile))
             {
                 // recursively search for the file in the content root path
@@ -548,10 +535,10 @@ namespace Majorsilence.Reporting.RdlAsp
                 // Make sure RdlEngine is configured before we ever parse a program
                 //   The config file must exist in the Bin directory.
                 string[] searchDir =
-                {
+                [
                     this.ReportFile.StartsWith("~") ? "~/Bin" : "/Bin" + Path.DirectorySeparatorChar,
                     System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                };
+                ];
                 RdlEngineConfig.RdlEngineConfigInit(searchDir);
 
                 rdlp = new RDLParser(prog);

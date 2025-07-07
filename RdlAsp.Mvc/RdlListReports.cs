@@ -3,7 +3,7 @@
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
-	
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -43,46 +43,55 @@ namespace Majorsilence.Reporting.RdlAsp
         /// </summary>
         /// 
         public string Frame = null;
-        public string RunPage = "ShowReport";
+        
+        private readonly Settings _settings;
 
+        public RdlListReports(Settings settings)
+        {
+            _settings = settings;
+        }
+
+        [HttpGet]
+        [Route("msr/RdlList")]
         public ContentResult Index()
         {
-            string pfile = "Reports/";
             var html = new StringBuilder();
 
             DirectoryInfo di;
             FileSystemInfo[] afsi;
             try
             {
-                di = new DirectoryInfo(pfile);
+                di = new DirectoryInfo(_settings.ReportsFolder);
                 afsi = di.GetFileSystemInfos();
             }
             catch (Exception ex)
             {
                 html.AppendLine($"<p> No reports!  Exception={ex.Message}");
-                return Content(html.ToString());
+                return Content(html.ToString(), "text/html");
             }
 
             html.AppendLine("<table>");
             foreach (FileSystemInfo fsi in afsi)
             {
                 if ((fsi.Attributes & FileAttributes.Directory) == 0 &&
-                    fsi.Extension.ToLower() != ".rdl")  // only show report files
+                    fsi.Extension.ToLower() != ".rdl") // only show report files
                     continue;
 
                 string name = fsi.Name.Replace(" ", "%20");
 
-                if ((fsi.Attributes & FileAttributes.Directory) == 0)   // handle files
+                if ((fsi.Attributes & FileAttributes.Directory) == 0) // handle files
                 {
                     string target = this.Frame == null ? "_self" : Frame;
-                    html.AppendLine($"<tr><td><a href=\"{Frame}?rs:url=Reports\\{name}\" target={target}>{Path.GetFileNameWithoutExtension(fsi.Name)}</a></td></tr>");
+                    html.AppendLine(
+                        $"<tr><td><a href=\"RdlReport/render?reportFile={name}&type=html\" target={target}>{Path.GetFileNameWithoutExtension(fsi.Name)}</a></td></tr>");
                 }
-                else        // handle directories
+                else // handle directories
                     html.AppendLine($"<tr><td><a href=\"{name}\">{fsi.Name}<a></td><td></td><td></td></tr>");
             }
+
             html.AppendLine("</table>");
 
-            return Content(html.ToString());
+            return Content(html.ToString(), "text/html");
         }
     }
 }

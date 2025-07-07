@@ -313,13 +313,13 @@ namespace Majorsilence.Reporting.RdlAsp
             string sargs = args.ToString();
 
             string lpdf =
-                string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=pdf{1}\" target=_blank>PDF</a>",
+                string.Format("<a href=\"ShowReport?rs:url={0}&rs:Format=pdf{1}\" target=_blank>PDF</a>",
                 reportFile, sargs);
             string lxml =
-                string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=xml{1}\" target=_blank>XML</a>",
+                string.Format("<a href=\"ShowReport?rs:url={0}&rs:Format=xml{1}\" target=_blank>XML</a>",
                 reportFile, sargs);
             string lcsv =
-                string.Format("<a href=\"ShowReport.aspx?rs:url={0}&rs:Format=csv{1}\" target=_blank>CSV</a>",
+                string.Format("<a href=\"ShowReport?rs:url={0}&rs:Format=csv{1}\" target=_blank>CSV</a>",
                 reportFile, sargs);
 
             pHtml.AppendFormat("<tr><td align=right>{0}</td><td align=right>{1}&nbsp;{2}</td></tr></table></td>",
