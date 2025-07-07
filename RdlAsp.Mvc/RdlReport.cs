@@ -197,8 +197,7 @@ namespace Majorsilence.Reporting.RdlAsp
             // Build the new report
             string contentRootPath = _webHostEnvironment.ContentRootPath;
             string pfile = Path.Combine(contentRootPath, _ReportFile);
-
-            // HACK: async
+            
             await DoRender(pfile);
         }
 
@@ -301,8 +300,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 {
                     ld.Add(kvp.Key, kvp.Value);
                 }
-
-                //               if (!_NoShow) { report = GetCachedReport(file); }
+                
                 report = ReportHelper.GetCachedReport(file, _cache);
 
                 if (report == null) // couldn't obtain report definition from cache

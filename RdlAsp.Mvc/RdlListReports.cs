@@ -83,7 +83,7 @@ namespace Majorsilence.Reporting.RdlAsp
                 {
                     string target = this.Frame == null ? "_self" : Frame;
                     html.AppendLine(
-                        $"<tr><td><a href=\"RdlReport/render?reportFile={name}&type=html\" target={target}>{Path.GetFileNameWithoutExtension(fsi.Name)}</a></td></tr>");
+                        $"<tr><td><a href=\"/msr/RdlReport/ShowFile/{name}/html\" target={target}>{Path.GetFileNameWithoutExtension(fsi.Name)}</a></td></tr>");
                 }
                 else // handle directories
                     html.AppendLine($"<tr><td><a href=\"{name}\">{fsi.Name}<a></td><td></td><td></td></tr>");
