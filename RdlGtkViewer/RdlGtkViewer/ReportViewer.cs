@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
@@ -98,7 +99,9 @@ namespace fyiReporting.RdlGtkViewer
 			}
 		}
 
-        public ReportViewer()
+		public Func<string, string> ReportTextItemsModifierFunc { get; set; } = null;
+
+		public ReportViewer()
         {
             Build();
             Parameters = new ListDictionary();
@@ -199,8 +202,10 @@ namespace fyiReporting.RdlGtkViewer
             	SetParametersFromControls();
             report.RunGetData(Parameters);
             pages = report.BuildPages();
-			
-            foreach (Gtk.Widget w in vboxPages.AllChildren)
+
+			ModifyPageTextItems(pages);
+
+			foreach (Gtk.Widget w in vboxPages.AllChildren)
             {
                 vboxPages.Remove(w);
             }
@@ -226,6 +231,26 @@ namespace fyiReporting.RdlGtkViewer
             CheckVisibility();
         }
 
+		private void ModifyPageTextItems(Pages pages)
+		{
+			if(ReportTextItemsModifierFunc == null)
+			{
+				return;
+			}
+
+			for(int pageCounter = 0; pageCounter < pages.Count; pageCounter++)
+			{
+				var page = pages[pageCounter];
+
+				for(var itemCounter = 0; itemCounter < page.Count; itemCounter++)
+				{
+					if(page[itemCounter] is PageText textItem)
+					{
+						textItem.Text = ReportTextItemsModifierFunc.Invoke(textItem.Text);
+					}
+				}
+			}
+		}
 		
         protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
         {
