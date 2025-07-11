@@ -21,21 +21,73 @@ Alternatively if you want keep up with the latest version you can always use Git
     git clone https://github.com/majorsilence/My-FyiReporting.git
 
 # Introduction
-"FYIReporting Designer is a report and charting system based on Microsoft's Report Definition Language (RDL). 
-Tabular, free form, matrix, charts are fully supported. HTML, PDF, XML, .Net Control, and printing supported. 
-A WYSIWYG designer allows you to create reports without knowledge of RDL. Wizards are available for creating new 
-reports and for inserting new tables, matrixes, and charts into existing reports." (http://www.fyireporting.com/)
-
-Use the report viewer .NET controls from ASP.NET, WPF, or Winforms using C#, F#, VB.NET, IronPython, or any 
-other .NET language.  The winform viewer also works in linux using mono.  An experimental Gtk/WPF/Cocoa viewer also exists. 
-
-Majorsilence Reporting started as My-FyiReporting which was a fork of fyiReporting after it died. It has been rebranded as Majorsilence Reporting to make it clearer that it is a separate forked project.  Majorsilence Reporting is a fork of fyiReporting.  I cannot stress this enough.  This is a FORK.
-The main purpose is to make sure that I have a copy of fyiReporting since that project seems to be dead.  I am leaving the
-github project named My-FyiReporting so links are not broken.  All branding will eventually be replaced with Majorsilence Reporting.
+Majorsilence Reporting is a powerful, open-source .NET reporting framework designed for developers who need to create, design, and deliver rich, interactive reports. Supporting modern .NET versions (8.0), it provides a flexible and extensible platform for building reports from a variety of data sources. With a drag-and-drop designer, multiple viewer options, and cross-platform support, Majorsilence Reporting is ideal for both desktop and web applications. Whether you need to generate reports programmatically or empower users with a visual designer, this project offers the tools and documentation to get you started quickly.
 
 Also check this [projects wiki](https://github.com/majorsilence/My-FyiReporting/wiki) as information will be slowly added.
 
-Majorsilence Reporting is currently built with visual studio 2022 and rider 2024.1 and targets .net 4.8, net6.0 and 8.0.  You can also run the build script.
+# Quick start
+
+nuget package
+
+```xml
+<PackageReference Include="Majorsilence.Reporting.RdlCreator.SkiaSharp" />
+<PackageReference Include="Majorsilence.Reporting.RdlCri.SkiaSharp" />
+```
+
+## c# example connected to an sql database
+```cs
+using Majorsilence.Reporting.RdlCreator;
+
+var create = new Majorsilence.Reporting.RdlCreator.Create();
+
+var report = await create.GenerateRdl(dataProvider,
+    connectionString,
+    "SELECT CategoryID, CategoryName, Description FROM Categories",
+    pageHeaderText: "DataProviderTest TestMethod1");
+
+string filepath = System.IO.Path.Combine(Environment.CurrentDirectory, "PLACEHOLDER.pdf");
+var ofs = new Majorsilence.Reporting.Rdl.OneFileStreamGen(filepath, true);
+await report.RunGetData(null);
+await report.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
+```
+
+## c# example, create a pdf document
+
+```cs
+using Majorsilence.Reporting.RdlCreator;
+
+var document = new Majorsilence.Reporting.RdlCreator.Document()
+{
+    Description = "Sample report",
+    Author = "John Doe",
+    PageHeight = "11in",
+    PageWidth = "8.5in",
+    //Width = "7.5in",
+    TopMargin = ".25in",
+    LeftMargin = ".25in",
+    RightMargin = ".25in",
+    BottomMargin = ".25in"
+}
+.WithPage((page) =>
+{
+    page.WithHeight("10in")
+    .WithWidth("7.5in")
+    .WithText(new Text
+    {
+        Name = "TheSimplePageText",
+        Top = ".1in",
+        Left = ".1in",
+        Width = "6in",
+        Height = ".25in",
+        Value = new Value { Text = "Text Area 1" },
+        Style = new Style { FontSize = "12pt", FontWeight = "Bold" }
+    });
+});
+
+using var fileStream = new FileStream("PLACEHOLDER.pdf", FileMode.Create, FileAccess.Write);
+await document.Create(fileStream);
+```
+
 
 # Development
 Majorsilence Reporting is developed with the following workflow:
@@ -44,9 +96,16 @@ Majorsilence Reporting is developed with the following workflow:
 * Someone needs it to do something it doesn't already do
 * That person implements that something and submits a pull request
 * Repeat
+
 If it doesn't have a feature that you want it to have, add it.  If it has a bug you need fixed, fix it.
 
-## Mac
+## libgdiplus
+
+Useful for winforms projects on windows but otherwise avoid this.
+
+Avoid by using the "Debug-DrawingCompat" or "Release-DrawingCompat" targets to use the skiasharp drawing backend.
+
+### Mac - Legacy
 
 Install mono-libgdiplus.
 
@@ -60,7 +119,7 @@ For report generation to work set the DYLD_LIBRARY_PATH environment variable:
 DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/homebrew/lib
 ```
 
-## Ubuntu
+### Ubuntu - Legacy
 
 Install libgdiplus.
 
@@ -88,47 +147,24 @@ See the wiki page [https://github.com/majorsilence/My-FyiReporting/wiki/Contribu
 
 ### Contributors
 
-A big thanks to all of Majorsilence Reporting contributors:
-
-* [ausadmin](https://github.com/ausadmin)
-* [Geek648](https://github.com/Geek648)
-* [kobruleht](https://github.com/kobruleht)
-* [jzielke](https://github.com/jzielke)
-* [gam6itko](https://github.com/gam6itko)
-* [tsliang](https://github.com/tsliang)
-* [mohsenalikhani](https://github.com/mohsenalikhani)
-* [mgroves](https://github.com/mgroves)
-* [sobolev88](https://github.com/sobolev88)
-
+A big thanks to all of Majorsilence Reporting [contributors](https://github.com/majorsilence/My-FyiReporting/graphs/contributors).
 
 # Layout:
 
-* DataProviders\DataProviders.sln
-* Images\
-* OracleSp\OracleSp.sln
-	* Requires Oracle Data Provider for .NET
-* RdlAsp\RdlAsp.sln
-	* Asp controls to display reports in asp.net and silverlight pages.
-	* References RdlEngine
+* DataProviders
 * RdlAsp.Mvc
-	* Asp.net core mvc controllers
-	* WIP
-* RdlCMD\RdlCmd.sln
+	* asp.net core mvc controllers
+* RdlCMD
 	* Command line tools
-	* References RdlEngine
-* RdlCri\RdlCri.sln
+* RdlCri
 	* Custom Report Controls
-	* References RdlEngine
-* RdlDesign\RdlDesign.sln
+* RdlDesign
 	* Is the main graphical drag and drop designer used to create reports.
-	* References RdlEngine
-	* References RdlViewer
-* RdlDesktop\RdlDesktop.sln
+* RdlDesktop
 	* Simple server
-	* References RdlEngine
-* RdlEngine\RdlEngine.sln
+* RdlEngine
 	* Main engine.  Is referenced in many of the other projects
-* RdlGtkViewer\RdlGtkViewer.sln
+* RdlGtkViewer
 	* A Gtk# 2 (gtk-sharp) viewer
 * RdlGtk3
     * GtkSharp 3 core components
@@ -138,21 +174,20 @@ A big thanks to all of Majorsilence Reporting contributors:
     * Viewer executable
 * RdlViewer
 	* View controls
-	* References RdlEngine
 	* Disabled COM interop
-* RdlMapFile\RdlMapFile.sln
+* RdlMapFile
 	 * Map viewer
-* RdlTest\RdlTests.sln
+* RdlTest
 	 * Tests
 * ReportSever
-	* aspx webforms
+	* aspx webforms - v4 branch
 * RdlCreator
 	* Code first report creation and generation
 
 
 # RDL Compliance
 Report file format specifications can be obtained from microsoft.  I believe fyiReporting is currently mostly 
-compatible with RDL 2005.  If you want to add more features see the specfications.
+compatible with RDL 2005.  If you want to add more features see the specifications.
 
 * RDL specifications: [http://msdn.microsoft.com/en-us/library/dd297486%28v=sql.100%29.aspx](http://msdn.microsoft.com/en-us/library/dd297486%28v=sql.100%29.aspx)
 * 2005 direct link: [http://download.microsoft.com/download/c/2/0/c2091a26-d7bf-4464-8535-dbc31fb45d3c/rdlNov05.pdf](http://download.microsoft.com/download/c/2/0/c2091a26-d7bf-4464-8535-dbc31fb45d3c/rdlNov05.pdf)
