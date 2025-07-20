@@ -19,9 +19,11 @@ report_path = os.path.abspath(report_path)
 if platform.system() == 'Windows':
     # if self hosted or on windows we do not need to set the path to dotnet, rdlcmd can be run directly
     path_to_dotnet = None
-    path_to_rdlcmd = os.path.join(base_directory, "RdlCmd\\bin\\Debug\\net8.0\\RdlCmd.exe") 
+    path_to_rdlcmd = os.path.join(base_directory, "RdlCmd/bin/Release/net8.0/win-x64/publish/RdlCmd.exe") 
 else:
     # dotnet is required to run rdlcmd
+    # if a self contained build is used, the path to dotnet is not needed and the call should be to RdlCmd instead of RdlCmd.dll directly
+    # if a self contained build is not used, the path to dotnet is needed
     path_to_dotnet= "dotnet"
     path_to_rdlcmd = os.path.join(base_directory, "RdlCmd/bin/Debug/net8.0/RdlCmd.dll") 
 
