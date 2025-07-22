@@ -99,7 +99,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
     internal class PropertySubreportUIEditor : UITypeEditor
     {
-        internal PropertySubreportUIEditor()
+        public PropertySubreportUIEditor()
         {
         }
 
@@ -144,7 +144,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
     internal class PropertySubreportParametersUIEditor : UITypeEditor
     {
-        internal PropertySubreportParametersUIEditor()
+        public PropertySubreportParametersUIEditor()
         {
         }
 
