@@ -38,7 +38,7 @@ namespace Majorsilence.Reporting.RdlDesign
     /// </summary>
     internal partial class ReportCtl : System.Windows.Forms.UserControl, IProperty
     {
-        internal ReportCtl(DesignXmlDraw dxDraw)
+        public ReportCtl(DesignXmlDraw dxDraw)
         {
             _Draw = dxDraw;
             // This call is required by the Windows.Forms Form Designer.

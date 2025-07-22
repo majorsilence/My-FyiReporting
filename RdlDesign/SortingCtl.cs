@@ -51,7 +51,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		internal SortingCtl(DesignXmlDraw dxDraw, XmlNode sortingParent)
+		public SortingCtl(DesignXmlDraw dxDraw, XmlNode sortingParent)
 		{
 			_Draw = dxDraw;
 			_SortingParent = sortingParent;

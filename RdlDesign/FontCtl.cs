@@ -84,7 +84,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private System.ComponentModel.Container components = null;
         private string[] _names;
 
-        internal FontCtl(DesignXmlDraw dxDraw, string[] names, List<XmlNode> styles)
+        public FontCtl(DesignXmlDraw dxDraw, string[] names, List<XmlNode> styles)
 		{
 			_ReportItems = styles;
 			_Draw = dxDraw;

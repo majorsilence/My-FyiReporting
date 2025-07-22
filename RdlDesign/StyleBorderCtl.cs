@@ -93,7 +93,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private System.ComponentModel.Container components = null;
         private string[] _names;
 
-        internal StyleBorderCtl(DesignXmlDraw dxDraw, string[] names, List<XmlNode> reportItems)
+        public StyleBorderCtl(DesignXmlDraw dxDraw, string[] names, List<XmlNode> reportItems)
 		{
 			_ReportItems = reportItems;
 			_Draw = dxDraw;

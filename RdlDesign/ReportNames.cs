@@ -40,7 +40,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		List<XmlNode> _ReportNodes;		// array of report nodes; used for tabbing around the nodes
 		Dictionary<string, XmlNode> _ReportItems;		// name/xmlnode pairs of report items
         Dictionary<string, XmlNode> _Groupings;		// name/xmlnode pairs of grouping names
-		internal ReportNames(XmlDocument rDoc)
+		public ReportNames(XmlDocument rDoc)
 		{
 			_doc = rDoc;
 			BuildNames();			// build the name hash tables

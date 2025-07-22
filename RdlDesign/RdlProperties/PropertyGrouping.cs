@@ -97,7 +97,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
     internal class PropertyGroupingUIEditor : UITypeEditor
     {
-        internal PropertyGroupingUIEditor()
+        public PropertyGroupingUIEditor()
         {
         }
 

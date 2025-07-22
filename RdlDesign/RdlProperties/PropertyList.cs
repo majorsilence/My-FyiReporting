@@ -98,6 +98,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
     internal class PropertyListConverter : ExpandableObjectConverter
     {
+        public PropertyListConverter(){}
         public override object ConvertTo(ITypeDescriptorContext context,
             CultureInfo culture, object value, Type destinationType)
         {

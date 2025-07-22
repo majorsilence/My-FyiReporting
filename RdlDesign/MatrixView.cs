@@ -47,7 +47,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		MatrixItem[,] _MatrixView;
 		string _ViewBuilt=null;
 
-		internal MatrixView(DesignXmlDraw dxDraw, XmlNode matrix)
+		public MatrixView(DesignXmlDraw dxDraw, XmlNode matrix)
 		{
 			_Draw = dxDraw;
 			_MatrixNode = matrix;
@@ -558,7 +558,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		float _Width;
 		float _Height;
 
-		internal MatrixItem(XmlNode ri)
+		public MatrixItem(XmlNode ri)
 		{
 			_ReportItem = ri;
 		}

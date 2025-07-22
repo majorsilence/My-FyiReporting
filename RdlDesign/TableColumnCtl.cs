@@ -56,7 +56,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		internal TableColumnCtl(DesignXmlDraw dxDraw, XmlNode tc)
+		public TableColumnCtl(DesignXmlDraw dxDraw, XmlNode tc)
 		{
 			_TableColumn = tc;
 			_Draw = dxDraw;

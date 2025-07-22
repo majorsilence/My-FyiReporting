@@ -16,7 +16,7 @@ namespace Majorsilence.Reporting.RdlDesign
     /// </summary>
     internal partial class DialogNewTable 
     {
-        internal DialogNewTable(DesignXmlDraw dxDraw, XmlNode container)
+        public DialogNewTable(DesignXmlDraw dxDraw, XmlNode container)
         {
             _Draw = dxDraw;
             //

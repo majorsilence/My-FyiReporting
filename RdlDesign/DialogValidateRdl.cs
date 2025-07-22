@@ -47,7 +47,7 @@ namespace Majorsilence.Reporting.RdlDesign
         private int _ValidationErrorCount;
         private int _ValidationWarningCount;
 
-        internal DialogValidateRdl(RdlDesigner designer)
+        public DialogValidateRdl(RdlDesigner designer)
         {
             _RdlDesigner = designer;
             //

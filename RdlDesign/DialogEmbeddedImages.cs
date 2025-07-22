@@ -19,7 +19,7 @@ namespace Majorsilence.Reporting.RdlDesign
     /// </summary>
     internal partial class DialogEmbeddedImages 
     {
-        internal DialogEmbeddedImages(DesignXmlDraw draw)
+        public DialogEmbeddedImages(DesignXmlDraw draw)
         {
             _Draw = draw;
             //
@@ -340,7 +340,7 @@ namespace Majorsilence.Reporting.RdlDesign
         string _ImageData;		// the embedded image value
         string _MIMEType;
 
-        internal EmbeddedImageValues(string name)
+        public EmbeddedImageValues(string name)
         {
             _Name = name;
         }
