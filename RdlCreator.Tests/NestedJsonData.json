@@ -1,0 +1,149 @@
+[
+  {
+    "EmployeeID": 1,
+    "FirstName": "Nancy",
+    "LastName": "Davolio",
+    "ContactInfo": {
+      "Email": "nancy.davolio@example.com",
+      "Phone": "(206) 555-9857",
+      "Address": {
+        "Street": "507 - 20th Ave. E. Apt. 2A",
+        "City": "Seattle",
+        "Region": "WA",
+        "PostalCode": "98122",
+        "Country": "USA"
+      }
+    },
+    "Dependents": [
+      {
+        "Name": "John Davolio",
+        "Relationship": "Son",
+        "BirthDate": "2005-06-15"
+      },
+      {
+        "Name": "Lisa Davolio",
+        "Relationship": "Daughter",
+        "BirthDate": "2008-09-23"
+      }
+    ]
+  },
+  {
+    "EmployeeID": 2,
+    "FirstName": "Andrew",
+    "LastName": "Fuller",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(206) 555-9482",
+      "Address": {
+        "Street": "908 W. Capital Way",
+        "City": "Tacoma",
+        "Region": "WA",
+        "PostalCode": "98401",
+        "Country": "USA"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 3,
+    "FirstName": "Janet",
+    "LastName": "Leverling",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(206) 555-3412",
+      "Address": {
+        "Street": "722 Moss Bay Blvd.",
+        "City": "Kirkland",
+        "Region": "WA",
+        "PostalCode": "98033",
+        "Country": "USA"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 4,
+    "FirstName": "Margaret",
+    "LastName": "Peacock",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(206) 555-8122",
+      "Address": {
+        "Street": "4110 Old Redmond Rd.",
+        "City": "Redmond",
+        "Region": "WA",
+        "PostalCode": "98052",
+        "Country": "USA"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 5,
+    "FirstName": "Steven",
+    "LastName": "Buchanan",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(71) 555-4848",
+      "Address": {
+        "Street": "14 Garrett Hill",
+        "City": "London",
+        "Region": null,
+        "PostalCode": "SW1 8JR",
+        "Country": "UK"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 6,
+    "FirstName": "Michael",
+    "LastName": "Suyama",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(71) 555-7773",
+      "Address": {
+        "Street": "Coventry House\r\nMiner Rd.",
+        "City": "London",
+        "Region": null,
+        "PostalCode": "EC2 7JR",
+        "Country": "UK"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 8,
+    "FirstName": "Laura",
+    "LastName": "Callahan",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(206) 555-1189",
+      "Address": {
+        "Street": "4726 - 11th Ave. N.E.",
+        "City": "Seattle",
+        "Region": "WA",
+        "PostalCode": "98105",
+        "Country": "USA"
+      }
+    },
+    "Dependents": []
+  },
+  {
+    "EmployeeID": 9,
+    "FirstName": "Anne",
+    "LastName": "Dodsworth",
+    "ContactInfo": {
+      "Email": null,
+      "Phone": "(71) 555-4444",
+      "Address": {
+        "Street": "7 Houndstooth Rd.",
+        "City": "London",
+        "Region": null,
+        "PostalCode": "WG2 7LT",
+        "Country": "UK"
+      }
+    },
+    "Dependents": []
+  }
+]

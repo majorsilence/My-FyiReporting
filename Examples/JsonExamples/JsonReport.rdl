@@ -8,7 +8,7 @@
     <DataSource Name="DS1">
       <ConnectionProperties>
         <DataProvider>Json</DataProvider>
-        <ConnectString>file=C:\Users\peter\source\repos\My-FyiReporting\RdlCreator.Tests\TestData.json</ConnectString>
+        <ConnectString>file=C:\Users\peter\source\repos\My-FyiReporting\RdlCreator.Tests\NestedJsonData.json</ConnectString>
       </ConnectionProperties>
     </DataSource>
   </DataSources>
@@ -21,11 +21,11 @@
     <DataSet Name="Data">
       <Query>
         <DataSourceName>DS1</DataSourceName>
-        <CommandText>columns=EmployeID,FirstName,LastName,Title</CommandText>
+        <CommandText>columns=EmployeID,FirstName,LastName,Title,ContactInfo_Email</CommandText>
       </Query>
       <Fields>
-        <Field Name="EmployeID">
-          <DataField>EmployeID</DataField>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
           <rd:TypeName>System.Text.Json.JsonElement</rd:TypeName>
         </Field>
         <Field Name="FirstName">
@@ -36,8 +36,12 @@
           <DataField>LastName</DataField>
           <rd:TypeName>System.Text.Json.JsonElement</rd:TypeName>
         </Field>
-        <Field Name="Title">
-          <DataField>Title</DataField>
+        <Field Name="ContactInfo_Phone">
+          <DataField>ContactInfo_Phone</DataField>
+          <rd:TypeName>System.Text.Json.JsonElement</rd:TypeName>
+        </Field>
+        <Field Name="ContactInfo_Email">
+          <DataField>ContactInfo_Email</DataField>
           <rd:TypeName>System.Text.Json.JsonElement</rd:TypeName>
         </Field>
       </Fields>
@@ -69,7 +73,10 @@
             <Width>1in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>275.9pt</Width>
+            <Width>148.5pt</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>214.1pt</Width>
           </TableColumn>
         </TableColumns>
         <Header>
@@ -80,7 +87,7 @@
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="Textbox1">
-                      <Value>EmployeID</Value>
+                      <Value>EmployeeID</Value>
                       <Style>
                         <TextAlign>Center</TextAlign>
                         <BorderStyle>
@@ -122,7 +129,21 @@
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="Textbox4">
-                      <Value>Title</Value>
+                      <Value>Phone</Value>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Textbox5">
+                      <Value>Email</Value>
                       <Style>
                         <TextAlign>Center</TextAlign>
                         <BorderStyle>
@@ -145,8 +166,8 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="EmployeID">
-                      <Value>=Fields!EmployeID.Value</Value>
+                    <Textbox Name="EmployeeID">
+                      <Value>=Fields!EmployeeID.Value</Value>
                       <CanGrow>false</CanGrow>
                       <Style>
                         <BorderStyle>
@@ -187,8 +208,22 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="Title">
-                      <Value>=Fields!Title.Value</Value>
+                    <Textbox Name="ContactInfo_Phone">
+                      <Value>=Fields!ContactInfo_Phone.Value</Value>
+                      <CanGrow>false</CanGrow>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ContactInfo_Email">
+                      <Value>=Fields!ContactInfo_Email.Value</Value>
                       <CanGrow>false</CanGrow>
                       <Style>
                         <BorderStyle>
@@ -210,7 +245,7 @@
   <PageFooter>
     <Height>14pt</Height>
     <ReportItems>
-      <Textbox Name="Textbox5">
+      <Textbox Name="Textbox510">
         <Top>1pt</Top>
         <Left>10pt</Left>
         <Height>12pt</Height>
