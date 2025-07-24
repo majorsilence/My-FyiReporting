@@ -21,7 +21,7 @@
     <DataSet Name="Data">
       <Query>
         <DataSourceName>DS1</DataSourceName>
-        <CommandText>columns=EmployeID,FirstName,LastName,Title,ContactInfo_Email</CommandText>
+        <CommandText>columns=EmployeeID,FirstName,LastName,ContactInfo_Phone,ContactInfo_Email</CommandText>
       </Query>
       <Fields>
         <Field Name="EmployeeID">

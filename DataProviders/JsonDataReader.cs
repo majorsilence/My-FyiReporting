@@ -41,22 +41,40 @@ namespace Majorsilence.Reporting.Data
         JsonConnection _tconn;
         JsonCommand _tcmd;
         System.Data.CommandBehavior _behavior;
-        
+        private readonly string[] _requestedColumns;
+
         public JsonDataReader(System.Data.CommandBehavior behavior, JsonConnection conn, JsonCommand cmd)
         {
             _behavior = behavior;
             _tcmd = cmd ?? throw new ArgumentNullException(nameof(cmd), "Command cannot be null.");
             _tconn = conn ?? throw new ArgumentNullException(nameof(conn), "Connection cannot be null.");
+            _requestedColumns = cmd.Columns;
+        
             string json = Task.Run(async () => await ReadAllJsonAsync()).GetAwaiter().GetResult();
 
-            var extractor = new JsonTableExtractor(); // Now returns Dictionary<string, IDataReader>
-            _readers = extractor.Extract(json);
+            var extractor = new JsonTableExtractor();
+            var allReaders = extractor.Extract(json);
+        
+            // If specific columns were requested, filter the root reader
+            if (_requestedColumns != null && _requestedColumns.Length > 0 && 
+                allReaders.TryGetValue("root", out var originalRootReader))
+            {
+                // Create a filtered version of the root reader
+                var filteredRoot = new FilteredDictionaryDataReader(
+                    (DictionaryDataReader)originalRootReader, 
+                    _requestedColumns);
+                
+                // Replace the root reader with the filtered version
+                allReaders["root"] = filteredRoot;
+            }
+        
+            _readers = allReaders;
 
             if (!_readers.TryGetValue("root", out _rootReader))
                 throw new InvalidOperationException(
                     "JSON must contain a top-level array to produce the 'root' reader.");
         }
-        
+
         /// <summary>
         /// The main reader for the top-level JSON array.
         /// </summary>
@@ -120,7 +138,7 @@ namespace Majorsilence.Reporting.Data
         public int GetInt32(int i) => (int)GetValue(i);
         public long GetInt64(int i) => (long)GetValue(i);
         public string GetString(int i) => GetValue(i)?.ToString();
-        
+
         async Task<StreamReader> GetStream()
         {
             string fname = _tcmd.Url;
@@ -136,11 +154,11 @@ namespace Majorsilence.Reporting.Data
 
                 if (!string.IsNullOrWhiteSpace(_tconn.Auth))
                 {
-
                     var authParts = _tconn.Auth.Split(':');
                     string authScheme = authParts[0];
                     string authParameters = authParts[1];
-                    request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(authScheme, authParameters);
+                    request.Headers.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue(authScheme, authParameters);
                 }
 
                 HttpResponseMessage response = await _tconn.Client.SendAsync(request);
@@ -158,7 +176,7 @@ namespace Majorsilence.Reporting.Data
 
             return new StreamReader(strm);
         }
-        
+
         private async Task<string> ReadAllJsonAsync()
         {
             using var sr = await GetStream();
