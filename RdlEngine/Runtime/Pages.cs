@@ -241,6 +241,7 @@ namespace Majorsilence.Reporting.Rdl
             {
                 page.Dispose();
             }
+            CleanUp();
             _pages.Clear();
             _pages = null;
             _report.Dispose();
