@@ -58,20 +58,20 @@ namespace Majorsilence.Reporting.RdlGtk3
         private Action _zoomOutAction;
 
         public NeedPassword DataSourceReferencePassword = null;
-        private Paned hpanedReport;
+        private Paned _hpanedReport;
 
-        private int hpanedWidth;
-        private ScrolledWindow scrolledwindowErrors;
-        private ScrolledWindow scrolledwindowPages;
+        private int _hpanedWidth;
+        private ScrolledWindow _scrolledwindowErrors;
+        private ScrolledWindow _scrolledwindowPages;
 
-        private bool show_errors;
+        private bool _showErrors;
 
-        private bool show_params;
+        private bool _showParams;
 
-        private Uri sourceFile;
-        private TextView textviewErrors;
-        private Box vboxPages;
-        private Box vboxParameters;
+        private Uri _sourceFile;
+        private TextView _textviewErrors;
+        private Box _vboxPages;
+        private Box _vboxParameters;
 
         public ReportViewer()
         {
@@ -89,10 +89,10 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public bool ShowErrors
         {
-            get => show_errors;
+            get => _showErrors;
             set
             {
-                show_errors = value;
+                _showErrors = value;
                 CheckVisibility();
             }
         }
@@ -101,10 +101,10 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public bool ShowParameters
         {
-            get => show_params;
+            get => _showParams;
             set
             {
-                show_params = value;
+                _showParams = value;
                 CheckVisibility();
             }
         }
@@ -113,11 +113,11 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public Uri SourceFile
         {
-            get => sourceFile;
+            get => _sourceFile;
             private set
             {
-                sourceFile = value;
-                WorkingDirectory = System.IO.Path.GetDirectoryName(sourceFile.LocalPath);
+                _sourceFile = value;
+                WorkingDirectory = System.IO.Path.GetDirectoryName(_sourceFile.LocalPath);
             }
         }
 
@@ -166,34 +166,34 @@ namespace Majorsilence.Reporting.RdlGtk3
             _hbox = new Box(Orientation.Horizontal, 6);
             _hbox.Homogeneous = false;
             _hbox.Expand = true;
-            vboxParameters = new Box(Orientation.Horizontal, 6);
-            vboxParameters.Homogeneous = false;
-            _hbox.PackStart(vboxParameters, false, false, 0);
+            _vboxParameters = new Box(Orientation.Horizontal, 6);
+            _vboxParameters.Homogeneous = false;
+            _hbox.PackStart(_vboxParameters, false, false, 0);
             _vbox.Add(ActionGroup);
 
-            hpanedReport = new Paned(Orientation.Horizontal);
-            hpanedReport.Expand = true;
-            scrolledwindowPages = new ScrolledWindow();
-            scrolledwindowPages.Expand = true;
+            _hpanedReport = new Paned(Orientation.Horizontal);
+            _hpanedReport.Expand = true;
+            _scrolledwindowPages = new ScrolledWindow();
+            _scrolledwindowPages.Expand = true;
 
             Viewport gtkViewport = new();
             gtkViewport.Expand = true;
-            vboxPages = new Box(Orientation.Vertical, 6);
-            vboxPages.Homogeneous = false;
-            vboxPages.Expand = true;
-            gtkViewport.Add(vboxPages);
-            scrolledwindowPages.Add(gtkViewport);
-            hpanedReport.Pack1(scrolledwindowPages, true, true);
+            _vboxPages = new Box(Orientation.Vertical, 6);
+            _vboxPages.Homogeneous = false;
+            _vboxPages.Expand = true;
+            gtkViewport.Add(_vboxPages);
+            _scrolledwindowPages.Add(gtkViewport);
+            _hpanedReport.Pack1(_scrolledwindowPages, true, true);
 
-            scrolledwindowErrors = new ScrolledWindow();
-            textviewErrors = new TextView();
-            textviewErrors.WidthRequest = 200;
-            textviewErrors.Editable = false;
-            textviewErrors.WrapMode = WrapMode.WordChar;
-            scrolledwindowErrors.Add(textviewErrors);
-            hpanedReport.Pack2(scrolledwindowErrors, true, true);
+            _scrolledwindowErrors = new ScrolledWindow();
+            _textviewErrors = new TextView();
+            _textviewErrors.WidthRequest = 200;
+            _textviewErrors.Editable = false;
+            _textviewErrors.WrapMode = WrapMode.WordChar;
+            _scrolledwindowErrors.Add(_textviewErrors);
+            _hpanedReport.Pack2(_scrolledwindowErrors, true, true);
 
-            _hbox.PackEnd(hpanedReport, true, true, 0);
+            _hbox.PackEnd(_hpanedReport, true, true, 0);
             _vbox.PackEnd(_hbox, true, true, 0);
 
             Add(_vbox);
@@ -204,7 +204,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             _printAction.Activated += OnPrintActionActivated;
             _zoomOutAction.Activated += OnZoomOutActionActivated;
             _zoomInAction.Activated += OnZoomInActionActivated;
-            hpanedReport.SizeAllocated += OnHpanedReportSizeAllocated;
+            _hpanedReport.SizeAllocated += OnHpanedReportSizeAllocated;
 #pragma warning restore CS0612 // Type or member is obsolete
         }
 
@@ -331,9 +331,9 @@ namespace Majorsilence.Reporting.RdlGtk3
             await _report.RunGetData(Parameters);
             _pages = await _report.BuildPages();
 
-            foreach (Widget w in vboxPages.AllChildren.Cast<Widget>().ToList())
+            foreach (Widget w in _vboxPages.AllChildren.Cast<Widget>().ToList())
             {
-                vboxPages.Remove(w);
+                _vboxPages.Remove(w);
                 w.Destroy();
             }
 
@@ -342,7 +342,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 ReportArea area = new();
                 area.SetReport(_report, _pages[pageCount]);
                 //area.Scale
-                vboxPages.Add(area);
+                _vboxPages.Add(area);
             }
 
             ShowAll();
@@ -351,7 +351,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             if (_report.ErrorMaxSeverity == 0)
             {
-                show_errors = false;
+                _showErrors = false;
             }
 
 #pragma warning disable CS0612 // Type or member is obsolete
@@ -365,7 +365,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         protected void OnZoomOutActionActivated(object sender, EventArgs e)
         {
-            foreach (Widget w in vboxPages.AllChildren)
+            foreach (Widget w in _vboxPages.AllChildren)
             {
                 if (w is ReportArea)
                 {
@@ -377,7 +377,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         protected void OnZoomInActionActivated(object sender, EventArgs e)
         {
-            foreach (Widget w in vboxPages.AllChildren)
+            foreach (Widget w in _vboxPages.AllChildren)
             {
                 if (w is ReportArea)
                 {
@@ -465,13 +465,13 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             if (ShowErrors)
             {
-                scrolledwindowErrors.ShowAll();
+                _scrolledwindowErrors.ShowAll();
             }
 
             //scrolledwindowErrors.HideAll();
             if (ShowParameters)
             {
-                vboxParameters.ShowAll();
+                _vboxParameters.ShowAll();
             }
             //vboxParameters.HideAll();
         }
@@ -506,9 +506,9 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         private void AddParameterControls()
         {
-            foreach (Widget child in vboxParameters.Children)
+            foreach (Widget child in _vboxParameters.Children)
             {
-                vboxParameters.Remove(child);
+                _vboxParameters.Remove(child);
             }
 
             foreach (UserReportParameter rp in _report.UserReportParameters)
@@ -550,7 +550,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 }
 
                 hbox.PackStart(entryValue, false, false, 0);
-                vboxParameters.PackStart(hbox, false, false, 0);
+                _vboxParameters.PackStart(hbox, false, false, 0);
             }
         }
 
@@ -559,7 +559,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             int i = 0;
             foreach (UserReportParameter rp in _report.UserReportParameters)
             {
-                HBox hbox = (HBox)vboxParameters.Children[i];
+                HBox hbox = (HBox)_vboxParameters.Children[i];
                 Entry entry = (Entry)hbox.Children[1];
                 //parameters.Add (rp.Name, entry.Text);
                 Parameters[rp.Name] = entry.Text;
@@ -569,7 +569,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         private void SetErrorMessages(IList errors)
         {
-            textviewErrors.Buffer.Clear();
+            _textviewErrors.Buffer.Clear();
 
             if (errors == null || errors.Count == 0)
             {
@@ -584,7 +584,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 msgs.AppendLine(error.ToString());
             }
 
-            textviewErrors.Buffer.Text = msgs.ToString();
+            _textviewErrors.Buffer.Text = msgs.ToString();
         }
 
         protected async void OnPdfActionActivated(object sender, EventArgs e)
@@ -938,12 +938,12 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         protected void OnHpanedReportSizeAllocated(object o, SizeAllocatedArgs args)
         {
-            if (args.Allocation.Width != hpanedWidth)
+            if (args.Allocation.Width != _hpanedWidth)
             {
-                hpanedWidth = args.Allocation.Width;
+                _hpanedWidth = args.Allocation.Width;
                 // int textviewWidth = scrolledwindowErrors.Allocation.Width + 10;
                 // hpanedReport.Position = hpanedWidth - textviewWidth;
-                hpanedReport.Position = (int)(hpanedWidth * 0.8);
+                _hpanedReport.Position = (int)(_hpanedWidth * 0.8);
             }
         }
 
