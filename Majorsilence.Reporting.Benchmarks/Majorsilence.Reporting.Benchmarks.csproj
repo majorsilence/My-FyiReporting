@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Configurations>Debug;Release;Release-DrawingCompat</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RdlCreator\Majorsilence.Reporting.RdlCreator.csproj" />
+      <ProjectReference Include="..\RdlCri\Majorsilence.Reporting.RdlCri.csproj" />
+      <ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\RdlCreator.Tests\NestedJsonData.json">
+        <Link>NestedJsonData.json</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
