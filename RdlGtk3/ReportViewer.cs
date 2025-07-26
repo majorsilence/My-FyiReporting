@@ -353,11 +353,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             {
                 _showErrors = false;
             }
-
-#pragma warning disable CS0612 // Type or member is obsolete
-            _errorsAction.VisibleHorizontal = _report.ErrorMaxSeverity > 0;
-#pragma warning restore CS0612 // Type or member is obsolete
-
+            
             //			Title = string.Format ("RDL report viewer - {0}", report.Name);
             EnableActions();
             CheckVisibility();
@@ -466,6 +462,10 @@ namespace Majorsilence.Reporting.RdlGtk3
             if (ShowErrors)
             {
                 _scrolledwindowErrors.ShowAll();
+            }
+            else
+            {
+                _scrolledwindowErrors.Hide();
             }
 
             //scrolledwindowErrors.HideAll();
@@ -585,6 +585,11 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
 
             _textviewErrors.Buffer.Text = msgs.ToString();
+            
+#pragma warning disable CS0612 // Type or member is obsolete
+            //_errorsAction.VisibleHorizontal = _report.ErrorMaxSeverity > 0;
+#pragma warning restore CS0612 // Type or member is obsolete
+
         }
 
         protected async void OnPdfActionActivated(object sender, EventArgs e)
