@@ -40,9 +40,13 @@ dotnet add package Majorsilence.Reporting.RdlCri.SkiaSharp
 You are now ready to create and generate reports.
 
 ## c# example connected to an sql database
+
+See [Database Providers](https://github.com/majorsilence/My-FyiReporting/wiki/Database-Providers-Howto).
+
 ```cs
 using Majorsilence.Reporting.RdlCreator;
 
+string dataProvider = "[PLACEHOLDER/Json/Microsoft.Data.SqlClient/MySQL.NET/Firebird.NET 2.0/Microsoft.Data.Sqlite/PostgreSQL";
 var create = new Majorsilence.Reporting.RdlCreator.Create();
 
 var report = await create.GenerateRdl(dataProvider,
