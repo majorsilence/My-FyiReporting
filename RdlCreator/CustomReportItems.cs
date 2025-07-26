@@ -19,5 +19,7 @@ namespace Majorsilence.Reporting.RdlCreator
         public Style Style { get; set; }
         [XmlElement(ElementName = "CanGrow")]
         public string CanGrow { get; set; }
+        [XmlElement(ElementName = "Source")]
+        public string Source { get; set; } = "Embedded";
     }
 }
