@@ -20,38 +20,45 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
+
+using Cairo;
+using Gdk;
+using Majorsilence.Reporting.Rdl;
+using Pango;
 using System;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
-using Majorsilence.Reporting.Rdl;
-using Pango;
+using CairoHelper = Pango.CairoHelper;
+using Color = Cairo.Color;
+using Context = Cairo.Context;
+using Rectangle = Pango.Rectangle;
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
     public class RenderCairo : IDisposable
     {
-        Cairo.Context g;
-        Pango.Layout layout;
-		float scale = 1.0f;
-        float dpiX = 96;
-        float dpiY = 96;
+        private readonly float dpiX = 96;
+        private readonly float dpiY = 96;
+        private readonly Context g;
+        private Layout layout;
+        private readonly float scale = 1.0f;
 
-        public RenderCairo(Cairo.Context g)
+        public RenderCairo(Context g)
             : this(g, 1.0f)
         {
         }
 
-        public RenderCairo(Cairo.Context g, float scale)
+        public RenderCairo(Context g, float scale)
         {
             this.g = g;
-            this.layout = Pango.CairoHelper.CreateLayout(g);
-			this.scale = scale;
-			g.Scale(scale, scale);
+            layout = CairoHelper.CreateLayout(g);
+            this.scale = scale;
+            g.Scale(scale, scale);
         }
 
         public void Dispose()
-        { 
+        {
             if (layout != null)
             {
                 layout.Dispose();
@@ -60,21 +67,21 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         internal float PixelsX(float x)
         {
-            return (x * dpiX / 96.0f);
+            return x * dpiX / 96.0f;
         }
 
         internal float PixelsY(float y)
         {
-            return (y * dpiY / 96.0f);
+            return y * dpiY / 96.0f;
         }
 
-        private void ProcessPage(Cairo.Context g, IEnumerable p)
+        private void ProcessPage(Context g, IEnumerable p)
         {
             foreach (PageItem pi in p)
             {
-				
                 if (pi is PageTextHtml)
-                {   // PageTextHtml is actually a composite object (just like a page) 
+                {
+                    // PageTextHtml is actually a composite object (just like a page) 
                     ProcessHtml(pi as PageTextHtml, g);
                     continue;
                 }
@@ -90,7 +97,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 }
 
 //                RectangleF rect = new RectangleF(PixelsX(pi.X), PixelsY(pi.Y), PixelsX(pi.W), PixelsY(pi.H));
-                Cairo.Rectangle rect = new Cairo.Rectangle(PixelsX(pi.X), PixelsY(pi.Y), PixelsX(pi.W), PixelsY(pi.H));
+                Cairo.Rectangle rect = new(PixelsX(pi.X), PixelsY(pi.Y), PixelsX(pi.W), PixelsY(pi.H));
 
                 if (pi.SI.BackgroundImage != null)
                 {
@@ -105,17 +112,18 @@ namespace Majorsilence.Reporting.RdlGtk3
                     PageText pt = pi as PageText;
                     DrawString(pt, g, rect);
                 }
-                
+
                 if (pi is PageImage)
                 {
                     PageImage i = pi as PageImage;
                     DrawImage(i, g, rect);
                 }
-                
+
                 if (pi is PageRectangle)
                 {
                     //DrawBackground(g, rect, pi.SI);
                 }
+
                 //                else if (pi is PageEllipse)
                 //                {
                 //                    PageEllipse pe = pi as PageEllipse;
@@ -142,18 +150,19 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-        private void ProcessHtml(PageTextHtml pth, Cairo.Context g)
+        private void ProcessHtml(PageTextHtml pth, Context g)
         {
-			
 //            pth.Build(g);            // Builds the subobjects that make up the html 
-            this.ProcessPage(g, pth);
+            ProcessPage(g, pth);
         }
 
-        private void DrawLine(Cairo.Color c, BorderStyleEnum bs, float w, Cairo.Context g, double x, double y, double x2, double y2)
+        private void DrawLine(Color c, BorderStyleEnum bs, float w, Context g, double x, double y, double x2, double y2)
         {
-            if (bs == BorderStyleEnum.None//|| c.IsEmpty 
-                || w <= 0)   // nothing to draw 
+            if (bs == BorderStyleEnum.None //|| c.IsEmpty 
+                || w <= 0) // nothing to draw 
+            {
                 return;
+            }
 
             g.Save();
 //          Pen p = null;  
@@ -181,67 +190,69 @@ namespace Majorsilence.Reporting.RdlGtk3
                     g.SetDash(new double[] { }, 0.0);
                     break;
             }
-	
+
 //  	    g.DrawLine(p, x, y, x2, y2);
             g.MoveTo(x, y);
             g.LineTo(x2, y2);
             g.Stroke();
-            
+
             g.Restore();
         }
 
-        private void DrawImage(PageImage pi, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawImage(PageImage pi, Context g, Cairo.Rectangle r)
         {
             double height, width;
             StyleInfo si = pi.SI;
 
             float imageScale = scale;
-			var target = g.GetTarget();
-			
-            if (target.SurfaceType == Cairo.SurfaceType.Pdf 
-				|| target.SurfaceType == Cairo.SurfaceType.PS 
-				|| (int)target.SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
-                imageScale = (300/dpiX) * scale; // PDFs and printers are always 300dpi
-            
+            Surface target = g.GetTarget();
+
+            if (target.SurfaceType == SurfaceType.Pdf
+                || target.SurfaceType == SurfaceType.PS
+                || (int)target.SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
+            {
+                imageScale = 300 / dpiX * scale; // PDFs and printers are always 300dpi
+            }
+
             // adjust drawing rectangle based on padding 
-            Cairo.Rectangle r2 = new Cairo.Rectangle(r.X + PixelsX(si.PaddingLeft),
-                                     r.Y + PixelsY(si.PaddingTop),
-                                     r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
-                                     r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
-            
-            using (Gdk.Pixbuf im = new Gdk.Pixbuf(pi.GetImageData((int)(r2.Width * imageScale), (int)(r2.Height * imageScale))))
+            Cairo.Rectangle r2 = new(r.X + PixelsX(si.PaddingLeft),
+                r.Y + PixelsY(si.PaddingTop),
+                r.Width - PixelsX(si.PaddingLeft + si.PaddingRight),
+                r.Height - PixelsY(si.PaddingTop + si.PaddingBottom));
+
+            using (Pixbuf im = new(pi.GetImageData((int)(r2.Width * imageScale), (int)(r2.Height * imageScale))))
             {
                 switch (pi.Sizing)
                 {
                     case ImageSizingEnum.AutoSize:
                         float imwidth = PixelsX(im.Width);
                         float imheight = PixelsX(im.Height);
-                        var ir = new Cairo.Rectangle(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
+                        Cairo.Rectangle ir = new(Convert.ToInt32(r2.X), Convert.ToInt32(r2.Y),
                             imwidth, imheight);
-                        var im2 = im.ScaleSimple((int)r2.Width, (int)r2.Height, Gdk.InterpType.Hyper);
+                        Pixbuf im2 = im.ScaleSimple((int)r2.Width, (int)r2.Height, InterpType.Hyper);
                         g.DrawPixbufRect(im2, ir, scale);
                         break;
                     case ImageSizingEnum.Clip:
                         g.Save();
                         g.Rectangle(r2);
                         g.Clip();
-                        if(r2.Width > im.Width || r2.Height > im.Height)
+                        if (r2.Width > im.Width || r2.Height > im.Height)
                         {
-                            var r3 = new Cairo.Rectangle(r2.X,
-                                     r2.Y,
-                                     im.Width,
-                                     im.Height);
+                            Cairo.Rectangle r3 = new(r2.X,
+                                r2.Y,
+                                im.Width,
+                                im.Height);
                             g.DrawPixbufRect(im, r3, scale);
                         }
                         else
                         {
                             g.DrawPixbufRect(im, r2, scale);
                         }
-                       
+
                         g.Restore();
                         break;
                     case ImageSizingEnum.FitProportional:
-                        double ratioIm = (float)im.Height / (float)im.Width;
+                        double ratioIm = im.Height / (float)im.Width;
                         double ratioR = r2.Height / r2.Width;
                         height = r2.Height;
                         width = r2.Width;
@@ -249,7 +260,8 @@ namespace Majorsilence.Reporting.RdlGtk3
                         {
                             // this means the rectangle width must be corrected 
                             width = height * (1 / ratioIm);
-                        } else if (ratioIm < ratioR)
+                        }
+                        else if (ratioIm < ratioR)
                         {
                             // this means the ractangle height must be corrected 
                             height = width * ratioIm;
@@ -264,11 +276,11 @@ namespace Majorsilence.Reporting.RdlGtk3
                         break;
                 }
             }
-			
-			target.Dispose();
+
+            target?.Dispose();
         }
 
-        private void DrawString(PageText pt, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawString(PageText pt, Context g, Cairo.Rectangle r)
         {
             switch (pt.SI.WritingMode)
             {
@@ -286,7 +298,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-        private void DrawStringHorizontal(PageText pt, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawStringHorizontal(PageText pt, Context g, Cairo.Rectangle r)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
@@ -296,10 +308,12 @@ namespace Majorsilence.Reporting.RdlGtk3
             layout = CairoHelper.CreateLayout(g);
 
             float fontsize = si.FontSize * 72f / 96f;
-            var font = FontDescription.FromString(string.Format("{0} {1}", si.GetFontFamily().Name,
+            FontDescription font = FontDescription.FromString(string.Format("{0} {1}", si.GetFontFamily().Name,
                 fontsize * PixelsX(1)));
             if (si.FontStyle == FontStyleEnum.Italic)
+            {
                 font.Style = Style.Italic;
+            }
 
             switch (si.FontWeight)
             {
@@ -346,7 +360,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     y = r.Y + si.PaddingTop;
                     break;
                 case VerticalAlignEnum.Middle:
-                    y = r.Y + (r.Height - height) / 2;
+                    y = r.Y + ((r.Height - height) / 2);
                     break;
                 case VerticalAlignEnum.Bottom:
                     y = r.Y + (r.Height - height) - si.PaddingBottom;
@@ -356,7 +370,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             // draw the background 
             DrawBackground(g, r, si);
 
-            Cairo.Rectangle box = new Cairo.Rectangle(
+            Cairo.Rectangle box = new(
                 r.X + si.PaddingLeft + 1,
                 y,
                 r.Width,
@@ -369,11 +383,11 @@ namespace Majorsilence.Reporting.RdlGtk3
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
-			font.Dispose();
+            font?.Dispose();
             g.Restore();
         }
 
-        private void DrawStringTBRL(PageText pt, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawStringTBRL(PageText pt, Context g, Cairo.Rectangle r)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
@@ -384,9 +398,11 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             //Pango fonts are scaled to 72dpi, Windows fonts uses 96dpi
             float fontsize = si.FontSize * 72f / 96f;
-            var font = FontDescription.FromString($"{si.GetFontFamily().Name} {fontsize * PixelsX(1)}");
+            FontDescription font = FontDescription.FromString($"{si.GetFontFamily().Name} {fontsize * PixelsX(1)}");
             if (si.FontStyle == FontStyleEnum.Italic)
+            {
                 font.Style = Style.Italic;
+            }
 
             switch (si.FontWeight)
             {
@@ -435,7 +451,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     x = r.X + r.Width - si.PaddingRight;
                     break;
                 case VerticalAlignEnum.Middle:
-                    x = r.X + (r.Width + height) / 2;
+                    x = r.X + ((r.Width + height) / 2);
                     break;
                 case VerticalAlignEnum.Bottom:
                     x = r.X + height + si.PaddingLeft;
@@ -445,14 +461,14 @@ namespace Majorsilence.Reporting.RdlGtk3
             // draw the background 
             DrawBackground(g, r, si);
 
-            Cairo.Rectangle box = new Cairo.Rectangle(
+            Cairo.Rectangle box = new(
                 x,
                 r.Y + si.PaddingTop + 1,
                 r.Width,
                 r.Height);
 
             g.SetSourceColor(si.Color.ToCairoColor());
-            
+
             g.Rotate(90 * Math.PI / 180.0);
             CairoHelper.UpdateLayout(g, layout);
 
@@ -460,11 +476,11 @@ namespace Majorsilence.Reporting.RdlGtk3
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
-			font.Dispose();
+            font?.Dispose();
             g.Restore();
         }
 
-        private void DrawStringTBLR(PageText pt, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawStringTBLR(PageText pt, Context g, Cairo.Rectangle r)
         {
             StyleInfo si = pt.SI;
             string s = pt.Text;
@@ -474,10 +490,12 @@ namespace Majorsilence.Reporting.RdlGtk3
             layout = CairoHelper.CreateLayout(g);
 
             //Pango fonts are scaled to 72dpi, Windows fonts uses 96dpi
-            float fontsize = (si.FontSize * 72 / 96);
-            var font = FontDescription.FromString($"{si.GetFontFamily().Name} {fontsize * PixelsX(1)}");
+            float fontsize = si.FontSize * 72 / 96;
+            FontDescription font = FontDescription.FromString($"{si.GetFontFamily().Name} {fontsize * PixelsX(1)}");
             if (si.FontStyle == FontStyleEnum.Italic)
+            {
                 font.Style = Style.Italic;
+            }
 
             switch (si.FontWeight)
             {
@@ -526,7 +544,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     x = r.X + si.PaddingLeft;
                     break;
                 case VerticalAlignEnum.Middle:
-                    x = r.X + (r.Width - height) / 2;
+                    x = r.X + ((r.Width - height) / 2);
                     break;
                 case VerticalAlignEnum.Bottom:
                     x = r.X + (r.Width - height) + si.PaddingLeft;
@@ -536,7 +554,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             // draw the background 
             DrawBackground(g, r, si);
 
-            Cairo.Rectangle box = new Cairo.Rectangle(
+            Cairo.Rectangle box = new(
                 x,
                 r.Y + r.Height - si.PaddingBottom - 1,
                 r.Height - si.PaddingBottom - si.PaddingTop,
@@ -551,35 +569,37 @@ namespace Majorsilence.Reporting.RdlGtk3
             CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
-			font.Dispose();
+            font?.Dispose();
             g.Restore();
         }
-        
-        private void DrawBackground(Cairo.Context g, Cairo.Rectangle rect, StyleInfo si)
+
+        private void DrawBackground(Context g, Cairo.Rectangle rect, StyleInfo si)
         {
 //            LinearGradientBrush linGrBrush = null;
 //            SolidBrush sb = null;
             if (si.BackgroundColor.IsEmpty)
+            {
                 return;
-			
+            }
+
             g.Save();
-            Cairo.Color c = si.BackgroundColor.ToCairoColor();
-            Cairo.Gradient gradient = null;
-			
+            Color c = si.BackgroundColor.ToCairoColor();
+            Gradient gradient = null;
+
             if (si.BackgroundGradientType != BackgroundGradientTypeEnum.None &&
                 !si.BackgroundGradientEndColor.IsEmpty)
             {
-                Cairo.Color ec = si.BackgroundGradientEndColor.ToCairoColor();
+                Color ec = si.BackgroundGradientEndColor.ToCairoColor();
 
                 switch (si.BackgroundGradientType)
                 {
                     case BackgroundGradientTypeEnum.LeftRight:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
-                        gradient = new Cairo.LinearGradient(rect.X, rect.Y, rect.X + rect.Width, rect.Y);
+                        gradient = new LinearGradient(rect.X, rect.Y, rect.X + rect.Width, rect.Y);
                         break;
                     case BackgroundGradientTypeEnum.TopBottom:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical);
-                        gradient = new Cairo.LinearGradient(rect.X, rect.Y, rect.X, rect.Y + rect.Height);
+                        gradient = new LinearGradient(rect.X, rect.Y, rect.X, rect.Y + rect.Height);
                         break;
                     case BackgroundGradientTypeEnum.Center:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
@@ -587,11 +607,11 @@ namespace Majorsilence.Reporting.RdlGtk3
 //                            break;
                     case BackgroundGradientTypeEnum.DiagonalLeft:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.ForwardDiagonal);
-                        gradient = new Cairo.LinearGradient(rect.X, rect.Y, rect.X + rect.Width, rect.Y + rect.Height);
+                        gradient = new LinearGradient(rect.X, rect.Y, rect.X + rect.Width, rect.Y + rect.Height);
                         break;
                     case BackgroundGradientTypeEnum.DiagonalRight:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.BackwardDiagonal);
-                        gradient = new Cairo.LinearGradient(rect.X + rect.Width, rect.Y + rect.Height, rect.X, rect.Y);
+                        gradient = new LinearGradient(rect.X + rect.Width, rect.Y + rect.Height, rect.X, rect.Y);
                         break;
                     case BackgroundGradientTypeEnum.HorizontalCenter:
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Horizontal);
@@ -601,39 +621,40 @@ namespace Majorsilence.Reporting.RdlGtk3
 //                            linGrBrush = new LinearGradientBrush(rect, c, ec, LinearGradientMode.Vertical);
                         throw new NotSupportedException();
 //							break;
-                    default:
-                        break;
                 }
-					
+
                 gradient.AddColorStop(0, c);
                 gradient.AddColorStop(1, ec);
             }
 
-            if(gradient != null)
+            if (gradient != null)
             {
 ////                    g.FillRectangle(linGrBrush, rect);
                 g.FillRectangle(rect, gradient);
-                gradient.Dispose();	
+                gradient?.Dispose();
             }
             else if (!si.BackgroundColor.IsEmpty)
             {
                 g.FillRectangle(rect, c);
 //					g.DrawRoundedRectangle (rect, 2, c, 1);
-					
+
 //					g.FillRoundedRectangle (rect, 8, c);
             }
+
             g.Restore();
         }
 
-        private void DrawBorder(PageItem pi, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawBorder(PageItem pi, Context g, Cairo.Rectangle r)
         {
-            if (r.Height <= 0 || r.Width <= 0)      // no bounding box to use 
+            if (r.Height <= 0 || r.Width <= 0) // no bounding box to use 
+            {
                 return;
+            }
 
             double right = r.X + r.Width;
             double bottom = r.Y + r.Height;
             StyleInfo si = pi.SI;
-			
+
             DrawLine(si.BColorTop.ToCairoColor(), si.BStyleTop, si.BWidthTop, g, r.X, r.Y, right, r.Y);
             DrawLine(si.BColorRight.ToCairoColor(), si.BStyleRight, si.BWidthRight, g, right, r.Y, right, bottom);
             DrawLine(si.BColorLeft.ToCairoColor(), si.BStyleLeft, si.BWidthLeft, g, r.X, r.Y, r.X, bottom);
@@ -651,7 +672,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             //At Linux when CurrentCulture is set to local culture, Cairo rendering is serious broken
             CultureInfo oldci = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-			
+
             try
             {
                 foreach (Page p in pgs)
@@ -672,7 +693,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             //At Linux when CurrentCulture is set to local culture, Cairo rendering is serious broken
             CultureInfo oldci = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-			
+
             try
             {
                 ProcessPage(g, pgs);
@@ -683,9 +704,6 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-		
         #endregion
-
     }
 }
-

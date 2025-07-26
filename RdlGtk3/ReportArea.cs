@@ -20,50 +20,65 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-using System;
-using System.Globalization;
-using System.Threading;
+
 using Cairo;
-using Majorsilence.Reporting.Rdl;
-using System.Collections.Generic;
+using Gdk;
 using Gtk;
+using Majorsilence.Drawing;
+using Majorsilence.Reporting.Rdl;
+using Pango;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using Alignment = Pango.Alignment;
+using CairoHelper = Pango.CairoHelper;
+using Color = Cairo.Color;
+using Context = Cairo.Context;
+using Layout = Pango.Layout;
+using Rectangle = Cairo.Rectangle;
 #if DRAWINGCOMPAT
-using Drawing = Majorsilence.Drawing;
+
 #else
 using Drawing = System.Drawing;
 #endif
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
-	[System.ComponentModel.ToolboxItem(true)]
-    public class ReportArea : Gtk.DrawingArea
+    [ToolboxItem(true)]
+    public class ReportArea : DrawingArea
     {
-        Page pages;
-        Report report;
-        int rep_padding = 10;
-        int shadow_padding = 16;
-        float scale = 1.0f;
+        internal float DpiX = 96;
+
+        internal float DpiY = 96;
+
+        private readonly List<HitListEntry> hitList = new();
+        private Page pages;
+        private readonly int rep_padding = 10;
+        private Report report;
+        private float scale = 1.0f;
+
+        private PageItem selectedItem;
+        private readonly int shadow_padding = 16;
+
+        public ReportArea()
+        {
+            // Insert initialization code here.
+            AddEvents((int)EventMask.ButtonPressMask);
+        }
 
         public float Scale
         {
-            get { return scale; }
+            get => scale;
             set
             {
                 if (value != scale && value != 0)
                 {
                     scale = value;
 
-                    this.QueueResize();
+                    QueueResize();
                     //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 }
             }
-        }
-
-        public ReportArea()
-        {
-            // Insert initialization code here.
-            AddEvents((int)Gdk.EventMask.ButtonPressMask);
         }
 
         protected override void OnRealized()
@@ -76,22 +91,21 @@ namespace Majorsilence.Reporting.RdlGtk3
             this.pages = pages;
             this.report = report;
 
-            this.QueueResize();
+            QueueResize();
             //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
         }
 
-        PageItem selectedItem;
-
         private Rectangle GetSelectedItemRectangle()
         {
-            return new Rectangle(selectedItem.X * scale, selectedItem.Y * scale, selectedItem.W * scale, selectedItem.H * scale);
+            return new Rectangle(selectedItem.X * scale, selectedItem.Y * scale, selectedItem.W * scale,
+                selectedItem.H * scale);
         }
 
-        protected override bool OnButtonPressEvent(Gdk.EventButton ev)
+        protected override bool OnButtonPressEvent(EventButton ev)
         {
             if (ev.Button == 3)
             {
-                var hitAreaItem = hitList.FirstOrDefault(x => x.Contains(new PointD((double)ev.X, (double)ev.Y)));
+                HitListEntry hitAreaItem = hitList.FirstOrDefault(x => x.Contains(new PointD(ev.X, ev.Y)));
                 if (hitAreaItem == null)
                 {
                     return false;
@@ -110,14 +124,15 @@ namespace Majorsilence.Reporting.RdlGtk3
                 {
                     return false;
                 }
+
                 selectedItem = hitAreaItem.pi;
                 QueueDraw();
                 //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
-                Menu popupMenu = new Menu();
-                MenuItem menuItem = new MenuItem("Копировать");
+                Menu popupMenu = new();
+                MenuItem menuItem = new("Копировать");
                 menuItem.Activated += (sender, e) =>
                 {
-                    Gtk.Clipboard clipboard = Gtk.Clipboard.Get(Gdk.Atom.Intern("CLIPBOARD", false));
+                    Clipboard clipboard = Clipboard.Get(Atom.Intern("CLIPBOARD", false));
                     clipboard.Text = text;
                     selectedItem = null;
                     QueueDraw();
@@ -133,24 +148,20 @@ namespace Majorsilence.Reporting.RdlGtk3
                     //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 };
             }
+
             // Insert button press handling code here.
             return base.OnButtonPressEvent(ev);
         }
 
-        internal float DpiY = 96;
-        internal float DpiX = 96;
-
         internal float PixelsX(float x)
         {
-            return (float)(x * DpiX / 96.0f);
+            return x * DpiX / 96.0f;
         }
 
         internal float PixelsY(float y)
         {
-            return (float)(y * DpiY / 96.0f);
+            return y * DpiY / 96.0f;
         }
-
-        private List<HitListEntry> hitList = new List<HitListEntry>();
 
         private void SetItemsHitArea()
         {
@@ -160,15 +171,16 @@ namespace Majorsilence.Reporting.RdlGtk3
             foreach (PageItem pi in pages)
             {
                 if (pi is PageTextHtml)
-                {    // PageTextHtml is actually a composite object (just like a page)
-                    Rectangle hr = new Rectangle(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
-                                                                        PixelsX(pi.W * scale), PixelsY(pi.H * scale));
+                {
+                    // PageTextHtml is actually a composite object (just like a page)
+                    Rectangle hr = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
+                        PixelsX(pi.W * scale), PixelsY(pi.H * scale));
                     hitList.Add(new HitListEntry(hr, pi));
                     continue;
                 }
 
-                Rectangle rect = new Rectangle(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
-                                                                    PixelsX(pi.W * scale), PixelsY(pi.H * scale));
+                Rectangle rect = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
+                    PixelsX(pi.W * scale), PixelsY(pi.H * scale));
 
                 if (pi is PageText || pi is PageImage)
                 {
@@ -179,83 +191,16 @@ namespace Majorsilence.Reporting.RdlGtk3
                 {
                     HitListEntry hle;
                     if (pi is PagePolygon)
+                    {
                         hle = new HitListEntry(pi as PagePolygon, XAdditional, YAdditional, this);
+                    }
                     else
+                    {
                         hle = new HitListEntry(rect, pi);
+                    }
+
                     hitList.Add(hle);
                 }
-            }
-        }
-
-        class HitListEntry
-        {
-            internal Rectangle rect;
-            internal PageItem pi;
-            internal Drawing.PointF[] poly;
-            internal HitListEntry(Rectangle r, PageItem pitem)
-            {
-                rect = r;
-                pi = pitem;
-                poly = null;
-            }
-            internal HitListEntry(PagePolygon pp, float x, float y, ReportArea ra)
-            {
-                pi = pp;
-                poly = new Drawing.PointF[pp.Points.Length];
-                for (int i = 0; i < pp.Points.Length; i++)
-                {
-                    poly[i].X = ra.PixelsX(pp.Points[i].X + x);
-                    poly[i].Y = ra.PixelsY(pp.Points[i].Y + y);
-                }
-                rect = new Rectangle(0, 0, 0, 0);
-            }
-            /// <summary>
-            /// Contains- determine whether point in the pageitem
-            /// </summary>
-            /// <param name="p"></param>
-            /// <returns></returns>
-            internal bool Contains(PointD p)
-            {
-                return (pi is PagePolygon) ? PointInPolygon(p) : rect.ContainsPoint(p.X, p.Y);
-            }
-
-            /// <summary>
-            /// PointInPolygon: uses ray casting algorithm ( http://en.wikipedia.org/wiki/Point_in_polygon )
-            /// </summary>
-            /// <param name="p"></param>
-            /// <returns></returns>
-            bool PointInPolygon(PointD p)
-            {
-                Drawing.PointF p1, p2;
-                bool bIn = false;
-                if (poly.Length < 3)
-                {
-                    return false;
-                }
-
-                Drawing.PointF op = new Drawing.PointF(poly[poly.Length - 1].X, poly[poly.Length - 1].Y);
-                for (int i = 0; i < poly.Length; i++)
-                {
-                    Drawing.PointF np = new Drawing.PointF(poly[i].X, poly[i].Y);
-                    if (np.X > op.X)
-                    {
-                        p1 = op;
-                        p2 = np;
-                    }
-                    else
-                    {
-                        p1 = np;
-                        p2 = op;
-                    }
-
-                    if ((np.X < p.X) == (p.X <= op.X)
-                        && (p.Y - p1.Y) * (p2.X - p1.X) < (p2.Y - p1.Y) * (p.X - p1.X))
-                    {
-                        bIn = !bIn;
-                    }
-                    op = np;
-                }
-                return bIn;
             }
         }
 
@@ -265,32 +210,34 @@ namespace Majorsilence.Reporting.RdlGtk3
             int widgetWidth = Allocation.Width;
             int widgetHeight = Allocation.Height;
 
-            int position = ((widgetWidth - width) / 2);
+            int position = (widgetWidth - width) / 2;
             return position;
         }
 
-        protected override bool OnDrawn(Cairo.Context g)
+        protected override bool OnDrawn(Context g)
         {
             base.OnDrawn(g);
 
             if (pages == null)
+            {
                 return false;
+            }
 
             int width = (int)(report.PageWidthPoints * Scale);
             int height = (int)(report.PageHeightPoints * Scale);
-            Rectangle rep_r = new Rectangle(1, 1, width - 1, height - 1);
+            Rectangle rep_r = new(1, 1, width - 1, height - 1);
 
             int widgetWidth = Allocation.Width;
             int widgetHeight = Allocation.Height;
 
             g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
 
-            using (var shadowGPattern = new SolidPattern(new Color(0.6, 0.6, 0.6)))
-            using (var repGPattern = new SolidPattern(new Color(1, 1, 1)))
-            using (var repS = new ImageSurface(Format.Argb32, width, height))
-            using (var repG = new Context(repS))
-            using (var shadowS = repS.Clone())
-            using (var shadowG = new Context(shadowS))
+            using (SolidPattern shadowGPattern = new(new Color(0.6, 0.6, 0.6)))
+            using (SolidPattern repGPattern = new(new Color(1, 1, 1)))
+            using (ImageSurface repS = new(Format.Argb32, width, height))
+            using (Context repG = new(repS))
+            using (ImageSurface shadowS = repS.Clone())
+            using (Context shadowG = new(shadowS))
             {
 #pragma warning disable CS0618 // Type or member is obsolete
                 shadowG.Pattern = shadowGPattern;
@@ -318,7 +265,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     repG.Fill();
                 }
 
-                using (var render = new RenderCairo(repG, Scale))
+                using (RenderCairo render = new(repG, Scale))
                 {
                     render.RunPage(pages);
                 }
@@ -333,20 +280,22 @@ namespace Majorsilence.Reporting.RdlGtk3
         }
 
 
-        private void DrawString(string s, Cairo.Context g, Cairo.Rectangle r)
+        private void DrawString(string s, Context g, Rectangle r)
         {
-            StyleInfo si = new StyleInfo();
+            StyleInfo si = new();
             g.Save();
 
-            Pango.Layout layout;
+            Layout layout;
 
-            layout = Pango.CairoHelper.CreateLayout(g);
+            layout = CairoHelper.CreateLayout(g);
 
-            float fontsize = (si.FontSize * 72 / 96);
-            var font = Pango.FontDescription.FromString(string.Format("{0} {1}", si.GetFontFamily().Name,
-                               fontsize * PixelsX(1)));
+            float fontsize = si.FontSize * 72 / 96;
+            FontDescription font = FontDescription.FromString(string.Format("{0} {1}", si.GetFontFamily().Name,
+                fontsize * PixelsX(1)));
             if (si.FontStyle == FontStyleEnum.Italic)
+            {
                 font.Style = Pango.Style.Italic;
+            }
 
             switch (si.FontWeight)
             {
@@ -357,28 +306,28 @@ namespace Majorsilence.Reporting.RdlGtk3
                 case FontWeightEnum.W700:
                 case FontWeightEnum.W800:
                 case FontWeightEnum.W900:
-                    font.Weight = Pango.Weight.Bold;
+                    font.Weight = Weight.Bold;
                     break;
             }
 
-            Pango.FontDescription oldfont = layout.FontDescription;
+            FontDescription oldfont = layout.FontDescription;
             layout.FontDescription = font;
 
             switch (si.TextAlign)
             {
                 case TextAlignEnum.Right:
-                    layout.Alignment = Pango.Alignment.Right;
+                    layout.Alignment = Alignment.Right;
                     break;
                 case TextAlignEnum.Center:
-                    layout.Alignment = Pango.Alignment.Center;
+                    layout.Alignment = Alignment.Center;
                     break;
                 case TextAlignEnum.Left:
                 default:
-                    layout.Alignment = Pango.Alignment.Left;
+                    layout.Alignment = Alignment.Left;
                     break;
             }
 
-            layout.Width = Pango.Units.FromPixels((int)(r.Width - si.PaddingLeft - si.PaddingRight - 2));
+            layout.Width = Units.FromPixels((int)(r.Width - si.PaddingLeft - si.PaddingRight - 2));
             //				layout.Width = 	(int)Pango.Units.FromPixels((int)r.Width);
 
             layout.SetText(s);
@@ -394,24 +343,24 @@ namespace Majorsilence.Reporting.RdlGtk3
                     y = r.Y + si.PaddingTop;
                     break;
                 case VerticalAlignEnum.Middle:
-                    y = r.Y + (r.Height - height) / 2;
+                    y = r.Y + ((r.Height - height) / 2);
                     break;
                 case VerticalAlignEnum.Bottom:
                     y = r.Y + (r.Height - height) - si.PaddingBottom;
                     break;
             }
 
-            Cairo.Rectangle box = new Cairo.Rectangle(
-                                      r.X + si.PaddingLeft + 1,
-                                      y,
-                                      r.Width,
-                                      r.Height);
+            Rectangle box = new(
+                r.X + si.PaddingLeft + 1,
+                y,
+                r.Width,
+                r.Height);
 
             g.SetSourceColor(si.Color.ToCairoColor());
 
             g.MoveTo(box.X, box.Y);
 
-            Pango.CairoHelper.ShowLayout(g, layout);
+            CairoHelper.ShowLayout(g, layout);
 
             layout.FontDescription = oldfont;
             g.Restore();
@@ -428,7 +377,7 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             if (report != null)
             {
-                minimumWidth = (int)(report.PageWidthPoints * scale) + rep_padding * 2;
+                minimumWidth = (int)(report.PageWidthPoints * scale) + (rep_padding * 2);
                 naturalWidth = minimumWidth;
             }
             else
@@ -442,7 +391,7 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             if (report != null)
             {
-                minimumHeight = (int)(report.PageHeightPoints * scale) + rep_padding * 2;
+                minimumHeight = (int)(report.PageHeightPoints * scale) + (rep_padding * 2);
                 naturalHeight = minimumHeight;
             }
             else
@@ -451,6 +400,83 @@ namespace Majorsilence.Reporting.RdlGtk3
                 naturalHeight = 0;
             }
         }
+
+        private class HitListEntry
+        {
+            internal readonly PageItem pi;
+            internal readonly PointF[] poly;
+            internal readonly Rectangle rect;
+
+            internal HitListEntry(Rectangle r, PageItem pitem)
+            {
+                rect = r;
+                pi = pitem;
+                poly = null;
+            }
+
+            internal HitListEntry(PagePolygon pp, float x, float y, ReportArea ra)
+            {
+                pi = pp;
+                poly = new PointF[pp.Points.Length];
+                for (int i = 0; i < pp.Points.Length; i++)
+                {
+                    poly[i].X = ra.PixelsX(pp.Points[i].X + x);
+                    poly[i].Y = ra.PixelsY(pp.Points[i].Y + y);
+                }
+
+                rect = new Rectangle(0, 0, 0, 0);
+            }
+
+            /// <summary>
+            ///     Contains- determine whether point in the pageitem
+            /// </summary>
+            /// <param name="p"></param>
+            /// <returns></returns>
+            internal bool Contains(PointD p)
+            {
+                return pi is PagePolygon ? PointInPolygon(p) : rect.ContainsPoint(p.X, p.Y);
+            }
+
+            /// <summary>
+            ///     PointInPolygon: uses ray casting algorithm ( http://en.wikipedia.org/wiki/Point_in_polygon )
+            /// </summary>
+            /// <param name="p"></param>
+            /// <returns></returns>
+            private bool PointInPolygon(PointD p)
+            {
+                PointF p1, p2;
+                bool bIn = false;
+                if (poly.Length < 3)
+                {
+                    return false;
+                }
+
+                PointF op = new(poly[poly.Length - 1].X, poly[poly.Length - 1].Y);
+                for (int i = 0; i < poly.Length; i++)
+                {
+                    PointF np = new(poly[i].X, poly[i].Y);
+                    if (np.X > op.X)
+                    {
+                        p1 = op;
+                        p2 = np;
+                    }
+                    else
+                    {
+                        p1 = np;
+                        p2 = op;
+                    }
+
+                    if ((np.X < p.X) == (p.X <= op.X)
+                        && (p.Y - p1.Y) * (p2.X - p1.X) < (p2.Y - p1.Y) * (p.X - p1.X))
+                    {
+                        bIn = !bIn;
+                    }
+
+                    op = np;
+                }
+
+                return bIn;
+            }
+        }
     }
 }
-

@@ -22,61 +22,74 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+using Cairo;
+using Gtk;
+using Majorsilence.Reporting.Rdl;
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Majorsilence.Reporting.Rdl;
-using Gtk;
 using System.Threading.Tasks;
+using Action = Gtk.Action;
 using Strings = Majorsilence.Reporting.RdlEngine.Resources.Strings;
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
-    [System.ComponentModel.ToolboxItem(true)]
-    public partial class ReportViewer : Gtk.Bin
+    [ToolboxItem(true)]
+    public class ReportViewer : Bin
     {
-        private Report report;
-        private Pages pages;
-        private PrintOperation printing;
+        private string _connectionString;
+        private Action<Pages> _customPrintAction;
+        private ToggleAction _errorsAction;
+        private Box _hbox;
+        private bool _overwriteSubreportConnection;
+        private Pages _pages;
+        private Action _printAction;
+        private PrintOperation _printing;
+        private Action _refreshAction;
+        private Report _report;
+        private OutputPresentationType[] _restrictedOutputPresentationTypes;
+        private Action _saveAsAction;
+        private Box _vbox;
+        private Action _zoomInAction;
+        private Action _zoomOutAction;
 
         public NeedPassword DataSourceReferencePassword = null;
+        private Paned hpanedReport;
 
-        private string connectionString;
-        private bool overwriteSubreportConnection;
-        private OutputPresentationType[] restrictedOutputPresentationTypes;
-        private Action<Pages> customPrintAction;
+        private int hpanedWidth;
+        private ScrolledWindow scrolledwindowErrors;
+        private ScrolledWindow scrolledwindowPages;
 
-        public event EventHandler ReportPrinted;
+        private bool show_errors;
 
-        private Toolbar actionGroup { get; set; }
-        private Gtk.Action refreshAction;
-        private Gtk.Action saveAsAction;
-        private Gtk.Action printAction;
-        private Gtk.Action zoomOutAction;
-        private Gtk.Action zoomInAction;
-        private Gtk.ToggleAction errorsAction;
-        private Gtk.Box vbox;
-        private Gtk.Box hbox;
-        private Gtk.Box vboxParameters;
-        private Gtk.Paned hpanedReport;
-        private Gtk.ScrolledWindow scrolledwindowPages;
-        private Gtk.Box vboxPages;
-        private Gtk.ScrolledWindow scrolledwindowErrors;
-        private Gtk.TextView textviewErrors;
+        private bool show_params;
+
+        private Uri sourceFile;
+        private TextView textviewErrors;
+        private Box vboxPages;
+        private Box vboxParameters;
+
+        public ReportViewer()
+        {
+            Build();
+            Parameters = new ListDictionary();
+
+            _errorsAction.Toggled += OnErrorsActionToggled;
+            DisableActions();
+            ShowErrors = false;
+        }
+
+        private Toolbar ActionGroup { get; set; }
 
         public ListDictionary Parameters { get; private set; }
 
-        bool show_errors;
-
         public bool ShowErrors
         {
-            get
-            {
-                return show_errors;
-            }
+            get => show_errors;
             set
             {
                 show_errors = value;
@@ -86,14 +99,9 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public string DefaultExportFileName { get; set; }
 
-        bool show_params;
-
         public bool ShowParameters
         {
-            get
-            {
-                return show_params;
-            }
+            get => show_params;
             set
             {
                 show_params = value;
@@ -103,13 +111,9 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public string WorkingDirectory { get; set; }
 
-        Uri sourceFile;
         public Uri SourceFile
         {
-            get
-            {
-                return sourceFile;
-            }
+            get => sourceFile;
             private set
             {
                 sourceFile = value;
@@ -117,70 +121,62 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-        public ReportViewer()
-        {
-            Build();
-            Parameters = new ListDictionary();
-
-            errorsAction.Toggled += OnErrorsActionToggled;
-            DisableActions();
-            ShowErrors = false;
-        }
+        public event EventHandler ReportPrinted;
 
         protected virtual void Build()
         {
-            actionGroup = new Toolbar();
+            ActionGroup = new Toolbar();
 
 #pragma warning disable CS0612 // Type or member is obsolete
-            refreshAction = new Gtk.Action("refresh", "Refresh", "gtk-refresh", Stock.Refresh);
-            refreshAction.IsImportant = true;
-            refreshAction.Tooltip = "Refresh the report";
-            actionGroup.Add(refreshAction.CreateToolItem());
+            _refreshAction = new Action("refresh", "Refresh", "gtk-refresh", Stock.Refresh);
+            _refreshAction.IsImportant = true;
+            _refreshAction.Tooltip = "Refresh the report";
+            ActionGroup.Add(_refreshAction.CreateToolItem());
 
-            saveAsAction = new Gtk.Action("export", "Export", "gtk-save-as", Stock.SaveAs);
-            saveAsAction.Tooltip = "Export as PDF, CSV, ASP, HTML, MHTML, XML, Excel";
-            actionGroup.Add(saveAsAction.CreateToolItem());
+            _saveAsAction = new Action("export", "Export", "gtk-save-as", Stock.SaveAs);
+            _saveAsAction.Tooltip = "Export as PDF, CSV, ASP, HTML, MHTML, XML, Excel";
+            ActionGroup.Add(_saveAsAction.CreateToolItem());
 
-            printAction = new Gtk.Action("print", "Print", "gtk-print", Stock.Print);
-            printAction.Tooltip = "Print the report";
-            actionGroup.Add(printAction.CreateToolItem());
+            _printAction = new Action("print", "Print", "gtk-print", Stock.Print);
+            _printAction.Tooltip = "Print the report";
+            ActionGroup.Add(_printAction.CreateToolItem());
 
-            zoomOutAction = new Gtk.Action("zoom-out", "Zoom Out", "gtk-zoom-out", Stock.ZoomOut);
+            _zoomOutAction = new Action("zoom-out", "Zoom Out", "gtk-zoom-out", Stock.ZoomOut);
 
-            zoomOutAction.IsImportant = true;
+            _zoomOutAction.IsImportant = true;
 
-            zoomOutAction.Tooltip = "Zoom out the report";
-            actionGroup.Add(zoomOutAction.CreateToolItem());
+            _zoomOutAction.Tooltip = "Zoom out the report";
+            ActionGroup.Add(_zoomOutAction.CreateToolItem());
 
-            zoomInAction = new Gtk.Action("zoom-in", "Zoom In", "gtk-zoom-in", Stock.ZoomIn);
-            zoomInAction.IsImportant = true;
-            zoomInAction.Tooltip = "Zoom in the report";
-            actionGroup.Add(zoomInAction.CreateToolItem());
+            _zoomInAction = new Action("zoom-in", "Zoom In", "gtk-zoom-in", Stock.ZoomIn);
+            _zoomInAction.IsImportant = true;
+            _zoomInAction.Tooltip = "Zoom in the report";
+            ActionGroup.Add(_zoomInAction.CreateToolItem());
 
-            errorsAction = new ToggleAction("errors", "Errors", "gtk-dialog-warning", Stock.DialogWarning);
-            errorsAction.IsImportant = true;
-            errorsAction.DrawAsRadio = true;
-            actionGroup.Add(errorsAction.CreateToolItem());
+            _errorsAction = new ToggleAction("errors", "Errors", "gtk-dialog-warning", Stock.DialogWarning);
+            _errorsAction.IsImportant = true;
+            _errorsAction.DrawAsRadio = true;
+            ActionGroup.Add(_errorsAction.CreateToolItem());
 
-            vbox = new Box(Orientation.Vertical, 6);
-            vbox.Homogeneous = false;
-            vbox.Expand = true;
+            _vbox = new Box(Orientation.Vertical, 6);
+            _vbox.Homogeneous = false;
+            _vbox.Expand = true;
 
 
-            hbox = new Box(Orientation.Horizontal, 6);
-            hbox.Homogeneous = false;
-            hbox.Expand = true;
+            _hbox = new Box(Orientation.Horizontal, 6);
+            _hbox.Homogeneous = false;
+            _hbox.Expand = true;
             vboxParameters = new Box(Orientation.Horizontal, 6);
             vboxParameters.Homogeneous = false;
-            hbox.PackStart(vboxParameters, false, false, 0);
-            vbox.Add(actionGroup);
+            _hbox.PackStart(vboxParameters, false, false, 0);
+            _vbox.Add(ActionGroup);
 
             hpanedReport = new Paned(Orientation.Horizontal);
             hpanedReport.Expand = true;
             scrolledwindowPages = new ScrolledWindow();
             scrolledwindowPages.Expand = true;
 
-            var gtkViewport = new Viewport();
+            Viewport gtkViewport = new();
             gtkViewport.Expand = true;
             vboxPages = new Box(Orientation.Vertical, 6);
             vboxPages.Homogeneous = false;
@@ -197,145 +193,179 @@ namespace Majorsilence.Reporting.RdlGtk3
             scrolledwindowErrors.Add(textviewErrors);
             hpanedReport.Pack2(scrolledwindowErrors, true, true);
 
-            hbox.PackEnd(hpanedReport, true, true, 0);
-            vbox.PackEnd(hbox, true, true, 0);
+            _hbox.PackEnd(hpanedReport, true, true, 0);
+            _vbox.PackEnd(_hbox, true, true, 0);
 
-            Add(vbox);
-            vbox.ShowAll();
+            Add(_vbox);
+            _vbox.ShowAll();
 
-            this.refreshAction.Activated += new global::System.EventHandler(this.OnRefreshActionActivated);
-            this.saveAsAction.Activated += new global::System.EventHandler(this.OnPdfActionActivated);
-            this.printAction.Activated += new global::System.EventHandler(this.OnPrintActionActivated);
-            this.zoomOutAction.Activated += new global::System.EventHandler(this.OnZoomOutActionActivated);
-            this.zoomInAction.Activated += new global::System.EventHandler(this.OnZoomInActionActivated);
-            this.hpanedReport.SizeAllocated += new global::Gtk.SizeAllocatedHandler(this.OnHpanedReportSizeAllocated);
+            _refreshAction.Activated += OnRefreshActionActivated;
+            _saveAsAction.Activated += OnPdfActionActivated;
+            _printAction.Activated += OnPrintActionActivated;
+            _zoomOutAction.Activated += OnZoomOutActionActivated;
+            _zoomInAction.Activated += OnZoomInActionActivated;
+            hpanedReport.SizeAllocated += OnHpanedReportSizeAllocated;
 #pragma warning restore CS0612 // Type or member is obsolete
         }
 
         /// <summary>
-        /// Loads the report.
+        ///     Loads the report.
         /// </summary>
         /// <param name="filename">Filename.</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
         /// <param name="connectionString">Relace all Connection string in report.</param>
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        /// <param name="restrictedOutputPresentationTypes">
+        ///     Restricts <see cref="OutputPresentationType" /> to chose from in export
+        ///     dialog
+        /// </param>
         /// <param name="customPrintAction">>For use a custom print action</param>
-        public async Task LoadReport(Uri filename, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
+        public async Task LoadReport(Uri filename, string parameters, string connectionString,
+            bool overwriteSubreportConnection = false,
+            OutputPresentationType[] restrictedOutputPresentationTypes = null, Action<Pages> customPrintAction = null)
         {
             SourceFile = filename;
 
-            this.connectionString = connectionString;
-            this.overwriteSubreportConnection = overwriteSubreportConnection;
-            this.customPrintAction = customPrintAction;
+            _connectionString = connectionString;
+            _overwriteSubreportConnection = overwriteSubreportConnection;
+            _customPrintAction = customPrintAction;
 
             await LoadReport(filename, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
-        /// Loads the report.
+        ///     Loads the report.
         /// </summary>
         /// <param name="source">Xml source of report</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
         /// <param name="connectionString">Relace all Connection string in report.</param>
         /// <param name="overwriteSubreportConnection">If true connection string in subreport also will be overwrite</param>
-        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public async Task LoadReport(string source, string parameters, string connectionString, bool overwriteSubreportConnection = false, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        /// <param name="restrictedOutputPresentationTypes">
+        ///     Restricts <see cref="OutputPresentationType" /> to chose from in export
+        ///     dialog
+        /// </param>
+        public async Task LoadReport(string source, string parameters, string connectionString,
+            bool overwriteSubreportConnection = false,
+            OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
-            this.connectionString = connectionString;
-            this.overwriteSubreportConnection = overwriteSubreportConnection;
+            _connectionString = connectionString;
+            _overwriteSubreportConnection = overwriteSubreportConnection;
 
             await LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
-        /// Loads the report.
+        ///     Loads the report.
         /// </summary>
         /// <param name='filename'>Filename.</param>
-        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
+        /// <param name="restrictedOutputPresentationTypes">
+        ///     Restricts <see cref="OutputPresentationType" /> to chose from in export
+        ///     dialog
+        /// </param>
         public async Task LoadReport(Uri filename, OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             await LoadReport(filename, "", restrictedOutputPresentationTypes);
         }
 
         /// <summary>
-        /// Loads the report.
+        ///     Loads the report.
         /// </summary>
         /// <param name='sourcefile'>Filename.</param>
         /// <param name='parameters'>Example: parameter1=someValue&parameter2=anotherValue</param>
-        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public async Task LoadReport(Uri sourcefile, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        /// <param name="restrictedOutputPresentationTypes">
+        ///     Restricts <see cref="OutputPresentationType" /> to chose from in export
+        ///     dialog
+        /// </param>
+        public async Task LoadReport(Uri sourcefile, string parameters,
+            OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
             SourceFile = sourcefile;
 
-            string source = await System.IO.File.ReadAllTextAsync(sourcefile.LocalPath);
+            string source = await File.ReadAllTextAsync(sourcefile.LocalPath);
             await LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
         /// <summary>
-        /// Loads the report.
+        ///     Loads the report.
         /// </summary>
         /// <param name="source">Xml source of report</param>
         /// <param name="parameters">Example: parameter1=someValue&parameter2=anotherValue</param>
-        /// <param name="restrictedOutputPresentationTypes">Restricts <see cref="OutputPresentationType"/> to chose from in export dialog</param>
-        public async Task LoadReport(string source, string parameters, OutputPresentationType[] restrictedOutputPresentationTypes = null)
+        /// <param name="restrictedOutputPresentationTypes">
+        ///     Restricts <see cref="OutputPresentationType" /> to chose from in export
+        ///     dialog
+        /// </param>
+        public async Task LoadReport(string source, string parameters,
+            OutputPresentationType[] restrictedOutputPresentationTypes = null)
         {
-            this.restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
+            _restrictedOutputPresentationTypes = restrictedOutputPresentationTypes ?? new OutputPresentationType[0];
 
             // Any parameters?  e.g.  file1.rdl?orderid=5 
             if (parameters.Trim() != "")
-                this.Parameters = this.GetParmeters(parameters);
+            {
+                Parameters = GetParmeters(parameters);
+            }
             else
-                this.Parameters = new ListDictionary();
+            {
+                Parameters = new ListDictionary();
+            }
 
             // Compile the report 
-            report = await this.GetReport(source);
-            if (report == null)
+            _report = await GetReport(source);
+            if (_report == null)
+            {
                 return;
+            }
+
             AddParameterControls();
 
             await RefreshReport();
         }
 
-        async Task RefreshReport()
+        private async Task RefreshReport()
         {
             if (ShowParameters)
+            {
                 SetParametersFromControls();
-            await report.RunGetData(Parameters);
-            pages = await report.BuildPages();
-            
-            foreach (Gtk.Widget w in vboxPages.AllChildren.Cast<Gtk.Widget>().ToList())
+            }
+
+            await _report.RunGetData(Parameters);
+            _pages = await _report.BuildPages();
+
+            foreach (Widget w in vboxPages.AllChildren.Cast<Widget>().ToList())
             {
                 vboxPages.Remove(w);
                 w.Destroy();
             }
 
-            for (int pageCount = 0; pageCount < pages.Count; pageCount++)
+            for (int pageCount = 0; pageCount < _pages.Count; pageCount++)
             {
-                ReportArea area = new ReportArea();
-                area.SetReport(report, pages[pageCount]);
+                ReportArea area = new();
+                area.SetReport(_report, _pages[pageCount]);
                 //area.Scale
                 vboxPages.Add(area);
             }
-            this.ShowAll();
 
-            SetErrorMessages(report.ErrorItems);
+            ShowAll();
 
-            if (report.ErrorMaxSeverity == 0)
+            SetErrorMessages(_report.ErrorItems);
+
+            if (_report.ErrorMaxSeverity == 0)
+            {
                 show_errors = false;
+            }
 
 #pragma warning disable CS0612 // Type or member is obsolete
-            errorsAction.VisibleHorizontal = report.ErrorMaxSeverity > 0;
+            _errorsAction.VisibleHorizontal = _report.ErrorMaxSeverity > 0;
 #pragma warning restore CS0612 // Type or member is obsolete
 
             //			Title = string.Format ("RDL report viewer - {0}", report.Name);
             EnableActions();
             CheckVisibility();
         }
-        
-        protected void OnZoomOutActionActivated(object sender, System.EventArgs e)
+
+        protected void OnZoomOutActionActivated(object sender, EventArgs e)
         {
-            foreach (Gtk.Widget w in vboxPages.AllChildren)
+            foreach (Widget w in vboxPages.AllChildren)
             {
                 if (w is ReportArea)
                 {
@@ -345,9 +375,9 @@ namespace Majorsilence.Reporting.RdlGtk3
             //reportarea.Scale -= 0.1f;
         }
 
-        protected void OnZoomInActionActivated(object sender, System.EventArgs e)
+        protected void OnZoomInActionActivated(object sender, EventArgs e)
         {
-            foreach (Gtk.Widget w in vboxPages.AllChildren)
+            foreach (Widget w in vboxPages.AllChildren)
             {
                 if (w is ReportArea)
                 {
@@ -359,9 +389,9 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         // GetParameters creates a list dictionary
         // consisting of a report parameter name and a value.
-        private System.Collections.Specialized.ListDictionary GetParmeters(string parms)
+        private ListDictionary GetParmeters(string parms)
         {
-            System.Collections.Specialized.ListDictionary ld = new System.Collections.Specialized.ListDictionary();
+            ListDictionary ld = new();
             if (parms == null)
             {
                 return ld; // dictionary will be empty in this case
@@ -369,7 +399,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             // parms are separated by & 
 
-            char[] breakChars = new char[] { '&' };
+            char[] breakChars = new[] { '&' };
             string[] ps = parms.Split(breakChars);
 
             foreach (string p in ps)
@@ -382,6 +412,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                     ld.Add(name, val);
                 }
             }
+
             return ld;
         }
 
@@ -394,8 +425,8 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             rdlp = new RDLParser(reportSource);
             rdlp.Folder = WorkingDirectory;
-            rdlp.OverwriteConnectionString = connectionString;
-            rdlp.OverwriteInSubreport = overwriteSubreportConnection;
+            rdlp.OverwriteConnectionString = _connectionString;
+            rdlp.OverwriteInSubreport = _overwriteSubreportConnection;
             // RDLParser takes RDL XML and Parse compiles the report
 
             r = await rdlp.Parse();
@@ -405,6 +436,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 {
                     Console.WriteLine(emsg);
                 }
+
                 SetErrorMessages(r.ErrorItems);
 
                 int severity = r.ErrorMaxSeverity;
@@ -412,40 +444,36 @@ namespace Majorsilence.Reporting.RdlGtk3
                 if (severity > 4)
                 {
 #pragma warning disable CS0612 // Type or member is obsolete
-                    errorsAction.Active = true;
+                    _errorsAction.Active = true;
 #pragma warning restore CS0612 // Type or member is obsolete
                     return null; // don't return when severe errors
                 }
             }
+
             return r;
         }
 
 
-        void OnErrorsActionToggled(object sender, EventArgs e)
+        private void OnErrorsActionToggled(object sender, EventArgs e)
         {
 #pragma warning disable CS0612 // Type or member is obsolete
-            ShowErrors = errorsAction.Active;
+            ShowErrors = _errorsAction.Active;
 #pragma warning restore CS0612 // Type or member is obsolete
         }
 
-        void CheckVisibility()
+        private void CheckVisibility()
         {
             if (ShowErrors)
             {
                 scrolledwindowErrors.ShowAll();
             }
-            else
-            {
-                //scrolledwindowErrors.HideAll();
-            }
+
+            //scrolledwindowErrors.HideAll();
             if (ShowParameters)
             {
                 vboxParameters.ShowAll();
             }
-            else
-            {
-                //vboxParameters.HideAll();
-            }
+            //vboxParameters.HideAll();
         }
 
         protected override void OnShown()
@@ -454,46 +482,47 @@ namespace Majorsilence.Reporting.RdlGtk3
             CheckVisibility();
         }
 
-        void DisableActions()
+        private void DisableActions()
         {
 #pragma warning disable CS0612 // Type or member is obsolete
-            saveAsAction.Sensitive = false;
-            refreshAction.Sensitive = false;
-            printAction.Sensitive = false;
-            zoomInAction.Sensitive = false;
-            zoomOutAction.Sensitive = false;
+            _saveAsAction.Sensitive = false;
+            _refreshAction.Sensitive = false;
+            _printAction.Sensitive = false;
+            _zoomInAction.Sensitive = false;
+            _zoomOutAction.Sensitive = false;
 #pragma warning restore CS0612 // Type or member is obsolete
         }
 
-        void EnableActions()
+        private void EnableActions()
         {
 #pragma warning disable CS0612 // Type or member is obsolete
-            saveAsAction.Sensitive = true;
-            refreshAction.Sensitive = true;
-            printAction.Sensitive = true;
-            zoomInAction.Sensitive = true;
-            zoomOutAction.Sensitive = true;
+            _saveAsAction.Sensitive = true;
+            _refreshAction.Sensitive = true;
+            _printAction.Sensitive = true;
+            _zoomInAction.Sensitive = true;
+            _zoomOutAction.Sensitive = true;
 #pragma warning restore CS0612 // Type or member is obsolete
         }
 
-        void AddParameterControls()
+        private void AddParameterControls()
         {
             foreach (Widget child in vboxParameters.Children)
             {
                 vboxParameters.Remove(child);
             }
-            foreach (UserReportParameter rp in report.UserReportParameters)
+
+            foreach (UserReportParameter rp in _report.UserReportParameters)
             {
 #pragma warning disable CS0612 // Type or member is obsolete
-                HBox hbox = new HBox();
+                HBox hbox = new();
 #pragma warning restore CS0612 // Type or member is obsolete
-                Label labelPrompt = new Label();
+                Label labelPrompt = new();
 #pragma warning disable CS0612 // Type or member is obsolete
                 labelPrompt.SetAlignment(0, 0.5f);
 #pragma warning restore CS0612 // Type or member is obsolete
                 labelPrompt.Text = string.Format("{0} :", rp.Prompt);
                 hbox.PackStart(labelPrompt, true, true, 0);
-                Entry entryValue = new Entry();
+                Entry entryValue = new();
                 if (Parameters.Contains(rp.Name))
                 {
                     if (Parameters[rp.Name] != null)
@@ -505,25 +534,30 @@ namespace Majorsilence.Reporting.RdlGtk3
                 {
                     if (rp.DefaultValue != null)
                     {
-                        StringBuilder sb = new StringBuilder();
+                        StringBuilder sb = new();
                         for (int i = 0; i < rp.DefaultValue.Length; i++)
                         {
                             if (i > 0)
+                            {
                                 sb.Append(", ");
-                            sb.Append(rp.DefaultValue[i].ToString());
+                            }
+
+                            sb.Append(rp.DefaultValue[i]);
                         }
+
                         entryValue.Text = sb.ToString();
                     }
                 }
+
                 hbox.PackStart(entryValue, false, false, 0);
                 vboxParameters.PackStart(hbox, false, false, 0);
             }
         }
 
-        void SetParametersFromControls()
+        private void SetParametersFromControls()
         {
             int i = 0;
-            foreach (UserReportParameter rp in report.UserReportParameters)
+            foreach (UserReportParameter rp in _report.UserReportParameters)
             {
                 HBox hbox = (HBox)vboxParameters.Children[i];
                 Entry entry = (Entry)hbox.Children[1];
@@ -533,23 +567,27 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-        void SetErrorMessages(IList errors)
+        private void SetErrorMessages(IList errors)
         {
             textviewErrors.Buffer.Clear();
 
             if (errors == null || errors.Count == 0)
+            {
                 return;
+            }
 
-            StringBuilder msgs = new StringBuilder();
+            StringBuilder msgs = new();
             msgs.AppendLine("Report rendering errors:");
             msgs.AppendLine();
-            foreach (var error in errors)
+            foreach (object error in errors)
+            {
                 msgs.AppendLine(error.ToString());
+            }
 
             textviewErrors.Buffer.Text = msgs.ToString();
         }
 
-        protected async void OnPdfActionActivated(object sender, System.EventArgs e)
+        protected async void OnPdfActionActivated(object sender, EventArgs e)
         {
             await SaveReport();
         }
@@ -559,93 +597,94 @@ namespace Majorsilence.Reporting.RdlGtk3
             // *********************************
             object[] param = new object[4];
             param[0] = Strings.ButtonCancel_Text;
-            param[1] = Gtk.ResponseType.Cancel;
+            param[1] = ResponseType.Cancel;
             param[2] = Strings.ButtonSave_Text;
-            param[3] = Gtk.ResponseType.Accept;
+            param[3] = ResponseType.Accept;
 
-            using var fc =
-                new Gtk.FileChooserDialog(Strings.FileChooser_SaveFileTo_Title,
+            using FileChooserDialog fc =
+                new(Strings.FileChooser_SaveFileTo_Title,
                     null,
-                    Gtk.FileChooserAction.Save,
+                    FileChooserAction.Save,
                     param);
 
-            fc.CurrentName = DefaultExportFileName ?? report.Name;
+            fc.CurrentName = DefaultExportFileName ?? _report.Name;
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.PDF))
             {
-                Gtk.FileFilter pdfFilter = new Gtk.FileFilter { Name = "PDF" };
-                var extensionPDF = ".pdf";
+                FileFilter pdfFilter = new() { Name = "PDF" };
+                string extensionPDF = ".pdf";
                 pdfFilter.AddPattern($"*{extensionPDF}");
                 fc.AddFilter(pdfFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.CSV))
             {
-                Gtk.FileFilter csvFilter = new Gtk.FileFilter { Name = "CSV" };
-                var extensionCSV = ".csv";
+                FileFilter csvFilter = new() { Name = "CSV" };
+                string extensionCSV = ".csv";
                 csvFilter.AddPattern($"*{extensionCSV}");
                 fc.AddFilter(csvFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007DataOnly))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007DataOnly))
             {
-                Gtk.FileFilter excel2007Data = new Gtk.FileFilter { Name = "Excel no formatting" };
-                var extensionXLSX = ".xlsx";
+                FileFilter excel2007Data = new() { Name = "Excel no formatting" };
+                string extensionXLSX = ".xlsx";
                 excel2007Data.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007Data);
             }
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007))
+
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.Excel2007))
             {
-                Gtk.FileFilter excel2007 = new Gtk.FileFilter { Name = "Excel with formatting" };
-                var extensionXLSX = ".xlsx";
+                FileFilter excel2007 = new() { Name = "Excel with formatting" };
+                string extensionXLSX = ".xlsx";
                 excel2007.AddPattern($"*{extensionXLSX}");
                 fc.AddFilter(excel2007);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.TIF))
             {
-                Gtk.FileFilter tiffFilter = new Gtk.FileFilter { Name = "TIFF" };
-                var extensionTIFF = ".tiff";
+                FileFilter tiffFilter = new() { Name = "TIFF" };
+                string extensionTIFF = ".tiff";
                 tiffFilter.AddPattern($"*{extensionTIFF}");
                 fc.AddFilter(tiffFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.ASPHTML))
             {
-                Gtk.FileFilter asphtmlFilter = new Gtk.FileFilter { Name = "ASP HTML" };
-                var extensionASPHTML = ".asphtml";
+                FileFilter asphtmlFilter = new() { Name = "ASP HTML" };
+                string extensionASPHTML = ".asphtml";
                 asphtmlFilter.AddPattern($"*{extensionASPHTML}");
                 fc.AddFilter(asphtmlFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.HTML))
             {
-                Gtk.FileFilter htmlFilter = new Gtk.FileFilter { Name = "HTML" };
-                var extensionHTML = ".html";
+                FileFilter htmlFilter = new() { Name = "HTML" };
+                string extensionHTML = ".html";
                 htmlFilter.AddPattern($"*{extensionHTML}");
                 fc.AddFilter(htmlFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.MHTML))
             {
-                Gtk.FileFilter mhtmlFilter = new Gtk.FileFilter { Name = "MHTML" };
-                var extensionMHTML = ".mhtml";
+                FileFilter mhtmlFilter = new() { Name = "MHTML" };
+                string extensionMHTML = ".mhtml";
                 mhtmlFilter.AddPattern($"*{extensionMHTML}");
                 fc.AddFilter(mhtmlFilter);
             }
 
-            if (!restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML))
+            if (!_restrictedOutputPresentationTypes.Contains(OutputPresentationType.XML))
             {
-                Gtk.FileFilter xmlFilter = new Gtk.FileFilter { Name = "XML" };
-                var extensionXML = ".xml";
+                FileFilter xmlFilter = new() { Name = "XML" };
+                string extensionXML = ".xml";
                 xmlFilter.AddPattern($"*{extensionXML}");
                 fc.AddFilter(xmlFilter);
             }
 
             if (!fc.Filters.Any())
             {
-                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                    Gtk.ButtonsType.Ok, false,
+                using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
+                    ButtonsType.Ok, false,
                     "Export in all document formats is prohibited");
 
                 m.WindowPosition = WindowPosition.Center;
@@ -654,7 +693,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 return;
             }
 
-            if (fc.Run() == (int)Gtk.ResponseType.Accept)
+            if (fc.Run() == (int)ResponseType.Accept)
             {
                 try
                 {
@@ -746,7 +785,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 
                     string directory = System.IO.Path.GetDirectoryName(filename);
 
-                    var files = Directory.GetFiles(directory, searchPattern);
+                    string[] files = Directory.GetFiles(directory, searchPattern);
 
                     //Check for files with same name in directory
                     if (files.Any())
@@ -756,9 +795,9 @@ namespace Majorsilence.Reporting.RdlGtk3
                             if (files[i] == filename)
                             {
                                 //If found files with the same name in directory
-                                using var m = new Gtk.MessageDialog(null, DialogFlags.Modal, MessageType.Question,
-                                    Gtk.ButtonsType.YesNo, false,
-                                 Strings.SaveToFile_CheckIf_SameFilesInDir);
+                                using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Question,
+                                    ButtonsType.YesNo, false,
+                                    Strings.SaveToFile_CheckIf_SameFilesInDir);
 
                                 m.SetPosition(WindowPosition.Center);
                                 ResponseType result = (ResponseType)m.Run();
@@ -766,22 +805,19 @@ namespace Majorsilence.Reporting.RdlGtk3
                                 if (result == ResponseType.Yes)
                                 {
                                     // Must use the RunGetData before each export or there is no data.
-                                    await report.RunGetData(this.Parameters);
-                                    await ExportReport(report, filename, exportType);
-                                    break;
+                                    await _report.RunGetData(Parameters);
+                                    await ExportReport(_report, filename, exportType);
                                 }
-                                else
-                                {
-                                    break;
-                                }
+
+                                break;
                             }
 
                             if (i + 1 == files.Length && files[i] != filename)
                             {
                                 //If no files with the same name found in directory
                                 // Must use the RunGetData before each export or there is no data.
-                                await report.RunGetData(this.Parameters);
-                                await ExportReport(report, filename, exportType);
+                                await _report.RunGetData(Parameters);
+                                await ExportReport(_report, filename, exportType);
                                 break;
                             }
                         }
@@ -790,118 +826,117 @@ namespace Majorsilence.Reporting.RdlGtk3
                     {
                         //If no files found in directory
                         // Must use the RunGetData before each export or there is no data.
-                        await report.RunGetData(this.Parameters);
-                        await ExportReport(report, filename, exportType);
+                        await _report.RunGetData(Parameters);
+                        await ExportReport(_report, filename, exportType);
                     }
                 }
                 catch (Exception ex)
                 {
-                    using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                               Gtk.ButtonsType.Ok, false,
-                               $"Error Saving Copy of {fc.Filter?.Name}." + System.Environment.NewLine + ex.Message);
+                    using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
+                        ButtonsType.Ok, false,
+                        $"Error Saving Copy of {fc.Filter?.Name}." + Environment.NewLine + ex.Message);
 
                     m.Run();
                     m.Destroy();
                 }
             }
+
             //Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
             fc.Destroy();
-
         }
 
         /// <summary>
-        /// Save the report to the output selected.
+        ///     Save the report to the output selected.
         /// </summary>
         /// <param name='report'>
-        /// Report.
+        ///     Report.
         /// </param>
         /// <param name='FileName'>
-        /// File name.
+        ///     File name.
         /// </param>
         private async Task ExportReport(Report report, string FileName, OutputPresentationType exportType)
         {
             try
             {
-                using var sg = new OneFileStreamGen(FileName, true);
+                using OneFileStreamGen sg = new(FileName, true);
                 await report.RunRender(sg, exportType);
             }
             catch (Exception ex)
             {
-                using var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
-                              Gtk.ButtonsType.Ok, false,
-                              ex.Message);
+                using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Error,
+                    ButtonsType.Ok, false,
+                    ex.Message);
 
                 m.Run();
                 m.Destroy();
             }
-            return;
         }
 
-        protected void OnPrintActionActivated(object sender, System.EventArgs e)
+        protected void OnPrintActionActivated(object sender, EventArgs e)
         {
         }
 
         public void PrintReport()
         {
-            using PrintContext context = new PrintContext(Window.Handle);
-            if (customPrintAction == null)
+            using PrintContext context = new(Window.Handle);
+            if (_customPrintAction == null)
             {
-                printing = new PrintOperation();
-                printing.Unit = Unit.Points;
-                printing.UseFullPage = true;
-                printing.DefaultPageSetup = new PageSetup();
-                printing.DefaultPageSetup.Orientation =
-                    report.PageHeightPoints > report.PageWidthPoints ? PageOrientation.Portrait : PageOrientation.Landscape;
+                _printing = new PrintOperation();
+                _printing.Unit = Unit.Points;
+                _printing.UseFullPage = true;
+                _printing.DefaultPageSetup = new PageSetup();
+                _printing.DefaultPageSetup.Orientation =
+                    _report.PageHeightPoints > _report.PageWidthPoints
+                        ? PageOrientation.Portrait
+                        : PageOrientation.Landscape;
 
-                printing.BeginPrint += HandlePrintBeginPrint;
-                printing.DrawPage += HandlePrintDrawPage;
-                printing.EndPrint += HandlePrintEndPrint;
+                _printing.BeginPrint += HandlePrintBeginPrint;
+                _printing.DrawPage += HandlePrintDrawPage;
+                _printing.EndPrint += HandlePrintEndPrint;
 
-                printing.Run(PrintOperationAction.PrintDialog, null);
+                _printing.Run(PrintOperationAction.PrintDialog, null);
             }
             else
             {
-                customPrintAction.Invoke(pages);
+                _customPrintAction.Invoke(_pages);
             }
         }
 
-        void HandlePrintBeginPrint(object o, BeginPrintArgs args)
+        private void HandlePrintBeginPrint(object o, BeginPrintArgs args)
         {
-            printing.NPages = pages.Count;
+            _printing.NPages = _pages.Count;
         }
 
-        void HandlePrintDrawPage(object o, DrawPageArgs args)
+        private void HandlePrintDrawPage(object o, DrawPageArgs args)
         {
-            if (args?.Context == null || pages == null)
+            if (args?.Context == null || _pages == null)
             {
                 return;
             }
 
-            using (var g = args.Context.CairoContext)
-            using (var render = new RenderCairo(g))
+            using (Context g = args.Context.CairoContext)
+            using (RenderCairo render = new(g))
             {
-                render.RunPage(pages[args.PageNr]);
+                render.RunPage(_pages[args.PageNr]);
             }
         }
 
-        void HandlePrintEndPrint(object o, EndPrintArgs args)
+        private void HandlePrintEndPrint(object o, EndPrintArgs args)
         {
             ReportPrinted?.Invoke(this, EventArgs.Empty);
-            printing.BeginPrint -= HandlePrintBeginPrint;
-            printing.DrawPage -= HandlePrintDrawPage;
-            printing.EndPrint -= HandlePrintEndPrint;
-            printing.DefaultPageSetup.Dispose();
-            printing.Dispose();
+            _printing.BeginPrint -= HandlePrintBeginPrint;
+            _printing.DrawPage -= HandlePrintDrawPage;
+            _printing.EndPrint -= HandlePrintEndPrint;
+            _printing.DefaultPageSetup.Dispose();
+            _printing.Dispose();
         }
 
-        protected async void OnRefreshActionActivated(object sender, System.EventArgs e)
+        protected async void OnRefreshActionActivated(object sender, EventArgs e)
         {
             await RefreshReport();
         }
 
-        int hpanedWidth = 0;
-        
-        protected void OnHpanedReportSizeAllocated(object o, Gtk.SizeAllocatedArgs args)
+        protected void OnHpanedReportSizeAllocated(object o, SizeAllocatedArgs args)
         {
             if (args.Allocation.Width != hpanedWidth)
             {
@@ -920,13 +955,12 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         protected void OnDeleteEvent(object sender, DeleteEventArgs a)
         {
-            errorsAction.Toggled -= OnErrorsActionToggled;
-            pages?.Dispose();
-            pages = null;
-            report?.Dispose();
-            Gtk.Application.Quit();
+            _errorsAction.Toggled -= OnErrorsActionToggled;
+            _pages?.Dispose();
+            _pages = null;
+            _report?.Dispose();
+            Application.Quit();
             a.RetVal = true;
         }
     }
 }
-

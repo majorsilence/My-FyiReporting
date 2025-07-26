@@ -1,29 +1,19 @@
-using System;
+using Gtk;
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
-    public partial class ParameterPrompt : Gtk.Dialog
+    public partial class ParameterPrompt : Dialog
     {
         public ParameterPrompt()
         {
-            this.Build();
+            Build();
         }
 
-		
+
         public string Parameters
         {
-            get
-            {
-                return TextBoxParameters.Text;
-            }
-            set
-            {
-                TextBoxParameters.Text = value;
-            }
+            get => TextBoxParameters.Text;
+            set => TextBoxParameters.Text = value;
         }
-		
     }
-	
-	
 }
-

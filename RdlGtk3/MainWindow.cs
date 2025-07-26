@@ -1,137 +1,139 @@
-using System;
-using System.Threading.Tasks;
 using Gtk;
+using Majorsilence.Reporting.Rdl;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
-    public class MainWindow : Gtk.Window
+    public class MainWindow : Window
     {
-        private Gtk.Box vbox1;
-        private Gtk.Box hbox1;
-        private Gtk.Button OpenButton;
-        private Gtk.Button SaveButton;
-        private Gtk.Button PrintButton;
-        private Gtk.Button FirstPageButton;
-        private Gtk.Button PreviousButton;
-        private Gtk.Button NextButton;
-        private Gtk.Button LastPageButton;
-        private Gtk.SpinButton CurrentPage;
-        private Gtk.Label PageCountLabel;
-        private Gtk.ScrolledWindow scrolledwindow1;
-        private Majorsilence.Reporting.RdlGtk3.ReportViewer reportviewer1;
+        private SpinButton CurrentPage;
+        private Button FirstPageButton;
+        private Box hbox1;
+        private Button LastPageButton;
+        private Button NextButton;
+        private Button OpenButton;
+        private Label PageCountLabel;
+        private Button PreviousButton;
+        private Button PrintButton;
+        private ReportViewer reportviewer1;
+        private Button SaveButton;
+        private ScrolledWindow scrolledwindow1;
+        private Box vbox1;
 
         public MainWindow()
-            : base(Gtk.WindowType.Toplevel)
+            : base(WindowType.Toplevel)
         {
             Build();
-            this.Title = "Report Viewer";
+            Title = "Report Viewer";
         }
 
         protected virtual void Build()
         {
             reportviewer1 = new ReportViewer();
-            this.SetDefaultSize(800, 600);
-            this.vbox1 = new Gtk.Box(Gtk.Orientation.Vertical, 3);
-            this.vbox1.Name = "vbox1";
+            SetDefaultSize(800, 600);
+            vbox1 = new Box(Orientation.Vertical, 3);
+            vbox1.Name = "vbox1";
 
-            this.hbox1 = new Gtk.Box(Gtk.Orientation.Horizontal, 7);
-            this.hbox1.Name = "hbox1";
+            hbox1 = new Box(Orientation.Horizontal, 7);
+            hbox1.Name = "hbox1";
 
-            this.OpenButton = new Gtk.Button();
-            this.OpenButton.CanFocus = true;
-            this.OpenButton.Name = "OpenButton";
+            OpenButton = new Button();
+            OpenButton.CanFocus = true;
+            OpenButton.Name = "OpenButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.OpenButton.UseStock = true;
+            OpenButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.OpenButton.UseUnderline = true;
-            this.OpenButton.Label = "gtk-open";
-            this.OpenButton.Clicked += new System.EventHandler(this.OnFileOpen_Activated);
-            this.hbox1.PackStart(this.OpenButton, false, false, 0);
+            OpenButton.UseUnderline = true;
+            OpenButton.Label = "gtk-open";
+            OpenButton.Clicked += OnFileOpen_Activated;
+            hbox1.PackStart(OpenButton, false, false, 0);
 
-            this.SaveButton = new Gtk.Button();
-            this.SaveButton.CanFocus = true;
-            this.SaveButton.Name = "SaveButton";
+            SaveButton = new Button();
+            SaveButton.CanFocus = true;
+            SaveButton.Name = "SaveButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.SaveButton.UseStock = true;
+            SaveButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.SaveButton.UseUnderline = true;
-            this.SaveButton.Label = "gtk-save";
-            this.SaveButton.Clicked += new System.EventHandler(this.OnFileSave_Activated);
-            this.hbox1.PackStart(this.SaveButton, false, false, 0);
+            SaveButton.UseUnderline = true;
+            SaveButton.Label = "gtk-save";
+            SaveButton.Clicked += OnFileSave_Activated;
+            hbox1.PackStart(SaveButton, false, false, 0);
 
-            this.PrintButton = new Gtk.Button();
-            this.PrintButton.CanFocus = true;
-            this.PrintButton.Name = "PrintButton";
+            PrintButton = new Button();
+            PrintButton.CanFocus = true;
+            PrintButton.Name = "PrintButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.PrintButton.UseStock = true;
+            PrintButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.PrintButton.UseUnderline = true;
-            this.PrintButton.Label = "gtk-print";
-            this.PrintButton.Clicked += new System.EventHandler(this.OnFilePrint_Activated);
-            this.hbox1.PackStart(this.PrintButton, false, false, 0);
+            PrintButton.UseUnderline = true;
+            PrintButton.Label = "gtk-print";
+            PrintButton.Clicked += OnFilePrint_Activated;
+            hbox1.PackStart(PrintButton, false, false, 0);
 
-            this.FirstPageButton = new Gtk.Button();
-            this.FirstPageButton.CanFocus = true;
-            this.FirstPageButton.Name = "FirstPageButton";
+            FirstPageButton = new Button();
+            FirstPageButton.CanFocus = true;
+            FirstPageButton.Name = "FirstPageButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.FirstPageButton.UseStock = true;
+            FirstPageButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.FirstPageButton.UseUnderline = true;
-            this.FirstPageButton.Label = "gtk-goto-first";
-            this.FirstPageButton.Clicked += new System.EventHandler(this.OnFirstPageButton_Activated);
+            FirstPageButton.UseUnderline = true;
+            FirstPageButton.Label = "gtk-goto-first";
+            FirstPageButton.Clicked += OnFirstPageButton_Activated;
             //this.hbox1.PackStart(this.FirstPageButton, false, false, 0);
 
-            this.PreviousButton = new Gtk.Button();
-            this.PreviousButton.CanFocus = true;
-            this.PreviousButton.Name = "PreviousButton";
+            PreviousButton = new Button();
+            PreviousButton.CanFocus = true;
+            PreviousButton.Name = "PreviousButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.PreviousButton.UseStock = true;
+            PreviousButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.PreviousButton.UseUnderline = true;
-            this.PreviousButton.Label = "gtk-go-back";
-            this.PreviousButton.Clicked += new System.EventHandler(this.OnPreviousButton_Activated);
+            PreviousButton.UseUnderline = true;
+            PreviousButton.Label = "gtk-go-back";
+            PreviousButton.Clicked += OnPreviousButton_Activated;
             //this.hbox1.PackStart(this.PreviousButton, false, false, 0);
 
-            this.NextButton = new Gtk.Button();
-            this.NextButton.CanFocus = true;
-            this.NextButton.Name = "NextButton";
+            NextButton = new Button();
+            NextButton.CanFocus = true;
+            NextButton.Name = "NextButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.NextButton.UseStock = true;
+            NextButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.NextButton.UseUnderline = true;
-            this.NextButton.Label = "gtk-go-forward";
-            this.NextButton.Clicked += new System.EventHandler(this.OnNextButton_Activated);
+            NextButton.UseUnderline = true;
+            NextButton.Label = "gtk-go-forward";
+            NextButton.Clicked += OnNextButton_Activated;
             //this.hbox1.PackStart(this.NextButton, false, false, 0);
 
-            this.LastPageButton = new Gtk.Button();
-            this.LastPageButton.CanFocus = true;
-            this.LastPageButton.Name = "LastPageButton";
+            LastPageButton = new Button();
+            LastPageButton.CanFocus = true;
+            LastPageButton.Name = "LastPageButton";
 #pragma warning disable CS0612 // Type or member is obsolete
-            this.LastPageButton.UseStock = true;
+            LastPageButton.UseStock = true;
 #pragma warning restore CS0612 // Type or member is obsolete
-            this.LastPageButton.UseUnderline = true;
-            this.LastPageButton.Label = "gtk-goto-last";
-            this.LastPageButton.Clicked += new System.EventHandler(this.OnLastPageButton_Activated);
+            LastPageButton.UseUnderline = true;
+            LastPageButton.Label = "gtk-goto-last";
+            LastPageButton.Clicked += OnLastPageButton_Activated;
             //this.hbox1.PackStart(this.LastPageButton, false, false, 0);
 
-            this.CurrentPage = new Gtk.SpinButton(0, 999999, 1);
-            this.CurrentPage.CanFocus = true;
-            this.CurrentPage.Name = "CurrentPage";
-            this.CurrentPage.Adjustment.PageIncrement = 10;
-            this.CurrentPage.ClimbRate = 1;
-            this.CurrentPage.Numeric = true;
+            CurrentPage = new SpinButton(0, 999999, 1);
+            CurrentPage.CanFocus = true;
+            CurrentPage.Name = "CurrentPage";
+            CurrentPage.Adjustment.PageIncrement = 10;
+            CurrentPage.ClimbRate = 1;
+            CurrentPage.Numeric = true;
             //this.hbox1.PackStart(this.CurrentPage, false, false, 0);
 
-            this.PageCountLabel = new Gtk.Label();
-            this.PageCountLabel.Name = "PageCountLabel";
+            PageCountLabel = new Label();
+            PageCountLabel.Name = "PageCountLabel";
             //this.hbox1.PackStart(this.PageCountLabel, false, false, 0);
 
-            this.vbox1.PackStart(this.hbox1, false, false, 0);
+            vbox1.PackStart(hbox1, false, false, 0);
 
-            this.scrolledwindow1 = new Gtk.ScrolledWindow();
-            this.scrolledwindow1.CanFocus = true;
-            this.scrolledwindow1.Name = "scrolledwindow1";
-            this.scrolledwindow1.ShadowType = Gtk.ShadowType.In;
+            scrolledwindow1 = new ScrolledWindow();
+            scrolledwindow1.CanFocus = true;
+            scrolledwindow1.Name = "scrolledwindow1";
+            scrolledwindow1.ShadowType = ShadowType.In;
 
             //Gtk.Viewport w10 = new Gtk.Viewport();
             //w10.ShadowType = Gtk.ShadowType.None;
@@ -141,19 +143,19 @@ namespace Majorsilence.Reporting.RdlGtk3
             //w10.Add(this.vboxImages);
 
             //w10.Add(reportviewer1);
-            this.scrolledwindow1.Add(reportviewer1);
+            scrolledwindow1.Add(reportviewer1);
             //this.scrolledwindow1.Add(w10);
 
 
-            this.vbox1.PackStart(this.scrolledwindow1, true, true, 0);
+            vbox1.PackStart(scrolledwindow1, true, true, 0);
 
 
             scrolledwindow1.ShowAll();
 
-            this.Add(vbox1);
-            this.ShowAll();
+            Add(vbox1);
+            ShowAll();
 
-            this.Destroyed += OnDeleteEvent;
+            Destroyed += OnDeleteEvent;
         }
 
         protected void OnDeleteEvent(object sender, EventArgs a)
@@ -161,21 +163,21 @@ namespace Majorsilence.Reporting.RdlGtk3
             Application.Quit();
         }
 
-        protected async void OnFileOpen_Activated(object sender, System.EventArgs e)
+        protected async void OnFileOpen_Activated(object sender, EventArgs e)
         {
             object[] param = new object[4];
             param[0] = "Cancel";
-            param[1] = Gtk.ResponseType.Cancel;
+            param[1] = ResponseType.Cancel;
             param[2] = "Open";
-            param[3] = Gtk.ResponseType.Accept;
+            param[3] = ResponseType.Accept;
 
-            var fc =
-                new Gtk.FileChooserDialog("Open File",
+            FileChooserDialog fc =
+                new("Open File",
                     null,
-                    Gtk.FileChooserAction.Open,
+                    FileChooserAction.Open,
                     param);
 
-            if (fc.Run() != (int)Gtk.ResponseType.Accept)
+            if (fc.Run() != (int)ResponseType.Accept)
             {
                 fc.Destroy();
                 return;
@@ -186,49 +188,48 @@ namespace Majorsilence.Reporting.RdlGtk3
                 string filename = fc.Filename;
                 fc.Destroy();
 
-                if (System.IO.File.Exists(filename))
+                if (File.Exists(filename))
                 {
-                    string parameters = await this.GetParameters(new Uri(filename));
-                    await this.reportviewer1.LoadReport(new Uri(filename), parameters);
+                    string parameters = await GetParameters(new Uri(filename));
+                    await reportviewer1.LoadReport(new Uri(filename), parameters);
                 }
             }
             catch (Exception ex)
             {
-                var m = new Gtk.MessageDialog(null, Gtk.DialogFlags.Modal, Gtk.MessageType.Info,
-                                          Gtk.ButtonsType.Ok, false,
-                                          "Error Opening File." + System.Environment.NewLine + ex.Message);
+                MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
+                    ButtonsType.Ok, false,
+                    "Error Opening File." + Environment.NewLine + ex.Message);
                 m.Run();
                 m.Destroy();
             }
-
         }
 
-        public async void OnFileSave_Activated(object sender, System.EventArgs e)
+        public async void OnFileSave_Activated(object sender, EventArgs e)
         {
-            await this.reportviewer1.SaveReport();
+            await reportviewer1.SaveReport();
         }
 
-        public void OnFilePrint_Activated(object sender, System.EventArgs e)
+        public void OnFilePrint_Activated(object sender, EventArgs e)
         {
-            this.reportviewer1.PrintReport();
+            reportviewer1.PrintReport();
         }
 
-        public void OnFirstPageButton_Activated(object sender, System.EventArgs e)
+        public void OnFirstPageButton_Activated(object sender, EventArgs e)
         {
             //this.reportviewer1.FirstPage();
         }
 
-        public void OnPreviousButton_Activated(object sender, System.EventArgs e)
+        public void OnPreviousButton_Activated(object sender, EventArgs e)
         {
             // this.reportviewer1.PreviousPage();
         }
 
-        public void OnNextButton_Activated(object sender, System.EventArgs e)
+        public void OnNextButton_Activated(object sender, EventArgs e)
         {
             //this.reportviewer1.NextPage();
         }
 
-        public void OnLastPageButton_Activated(object sender, System.EventArgs e)
+        public void OnLastPageButton_Activated(object sender, EventArgs e)
         {
             //this.reportviewer1.LastPage();
         }
@@ -236,21 +237,21 @@ namespace Majorsilence.Reporting.RdlGtk3
         private async Task<string> GetParameters(Uri sourcefile)
         {
             string parameters = "";
-            string sourceRdl = await System.IO.File.ReadAllTextAsync(sourcefile.LocalPath);
-            var parser = new Rdl.RDLParser(sourceRdl);
+            string sourceRdl = await File.ReadAllTextAsync(sourcefile.LocalPath);
+            RDLParser parser = new(sourceRdl);
             await parser.Parse();
 
             if (parser.Report.UserReportParameters.Count > 0)
             {
-                foreach (Rdl.UserReportParameter rp in parser.Report.UserReportParameters)
+                foreach (UserReportParameter rp in parser.Report.UserReportParameters)
                 {
                     parameters += "&" + rp.Name + "=";
                 }
 
-                using var prompt = new ParameterPrompt();
+                using ParameterPrompt prompt = new();
                 prompt.Parameters = parameters;
 
-                if (prompt.Run() == (int)Gtk.ResponseType.Ok)
+                if (prompt.Run() == (int)ResponseType.Ok)
                 {
                     parameters = prompt.Parameters;
                 }

@@ -1,35 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<AssemblyName>RdlGtk3</AssemblyName>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageId>Majorsilence.Reporting.RdlGtk3</PackageId>
-		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
-		<TargetFrameworks>net8.0</TargetFrameworks>
-		<WarningsAsErrors>4014</WarningsAsErrors>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="GtkSharp" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
-			<DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
-		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="app.desktop">
-			<DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
-		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\RdlCri\Majorsilence.Reporting.RdlCri.csproj" />
-		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
-		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="..\RdlEngine\RdlEngineConfig.xml">
-			<Link>RdlEngineConfig.xml</Link>
-		</None>
-	</ItemGroup>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <AssemblyName>RdlGtk3</AssemblyName>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <PackageId>Majorsilence.Reporting.RdlGtk3</PackageId>
+        <Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
+        <TargetFrameworks>net8.0</TargetFrameworks>
+        <WarningsAsErrors>4014</WarningsAsErrors>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="GtkSharp"/>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\Icons\Pdf_16x16.png">
+            <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="app.desktop">
+            <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\RdlCri\Majorsilence.Reporting.RdlCri.csproj"/>
+        <ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj"/>
+        <ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\RdlEngine\RdlEngineConfig.xml">
+            <Link>RdlEngineConfig.xml</Link>
+        </None>
+    </ItemGroup>
 </Project>

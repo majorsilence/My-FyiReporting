@@ -20,41 +20,37 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
+
+using Cairo;
+using Majorsilence.Reporting.Rdl;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Majorsilence.Reporting.Rdl;
-
 
 namespace Majorsilence.Reporting.RdlGtk3
 {
     public class CairoPdfWriter
     {
-        public CairoPdfWriter()
-        {
-        }
-
         #region IPdfWriter implementation
 
         public async Task<byte[]> GetFileBytes(Report report)
         {
-            var pages = await report.BuildPages();
+            Pages pages = await report.BuildPages();
             int width = (int)report.PageWidthPoints;
             int height = (int)report.PageHeightPoints;
             string filename = $"gen-{Guid.NewGuid()}.pdf";
-			
+
             try
             {
-                using(var pdf = new Cairo.PdfSurface(filename, width, height))
-				using(var g = new Cairo.Context(pdf))
-				using(var render = new RenderCairo(g))
+                using (PdfSurface pdf = new(filename, width, height))
+                using (Context g = new(pdf))
+                using (RenderCairo render = new(g))
                 {
-					render.RunPages(pages);
+                    render.RunPages(pages);
                 }
-                
+
                 byte[] bytes = await File.ReadAllBytesAsync(filename);
                 return bytes;
-				
             }
             finally
             {
@@ -68,4 +64,3 @@ namespace Majorsilence.Reporting.RdlGtk3
         #endregion
     }
 }
-
