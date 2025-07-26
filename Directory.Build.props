@@ -1,15 +1,15 @@
 <Project>
   <PropertyGroup Condition="'$(Configuration)' == 'Release-DrawingCompat' Or '$(Configuration)' == 'Debug-DrawingCompat'">
     <DefineConstants>DRAWINGCOMPAT</DefineConstants>
-	</PropertyGroup>
+  </PropertyGroup>
 
   <PropertyGroup>
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <RepositoryUrl>https://github.com/majorsilence/My-FyiReporting</RepositoryUrl>
-    <AssemblyVersion>5.0.10</AssemblyVersion>
-    <FileVersion>5.0.10</FileVersion>
-    <Version>5.0.10</Version>
+    <AssemblyVersion>5.0.11</AssemblyVersion>
+    <FileVersion>5.0.11</FileVersion>
+    <Version>5.0.11</Version>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Product>Majorsilence Reporting</Product>
     <Copyright>Copyright © 2004-2008  fyiReporting Software, LLC, Majorsilence Reporting Devs 2025</Copyright>
