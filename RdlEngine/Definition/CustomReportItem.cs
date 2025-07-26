@@ -172,6 +172,7 @@ namespace Majorsilence.Reporting.Rdl
 					}
 				}
 				bm.Save(ostrm, codec, encoderParameters);
+                bm.Dispose();
 
                 await ip.Image(new Image(rpt.ReportDefinition, this, xNode), row, null, ostrm);
 				ostrm.Close();
@@ -211,7 +212,9 @@ namespace Majorsilence.Reporting.Rdl
                 encoderParameters.Param[0] = new Draw2.Imaging.EncoderParameter(Draw2.Imaging.Encoder.Quality, ImageQualityManager.CustomImageQuality);
                 ImageCodecInfo codec = ImageCodecInfo.GetImageEncoders().First(x => x.FormatDescription == "JPEG");
 
-                PageImage pi = new PageImage(IMAGEFORMAT, ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)), ImageSizingEnum.Clip);	// Create an image
+                PageImage pi = new PageImage(IMAGEFORMAT, 
+                    ((format, width, height) => GenerateImage(codec, encoderParameters, width, height, cri)),
+                    ImageSizingEnum.Clip);	// Create an image
 
                 await SetPagePositionAndStyle(rpt, pi, row);
 
@@ -249,6 +252,7 @@ namespace Majorsilence.Reporting.Rdl
 			bm.Save(ostrm, codec, parameters);
 			byte[] ba = ostrm.ToArray();
 			ostrm.Close();
+            bm.Dispose();
 			return ba;
 		}
 
