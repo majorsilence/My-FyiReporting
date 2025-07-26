@@ -236,7 +236,7 @@ namespace Majorsilence.Reporting.RdlGtk3
         private async Task<string> GetParameters(Uri sourcefile)
         {
             string parameters = "";
-            string sourceRdl = System.IO.File.ReadAllText(sourcefile.LocalPath);
+            string sourceRdl = await System.IO.File.ReadAllTextAsync(sourcefile.LocalPath);
             var parser = new Rdl.RDLParser(sourceRdl);
             await parser.Parse();
 

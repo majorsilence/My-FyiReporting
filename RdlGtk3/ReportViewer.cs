@@ -268,7 +268,7 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             SourceFile = sourcefile;
 
-            string source = System.IO.File.ReadAllText(sourcefile.LocalPath);
+            string source = await System.IO.File.ReadAllTextAsync(sourcefile.LocalPath);
             await LoadReport(source, parameters, restrictedOutputPresentationTypes);
         }
 
@@ -303,10 +303,11 @@ namespace Majorsilence.Reporting.RdlGtk3
                 SetParametersFromControls();
             await report.RunGetData(Parameters);
             pages = await report.BuildPages();
-
-            foreach (Gtk.Widget w in vboxPages.AllChildren)
+            
+            foreach (Gtk.Widget w in vboxPages.AllChildren.Cast<Gtk.Widget>().ToList())
             {
                 vboxPages.Remove(w);
+                w.Destroy();
             }
 
             for (int pageCount = 0; pageCount < pages.Count; pageCount++)
