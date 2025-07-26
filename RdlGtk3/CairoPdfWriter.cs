@@ -41,7 +41,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             var pages = await report.BuildPages();
             int width = (int)report.PageWidthPoints;
             int height = (int)report.PageHeightPoints;
-            string filename = string.Format("gen-{0}.pdf", Guid.NewGuid());
+            string filename = $"gen-{Guid.NewGuid()}.pdf";
 			
             try
             {
@@ -52,7 +52,7 @@ namespace Majorsilence.Reporting.RdlGtk3
 					render.RunPages(pages);
                 }
                 
-                byte[] bytes = File.ReadAllBytes(filename);
+                byte[] bytes = await File.ReadAllBytesAsync(filename);
                 return bytes;
 				
             }
