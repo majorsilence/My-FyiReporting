@@ -24,7 +24,6 @@
 using Cairo;
 using Gdk;
 using Gtk;
-using Majorsilence.Drawing;
 using Majorsilence.Reporting.Rdl;
 using Pango;
 using System.Collections.Generic;
@@ -37,9 +36,9 @@ using Context = Cairo.Context;
 using Layout = Pango.Layout;
 using Rectangle = Cairo.Rectangle;
 #if DRAWINGCOMPAT
-
+using Majorsilence.Drawing;
 #else
-using Drawing = System.Drawing;
+using System.Drawing;
 #endif
 
 namespace Majorsilence.Reporting.RdlGtk3
