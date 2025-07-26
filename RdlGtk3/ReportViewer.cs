@@ -97,7 +97,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             }
         }
 
-        public string DefaultExportFileName { get; set; }
+        public string DefaultExportFileName { get; set; } = "report";
 
         public bool ShowParameters
         {
@@ -506,9 +506,10 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         private void AddParameterControls()
         {
-            foreach (Widget child in _vboxParameters.Children)
+            foreach (Widget child in _vboxParameters.Children.Cast<Widget>().ToList())
             {
                 _vboxParameters.Remove(child);
+                child.Destroy();
             }
 
             foreach (UserReportParameter rp in _report.UserReportParameters)
@@ -606,7 +607,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             param[2] = Strings.ButtonSave_Text;
             param[3] = ResponseType.Accept;
 
-            using FileChooserDialog fc =
+            FileChooserDialog fc =
                 new(Strings.FileChooser_SaveFileTo_Title,
                     null,
                     FileChooserAction.Save,
@@ -688,13 +689,14 @@ namespace Majorsilence.Reporting.RdlGtk3
 
             if (!fc.Filters.Any())
             {
-                using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
+                MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
                     ButtonsType.Ok, false,
                     "Export in all document formats is prohibited");
 
                 m.WindowPosition = WindowPosition.Center;
                 m.Run();
                 m.Destroy();
+                fc.Destroy();
                 return;
             }
 
@@ -800,7 +802,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                             if (files[i] == filename)
                             {
                                 //If found files with the same name in directory
-                                using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Question,
+                                MessageDialog m = new(null, DialogFlags.Modal, MessageType.Question,
                                     ButtonsType.YesNo, false,
                                     Strings.SaveToFile_CheckIf_SameFilesInDir);
 
@@ -837,7 +839,7 @@ namespace Majorsilence.Reporting.RdlGtk3
                 }
                 catch (Exception ex)
                 {
-                    using MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
+                    MessageDialog m = new(null, DialogFlags.Modal, MessageType.Info,
                         ButtonsType.Ok, false,
                         $"Error Saving Copy of {fc.Filter?.Name}." + Environment.NewLine + ex.Message);
 
