@@ -48,8 +48,7 @@ namespace Majorsilence.Reporting.Cri
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
             writer.Options.Hints[EncodeHintType.CHARACTER_SET] = "UTF-8";
 
-            Draw2.Graphics g = null;
-            g = Draw2.Graphics.FromImage(bm);
+            using Draw2.Graphics g = Draw2.Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
 
             int barHeight = PixelConversions.PixelXFromMm(g, OptimalHeight * mag);

@@ -52,8 +52,7 @@ namespace Majorsilence.Reporting.Cri
 #endif
             writer.Format = ZXing.BarcodeFormat.EAN_8;
 
-            Graphics g = null;
-            g = Graphics.FromImage(bm);
+            using Graphics g = Graphics.FromImage(bm);
             float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height,
                 OptimalHeight, OptimalWidth);
 

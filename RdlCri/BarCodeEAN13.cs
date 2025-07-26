@@ -3,7 +3,7 @@
    Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
 
    This file is part of the fyiReporting RDL project.
-	
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -20,6 +20,7 @@
    For additional information, email info@fyireporting.com or visit
    the website www.fyiReporting.com.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,10 +29,9 @@ using Draw2 = Majorsilence.Drawing;
 #else
 using Draw2 = System.Drawing;
 #endif
-using System.ComponentModel;            // need this for the properties metadata
+using System.ComponentModel; // need this for the properties metadata
 using System.Xml;
 using System.Text.RegularExpressions;
-
 using Majorsilence.Reporting.Rdl;
 
 namespace Majorsilence.Reporting.Cri
@@ -42,7 +42,7 @@ namespace Majorsilence.Reporting.Cri
     ///     construct a EAN-13 compatible barcode
     ///     See http://194.203.97.138/eanucc/ for the specification.
     /// </summary>
-    public class BarCodeEAN13: ICustomReportItem
+    public class BarCodeEAN13 : ICustomReportItem
     {
         // Encoding arrays: digit encoding depends on whether it is on the 
         // right hand (product code side) or the left hand (manufacturer side).
@@ -50,25 +50,35 @@ namespace Majorsilence.Reporting.Cri
         // determines the even/odd parity order.
 
         // index RightHandEncoding when doing the product code side
-        static readonly string[] RightHandEncoding = 
-            {"1110010", "1100110", "1101100", "1000010", "1011100",
-             "1001110", "1010000", "1000100", "1001000", "1110100"};
+        static readonly string[] RightHandEncoding =
+        {
+            "1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000",
+            "1110100"
+        };
+
         // index LeftHandEncodingOdd when the ParityOrdering char is odd '1'
-        static readonly string[] LeftHandEncodingOdd = 
-            {"0001101", "0011001", "0010011", "0111101", "0100011",
-             "0110001", "0101111", "0111011", "0110111", "0001011"};
+        static readonly string[] LeftHandEncodingOdd =
+        {
+            "0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111",
+            "0001011"
+        };
+
         // index LeftHandEncodingEven when the ParityOrdering char is even '0'
         static readonly string[] LeftHandEncodingEven =
-            {"0100111", "0110011", "0011011", "0100001", "0011101",
-             "0111001", "0000101", "0010001", "0001001", "0010111"};
+        {
+            "0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001",
+            "0010111"
+        };
+
         // index ParityOrdering using the first number of the system digit
         static readonly string[] ParityOrdering = // Convention: 1 is considered Odd, 0 is considered even
-            {"111111", "110100", "110010", "110001", "101100",
-             "100110", "100011", "101010", "101001", "100101"};
+        {
+            "111111", "110100", "110010", "110001", "101100", "100110", "100011", "101010", "101001", "100101"
+        };
 
-        string _NumberSystem;       // Number system
-        string _ManufacturerCode;   // Manufacturer code (assigned by number system authority)
-        string _ProductCode;        // Product code (assigned by company)
+        string _NumberSystem; // Number system
+        string _ManufacturerCode; // Manufacturer code (assigned by number system authority)
+        string _ProductCode; // Product code (assigned by company)
 
 //  The EAN-13 Bar Code Symbol shall be made up as follows, reading from left to right: 
 //�  A left Quiet Zone
@@ -79,31 +89,37 @@ namespace Majorsilence.Reporting.Cri
 //�  A normal Guard Bar Pattern
 //�  A right Quiet Zone
 
-        static public readonly float OptimalHeight = 25.91f;          // Optimal height at magnification 1    
-        static public readonly float OptimalWidth = 37.29f;            // Optimal width at mag 1
-        static readonly float ModuleWidth = 0.33f;             // module width in mm at mag factor 1
-        static readonly float FontHeight = 8;                  // Font height at mag factor 1
-        static readonly int LeftQuietZoneModules = 11;          // # of modules in left quiet zone  
-        static readonly int RightQuietZoneModules = 7;          // # of modules in left quiet zone  
-        static readonly int GuardModules=3;                     // # of modules in left and right guard
-        static readonly int ManufacturingModules=7*6;           // # of modules in manufacturing
-        static readonly int CenterBarModules=5;                 // # of modules in center bar
-        static readonly int ProductModules=7*6;                 // # of modules in product + checksum
+        static public readonly float OptimalHeight = 25.91f; // Optimal height at magnification 1    
+        static public readonly float OptimalWidth = 37.29f; // Optimal width at mag 1
+        static readonly float ModuleWidth = 0.33f; // module width in mm at mag factor 1
+        static readonly float FontHeight = 8; // Font height at mag factor 1
+        static readonly int LeftQuietZoneModules = 11; // # of modules in left quiet zone  
+        static readonly int RightQuietZoneModules = 7; // # of modules in left quiet zone  
+        static readonly int GuardModules = 3; // # of modules in left and right guard
+        static readonly int ManufacturingModules = 7 * 6; // # of modules in manufacturing
+        static readonly int CenterBarModules = 5; // # of modules in center bar
+        static readonly int ProductModules = 7 * 6; // # of modules in product + checksum
+
         static readonly int ModulesToManufacturingStart =
             LeftQuietZoneModules + GuardModules;
+
         static readonly int ModulesToManufacturingEnd =
             ModulesToManufacturingStart + ManufacturingModules;
+
         static readonly int ModulesToProductStart =
             ModulesToManufacturingEnd + CenterBarModules;
+
         static readonly int ModulesToProductEnd =
             ModulesToProductStart + ProductModules;
+
         static readonly int TotalModules = ModulesToProductEnd + GuardModules + RightQuietZoneModules;
 
-        public BarCodeEAN13()        // Need to be able to create an instance
+        public BarCodeEAN13() // Need to be able to create an instance
         {
         }
 
         #region ICustomReportItem Members
+
         /// <summary>
         /// Runtime: Draw the BarCode
         /// </summary>
@@ -124,7 +140,7 @@ namespace Majorsilence.Reporting.Cri
         {
             DrawImage(bm, "00" + "12345" + "12345");
         }
-        
+
         /// <summary>
         /// DrawImage given a Bitmap and a upcode does all the drawing work.
         /// </summary>
@@ -133,62 +149,56 @@ namespace Majorsilence.Reporting.Cri
         internal void DrawImage(Draw2.Bitmap bm, string upcode)
         {
             string barPattern = this.GetEncoding(upcode);
-            Draw2.Graphics g = null;
-            g = Draw2.Graphics.FromImage(bm);
-            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth );
+            using Draw2.Graphics g = Draw2.Graphics.FromImage(bm);
+            float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height, OptimalHeight, OptimalWidth);
 
             float barWidth = ModuleWidth * mag;
             float barHeight = OptimalHeight * mag;
             float fontHeight = FontHeight * mag;
             float fontHeightMM = fontHeight / 72.27f * 25.4f;
-            Draw2.Font f = null;
-            try
+
+            g.PageUnit = Draw2.GraphicsUnit.Millimeter;
+
+            // Fill in the background with white
+            g.FillRectangle(Draw2.Brushes.White, 0, 0, bm.Width, bm.Height);
+
+            // Draw the bars
+            int barCount = LeftQuietZoneModules;
+            foreach (char bar in barPattern)
             {
-                g.PageUnit = Draw2.GraphicsUnit.Millimeter;
-
-                // Fill in the background with white
-                g.FillRectangle(Draw2.Brushes.White, 0, 0, bm.Width, bm.Height);
-
-                // Draw the bars
-                int barCount = LeftQuietZoneModules;
-                foreach (char bar in barPattern)
+                if (bar == '1')
                 {
-                    if (bar == '1')
-                    {
-                        float bh = ((barCount > ModulesToManufacturingStart && barCount < ModulesToManufacturingEnd) ||
-                                    (barCount > ModulesToProductStart && barCount < ModulesToProductEnd)) ?
-                                    barHeight - fontHeightMM : barHeight;
+                    float bh = ((barCount > ModulesToManufacturingStart && barCount < ModulesToManufacturingEnd) ||
+                                (barCount > ModulesToProductStart && barCount < ModulesToProductEnd))
+                        ? barHeight - fontHeightMM
+                        : barHeight;
 
-                        g.FillRectangle(Draw2.Brushes.Black, barWidth * barCount, 0, barWidth, bh);
-                    } 
-                    barCount++;
+                    g.FillRectangle(Draw2.Brushes.Black, barWidth * barCount, 0, barWidth, bh);
                 }
 
-                // Draw the human readable portion of the barcode
-                f = new Draw2.Font("Arial", fontHeight);
-
-                // Draw the left guard text (i.e. 2nd digit of the NumberSystem)
-                string wc = upcode.Substring(0, 1);
-                g.DrawString(wc, f, Draw2.Brushes.Black,
-                    new Draw2.PointF(barWidth * LeftQuietZoneModules - g.MeasureString(wc, f).Width, barHeight - fontHeightMM));
-
-                // Draw the manufacturing digits
-                wc = upcode.Substring(1, 6);
-                g.DrawString(wc, f, Draw2.Brushes.Black,
-                    new Draw2.PointF(barWidth * ModulesToManufacturingEnd - g.MeasureString(wc, f).Width, barHeight - fontHeightMM));
-
-                // Draw the product code + the checksum digit
-                wc = upcode.Substring(7, 5) + CheckSum(upcode).ToString();
-                g.DrawString(wc , f, Draw2.Brushes.Black,
-                    new Draw2.PointF(barWidth * ModulesToProductEnd - g.MeasureString(wc, f).Width, barHeight - fontHeightMM));
+                barCount++;
             }
-            finally
-            {
-                if (f != null)
-                    f.Dispose();
-                if (g != null)
-                    g.Dispose();
-            }
+
+            // Draw the human readable portion of the barcode
+            using var f = new Draw2.Font("Arial", fontHeight);
+
+            // Draw the left guard text (i.e. 2nd digit of the NumberSystem)
+            string wc = upcode.Substring(0, 1);
+            g.DrawString(wc, f, Draw2.Brushes.Black,
+                new Draw2.PointF(barWidth * LeftQuietZoneModules - g.MeasureString(wc, f).Width,
+                    barHeight - fontHeightMM));
+
+            // Draw the manufacturing digits
+            wc = upcode.Substring(1, 6);
+            g.DrawString(wc, f, Draw2.Brushes.Black,
+                new Draw2.PointF(barWidth * ModulesToManufacturingEnd - g.MeasureString(wc, f).Width,
+                    barHeight - fontHeightMM));
+
+            // Draw the product code + the checksum digit
+            wc = upcode.Substring(7, 5) + CheckSum(upcode).ToString();
+            g.DrawString(wc, f, Draw2.Brushes.Black,
+                new Draw2.PointF(barWidth * ModulesToProductEnd - g.MeasureString(wc, f).Width,
+                    barHeight - fontHeightMM));
         }
 
         /// <summary>
@@ -207,53 +217,57 @@ namespace Majorsilence.Reporting.Cri
         public void SetProperties(IDictionary<string, object> props)
         {
             object pv;
-            try 
-            { 
+            try
+            {
                 pv = props["NumberSystem"];
                 if (pv is int || pv is long || pv is float || pv is double)
                     _NumberSystem = string.Format("{0:00}", pv);
                 else
                     _NumberSystem = pv.ToString();
             }
-            catch (KeyNotFoundException )
-            { 
-                throw new Exception("NumberSystem property must be specified"); 
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("NumberSystem property must be specified");
             }
+
             if (!Regex.IsMatch(_NumberSystem, "^[0-9][0-9]$"))
                 throw new Exception("NumberSystem must be a 2 digit string.");
 
-            try 
-            { 
+            try
+            {
                 pv = props["ManufacturerCode"];
                 if (pv is int || pv is long || pv is float || pv is double)
                     _ManufacturerCode = string.Format("{0:00000}", pv);
                 else
                     _ManufacturerCode = pv.ToString();
             }
-            catch (KeyNotFoundException )
+            catch (KeyNotFoundException)
             {
-                throw new Exception("ManufacturerCode property must be specified"); 
+                throw new Exception("ManufacturerCode property must be specified");
             }
+
             if (!Regex.IsMatch(_ManufacturerCode, "^[0-9][0-9][0-9][0-9][0-9]$"))
                 throw new Exception("ManufacturerCode must be a 5 digit string.");
-            
-            try 
-            { 
+
+            try
+            {
                 pv = props["ProductCode"];
                 if (pv is int || pv is long || pv is float || pv is double)
                     _ProductCode = string.Format("{0:00000}", pv);
                 else
                     _ProductCode = pv.ToString();
             }
-            catch (KeyNotFoundException )
-            { 
-                throw new Exception("ProductCode property must be specified."); 
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("ProductCode property must be specified.");
             }
+
             if (!Regex.IsMatch(_ProductCode, "^[0-9][0-9][0-9][0-9][0-9]$"))
                 throw new Exception("ProductCode must be a 5 digit string.");
 
             return;
         }
+
         /// <summary>
         /// Design time call: return string with <CustomReportItem> ... </CustomReportItem> syntax for 
         /// the insert.  The string contains a variable {0} which will be substituted with the
@@ -261,25 +275,25 @@ namespace Majorsilence.Reporting.Cri
         /// the configuration file.
         /// </summary>
         /// <returns></returns>
-        public string GetCustomReportItemXml()              
+        public string GetCustomReportItemXml()
         {
             return "<CustomReportItem><Type>{0}</Type>" +
-                string.Format("<Height>{0}mm</Height><Width>{1}mm</Width>", OptimalHeight, OptimalWidth) + 
-                "<CustomProperties>" +
-                "<CustomProperty>" +
-                "<Name>NumberSystem</Name>" +
-                "<Value>00</Value>" +
-                "</CustomProperty>" +
-                "<CustomProperty>" +
-                "<Name>ManufacturerCode</Name>" +
-                "<Value>12345</Value>" +
-                "</CustomProperty>" +
-                "<CustomProperty>" +
-                "<Name>ProductCode</Name>" +
-                "<Value>12345</Value>" +
-                "</CustomProperty>" +
-                "</CustomProperties>" +
-                "</CustomReportItem>";
+                   string.Format("<Height>{0}mm</Height><Width>{1}mm</Width>", OptimalHeight, OptimalWidth) +
+                   "<CustomProperties>" +
+                   "<CustomProperty>" +
+                   "<Name>NumberSystem</Name>" +
+                   "<Value>00</Value>" +
+                   "</CustomProperty>" +
+                   "<CustomProperty>" +
+                   "<Name>ManufacturerCode</Name>" +
+                   "<Value>12345</Value>" +
+                   "</CustomProperty>" +
+                   "<CustomProperty>" +
+                   "<Name>ProductCode</Name>" +
+                   "<Value>12345</Value>" +
+                   "</CustomProperty>" +
+                   "</CustomProperties>" +
+                   "</CustomReportItem>";
         }
 
         /// <summary>
@@ -292,7 +306,7 @@ namespace Majorsilence.Reporting.Cri
             BarCodeProperties bcp = new BarCodeProperties(this, iNode);
             foreach (XmlNode n in iNode.ChildNodes)
             {
-                if (n.Name != "CustomProperty") 
+                if (n.Name != "CustomProperty")
                     continue;
                 string pname = this.GetNamedElementValue(n, "Name", "");
                 switch (pname)
@@ -313,7 +327,7 @@ namespace Majorsilence.Reporting.Cri
 
             return bcp;
         }
-    
+
         /// <summary>
         /// Set the custom properties given the properties object
         /// </summary>
@@ -321,7 +335,7 @@ namespace Majorsilence.Reporting.Cri
         /// <param name="inst"></param>
         public void SetPropertiesInstance(XmlNode node, object inst)
         {
-            node.RemoveAll();       // Get rid of all properties
+            node.RemoveAll(); // Get rid of all properties
 
             BarCodeProperties bcp = inst as BarCodeProperties;
             if (bcp == null)
@@ -372,8 +386,9 @@ namespace Majorsilence.Reporting.Cri
             if (upccode == null)
                 throw new ArgumentNullException("upccode");
             else if (upccode.Length != 12)
-                throw new ArgumentException("UPC code must be 12 characters: country code 2 chars, mfg code 5 chars, product code 5 chars");
-            
+                throw new ArgumentException(
+                    "UPC code must be 12 characters: country code 2 chars, mfg code 5 chars, product code 5 chars");
+
             StringBuilder sb = new StringBuilder();
 
             // Left guard bars
@@ -382,13 +397,13 @@ namespace Majorsilence.Reporting.Cri
             int cc1digit = (int)Char.GetNumericValue(upccode[0]); // country code first digit
             int digit;
             string encode;
-            
+
             // 2nd Country code & Manufacturing code:
             //    loop thru second character of country code and 5 digits of manufacturers code
             string parity = BarCodeEAN13.ParityOrdering[cc1digit];
             for (int i = 1; i < 7; i++)
             {
-                digit = (int) Char.GetNumericValue(upccode[i]);    // get the current digit
+                digit = (int)Char.GetNumericValue(upccode[i]); // get the current digit
                 if (parity[i - 1] == '1')
                     encode = BarCodeEAN13.LeftHandEncodingOdd[digit];
                 else
@@ -402,7 +417,7 @@ namespace Majorsilence.Reporting.Cri
             // Product code encoding: loop thru the 5 digits of the product code
             for (int i = 7; i < 12; i++)
             {
-                digit = (int)Char.GetNumericValue(upccode[i]);    // get the current digit
+                digit = (int)Char.GetNumericValue(upccode[i]); // get the current digit
                 encode = BarCodeEAN13.RightHandEncoding[digit];
                 sb.Append(encode);
             }
@@ -413,7 +428,7 @@ namespace Majorsilence.Reporting.Cri
             sb.Append(encode);
 
             // Right guard bars
-            sb.Append("101");       
+            sb.Append("101");
 
             return sb.ToString();
         }
@@ -429,18 +444,19 @@ namespace Majorsilence.Reporting.Cri
         int CheckSum(string upccode)
         {
             int sum = 0;
-            bool bOdd=false;
+            bool bOdd = false;
             foreach (char c in upccode)
             {
-                int digit = (int) Char.GetNumericValue(c);
+                int digit = (int)Char.GetNumericValue(c);
                 sum += (bOdd ? digit * 3 : digit);
-                bOdd = !bOdd;                       // switch every other character
+                bOdd = !bOdd; // switch every other character
             }
+
             int cs = 10 - (sum % 10);
 
-            return cs == 10? 0: cs;
+            return cs == 10 ? 0 : cs;
         }
-        
+
         /// <summary>
         /// Get the child element with the specified name.  Return the InnerText
         /// value if found otherwise return the passed default.
@@ -460,6 +476,7 @@ namespace Majorsilence.Reporting.Cri
                     cNode.Name == name)
                     return cNode.InnerText;
             }
+
             return def;
         }
 
@@ -485,40 +502,54 @@ namespace Majorsilence.Reporting.Cri
             {
                 _NumberSystem = ns;
             }
+
             [Category("BarCode"),
-               Description("The Number System consists of two (sometimes three) digits which identifies the country or region numbering authority which assigned the manufacturer code.")]
+             Description(
+                 "The Number System consists of two (sometimes three) digits which identifies the country or region numbering authority which assigned the manufacturer code.")]
             public string NumberSystem
             {
                 get { return _NumberSystem; }
-                set { _NumberSystem = value; _bc.SetPropertiesInstance(_node, this); }
+                set
+                {
+                    _NumberSystem = value;
+                    _bc.SetPropertiesInstance(_node, this);
+                }
             }
 
             internal void SetManufacturerCode(string mc)
             {
                 _ManufacturerCode = mc;
             }
+
             [Category("BarCode"),
-              Description("Manufacturer Code is a unique 5 digit code assiged by numbering authority indicated by the number system code.")]
+             Description(
+                 "Manufacturer Code is a unique 5 digit code assiged by numbering authority indicated by the number system code.")]
             public string ManufacturerCode
             {
                 get { return _ManufacturerCode; }
-                set { _ManufacturerCode = value; _bc.SetPropertiesInstance(_node, this); }
+                set
+                {
+                    _ManufacturerCode = value;
+                    _bc.SetPropertiesInstance(_node, this);
+                }
             }
 
             internal void SetProductCode(string pc)
             {
                 _ProductCode = pc;
             }
+
             [Category("BarCode"),
-              Description("Product Code is a unique 5 digit code assigned by the manufacturer.")]
+             Description("Product Code is a unique 5 digit code assigned by the manufacturer.")]
             public string ProductCode
             {
                 get { return _ProductCode; }
-                set { _ProductCode = value; _bc.SetPropertiesInstance(_node, this); }
+                set
+                {
+                    _ProductCode = value;
+                    _bc.SetPropertiesInstance(_node, this);
+                }
             }
         }
-
-       
-
     }
 }

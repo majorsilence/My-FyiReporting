@@ -51,8 +51,7 @@ namespace Majorsilence.Reporting.Cri
 #endif
             writer.Format = ZXing.BarcodeFormat.CODE_128;
 
-			Draw2.Graphics g = null;
-			g = Draw2.Graphics.FromImage(bm);
+			using Draw2.Graphics g = Draw2.Graphics.FromImage(bm);
 			float mag = PixelConversions.GetMagnification(g, bm.Width, bm.Height,
 				OptimalHeight, OptimalWidth);
 
