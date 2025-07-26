@@ -157,7 +157,7 @@ namespace Majorsilence.Reporting.RdlGtk3
             zoomInAction.Tooltip = "Zoom in the report";
             actionGroup.Add(zoomInAction.CreateToolItem());
 
-            errorsAction = new ToggleAction(null, null, "gtk-dialog-warning", Stock.DialogWarning);
+            errorsAction = new ToggleAction("errors", "Errors", "gtk-dialog-warning", Stock.DialogWarning);
             errorsAction.IsImportant = true;
             errorsAction.DrawAsRadio = true;
             actionGroup.Add(errorsAction.CreateToolItem());
