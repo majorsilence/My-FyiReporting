@@ -29,15 +29,12 @@ namespace Majorsilence.Drawing
             Italic = italic;
         }
 
-        public SKPaint ToSKPaint()
+        public SKFont ToSkFont()
         {
-            return new SKPaint
-            {
-                Color = Color.ToSkColor(),
-                TextSize = Size,
-                Typeface = SKTypeface.FromFamilyName(FontFamily, Bold ? SKFontStyleWeight.Bold : SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, Italic ? SKFontStyleSlant.Italic : SKFontStyleSlant.Upright),
-                IsAntialias = true
-            };
+            return new SKFont(
+                SKTypeface.FromFamilyName(FontFamily, Bold ? SKFontStyleWeight.Bold : SKFontStyleWeight.Normal,
+                    SKFontStyleWidth.Normal, Italic ? SKFontStyleSlant.Italic : SKFontStyleSlant.Upright),
+                Size, 1F, 0F);
         }
     }
 
