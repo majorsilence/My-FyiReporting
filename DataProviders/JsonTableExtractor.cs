@@ -13,21 +13,36 @@ namespace Majorsilence.Reporting.Data
         public Dictionary<string, IDataReader> Extract(string json)
         {
             using var doc = JsonDocument.Parse(json);
-            var rootArray = doc.RootElement;
-
-            if (rootArray.ValueKind != JsonValueKind.Array)
-                throw new InvalidOperationException("Root element must be an array.");
+            var rootElement = doc.RootElement;
 
             _tables["root"] = new();
 
-            foreach (var item in rootArray.EnumerateArray())
+            if (rootElement.ValueKind == JsonValueKind.Array)
             {
+                // Handle array root (existing logic)
+                foreach (var item in rootElement.EnumerateArray())
+                {
+                    var row = new Dictionary<string, object>();
+                    var guid = Guid.NewGuid().ToString();
+                    row["__guid"] = guid;
+                    _tables["root"].Add(row);
+
+                    Flatten(item, row, "root", guid);
+                }
+            }
+            else if (rootElement.ValueKind == JsonValueKind.Object)
+            {
+                // Handle object root (new logic)
                 var row = new Dictionary<string, object>();
                 var guid = Guid.NewGuid().ToString();
                 row["__guid"] = guid;
                 _tables["root"].Add(row);
 
-                Flatten(item, row, "root", guid);
+                Flatten(rootElement, row, "root", guid);
+            }
+            else
+            {
+                throw new InvalidOperationException("Root element must be an array or object.");
             }
 
             return _tables.ToDictionary(kv => kv.Key, kv => (IDataReader)new DictionaryDataReader(kv.Value));

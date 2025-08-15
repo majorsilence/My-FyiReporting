@@ -7,26 +7,50 @@ namespace Majorsilence.Reporting.Data
 {
     public class DictionaryDataReader : IDataReader
     {
-        private readonly List<Dictionary<string, object>> _rows;
-        private readonly List<string> _columns;
-        private int _currentIndex = -1;
+        private readonly List<Dictionary<string, object>> _data;
+        private readonly string[] _fieldNames;
+        private readonly Dictionary<string, int> _fieldIndexMap;
+        private int _currentRow = -1;
 
-        public DictionaryDataReader(List<Dictionary<string, object>> rows)
+        public DictionaryDataReader(List<Dictionary<string, object>> data)
         {
-            _rows = rows;
-            _columns = new HashSet<string>(rows.SelectMany(r => r.Keys)).ToList();
+            _data = data ?? new List<Dictionary<string, object>>();
+        
+            if (_data.Count > 0)
+            {
+                _fieldNames = _data[0].Keys.ToArray();
+            
+                // Create case-insensitive field mapping
+                _fieldIndexMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                for (int i = 0; i < _fieldNames.Length; i++)
+                {
+                    _fieldIndexMap[_fieldNames[i]] = i;
+                }
+            }
+            else
+            {
+                _fieldNames = Array.Empty<string>();
+                _fieldIndexMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            }
         }
 
-        public bool Read() => ++_currentIndex < _rows.Count;
-        public int FieldCount => _columns.Count;
-        public string GetName(int i) => _columns[i];
-        public int GetOrdinal(string name) => _columns.IndexOf(name);
+        public int GetOrdinal(string name)
+        {
+            if (_fieldIndexMap.TryGetValue(name, out int index))
+                return index;
+
+            throw new ArgumentException($"Field '{name}' not found. Available fields: {string.Join(", ", _fieldNames)}");
+        }
+
+        public bool Read() => ++_currentRow < _data.Count;
+        public int FieldCount => _fieldNames.Length;
+        public string GetName(int i) => _fieldNames[i];
 
         public object GetValue(int i)
         {
-            if (_currentIndex < 0 || _currentIndex >= _rows.Count || i < 0 || i >= _columns.Count)
+            if (_currentRow < 0 || _currentRow >= _data.Count || i < 0 || i >= _fieldNames.Length)
                 return DBNull.Value;
-            return _rows[_currentIndex].TryGetValue(_columns[i], out var val) ? val ?? DBNull.Value : DBNull.Value;
+            return _data[_currentRow].TryGetValue(_fieldNames[i], out var val) ? val ?? DBNull.Value : DBNull.Value;
         }
 
         public int GetValues(object[] values)

@@ -54,25 +54,24 @@ namespace Majorsilence.Reporting.Data
 
             var extractor = new JsonTableExtractor();
             var allReaders = extractor.Extract(json);
-        
-            // If specific columns were requested, filter the root reader
-            if (_requestedColumns != null && _requestedColumns.Length > 0 && 
-                allReaders.TryGetValue("root", out var originalRootReader))
-            {
-                // Create a filtered version of the root reader
-                var filteredRoot = new FilteredDictionaryDataReader(
-                    (DictionaryDataReader)originalRootReader, 
-                    _requestedColumns);
-                
-                // Replace the root reader with the filtered version
-                allReaders["root"] = filteredRoot;
-            }
-        
+    
             _readers = allReaders;
-
-            if (!_readers.TryGetValue("root", out _rootReader))
+    
+            // Use the table name from the command
+            string tableName = (cmd.Connection as JsonConnection).TableName;
+            if (!_readers.TryGetValue(tableName, out _rootReader))
+            {
                 throw new InvalidOperationException(
-                    "JSON must contain a top-level array to produce the 'root' reader.");
+                    $"Table '{tableName}' not found in JSON data. Available tables: {string.Join(", ", _readers.Keys)}");
+            }
+    
+            // Apply column filtering if needed
+            if (_requestedColumns != null && _requestedColumns.Length > 0)
+            {
+                _rootReader = new FilteredDictionaryDataReader(
+                    (DictionaryDataReader)_rootReader, 
+                    _requestedColumns);
+            }
         }
 
         /// <summary>

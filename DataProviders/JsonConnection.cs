@@ -59,8 +59,14 @@ namespace Majorsilence.Reporting.Data
         {
             ConnectionString = conn;
             Client = httpClient ?? throw new ArgumentNullException(nameof(httpClient), "HttpClient cannot be null");
+        }
+        
+        private string _tableName = "root"; // Add this field with default value
 
-            SetUrlFromConnection();
+        // Add property to access the table name
+        public string TableName
+        {
+            get { return _tableName; }
         }
 
         internal bool IsOpen
@@ -105,6 +111,7 @@ namespace Majorsilence.Reporting.Data
             set
             {
                 _Connection = value;
+                SetUrlFromConnection();
             }
         }
 
@@ -158,9 +165,15 @@ namespace Majorsilence.Reporting.Data
                     case "file":
                         url = val;
                         break;
+                    case "memory:":
+                        // Memory is not supported in JsonConnection
+                        throw new NotSupportedException("Memory parameter is not supported in JsonConnection.");
                     case "auth":
                     case "authorization":
                         Auth=val.Trim();
+                        break;
+                    case "table":
+                        _tableName = val;
                         break;
                     default:
                         throw new ArgumentException(string.Format("{0} is an unknown parameter key", param[0]));
