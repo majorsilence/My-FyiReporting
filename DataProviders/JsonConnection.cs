@@ -61,7 +61,7 @@ namespace Majorsilence.Reporting.Data
             Client = httpClient ?? throw new ArgumentNullException(nameof(httpClient), "HttpClient cannot be null");
         }
         
-        private string _tableName = "root"; // Add this field with default value
+        private string _tableName = null; // Add this field with default value
 
         // Add property to access the table name
         public string TableName

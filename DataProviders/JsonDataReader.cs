@@ -58,7 +58,7 @@ namespace Majorsilence.Reporting.Data
             _readers = allReaders;
     
             // Use the table name from the command
-            string tableName = (cmd.Connection as JsonConnection).TableName;
+            string tableName = cmd.TableName ??  conn.TableName ?? "root";
             if (!_readers.TryGetValue(tableName, out _rootReader))
             {
                 throw new InvalidOperationException(

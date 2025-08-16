@@ -47,6 +47,13 @@ namespace Majorsilence.Reporting.Data
 		{
 			get {return _Columns;}
 		}
+        
+        private string _tableName = null; // Add this field with default value
+
+        public string TableName
+        {
+            get { return _tableName; }
+        }
 
 		internal string Url
 		{
@@ -176,6 +183,9 @@ namespace Majorsilence.Reporting.Data
 							// column list is separated by ','
 							columns = val.Trim().Split(',');
 							break;
+                        case "table":
+                            _tableName = val;
+                            break;
 						default:
 							throw new ArgumentException(string.Format("{0} is an unknown parameter key", param[0]));
 					}
