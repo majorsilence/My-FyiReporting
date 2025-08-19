@@ -46,6 +46,9 @@ See [Database Providers](https://github.com/majorsilence/My-FyiReporting/wiki/Da
 ```cs
 using Majorsilence.Reporting.RdlCreator;
 
+// One time per app instance
+RdlEngineConfig.RdlEngineConfigInit();
+
 string dataProvider = "[PLACEHOLDER/Json/Microsoft.Data.SqlClient/MySQL.NET/Firebird.NET 2.0/Microsoft.Data.Sqlite/PostgreSQL";
 var create = new Majorsilence.Reporting.RdlCreator.Create();
 
@@ -64,6 +67,9 @@ await report.RunRender(ofs, Majorsilence.Reporting.Rdl.OutputPresentationType.PD
 
 ```cs
 using Majorsilence.Reporting.RdlCreator;
+
+// One time per app instance
+RdlEngineConfig.RdlEngineConfigInit();
 
 var document = new Majorsilence.Reporting.RdlCreator.Document()
 {
