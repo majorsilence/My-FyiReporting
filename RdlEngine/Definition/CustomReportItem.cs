@@ -262,7 +262,7 @@ namespace Majorsilence.Reporting.Rdl
                 return;
 
             System.Collections.Generic.Dictionary<string, object> dict =
-                new Dictionary<string, object>(_Properties.Count);
+                new Dictionary<string, object>(_Properties.Count, StringComparer.OrdinalIgnoreCase);
             foreach (CustomProperty cp in _Properties)
             {
                 string name = await cp.Name.EvaluateString(rpt, row);

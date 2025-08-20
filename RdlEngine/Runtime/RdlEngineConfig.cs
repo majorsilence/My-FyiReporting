@@ -327,7 +327,7 @@ namespace Majorsilence.Reporting.Rdl
              
             IDictionary dsDir = new ListDictionary();
             Dictionary<string, CustomReportItemEntry> crieDir =
-                new Dictionary<string, CustomReportItemEntry>();   // list of entries 
+                new Dictionary<string, CustomReportItemEntry>(StringComparer.OrdinalIgnoreCase);   // list of entries 
 
             // Loop thru all the child nodes 
             foreach (XmlNode xNodeLoop in xNode.ChildNodes)
