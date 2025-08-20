@@ -85,7 +85,15 @@ namespace Majorsilence.Reporting.Cri
         {
             try
             {
-                _qrCode = props["QrCode"].ToString();
+                if (props.TryGetValue("QrCode", out object codeValue))
+                {
+                   // Backwards Compatibility: if the property is present, use it
+                    _qrCode = codeValue.ToString();
+                }
+                else {
+                    // fallback to standard "Code" property
+                    _qrCode = props["Code"].ToString();
+                }
             }
             catch (KeyNotFoundException)
             {

@@ -87,9 +87,18 @@ namespace Majorsilence.Reporting.Cri
         /// <param name="props"></param>
         public void SetProperties(IDictionary<string, object> props)
         {
-            try 
-            { 
-                string p = props["ISBN"] as string;
+            try
+            {
+                string p;
+                if (props.TryGetValue("ISBN", out object codeValue))
+                {
+                    // Backwards Compatibility: if the property is present, use it
+                    p = codeValue.ToString();
+                }
+                else {
+                    // fallback to standard "Code" property
+                    p = props["Code"].ToString();
+                }
                 if (p == null)
                     throw new Exception("ISBN property must be a string.");
 

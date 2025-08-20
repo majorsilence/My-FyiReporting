@@ -75,7 +75,15 @@ namespace Majorsilence.Reporting.Cri
         {
             try
             {
-                _aztecCode = props["AztecCode"].ToString();
+                if (props.TryGetValue("AztecCode", out object codeValue))
+                {
+                    // Backwards Compatibility: if the property is present, use it
+                    _aztecCode = codeValue.ToString();
+                }
+                else {
+                    // fallback to standard "Code" property
+                    _aztecCode = props["Code"].ToString();
+                }
             }
             catch (KeyNotFoundException)
             {
