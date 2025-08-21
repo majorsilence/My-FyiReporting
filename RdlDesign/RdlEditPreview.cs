@@ -28,6 +28,7 @@ using ScintillaNET;
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -918,7 +919,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			await this.rdlPreview.Print(pd);
 		}
 
-        public async void SaveAs(string filename, OutputPresentationType type)
+        public async Task SaveAs(string filename, OutputPresentationType type)
 		{
 			await this.rdlPreview.SaveAs(filename, type);
 		}

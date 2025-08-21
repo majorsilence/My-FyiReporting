@@ -47,6 +47,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Threading.Tasks;
 
 namespace Majorsilence.Reporting.RdlDesign
 {
@@ -1727,72 +1728,72 @@ namespace Majorsilence.Reporting.RdlDesign
 			return;
 		}
 
-		private void exportToolStripMenuItemCsv_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemCsv_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.CSV);
+			await mc.ExportAsync(Rdl.OutputPresentationType.CSV);
 			return;
 		}
 
-		private void exportToolStripMenuItemExcel_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemExcel_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.ExcelTableOnly);
+			await mc.ExportAsync(Rdl.OutputPresentationType.ExcelTableOnly);
 			return;
 		}
 
-		private void exportToolStripMenuItemRtf_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemRtf_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.RTF);
+			await mc.ExportAsync(Rdl.OutputPresentationType.RTF);
 			return;
 		}
 
-		private void exportToolStripMenuItemXml_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemXml_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.XML);
+			await mc.ExportAsync(Rdl.OutputPresentationType.XML);
 			return;
 		}
 
-		private void exportToolStripMenuItemHtml_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemHtml_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.HTML);
+			await mc.ExportAsync(Rdl.OutputPresentationType.HTML);
 			return;
 		}
 
-		private void exportToolStripMenuItemMHtml_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemMHtml_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.MHTML);
+			await mc.ExportAsync(Rdl.OutputPresentationType.MHTML);
 			return;
 		}
 
-		private void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
 		{
-			PdfExport(false);
+			await PdfExportAsync(false);
 		}
 
-		private void PdfExport(bool oldStyle)
+		private async Task PdfExportAsync(bool oldStyle)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
@@ -1800,22 +1801,22 @@ namespace Majorsilence.Reporting.RdlDesign
 
 			if (oldStyle)
 			{
-				mc.Export(Rdl.OutputPresentationType.PDFOldStyle);
+				await mc.ExportAsync(Rdl.OutputPresentationType.PDFOldStyle);
 			}
 			else
 			{
-				mc.Export(Rdl.OutputPresentationType.PDF);
+				await mc.ExportAsync(Rdl.OutputPresentationType.PDF);
 			}
 			return;
 		}
 
-		private void exportToolStripMenuItemTif_Click(object sender, EventArgs e)
+		private async void exportToolStripMenuItemTif_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.TIF);
+			await mc.ExportAsync(Rdl.OutputPresentationType.TIF);
 			return;
 		}
 
@@ -3813,14 +3814,14 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
-		private void pDFToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void pDFToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			PdfExport(false);
+			await PdfExportAsync(false);
 		}
 
-		private void pDFOldStyleToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void pDFOldStyleToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			PdfExport(true);
+			await PdfExportAsync(true);
 		}
 
 		private void tIFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3858,23 +3859,23 @@ namespace Majorsilence.Reporting.RdlDesign
 			exportToolStripMenuItemRtf_Click(sender, e);
 		}
 
-		private void dOCToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void dOCToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.Word);
+			await mc.ExportAsync(Rdl.OutputPresentationType.Word);
 			return;
 		}
 
-		private void Excel2007ToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void Excel2007ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
 
-			mc.Export(Rdl.OutputPresentationType.Excel2007);
+			await mc.ExportAsync(Rdl.OutputPresentationType.Excel2007);
 			return;
 		}
 

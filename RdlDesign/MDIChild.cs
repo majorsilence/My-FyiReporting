@@ -34,6 +34,7 @@ using Majorsilence.Reporting.Rdl;
 using Majorsilence.Reporting.RdlDesign.Resources;
 using Majorsilence.Reporting.RdlViewer;
 using EncryptionProvider.String;
+using System.Threading.Tasks;
 
 namespace Majorsilence.Reporting.RdlDesign
 {
@@ -243,7 +244,7 @@ namespace Majorsilence.Reporting.RdlDesign
             return bOK;
         }
 
-        public bool Export(Rdl.OutputPresentationType type)
+        public async Task<bool> ExportAsync(Rdl.OutputPresentationType type)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = string.Format(Strings.MDIChild_Export_ExportTitleFormat, type.ToString().ToUpper());
@@ -308,7 +309,7 @@ namespace Majorsilence.Reporting.RdlDesign
                     else if (dr == DialogResult.Cancel)
                         return false;
                 }
-                try { SaveAs(sfd.FileName, type); }
+                try { await SaveAs(sfd.FileName, type); }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this,
@@ -505,9 +506,9 @@ namespace Majorsilence.Reporting.RdlDesign
             this.rdlDesigner.Print(pd);
         }
 
-        public void SaveAs(string filename, OutputPresentationType type)
+        public async Task SaveAs(string filename, OutputPresentationType type)
         {
-            rdlDesigner.SaveAs(filename, type);
+            await rdlDesigner.SaveAs(filename, type);
         }
 
         private void MDIChild_Closing(object sender, System.ComponentModel.CancelEventArgs e)
