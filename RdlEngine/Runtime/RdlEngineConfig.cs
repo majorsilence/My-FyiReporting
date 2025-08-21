@@ -294,6 +294,11 @@ namespace Majorsilence.Reporting.Rdl
 			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
 			<ClassName>Majorsilence.Reporting.Cri.QrCode</ClassName>
 		</CustomReportItem>
+        <CustomReportItem>
+            <Type>QRCode</Type>
+            <CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+            <ClassName>Majorsilence.Reporting.Cri.QrCode</ClassName>
+        </CustomReportItem>
 		<CustomReportItem>
 			<Type>ITF-14</Type>
 			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>

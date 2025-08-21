@@ -15,12 +15,23 @@ namespace Majorsilence.Reporting.Cri
 {
     public class ZxingBarcodes : ICustomReportItem
     {
-        static public readonly float OptimalHeight = 35.91f; // Optimal height at magnification 1    
-        static public readonly float OptimalWidth = 35.91f; // Optimal width at mag 1
+        private readonly float OptimalHeight;  
+        private readonly float OptimalWidth;
         protected ZXing.BarcodeFormat format;
 
         #region ICustomReportItem Members
 
+        // optimal height and width are set to 35.91mm, which is the default for most barcodes.
+        public ZxingBarcodes() : this(35.91f, 65.91f) 
+        {
+        }
+
+        public ZxingBarcodes(float optimalHeight, float optimalWidth)
+        {
+            OptimalHeight = optimalHeight;
+            OptimalWidth = optimalWidth;
+        }
+        
         bool ICustomReportItem.IsDataRegion()
         {
             return false;
@@ -88,6 +99,21 @@ namespace Majorsilence.Reporting.Cri
             {
                 // fallback to standard "Code" property
                 _code = props["Code"].ToString();
+                
+                if (props.TryGetValue("AztecCode", out object codeValueA))
+                {
+                    // Backwards Compatibility: if the property is present, use it
+                    _code = codeValueA.ToString();
+                }
+                else  if (props.TryGetValue("QrCode", out object codeValueQ))
+                {
+                    // Backwards Compatibility: if the property is present, use it
+                    _code = codeValueQ.ToString();
+                }
+                else {
+                    // fallback to standard "Code" property
+                    _code = props["Code"].ToString();
+                }
             }
             catch (KeyNotFoundException)
             {

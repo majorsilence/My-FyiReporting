@@ -15,7 +15,7 @@ namespace Majorsilence.Reporting.Cri
 {
     public class Pdf417Barcode : ZxingBarcodes
     {
-        public Pdf417Barcode()
+        public Pdf417Barcode() : base(35.91f, 65.91f) // Optimal width at mag 1
         {
             format = ZXing.BarcodeFormat.PDF_417;
         }
