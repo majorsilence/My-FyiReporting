@@ -161,8 +161,8 @@ namespace RdlEngine.Render.ExcelConverter
 					break;
 				}
 				if((rl is DataRegion || rl is Majorsilence.Reporting.Rdl.Rectangle) && !(rl is CustomReportItem)) {
-					top += (rl as ReportItem).Top.Points;
-					left += (rl as ReportItem).Left.Points;
+					top += (rl as ReportItem)?.Top?.Points ?? 0;
+					left += (rl as ReportItem)?.Left?.Points ?? 0;
 				}
 			}
 		}
