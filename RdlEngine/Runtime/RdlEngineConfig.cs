@@ -319,6 +319,11 @@ namespace Majorsilence.Reporting.Rdl
 			<CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
 			<ClassName>Majorsilence.Reporting.Cri.BarCodeEAN8</ClassName>
 		</CustomReportItem>
+        <CustomReportItem>
+            <Type>Pdf417</Type>
+            <CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+            <ClassName>Majorsilence.Reporting.Cri.Pdf417Barcode</ClassName>
+        </CustomReportItem>
 	</CustomReportItems>
 </config>";
             }
