@@ -6,6 +6,7 @@ using Drawing = System.Drawing;
 #endif
 using System.Linq;
 using Majorsilence.Reporting.Rdl;
+using NPOI.OOXML.XSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -131,7 +132,7 @@ namespace RdlEngine.Render.ExcelConverter
 		public XSSFColor FontColor {
 			get {
 				var color = ColorToByteArray(fontColor.IsEmpty ? Drawing.Color.Black : fontColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
@@ -169,7 +170,7 @@ namespace RdlEngine.Render.ExcelConverter
 			get
 			{
 				var color = ColorToByteArray(backgroundColor.IsEmpty ? Drawing.Color.White : backgroundColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
@@ -196,7 +197,7 @@ namespace RdlEngine.Render.ExcelConverter
 			get
 			{
 				var color = ColorToByteArray(borderTopColor.IsEmpty ? Drawing.Color.Black : borderTopColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
@@ -227,7 +228,7 @@ namespace RdlEngine.Render.ExcelConverter
 			get
 			{
 				var color = ColorToByteArray(borderRightColor.IsEmpty ? Drawing.Color.Black : borderRightColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
@@ -260,7 +261,7 @@ namespace RdlEngine.Render.ExcelConverter
 			get
 			{
 				var color = ColorToByteArray(borderBottomColor.IsEmpty ? Drawing.Color.Black : borderBottomColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
@@ -291,7 +292,7 @@ namespace RdlEngine.Render.ExcelConverter
 			get
 			{
 				var color = ColorToByteArray(borderLeftColor.IsEmpty ? Drawing.Color.Black : borderLeftColor);
-				return new XSSFColor(color);
+				return new XSSFColor(color, new DefaultIndexedColorMap());
 			}
 		}
 
