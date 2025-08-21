@@ -18,6 +18,10 @@ namespace Majorsilence.Reporting.Cri
         private readonly float OptimalHeight;  
         private readonly float OptimalWidth;
         protected ZXing.BarcodeFormat format;
+        
+        // special chars for datamatrix, gs1 128
+        protected string FrontMatter = "";
+        protected string EndMatter = "";
 
         #region ICustomReportItem Members
 

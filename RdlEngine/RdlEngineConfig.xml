@@ -224,5 +224,10 @@
             <CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
             <ClassName>Majorsilence.Reporting.Cri.Pdf417Barcode</ClassName>
         </CustomReportItem>
+        <CustomReportItem>
+            <Type>DataMatrix</Type>
+            <CodeModule>Majorsilence.Reporting.RdlCri.dll</CodeModule>
+            <ClassName>Majorsilence.Reporting.Cri.DataMatrix</ClassName>
+        </CustomReportItem>
 	</CustomReportItems>
 </config>
