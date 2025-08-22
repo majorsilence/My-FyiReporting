@@ -166,9 +166,6 @@ namespace Majorsilence.Reporting.RdlMapFile
         /// <returns></returns>
         public bool PreFilterMessage(ref Message m)
         {
-#if MONO
-            return false;
-#else
             if (m.Msg == 0x20a)
             {
                 // WM_MOUSEWHEEL, find the control at screen position m.LParam
@@ -181,16 +178,13 @@ namespace Majorsilence.Reporting.RdlMapFile
                 }
             }
             return false;
-#endif
         }
-#if MONO
-#else
+
         // P/Invoke declarations
         [DllImport("user32.dll")]
         private static extern IntPtr WindowFromPoint(Point pt);
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
-#endif
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {

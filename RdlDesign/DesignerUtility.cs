@@ -57,20 +57,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 			return c;
 		}
-#if MONO
-        static internal bool IsMono()
-        {
-            return true;
-        }
-#else
-        static internal bool IsMono()
-        {
-            // hack: this allows the same .exe to run under mono or windows
-            Type t = Type.GetType("System.Int32");
-            return (t.GetType().ToString() == "System.MonoType");
-        }
-#endif
-
+        
 		/// <summary>
 		/// Read the registry to find out the ODBC names
 		/// </summary>

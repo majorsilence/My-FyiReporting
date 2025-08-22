@@ -52,13 +52,16 @@ namespace Majorsilence.Reporting.RdlReader
         Dictionary<Uri, String> _CurrentFiles = null;			// temporary variable for current files
         private Rdl.NeedPassword _GetPassword;
         private string _DataSourceReferencePassword = null;
-        private bool bMono;
 
+        public RdlReader() : this(false)
+        {
+        }
+        
+        [Obsolete("This constructor was only for Mono compatibility, use RdlReader() instead.")]
         public RdlReader(bool mono)
         {
             this.DoubleBuffered = true;
-
-            bMono = mono;
+            
             GetStartupState();
 
             InitializeComponent();
@@ -113,9 +116,6 @@ namespace Majorsilence.Reporting.RdlReader
         /// <returns></returns>
         public bool PreFilterMessage(ref Message m)
         {
-#if MONO
-            return false;
-#else
             if (m.Msg == 0x20a)
             {
                 // WM_MOUSEWHEEL, find the control at screen position m.LParam
@@ -128,16 +128,13 @@ namespace Majorsilence.Reporting.RdlReader
                 }
             }
             return false;
-#endif
         }
-#if MONO
-#else
+
         // P/Invoke declarations
         [DllImport("user32.dll")]
         private static extern IntPtr WindowFromPoint(Point pt);
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
-#endif
 
         /// <summary>
         /// Clean up any resources being used.
@@ -178,7 +175,6 @@ namespace Majorsilence.Reporting.RdlReader
         [STAThread]
         static void Main()
         {
-            bool bMono = false;
             string[] args = Environment.GetCommandLineArgs();
 
             string reportFile = string.Empty;
@@ -188,12 +184,7 @@ namespace Majorsilence.Reporting.RdlReader
             for (int i = 0; i < args.Length; i++)
             {
                 string argValue = args[i];
-                if (argValue.ToLower() == "/m" || argValue.ToLower() == "-m")
-                {
-                    // user want to run with mono simplifications
-                    bMono = true;
-                }
-                else if (argValue == "-r")
+                if (argValue == "-r")
                 {
                     reportFile = args[i + 1];
                     if (System.IO.Path.GetDirectoryName(reportFile) == string.Empty)
@@ -257,14 +248,11 @@ namespace Majorsilence.Reporting.RdlReader
                     MessageBox.Show(string.Format(Strings.RdlReader_ShowD_ReportNotLoaded, reportFile), Strings.RdlReader_Show_MyFyiReporting, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            if (bMono == false)
-            {
-                Application.EnableVisualStyles();
-                Application.DoEvents();				// when Mono this goes into a loop
-            }
-
-            Application.Run(new RdlReader(bMono));
+            
+            Application.EnableVisualStyles();
+            Application.DoEvents();
+            
+            Application.Run(new RdlReader());
         }
 
         public static async Task SilentPrint(string reportPath, string parameters, string printerName = null)

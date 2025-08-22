@@ -80,7 +80,6 @@ namespace Majorsilence.Reporting.RdlDesign
 		private Rdl.NeedPassword _GetPassword;
 		private string _DataSourceReferencePassword = null;
 		private bool bGotPassword = false;
-		private bool bMono = DesignerUtility.IsMono();
 		private readonly string DefaultHelpUrl = "https://github.com/majorsilence/My-FyiReporting/wiki/_pages";
 		private readonly string DefaultSupportUrl = "https://groups.google.com/d/forum/myfyireporting";
 		private string _HelpUrl;
@@ -233,38 +232,34 @@ namespace Majorsilence.Reporting.RdlDesign
 			DesignTabChanged(this, new EventArgs());        // force toolbar to get updated
 
 		}
-		/// <summary>
-		/// Handles mousewheel processing when window under mousewheel doesn't have focus
-		/// </summary>
-		/// <param name="m"></param>
-		/// <returns></returns>
-		public bool PreFilterMessage(ref Message m)
-		{
-#if MONO
+
+        /// <summary>
+        /// Handles mousewheel processing when window under mousewheel doesn't have focus
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == 0x20a)
+            {
+                // WM_MOUSEWHEEL, find the control at screen position m.LParam
+                Point pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
+                IntPtr hWnd = WindowFromPoint(pos);
+                if (hWnd != IntPtr.Zero && hWnd != m.HWnd && Control.FromHandle(hWnd) != null)
+                {
+                    SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
+                    return true;
+                }
+            }
+
             return false;
-#else
-			if (m.Msg == 0x20a)
-			{
-				// WM_MOUSEWHEEL, find the control at screen position m.LParam
-				Point pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
-				IntPtr hWnd = WindowFromPoint(pos);
-				if (hWnd != IntPtr.Zero && hWnd != m.HWnd && Control.FromHandle(hWnd) != null)
-				{
-					SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
-					return true;
-				}
-			}
-			return false;
-#endif
-		}
-#if MONO
-#else
-		// P/Invoke declarations
+        }
+
+        // P/Invoke declarations
 		[DllImport("user32.dll")]
 		private static extern IntPtr WindowFromPoint(Point pt);
 		[DllImport("user32.dll")]
 		private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
-#endif
 
 		private DockStyle GetPropertiesDockStyle(string l)
 		{
@@ -347,34 +342,20 @@ namespace Majorsilence.Reporting.RdlDesign
 			MDIChild mc = mainTC.SelectedTab == null ? null : mainTC.SelectedTab.Tag as MDIChild;
 			mdi_Activate(mc);
 		}
-#if MONO
-#else
+
 		[DllImport("user32.dll")]
 		public static extern bool LockWindowUpdate(IntPtr hWndLock);
-#endif
 
 		void mdi_Activate(MDIChild mc)
 		{
 			if (mc == null)
 				return;
-			if (bMono)
-			{
-				mc.Activate();
-				this.Refresh(); //Forces a synchronous redraw of all controls
-			}
-			else
-			{
-#if MONO
-                mc.Activate();
-                this.Refresh(); //Forces a synchronous redraw of all controls
-#else
-				LockWindowUpdate(this.Handle);
-				mc.Activate();
-				this.Refresh(); //Forces a synchronous redraw of all controls
 
-				LockWindowUpdate(IntPtr.Zero);
-#endif
-			}
+			LockWindowUpdate(this.Handle);
+			mc.Activate();
+			this.Refresh(); //Forces a synchronous redraw of all controls
+
+			LockWindowUpdate(IntPtr.Zero);
 		}
 
 		internal int RecentFilesMax

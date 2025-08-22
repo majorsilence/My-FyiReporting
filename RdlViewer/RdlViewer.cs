@@ -1559,11 +1559,8 @@ namespace Majorsilence.Reporting.RdlViewer
         {
             try
             {
-                if (System.Environment.OSVersion.Platform != PlatformID.Unix)
-                {
-                    DialogWait wait = new DialogWait(this, StopWaitDialog);
-                    wait.ShowDialog();
-                }
+                DialogWait wait = new DialogWait(this, StopWaitDialog);
+                wait.ShowDialog();
             }
             catch (ObjectDisposedException)
             {
