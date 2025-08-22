@@ -61,7 +61,7 @@ mkdir "$buildoutputpath_viewer"
 Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_mapfile"
 
-Copy-Item .\RdlDesign\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_designer\" -Recurse
+Copy-Item .\RdlDesigner\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_designer\" -Recurse
 Copy-Item .\RdlDesktop\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_desktop\" -Recurse
 Copy-Item .\RdlCmd\bin\$pConfiguration\$pTargetFrameworkGeneric\ -Destination "$buildoutputpath_rdlcmd\" -Recurse
 
