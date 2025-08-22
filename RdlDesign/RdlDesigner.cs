@@ -1733,9 +1733,10 @@ namespace Majorsilence.Reporting.RdlDesign
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
-
-			await mc.ExportAsync(Rdl.OutputPresentationType.CSV);
-			return;
+            
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.CSV);
+            });
 		}
 
 		private async void exportToolStripMenuItemExcel_Click(object sender, EventArgs e)
@@ -1743,9 +1744,10 @@ namespace Majorsilence.Reporting.RdlDesign
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
-
-			await mc.ExportAsync(Rdl.OutputPresentationType.ExcelTableOnly);
-			return;
+            
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.ExcelTableOnly);
+            });
 		}
 
 		private async void exportToolStripMenuItemRtf_Click(object sender, EventArgs e)
@@ -1754,8 +1756,9 @@ namespace Majorsilence.Reporting.RdlDesign
 			if (mc == null)
 				return;
 
-			await mc.ExportAsync(Rdl.OutputPresentationType.RTF);
-			return;
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.RTF);
+            });
 		}
 
 		private async void exportToolStripMenuItemXml_Click(object sender, EventArgs e)
@@ -1764,8 +1767,9 @@ namespace Majorsilence.Reporting.RdlDesign
 			if (mc == null)
 				return;
 
-			await mc.ExportAsync(Rdl.OutputPresentationType.XML);
-			return;
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.XML);
+            });
 		}
 
 		private async void exportToolStripMenuItemHtml_Click(object sender, EventArgs e)
@@ -1773,9 +1777,10 @@ namespace Majorsilence.Reporting.RdlDesign
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
-
-			await mc.ExportAsync(Rdl.OutputPresentationType.HTML);
-			return;
+            
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.HTML);
+            });
 		}
 
 		private async void exportToolStripMenuItemMHtml_Click(object sender, EventArgs e)
@@ -1784,8 +1789,9 @@ namespace Majorsilence.Reporting.RdlDesign
 			if (mc == null)
 				return;
 
-			await mc.ExportAsync(Rdl.OutputPresentationType.MHTML);
-			return;
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.MHTML);
+            });
 		}
 
 		private async void exportToolStripMenuItemPdf_Click(object sender, EventArgs e)
@@ -1799,15 +1805,16 @@ namespace Majorsilence.Reporting.RdlDesign
 			if (mc == null)
 				return;
 
-			if (oldStyle)
-			{
-				await mc.ExportAsync(Rdl.OutputPresentationType.PDFOldStyle);
-			}
-			else
-			{
-				await mc.ExportAsync(Rdl.OutputPresentationType.PDF);
-			}
-			return;
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+			    if (oldStyle)
+			    {
+				    await mc.ExportAsync(Rdl.OutputPresentationType.PDFOldStyle);
+			    }
+			    else
+			    {
+				    await mc.ExportAsync(Rdl.OutputPresentationType.PDF);
+			    }
+            });
 		}
 
 		private async void exportToolStripMenuItemTif_Click(object sender, EventArgs e)
@@ -1816,8 +1823,9 @@ namespace Majorsilence.Reporting.RdlDesign
 			if (mc == null)
 				return;
 
-			await mc.ExportAsync(Rdl.OutputPresentationType.TIF);
-			return;
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.TIF);
+            });
 		}
 
 		private void menuFileSaveAs_Click(object sender, EventArgs e)
@@ -3874,15 +3882,15 @@ namespace Majorsilence.Reporting.RdlDesign
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
 				return;
-
-			await mc.ExportAsync(Rdl.OutputPresentationType.Excel2007);
-			return;
-		}
-
+            
+            await ShowSaveInProgressAsync(mc.Tab.Text,async () => {
+                await mc.ExportAsync(Rdl.OutputPresentationType.Excel2007);
+            });
+        }
+        
 		private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			menuFileExit_Click(sender, e);
-
 		}
 
 		private void ZoomControl1_ValueChanged(object sender, UserZoomControl.CambiaValori e)
@@ -3971,9 +3979,24 @@ namespace Majorsilence.Reporting.RdlDesign
 			mc.Editor.DesignCtl.VerticalCenterInsideContainer();
 			SetProperties(mc);
 		}
-
-
-
+        
+        private async Task ShowSaveInProgressAsync(string fileName,
+            Func<Task> operation)
+        {
+            toolStripStatusLabel2.Text = $"Saving {fileName}";
+            try
+            {
+                await operation();
+                toolStripStatusLabel2.Text = $"Saved {fileName}";
+            }
+            catch
+            {
+                toolStripStatusLabel2.Text = $"Failed to save {fileName}";
+            }
+            
+            await Task.Delay(4000);
+            toolStripStatusLabel2.Text = string.Empty;
+        }
 
 	}
 
