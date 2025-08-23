@@ -44,7 +44,7 @@ jobs:
     needs: windows-build
     steps:
       - name: setup
-        run: sudo mkdir -p /build-output && chmod -R 777 /build-output
+        run: sudo mkdir -p /build-output && sudo chmod -R 777 /build-output
       - uses: actions/download-artifact@master
         with:
           name: build-output
