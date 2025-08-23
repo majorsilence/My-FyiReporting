@@ -43,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: windows-build
     steps:
+      - name: setup
+        run: sudo mkdir -p /build-output && chmod -R 777 /build-output
       - uses: actions/download-artifact@master
         with:
           name: build-output
@@ -52,7 +54,7 @@ jobs:
       - name: unzip rdl zip
         run: unzip /build-output/Release-Builds/build-output/*-majorsilence-reporting-designer-net8.0-windows-anycpu.zip.zip -d /build-output/Release-Builds/build-output
       - name: Create Package
-        run: ./build-mac-wine-package.sh
+        run: sudo ./build-mac-wine-package.sh
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
