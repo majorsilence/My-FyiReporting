@@ -50,6 +50,7 @@ namespace Majorsilence.Reporting.Rdl
         static readonly ImageFormat IMAGEFORMAT = ImageFormat.Jpeg;
         string _Type;   // The type of the custom report item. Interpreted by a
 						// report design tool or server.
+                        private Expression _typeExpression=null;
 		XmlNode xNode;
         System.Collections.Generic.List<CustomProperty> _Properties;
 	
@@ -68,7 +69,12 @@ namespace Majorsilence.Reporting.Rdl
 				{
 					case "Type":
 						_Type = xNodeLoop.InnerText;
-						break;
+                        if (_Type.StartsWith("="))
+                        {
+                            _typeExpression = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
+                        }
+
+                        break;
 					case "ReportItems":         // Version 1 of the specification
 						ris = new ReportItems(r, this, xNodeLoop);
                         bVersion2 = false;
@@ -113,6 +119,13 @@ namespace Majorsilence.Reporting.Rdl
                     await cp.Name.FinalPass();
                     await cp.Value.FinalPass();
                 }
+            }
+            
+            if (_typeExpression != null)
+            {
+                //_Type = await exp.EvaluateString(OwnerReport, null);
+                await _typeExpression.FinalPass();
+                _Type = await _typeExpression.EvaluateString(null, null);
             }
 
             // Find out whether the type is known

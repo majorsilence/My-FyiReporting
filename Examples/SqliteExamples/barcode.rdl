@@ -19,11 +19,11 @@
   <BottomMargin>.25in</BottomMargin>
   <DataSets>
     <DataSet Name="Data">
-      <Query>
+      <Query >
         <DataSourceName>DS1</DataSourceName>
         <CommandText>SELECT EmployeeID, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Photo, Notes, PhotoPath FROM Employees</CommandText>
       </Query>
-      <Fields>
+      <Fields >
         <Field Name="EmployeeID">
           <DataField>EmployeeID</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
@@ -436,19 +436,19 @@
                 <TableCell>
                   <ReportItems>
                     <CustomReportItem Name="EmployeeID">
-                        <Type>QR Code</Type>
+                      <Type>={?BarcodeType}</Type>
                       <Height>30.91mm</Height>
-                      <Width>30.91mm</Width>
-                        <CustomProperties>
-                          <CustomProperty>
-                            <Name>QrCode</Name>
-                            <Value>=Fields!EmployeeID.Value</Value>
-                          </CustomProperty>
-                        </CustomProperties>
+                      <Width>90.91mm</Width>
+                      <CustomProperties>
+                        <CustomProperty>
+                          <Name>Code</Name>
+                          <Value>=Fields!EmployeeID.Value</Value>
+                        </CustomProperty>
+                      </CustomProperties>
                       <Left>1.13pt</Left>
                       <Top>0.75pt</Top>
                       <Source>Embedded</Source>
-                     </CustomReportItem>
+                    </CustomReportItem>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
@@ -718,4 +718,34 @@
   </PageFooter>
   <DataElementName>Report</DataElementName>
   <DataElementStyle>AttributeNormal</DataElementStyle>
+  <ReportParameters >
+    <ReportParameter Name="BarcodeType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>QrCode</Value>
+        </Values>
+      </DefaultValue>
+      <Nullable>false</Nullable>
+      <AllowBlank>false</AllowBlank>
+      <MultiValue>false</MultiValue>
+      <Prompt />
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>QrCde</Value>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>AztecCode</Value>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>DataMatrix</Value>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Pdf417</Value>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
 </Report>
