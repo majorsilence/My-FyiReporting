@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace ReportDesigner.Tests
+namespace ReportTests.Windows
 {
     [TestFixture]
     public class DesignerUtilityTests

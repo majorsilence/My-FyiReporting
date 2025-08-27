@@ -2,7 +2,7 @@
 using EncryptionProvider.String;
 using NUnit.Framework;
 
-namespace ReportTests
+namespace ReportTests.Windows
 {
     [TestFixture()]
     public class StringEncryptionTests

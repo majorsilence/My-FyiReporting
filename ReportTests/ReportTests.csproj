@@ -1,23 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<UseWindowsForms>true</UseWindowsForms>
-		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
-		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<TargetFramework>net8.0</TargetFramework>
 		<WarningsAsErrors>4014</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />
 		<ProjectReference Include="..\RdlCmd\RdlCmd.csproj" />
 		<ProjectReference Include="..\RdlCri\Majorsilence.Reporting.RdlCri.csproj" />
-		<ProjectReference Include="..\RdlDesign\Majorsilence.Reporting.ReportDesigner.csproj" />
-		<ProjectReference Include="..\RdlDesktop\RdlDesktop.csproj" />
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
-		<ProjectReference Include="..\RdlMapFile\RdlMapFile.csproj" />
-		<ProjectReference Include="..\RdlReader\RdlReader.csproj" />
-		<ProjectReference Include="..\RdlViewer\RdlViewer.csproj" />
-		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Reports\BaseTestReport.rdl">
