@@ -34,6 +34,10 @@
 			<Link>Reports\northwindEF.db</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+        <None Include="..\Examples\SqliteExamples\sqlitetestdb2.db">
+            <Link>Reports\sqlitetestdb2.db</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
 		<None Update="Reports\LineObjects.rdl">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
@@ -45,6 +49,10 @@
 		<None Include="..\RdlEngine\RdlEngineConfig.xml">
 			<Link>RdlEngineConfig.xml</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\Examples\SqliteExamples\barcode.rdl">
+		  <Link>Reports\barcode.rdl</Link>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<Content Include="Reports\WorldFacts.xml">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -62,6 +70,7 @@
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnit3TestAdapter" />
 		<PackageReference Include="coverlet.collector" />
+		<PackageReference Include="PdfPig" />
 		<PackageReference Include="SharpZipLib" />
 	</ItemGroup>
 </Project>

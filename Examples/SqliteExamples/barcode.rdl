@@ -442,7 +442,7 @@
                       <CustomProperties>
                         <CustomProperty>
                           <Name>Code</Name>
-                          <Value>=Fields!EmployeeID.Value</Value>
+                          <Value>=Fields!EmployeeID.Value + Fields!LastName.Value</Value>
                         </CustomProperty>
                       </CustomProperties>
                       <Left>1.13pt</Left>

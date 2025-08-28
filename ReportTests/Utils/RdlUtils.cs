@@ -9,7 +9,7 @@ namespace ReportTests.Utils
 {
     public static class RdlUtils
     {
-        public static async Task<Report> GetReport(Uri uri2Rdl)
+        public static async Task<Report> GetReport(Uri uri2Rdl, string overWriteConnectionString = null)
         {
             //string cwd = System.Environment.CurrentDirectory;
 
@@ -24,11 +24,14 @@ namespace ReportTests.Utils
 
             rdlp = new RDLParser(source);
             // RDLParser takes RDL XML and Parse compiles the report
+            if (!string.IsNullOrWhiteSpace(overWriteConnectionString))
+            {
+                rdlp.OverwriteConnectionString = overWriteConnectionString;
+            }
 
             r = await rdlp.Parse();
             if (r.ErrorMaxSeverity > 0)
             {
-
                 foreach (string emsg in r.ErrorItems)
                 {
                     //  Console.WriteLine(emsg);
@@ -44,7 +47,5 @@ namespace ReportTests.Utils
 
             return r;
         }
-
-
     }
 }
