@@ -183,7 +183,7 @@ namespace Majorsilence.Reporting.Rdl
             bool bRows = false;
 			if (_XmlRowData != null)
 			{		// Override the query and provide data from XML
-				string xdata = GetDataFile(rpt, _XmlRowFile);
+				string xdata = await GetDataFile(rpt, _XmlRowFile);
                 if (xdata == null)
                 {
                     xdata = _XmlRowData;					// didn't find any data
@@ -202,7 +202,7 @@ namespace Majorsilence.Reporting.Rdl
             return bRows;
 		}
 
-		private string GetDataFile(Report rpt, string file)
+		private async Task<string> GetDataFile(Report rpt, string file)
 		{
             if (file == null)		// no file no data
             {
@@ -225,7 +225,7 @@ namespace Majorsilence.Reporting.Rdl
 			try
 			{
 				fs = new StreamReader(fullpath);
-				d = fs.ReadToEnd();
+				d = await fs.ReadToEndAsync();
 			}
 			catch (FileNotFoundException fe)
 			{
