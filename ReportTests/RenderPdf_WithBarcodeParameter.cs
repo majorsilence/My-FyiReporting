@@ -56,7 +56,7 @@ namespace ReportTests.Utils
 
             rap.Folder = _reportFolder.LocalPath;
 
-            var parameters = new Dictionary<string, string> { { "BarcodeType", barcodeType } };
+            var parameters = new Dictionary<string, string> { { "BaRcOdEtYpE", barcodeType } };
 
             await rap.RunGetData(parameters);
 

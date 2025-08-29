@@ -41,9 +41,9 @@ namespace Majorsilence.Reporting.Rdl
 		internal ReportParameters(ReportDefn r, ReportLink p, XmlNode xNode) : base(r, p)
 		{
 			if (xNode.ChildNodes.Count < 10)
-				_Items = new ListDictionary();	// Hashtable is overkill for small lists
+				_Items = new ListDictionary( StringComparer.OrdinalIgnoreCase );	// Hashtable is overkill for small lists
 			else
-				_Items = new Hashtable(xNode.ChildNodes.Count);
+				_Items = new Hashtable(xNode.ChildNodes.Count, StringComparer.OrdinalIgnoreCase);
 
 			// Loop thru all the child nodes
 			foreach(XmlNode xNodeLoop in xNode.ChildNodes)
