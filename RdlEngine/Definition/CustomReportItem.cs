@@ -121,12 +121,7 @@ namespace Majorsilence.Reporting.Rdl
                 }
             }
             
-            if (_typeExpression != null)
-            {
-                //_Type = await exp.EvaluateString(OwnerReport, null);
-                await _typeExpression.FinalPass();
-                _Type = await _typeExpression.EvaluateString(null, null);
-            }
+            await GetCriType(null, null);
 
             // Find out whether the type is known
             ICustomReportItem cri = null;
@@ -155,6 +150,7 @@ namespace Majorsilence.Reporting.Rdl
             ICustomReportItem cri = null;
             try
             {
+                await GetCriType(row, rpt);
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
 				Type a = cri.GetType();
 				Draw2.Bitmap bm = null;
@@ -203,6 +199,16 @@ namespace Majorsilence.Reporting.Rdl
             return;
         }
 
+        private async Task GetCriType(Row row, Report rpt)
+        {
+            if (_typeExpression != null)
+            {
+                //_Type = await exp.EvaluateString(OwnerReport, null);
+                await _typeExpression.FinalPass();
+                _Type = await _typeExpression.EvaluateString(rpt, row);
+            }
+        }
+
         override internal async Task RunPage(Pages pgs, Row row)
         {
             Report rpt = pgs.Report;
@@ -217,6 +223,7 @@ namespace Majorsilence.Reporting.Rdl
             ICustomReportItem cri = null;
             try
             {
+                await GetCriType(row, rpt);
                 cri = RdlEngineConfig.CreateCustomReportItem(_Type);
                 await SetProperties(pgs.Report, row, cri);
                 

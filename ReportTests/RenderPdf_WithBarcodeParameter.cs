@@ -56,7 +56,7 @@ namespace ReportTests.Utils
 
             rap.Folder = _reportFolder.LocalPath;
 
-            var parameters = new Dictionary<string, string> { { "BarCodeType", barcodeType } };
+            var parameters = new Dictionary<string, string> { { "BarcodeType", barcodeType } };
 
             await rap.RunGetData(parameters);
 
@@ -65,9 +65,6 @@ namespace ReportTests.Utils
             await rap.RunRender(sg, OutputPresentationType.PDF);
 
             using var pdfDocument = PdfDocument.Open(fullOutputPath);
-            // var text = string.Join(" ",
-            //     pdfDocument.GetPages().SelectMany(page => page.GetWords()).Select(word => word.Text));
-
             var images = pdfDocument.GetPages().SelectMany(page => page.GetImages()).ToList();
 
             Assert.Multiple(() =>
