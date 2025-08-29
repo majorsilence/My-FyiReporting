@@ -229,11 +229,9 @@ Global
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Debug-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
-		{04C73D18-6758-4AE1-877F-6A32B243F027}.Debug-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04C73D18-6758-4AE1-877F-6A32B243F027}.Release-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
-		{04C73D18-6758-4AE1-877F-6A32B243F027}.Release-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
