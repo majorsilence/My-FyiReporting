@@ -5,15 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Validation;
 using Majorsilence.Reporting.Rdl;
 using NUnit.Framework;
 using ReportTests.Utils;
-using System.Drawing;
 using UglyToad.PdfPig;
 using ZXing;
+#if DRAWINGCOMPAT
+using Majorsilence.Drawing;
+using ZXing.SkiaSharp;
+#else
+using System.Drawing;
 using ZXing.Windows.Compatibility;
+#endif
 
 namespace ReportTests.Utils
 {

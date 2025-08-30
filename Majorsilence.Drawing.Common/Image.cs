@@ -32,6 +32,12 @@ namespace Majorsilence.Drawing
             }
         }
 
+        public Image(MemoryStream ms)
+        {
+            ms.Position = 0;
+            _skBitmap = SKBitmap.Decode(ms);
+        }
+        
         public static Image FromFile(string path)
         {
             var bitmap = SKBitmap.Decode(path);

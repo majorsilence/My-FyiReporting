@@ -17,6 +17,10 @@ namespace Majorsilence.Drawing
         public Bitmap(string filename) : base(filename)
         {
         }
+        
+        public Bitmap(MemoryStream ms) : base(ms)
+        {
+        }
 
         // Constructor for creating a bitmap from SKBitmap
         public Bitmap(SKBitmap skBitmap) : base(skBitmap)
