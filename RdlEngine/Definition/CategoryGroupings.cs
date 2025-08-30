@@ -45,9 +45,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "CategoryGrouping":
+					case "categorygrouping":
 						cg = new CategoryGrouping(r, this, xNodeLoop);
 						break;
 					default:

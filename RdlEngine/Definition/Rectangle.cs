@@ -56,15 +56,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "ReportItems":
+					case "reportitems":
 						_ReportItems = new ReportItems(r, this, xNodeLoop);
 						break;
-					case "PageBreakAtStart":
+					case "pagebreakatstart":
 						_PageBreakAtStart = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "PageBreakAtEnd":
+					case "pagebreakatend":
 						_PageBreakAtEnd = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

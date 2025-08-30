@@ -46,18 +46,18 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			AxisTickMarksEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "None":
+				case "none":
 					rs = AxisTickMarksEnum.None;
 					break;
-				case "Inside":
+				case "inside":
 					rs = AxisTickMarksEnum.Inside;
 					break;
-				case "Outside":
+				case "outside":
 					rs = AxisTickMarksEnum.Outside;
 					break;
-				case "Cross":
+				case "cross":
 					rs = AxisTickMarksEnum.Cross;
 					break;
 				default:		

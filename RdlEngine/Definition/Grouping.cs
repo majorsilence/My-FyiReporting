@@ -104,9 +104,9 @@ namespace Majorsilence.Reporting.Rdl
             // Run thru the attributes
             foreach (XmlAttribute xAttr in xNode.Attributes)
 			{
-				switch (xAttr.Name)
+				switch (xAttr.Name.ToLowerInvariant())
 				{
-					case "Name":
+					case "name":
 						_Name = new Name(xAttr.Value);
 						break;
 				}
@@ -116,39 +116,39 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Label":
+					case "label":
 						_Label = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
-					case "GroupExpressions":
+					case "groupexpressions":
 						_GroupExpressions = new GroupExpressions(r, this, xNodeLoop);
 						break;
-					case "PageBreakAtStart":
+					case "pagebreakatstart":
 						_PageBreakAtStart = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "PageBreakAtEnd":
+					case "pagebreakatend":
 						_PageBreakAtEnd = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-                    case "PageBreakCondition":
+                    case "pagebreakcondition":
                         _PageBreakCondition = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Boolean);
                         break;
-                    case "Custom":
+                    case "custom":
 						_Custom = new Custom(r, this, xNodeLoop);
 						break;
-					case "Filters":
+					case "filters":
 						_Filters = new Filters(r, this, xNodeLoop);
 						break;
-					case "Parent":
+					case "parent":
 						_ParentGroup = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
-					case "DataElementName":
+					case "dataelementname":
 						_DataElementName = xNodeLoop.InnerText;
 						break;
-					case "DataCollectionName":
+					case "datacollectionname":
 						_DataCollectionName = xNodeLoop.InnerText;
 						break;
-					case "DataElementOutput":
+					case "dataelementoutput":
 						_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

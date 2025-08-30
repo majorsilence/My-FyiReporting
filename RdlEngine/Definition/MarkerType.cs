@@ -44,27 +44,27 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			MarkerTypeEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "None":
+				case "none":
 					rs = MarkerTypeEnum.None;
 					break;
-				case "Square":
+				case "square":
 					rs = MarkerTypeEnum.Square;
 					break;
-				case "Circle":
+				case "circle":
 					rs = MarkerTypeEnum.Circle;
 					break;
-				case "Diamond":
+				case "diamond":
 					rs = MarkerTypeEnum.Diamond;
 					break;
-				case "Triangle":
+				case "triangle":
 					rs = MarkerTypeEnum.Triangle;
 					break;
-				case "Cross":
+				case "cross":
 					rs = MarkerTypeEnum.Cross;
 					break;
-				case "Auto":
+				case "auto":
 					rs = MarkerTypeEnum.Auto;
 					break;
 				default:		

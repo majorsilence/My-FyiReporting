@@ -65,9 +65,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Type":
+					case "type":
 						_Type = xNodeLoop.InnerText;
                         if (_Type.StartsWith("="))
                         {
@@ -75,17 +75,17 @@ namespace Majorsilence.Reporting.Rdl
                         }
 
                         break;
-					case "ReportItems":         // Version 1 of the specification
+					case "reportitems":         // Version 1 of the specification
 						ris = new ReportItems(r, this, xNodeLoop);
                         bVersion2 = false;
 						break;
-                    case "AltReportItem":       // Verstion 2 of the specification
+                    case "altreportitem":       // Verstion 2 of the specification
                         ris = new ReportItems(r, this, xNodeLoop);
                         break;
-                    case "CustomProperties":
+                    case "customproperties":
                         _Properties = CustomProperties(xNodeLoop);
                         break;
-                    case "Source":
+                    case "source":
                         // HACK: support custom report items as embedded
                         break;
                     default:
@@ -310,9 +310,9 @@ namespace Majorsilence.Reporting.Rdl
             List<CustomProperty> cps = new List<CustomProperty>(xNode.ChildNodes.Count);
             foreach (XmlNode xNodeLoop in xNode.ChildNodes)
             {
-                switch (xNodeLoop.Name)
+                switch (xNodeLoop.Name.ToLowerInvariant())
                 {
-                    case "CustomProperty":
+                    case "customproperty":
                         CustomProperty cp = CustomProperty(xNodeLoop);
                         if (cp != null)
                             cps.Add(cp);
@@ -331,12 +331,12 @@ namespace Majorsilence.Reporting.Rdl
             CustomProperty cp = null;
             foreach (XmlNode xNodeLoop in xNode.ChildNodes)
             {
-                switch (xNodeLoop.Name)
+                switch (xNodeLoop.Name.ToLowerInvariant())
                 {
-                    case "Name":
+                    case "name":
                         name = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "Value":
+                    case "value":
                         val = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Variant);
                         break;
                     default:

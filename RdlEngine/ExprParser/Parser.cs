@@ -474,9 +474,9 @@ namespace Majorsilence.Reporting.Rdl
                 thirdPart = null;
             }
 
-			if (curToken.Type != TokenTypes.LPAREN) switch (firstPart)
+			if (curToken.Type != TokenTypes.LPAREN) switch (firstPart.ToLowerInvariant())
 			{
-				case "Fields":
+				case "fields":
 					Field f = null;
 
 					if (inAggregateDataSet != null)
@@ -505,7 +505,7 @@ namespace Majorsilence.Reporting.Rdl
 					else
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_FieldSupportsValueAndIsMissing, method));
 					return (true, result);
-                case "Parameters":  // see ResolveParametersMethod for resolution of MultiValue parameter function reference
+                case "parameters":  // see ResolveParametersMethod for resolution of MultiValue parameter function reference
 					ReportParameter p = idLookup.LookupParameter(method);
 					if (p == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_ParameterNotFound, method));
@@ -524,7 +524,7 @@ namespace Majorsilence.Reporting.Rdl
                     
                     result = r;
                     return (true, result);
-				case "ReportItems":
+				case "reportitems":
 					Textbox t = idLookup.LookupReportItem(method);
 					if (t == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_ItemNotFound, method));
@@ -532,22 +532,22 @@ namespace Majorsilence.Reporting.Rdl
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_ItemSupportsValue, method));
 					result = new FunctionTextbox(t, idLookup.ExpressionName);	
 					return (true, result);
-				case "Globals":
+				case "globals":
 					e = idLookup.LookupGlobal(method);
 					if (e == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_GlobalsNotFound, method));
 					result = e;
 					return (true, result);
-				case "User":
+				case "user":
 					e = idLookup.LookupUser(method);
 					if (e == null)
 						throw new ParserException(string.Format(Strings.Parser_ErrorP_UserVarNotFound, method));
 					result = e;
 					return (true, result);
-				case "Recursive":	// Only valid for some aggregate functions
+				case "recursive":	// Only valid for some aggregate functions
 					result = new IdentifierKey(IdentifierKeyEnum.Recursive);
 					return (true, result);
-				case "Simple":		// Only valid for some aggregate functions
+				case "simple":		// Only valid for some aggregate functions
 					result = new IdentifierKey(IdentifierKeyEnum.Simple);
 					return (true, result);
 				default:
@@ -652,7 +652,7 @@ namespace Majorsilence.Reporting.Rdl
 			bool bSimple;
 			if (!bOnePart)				
             {
-                result = (firstPart == "Parameters")?
+                result = (string.Equals(firstPart, "Parameters", StringComparison.InvariantCultureIgnoreCase))?
                     ResolveParametersMethod(method, thirdPart, args):
                     ResolveMethodCall(fullname, args);	// throw exception when fails
             }

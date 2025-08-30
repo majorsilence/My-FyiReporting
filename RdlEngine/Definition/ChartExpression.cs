@@ -54,40 +54,40 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
                     //case "Value":
                     //    _Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
                     //    break;
 
-                    case "DataValues":
+                    case "datavalues":
                         _Values = new DataValues(r, p, xNodeLoop);
                         break;
-                    case "DataPoint":
+                    case "datapoint":
 						_DataPoint = (DataPoint) this.OwnerReport.LUDynamicNames[xNodeLoop.InnerText];
 						break;
-                    case "ChartLabel":
+                    case "chartlabel":
                         _ChartLabel = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Variant);
                         break;
                     // 05122007AJM & GJL Added to store PlotType
-                    case "PlotType":
+                    case "plottype":
                         _PlotType = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Variant);
                         break;    
                     //140208 GJL Added for left/Right YAxis Support
-                    case "YAxis":
+                    case "yaxis":
                         _YAxis = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "NoMarker":
-                    case "fyi:NoMarker":
+                    case "nomarker":
+                    case "fyi:nomarker":
                         _NoMarker = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "LineSize":
-                    case "fyi:LineSize":
+                    case "linesize":
+                    case "fyi:linesize":
                         _LineSize = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "fyi:Color":
-                    case "Color":
-                    case "Colour":
+                    case "fyi:color":
+                    case "color":
+                    case "colour":
                         _Colour = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
                         break;
 					default:

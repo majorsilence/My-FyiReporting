@@ -58,15 +58,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Hyperlink":
+					case "hyperlink":
 						_Hyperlink = new Expression(r, this, xNodeLoop, ExpressionType.URL);
 						break;
-					case "Drillthrough":
+					case "drillthrough":
 						_Drillthrough = new Drillthrough(r, this, xNodeLoop);
 						break;
-					case "BookmarkLink":
+					case "bookmarklink":
 						_BookmarkLink = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
 					default:

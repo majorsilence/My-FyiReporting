@@ -48,12 +48,12 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "DynamicCategories":
+					case "dynamiccategories":
 						_DynamicCategories = new DynamicCategories(r, this, xNodeLoop);
 						break;
-					case "StaticCategories":
+					case "staticcategories":
 						_StaticCategories = new StaticCategories(r, this, xNodeLoop);
 						break;
 					default:	

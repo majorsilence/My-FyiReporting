@@ -133,9 +133,9 @@ namespace Majorsilence.Reporting.Rdl
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in xNode.Attributes)
 			{
-				switch (xAttr.Name)
+				switch (xAttr.Name.ToLowerInvariant())
 				{
-					case "Name":
+					case "name":
 						_Name = new Name(xAttr.Value);
 						break;
 				}
@@ -144,57 +144,57 @@ namespace Majorsilence.Reporting.Rdl
 
 		internal bool ReportItemElement(XmlNode xNodeLoop)
 		{
-			switch (xNodeLoop.Name)
+			switch (xNodeLoop.Name.ToLowerInvariant())
 			{
-				case "Style":
+				case "style":
 					_Style = new Style(OwnerReport, this, xNodeLoop);
 					break;
-				case "Action":
+				case "action":
 					_Action = new Action(OwnerReport, this, xNodeLoop);
 					break;
-				case "Top":
+				case "top":
 					_Top = new RSize(OwnerReport, xNodeLoop);
 					break;
-				case "Left":
+				case "left":
 					_Left = new RSize(OwnerReport, xNodeLoop);
 					break;
-				case "Height":
+				case "height":
 					_Height = new RSize(OwnerReport, xNodeLoop);
 					break;
-				case "Width":
+				case "width":
 					_Width = new RSize(OwnerReport, xNodeLoop);
 					break;
-				case "ZIndex":
+				case "zindex":
 					_ZIndex = XmlUtil.Integer(xNodeLoop.InnerText);
 					break;
-				case "Visibility":
+				case "visibility":
 					_Visibility = new Visibility(OwnerReport, this, xNodeLoop);
 					break;
-				case "ToolTip":
+				case "tooltip":
 					_ToolTip = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
 					break;
-				case "Label":
+				case "label":
 					_Label = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Variant);
 					break;
-				case "LinkToChild":
+				case "linktochild":
 					_LinkToChild = xNodeLoop.InnerText;
 					break;
-				case "Bookmark":
+				case "bookmark":
 					_Bookmark = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
 					break;
-				case "RepeatWith":
+				case "repeatwith":
 					_RepeatWith = xNodeLoop.InnerText;
 					break;
-				case "Custom":
+				case "custom":
 					_Custom = new Custom(OwnerReport, this, xNodeLoop);
 					break;
-				case "DataElementName":
+				case "dataelementname":
 					_DataElementName = xNodeLoop.InnerText;
 					break;
-				case "DataElementOutput":
+				case "dataelementoutput":
 					_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
-                case "rd:DefaultName":
+                case "rd:defaultname":
                     break;      // MS tag: we don't use but don't want to generate a warning
 				default:  
 					return false;	// Not a report item element

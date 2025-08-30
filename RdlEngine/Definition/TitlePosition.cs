@@ -39,15 +39,15 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			TitlePositionEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Center":
+				case "center":
 					rs = TitlePositionEnum.Center;
 					break;
-				case "Near":
+				case "near":
 					rs = TitlePositionEnum.Near;
 					break;
-				case "Far":
+				case "far":
 					rs = TitlePositionEnum.Far;
 					break;
 				default:	

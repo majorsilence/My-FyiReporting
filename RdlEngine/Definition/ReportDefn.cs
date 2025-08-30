@@ -166,9 +166,9 @@ namespace Majorsilence.Reporting.Rdl
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in _xNode.Attributes)
 			{
-				switch (xAttr.Name)
+				switch (xAttr.Name.ToLowerInvariant())
 				{
-					case "Name":
+					case "name":
 						_Name = new Name(xAttr.Value);
 						break;
 				}
@@ -179,84 +179,84 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Description":
+					case "description":
 						_Description = xNodeLoop.InnerText;
 						break;
-					case "Author":
+					case "author":
 						_Author = xNodeLoop.InnerText;
 						break;
-                    case "Name":
+                    case "name":
                         _Name = new Name(xNodeLoop.InnerText);
                         break;
-                    case "AutoRefresh":
+                    case "autorefresh":
 						_AutoRefresh = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "DataSources":
+					case "datasources":
 						_DataSourcesDefn = new DataSourcesDefn(this, null, xNodeLoop);
 						break;
-					case "DataSets":
+					case "datasets":
 						_DataSetsDefn = new DataSetsDefn(this, null, xNodeLoop);
 						break;
-					case "Body":
+					case "body":
 						_Body = new Body(this, null, xNodeLoop);
 						break;
-					case "ReportParameters":
+					case "reportparameters":
 						_ReportParameters = new ReportParameters(this, null, xNodeLoop);
 						break;
-					case "Width":
+					case "width":
 						_Width = new RSize(this, xNodeLoop);
 						break;
-					case "PageHeader":
+					case "pageheader":
 						_PageHeader = new PageHeader(this, null, xNodeLoop);
 						break;
-					case "PageFooter":
+					case "pagefooter":
 						_PageFooter = new PageFooter(this, null, xNodeLoop);
 						break;
-					case "PageHeight":
+					case "pageheight":
 						_PageHeight = new RSize(this, xNodeLoop);
 						break;
-					case "PageWidth":
+					case "pagewidth":
 						_PageWidth = new RSize(this, xNodeLoop);
 						break;
-					case "LeftMargin":
+					case "leftmargin":
 						_LeftMargin = new RSize(this, xNodeLoop);
 						break;
-					case "RightMargin":
+					case "rightmargin":
 						_RightMargin = new RSize(this, xNodeLoop);
 						break;
-					case "TopMargin":
+					case "topmargin":
 						_TopMargin = new RSize(this, xNodeLoop);
 						break;
-					case "BottomMargin":
+					case "bottommargin":
 						_BottomMargin = new RSize(this, xNodeLoop);
 						break;
-					case "EmbeddedImages":
+					case "embeddedimages":
 						_EmbeddedImages = new EmbeddedImages(this, null, xNodeLoop);
 						break;
-					case "Language":
+					case "language":
 						_Language =  new Expression(this, null, xNodeLoop, ExpressionType.String);
 						break;
-					case "Code":
+					case "code":
 						_Code = new Code(this, null, xNodeLoop);
 						break;
-					case "CodeModules":
+					case "codemodules":
 						_CodeModules = new CodeModules(this, null, xNodeLoop);
 						break;
-					case "Classes":
+					case "classes":
 						_Classes = new Classes(this, null, xNodeLoop);
 						break;
-					case "DataTransform":
+					case "datatransform":
 						_DataTransform = xNodeLoop.InnerText;
 						break;
-					case "DataSchema":
+					case "dataschema":
 						_DataSchema = xNodeLoop.InnerText;
 						break;
-					case "DataElementName":
+					case "dataelementname":
 						_DataElementName = xNodeLoop.InnerText;
 						break;
-					case "DataElementStyle":
+					case "dataelementstyle":
 						_DataElementStyle = Majorsilence.Reporting.Rdl.DataElementStyle.GetStyle(xNodeLoop.InnerText, this.rl);
 						break;
 					default:

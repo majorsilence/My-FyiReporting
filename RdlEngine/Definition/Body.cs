@@ -55,21 +55,21 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "ReportItems":
+					case "reportitems":
 						_ReportItems = new ReportItems(r, this, xNodeLoop);	// need a class for this
 						break;
-					case "Height":
+					case "height":
 						_Height = new RSize(r, xNodeLoop);
 						break;
-					case "Columns":
+					case "columns":
 						_Columns = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "ColumnSpacing":
+					case "columnspacing":
 						_ColumnSpacing = new RSize(r, xNodeLoop);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
 					default:	

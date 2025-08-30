@@ -50,7 +50,7 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				if (xNodeLoop.Name == "ReportParameter")
+				if (string.Equals(xNodeLoop.Name, "ReportParameter", StringComparison.InvariantCultureIgnoreCase))
 				{
 					ReportParameter rp = new ReportParameter(r, this, xNodeLoop);
                     if (rp.Name != null)

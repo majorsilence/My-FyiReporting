@@ -64,27 +64,27 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "DataValues":
+					case "datavalues":
 						_DataValues = new DataValues(r, this, xNodeLoop);
 						break;
-					case "DataLabel":
+					case "datalabel":
 						_DataLabel = new DataLabel(r, this, xNodeLoop);
 						break;
-					case "Action":
+					case "action":
 						_Action = new Action(r, this, xNodeLoop);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
-					case "Marker":
+					case "marker":
 						_Marker = new Marker(r, this, xNodeLoop);
 						break;
-					case "DataElementName":
+					case "dataelementname":
 						_DataElementName = xNodeLoop.InnerText;
 						break;
-					case "DataElementOutput":
+					case "dataelementoutput":
 						_DataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

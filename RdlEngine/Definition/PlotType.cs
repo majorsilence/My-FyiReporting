@@ -39,12 +39,12 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			PlotTypeEnum pt;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Auto":
+				case "auto":
 					pt = PlotTypeEnum.Auto;
 					break;
-				case "Line":
+				case "line":
 					pt = PlotTypeEnum.Line;
 					break;
 				default:		

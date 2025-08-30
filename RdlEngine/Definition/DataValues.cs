@@ -45,9 +45,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "DataValue":
+					case "datavalue":
 						dv = new DataValue(r, this, xNodeLoop);
 						break;
 					default:	

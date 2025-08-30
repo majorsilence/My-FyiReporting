@@ -54,18 +54,18 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			DataElementOutputEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Output":
+				case "output":
 					rs = DataElementOutputEnum.Output;
 					break;
-				case "NoOutput":
+				case "nooutput":
 					rs = DataElementOutputEnum.NoOutput;
 					break;
-				case "ContentsOnly":
+				case "contentsonly":
 					rs = DataElementOutputEnum.ContentsOnly;
 					break;
-				case "Auto":
+				case "auto":
 					rs = DataElementOutputEnum.Auto;
 					break;
 				default:		

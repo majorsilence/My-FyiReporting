@@ -39,12 +39,12 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			ThreeDPropertiesDrawingStyleEnum ds;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Cylinder":
+				case "cylinder":
 					ds = ThreeDPropertiesDrawingStyleEnum.Cylinder;
 					break;
-				case "Cube":
+				case "cube":
 					ds = ThreeDPropertiesDrawingStyleEnum.Cube;
 					break;
 				default:	

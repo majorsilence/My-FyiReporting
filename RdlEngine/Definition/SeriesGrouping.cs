@@ -49,15 +49,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "DynamicSeries":
+					case "dynamicseries":
 						_DynamicSeries = new DynamicSeries(r, this, xNodeLoop);
 						break;
-					case "StaticSeries":
+					case "staticseries":
 						_StaticSeries = new StaticSeries(r, this, xNodeLoop);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(OwnerReport, this, xNodeLoop);
 						OwnerReport.rl.LogError(4, "Style element in SeriesGrouping is currently ignored."); // TODO
 						break;

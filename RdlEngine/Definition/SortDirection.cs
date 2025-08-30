@@ -38,12 +38,12 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			SortDirectionEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Ascending":
+				case "ascending":
 					rs = SortDirectionEnum.Ascending;
 					break;
-				case "Descending":
+				case "descending":
 					rs = SortDirectionEnum.Descending;
 					break;
 				default:		

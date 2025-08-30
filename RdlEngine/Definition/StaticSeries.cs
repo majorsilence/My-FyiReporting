@@ -46,9 +46,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "StaticMember":
+					case "staticmember":
 						sm = new StaticMember(r, this, xNodeLoop);
 						break;
 					default:	

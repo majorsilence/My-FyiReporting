@@ -47,42 +47,42 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Rectangle":
+					case "rectangle":
 						ri = new Rectangle(r, this, xNodeLoop);
 						break;
-					case "Line":
+					case "line":
 						ri = new Line(r, this, xNodeLoop);
 						break;
-					case "Textbox":
+					case "textbox":
 						ri = new Textbox(r, this, xNodeLoop);
 						break;
-					case "Image":
+					case "image":
 						ri = new Image(r, this, xNodeLoop);
 						break;
-					case "Subreport":
+					case "subreport":
 						ri = new Subreport(r, this, xNodeLoop);
 						break;
 					// DataRegions: list, table, matrix, chart
-					case "List": 
+					case "list": 
 						ri = new List(r, this, xNodeLoop);
 						break;
-					case "Table":
-                    case "Grid":
-                    case "fyi:Grid":
+					case "table":
+                    case "grid":
+                    case "fyi:grid":
                         ri = new Table(r, this, xNodeLoop);
 						break;
-					case "Matrix": 
+					case "matrix": 
 						ri = new Matrix(r, this, xNodeLoop);
 						break;
-					case "Chart": 
+					case "chart": 
 						ri = new Chart(r, this, xNodeLoop);
 						break;
-					case "ChartExpression":		// For internal use only 
+					case "chartexpression":		// For internal use only 
 						ri = new ChartExpression(r, this, xNodeLoop);
 						break;
-                    case "CustomReportItem":
+                    case "customreportitem":
                         ri = new CustomReportItem(r, this, xNodeLoop);
                         break;
 					default:

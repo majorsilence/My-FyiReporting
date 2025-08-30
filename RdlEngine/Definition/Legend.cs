@@ -57,21 +57,21 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Visible":
+					case "visible":
 						_Visible = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
-					case "Position":
+					case "position":
 						_Position = LegendPosition.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Layout":
+					case "layout":
 						_Layout = LegendLayout.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "InsidePlotArea":
+					case "insideplotarea":
 						_InsidePlotArea = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:

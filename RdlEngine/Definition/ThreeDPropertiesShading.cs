@@ -40,15 +40,15 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			ThreeDPropertiesShadingEnum sh;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "None":
+				case "none":
 					sh = ThreeDPropertiesShadingEnum.None;
 					break;
-				case "Simple":
+				case "simple":
 					sh = ThreeDPropertiesShadingEnum.Simple;
 					break;
-				case "Real":
+				case "real":
 					sh = ThreeDPropertiesShadingEnum.Real;
 					break;
 				default:	

@@ -47,36 +47,36 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			DataLabelPositionEnum dlp;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Auto":
+				case "auto":
 					dlp = DataLabelPositionEnum.Auto;
 					break;
-				case "Top":
+				case "top":
 					dlp = DataLabelPositionEnum.Top;
 					break;
-				case "TopLeft":
+				case "topleft":
 					dlp = DataLabelPositionEnum.TopLeft;
 					break;
-				case "TopRight":
+				case "topright":
 					dlp = DataLabelPositionEnum.TopRight;
 					break;
-				case "Left":
+				case "left":
 					dlp = DataLabelPositionEnum.Left;
 					break;
-				case "Center":
+				case "center":
 					dlp = DataLabelPositionEnum.Center;
 					break;
-				case "Right":
+				case "right":
 					dlp = DataLabelPositionEnum.Right;
 					break;
-				case "BottomRight":
+				case "bottomright":
 					dlp = DataLabelPositionEnum.BottomRight;
 					break;
-				case "Bottom":
+				case "bottom":
 					dlp = DataLabelPositionEnum.Bottom;
 					break;
-				case "BottomLeft":
+				case "bottomleft":
 					dlp = DataLabelPositionEnum.BottomLeft;
 					break;
 				default:		

@@ -95,9 +95,9 @@ namespace Majorsilence.Reporting.Rdl
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in xNode.Attributes)
 			{
-				switch (xAttr.Name)
+				switch (xAttr.Name.ToLowerInvariant())
 				{
-					case "Name":
+					case "name":
 						_Name = new Name(xAttr.Value);
 						break;
 				}
@@ -108,39 +108,39 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Fields":
+					case "fields":
 						_Fields = new Fields(r, this, xNodeLoop);
 						break;
-					case "Query":
+					case "query":
 						_Query = new Query(r, this, xNodeLoop);
 						break;
-					case "Rows":	// Extension !!!!!!!!!!!!!!!!!!!!!!!
-					case "fyi:Rows":
+					case "rows":	// Extension !!!!!!!!!!!!!!!!!!!!!!!
+					case "fyi:rows":
 						_XmlRowData = "<?xml version='1.0' encoding='UTF-8'?><Rows>" + xNodeLoop.InnerXml + "</Rows>";
 						foreach(XmlAttribute xA in xNodeLoop.Attributes)
 						{
-							if (xA.Name == "File")
+							if (xA.Name.ToLowerInvariant() == "file")
 								_XmlRowFile = xA.Value;
 						}
 						break;
-					case "CaseSensitivity":
+					case "casesensitivity":
 						_CaseSensitivity = TrueFalseAuto.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Collation":
+					case "collation":
 						_Collation = xNodeLoop.InnerText;
 						break;
-					case "AccentSensitivity":
+					case "accentsensitivity":
 						_AccentSensitivity = TrueFalseAuto.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "KanatypeSensitivity":
+					case "kanatypesensitivity":
 						_KanatypeSensitivity = TrueFalseAuto.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "WidthSensitivity":
+					case "widthsensitivity":
 						_WidthSensitivity = TrueFalseAuto.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Filters":
+					case "filters":
 						_Filters = new Filters(r, this, xNodeLoop);
 						break;
 					default:

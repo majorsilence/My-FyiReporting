@@ -44,9 +44,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Value":
+					case "value":
 						_Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
 					default:

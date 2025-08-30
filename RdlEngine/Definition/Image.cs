@@ -98,18 +98,18 @@ namespace Majorsilence.Reporting.Rdl
             {
                 if (xNodeLoop.NodeType != XmlNodeType.Element)
                     continue;
-                switch (xNodeLoop.Name)
+                switch (xNodeLoop.Name.ToLowerInvariant())
                 {
-                    case "Source":
+                    case "source":
                         _ImageSource = Majorsilence.Reporting.Rdl.ImageSource.GetStyle(xNodeLoop.InnerText);
                         break;
-                    case "Value":
+                    case "value":
                         _Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
                         break;
-                    case "MIMEType":
+                    case "mimetype":
                         _MIMEType = new Expression(r, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "Sizing":
+                    case "sizing":
                         _Sizing = ImageSizing.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
                         break;
                     default:

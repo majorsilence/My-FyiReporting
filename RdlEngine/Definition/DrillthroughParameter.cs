@@ -46,9 +46,9 @@ namespace Majorsilence.Reporting.Rdl
 			// Run thru the attributes
 			foreach(XmlAttribute xAttr in xNode.Attributes)
 			{
-				switch (xAttr.Name)
+				switch (xAttr.Name.ToLowerInvariant())
 				{
-					case "Name":
+					case "name":
 						_Name = new Name(xAttr.Value);
 						break;
 				}

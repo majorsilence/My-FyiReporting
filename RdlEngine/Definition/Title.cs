@@ -50,15 +50,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Caption":
+					case "caption":
 						_Caption = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
-					case "Position":
+					case "position":
 						_Position = TitlePosition.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:

@@ -38,12 +38,12 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			ThreeDPropertiesProjectionModeEnum pm;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Perspective":
+				case "perspective":
 					pm = ThreeDPropertiesProjectionModeEnum.Perspective;
 					break;
-				case "Orthographic":
+				case "orthographic":
 					pm = ThreeDPropertiesProjectionModeEnum.Orthographic;
 					break;
 				default:

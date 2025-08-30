@@ -70,24 +70,24 @@ namespace Majorsilence.Reporting.Rdl
             {
                 if (xNodeLoop.NodeType != XmlNodeType.Element)
                     continue;
-                switch (xNodeLoop.Name)
+                switch (xNodeLoop.Name.ToLowerInvariant())
                 {
-                    case "DataSourceName":
+                    case "datasourcename":
                         _DataSourceName = xNodeLoop.InnerText;
                         break;
-                    case "CommandType":
+                    case "commandtype":
                         _QueryCommandType = Majorsilence.Reporting.Rdl.QueryCommandType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
                         break;
-                    case "CommandText":
+                    case "commandtext":
                         _CommandText = new Expression(r, this, xNodeLoop, ExpressionType.String);
                         break;
-                    case "QueryParameters":
+                    case "queryparameters":
                         _QueryParameters = new QueryParameters(r, this, xNodeLoop);
                         break;
-                    case "Timeout":
+                    case "timeout":
                         _Timeout = XmlUtil.Integer(xNodeLoop.InnerText);
                         break;
-                    case "RowLimit":                // Extension of RDL specification
+                    case "rowlimit":                // Extension of RDL specification
                         _RowLimit = XmlUtil.Integer(xNodeLoop.InnerText);
                         break;
                     default:

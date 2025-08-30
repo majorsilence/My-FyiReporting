@@ -69,21 +69,21 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Grouping":
+					case "grouping":
 						_Grouping = new Grouping(r, this, xNodeLoop);
 						break;
-					case "Sorting":
+					case "sorting":
 						_Sorting = new Sorting(r, this, xNodeLoop);
 						break;
-					case "ReportItems":
+					case "reportitems":
 						_ReportItems = new ReportItems(r, this, xNodeLoop);
 						break;
-					case "DataInstanceName":
+					case "datainstancename":
 						_DataInstanceName = xNodeLoop.InnerText;
 						break;
-					case "DataInstanceElementOutput":
+					case "datainstanceelementoutput":
 						_DataInstanceElementOutput = Majorsilence.Reporting.Rdl.DataInstanceElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

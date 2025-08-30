@@ -49,15 +49,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Grouping":
+					case "grouping":
 						_Grouping = new Grouping(r, this, xNodeLoop);
 						break;
-					case "Sorting":
+					case "sorting":
 						_Sorting = new Sorting(r, this, xNodeLoop);
 						break;
-					case "Label":
+					case "label":
 						_Label = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
 					default:

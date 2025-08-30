@@ -76,18 +76,18 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "ReportName":
+					case "reportname":
 						_ReportName = xNodeLoop.InnerText;
 						break;
-					case "Parameters":
+					case "parameters":
 						_Parameters = new SubReportParameters(r, this, xNodeLoop);
 						break;
-					case "NoRows":
+					case "norows":
 						_NoRows = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
-					case "MergeTransactions":
+					case "mergetransactions":
 						_MergeTransactions = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

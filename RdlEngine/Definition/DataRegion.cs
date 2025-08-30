@@ -80,27 +80,27 @@ namespace Majorsilence.Reporting.Rdl
 
 		internal bool DataRegionElement(XmlNode xNodeLoop)
 		{
-			switch (xNodeLoop.Name)
+			switch (xNodeLoop.Name.ToLowerInvariant())
 			{
-				case "KeepTogether":
+				case "keeptogether":
 					_KeepTogether = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
-				case "NoRows":
+				case "norows":
 					_NoRows = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.String);
 					break;
-				case "DataSetName":
+				case "datasetname":
 					_DataSetName = xNodeLoop.InnerText;
 					break;
-				case "PageBreakAtStart":
+				case "pagebreakatstart":
 					_PageBreakAtStart = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
-				case "PageBreakAtEnd":
+				case "pagebreakatend":
 					_PageBreakAtEnd = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 					break;
-                case "PageBreakCondition":
+                case "pagebreakcondition":
                     _PageBreakCondition = new Expression(OwnerReport, this, xNodeLoop, ExpressionType.Boolean);
                     break;
-                case "Filters":
+                case "filters":
 					_Filters = new Filters(OwnerReport, this, xNodeLoop);
 					break;
 				default:	// Will get many that are handled by the specific

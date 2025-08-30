@@ -39,12 +39,12 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			ChartElementOutputEnum ceo;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Output":
+				case "output":
 					ceo = ChartElementOutputEnum.Output;
 					break;
-				case "NoOutput":
+				case "nooutput":
 					ceo = ChartElementOutputEnum.NoOutput;
 					break;
 				default:		

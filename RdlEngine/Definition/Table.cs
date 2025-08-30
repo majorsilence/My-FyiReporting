@@ -76,33 +76,33 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "TableColumns":
+					case "tablecolumns":
 						_TableColumns = new TableColumns(r, this, xNodeLoop);
 						break;
-					case "Header":
+					case "header":
 						_Header = new Header(r, this, xNodeLoop);
 						break;
-					case "TableGroups":
+					case "tablegroups":
 						_TableGroups = new TableGroups(r, this, xNodeLoop);
 						break;
-					case "Details":
+					case "details":
 						_Details = new Details(r, this, xNodeLoop);
 						break;
-					case "Footer":
+					case "gooter":
 						_Footer = new Footer(r, this, xNodeLoop);
 						break;
-					case "FillPage":
+					case "fillpage":
 						_FillPage = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "DetailDataElementName":
+					case "detaildataelementname":
 						_DetailDataElementName = xNodeLoop.InnerText;
 						break;
-					case "DetailDataCollectionName":
+					case "detaildatacollectionname":
 						_DetailDataCollectionName = xNodeLoop.InnerText;
 						break;
-					case "DetailDataElementOutput":
+					case "detaildataelementoutput":
 						_DetailDataElementOutput = Majorsilence.Reporting.Rdl.DataElementOutput.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:	

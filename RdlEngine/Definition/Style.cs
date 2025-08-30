@@ -158,90 +158,90 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "BorderColor":
+					case "bordercolor":
 						_BorderColor = new StyleBorderColor(r, this, xNodeLoop);
 						break;
-					case "BorderStyle":
+					case "borderstyle":
 						_BorderStyle = new StyleBorderStyle(r, this, xNodeLoop);
 						break;
-					case "BorderWidth":
+					case "borderwidth":
 						_BorderWidth = new StyleBorderWidth(r, this, xNodeLoop);
 						break;
-					case "BackgroundColor":
+					case "backgroundcolor":
 						_BackgroundColor = new Expression(r, this, xNodeLoop, ExpressionType.Color);
 						break;
-					case "BackgroundGradientType": 
+					case "backgroundgradienttype": 
 						_BackgroundGradientType = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "BackgroundGradientEndColor":
+					case "backgroundgradientendcolor":
 						_BackgroundGradientEndColor = new Expression(r, this, xNodeLoop, ExpressionType.Color);
 						break;
-					case "BackgroundImage":
+					case "backgroundimage":
 						_BackgroundImage = new StyleBackgroundImage(r, this, xNodeLoop);
 						break;
-					case "FontStyle":
+					case "fontstyle":
 						_FontStyle = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "FontFamily":
+					case "fontfamily":
 						_FontFamily = new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
-					case "FontSize":
+					case "fontsize":
 						_FontSize = new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "FontWeight":
+					case "fontweight":
 						_FontWeight = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "Format":
+					case "format":
 						_Format =  new Expression(r, this, xNodeLoop, ExpressionType.String);
 						break;
-					case "TextDecoration":
+					case "textdecoration":
 						_TextDecoration = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "TextAlign":
+					case "textalign":
 						_TextAlign = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "VerticalAlign":
+					case "verticalalign":
 						_VerticalAlign = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "Color":
+					case "color":
 						_Color =  new Expression(r, this, xNodeLoop, ExpressionType.Color);
 						break;
-					case "PaddingLeft":
+					case "paddingleft":
 						_PaddingLeft = new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "PaddingRight":
+					case "paddingright":
 						_PaddingRight = new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "PaddingTop":
+					case "paddingtop":
 						_PaddingTop =  new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "PaddingBottom":
+					case "paddingbottom":
 						_PaddingBottom = new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "LineHeight":
+					case "lineheight":
 						_LineHeight = new Expression(r, this, xNodeLoop, ExpressionType.ReportUnit);
 						break;
-					case "Direction":
+					case "direction":
 						_Direction = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "WritingMode":
+					case "writingmode":
 						_WritingMode = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "Language":
+					case "language":
 						_Language = new Expression(r, this, xNodeLoop, ExpressionType.Language);
 						break;
-					case "UnicodeBiDirectional":
+					case "unicodebidirectional":
 						_UnicodeBiDirectional = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "Calendar":
+					case "calendar":
 						_Calendar = new Expression(r, this, xNodeLoop, ExpressionType.Enum);
 						break;
-					case "NumeralLanguage":
+					case "numerallanguage":
 						_NumeralLanguage = new Expression(r, this, xNodeLoop, ExpressionType.Language);
 						break;
-					case "NumeralVariant":
+					case "numeralvariant":
 						_NumeralVariant = new Expression(r, this, xNodeLoop, ExpressionType.Integer);
 						break;
 					default:	

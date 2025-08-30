@@ -45,9 +45,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Parameter":
+					case "parameter":
 						d = new DrillthroughParameter(r, this, xNodeLoop);
 						break;
 					default:	

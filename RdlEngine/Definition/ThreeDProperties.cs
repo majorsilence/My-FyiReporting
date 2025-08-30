@@ -72,42 +72,42 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Enabled":
+					case "enabled":
 						_Enabled = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "ProjectionMode":
+					case "projectionmode":
 						_ProjectionMode = ThreeDPropertiesProjectionMode.GetStyle(xNodeLoop.InnerText);
 						break;
-					case "Rotation":
+					case "rotation":
 						_Rotation = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "Inclination":
+					case "inclination":
 						_Inclination = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "Perspective":
+					case "perspective":
 						_Perspective = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "HeightRatio":
+					case "heightratio":
 						_HeightRatio = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "DepthRatio":
+					case "depthratio":
 						_DepthRatio = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "Shading":
+					case "shading":
 						_Shading = ThreeDPropertiesShading.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "GapDepth":
+					case "gapdepth":
 						_GapDepth = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "WallThickness":
+					case "wallthickness":
 						_WallThickness = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
-					case "DrawingStyle":
+					case "drawingstyle":
 						_DrawingStyle = ThreeDPropertiesDrawingStyle.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Clustered":
+					case "clustered":
 						_Clustered = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:

@@ -98,24 +98,24 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Value":
+					case "value":
 						_Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
-					case "CanGrow":
+					case "cangrow":
 						_CanGrow = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "CanShrink":
+					case "canshrink":
 						_CanShrink = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "HideDuplicates":
+					case "hideduplicates":
 						_HideDuplicates = xNodeLoop.InnerText;
 						break;
-					case "ToggleImage":
+					case "toggleimage":
 						_ToggleImage = new ToggleImage(r, this, xNodeLoop);
 						break;
-					case "DataElementStyle":
+					case "dataelementstyle":
 						_DataElementStyle = Majorsilence.Reporting.Rdl.DataElementStyle.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:

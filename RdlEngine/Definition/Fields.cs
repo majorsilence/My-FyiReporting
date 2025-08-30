@@ -50,9 +50,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Field":
+					case "field":
 						f = new Field(r, this, xNodeLoop);
 						f.ColumnNumber = iCol++;			// Assign the column number
 						break;

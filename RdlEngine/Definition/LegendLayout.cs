@@ -44,15 +44,15 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			LegendLayoutEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Column":
+				case "column":
 					rs = LegendLayoutEnum.Column;
 					break;
-				case "Row":
+				case "row":
 					rs = LegendLayoutEnum.Row;
 					break;
-				case "Table":
+				case "table":
 					rs = LegendLayoutEnum.Table;
 					break;
 				default:		

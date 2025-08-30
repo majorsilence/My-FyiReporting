@@ -41,15 +41,15 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			QueryCommandTypeEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "Text":
+				case "text":
 					rs = QueryCommandTypeEnum.Text;
 					break;
-				case "StoredProcedure":
+				case "storedprocedure":
 					rs = QueryCommandTypeEnum.StoredProcedure;
 					break;
-				case "TableDirect":
+				case "tabledirect":
 					rs = QueryCommandTypeEnum.TableDirect;
 					break;
 				default:		// user error just force to normal TODO

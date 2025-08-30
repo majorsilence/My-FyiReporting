@@ -56,29 +56,29 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "DataPoints":
+					case "datapoints":
 						_Datapoints = new DataPoints(r, this, xNodeLoop);
 						break;
-					case "PlotType":
+					case "plottype":
 						_PlotType = Majorsilence.Reporting.Rdl.PlotType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-                    case "YAxis":
-                    case "fyi:YAxis":
+                    case "yaxis":
+                    case "fyi:yaxis":
                         _YAxis = xNodeLoop.InnerText;
                         break;
-                    case "NoMarker":
-                    case "fyi:NoMarker":
+                    case "nomarker":
+                    case "fyi:nomarker":
                         _NoMarker = Boolean.Parse(xNodeLoop.InnerText);
                         break;
-                    case "LineSize":
-                    case "fyi:LineSize":
+                    case "linesize":
+                    case "fyi:linesize":
                         _LineSize = xNodeLoop.InnerText;
                         break;
-                    case "fyi:Color":
-                    case "Color":
-                    case "Colour":
+                    case "fyi:color":
+                    case "color":
+                    case "colour":
                         _Colour = xNodeLoop.InnerText;
                         break;
 					default:	

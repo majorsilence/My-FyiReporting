@@ -52,42 +52,42 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			LegendPositionEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "TopLeft":
+				case "topleft":
 					rs = LegendPositionEnum.TopLeft;
 					break;
-				case "TopCenter":
+				case "topcenter":
 					rs = LegendPositionEnum.TopCenter;
 					break;
-				case "TopRight":
+				case "topright":
 					rs = LegendPositionEnum.TopRight;
 					break;
-				case "LeftTop":
+				case "lefttop":
 					rs = LegendPositionEnum.LeftTop;
 					break;
-				case "LeftCenter":
+				case "leftcenter":
 					rs = LegendPositionEnum.LeftCenter;
 					break;
-				case "LeftBottom":
+				case "leftbottom":
 					rs = LegendPositionEnum.LeftBottom;
 					break;
-				case "RightTop":
+				case "righttop":
 					rs = LegendPositionEnum.RightTop;
 					break;
-				case "RightCenter":
+				case "rightcenter":
 					rs = LegendPositionEnum.RightCenter;
 					break;
-				case "RightBottom":
+				case "rightbottom":
 					rs = LegendPositionEnum.RightBottom;
 					break;
-				case "BottomRight":
+				case "bottomright":
 					rs = LegendPositionEnum.BottomRight;
 					break;
-				case "BottomCenter":
+				case "bottomcenter":
 					rs = LegendPositionEnum.BottomCenter;
 					break;
-				case "BottomLeft":
+				case "bottomleft":
 					rs = LegendPositionEnum.BottomLeft;
 					break;
 				default:		

@@ -50,15 +50,15 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Type":
+					case "type":
 						_Type = MarkerType.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Size":
+					case "size":
 						_Size = new RSize(r, xNodeLoop);
 						break;
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
 					default:

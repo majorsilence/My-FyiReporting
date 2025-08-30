@@ -50,12 +50,12 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "SortExpression":
+					case "sortexpression":
 						_SortExpression = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
-					case "Direction":
+					case "direction":
 						_Direction = SortDirection.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
 					default:

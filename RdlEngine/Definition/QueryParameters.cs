@@ -47,9 +47,9 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "QueryParameter":
+					case "queryparameter":
 						q = new QueryParameter(r, this, xNodeLoop);
 						break;
 					default:	

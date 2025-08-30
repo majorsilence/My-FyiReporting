@@ -42,15 +42,15 @@ namespace Majorsilence.Reporting.Rdl
 		{
 			TrueFalseAutoEnum rs;
 
-			switch (s)
+			switch (s.ToLowerInvariant())
 			{		
-				case "True":
+				case "true":
 					rs = TrueFalseAutoEnum.True;
 					break;
-				case "False":
+				case "false":
 					rs = TrueFalseAutoEnum.False;
 					break;
-				case "Auto":
+				case "auto":
 					rs = TrueFalseAutoEnum.Auto;
 					break;
 				default:		

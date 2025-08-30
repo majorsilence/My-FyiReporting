@@ -55,21 +55,21 @@ namespace Majorsilence.Reporting.Rdl
 			{
 				if (xNodeLoop.NodeType != XmlNodeType.Element)
 					continue;
-				switch (xNodeLoop.Name)
+				switch (xNodeLoop.Name.ToLowerInvariant())
 				{
-					case "Style":
+					case "style":
 						_Style = new Style(r, this, xNodeLoop);
 						break;
-					case "Value":
+					case "value":
 						_Value = new Expression(r, this, xNodeLoop, ExpressionType.Variant);
 						break;
-					case "Visible":
+					case "visible":
 						_Visible = XmlUtil.Boolean(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Position":
+					case "position":
 						_Position = DataLabelPosition.GetStyle(xNodeLoop.InnerText, OwnerReport.rl);
 						break;
-					case "Rotation":
+					case "rotation":
 						_Rotation = XmlUtil.Integer(xNodeLoop.InnerText);
 						break;
 					default:
