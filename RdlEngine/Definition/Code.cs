@@ -72,7 +72,7 @@ namespace Majorsilence.Reporting.Rdl
             //Imports Microsoft.VisualBasic
             //Imports System.Convert
             //Imports System.Math 
-            //Namespace fyiReporting.vbgen
+            //Namespace Majorsilence.Reporting.vbgen
 			//Public Class MyClassn	   // where n is a uniquely generated integer
 			//Sub New()
 			//End Sub
@@ -85,7 +85,7 @@ namespace Majorsilence.Reporting.Rdl
             lines.Add("Imports System.Convert");
             lines.Add("Imports System.Math");
             lines.Add("Imports Majorsilence.Reporting.Rdl");
-            lines.Add("Namespace fyiReporting.vbgen");
+            lines.Add("Namespace Majorsilence.Reporting.vbgen");
 			_Classname = "MyClass" + unique;
 			lines.Add("Public Class " + _Classname);
             lines.Add("Private Shared _report As CodeReport");
@@ -129,17 +129,17 @@ namespace Majorsilence.Reporting.Rdl
             string re;
             //AJM GJL 250608 - Try the Bin Directory too, for websites
             if (RdlEngineConfig.DirectoryLoadedFrom == null) {
-                if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RdlEngine.dll"))) {
-                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RdlEngine.dll");   // this can fail especially in web scenarios
+                if (System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Majorsilence.Reporting.RdlEngine.dll"))) {
+                    re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Majorsilence.Reporting.RdlEngine.dll");   // this can fail especially in web scenarios
                 }
                 else
                 {
                     re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bin");   // this can work especially in web scenarios
-                    re = Path.Combine(re, "RdlEngine.dll");  
+                    re = Path.Combine(re, "Majorsilence.Reporting.RdlEngine.dll");  
                 }
             }
             else
-                re = Path.Combine(RdlEngineConfig.DirectoryLoadedFrom, "RdlEngine.dll");     // use RdlEngineConfig.xml directory when available
+                re = Path.Combine(RdlEngineConfig.DirectoryLoadedFrom, "Majorsilence.Reporting.RdlEngine.dll");     // use RdlEngineConfig.xml directory when available
 
 			cp.ReferencedAssemblies.Add(re);
             // also allow access to classes that have been added to report
@@ -184,7 +184,7 @@ namespace Majorsilence.Reporting.Rdl
 			Type t=null;
 			try
 			{
-				object instance = _Assembly.CreateInstance("fyiReporting.vbgen." + this._Classname, false); 
+				object instance = _Assembly.CreateInstance("Majorsilence.Reporting.vbgen." + this._Classname, false); 
 				t = instance.GetType();
 			}
 			catch (Exception e)
@@ -216,7 +216,7 @@ namespace Majorsilence.Reporting.Rdl
 			{
                 object[] args = new object[1];
                 args[0] = rpt;
-				wc.Instance = _Assembly.CreateInstance("fyiReporting.vbgen." + this._Classname, false, BindingFlags.CreateInstance, null, args, null, null); 
+				wc.Instance = _Assembly.CreateInstance("Majorsilence.Reporting.vbgen." + this._Classname, false, BindingFlags.CreateInstance, null, args, null, null); 
 			}
 			catch (Exception e)
 			{

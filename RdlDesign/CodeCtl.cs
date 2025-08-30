@@ -206,7 +206,7 @@ namespace Majorsilence.Reporting.RdlDesign
             //Imports Microsoft.VisualBasic
             //Imports System.Convert
             //Imports System.Math 
-            //Namespace fyiReporting.vbgen
+            //Namespace Majorsilence.Reporting.vbgen
             //Public Class MyClassn	   // where n is a uniquely generated integer
             //Sub New()
             //End Sub
@@ -219,7 +219,7 @@ namespace Majorsilence.Reporting.RdlDesign
             lines.Add("Imports System.Convert");
             lines.Add("Imports System.Math");
             lines.Add("Imports Majorsilence.Reporting.Rdl");
-            lines.Add("Namespace fyiReporting.vbgen");
+            lines.Add("Namespace Majorsilence.Reporting.vbgen");
             string classname = "MyClass" + unique;
             lines.Add("Public Class " + classname);
             lines.Add("Private Shared _report As CodeReport");
@@ -255,7 +255,7 @@ namespace Majorsilence.Reporting.RdlDesign
             // Create Assembly
             CompilerParameters cp = new CompilerParameters();
             cp.ReferencedAssemblies.Add("System.dll");
-            string re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RdlEngine.dll");  // Issue #35
+            string re = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Majorsilence.Reporting.RdlEngine.dll");  // Issue #35
             cp.ReferencedAssemblies.Add(re);
 
             // also allow access to classes that have been added to report
