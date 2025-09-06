@@ -1479,6 +1479,43 @@ namespace Majorsilence.Reporting.RdlDesign
 			return ir;
 		}
 
+        private string GetCustomReportItemType(string type)
+        {
+            // type can be the type or it can be an rdl parameter
+            // implement for both
+            if (type.StartsWith("={?"))
+            {
+                // handle types like ={?BarcodeType}
+                // lookup the pareamter
+                string paramName = type.Substring(3, type.Length - 4);
+                XmlNode pNode = this.GetNamedChildNode(rDoc.LastChild, "ReportParameters");
+                if (pNode != null)
+                {
+                    foreach (XmlNode xNode in pNode.ChildNodes)
+                    {
+                        if (xNode.NodeType != XmlNodeType.Element || xNode.Name != "ReportParameter")
+                            continue;
+                        System.Xml.XmlAttribute na = xNode.Attributes["Name"];
+                        if (na.Value == paramName)
+                        {
+                            XmlNode dvNode = this.GetNamedChildNode(xNode, "DefaultValue");
+                            if (dvNode != null)
+                            {
+                                XmlNode vNode = this.GetNamedChildNode(dvNode, "Values");
+                                if (vNode != null && vNode.HasChildNodes)
+                                {
+                                    type = vNode.FirstChild.InnerText;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return type;
+        }
+        
 		private async Task<RectangleF> DrawCustomReportItem(XmlNode xNode, RectangleF r)
 		{
 			RectangleF ir = GetReportItemRect(xNode, r);
@@ -1493,7 +1530,8 @@ namespace Majorsilence.Reporting.RdlDesign
 				DrawString("CustomReportItem requires type.", si, ir);
 				return ir;		
 			}
-            string type = tNode.InnerText;
+            string type = GetCustomReportItemType(tNode.InnerText);
+           
             ICustomReportItem cri = null;
             Bitmap bm = null;
             try
@@ -1524,8 +1562,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
 			return ir;
 		}
-
-
+        
         private async Task<RectangleF> DrawImage(XmlNode xNode, RectangleF r)
         {
             RectangleF ir = GetReportItemRect(xNode, r);
@@ -2408,6 +2445,26 @@ namespace Majorsilence.Reporting.RdlDesign
 			get {return pHeight;}	// eventually we'll need to add in the sizes of the separating bars
 		}
 
+        // "ReportParameter", "Name", pname
+        internal XmlNode GetNamedChildNode(XmlNode xNode, string elementName, string attributeName)
+        {
+            // look for the parameter
+            // e.g. <ReportParameters><ReportParameter Name="BarcodeType">...
+            if (xNode == null)
+                return null;
+            foreach (XmlNode cNode in xNode.ChildNodes)
+            {
+                if (cNode.NodeType == XmlNodeType.Element &&
+                    cNode.Name == elementName)
+                {
+                    System.Xml.XmlAttribute na = cNode.Attributes[attributeName];
+                    if (na != null && na.Value == attributeName)
+                        return cNode; // found it   
+                }
+            }
+            return null;
+        }
+        
 		internal XmlNode GetNamedChildNode(XmlNode xNode, string name)
 		{
 			if (xNode == null)
