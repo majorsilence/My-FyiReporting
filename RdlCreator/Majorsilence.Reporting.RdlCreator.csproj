@@ -7,6 +7,7 @@
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
+        <IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug-DrawingCompat' Or '$(Configuration)' == 'Release-DrawingCompat'">

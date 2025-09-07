@@ -157,3 +157,4 @@ cd "$CURRENTPATH"
 
 # ************* Nuget ************************************************
 Get-ChildItem -Recurse -Exclude "$CURRENTPATH\Release-Builds\build-output" .\*.nupkg | Copy-Item -Destination "$CURRENTPATH\Release-Builds\build-output" -Force -ErrorAction SilentlyContinue
+Get-ChildItem -Recurse -Exclude "$CURRENTPATH\Release-Builds\build-output" .\*.snupkg | Copy-Item -Destination "$CURRENTPATH\Release-Builds\build-output" -Force -ErrorAction SilentlyContinue

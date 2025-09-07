@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 

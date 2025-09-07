@@ -8,6 +8,7 @@
         <TargetFrameworks>net8.0</TargetFrameworks>
         <WarningsAsErrors>4014</WarningsAsErrors>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSymbols>true</IncludeSymbols>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="GtkSharp"/>

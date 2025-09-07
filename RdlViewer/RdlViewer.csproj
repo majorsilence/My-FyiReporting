@@ -10,6 +10,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
 		<AssemblyTitle>RDL Viewer</AssemblyTitle>
 		<Description></Description>
 		<DelaySign>false</DelaySign>

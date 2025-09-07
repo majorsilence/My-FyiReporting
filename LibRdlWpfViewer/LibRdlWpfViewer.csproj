@@ -5,6 +5,7 @@
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
 		<AssemblyTitle>RDL Data WPF Library</AssemblyTitle>
 		<Description></Description>
 		<DelaySign>false</DelaySign>
