@@ -1479,7 +1479,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			return ir;
 		}
 
-        private string GetCustomReportItemType(string type)
+        internal string GetCustomReportItemType(string type)
         {
             // type can be the type or it can be an rdl parameter
             // implement for both

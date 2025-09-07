@@ -678,8 +678,9 @@ namespace Majorsilence.Reporting.RdlDesign
             try
             {
                 string t = _Draw.GetElementValue(this.Node, "Type", "");
+                string type = _Draw.GetCustomReportItemType(t);
 
-                cri = RdlEngineConfig.CreateCustomReportItem(t);
+                cri = RdlEngineConfig.CreateCustomReportItem(type);
 
                 _custom = cri.GetPropertiesInstance(_Draw.GetNamedChildNode(this.Node, "CustomProperties"));
                 TypeDescriptor.CreateAssociation(this, _custom);
