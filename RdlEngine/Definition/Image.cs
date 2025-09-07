@@ -65,17 +65,6 @@ namespace Majorsilence.Reporting.Rdl
 
         private string imageUrl; //Added from forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905        
 
-        private static void CopyStream(Stream src, Stream dst)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            int bytesRead;
-
-            while ((bytesRead = src.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                dst.Write(buffer, 0, bytesRead);
-            }
-        }
-
         /// <summary>
         /// Only gets set for Images which contain urls rather than coming from the database etc..
         /// </summary>
@@ -223,17 +212,17 @@ namespace Majorsilence.Reporting.Rdl
                 int height = im.Height;
                 int width = im.Width;
                 MemoryStream ostrm = new MemoryStream();
-                strm.Position = 0;
                 ImageFormat imf;
+                
                 switch (mtype.ToLower())
                 {
                     case "image/jpeg":
                         imf = ImageFormat.Jpeg;
-                        CopyStream(strm, ostrm);
+                        im.Save(ostrm, imf);
                         break;
                     case "image/png":
                         imf = ImageFormat.Png;
-                        CopyStream(strm, ostrm);
+                        im.Save(ostrm, imf);
                         break;
                     default: // from old code where all images convert to jpeg, i don't know why. May be need delete it and add all support formats.
                         imf = ImageFormat.Jpeg;
