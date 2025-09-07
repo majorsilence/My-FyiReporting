@@ -50,9 +50,9 @@ jobs:
           name: build-output
           path: /build-output/build.zip
       - name: Unzip build output
-        run: ls -la && ls -la /build-output && sudo unzip /build-output/build.zip -d /build-output
+        run: pwd && ls -la && ls -la /build-output && sudo unzip /build-output/build.zip -d /build-output/out
       - name: unzip rdl zip
-        run: sudo unzip /build-output/Release-Builds/build-output/*-majorsilence-reporting-designer-net8.0-windows-anycpu.zip.zip -d /build-output/Release-Builds/build-output
+        run: sudo unzip /build-output/out/Release-Builds/build-output/*-majorsilence-reporting-designer-net8.0-windows-anycpu.zip.zip -d /build-output/Release-Builds/build-output
       - name: Create Package
         run: sudo ./build-mac-wine-package.sh
       - name: Archive artifacts
