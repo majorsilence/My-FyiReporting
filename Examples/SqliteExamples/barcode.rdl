@@ -96,7 +96,7 @@
     </DataSet>
   </DataSets>
   <PageHeader>
-    <Height>.5in</Height>
+    <Height>41.4pt</Height>
     <ReportItems>
       <Textbox Name="Textbox1">
         <Top>.1in</Top>
@@ -109,6 +109,20 @@
           <FontWeight>Bold</FontWeight>
         </Style>
       </Textbox>
+      <Image Name="Image1">
+        <Height>28.25pt</Height>
+        <Width>103.12pt</Width>
+        <Left>462.70pt</Left>
+        <Top>4.80pt</Top>
+        <Style>
+          <BorderStyle />
+          <BorderColor />
+          <BorderWidth />
+        </Style>
+        <MIMEType>image/png</MIMEType>
+        <Source>Database</Source>
+        <Value>=Convert.FromBase64String({?Logo})</Value>
+      </Image>
     </ReportItems>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <PrintOnLastPage>true</PrintOnLastPage>
@@ -729,7 +743,7 @@
       <Nullable>false</Nullable>
       <AllowBlank>false</AllowBlank>
       <MultiValue>false</MultiValue>
-      <Prompt />
+      <Prompt></Prompt>
       <ValidValues>
         <ParameterValues>
           <ParameterValue>
@@ -746,6 +760,18 @@
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Logo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <MultiValue>false</MultiValue>
+      <Prompt />
+      <DefaultValue>
+        <Values>
+          <Value></Value>
+        </Values>
+      </DefaultValue>
     </ReportParameter>
   </ReportParameters>
 </Report>
