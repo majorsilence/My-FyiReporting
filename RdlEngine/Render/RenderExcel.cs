@@ -196,8 +196,10 @@ namespace fyiReporting.RDL
             int ci = 0;
             foreach (ReportItem ri in l.ReportItems)
             {
-                if (ri is Textbox)
+                if (ri is Textbox tb)
                 {
+	                if(tb.Visibility != null && tb.Visibility.IsHidden(this.r, r))
+		                continue;
                     if (ri.Width != null)
                         _Excel.SetColumnWidth(ci, ri.Width.Points);
                     ci++;
@@ -241,12 +243,15 @@ namespace fyiReporting.RDL
             SheetName = t.Name.Nm;           //keep track of sheet name
 
             _ExcelRow = -1;
+            int excelColumnIndex = 0;
 
             for (int ci = 0; ci < t.TableColumns.Items.Count; ci++)
             {
                 TableColumn tc = t.TableColumns[ci];
-
-                _Excel.SetColumnWidth(ci, tc.Width.Points);
+                if(tc.Visibility != null && tc.Visibility.IsHidden(r, row))
+	                continue;
+                _Excel.SetColumnWidth(excelColumnIndex, tc.Width.Points);
+                excelColumnIndex++;
             }
             return true;
 		}
