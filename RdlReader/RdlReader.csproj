@@ -45,6 +45,9 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Include="RdlReader.fr.resx">
+            <DependentUpon>RdlReader.cs</DependentUpon>
+        </EmbeddedResource>
 		<EmbeddedResource Include="RdlReader.resx">
 			<DependentUpon>RdlReader.cs</DependentUpon>
 			<SubType>Designer</SubType>
