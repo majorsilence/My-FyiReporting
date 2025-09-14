@@ -278,4 +278,91 @@
     <data name="showReportInBrowserToolStripMenuItem.Text" xml:space="preserve">
         <value>Afficher le rapport dans le navigateur</value>
     </data>
+    <data name="selectToolStripButton2.Text" xml:space="preserve">
+        <value>Outil d'assistance</value>
+    </data>
+    <data name="startDesktopServerToolStripMenuItem.Text" xml:space="preserve">
+        <value>Démarrer Desktop Server</value>
+    </data>
+    <data name="statusPosition.ToolTipText" xml:space="preserve">
+        <value>Position de l'élément de rapport sélectionné</value>
+    </data>
+    <data name="statusSelected.ToolTipText" xml:space="preserve">
+        <value>Nom du ReportItem sélectionné</value>
+    </data>
+    <data name="subreportToolStripButton1.Text" xml:space="preserve">
+        <value>Sous-état</value>
+    </data>
+    <data name="subReportToolStripMenuItem.Text" xml:space="preserve">
+        <value>Sous-état</value>
+    </data>
+    <data name="supportToolStripMenuItem.Text" xml:space="preserve">
+        <value>Soutien</value>
+    </data>
+    <data name="textboxToolStripButton1.Text" xml:space="preserve">
+        <value>Zone de texte</value>
+    </data>
+    <data name="textboxToolStripMenuItem.Text" xml:space="preserve">
+        <value>Zone de texte</value>
+    </data>
+    <data name="tileToolStripMenuItem.Text" xml:space="preserve">
+        <value>Carreau</value>
+    </data>
+    <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+        <value>Outils</value>
+    </data>
+    <data name="topsToolStripMenuItem.Text" xml:space="preserve">
+        <value>Hauts</value>
+    </data>
+    <data name="underlineToolStripButton2.ToolTipText" xml:space="preserve">
+        <value>Souligner</value>
+    </data>
+    <data name="undoToolStripButton1.Text" xml:space="preserve">
+        <value>Défaire</value>
+    </data>
+    <data name="undoToolStripMenuItem.Text" xml:space="preserve">
+        <value>Défaire</value>
+    </data>
+    <data name="validateRDLToolStripMenuItem.Text" xml:space="preserve">
+        <value>Valider RDL</value>
+    </data>
+    <data name="verticallyToolStripMenuItem.Text" xml:space="preserve">
+        <value>Verticalement</value>
+    </data>
+    <data name="verticalSpacingToolStripMenuItem.Text" xml:space="preserve">
+        <value>Espacement vertical</value>
+    </data>
+    <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+        <value>Vue</value>
+    </data>
+    <data name="webArchiveSingleFileMHTToolStripMenuItem.Text" xml:space="preserve">
+        <value>Archive Web, fichier unique MHT...</value>
+    </data>
+    <data name="webPageHTMLToolStripMenuItem.Text" xml:space="preserve">
+        <value>Page web, HTML...</value>
+    </data>
+    <data name="widthToolStripMenuItem.Text" xml:space="preserve">
+        <value>Largeur</value>
+    </data>
+    <data name="windowToolStripMenuItem.Text" xml:space="preserve">
+        <value>Fenêtre</value>
+    </data>
+    <data name="zeroToolStripMenuItem.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
+    <data name="zeroToolStripMenuItem1.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
+    <data name="zeroToolStripMenuItem2.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
+    <data name="zeroToolStripMenuItem3.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
+    <data name="zeroToolStripMenuItem4.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
+    <data name="zeroToolStripMenuItem5.Text" xml:space="preserve">
+        <value>Zéro</value>
+    </data>
 </root>
