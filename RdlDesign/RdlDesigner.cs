@@ -81,7 +81,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private string _DataSourceReferencePassword = null;
 		private bool bGotPassword = false;
 		private readonly string DefaultHelpUrl = "https://github.com/majorsilence/My-FyiReporting/wiki/_pages";
-		private readonly string DefaultSupportUrl = "https://groups.google.com/d/forum/myfyireporting";
+		private readonly string DefaultSupportUrl = "https://github.com/majorsilence/My-FyiReporting/discussions";
 		private string _HelpUrl;
 		private string _SupportUrl;
 		static private string[] _MapSubtypes = new string[] { "usa_map" };
@@ -2169,8 +2169,17 @@ namespace Majorsilence.Reporting.RdlDesign
 		{
 			try
 			{
-				System.Diagnostics.Process.Start(SupportUrl);
-			}
+                using var p = new System.Diagnostics.Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = SupportUrl,
+                        UseShellExecute = true
+                    }
+                };
+                p.Start();
+
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message + "\n\n" + Strings.RdlDesigner_Show_ResettingSupportURL, Strings.RdlDesigner_Show_SupportURLInvalid);
