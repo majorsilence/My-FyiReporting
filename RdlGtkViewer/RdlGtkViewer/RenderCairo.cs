@@ -196,7 +196,7 @@ namespace fyiReporting.RdlGtkViewer
             StyleInfo si = pi.SI;
 
             float imageScale = scale;
-			var target = g.GetTarget();
+			var target = g.Target;
 			
             if (target.SurfaceType == Cairo.SurfaceType.Pdf 
 				|| target.SurfaceType == Cairo.SurfaceType.PS 
