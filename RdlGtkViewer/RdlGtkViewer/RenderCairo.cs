@@ -196,11 +196,9 @@ namespace fyiReporting.RdlGtkViewer
             StyleInfo si = pi.SI;
 
             float imageScale = scale;
-			var target = g.Target;
-			
-            if (target.SurfaceType == Cairo.SurfaceType.Pdf 
-				|| target.SurfaceType == Cairo.SurfaceType.PS 
-				|| (int)target.SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
+            if (g.Target.SurfaceType == Cairo.SurfaceType.Pdf 
+                || g.Target.SurfaceType == Cairo.SurfaceType.PS 
+                || (int)g.Target.SurfaceType == 12) // 12 = Cairo.SurfaceType.Win32Printing)
                 imageScale = (300/dpiX) * scale; // PDFs and printers are always 300dpi
             
             // adjust drawing rectangle based on padding 
@@ -253,8 +251,6 @@ namespace fyiReporting.RdlGtkViewer
                         break;
                 }
             }
-			
-			target.Dispose();
         }
 
         private void DrawString(PageText pt, Cairo.Context g, Cairo.Rectangle r)
