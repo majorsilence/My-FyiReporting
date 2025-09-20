@@ -1,6 +1,5 @@
-
 /*
- * 
+ *
  Copyright (C) 2004-2008  fyiReporting Software, LLC
  Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
  Copyright (c) 2010 devFU Pty Ltd, Josh Wilson and Others (http://reportfu.org)
@@ -13,12 +12,12 @@
   Refactored by Daniel Romanowski http://dotlink.pl
 
   This file is part of the fyiReporting RDL project.
-	
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
-	   http://www.apache.org/licenses/LICENSE-2.0
+       http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,8 +47,6 @@ using System.Linq;
 
 namespace Majorsilence.Reporting.Rdl
 {
-
-
     ///<summary>
     /// Renders a report to PDF.   This is a page oriented formatting renderer.
     ///</summary>
@@ -57,6 +54,7 @@ namespace Majorsilence.Reporting.Rdl
     internal class RenderPdf_iTextSharp : RenderBase
     {
         #region private
+
         Document _pdfDocument;
         PdfContentByte _contentByte;
         MemoryStream _ms;
@@ -65,23 +63,29 @@ namespace Majorsilence.Reporting.Rdl
         int _osVersion = (int)Environment.OSVersion.Version.Major;
 
         bool _dejavuFonts = false;
+
         /// <summary>
         /// List itextSharp Basefont added
         /// </summary>
         private List<BaseFont> _baseFonts = new List<BaseFont>();
+
         /// <summary>
         /// List font name
         /// </summary>
         private List<string> _baseFontsName = new List<string>();
+
         #endregion
 
-        static RenderPdf_iTextSharp() {
+        static RenderPdf_iTextSharp()
+        {
             iTextSharp.text.FontFactory.RegisterDirectories();
         }
 
         #region properties
 
-        private bool IsOSX => System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX);
+        private bool IsOSX =>
+            System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
+                System.Runtime.InteropServices.OSPlatform.OSX);
 
         /// <summary> 
         /// Default I get embedded fonts in Fonts folder in current 
@@ -96,6 +100,7 @@ namespace Majorsilence.Reporting.Rdl
                 {
                     return "/System/Library/Fonts/Supplemental";
                 }
+
                 if (_osPlatform == (int)PlatformID.Unix)
                 {
                     if (System.IO.Directory.Exists("/usr/share/fonts/truetype/msttcorefonts"))
@@ -107,30 +112,36 @@ namespace Majorsilence.Reporting.Rdl
                         _dejavuFonts = true;
                         return "/usr/share/fonts/truetype/dejavu";
                     }
-                    else {
+                    else
+                    {
                         _dejavuFonts = true;
                         return Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
                     }
                 }
-                
+
                 // get parent of System folder to have Windows folder
-                DirectoryInfo dirWindowsFolder = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System));
+                DirectoryInfo dirWindowsFolder =
+                    Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System));
                 // Concatenate Fonts folder onto Windows folder.
                 return Path.Combine(dirWindowsFolder.FullName, "Fonts");
                 // Results in full path e.g. "C:\Windows\Fonts" 
             }
         }
+
         #endregion
 
         #region ctor
+
         public RenderPdf_iTextSharp(Report report, IStreamGen sg) : base(report, sg)
         {
             _pdfDocument = new Document();
             _ms = new MemoryStream();
         }
+
         #endregion
 
         #region implementations
+
         protected internal override void CreateDocument()
         {
             Report r = base.Report();
@@ -153,7 +164,6 @@ namespace Majorsilence.Reporting.Rdl
             _ms.Dispose();
             _baseFonts.Clear();
             _baseFontsName.Clear();
-
         }
 
         protected internal override void CreatePage()
@@ -164,15 +174,14 @@ namespace Majorsilence.Reporting.Rdl
 
         protected internal override void AfterProcessPage()
         {
-
         }
 
         protected internal override void AddBookmark(PageText pt)
         {
-
         }
 
-        protected internal override void AddLine(float x, float y, float x2, float y2, float width, Draw2.Color c, BorderStyleEnum ls)
+        protected internal override void AddLine(float x, float y, float x2, float y2, float width, Draw2.Color c,
+            BorderStyleEnum ls)
         {
             // Get the line color			
             _contentByte.SetRgbColorStroke(c.R, c.G, c.B);
@@ -192,51 +201,55 @@ namespace Majorsilence.Reporting.Rdl
                     _contentByte.SetLineDash(new float[] { }, 0);
                     break;
             }
+
             _contentByte.MoveTo(x, PageSize.yHeight - y);
             _contentByte.LineTo(x2, PageSize.yHeight - y2);
             _contentByte.Stroke();
         }
 
-        protected internal override void AddImage(string name, StyleInfo si, Imaging.ImageFormat imf, float x, float y, float width, float height, Draw2.RectangleF clipRect, byte[] im, int samplesW, int samplesH, string url, string tooltip)
+        protected internal override void AddImage(string name, StyleInfo si, Imaging.ImageFormat imf, float x, float y,
+            float width, float height, Draw2.RectangleF clipRect, byte[] im, int samplesW, int samplesH, string url,
+            string tooltip)
         {
             iTextSharp.text.Image pdfImg = iTextSharp.text.Image.GetInstance(im);
             pdfImg.ScaleAbsolute(width, height); //zoom		  
-            pdfImg.SetAbsolutePosition(x, PageSize.yHeight - y - height);//Set position
+            pdfImg.SetAbsolutePosition(x, PageSize.yHeight - y - height); //Set position
             _pdfDocument.Add(pdfImg);
             //add url
             if (url != null)
                 _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, url));
             //add tooltip
             if (!string.IsNullOrEmpty(tooltip))
-                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height, tooltip));
+                _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y - PageSize.topMargin, width + x, height,
+                    tooltip));
             iAddBorder(si, x - si.PaddingLeft, y - si.PaddingTop,
                 height + si.PaddingTop + si.PaddingBottom,
-                width + si.PaddingLeft + si.PaddingRight);			// add any required border
+                width + si.PaddingLeft + si.PaddingRight); // add any required border
         }
 
         protected internal override void AddPolygon(Draw2.PointF[] pts, StyleInfo si, string url)
         {
             if (si.BackgroundColor.IsEmpty)
-                return;		 // nothing to do
+                return; // nothing to do
 
             // Get the fill color - could be a gradient or pattern etc...
             Draw2.Color c = si.BackgroundColor;
             iAddPoints(pts);
             _contentByte.SetRgbColorFill(c.R, c.G, c.B);
             _contentByte.ClosePathFillStroke();
-
-
         }
 
-        protected internal override void AddRectangle(float x, float y, float height, float width, StyleInfo si, string url, string tooltip)
+        protected internal override void AddRectangle(float x, float y, float height, float width, StyleInfo si,
+            string url, string tooltip)
         {
             // Draw background rectangle if needed
             if (!si.BackgroundColor.IsEmpty && height > 0 && width > 0)
-            {	// background color, height and width are specified
+            {
+                // background color, height and width are specified
                 iAddFillRect(x, y, width, height, si);
             }
 
-            iAddBorder(si, x, y, height, width);			// add any required border
+            iAddBorder(si, x, y, height, width); // add any required border
 
             if (url != null)
                 _pdfDocument.Add(new Annotation(x, PageSize.yHeight - y, width + x, height, url));
@@ -247,14 +260,17 @@ namespace Majorsilence.Reporting.Rdl
         }
 
 
-        protected internal override void AddPie(float x, float y, float height, float width, StyleInfo si, string url, string tooltip)
+        protected internal override void AddPie(float x, float y, float height, float width, StyleInfo si, string url,
+            string tooltip)
         {
             // Draw background rectangle if needed
             if (!si.BackgroundColor.IsEmpty && height > 0 && width > 0)
-            {	// background color, height and width are specified
+            {
+                // background color, height and width are specified
                 iAddFillRect(x, y, width, height, si);
             }
-            iAddBorder(si, x, y, height, width);			// add any required border
+
+            iAddBorder(si, x, y, height, width); // add any required border
 
             //add url
             if (url != null)
@@ -268,16 +284,20 @@ namespace Majorsilence.Reporting.Rdl
         protected internal override void AddCurve(Draw2.PointF[] pts, StyleInfo si)
         {
             if (pts.Length > 2)
-            {   // do a spline curve
+            {
+                // do a spline curve
                 Draw2.PointF[] tangents = iGetCurveTangents(pts);
                 iDoCurve(pts, tangents, si);
             }
             else
-            {   // we only have two points; just do a line segment
+            {
+                // we only have two points; just do a line segment
                 AddLine(pts[0].X, pts[0].Y, pts[1].X, pts[1].Y, si);
             }
         }
-        protected internal override void AddEllipse(float x, float y, float height, float width, StyleInfo si, string url)
+
+        protected internal override void AddEllipse(float x, float y, float height, float width, StyleInfo si,
+            string url)
         {
             if (si.BStyleTop != BorderStyleEnum.None)
             {
@@ -294,8 +314,10 @@ namespace Majorsilence.Reporting.Rdl
                         _contentByte.SetLineDash(new float[] { }, 0);
                         break;
                 }
+
                 _contentByte.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
+
             float RadiusX = (width / 2.0f);
             float RadiusY = (height / 2.0f);
             _contentByte.Ellipse(x, PageSize.yHeight - y, x + RadiusX, y + RadiusY);
@@ -303,6 +325,7 @@ namespace Majorsilence.Reporting.Rdl
             {
                 _contentByte.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
+
             if (si.BackgroundColor.IsEmpty)
                 _contentByte.ClosePathStroke();
             else
@@ -312,6 +335,7 @@ namespace Majorsilence.Reporting.Rdl
         #endregion
 
         #region private methods
+
         /// <summary>
         /// Font name , for my application almost fonts  will be unicode and embedded
         /// </summary>
@@ -355,6 +379,7 @@ namespace Majorsilence.Reporting.Rdl
                     faceName = "ZapfDingbats";
                     break;
             }
+
             return faceName;
         }
 
@@ -366,18 +391,19 @@ namespace Majorsilence.Reporting.Rdl
                 asian |= text[i].Any(c => (c >= 0x3040 && c <= 0x309f) || //Hiragana
                                           (c >= 0x30a0 && c <= 0x30ff) || //Katanka
                                           (c >= 0xE00 && c <= 0xE7F) || //Thai
-                                           c >= 0x4e00);                  
+                                          c >= 0x4e00);
                 if (asian)
                 {
                     break;
                 }
             }
+
             return asian;
         }
 
-        protected internal override void AddText(float x, float y, float height, float width, string[] sa, StyleInfo si, float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
+        protected internal override void AddText(float x, float y, float height, float width, string[] sa, StyleInfo si,
+            float[] tw, bool bWrap, string url, bool bNoClip, string tooltip)
         {
-
             BaseFont bf = null;
             string face = iFontNameNormalize(si.FontFamily);
             string fontname = "";
@@ -393,7 +419,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "TimesNewRomanPS-BoldItalicMT";
                         fontname = "Times New Roman Bold Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Serif Condensed Bold Italic" : "Times-BoldItalic";
                         fontname = (_dejavuFonts ? "DejaVuSerifCondensed-BoldItalic.ttf" : "timesbi.ttf");
                     }
@@ -406,7 +433,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "TimesNewRomanPS-BoldMT";
                         fontname = "Times New Roman Bold.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Serif Condensed Bold" : "Times-Bold";
                         fontname = (_dejavuFonts ? "DejaVuSerifCondensed-Bold.ttf" : "timesbd.ttf");
                     }
@@ -419,23 +447,27 @@ namespace Majorsilence.Reporting.Rdl
                         face = "TimesNewRomanPS-ItalicMT";
                         fontname = "Times New Roman Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Serif Condensed Italic" : "Times-Italic";
                         fontname = (_dejavuFonts ? "DejaVuSerifCondensed-Italic.ttf" : "timesi.ttf");
                     }
                 }
-                else {
+                else
+                {
                     //OSX
                     if (IsOSX)
                     {
                         face = "TimesNewRomanPSMT";
                         fontname = "Times New Roman.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Serif Condensed" : face;
                         fontname = (_dejavuFonts ? "DejaVuSerifCondensed.ttf" : "times.ttf");
                     }
                 }
+
                 fonttype1 = false;
             }
             else if (face == "Arial")
@@ -453,7 +485,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "Arial BoldItalicMT";
                         fontname = "Arial Bold Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Condensed Bold Oblique" : "Arial-BoldItalic";
                         fontname = (_dejavuFonts ? "DejaVuSansCondensed-BoldOblique.ttf" : "arialbi.ttf");
                     }
@@ -466,7 +499,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "Arial-BoldMT";
                         fontname = "Arial Bold.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Condensed Bold" : "Arial-Bold";
                         fontname = (_dejavuFonts ? "DejaVuSansCondensed-Bold.ttf" : "arialbd.ttf");
                     }
@@ -479,23 +513,27 @@ namespace Majorsilence.Reporting.Rdl
                         face = "Arial-ItalicMT";
                         fontname = "Arial Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Condensed Oblique" : "Arial-Italic";
                         fontname = (_dejavuFonts ? "DejaVuSansCondensed-Oblique.ttf" : "ariali.ttf");
                     }
                 }
-                else {
+                else
+                {
                     //OSX
                     if (IsOSX)
                     {
                         face = "ArialMT";
                         fontname = "Arial.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Condensed" : face;
                         fontname = (_dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
                     }
                 }
+
                 fonttype1 = false;
             }
             else if (face == "Courier New")
@@ -508,7 +546,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "CourierNewPS-BoldItalicMT";
                         fontname = "Courier New Bold Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Mono Bold Oblique" : "Courier New-BoldItalic";
                         fontname = (_dejavuFonts ? "DejaVuSansMono-BoldOblique.ttf" : "courbi.ttf");
                     }
@@ -521,7 +560,8 @@ namespace Majorsilence.Reporting.Rdl
                         face = "CourierNewPS-BoldMT";
                         fontname = "Courier New Bold.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Mono Bold" : "Courier New-Bold";
                         fontname = (_dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "courbd.ttf");
                     }
@@ -534,41 +574,49 @@ namespace Majorsilence.Reporting.Rdl
                         face = "CourierNewPS-ItalicMT";
                         fontname = "Courier New Italic.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Mono Oblique" : "Courier New-Italic";
                         fontname = (_dejavuFonts ? "DejaVuSansMono-Oblique.ttf" : "couri.ttf");
                     }
                 }
-                else {
+                else
+                {
                     //OSX
                     if (IsOSX)
                     {
                         face = "CourierNewPSMT";
                         fontname = "Courier New.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Mono" : face;
                         fontname = (_dejavuFonts ? "DejaVuSansMono.ttf" : "cour.ttf");
                     }
                 }
+
                 fonttype1 = false;
             }
-            else {
-
+            else
+            {
                 int style = si.IsFontBold() ? iTextSharp.text.Font.BOLD : 0;
                 style += si.FontStyle == FontStyleEnum.Italic ? iTextSharp.text.Font.ITALIC : 0;
                 iTextSharp.text.Font ff = FontFactory.GetFont(face, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10f, style);
                 bf = ff.BaseFont;
-                if (bf == null) {
-                    if (IsOSX) {
+                if (bf == null)
+                {
+                    if (IsOSX)
+                    {
                         face = "ArialMT";
                         fontname = "Arial.ttf";
                     }
-                    else {
+                    else
+                    {
                         face = _dejavuFonts ? "DejaVu Sans Condensed" : "Arial";
                         fontname = (_dejavuFonts ? "DejaVuSansCondensed.ttf" : "arial.ttf");
                     }
                 }
+
                 /*                if (si.IsFontBold() &&
                             si.FontStyle == FontStyleEnum.Italic)   // bold and italic?
                                     face = face + "-BoldOblique";
@@ -578,46 +626,56 @@ namespace Majorsilence.Reporting.Rdl
                                     face = face + "-Oblique";*/
                 fonttype1 = false;
             }
-            if (bf == null) {
+
+            if (bf == null)
+            {
                 //Get index of fontname in List font name
-                int indexbf = _baseFontsName.FindIndex(delegate (string _fontname) { return _fontname == face; });
+                int indexbf = _baseFontsName.FindIndex(delegate(string _fontname) { return _fontname == face; });
                 //If not found then add new BaseFont
-                if (indexbf == -1) {
+                if (indexbf == -1)
+                {
                     _baseFontsName.Add(face);
-                    if (fonttype1) {
+                    if (fonttype1)
+                    {
                         bf = BaseFont.CreateFont(face, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
                     }
-                    else {
+                    else
+                    {
                         string path = System.IO.Path.Combine(folder, fontname);
                         bf = BaseFont.CreateFont(path, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                     }
+
                     _baseFonts.Add(bf);
                 }
                 else
-                //Get from List
+                    //Get from List
                 {
                     bf = _baseFonts[indexbf];
                 }
             }
+
             // Loop thru the lines of text
             for (int i = 0; i < sa.Length; i++)
             {
                 string text = sa[i];
                 float textwidth = bf.GetWidthPoint(text, si.FontSize);
                 // Calculate the x positino
-                float startX = x + si.PaddingLeft;						// TODO: handle tb_rl
-                float startY = y + si.PaddingTop + (i * si.FontSize);	// TODO: handle tb_rl
+                float startX = x + si.PaddingLeft; // TODO: handle tb_rl
+                float startY = y + si.PaddingTop + (i * si.FontSize); // TODO: handle tb_rl
                 int align = 0;
                 if (si.WritingMode == WritingModeEnum.lr_tb)
-                {	// TODO: not sure what alignment means with tb_lr so I'll leave it out for now
+                {
+                    // TODO: not sure what alignment means with tb_lr so I'll leave it out for now
                     switch (si.TextAlign)
                     {
                         case TextAlignEnum.Center:
                             if (width > 0)
                             {
-                                startX = x + si.PaddingLeft + ((width - si.PaddingLeft - si.PaddingRight) / 2) - (textwidth / 2);
+                                startX = x + si.PaddingLeft + ((width - si.PaddingLeft - si.PaddingRight) / 2) -
+                                         (textwidth / 2);
                                 align = Element.ALIGN_CENTER;
                             }
+
                             break;
                         case TextAlignEnum.Right:
                             if (width > 0)
@@ -625,6 +683,7 @@ namespace Majorsilence.Reporting.Rdl
                                 startX = x + width - textwidth - si.PaddingRight;
                                 align = Element.ALIGN_RIGHT;
                             }
+
                             break;
                         case TextAlignEnum.Left:
                         default:
@@ -640,11 +699,12 @@ namespace Majorsilence.Reporting.Rdl
                                 break;
 
                             // calculate the middle of the region
-                            startY = y + si.PaddingTop + ((height - si.PaddingTop - si.PaddingBottom) / 2) - (si.FontSize / 2);
+                            startY = y + si.PaddingTop + ((height - si.PaddingTop - si.PaddingBottom) / 2) -
+                                     (si.FontSize / 2);
                             // now go up or down depending on which line
                             if (sa.Length == 1)
                                 break;
-                            if (sa.Length % 2 == 0)	// even number
+                            if (sa.Length % 2 == 0) // even number
                             {
                                 startY = startY - (((sa.Length / 2) - i) * si.FontSize) + (si.FontSize / 2);
                             }
@@ -652,6 +712,7 @@ namespace Majorsilence.Reporting.Rdl
                             {
                                 startY = startY - (((sa.Length / 2) - i) * si.FontSize);
                             }
+
                             break;
                         case VerticalAlignEnum.Bottom:
                             if (height <= 0)
@@ -673,7 +734,8 @@ namespace Majorsilence.Reporting.Rdl
                     {
                         case TextAlignEnum.Center:
                             if (height > 0)
-                                startY = y + si.PaddingLeft + ((height - si.PaddingLeft - si.PaddingRight) / 2) - (textwidth / 2);
+                                startY = y + si.PaddingLeft + ((height - si.PaddingLeft - si.PaddingRight) / 2) -
+                                         (textwidth / 2);
                             break;
                         case TextAlignEnum.Right:
                             if (width > 0)
@@ -683,12 +745,12 @@ namespace Majorsilence.Reporting.Rdl
                         default:
                             break;
                     }
-
                 }
 
                 // Draw background rectangle if needed (only put out on the first line, since we do whole rectangle)
                 if (!si.BackgroundColor.IsEmpty && height > 0 && width > 0 && i == 0)
-                {	// background color, height and width are specified
+                {
+                    // background color, height and width are specified
                     iAddFillRect(x, y, width, height, si.BackgroundColor);
                 }
 
@@ -713,7 +775,9 @@ namespace Majorsilence.Reporting.Rdl
                             //else use Column text to wrap or clip (wrap: for example a text like an URL so word break is not working here, itextsharp ColumnText do the work for us)
                             ColumnText ct = new ColumnText(_contentByte);
                             Phrase myPhrase = new Phrase(text, new iTextSharp.text.Font(bf, si.FontSize));
-                            ct.SetSimpleColumn(myPhrase, x + si.PaddingLeft, PageSize.yHeight - startY, x + width - si.PaddingRight, PageSize.yHeight - y - si.PaddingBottom - height, 10f, align);
+                            ct.SetSimpleColumn(myPhrase, x + si.PaddingLeft, PageSize.yHeight - startY,
+                                x + width - si.PaddingRight, PageSize.yHeight - y - si.PaddingBottom - height, 10f,
+                                align);
                             ct.Go();
                         }
                     }
@@ -725,18 +789,20 @@ namespace Majorsilence.Reporting.Rdl
                         double radsSin = Math.Sin(rads);
                         _contentByte.BeginText();
                         _contentByte.SetFontAndSize(bf, si.FontSize);
-                        _contentByte.SetTextMatrix((float)radsCos, (float)radsSin, (float)-radsSin, (float)radsCos, startX, PageSize.yHeight - startY);
+                        _contentByte.SetTextMatrix((float)radsCos, (float)radsSin, (float)-radsSin, (float)radsCos,
+                            startX, PageSize.yHeight - startY);
                         _contentByte.ShowText(text);
                         _contentByte.EndText();
                     }
 
                     //add URL
                     if (url != null)
-                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, url));
+                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x,
+                            PageSize.yHeight - y, url));
                     //add tooltip
                     if (tooltip != null)
-                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x, PageSize.yHeight - y, tooltip));
-
+                        _pdfDocument.Add(new Annotation(x, PageSize.yHeight - (y + height), width + x,
+                            PageSize.yHeight - y, tooltip));
                 }
 
                 // Handle underlining etc.
@@ -745,11 +811,13 @@ namespace Majorsilence.Reporting.Rdl
                 {
                     case TextDecorationEnum.Underline:
                         maxX = width > 0 ? Math.Min(x + width, startX + textwidth) : startX + textwidth;
-                        AddLine(startX, startY + si.FontSize + 1, maxX, startY + si.FontSize + 1, 1, si.Color, BorderStyleEnum.Solid);
+                        AddLine(startX, startY + si.FontSize + 1, maxX, startY + si.FontSize + 1, 1, si.Color,
+                            BorderStyleEnum.Solid);
                         break;
                     case TextDecorationEnum.LineThrough:
                         maxX = width > 0 ? Math.Min(x + width, startX + textwidth) : startX + textwidth;
-                        AddLine(startX, startY + (si.FontSize / 2) + 1, maxX, startY + (si.FontSize / 2) + 1, 1, si.Color, BorderStyleEnum.Solid);
+                        AddLine(startX, startY + (si.FontSize / 2) + 1, maxX, startY + (si.FontSize / 2) + 1, 1,
+                            si.Color, BorderStyleEnum.Solid);
                         break;
                     case TextDecorationEnum.Overline:
                         maxX = width > 0 ? Math.Min(x + width, startX + textwidth) : startX + textwidth;
@@ -761,10 +829,11 @@ namespace Majorsilence.Reporting.Rdl
                 }
             }
 
-            iAddBorder(si, x, y, height, width);			// add any required border
+            iAddBorder(si, x, y, height, width); // add any required border
 
             return;
         }
+
         /// <summary>
         /// Add a filled rectangle
         /// </summary>
@@ -776,13 +845,14 @@ namespace Majorsilence.Reporting.Rdl
             _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
             _contentByte.Fill();
         }
+
         /// <summary>
         /// Add border
         /// </summary>
         private void iAddBorder(StyleInfo si, float x, float y, float height, float width)
         {
             // Handle any border required   TODO: optimize border by drawing a rect when possible
-            if (height <= 0 || width <= 0)		// no bounding box to use
+            if (height <= 0 || width <= 0) // no bounding box to use
                 return;
 
             float ybottom = (y + height);
@@ -801,6 +871,7 @@ namespace Majorsilence.Reporting.Rdl
 
             return;
         }
+
         private void iAddPoints(Draw2.PointF[] pts)
         {
             if (pts.Length > 0)
@@ -811,6 +882,7 @@ namespace Majorsilence.Reporting.Rdl
                     _contentByte.LineTo(pts[pi].X, PageSize.yHeight - pts[pi].Y);
                 }
             }
+
             return;
         }
 
@@ -823,12 +895,12 @@ namespace Majorsilence.Reporting.Rdl
             _contentByte.Rectangle(x, PageSize.yHeight - y - height, width, height);
             //_contentByte.ClosePathFillStroke();
             _contentByte.Fill();
-
         }
-        //25072008 GJL Draw a bezier curve
-        private void iAddCurve(float X1, float Y1, float X2, float Y2, float X3, float Y3, float X4, float Y4, StyleInfo si, string url)
-        {
 
+        //25072008 GJL Draw a bezier curve
+        private void iAddCurve(float X1, float Y1, float X2, float Y2, float X3, float Y3, float X4, float Y4,
+            StyleInfo si, string url)
+        {
             if (si.BStyleTop != BorderStyleEnum.None)
             {
                 switch (si.BStyleTop)
@@ -844,6 +916,7 @@ namespace Majorsilence.Reporting.Rdl
                         _contentByte.SetLineDash(new float[] { }, 0);
                         break;
                 }
+
                 _contentByte.SetRgbColorStroke(si.BColorTop.R, si.BColorTop.G, si.BColorTop.B);
             }
 
@@ -851,12 +924,14 @@ namespace Majorsilence.Reporting.Rdl
             {
                 _contentByte.SetRgbColorStrokeF(si.BackgroundColor.R, si.BackgroundColor.G, si.BackgroundColor.B);
             }
+
             _contentByte.CurveTo(X1, PageSize.yHeight - Y1, X2, PageSize.yHeight - Y1, X3, PageSize.yHeight - Y3);
             if (si.BackgroundColor.IsEmpty)
                 _contentByte.ClosePathStroke();
             else
                 _contentByte.ClosePathFillStroke();
         }
+
         private void iDoCurve(Draw2.PointF[] points, Draw2.PointF[] tangents, StyleInfo si)
         {
             int i;
@@ -882,7 +957,7 @@ namespace Majorsilence.Reporting.Rdl
 
         private Draw2.PointF[] iGetCurveTangents(Draw2.PointF[] points)
         {
-            float tension = .5f;				 // This  is the tension used on the DrawCurve GDI call.
+            float tension = .5f; // This  is the tension used on the DrawCurve GDI call.
             float coefficient = tension / 3.0f;
             int i;
 
@@ -915,10 +990,6 @@ namespace Majorsilence.Reporting.Rdl
             return tangents;
         }
 
-
         #endregion
-
-
-
     }
 }
