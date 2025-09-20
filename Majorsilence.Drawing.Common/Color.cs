@@ -91,6 +91,7 @@ namespace Majorsilence.Drawing
         public static Color Linen => new Color(250, 240, 230);
         public static Color PaleTurquoise => new Color(175, 238, 238);
         public static Color OldLace => new Color(253, 245, 230);
+        public static Color Bisque => new Color(255, 228, 196);
 
 
         public byte R { get; }
@@ -246,6 +247,7 @@ namespace Majorsilence.Drawing
                 case "linen": return Linen;
                 case "paleturquoise": return PaleTurquoise;
                 case "oldlace": return OldLace;
+                case "bisque": return Bisque;
                 default: throw new ArgumentException($"Unknown color name: {name}");
             }
         }

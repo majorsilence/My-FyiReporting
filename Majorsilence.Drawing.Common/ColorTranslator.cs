@@ -20,27 +20,57 @@ namespace Majorsilence.Drawing
                 html = html.Substring(1);
             }
 
-            if (html.Length == 6)
+            try
             {
-                return new Color(
-                    Convert.ToInt32(html.Substring(0, 2), 16),
-                    Convert.ToInt32(html.Substring(2, 4), 16),
-                    Convert.ToInt32(html.Substring(4, 6), 16)
-                );
+                if (html.Length == 3)
+                {
+                    return new Color(
+                        Convert.ToInt32(new string(html[0], 2), 16),
+                        Convert.ToInt32(new string(html[1], 2), 16),
+                        Convert.ToInt32(new string(html[2], 2), 16)
+                    );
+                }
+                else if (html.Length == 4)
+                {
+                    return new Color(
+                        Convert.ToInt32(new string(html[0], 2), 16),
+                        Convert.ToInt32(new string(html[1], 2), 16),
+                        Convert.ToInt32(new string(html[2], 2), 16),
+                        Convert.ToInt32(new string(html[3], 2), 16)
+                    );
+                }
+                else if (html.Length == 5)
+                {
+                    return new Color(
+                        Convert.ToInt32(html.Substring(0, 2), 16),
+                        Convert.ToInt32(html.Substring(1, 2), 16),
+                        Convert.ToInt32(html.Substring(3, 2), 16),
+                        Convert.ToInt32(html.Substring(4, 2), 16)
+                    );
+                }
+                else if (html.Length == 6)
+                {
+                    return new Color(
+                        Convert.ToInt32(html.Substring(0, 2), 16),
+                        Convert.ToInt32(html.Substring(2, 2), 16),
+                        Convert.ToInt32(html.Substring(4, 2), 16)
+                    );
+                }
+                else if (html.Length == 8)
+                {
+                    return new Color(
+                        Convert.ToInt32(html.Substring(0, 2), 16),
+                        Convert.ToInt32(html.Substring(2, 2), 16),
+                        Convert.ToInt32(html.Substring(4, 2), 16),
+                        Convert.ToInt32(html.Substring(6, 2), 16)
+                    );
+                }
             }
-            else if (html.Length == 8)
+            catch (FormatException)
             {
-                return new Color(
-                    Convert.ToInt32(html.Substring(0, 2), 16),
-                    Convert.ToInt32(html.Substring(2, 4), 16),
-                    Convert.ToInt32(html.Substring(4, 6), 16),
-                    Convert.ToInt32(html.Substring(6, 8), 16)
-                );
             }
-            else
-            {
-                return Color.FromName(html);
-            }
+
+            return Color.FromName(html);
         }
     }
 }
