@@ -3,9 +3,10 @@
 	<PropertyGroup>
 		<RootNamespace>fyiReporting.RdlCreator.Tests</RootNamespace>
 		<AssemblyName>RdlCreator.Tests</AssemblyName>
-		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
+		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>

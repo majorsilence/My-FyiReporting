@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
+		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
 		<TargetFramework>net8.0</TargetFramework>
 		<WarningsAsErrors>4014</WarningsAsErrors>
+		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DataProviders\Majorsilence.Reporting.DataProviders.csproj" />

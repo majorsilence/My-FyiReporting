@@ -6,7 +6,7 @@
 		<AssemblyName>Majorsilence.Reporting.RdlDesigner</AssemblyName>
 		<DelaySign>false</DelaySign>
 		<OutputType>Library</OutputType>
-		<RootNamespace>fyiReporting.RdlDesign</RootNamespace>
+		<RootNamespace>Majorsilence.Reporting.RdlDesign</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
