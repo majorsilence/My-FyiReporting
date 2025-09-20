@@ -81,10 +81,7 @@ namespace Majorsilence.Reporting.Rdl
 
         #region properties
 
-        private bool IsOSX
-        {
-            get { return (_osPlatform == 4 || _osPlatform == 6 || _osPlatform == 128) && _osVersion > 8; }
-        }
+        private bool IsOSX => System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX);
 
         /// <summary> 
         /// Default I get embedded fonts in Fonts folder in current 
@@ -94,7 +91,6 @@ namespace Majorsilence.Reporting.Rdl
         {
             get
             {
-
                 //Kind of MacOSX
                 if (IsOSX)
                 {
@@ -116,16 +112,12 @@ namespace Majorsilence.Reporting.Rdl
                         return Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
                     }
                 }
-
-#if NET_4
-         return System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
-#else
+                
                 // get parent of System folder to have Windows folder
                 DirectoryInfo dirWindowsFolder = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.System));
                 // Concatenate Fonts folder onto Windows folder.
                 return Path.Combine(dirWindowsFolder.FullName, "Fonts");
                 // Results in full path e.g. "C:\Windows\Fonts" 
-#endif
             }
         }
         #endregion
