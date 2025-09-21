@@ -1,17 +1,3 @@
-/* ====================================================================
-    Copyright (C) 2004-2008  fyiReporting Software, LLC
-   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
-
-    This file is an example showing using the fyiReporting RDL project.
-	
-    You may modify and use this file in any fashion you want.  The RdlEngine.dll
-	module is available from fyiReporting Software, LLC and is licensed under 
-	the Apache Version 2 license.  
-
-    For additional information, email info@fyireporting.com or visit
-    the website www.fyiReporting.com.
-*/
-
 using System;
 using System.IO;
 using System.Collections;
