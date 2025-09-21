@@ -1,40 +1,7 @@
-/* ====================================================================
-   Copyright (C) 2004-2008  fyiReporting Software, LLC
-   Copyright (C) 2011  Peter Gill <peter@majorsilence.com>
-
-   This file is part of the fyiReporting RDL project.
-	
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at 
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
-   For additional information, email info@fyireporting.com or visit
-   the website www.fyiReporting.com.
-*/
-
-/*
- Changes were made to this file.
- Most changes are marked with "// Josh:", not including the parenthesis
- and followed by a desciprtion of the change. Most strings throughout this
- file that reference a file path have been changed to Uris.
-
- Added support for IPC through IpcChannels instead of the "file" method previously used.
- Added RdlIpcObject or IPC.
-*/
-
-
 using Majorsilence.Reporting.Rdl;
 using Majorsilence.Reporting.RdlDesign.Resources;
 using Majorsilence.Reporting.RdlViewer;
+using Majorsilence.WinformUtils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -190,6 +157,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
 		public event RdlDesign.RdlDesignerSavedFileEventHandler SavedFileEvent;
 
+        private bool _openPreviousSession;
 		/// <summary>
 		/// Designer constructor.
 		/// </summary>
@@ -197,41 +165,45 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// <param name="openPreviousSession">True or False open the previous reports that were open in the designer.</param>
 		public RdlDesigner(string IpcChannelPortName, bool openPreviousSession)
 		{
-			InitializeComponent();
+            InitializeComponent();
+            _openPreviousSession = openPreviousSession;
+        }
+        
+        private void RdlDesigner_Load(object sender, EventArgs e)
+        {
+            this.ShowWaiter();
+            KeyPreview = true;
+            GetStartupState();
 
-			KeyPreview = true;
-			GetStartupState();
+            // Intialize the recent file menu
+            RecentFilesMenu();
+            propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
+            IsMdiContainer = true;
+            
+            Application.AddMessageFilter(this);
 
-			// Intialize the recent file menu
-			RecentFilesMenu();
-			propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
-			IsMdiContainer = true;
+            this.MdiChildActivate += new EventHandler(RdlDesigner_MdiChildActivate);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlDesigner_Closing);
+            _GetPassword = new Rdl.NeedPassword(this.GetPassword);
 
+            InitToolbar();
 
-			Application.AddMessageFilter(this);
+            //Build CustomItems insert menu
+            BuildCustomItemsInsertMenu(insertToolStripMenuItem);
 
-			this.MdiChildActivate += new EventHandler(RdlDesigner_MdiChildActivate);
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.RdlDesigner_Closing);
-			_GetPassword = new Rdl.NeedPassword(this.GetPassword);
+            // open up the current files if any
+            if (_CurrentFiles != null && _openPreviousSession == true)
+            {
+                foreach (Uri file in _CurrentFiles)
+                {
+                    CreateMDIChild(file, null, false);
+                }
+                _CurrentFiles = null;       // don't need this any longer
+            }
 
-			InitToolbar();
-
-			//Build CustomItems insert menu
-			BuildCustomItemsInsertMenu(insertToolStripMenuItem);
-
-			// open up the current files if any
-			if (_CurrentFiles != null && openPreviousSession == true)
-			{
-				foreach (Uri file in _CurrentFiles)
-				{
-					CreateMDIChild(file, null, false);
-				}
-				_CurrentFiles = null;       // don't need this any longer
-			}
-
-			DesignTabChanged(this, new EventArgs());        // force toolbar to get updated
-
-		}
+            DesignTabChanged(this, new EventArgs());        // force toolbar to get updated
+            this.HideWaiter();
+        }
 
         /// <summary>
         /// Handles mousewheel processing when window under mousewheel doesn't have focus
@@ -3568,13 +3540,6 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 			_TempReportFiles = null;
 		}
-
-
-		private void RdlDesigner_Load(object sender, EventArgs e)
-		{
-
-		}
-
 
 		private void menuFormatAlignButton_Click(object sender, System.EventArgs e)
 		{
