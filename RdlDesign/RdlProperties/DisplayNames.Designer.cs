@@ -39,7 +39,7 @@ namespace Majorsilence.Reporting.RdlDesign.RdlProperties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("fyiReporting.RdlDesign.RdlProperties.DisplayNames", typeof(DisplayNames).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Majorsilence.Reporting.RdlDesign.RdlProperties.DisplayNames", typeof(DisplayNames).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
