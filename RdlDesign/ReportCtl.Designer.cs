@@ -43,6 +43,7 @@ private System.ComponentModel.Container components = null;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportCtl));
+            this.DoubleBuffered = true;
 			this.tbReportAuthor = new System.Windows.Forms.TextBox();
 			this.tbReportDescription = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();

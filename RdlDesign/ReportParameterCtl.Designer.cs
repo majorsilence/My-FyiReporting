@@ -30,6 +30,7 @@ namespace Majorsilence.Reporting.RdlDesign
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportParameterCtl));
+            this.DoubleBuffered = true;
 			this.lbParameters = new System.Windows.Forms.ListBox();
 			this.bAdd = new System.Windows.Forms.Button();
 			this.bRemove = new System.Windows.Forms.Button();

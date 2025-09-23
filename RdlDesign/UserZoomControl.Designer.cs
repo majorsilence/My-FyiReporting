@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.DoubleBuffered = true;
             this.BtnPlus = new System.Windows.Forms.Button();
             this.BtnMinus = new System.Windows.Forms.Button();
             this.TxtZoomValue = new System.Windows.Forms.TextBox();

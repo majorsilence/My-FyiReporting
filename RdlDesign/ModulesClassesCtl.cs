@@ -125,6 +125,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulesClassesCtl));
+            this.DoubleBuffered = true;
 			this.label1 = new System.Windows.Forms.Label();
 			this.bDeleteCM = new System.Windows.Forms.Button();
 			this.dgCodeModules = new System.Windows.Forms.DataGridView();

@@ -239,6 +239,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleTextCtl));
+            this.DoubleBuffered = true;
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();

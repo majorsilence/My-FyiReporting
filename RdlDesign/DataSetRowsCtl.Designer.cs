@@ -30,6 +30,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetRowsCtl));
+            this.DoubleBuffered = true;
 			this.dgRows = new System.Windows.Forms.DataGridView();
 			this.bDelete = new System.Windows.Forms.Button();
 			this.bUp = new System.Windows.Forms.Button();

@@ -190,7 +190,6 @@ namespace Majorsilence.Reporting.RdlViewer
 
         public RdlViewer()
         {
-            this.DoubleBuffered = true;
             // CustomReportItem init 
             RdlEngineConfig.GetCustomReportTypes();
 

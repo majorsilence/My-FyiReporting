@@ -107,6 +107,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubreportCtl));
+            this.DoubleBuffered = true;
 			this.dgParms = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbReportFile = new System.Windows.Forms.TextBox();

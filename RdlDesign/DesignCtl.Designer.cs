@@ -147,6 +147,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesignCtl));
+            this.DoubleBuffered = true;
 			this.ContextMenuDefault = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.MenuDefaultProperties = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();

@@ -147,6 +147,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionCtl));
+            this.DoubleBuffered = true;
 			this.gbPosition = new System.Windows.Forms.GroupBox();
 			this.tbHeight = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();

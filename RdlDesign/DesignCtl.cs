@@ -60,7 +60,6 @@ namespace Majorsilence.Reporting.RdlDesign
         public DesignCtl()
 		{
 			InitializeComponent();
-            this.DoubleBuffered = true;
 			// Get our graphics DPI					   
 			Graphics g = null;			
 			try

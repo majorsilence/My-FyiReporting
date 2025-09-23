@@ -86,6 +86,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomReportItemCtl));
+            this.DoubleBuffered = true;
 			this.pgProps = new System.Windows.Forms.PropertyGrid();
 			this.bExpr = new System.Windows.Forms.Button();
 			this.SuspendLayout();

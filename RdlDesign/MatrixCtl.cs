@@ -85,6 +85,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatrixCtl));
+            this.DoubleBuffered = true;
 			this.label2 = new System.Windows.Forms.Label();
 			this.cbDataSet = new System.Windows.Forms.ComboBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();

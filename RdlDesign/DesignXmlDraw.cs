@@ -81,6 +81,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
         internal DesignXmlDraw():base()
 		{
+            this.DoubleBuffered = true;
 			// Get our graphics DPI					   
 			Graphics ga = null;				
 			try

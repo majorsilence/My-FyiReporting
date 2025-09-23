@@ -692,7 +692,8 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlEditPreview));
-			this.tcEHP = new System.Windows.Forms.TabControl();
+            this.DoubleBuffered = true;
+            this.tcEHP = new System.Windows.Forms.TabControl();
 			this.tpDesign = new System.Windows.Forms.TabPage();
 			this.tpEditor = new System.Windows.Forms.TabPage();
 			this.scintilla1 = new ScintillaNET.Scintilla();

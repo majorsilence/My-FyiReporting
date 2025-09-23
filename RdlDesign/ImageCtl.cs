@@ -108,6 +108,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageCtl));
+            this.DoubleBuffered = true;
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.bExternalExpr = new System.Windows.Forms.Button();
 			this.bEmbeddedExpr = new System.Windows.Forms.Button();

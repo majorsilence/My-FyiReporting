@@ -39,8 +39,6 @@ namespace Majorsilence.Reporting.RdlReader
         [Obsolete("This constructor was only for Mono compatibility, use RdlReader() instead.")]
         public RdlReader(bool mono)
         {
-            this.DoubleBuffered = true;
-            
             GetStartupState();
 
             InitializeComponent();

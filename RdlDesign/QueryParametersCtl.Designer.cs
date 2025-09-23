@@ -30,6 +30,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryParametersCtl));
+            this.DoubleBuffered = true;
             this.dgParms = new System.Windows.Forms.DataGridView();
             this.dgtbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgtbValue = new System.Windows.Forms.DataGridViewTextBoxColumn();

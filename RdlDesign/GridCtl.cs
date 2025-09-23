@@ -97,6 +97,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridCtl));
+            this.DoubleBuffered = true;
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.chkPBAfter = new System.Windows.Forms.CheckBox();
 			this.chkPBBefore = new System.Windows.Forms.CheckBox();

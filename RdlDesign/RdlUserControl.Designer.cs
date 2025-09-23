@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlUserControl));
+            this.DoubleBuffered = true;
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.rdlEditPreview1 = new Majorsilence.Reporting.RdlDesign.RdlEditPreview();
 			this.mainProperties = new Majorsilence.Reporting.RdlDesign.PropertyCtl();

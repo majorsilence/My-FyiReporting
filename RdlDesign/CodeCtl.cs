@@ -89,6 +89,7 @@ namespace Majorsilence.Reporting.RdlDesign
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeCtl));
+            this.DoubleBuffered = true;
 			this.label1 = new System.Windows.Forms.Label();
 			this.bCheckSyntax = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();

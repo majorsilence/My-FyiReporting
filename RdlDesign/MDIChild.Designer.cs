@@ -14,6 +14,7 @@ TabPage _Tab;
 
 		private void InitializeComponent()
 		{
+            this.DoubleBuffered = true;
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIChild));
 			this.rdlDesigner = new Majorsilence.Reporting.RdlDesign.RdlEditPreview();
 			this.SuspendLayout();

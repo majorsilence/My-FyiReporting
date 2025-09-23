@@ -26,6 +26,7 @@ private VScrollBar _vScroll;
 private void InitializeComponent()
 {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlViewer));
+            this.DoubleBuffered = true;
 			this._RunButton = new System.Windows.Forms.Button();
 			this._hScroll = new System.Windows.Forms.HScrollBar();
 			this._vScroll = new System.Windows.Forms.VScrollBar();

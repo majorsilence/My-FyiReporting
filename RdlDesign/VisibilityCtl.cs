@@ -91,6 +91,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisibilityCtl));
+            this.DoubleBuffered = true;
 			this.grpBoxVisibility = new System.Windows.Forms.GroupBox();
 			this.bHidden = new System.Windows.Forms.Button();
 			this.cbToggle = new System.Windows.Forms.ComboBox();
