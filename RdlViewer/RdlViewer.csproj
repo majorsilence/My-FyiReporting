@@ -60,6 +60,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\EncryptionProvider\EncryptionProvider.csproj" />
+		<ProjectReference Include="..\Majorsilence.WinformUtils\Majorsilence.WinformUtils.csproj" />
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>
 	<ItemGroup>

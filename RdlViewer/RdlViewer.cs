@@ -34,6 +34,7 @@ using EncryptionProvider;
 using EncryptionProvider.String;
 using Majorsilence.Reporting.RdlViewer.Resources;
 using Majorsilence.Reporting.Rdl;
+using Majorsilence.WinformUtils;
 
 namespace Majorsilence.Reporting.RdlViewer
 {
@@ -186,7 +187,6 @@ namespace Majorsilence.Reporting.RdlViewer
         private bool _ShowParameters = true;
         private bool _ShowWaitDialog = true;
         // show wait dialog when running report
-        private volatile bool _stopWaitDialog = false;
 
         public RdlViewer()
         {
@@ -1559,8 +1559,7 @@ namespace Majorsilence.Reporting.RdlViewer
         {
             try
             {
-                DialogWait wait = new DialogWait(this, StopWaitDialog);
-                wait.ShowDialog();
+                this.ShowWaiter();
             }
             catch (ObjectDisposedException)
             {
@@ -1571,13 +1570,7 @@ namespace Majorsilence.Reporting.RdlViewer
                 MessageBox.Show(ex.Message, Strings.RdlViewer_ShowD_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public bool StopWaitDialog()
-        {
-            return _stopWaitDialog;
-            // This is the callback
-        }
-
+        
         /// <summary>
         /// Call LoadPageIfNeeded when a routine requires the report to be loaded in order
         /// to fulfill the request.
@@ -1587,19 +1580,12 @@ namespace Majorsilence.Reporting.RdlViewer
             if (_pgs == null)
             {
                 Cursor savec = null;
-                System.Threading.Thread t = null;
                 try
                 {
                     // 15052008 AJM - Updating Render notification window - This could be improved to show current action in the future
                     if (_ShowWaitDialog)
                     {
-                        t = this.Visible ? new Thread(this.showWait) : new Thread(() => { /* do nothing */ });
-                        t.Start();
-
-                        while (!t.IsAlive)
-                        {
-                            System.Threading.Thread.Sleep(1);
-                        }
+                        showWait();
                     }
 
                     savec = this.Cursor;                // this could take a while so put up wait cursor
@@ -1611,15 +1597,9 @@ namespace Majorsilence.Reporting.RdlViewer
                 }
                 finally
                 {
+                    this.HideWaiter();
                     if (savec != null)
                         this.Cursor = savec;
-                    if (t != null)
-                    {
-                        _stopWaitDialog = true;
-                        t.Join();
-                        _stopWaitDialog = false;
-                    }
-
                 }
                 RdlViewer_Layout(this, null);               // re layout based on new report
             }
@@ -1745,7 +1725,6 @@ namespace Majorsilence.Reporting.RdlViewer
         private async void ParametersViewClick(object sender, System.EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            System.Threading.Thread t = null;
             try
             {
                 _RunButton.Enabled = false;
@@ -1786,16 +1765,9 @@ namespace Majorsilence.Reporting.RdlViewer
                 {
                     return;
                 }
-
-                if (_ShowWaitDialog)
-                {
-                    t = new System.Threading.Thread(new System.Threading.ThreadStart(showWait));
-                    t.Start();
-                    while (!t.IsAlive)
-                    {
-                        System.Threading.Thread.Sleep(1);
-                    }
-                }
+                
+                showWait();
+                  
                 _pgs = await GetPages(this._Report);
                 _DrawPanel.Pgs = _pgs;
                 _vScroll.Value = 0;
@@ -1809,16 +1781,12 @@ namespace Majorsilence.Reporting.RdlViewer
             }
             finally
             {
+                this.HideWaiter();
                 _RunButton.Enabled = true;
                 Cursor.Current = Cursors.Default;
-                if (t != null)
-                {
-                    _stopWaitDialog = true;
-                    t.Join();
-                    _stopWaitDialog = false;
-                }
-            }
 
+               
+            }
         }
 
         private void WarningClick(object sender, System.EventArgs e)
