@@ -51,9 +51,11 @@ namespace Majorsilence.Reporting.RdlViewer
 
         public PageDrawing() : this(null)
         {         
+            this.DoubleBuffered = true;
         }
         public PageDrawing(Pages pgs)
         {
+            this.DoubleBuffered = true;
             // Set up the tooltip
             _tt = new ToolTip();
             _tt.Active = false;

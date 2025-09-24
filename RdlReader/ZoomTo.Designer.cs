@@ -19,6 +19,7 @@ private System.ComponentModel.Container components = null;
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZoomTo));
+            this.DoubleBuffered = true;
 			this.label1 = new System.Windows.Forms.Label();
 			this.cbMagnify = new System.Windows.Forms.ComboBox();
 			this.bOK = new System.Windows.Forms.Button();

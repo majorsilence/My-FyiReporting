@@ -1580,6 +1580,7 @@ namespace Majorsilence.Reporting.RdlMapFile
 
         private void InitializeComponent()
         {
+            this.DoubleBuffered = true;
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
             this.SuspendLayout();

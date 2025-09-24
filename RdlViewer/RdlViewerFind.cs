@@ -45,6 +45,7 @@ namespace Majorsilence.Reporting.RdlViewer
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RdlViewerFind));
+            this.DoubleBuffered = true;
 			this.bClose = new System.Windows.Forms.Button();
 			this.tbFind = new System.Windows.Forms.TextBox();
 			this.bFindNext = new System.Windows.Forms.Button();

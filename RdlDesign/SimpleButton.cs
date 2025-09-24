@@ -17,6 +17,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		{	
 			this.Parent = parent;
 			this.TranparencyColor = Color.White;
+            this.DoubleBuffered = true;
 
 			this.BackColor = parent.BackColor;
 			this.ForeColor = this.Enabled? Color.Black: Color.Gray;
