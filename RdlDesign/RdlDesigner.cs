@@ -140,7 +140,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		{
 			XmlDocument xmlDoc = new XmlDocument();
             string xml = await File.ReadAllTextAsync(filePath.AbsolutePath);
-			xmlDoc.Load(xml);
+			xmlDoc.LoadXml(xml);
 
 			foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
 			{
@@ -174,7 +174,7 @@ namespace Majorsilence.Reporting.RdlDesign
         {
             this.ShowWaiter();
             KeyPreview = true;
-            GetStartupState();
+            await GetStartupStateAsync();
 
             // Initialize the recent file menu
             RecentFilesMenu();
@@ -2396,7 +2396,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
-		private void GetStartupState()
+		private async Task GetStartupStateAsync()
 		{
 			_RecentFiles = new SortedList<DateTime, string>();
 			_CurrentFiles = new List<Uri>();
@@ -2407,7 +2407,8 @@ namespace Majorsilence.Reporting.RdlDesign
 			{
 				XmlDocument xDoc = new XmlDocument();
 				xDoc.PreserveWhitespace = false;
-				xDoc.Load(optFileName);
+                string xml = await System.IO.File.ReadAllTextAsync(optFileName);
+				xDoc.LoadXml(xml);
 				XmlNode xNode;
 				xNode = xDoc.SelectSingleNode("//designerstate");
 
