@@ -117,13 +117,13 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// You can open as many reports as you want by calling this function. The only limitation is that
 		/// the designer must already be running by having called the Show() function first.
 		/// </remarks>
-		public void OpenFile(string filePath)
+		public async Task OpenFileAsync(string filePath)
 		{
-			this.OpenFile(new Uri(filePath));
+			await this.OpenFileAsync(new Uri(filePath));
 		}
-		public void OpenFile(Uri filePath)
+		public async Task OpenFileAsync(Uri filePath)
 		{
-			CreateMDIChild(filePath, null, false);
+			await CreateMDIChildAsync(filePath, null, false);
 			RecentFilesMenu();
 		}
 
@@ -132,14 +132,15 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="connectionString">The connection string that will be used</param>
-		public void OpenFile(string filePath, string connectionString)
+		public async Task OpenFileAsync(string filePath, string connectionString)
 		{
-			OpenFile(new Uri(filePath), connectionString);
+			await OpenFileAsync(new Uri(filePath), connectionString);
 		}
-		public void OpenFile(Uri filePath, string connectionString)
+		public async Task OpenFileAsync(Uri filePath, string connectionString)
 		{
 			XmlDocument xmlDoc = new XmlDocument();
-			xmlDoc.Load(filePath.AbsolutePath);
+            string xml = await File.ReadAllTextAsync(filePath.AbsolutePath);
+			xmlDoc.Load(xml);
 
 			foreach (XmlNode node in xmlDoc.GetElementsByTagName("ConnectString"))
 			{
@@ -148,7 +149,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
 			xmlDoc.Save(filePath.AbsolutePath);
 
-			CreateMDIChild(filePath, null, false);
+			await CreateMDIChildAsync(filePath, null, false);
 			RecentFilesMenu();
 		}
 
@@ -169,13 +170,13 @@ namespace Majorsilence.Reporting.RdlDesign
             _openPreviousSession = openPreviousSession;
         }
         
-        private void RdlDesigner_Load(object sender, EventArgs e)
+        private async void RdlDesigner_Load(object sender, EventArgs e)
         {
             this.ShowWaiter();
             KeyPreview = true;
             GetStartupState();
 
-            // Intialize the recent file menu
+            // Initialize the recent file menu
             RecentFilesMenu();
             propertiesWindowsToolStripMenuItem.Checked = _ShowProperties;
             IsMdiContainer = true;
@@ -196,7 +197,7 @@ namespace Majorsilence.Reporting.RdlDesign
             {
                 foreach (Uri file in _CurrentFiles)
                 {
-                    CreateMDIChild(file, null, false);
+                    await CreateMDIChildAsync(file, null, false);
                 }
                 _CurrentFiles = null;       // don't need this any longer
             }
@@ -801,7 +802,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			//			Environment.Exit(0);
 		}
 
-		private void menuFileOpen_Click(object sender, EventArgs e)
+		private async void menuFileOpen_Click(object sender, EventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			OpenFileDialog ofd = new OpenFileDialog();
@@ -826,7 +827,7 @@ namespace Majorsilence.Reporting.RdlDesign
 				{
 					foreach (string file in ofd.FileNames)
 					{
-						CreateMDIChild(new Uri(file), null, false);
+						await CreateMDIChildAsync(new Uri(file), null, false);
 					}
 					RecentFilesMenu();      // update the menu for recent files
 				}
@@ -838,7 +839,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		}
 
 		// Create an MDI child.   Only creates it if not already open.
-		private MDIChild CreateMDIChild(Uri file, string rdl, bool bMenuUpdate)
+		private async Task<MDIChild> CreateMDIChildAsync(Uri file, string rdl, bool bMenuUpdate)
 		{
 			MDIChild mcOpen = null;
 			if (file != null)
@@ -874,7 +875,7 @@ namespace Majorsilence.Reporting.RdlDesign
 					if (file != null)
 					{
 						mc.Viewer.Folder = Path.GetDirectoryName(file.LocalPath);
-						mc.SourceFile = file;
+						await mc.SetSourceFileAsync(file);
 						mc.Text = Path.GetFileName(file.LocalPath);
 						mc.DrawCtl.Folder = Path.GetDirectoryName(file.LocalPath);
 						mc.Viewer.ReportName = Path.GetFileNameWithoutExtension(file.LocalPath);
@@ -898,7 +899,7 @@ namespace Majorsilence.Reporting.RdlDesign
 					tp.ToolTipText = file == null ? "" : file.LocalPath;
 					mainTC.Controls.Add(tp);
 					mc.Tab = tp;
-
+                    
 					mc.Show();
 					mcOpen = mc;
 
@@ -1282,7 +1283,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
-		private void OpenSubReportEvent(object sender, SubReportEventArgs e)
+		private async void OpenSubReportEvent(object sender, SubReportEventArgs e)
 		{
 			MDIChild mc = this.ActiveMdiChild as MDIChild;
 			if (mc == null)
@@ -1298,7 +1299,7 @@ namespace Majorsilence.Reporting.RdlDesign
 				file = new Uri(file.LocalPath + Path.DirectorySeparatorChar + e.SubReportName + ".rdl");
 			}
 
-			CreateMDIChild(file, null, true);
+			await CreateMDIChildAsync(file, null, true);
 		}
 
 		private void HeightChanged(object sender, HeightEventArgs e)
@@ -1569,7 +1570,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
-		private void menuFileNewReport_Click(object sender, System.EventArgs e)
+		private async void menuFileNewReport_Click(object sender, System.EventArgs e)
 		{
 			using (DialogDatabase dlgDB = new DialogDatabase(this))
 			{
@@ -1583,7 +1584,7 @@ namespace Majorsilence.Reporting.RdlDesign
 				string rdl = dlgDB.ResultReport;
 
 				// Create the MDI child using the RDL syntax the wizard generates
-				MDIChild mc = CreateMDIChild(null, rdl, false);
+				MDIChild mc = await CreateMDIChildAsync(null, rdl, false);
 				mc.Modified = true;
 				// Force building of report names for new reports
 				if (mc.DrawCtl.ReportNames == null) { }
@@ -2318,14 +2319,14 @@ namespace Majorsilence.Reporting.RdlDesign
 			this.LayoutMdi(MdiLayout.TileVertical);
 		}
 
-		private void menuRecentItem_Click(object sender, System.EventArgs e)
+		private async void menuRecentItem_Click(object sender, System.EventArgs e)
 		{
 			ToolStripMenuItem m = (ToolStripMenuItem)sender;
 
 			int si = m.Text.IndexOf(" ");
 			Uri file = new Uri(m.Text.Substring(si + 1));
 
-			CreateMDIChild(file, null, true);
+			await CreateMDIChildAsync(file, null, true);
 		}
 
 		private void RdlDesigner_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -3745,7 +3746,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			SetProperties(mc);
 		}
 
-		private void RdlDesigner_DragDrop(object sender, DragEventArgs e)
+		private async void RdlDesigner_DragDrop(object sender, DragEventArgs e)
 		{
 			try
 			{
@@ -3755,7 +3756,7 @@ namespace Majorsilence.Reporting.RdlDesign
 				{
 					if (s[i].ToLower().EndsWith(".rdl"))
 					{
-						CreateMDIChild(new Uri(s[i]), null, false);
+						await CreateMDIChildAsync(new Uri(s[i]), null, false);
 					}
 				}
 			}

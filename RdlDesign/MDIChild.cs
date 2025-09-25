@@ -366,6 +366,14 @@ namespace Majorsilence.Reporting.RdlDesign
                 this.rdlDesigner.SetRdlText(rdl == null ? "" : rdl);
             }
         }
+        
+        public async Task SetSourceFileAsync(Uri file)
+        {
+            _SourceFile = file;
+
+            string rdl = await GetRdlSourceAsync();
+             this.rdlDesigner.SetRdlText(rdl == null ? "" : rdl);
+        }
 
         private String doPossibleDecryption(String rdl)
         {
@@ -401,6 +409,26 @@ namespace Majorsilence.Reporting.RdlDesign
             {
                 fs = new StreamReader(_SourceFile.LocalPath);
                 prog = fs.ReadToEnd();
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+            }
+
+            prog = doPossibleDecryption(prog);
+
+            return prog;
+        }
+        
+        private async Task<string> GetRdlSourceAsync()
+        {
+            StreamReader fs = null;
+            string prog = null;
+            try
+            {
+                fs = new StreamReader(_SourceFile.LocalPath);
+                prog = await fs.ReadToEndAsync();
             }
             finally
             {
