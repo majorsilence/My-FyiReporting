@@ -13,14 +13,12 @@ namespace ReportTests.Utils
             var thread = System.Threading.Thread.CurrentThread;
 
             thread.CurrentCulture = new CultureInfo(cultureName);
-          
         }
 
         public static Uri OutputTestsFolder()
         {
             string tmpf = System.IO.Path.GetTempPath();
             return new Uri(System.IO.Path.Combine(tmpf, "rdlTestResults", Guid.NewGuid().ToString()));
-
         }
 
         public static Uri ReportsFolder(string subFoder = null)
@@ -31,19 +29,11 @@ namespace ReportTests.Utils
                 return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder, subFoder));
             else
                 return new Uri(System.IO.Path.Combine(cwd, defaultReportsFolder));
-
-
         }
 
         static string CurrentDirectory()
         {
-            // Works from within nunit and regular execution
-            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var u = new UriBuilder(codeBase);
-
-            var path = Uri.UnescapeDataString(u.Path);
-            return System.IO.Path.GetDirectoryName(path);
+            return System.IO.Directory.GetCurrentDirectory();
         }
-
     }
 }
