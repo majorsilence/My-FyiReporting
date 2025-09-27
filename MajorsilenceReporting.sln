@@ -239,11 +239,9 @@ Global
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Debug-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Debug-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Release-DrawingCompat|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD0687EF-1A0B-4992-9A17-1B8ABDD1A2D2}.Release-DrawingCompat|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
