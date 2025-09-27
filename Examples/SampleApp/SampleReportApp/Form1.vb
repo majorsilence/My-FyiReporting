@@ -19,7 +19,7 @@
     End Sub
 
 
-    Private Sub RdlViewer1_PageNavigation(sender As Object, e As fyiReporting.RdlViewer.PageNavigationEventArgs) Handles RdlViewer1.PageNavigation
+    Private Sub RdlViewer1_PageNavigation(sender As Object, e As Majorsilence.Reporting.RdlViewer.PageNavigationEventArgs) Handles RdlViewer1.PageNavigation
         MessageBox.Show(e.NewPage)
     End Sub
 End Class

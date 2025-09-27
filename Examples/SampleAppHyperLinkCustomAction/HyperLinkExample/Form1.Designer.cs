@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            this.rdlViewer1 = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             this.ButtonReloadReport = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.rdlViewer1.PageCurrent = 1;
             this.rdlViewer1.Parameters = "";
             this.rdlViewer1.ReportName = null;
-            this.rdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous;
+            this.rdlViewer1.ScrollMode = Majorsilence.Reporting.RdlViewer.ScrollModeEnum.Continuous;
             this.rdlViewer1.SelectTool = false;
             this.rdlViewer1.ShowFindPanel = false;
             this.rdlViewer1.ShowParameterPanel = true;
@@ -60,8 +60,8 @@
             this.rdlViewer1.TabIndex = 0;
             this.rdlViewer1.UseTrueMargins = true;
             this.rdlViewer1.Zoom = 0.664902F;
-            this.rdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth;
-            this.rdlViewer1.Hyperlink += new fyiReporting.RdlViewer.RdlViewer.HyperlinkEventHandler(this.rdlViewer1_Hyperlink);
+            this.rdlViewer1.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.FitWidth;
+            this.rdlViewer1.Hyperlink += new Majorsilence.Reporting.RdlViewer.RdlViewer.HyperlinkEventHandler(this.rdlViewer1_Hyperlink);
             // 
             // ButtonReloadReport
             // 
@@ -92,7 +92,7 @@
 
         #endregion
 
-        private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
+        private Majorsilence.Reporting.RdlViewer.RdlViewer rdlViewer1;
         internal System.Windows.Forms.Button ButtonReloadReport;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }

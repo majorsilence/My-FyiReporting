@@ -9,10 +9,10 @@
     <PackageVersion Include="DocumentFormat.OpenXml" Version="3.2.0" />
     <PackageVersion Include="dotConnect.Express.for.PostgreSQL" Version="8.3.10" />
     <PackageVersion Include="iTextSharp.LGPLv2.Core" Version="3.7.4" />
-    <PackageVersion Include="Majorsilence.Reporting.RdlViewer" Version="5.0.8" />
+    <PackageVersion Include="Majorsilence.Reporting.RdlViewer" Version="5.0.16" />
     <PackageVersion Include="Majorsilence.Reporting.RdlEngine" Version="5.0.8" />
-    <PackageVersion Include="Majorsilence.Reporting.RdlCri" Version="5.0.8" />
-    <PackageVersion Include="Majorsilence.Reporting.ReportDesigner" Version="5.0.8" />
+    <PackageVersion Include="Majorsilence.Reporting.RdlCri" Version="5.0.16" />
+    <PackageVersion Include="Majorsilence.Reporting.ReportDesigner" Version="5.0.16" />
     <PackageVersion Include="Microsoft.Data.Edm" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.OData" Version="5.8.5" />
     <PackageVersion Include="Microsoft.Data.Services.Client" Version="5.8.5" />

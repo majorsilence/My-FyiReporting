@@ -16,7 +16,7 @@ namespace SampleApp2_SetData
         public Form1()
         {
             InitializeComponent();
-            rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            rdlViewer1 = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             rdlViewer1.Dock = DockStyle.Fill;
             this.Controls.Add(rdlViewer1);
         }

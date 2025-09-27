@@ -14,8 +14,8 @@ namespace SampleApp2_SetData
 {
     public class Form1 : Form
     {
-        private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
-        private fyiReporting.RdlViewer.ViewerToolstrip reportStrip;
+        private Majorsilence.Reporting.RdlViewer.RdlViewer rdlViewer1;
+        private Majorsilence.Reporting.RdlViewer.ViewerToolstrip reportStrip;
 
         public Form1()
         {
@@ -24,7 +24,7 @@ namespace SampleApp2_SetData
 
         private void InitializeViewer()
         {
-            this.rdlViewer1 = new fyiReporting.RdlViewer.RdlViewer();
+            this.rdlViewer1 = new Majorsilence.Reporting.RdlViewer.RdlViewer();
             this.rdlViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -39,7 +39,7 @@ namespace SampleApp2_SetData
         {
             InitializeViewer();
 
-            reportStrip = new fyiReporting.RdlViewer.ViewerToolstrip(rdlViewer1);
+            reportStrip = new Majorsilence.Reporting.RdlViewer.ViewerToolstrip(rdlViewer1);
             //reportStrip.Location = new Point(0, 0);
             this.Controls.Add(reportStrip);
 

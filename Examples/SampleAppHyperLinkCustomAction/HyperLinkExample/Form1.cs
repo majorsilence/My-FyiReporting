@@ -32,7 +32,7 @@ namespace HyperLinkExample
             await rdlViewer1.Rebuild();
         }
 
-        private void rdlViewer1_Hyperlink(object source, fyiReporting.RdlViewer.HyperlinkEventArgs e)
+        private void rdlViewer1_Hyperlink(object source, Majorsilence.Reporting.RdlViewer.HyperlinkEventArgs e)
         {
             // report LastName field as HyperLink action
             var url = new Uri(e.Hyperlink);

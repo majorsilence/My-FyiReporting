@@ -44,7 +44,7 @@
 
         #endregion
 
-        private fyiReporting.RdlViewer.RdlViewer rdlViewer1;
+        private Majorsilence.Reporting.RdlViewer.RdlViewer rdlViewer1;
     }
 }
 

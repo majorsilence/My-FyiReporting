@@ -22,7 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.RdlViewer1 = New fyiReporting.RdlViewer.RdlViewer()
+        Me.RdlViewer1 = New Majorsilence.Reporting.RdlViewer.RdlViewer()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ButtonSelectReport = New System.Windows.Forms.Button()
@@ -48,7 +48,7 @@ Partial Class Form1
         Me.RdlViewer1.PageCurrent = 1
         Me.RdlViewer1.Parameters = ""
         Me.RdlViewer1.ReportName = Nothing
-        Me.RdlViewer1.ScrollMode = fyiReporting.RdlViewer.ScrollModeEnum.Continuous
+        Me.RdlViewer1.ScrollMode = Majorsilence.Reporting.RdlViewer.ScrollModeEnum.Continuous
         Me.RdlViewer1.SelectTool = False
         Me.RdlViewer1.ShowFindPanel = False
         Me.RdlViewer1.ShowParameterPanel = True
@@ -57,7 +57,7 @@ Partial Class Form1
         Me.RdlViewer1.TabIndex = 0
         Me.RdlViewer1.UseTrueMargins = True
         Me.RdlViewer1.Zoom = 0.7681401!
-        Me.RdlViewer1.ZoomMode = fyiReporting.RdlViewer.ZoomEnum.FitWidth
+        Me.RdlViewer1.ZoomMode = Majorsilence.Reporting.RdlViewer.ZoomEnum.FitWidth
         '
         'Label1
         '
@@ -113,7 +113,7 @@ Partial Class Form1
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents RdlViewer1 As fyiReporting.RdlViewer.RdlViewer
+    Friend WithEvents RdlViewer1 As Majorsilence.Reporting.RdlViewer.RdlViewer
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents ButtonSelectReport As System.Windows.Forms.Button
