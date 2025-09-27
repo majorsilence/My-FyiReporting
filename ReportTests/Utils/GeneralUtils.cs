@@ -33,7 +33,7 @@ namespace ReportTests.Utils
 
         static string CurrentDirectory()
         {
-            return System.IO.Directory.GetCurrentDirectory();
+            return AppContext.BaseDirectory;
         }
     }
 }
