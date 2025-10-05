@@ -3,6 +3,10 @@
     <DefineConstants>DRAWINGCOMPAT</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release-DrawingCompat' Or '$(Configuration)' == 'Release'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
   <PropertyGroup>
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>

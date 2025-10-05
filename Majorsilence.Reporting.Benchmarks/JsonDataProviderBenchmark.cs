@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +14,9 @@ namespace Majorsilence.Reporting.Benchmarks
     [AsciiDocExporter]
     [HtmlExporter]
     [MemoryDiagnoser]
-    [RPlotExporter]
-    [SimpleJob(RuntimeMoniker.Net80, baseline: true)]
+    //[RPlotExporter]
+    //[SimpleJob(baseline: true)]
+    [DrawingCompatJob(runStrategy: RunStrategy.Throughput, baseline: true, buildConfiguration: "Release-DrawingCompat")]
     public class JsonDataProviderBenchmark
     {
         string dataProvider = "Json";
@@ -31,8 +33,7 @@ namespace Majorsilence.Reporting.Benchmarks
                 pageHeaderText: "DataProviderTest TestMethod1");
             using var ms = new Majorsilence.Reporting.Rdl.MemoryStreamGen();
             await fyiReport.RunGetData(null);
-            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.CSV);
-            var text = ms.GetText();
+            await fyiReport.RunRender(ms, Majorsilence.Reporting.Rdl.OutputPresentationType.PDF);
         }
     }
 }
