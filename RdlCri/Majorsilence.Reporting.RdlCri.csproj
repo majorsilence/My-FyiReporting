@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <RootNamespace>fyiReporting.CRI</RootNamespace>
+        <RootNamespace>Majorsilence.Reporting.Cri</RootNamespace>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <AssemblyTitle>RdlCri</AssemblyTitle>
         <Description>RDL Project CustomReportItem Library</Description>

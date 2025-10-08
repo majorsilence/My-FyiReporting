@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
-		<AssemblyKeyContainerName></AssemblyKeyContainerName>
 		<DelaySign>false</DelaySign>
 		<OutputType>Library</OutputType>
-		<RootNamespace>fyiReporting.RdlViewer</RootNamespace>
+		<RootNamespace>Majorsilence.Reporting.RdlViewer</RootNamespace>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<PublishUrl>publish\</PublishUrl>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -12,7 +11,6 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
 		<AssemblyTitle>RDL Viewer</AssemblyTitle>
-		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.RdlViewer</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
