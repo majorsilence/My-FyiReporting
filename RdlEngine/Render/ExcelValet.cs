@@ -386,7 +386,6 @@ namespace Majorsilence.Reporting.Rdl
                 zip.PutNextEntry(ze);
                 ze = new ZipEntry("docProps/app.xml");
                 zip.PutNextEntry(ze);
-                // zip.Write(APPXML); //Changed due to Addition from Forum http://www.fyireporting.com/forum/viewtopic.php?t=905
                 WriteApp(zip); 
                 ze = new ZipEntry("docProps/core.xml");
                 zip.PutNextEntry(ze);
@@ -673,7 +672,6 @@ namespace Majorsilence.Reporting.Rdl
             zip.Write(ws);
         }
 
-        //Added from Forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
         private void WriteApp(ZipOutputStream zip)
         {
             StringBuilder sb = new StringBuilder(400);

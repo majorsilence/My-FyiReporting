@@ -43,9 +43,7 @@ namespace Majorsilence.Reporting.Rdl
 		internal int PageNumber=1;			// current page number
 		internal int TotalPages=1;			// total number of pages in report
 		internal DateTime ExecutionTime;	// start time of report execution
-
-
-        // - Added due to Embedded font bug. Solution posted by sinnovasoft. http://www.fyireporting.com/forum/viewtopic.php?t=1049
+        
         private bool _itextpdf = true;
         /// <summary> 
         ///  True: Renderpdf will use Add elements by itextsharp code; 

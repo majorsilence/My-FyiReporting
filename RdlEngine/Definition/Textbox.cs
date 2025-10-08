@@ -128,7 +128,6 @@ namespace Majorsilence.Reporting.Rdl
             await base.FinalPass();
             await _Value.FinalPass();
 
-            //The Changes below were added from Forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
 			if (this.DataElementName == null && this.Name == null)
 			{
 				// no name or dataelementname; try using expression

@@ -11,7 +11,6 @@ namespace Majorsilence.Reporting.Rdl
 	/// Presentation: generation of presentation; e.g. html, pdf, xml, ...
 	/// </summary>
 
-    //Changed from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
     internal interface IPresent : IDisposable 
 	{
 		// Meta Information: can be called at any time

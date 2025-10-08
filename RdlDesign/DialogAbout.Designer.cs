@@ -51,7 +51,7 @@ private System.ComponentModel.Container components = null;
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Tag = "mailto:info@majorsilence.com";
+            this.linkLabel3.Tag = "https://github.com/majorsilence/My-FyiReporting/discussions";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_LinkClicked);
             // 
             // linkLabel4

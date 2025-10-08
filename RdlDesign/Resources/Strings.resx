@@ -896,6 +896,7 @@ XML in error:
   <data name="DialogAbout_DialogAbout_About" xml:space="preserve">
     <value>RDL Designer creates reports defined using the Report Definition Language Specification.
 Copyright (C) 2004-2008  fyiReporting Software, LLC
+Copyright (C) 2025 Majorsilence Devs
 	
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

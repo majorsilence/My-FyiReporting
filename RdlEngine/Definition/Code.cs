@@ -126,7 +126,6 @@ namespace Majorsilence.Reporting.Rdl
             {
                 foreach(CodeModule cm in this.OwnerReport.CodeModules.Items)
                 {
-                    //Changed from Forum, User: solidstate http://www.fyireporting.com/forum/viewtopic.php?t=905
                     string modulePath = Path.Combine(Path.GetDirectoryName(re), cm.CdModule); 
                     cp.ReferencedAssemblies.Add(modulePath); 
                 }

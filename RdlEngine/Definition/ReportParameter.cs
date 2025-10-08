@@ -214,7 +214,7 @@ namespace Majorsilence.Reporting.Rdl
 
 			object rtv;
             if (v is Guid)
-            { //Added from Forum, User: solidstore http://www.fyireporting.com/forum/viewtopic.php?t=905
+            {
                 v = ((Guid)v).ToString("B"); 
             }
 			if (!AllowBlank && _dt == TypeCode.String && (string) v == "")

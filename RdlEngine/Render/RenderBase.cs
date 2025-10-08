@@ -145,7 +145,6 @@ namespace Majorsilence.Reporting.Rdl
 
         #endregion
 
-        //Replaced from forum, User: Aulofee http://www.fyireporting.com/forum/viewtopic.php?t=793
         public void Dispose() { }
 
 

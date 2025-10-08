@@ -216,7 +216,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="linkLabel3.Text" xml:space="preserve">
-    <value>comments@fyireporting.com</value>
+    <value>https://github.com/majorsilence/My-FyiReporting/discussions</value>
   </data>
   <data name="lVMVersion.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -433,7 +433,7 @@
     <value>7</value>
   </data>
   <data name="linkLabel4.Text" xml:space="preserve">
-    <value>http://www.fyireporting.com</value>
+    <value>https://github.com/majorsilence/My-FyiReporting</value>
   </data>
   <data name="linkLabel4.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -460,7 +460,7 @@
     <value>DialogAbout</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>fyiReporting MapFile Designer</value>
+    <value>Majorsilence Reporting MapFile Designer</value>
   </data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

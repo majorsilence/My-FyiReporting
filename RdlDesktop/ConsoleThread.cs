@@ -77,8 +77,8 @@ namespace Majorsilence.Reporting.RdlDesktop
 						Console.WriteLine("limitations under the License.");
 						Console.WriteLine("");
 
-						Console.WriteLine("For additional information, email info@fyireporting.com or visit");
-						Console.WriteLine("the website www.fyiReporting.com.");
+						Console.WriteLine("For additional information visit");
+						Console.WriteLine("the website https://github.com/majorsilence/My-FyiReporting.");
 						Console.Write(">");
 						break;
 					case "threads":

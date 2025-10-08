@@ -15,7 +15,7 @@ namespace Majorsilence.Reporting.Data
 		string _cmd;				// command to execute
 		// parsed constituents of the command
 		string _Url;				// url of the file 
-		string _Domain;				// Domain for the log's web site; e.g. www.fyireporting.com
+		string _Domain;				
 		string _IndexFile;			// name of the index file; e.g. what's the default page when none (e.g. index.html)
 		DataParameterCollection _Parameters = new DataParameterCollection();
 
