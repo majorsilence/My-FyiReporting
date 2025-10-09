@@ -119,8 +119,35 @@ See [Contribute](https://github.com/majorsilence/My-FyiReporting/wiki/Contribute
 
 # Benchmarks
 
+## one
+
+BenchmarkDotNet v0.15.2, macOS 26.0.1 (25A362) [Darwin 25.0.0]
+Apple M2, 1 CPU, 8 logical and 8 physical cores
+.NET SDK 9.0.200
+  [Host]     : .NET 8.0.13 (8.0.1325.6609), Arm64 RyuJIT AdvSIMD
+  Job-AKATUD : .NET 8.0.13 (8.0.1325.6609), Arm64 RyuJIT AdvSIMD
+
+BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput  
+
+| Method     | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0     | Gen1     | Allocated | Alloc Ratio |
+|----------- |---------:|----------:|----------:|------:|--------:|---------:|---------:|----------:|------------:|
+| NestedJson | 5.401 ms | 0.0560 ms | 0.0935 ms |  0.99 |    0.03 | 390.6250 | 125.0000 |   3.12 MB |        1.00 |
 
 
+
+|Threads|Duration|Source|Calls/Sec|Total Calls|Errors|
+|-------|--------|------|---------:|----------:|-----:|
+|1|30|JsonDataProviderBenchmark|162|4,873|0|
+|20|30|JsonDataProviderBenchmark|362|10,865|0|
+|20|30|JsonDataProviderBenchmark|363|10,894|0|
+|30|30|JsonDataProviderBenchmark|334|10,043|0|
+|40|30|JsonDataProviderBenchmark|316|9,497|0|
+|50|30|JsonDataProviderBenchmark|296|8,905|0|
+
+
+
+
+## two
 
 BenchmarkDotNet v0.15.2, Windows 11 (10.0.26100.6584/24H2/2024Update/HudsonValley)
 Intel Core i5-8350U CPU 1.70GHz (Max: 1.90GHz) (Kaby Lake R), 1 CPU, 8 logical and 4 physical cores
