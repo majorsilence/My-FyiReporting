@@ -116,3 +116,32 @@ If it doesn't have a feature that you want it to have, add it.  If it has a bug 
 
 See [Contribute](https://github.com/majorsilence/My-FyiReporting/wiki/Contribute).
 
+
+# Benchmarks
+
+
+
+
+BenchmarkDotNet v0.15.2, Windows 11 (10.0.26100.6584/24H2/2024Update/HudsonValley)
+Intel Core i5-8350U CPU 1.70GHz (Max: 1.90GHz) (Kaby Lake R), 1 CPU, 8 logical and 4 physical cores
+.NET SDK 8.0.414
+  [Host]     : .NET 8.0.20 (8.0.2025.41914), X64 RyuJIT AVX2
+  Job-AKATUD : .NET 8.0.20 (8.0.2025.41914), X64 RyuJIT AVX2
+
+BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput  
+
+| Method     | Mean     | Error    | StdDev   | Median   | Ratio | RatioSD | Gen0     | Gen1     | Allocated | Alloc Ratio |
+|----------- |---------:|---------:|---------:|---------:|------:|--------:|---------:|---------:|----------:|------------:|
+| NestedJson | 16.67 ms | 0.796 ms | 2.140 ms | 15.84 ms |  1.01 |    0.17 | 727.2727 | 272.7273 |   3.24 MB |        1.00 |
+
+
+|Threads|Duration|Source|Calls/Sec|Total Calls|Errors|
+|-------|--------|------|---------:|----------:|-----:|
+|1|30|JsonDataProviderBenchmark|34|1,009|0|
+|20|30|JsonDataProviderBenchmark|64|1,920|0|
+|20|30|JsonDataProviderBenchmark|63|1,893|0|
+|30|30|JsonDataProviderBenchmark|58|1,739|0|
+|40|30|JsonDataProviderBenchmark|49|1,497|0|
+|50|30|JsonDataProviderBenchmark|51|1,546|0|
+
+
