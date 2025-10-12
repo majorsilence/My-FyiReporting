@@ -139,7 +139,6 @@ BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput
 | NestedJson | 5.401 ms | 0.0560 ms | 0.0935 ms |  0.99 |    0.03 | 390.6250 | 125.0000 |   3.12 MB |        1.00 |
 
 
-
 |Threads|Duration|Source|Calls/Sec|Total Calls|Errors|
 |-------|--------|------|---------:|----------:|-----:|
 |1|30|JsonDataProviderBenchmark|162|4,873|0|
@@ -148,8 +147,6 @@ BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput
 |30|30|JsonDataProviderBenchmark|334|10,043|0|
 |40|30|JsonDataProviderBenchmark|316|9,497|0|
 |50|30|JsonDataProviderBenchmark|296|8,905|0|
-
-
 
 
 ## two
@@ -175,5 +172,29 @@ BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput
 |30|30|JsonDataProviderBenchmark|58|1,739|0|
 |40|30|JsonDataProviderBenchmark|49|1,497|0|
 |50|30|JsonDataProviderBenchmark|51|1,546|0|
+
+## three
+
+BenchmarkDotNet v0.15.2, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD Ryzen 5 3600 4.21GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK 8.0.120
+[Host]     : .NET 8.0.20 (8.0.2025.41914), X64 RyuJIT AVX2
+Job-AKATUD : .NET 8.0.20 (8.0.2025.41914), X64 RyuJIT AVX2
+
+BuildConfiguration=Release-DrawingCompat  RunStrategy=Throughput
+
+| Method     | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0     | Gen1     | Allocated | Alloc Ratio |
+|----------- |---------:|----------:|----------:|------:|--------:|---------:|---------:|----------:|------------:|
+| NestedJson | 5.542 ms | 0.1100 ms | 0.2011 ms |  1.00 |    0.05 | 359.3750 | 125.0000 |   2.94 MB |        1.00 |
+
+
+|Threads|Duration|Source|Calls/Sec|Total Calls|Errors|
+|-------|--------|------|---------:|----------:|-----:|
+|1|30|JsonDataProviderBenchmark|152|4,571|0|
+|20|30|JsonDataProviderBenchmark|403|12,115|0|
+|20|30|JsonDataProviderBenchmark|406|12,196|0|
+|30|30|JsonDataProviderBenchmark|358|10,757|0|
+|40|30|JsonDataProviderBenchmark|315|9,460|0|
+|50|30|JsonDataProviderBenchmark|290|8,720|0|
 
 
