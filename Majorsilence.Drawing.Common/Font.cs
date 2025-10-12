@@ -6,6 +6,7 @@ namespace Majorsilence.Drawing
     // Compatibility wrapper for System.Drawing.Font
     public class Font : IDisposable
     {
+        private static readonly Dictionary<(string, SKFontStyle), SKTypeface> TypefaceCache = new();
         private SKTypeface _typeface;
         private SKFont _paint;
 
@@ -37,8 +38,17 @@ namespace Majorsilence.Drawing
                 typefaceStyle = SKFontStyle.Italic;
 
             // Create the SkiaSharp Typeface based on the family and style
-            _typeface = SKTypeface.FromFamilyName(fontFamily, typefaceStyle);
-
+            var cacheKey = (fontFamily, typefaceStyle);
+            if (!TypefaceCache.TryGetValue(cacheKey, out _typeface))
+            {
+                _typeface = SKTypeface.FromFamilyName(fontFamily, typefaceStyle);
+                TypefaceCache[cacheKey] = _typeface;
+            }
+            else
+            {
+                _typeface = TypefaceCache[cacheKey];
+            }
+            
             // Initialize the SKFont for text rendering
             _paint = new SKFont(_typeface, size);
 
