@@ -11,9 +11,9 @@
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <RepositoryUrl>https://github.com/majorsilence/My-FyiReporting</RepositoryUrl>
-    <AssemblyVersion>5.0.16</AssemblyVersion>
-    <FileVersion>5.0.16</FileVersion>
-    <Version>5.0.16</Version>
+    <AssemblyVersion>5.0.17</AssemblyVersion>
+    <FileVersion>5.0.17</FileVersion>
+    <Version>5.0.17</Version>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Product>Majorsilence Reporting</Product>
     <Copyright>Copyright © 2004-2008  fyiReporting Software, LLC, Majorsilence Reporting Devs 2025</Copyright>
