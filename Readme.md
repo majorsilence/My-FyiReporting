@@ -37,6 +37,12 @@ dotnet add package Majorsilence.Reporting.RdlEngine.SkiaSharp
 dotnet add package Majorsilence.Reporting.RdlCri.SkiaSharp
 ```
 
+If running on linux install the [required fonts](https://github.com/majorsilence/My-FyiReporting/wiki/Linux---PDF-export-and-Fonts).
+
+```bash
+sudo apt install ttf-mscorefonts-installer
+```
+
 You are now ready to create and generate reports.
 
 ## c# example connected to an sql database
@@ -115,7 +121,6 @@ Majorsilence Reporting is developed with the following workflow:
 If it doesn't have a feature that you want it to have, add it.  If it has a bug you need fixed, fix it.
 
 See [Contribute](https://github.com/majorsilence/My-FyiReporting/wiki/Contribute).
-
 
 # Benchmarks
 
