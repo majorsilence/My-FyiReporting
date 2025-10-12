@@ -346,7 +346,7 @@ namespace Majorsilence.Drawing
 
             foreach (var range in stringFormat.MeasurableCharacterRanges)
             {
-                var substring = text.Substring(range.First, range.Length);
+                var substring = text.AsSpan(range.First, range.Length);
                 var bounds = new SKRect();
                 skPaint.MeasureText(substring, out bounds);
 
