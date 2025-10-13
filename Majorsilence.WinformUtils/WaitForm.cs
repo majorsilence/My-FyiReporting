@@ -16,18 +16,21 @@
             this.BackColor = Color.Black;
 
             Started = DateTime.Now;
-            timer1 = new System.Threading.Timer(_ =>
+            this.HandleCreated += (_, __) =>
             {
-                try
+                timer1 = new System.Threading.Timer(_ =>
                 {
-                    this.Invoke(async ()=>
+                    if (!IsHandleCreated || IsDisposed) return;
+                    try
                     {
-                        await timer1_Tick(null, null);
-                    });
-                }
-                catch { }
-
-            }, null, 0, 50);
+                        this.BeginInvoke(new Action(async () =>
+                        {
+                            await timer1_Tick(null, null);
+                        }));
+                    }
+                    catch (ObjectDisposedException) { }
+                }, null, 0, 50);
+            };
 
             this.SizeChanged += WaitForm_SizeChanged;
             this.Move += WaitForm_Move;
