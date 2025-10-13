@@ -45,7 +45,7 @@ $buildoutputpath_designer="$CURRENTPATH\Release-Builds\build-output\majorsilence
 $buildoutputpath_desktop="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-desktop-$pTargetFrameworkGeneric-anycpu"
 $buildoutputpath_rdlcmd="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu"
 $buildoutputpath_rdlcmd_selfcontained="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-rdlcmd-self-contained"
-$buildoutputpath_viewer="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-viewer-$pTargetFramework-anycpu"
+$buildoutputpath_reader="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-reader-$pTargetFramework-anycpu"
 $buildoutputpath_mapfile="$CURRENTPATH\Release-Builds\build-output\majorsilence-reporting-mapfile-$pTargetFramework-anycpu"
 
 Remove-Item "$buildoutputpath_designer" -Recurse -ErrorAction Ignore
@@ -56,8 +56,8 @@ Remove-Item "$buildoutputpath_rdlcmd" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_rdlcmd"
 Remove-Item "$buildoutputpath_rdlcmd_selfcontained" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_rdlcmd_selfcontained"
-Remove-Item "$buildoutputpath_viewer" -Recurse -ErrorAction Ignore
-mkdir "$buildoutputpath_viewer"
+Remove-Item "$buildoutputpath_reader" -Recurse -ErrorAction Ignore
+mkdir "$buildoutputpath_reader"
 Remove-Item "$buildoutputpath_mapfile" -Recurse -ErrorAction Ignore
 mkdir "$buildoutputpath_mapfile"
 
@@ -87,7 +87,7 @@ Copy-Item .\RdlCmd\bin\$pConfigurationCompat\$pTargetFrameworkGeneric\linux-x64\
 Copy-Item .\RdlCmd\bin\$pConfigurationCompat\$pTargetFrameworkGeneric\linux-arm64\publish -Destination "$rdlcmd_linux_arm64" -Recurse
 Copy-Item .\RdlCmd\bin\$pConfigurationCompat\$pTargetFrameworkGeneric\osx-x64\publish -Destination "$rdlcmd_osx" -Recurse
 Copy-Item .\RdlCmd\bin\$pConfigurationCompat\$pTargetFrameworkGeneric\osx-arm64\publish -Destination "$rdlcmd_osx_arm64" -Recurse
-Copy-Item .\RdlViewer\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_viewer\" -Recurse
+Copy-Item .\RdlReader\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_reader\" -Recurse
 Copy-Item .\RdlMapFile\bin\$pConfiguration\$pTargetFramework\ -Destination "$buildoutputpath_mapfile\" -Recurse
 
 cd Release-Builds
@@ -102,7 +102,7 @@ cd build-output
   "majorsilence-reporting-rdlcmd-$pTargetFrameworkGeneric-anycpu\"
 
 
-..\7za.exe a -tzip $Version-majorsilence-reporting-viewer-$pTargetFramework-anycpu.zip majorsilence-reporting-viewer-$pTargetFramework-anycpu\
+..\7za.exe a -tzip $Version-majorsilence-reporting-reader-$pTargetFramework-anycpu.zip majorsilence-reporting-reader-$pTargetFramework-anycpu\
 ..\7za.exe a -tzip $Version-majorsilence-reporting-rdlcmd-self-contained.zip majorsilence-reporting-rdlcmd-self-contained\
 cd "$CURRENTPATH"
 
