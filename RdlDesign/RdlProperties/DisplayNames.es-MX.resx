@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appearance_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Appearance_Direction" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="Appearance_FontFamily" xml:space="preserve">
+    <value>Семейство шрифтов</value>
+  </data>
+  <data name="Appearance_FontSize" xml:space="preserve">
+    <value>Размер шрифта</value>
+  </data>
+  <data name="Appearance_FontStyle" xml:space="preserve">
+    <value>Стиль шрифта</value>
+  </data>
+  <data name="Appearance_FontWeight" xml:space="preserve">
+    <value>Вес шрифта</value>
+  </data>
+  <data name="Appearance_Format" xml:space="preserve">
+    <value>Formato</value>
+  </data>
+  <data name="Appearance_TextAlign" xml:space="preserve">
+    <value>Горизонтальное выравнивание</value>
+  </data>
+  <data name="Appearance_TextDecoration" xml:space="preserve">
+    <value>Оформление</value>
+  </data>
+  <data name="Appearance_VerticalAlign" xml:space="preserve">
+    <value>Вертикальное выравнивание</value>
+  </data>
+  <data name="Appearance_WritingMode" xml:space="preserve">
+    <value>Режим записи</value>
+  </data>
+  <data name="BackgroundImage_MIMEType" xml:space="preserve">
+    <value>Тип MIME</value>
+  </data>
+  <data name="BackgroundImage_Repeat" xml:space="preserve">
+    <value>Повторение</value>
+  </data>
+  <data name="BackgroundImage_Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="BackgroundImage_Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="Background_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Background_EndColor" xml:space="preserve">
+    <value>Конечный цвет</value>
+  </data>
+  <data name="Background_GradientType" xml:space="preserve">
+    <value>Тип градиента</value>
+  </data>
+  <data name="Background_Image" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="Base_Action" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="Base_Background" xml:space="preserve">
+    <value>Fondo</value>
+  </data>
+  <data name="Base_Bookmark" xml:space="preserve">
+    <value>Закладка</value>
+  </data>
+  <data name="Base_Border" xml:space="preserve">
+    <value>Borde</value>
+  </data>
+  <data name="Base_ColumnSpan" xml:space="preserve">
+    <value>Охват столбцов</value>
+  </data>
+  <data name="Base_DataElementName" xml:space="preserve">
+    <value>Название элемента данных</value>
+  </data>
+  <data name="Base_DataElementOutput" xml:space="preserve">
+    <value>Вывод элеменда данных</value>
+  </data>
+  <data name="Base_Location" xml:space="preserve">
+    <value>Положение</value>
+  </data>
+  <data name="Base_Matrix" xml:space="preserve">
+    <value>Matriz</value>
+  </data>
+  <data name="Base_Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Base_Padding" xml:space="preserve">
+    <value>Отступ от границы</value>
+  </data>
+  <data name="Base_Size" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="Base_Table" xml:space="preserve">
+    <value>Tabla</value>
+  </data>
+  <data name="Base_ToolTip" xml:space="preserve">
+    <value>Подсказка</value>
+  </data>
+  <data name="Base_Visibility" xml:space="preserve">
+    <value>Visibilidad</value>
+  </data>
+  <data name="Base_ZIndex" xml:space="preserve">
+    <value>Z-индекс</value>
+  </data>
+  <data name="ChartAxis_Appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="ChartAxis_Background" xml:space="preserve">
+    <value>Fondo</value>
+  </data>
+  <data name="ChartAxis_Border" xml:space="preserve">
+    <value>Borde</value>
+  </data>
+  <data name="ChartAxis_CrossAt" xml:space="preserve">
+    <value>Пересекать в</value>
+  </data>
+  <data name="ChartAxis_Interlaced" xml:space="preserve">
+    <value>Переплетать</value>
+  </data>
+  <data name="ChartAxis_LogScale" xml:space="preserve">
+    <value>Логарифмическая шкала</value>
+  </data>
+  <data name="ChartAxis_MajorGridLines" xml:space="preserve">
+    <value>Основные линии сетки</value>
+  </data>
+  <data name="ChartAxis_MajorInterval" xml:space="preserve">
+    <value>Основной интервал</value>
+  </data>
+  <data name="ChartAxis_MajorTickMarks" xml:space="preserve">
+    <value>Основные деления</value>
+  </data>
+  <data name="ChartAxis_Margin" xml:space="preserve">
+    <value>Отступ</value>
+  </data>
+  <data name="ChartAxis_Max" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="ChartAxis_Min" xml:space="preserve">
+    <value>Минимум</value>
+  </data>
+  <data name="ChartAxis_MinorGridLines" xml:space="preserve">
+    <value>Дополнительные линии сетки</value>
+  </data>
+  <data name="ChartAxis_MinorInterval" xml:space="preserve">
+    <value>Дополнительный интервал</value>
+  </data>
+  <data name="ChartAxis_MinorTickMarks" xml:space="preserve">
+    <value>Дополнительные деления</value>
+  </data>
+  <data name="ChartAxis_Padding" xml:space="preserve">
+    <value>Отступ от границы</value>
+  </data>
+  <data name="ChartAxis_Reverse" xml:space="preserve">
+    <value>Обратная</value>
+  </data>
+  <data name="ChartAxis_Scalar" xml:space="preserve">
+    <value>Скалярная</value>
+  </data>
+  <data name="ChartAxis_Title" xml:space="preserve">
+    <value>Encabezado</value>
+  </data>
+  <data name="ChartAxis_Visible" xml:space="preserve">
+    <value>Видимая</value>
+  </data>
+  <data name="ChartData_DataValue" xml:space="preserve">
+    <value>Значение данных</value>
+  </data>
+  <data name="ChartData_DataValue2" xml:space="preserve">
+    <value>Значение данных2</value>
+  </data>
+  <data name="ChartData_DataValue3" xml:space="preserve">
+    <value>Значение данных3</value>
+  </data>
+  <data name="ChartData_LabelAppearance" xml:space="preserve">
+    <value>Внешний вид метки</value>
+  </data>
+  <data name="ChartData_LabelVisible" xml:space="preserve">
+    <value>Метку видно</value>
+  </data>
+  <data name="ChartGridLines_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ChartGridLines_LineStyle" xml:space="preserve">
+    <value>Стиль линии</value>
+  </data>
+  <data name="ChartGridLines_ShowGridLines" xml:space="preserve">
+    <value>Показывать</value>
+  </data>
+  <data name="ChartGridLines_Width" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="ChartLegend_Appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="ChartLegend_Background" xml:space="preserve">
+    <value>Fondo</value>
+  </data>
+  <data name="ChartLegend_Border" xml:space="preserve">
+    <value>Borde</value>
+  </data>
+  <data name="ChartLegend_InsidePlotArea" xml:space="preserve">
+    <value>Внутри участка</value>
+  </data>
+  <data name="ChartLegend_Layout" xml:space="preserve">
+    <value>Макет</value>
+  </data>
+  <data name="ChartLegend_Padding" xml:space="preserve">
+    <value>Отступ от границы</value>
+  </data>
+  <data name="ChartLegend_Position" xml:space="preserve">
+    <value>Posición</value>
+  </data>
+  <data name="ChartLegend_Visible" xml:space="preserve">
+    <value>Видимая</value>
+  </data>
+  <data name="ChartTitle_Appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="ChartTitle_Background" xml:space="preserve">
+    <value>Fondo</value>
+  </data>
+  <data name="ChartTitle_Border" xml:space="preserve">
+    <value>Borde</value>
+  </data>
+  <data name="ChartTitle_Caption" xml:space="preserve">
+    <value>Encabezado</value>
+  </data>
+  <data name="ChartTitle_Padding" xml:space="preserve">
+    <value>Отступ от границы</value>
+  </data>
+  <data name="Chart_CategoryAxis" xml:space="preserve">
+    <value>Ось категории</value>
+  </data>
+  <data name="Chart_ChartData" xml:space="preserve">
+    <value>Данные диаграммы</value>
+  </data>
+  <data name="Chart_Legend" xml:space="preserve">
+    <value>Легенда</value>
+  </data>
+  <data name="Chart_Palette" xml:space="preserve">
+    <value>Палитра</value>
+  </data>
+  <data name="Chart_PointWidth" xml:space="preserve">
+    <value>Ширина точки</value>
+  </data>
+  <data name="Chart_Title" xml:space="preserve">
+    <value>Encabezado</value>
+  </data>
+  <data name="Chart_Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Chart_ValueAxis" xml:space="preserve">
+    <value>Ось значения</value>
+  </data>
+  <data name="DataRegion_Appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="DataRegion_DataSetName" xml:space="preserve">
+    <value>Conjunto de datos</value>
+  </data>
+  <data name="DataRegion_Filters" xml:space="preserve">
+    <value>Фильтры</value>
+  </data>
+  <data name="DataRegion_KeepTogether" xml:space="preserve">
+    <value>Хранить вместе</value>
+  </data>
+  <data name="DataRegion_NoRows" xml:space="preserve">
+    <value>Нет строк</value>
+  </data>
+  <data name="DataRegion_PageBreakAtEnd" xml:space="preserve">
+    <value>Разрывать в конце</value>
+  </data>
+  <data name="DataRegion_PageBreakAtStart" xml:space="preserve">
+    <value>Разрывать в начале</value>
+  </data>
+  <data name="ImageI_MIMEType" xml:space="preserve">
+    <value>Тип MIME</value>
+  </data>
+  <data name="ImageI_Sizing" xml:space="preserve">
+    <value>Масштабирование</value>
+  </data>
+  <data name="ImageI_Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="ImageI_Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="Image_Image" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="List_DataInstanceElementOutput" xml:space="preserve">
+    <value>Элемент экземпляра данных</value>
+  </data>
+  <data name="List_DataInstanceName" xml:space="preserve">
+    <value>Название экземпляра данных</value>
+  </data>
+  <data name="List_Grouping" xml:space="preserve">
+    <value>Agrupación</value>
+  </data>
+  <data name="List_Sorting" xml:space="preserve">
+    <value>Ordenación</value>
+  </data>
+  <data name="Location_Left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="Location_Top" xml:space="preserve">
+    <value>Сверху</value>
+  </data>
+  <data name="Margin_Bottom" xml:space="preserve">
+    <value>Снизу</value>
+  </data>
+  <data name="Margin_Left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="Margin_Right" xml:space="preserve">
+    <value>Справа</value>
+  </data>
+  <data name="Margin_Top" xml:space="preserve">
+    <value>Сверху</value>
+  </data>
+  <data name="Padding_Bottom" xml:space="preserve">
+    <value>Снизу</value>
+  </data>
+  <data name="Padding_Left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="Padding_Right" xml:space="preserve">
+    <value>Справа</value>
+  </data>
+  <data name="Padding_Top" xml:space="preserve">
+    <value>Сверху</value>
+  </data>
+  <data name="PrintFirstLast_Height" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="PrintFirstLast_PrintOnFirstPage" xml:space="preserve">
+    <value>Печатать на первой странице</value>
+  </data>
+  <data name="PrintFirstLast_PrintOnLastPage" xml:space="preserve">
+    <value>Печатать на последней странице</value>
+  </data>
+  <data name="Rectangle_PageBreakAtEnd" xml:space="preserve">
+    <value>Разрывать в конце</value>
+  </data>
+  <data name="Rectangle_PageBreakAtStart" xml:space="preserve">
+    <value>Разрывать в начале</value>
+  </data>
+  <data name="Report_Author" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="Report_BodyColumns" xml:space="preserve">
+    <value>Количество столбцов</value>
+  </data>
+  <data name="Report_BodyColumnSpacing" xml:space="preserve">
+    <value>Расстояние между столбцами</value>
+  </data>
+  <data name="Report_BodyHeight" xml:space="preserve">
+    <value>Высота тела</value>
+  </data>
+  <data name="Report_Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="Report_DataElementName" xml:space="preserve">
+    <value>Название элемента данных</value>
+  </data>
+  <data name="Report_DataElementStyle" xml:space="preserve">
+    <value>Стиль элемента данных</value>
+  </data>
+  <data name="Report_DataSchema" xml:space="preserve">
+    <value>Схема данных</value>
+  </data>
+  <data name="Report_DataTransform" xml:space="preserve">
+    <value>Преобразование данных</value>
+  </data>
+  <data name="Report_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Report_Margins" xml:space="preserve">
+    <value>Отступы страницы</value>
+  </data>
+  <data name="Report_ModulesClasses" xml:space="preserve">
+    <value>Модули и классы</value>
+  </data>
+  <data name="Report_PageFooter" xml:space="preserve">
+    <value>Нижний колонитул</value>
+  </data>
+  <data name="Report_PageHeader" xml:space="preserve">
+    <value>Encabezado de página</value>
+  </data>
+  <data name="Report_PageHeight" xml:space="preserve">
+    <value>Высота страницы</value>
+  </data>
+  <data name="Report_PageWidth" xml:space="preserve">
+    <value>Ширина страницы</value>
+  </data>
+  <data name="Report_Parameters" xml:space="preserve">
+    <value>Parámetros</value>
+  </data>
+  <data name="Report_Width" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="Size_Height" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="Size_Width" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="Subreport_MergeTransactions" xml:space="preserve">
+    <value>Объединять транзакции</value>
+  </data>
+  <data name="Subreport_NoRows" xml:space="preserve">
+    <value>Нет строк</value>
+  </data>
+  <data name="Subreport_Parameters" xml:space="preserve">
+    <value>Parámetros</value>
+  </data>
+  <data name="Subreport_ReportName" xml:space="preserve">
+    <value>Путь к отчёту</value>
+  </data>
+  <data name="Textbox_Appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="Textbox_CanGrow" xml:space="preserve">
+    <value>Может расти</value>
+  </data>
+  <data name="Textbox_CanShrink" xml:space="preserve">
+    <value>Может сжиматься</value>
+  </data>
+  <data name="Textbox_DataElementStyle" xml:space="preserve">
+    <value>Стиль элемента данных</value>
+  </data>
+  <data name="Textbox_HideDuplicates" xml:space="preserve">
+    <value>Скрывать дубликаты</value>
+  </data>
+  <data name="Textbox_Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+</root>
