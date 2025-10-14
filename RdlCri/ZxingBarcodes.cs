@@ -82,7 +82,13 @@ namespace Majorsilence.Reporting.Cri
                 // The provider has already been registered.
             }
 
-            bm = writer.Write(qrcode);
+            var barcodeBitmap = writer.Write(qrcode);
+            
+            // Fill background with white
+            g.Clear(Draw2.Color.White);
+            
+            // Draw the barcode aligned to the left (top-left corner at 0, 0)
+            g.DrawImage(barcodeBitmap, 0, 0);
         }
 
         /// <summary>
