@@ -72,13 +72,13 @@
     <value>Cortar</value>
   </data>
   <data name="copyToolStripButton1.Text" xml:space="preserve">
-    <value>Скопировать</value>
+    <value>Copiar</value>
   </data>
   <data name="pasteToolStripButton1.Text" xml:space="preserve">
     <value>Pegar</value>
   </data>
   <data name="undoToolStripButton1.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="textboxToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -158,7 +158,7 @@
 </value>
   </data>
   <data name="subreportToolStripButton1.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="rectangleToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -199,25 +199,25 @@
     <value>Подчёркнутый</value>
   </data>
   <data name="leftAlignToolStripButton2.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="centerAlignToolStripButton2.Text" xml:space="preserve">
-    <value>По центру</value>
+    <value>Centrado</value>
   </data>
   <data name="rightAlignToolStripButton3.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="fontToolStripComboBox1.ToolTipText" xml:space="preserve">
     <value>Fuente</value>
   </data>
   <data name="fontSizeToolStripComboBox1.ToolTipText" xml:space="preserve">
-    <value>Размер шрифта</value>
+    <value>Tamaño de fuente</value>
   </data>
   <data name="printToolStripButton2.Text" xml:space="preserve">
-    <value>Печатать</value>
+    <value>Imprimir</value>
   </data>
   <data name="zoomToolStripComboBox1.ToolTipText" xml:space="preserve">
-    <value>Масштаб</value>
+    <value>Escala</value>
   </data>
   <data name="selectToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -227,7 +227,7 @@
 </value>
   </data>
   <data name="selectToolStripButton2.Text" xml:space="preserve">
-    <value>Выбор</value>
+    <value>Selección</value>
   </data>
   <data name="pdfToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

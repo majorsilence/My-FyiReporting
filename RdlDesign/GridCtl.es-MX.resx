@@ -76,7 +76,7 @@
     <value>420, 48</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Разрывы страниц</value>
+    <value>Saltos de página</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>420, 68</value>

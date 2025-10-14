@@ -66,7 +66,7 @@
     <value>Aplicar</value>
   </data>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Propiedades</value>

@@ -103,7 +103,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuInsertChart.Text" xml:space="preserve">
-    <value>Диаграмму...</value>
+    <value>Gráfico...</value>
   </data>
   <data name="MenuInsertGrid.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -133,7 +133,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuInsertMatrix.Text" xml:space="preserve">
-    <value>Матрицу...</value>
+    <value>Matriz...</value>
   </data>
   <data name="MenuInsertRectangle.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -145,13 +145,13 @@
     <value>163, 22</value>
   </data>
   <data name="MenuInsertSubreport.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="MenuInsertTable.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
   </data>
   <data name="MenuInsertTable.Text" xml:space="preserve">
-    <value>Таблицу...</value>
+    <value>Tabla...</value>
   </data>
   <data name="MenuInsertTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -172,7 +172,7 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartProperties.Text" xml:space="preserve">
-    <value>Свойства...</value>
+    <value>Propiedades...</value>
   </data>
   <data name="MenuChartLegend.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
@@ -301,7 +301,7 @@
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixProperties.Text" xml:space="preserve">
-    <value>Свойства...</value>
+    <value>Propiedades...</value>
   </data>
   <data name="MenuMatrixMatrixProperties.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
@@ -397,7 +397,7 @@
     <value>174, 22</value>
   </data>
   <data name="MenuSubreportProperties.Text" xml:space="preserve">
-    <value>Свойства...</value>
+    <value>Propiedades...</value>
   </data>
   <data name="MenuSubreportOpen.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
@@ -442,7 +442,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridProperties.Text" xml:space="preserve">
-    <value>Свойства...</value>
+    <value>Propiedades...</value>
   </data>
   <data name="MenuGridGridProperties.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
@@ -454,7 +454,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuGridReplaceCellChart.Text" xml:space="preserve">
-    <value>Диаграмму...</value>
+    <value>Gráfico...</value>
   </data>
   <data name="MenuGridReplaceCellImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -472,7 +472,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuGridReplaceCellMatrix.Text" xml:space="preserve">
-    <value>Матрицу...</value>
+    <value>Matriz...</value>
   </data>
   <data name="MenuGridReplaceCellRectangle.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -484,7 +484,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuGridReplaceCellSubreport.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="MenuGridReplaceCellTable.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -592,7 +592,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableProperties.Text" xml:space="preserve">
-    <value>Свойства...</value>
+    <value>Propiedades...</value>
   </data>
   <data name="MenuTableTableProperties.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
@@ -604,7 +604,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuTableReplaceCellChart.Text" xml:space="preserve">
-    <value>Диаграмму...</value>
+    <value>Gráfico...</value>
   </data>
   <data name="MenuTableReplaceCellImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -622,7 +622,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuTableReplaceCellMatrix.Text" xml:space="preserve">
-    <value>Матрицу...</value>
+    <value>Matriz...</value>
   </data>
   <data name="MenuTableReplaceCellRectangle.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -634,13 +634,13 @@
     <value>163, 22</value>
   </data>
   <data name="MenuTableReplaceCellSubreport.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="MenuTableReplaceCellTable.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
   </data>
   <data name="MenuTableReplaceCellTable.Text" xml:space="preserve">
-    <value>Таблицу...</value>
+    <value>Tabla...</value>
   </data>
   <data name="MenuTableReplaceCellTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>

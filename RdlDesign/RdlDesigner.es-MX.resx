@@ -70,7 +70,7 @@
     <value>108, 20</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактирование</value>
+    <value>Edición</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -94,7 +94,7 @@
     <value>93, 20</value>
   </data>
   <data name="formatToolStripMenuItem.Text" xml:space="preserve">
-    <value>Оформление</value>
+    <value>Formato</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 20</value>
@@ -112,7 +112,7 @@
     <value>68, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>Ayuda</value>
   </data>
   <data name="newReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
@@ -145,13 +145,13 @@
     <value>202, 22</value>
   </data>
   <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сохранить как...</value>
+    <value>Guardar como...</value>
   </data>
   <data name="printToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
   <data name="printToolStripMenuItem.Text" xml:space="preserve">
-    <value>Печатать</value>
+    <value>Imprimir</value>
   </data>
   <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
@@ -214,13 +214,13 @@
     <value>202, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выйти</value>
+    <value>Salir</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
@@ -241,7 +241,7 @@
     <value>188, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Скопировать</value>
+    <value>Copiar</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
@@ -334,7 +334,7 @@
     <value>195, 22</value>
   </data>
   <data name="chartToolStripMenuItem.Text" xml:space="preserve">
-    <value>Диаграмму...</value>
+    <value>Gráfico...</value>
   </data>
   <data name="gridToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
@@ -364,7 +364,7 @@
     <value>195, 22</value>
   </data>
   <data name="matrixToolStripMenuItem.Text" xml:space="preserve">
-    <value>Матрицу...</value>
+    <value>Matriz...</value>
   </data>
   <data name="rectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
@@ -376,13 +376,13 @@
     <value>195, 22</value>
   </data>
   <data name="subReportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="tableToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
   </data>
   <data name="tableToolStripMenuItem.Text" xml:space="preserve">
-    <value>Таблицу...</value>
+    <value>Tabla...</value>
   </data>
   <data name="textboxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
@@ -442,19 +442,19 @@
     <value>144, 22</value>
   </data>
   <data name="leftsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="centersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 22</value>
   </data>
   <data name="centersToolStripMenuItem.Text" xml:space="preserve">
-    <value>По центру</value>
+    <value>Centrado</value>
   </data>
   <data name="rightsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 22</value>
   </data>
   <data name="rightsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 6</value>
@@ -463,7 +463,7 @@
     <value>144, 22</value>
   </data>
   <data name="topsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="middlesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 22</value>
@@ -475,7 +475,7 @@
     <value>144, 22</value>
   </data>
   <data name="bottomsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="sizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -517,19 +517,19 @@
     <value>165, 22</value>
   </data>
   <data name="increaseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
   </data>
   <data name="zeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="verticalSpacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -547,19 +547,19 @@
     <value>165, 22</value>
   </data>
   <data name="increaseToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
   </data>
   <data name="zeroToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 6</value>
@@ -574,19 +574,19 @@
     <value>138, 22</value>
   </data>
   <data name="increaseToolStripMenuItem2.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem2.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="zeroToolStripMenuItem2.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="paddingRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -598,19 +598,19 @@
     <value>138, 22</value>
   </data>
   <data name="increaseToolStripMenuItem3.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem3.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="zeroToolStripMenuItem3.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="paddintTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -622,19 +622,19 @@
     <value>138, 22</value>
   </data>
   <data name="increaseToolStripMenuItem4.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem4.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="zeroToolStripMenuItem4.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="paddingBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -646,19 +646,19 @@
     <value>138, 22</value>
   </data>
   <data name="increaseToolStripMenuItem5.Text" xml:space="preserve">
-    <value>Увеличить</value>
+    <value>Aumentar</value>
   </data>
   <data name="decreaseToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="decreaseToolStripMenuItem5.Text" xml:space="preserve">
-    <value>Уменьшить</value>
+    <value>Disminuir</value>
   </data>
   <data name="zeroToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="zeroToolStripMenuItem5.Text" xml:space="preserve">
-    <value>Пустой</value>
+    <value>Vacío</value>
   </data>
   <data name="validateRDLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
@@ -700,13 +700,13 @@
     <value>236, 22</value>
   </data>
   <data name="horizontalToolStripMenuItem.Text" xml:space="preserve">
-    <value>По горизонтали</value>
+    <value>Horizontal</value>
   </data>
   <data name="verticallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
   <data name="verticallyToolStripMenuItem.Text" xml:space="preserve">
-    <value>По вертикали</value>
+    <value>Vertical</value>
   </data>
   <data name="closeAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
@@ -718,7 +718,7 @@
     <value>149, 22</value>
   </data>
   <data name="helpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>Ayuda</value>
   </data>
   <data name="supportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>
@@ -745,13 +745,13 @@
     <value>Cortar</value>
   </data>
   <data name="copyToolStripButton1.Text" xml:space="preserve">
-    <value>Скопировать</value>
+    <value>Copiar</value>
   </data>
   <data name="pasteToolStripButton1.Text" xml:space="preserve">
     <value>Pegar</value>
   </data>
   <data name="undoToolStripButton1.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="textboxToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -830,7 +830,7 @@
 </value>
   </data>
   <data name="subreportToolStripButton1.Text" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="rectangleToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -871,25 +871,25 @@
     <value>Подчёркнутый</value>
   </data>
   <data name="leftAlignToolStripButton2.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="centerAlignToolStripButton2.Text" xml:space="preserve">
-    <value>По центру</value>
+    <value>Centrado</value>
   </data>
   <data name="rightAlignToolStripButton3.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="fontToolStripComboBox1.ToolTipText" xml:space="preserve">
     <value>Fuente</value>
   </data>
   <data name="fontSizeToolStripComboBox1.ToolTipText" xml:space="preserve">
-    <value>Размер шрифта</value>
+    <value>Tamaño de fuente</value>
   </data>
   <data name="printToolStripButton2.Text" xml:space="preserve">
-    <value>Печатать</value>
+    <value>Imprimir</value>
   </data>
   <data name="zoomToolStripComboBox1.ToolTipText" xml:space="preserve">
-    <value>Масштаб</value>
+    <value>Escala</value>
   </data>
   <data name="selectToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -899,7 +899,7 @@
 </value>
   </data>
   <data name="selectToolStripButton2.Text" xml:space="preserve">
-    <value>Выбор</value>
+    <value>Selección</value>
   </data>
   <data name="pdfToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1057,6 +1057,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Редактор отчётов</value>
+    <value>Editor de informes</value>
   </data>
 </root>

@@ -63,7 +63,7 @@
     <value>Conjunto de datos</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Разрывы страниц</value>
+    <value>Saltos de página</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkPBAfter.Size" type="System.Drawing.Size, System.Drawing">
@@ -82,7 +82,7 @@
     <value>162, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Сообщение, когда нет строк</value>
+    <value>Mensaje cuando no hay filas</value>
   </data>
   <data name="tbNoRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>192, 48</value>

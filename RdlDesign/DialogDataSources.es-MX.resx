@@ -94,13 +94,13 @@
     <value>16, 307</value>
   </data>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="bTestConnection.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 23</value>
   </data>
   <data name="bTestConnection.Text" xml:space="preserve">
-    <value>Проверить соединение</value>
+    <value>Probar conexión</value>
   </data>
   <data name="bRemove.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 23</value>

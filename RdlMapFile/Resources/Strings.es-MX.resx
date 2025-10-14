@@ -113,16 +113,16 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Версия {0}</value>
   </data>
   <data name="MapFile_editToolStripMenuItem_DropDownOpening_Undo" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="MapFile_SetTitle_fyiReporting_MapFile_Designer" xml:space="preserve">
-    <value>Редактор карт</value>
+    <value>Editor de mapas</value>
   </data>
   <data name="MapFile_SetTitle_untitled" xml:space="preserve">
     <value>безымянный</value>
   </data>
   <data name="DesignXmlDraw_Undo_Delete" xml:space="preserve">
-    <value>удаление</value>
+    <value>eliminación</value>
   </data>
   <data name="DesignXmlDraw_Undo_InsertLinePoint" xml:space="preserve">
     <value>вставку точки линии</value>
@@ -146,16 +146,16 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>изменение размера</value>
   </data>
   <data name="NodeChangedUndo_Undo_change" xml:space="preserve">
-    <value>изменение</value>
+    <value>modificación</value>
   </data>
   <data name="NodeInsertedUndo_Undo_insert" xml:space="preserve">
-    <value>вставку</value>
+    <value>inserción</value>
   </data>
   <data name="NodeRemovedUndo_Undo_remove" xml:space="preserve">
-    <value>удаление</value>
+    <value>eliminación</value>
   </data>
   <data name="PropertyBase_Undo_change" xml:space="preserve">
-    <value>изменение</value>
+    <value>modificación</value>
   </data>
   <data name="PropertyText_Undo_FontChange" xml:space="preserve">
     <value>изменение шрифта</value>

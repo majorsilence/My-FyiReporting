@@ -68,7 +68,7 @@
     <value>38, 13</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -80,7 +80,7 @@
     <value>44, 13</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -89,7 +89,7 @@
     <value>42, 13</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -98,7 +98,7 @@
     <value>37, 13</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="tbPadLeft.Location" type="System.Drawing.Point, System.Drawing">
     <value>52, 24</value>
@@ -113,7 +113,7 @@
     <value>124, 20</value>
   </data>
   <data name="grpBoxPadding.Text" xml:space="preserve">
-    <value>Отступ</value>
+    <value>Margen</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Fondo</value>

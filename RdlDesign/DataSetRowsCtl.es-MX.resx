@@ -63,10 +63,10 @@
     <value>Eliminar</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="bDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkRowsFile.Size" type="System.Drawing.Size, System.Drawing">

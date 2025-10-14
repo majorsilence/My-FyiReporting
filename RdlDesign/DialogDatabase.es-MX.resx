@@ -76,7 +76,7 @@
     <value>104, 18</value>
   </data>
   <data name="rbSchemaNo.Text" xml:space="preserve">
-    <value>Отсутствует</value>
+    <value>Ausente</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 23</value>
@@ -175,7 +175,7 @@
     <value>138, 23</value>
   </data>
   <data name="bTestConnection.Text" xml:space="preserve">
-    <value>Проверить соединение</value>
+    <value>Probar conexión</value>
   </data>
   <data name="cbOdbcNames.Location" type="System.Drawing.Point, System.Drawing">
     <value>360, 16</value>
@@ -232,13 +232,13 @@
     <value>16, 51</value>
   </data>
   <data name="ReportSyntax.Text" xml:space="preserve">
-    <value>Код</value>
+    <value>Código</value>
   </data>
   <data name="ReportPreview.Text" xml:space="preserve">
     <value>Vista</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Создание отчёта</value>

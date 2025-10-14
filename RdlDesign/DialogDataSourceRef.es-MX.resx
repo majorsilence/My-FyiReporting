@@ -121,7 +121,7 @@
     <value>16, 304</value>
   </data>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="tbPassword2.Location" type="System.Drawing.Point, System.Drawing">
     <value>256, 62</value>
@@ -133,7 +133,7 @@
     <value>137, 23</value>
   </data>
   <data name="bTestConnection.Text" xml:space="preserve">
-    <value>Проверить соединение</value>
+    <value>Probar conexión</value>
   </data>
   <data name="cbOdbcNames.Location" type="System.Drawing.Point, System.Drawing">
     <value>326, 155</value>

@@ -91,7 +91,7 @@
     <value>92, 24</value>
   </data>
   <data name="chkMargin.Text" xml:space="preserve">
-    <value>Отступ</value>
+    <value>Margen</value>
   </data>
   <data name="chkReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 24</value>
@@ -121,7 +121,7 @@
     <value>152, 32</value>
   </data>
   <data name="chkLogScale.Text" xml:space="preserve">
-    <value>Логарифмическая шкала</value>
+    <value>Escala logarítmica</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>448, 48</value>
@@ -136,7 +136,7 @@
     <value>96, 24</value>
   </data>
   <data name="chkMajorGLShow.Text" xml:space="preserve">
-    <value>Показывать</value>
+    <value>Mostrar</value>
   </data>
   <data name="tbMajorGLWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 16</value>
@@ -187,7 +187,7 @@
     <value>96, 24</value>
   </data>
   <data name="chkMinorGLShow.Text" xml:space="preserve">
-    <value>Показывать</value>
+    <value>Mostrar</value>
   </data>
   <data name="tbMinorGLWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>402, 18</value>

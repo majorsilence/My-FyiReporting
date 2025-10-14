@@ -79,7 +79,7 @@
     <value>168, 47</value>
   </data>
   <data name="chkVisible.Text" xml:space="preserve">
-    <value>Видимая</value>
+    <value>Visible</value>
   </data>
   <data name="chkInsidePlotArea.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 24</value>

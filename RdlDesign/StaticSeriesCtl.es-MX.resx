@@ -77,7 +77,7 @@
     <value>57, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -173,7 +173,7 @@
     <value>56, 17</value>
   </data>
   <data name="chkLeft.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="chkRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -185,7 +185,7 @@
     <value>62, 17</value>
   </data>
   <data name="chkRight.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

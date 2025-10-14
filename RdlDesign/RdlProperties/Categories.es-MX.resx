@@ -87,13 +87,13 @@
     <value>Rectángulo</value>
   </data>
   <data name="Report" xml:space="preserve">
-    <value>Отчёт</value>
+    <value>Informe</value>
   </data>
   <data name="Style" xml:space="preserve">
     <value>Estilo</value>
   </data>
   <data name="Subreport" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="Textbox" xml:space="preserve">
     <value>Cuadro de texto</value>

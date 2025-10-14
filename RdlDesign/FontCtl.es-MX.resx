@@ -73,7 +73,7 @@
     <value>80, 16</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>По вертикали</value>
+    <value>Vertical</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 132</value>
@@ -91,13 +91,13 @@
     <value>89, 16</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Направление</value>
+    <value>Dirección</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>232, 168</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Режим записи</value>
+    <value>Modo de escritura</value>
   </data>
   <data name="lFont.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 16</value>
@@ -133,7 +133,7 @@
     <value>75, 23</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Оформление</value>
+    <value>Formato</value>
   </data>
   <data name="cbTextDecoration.Location" type="System.Drawing.Point, System.Drawing">
     <value>297, 80</value>

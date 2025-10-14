@@ -70,7 +70,7 @@
     <value>108, 20</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактирование</value>
+    <value>Edición</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -88,7 +88,7 @@
     <value>68, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>Ayuda</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -109,7 +109,7 @@
     <value>219, 22</value>
   </data>
   <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сохранить как...</value>
+    <value>Guardar como...</value>
   </data>
   <data name="printToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
@@ -133,13 +133,13 @@
     <value>219, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выйти</value>
+    <value>Salir</value>
   </data>
   <data name="selectionToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="selectionToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выбор</value>
+    <value>Selección</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -232,13 +232,13 @@
     <value>236, 22</value>
   </data>
   <data name="horizontallyToolStripMenuItem.Text" xml:space="preserve">
-    <value>По горизонтали</value>
+    <value>Horizontal</value>
   </data>
   <data name="verticallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
   <data name="verticallyToolStripMenuItem.Text" xml:space="preserve">
-    <value>По вертикали</value>
+    <value>Vertical</value>
   </data>
   <data name="closeAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
@@ -259,7 +259,7 @@
     <value>Guardar</value>
   </data>
   <data name="toolStripButtonPrint.Text" xml:space="preserve">
-    <value>Печатать</value>
+    <value>Imprimir</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

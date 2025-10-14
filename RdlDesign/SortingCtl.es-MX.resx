@@ -70,12 +70,12 @@
     <value>60, 23</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="bDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 23</value>
   </data>
   <data name="bDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
 </root>

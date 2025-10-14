@@ -64,7 +64,7 @@
     <value>312, 168</value>
   </data>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="bDelete.Location" type="System.Drawing.Point, System.Drawing">
     <value>326, 16</value>

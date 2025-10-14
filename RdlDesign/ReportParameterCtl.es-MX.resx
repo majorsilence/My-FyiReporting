@@ -169,7 +169,7 @@
     <value>70, 19</value>
   </data>
   <data name="lParmName.Text" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="cbDefaultValueField.Location" type="System.Drawing.Point, System.Drawing">
     <value>311, 46</value>

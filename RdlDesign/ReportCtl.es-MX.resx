@@ -97,16 +97,16 @@
     <value>Отступы</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Ancho</value>

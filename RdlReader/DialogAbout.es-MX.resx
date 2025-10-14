@@ -79,7 +79,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Веб-сайт:</value>
+    <value>Sitio web:</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

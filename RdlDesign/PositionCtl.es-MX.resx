@@ -73,7 +73,7 @@
     <value>Ancho</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="tbLeft.Location" type="System.Drawing.Point, System.Drawing">
     <value>77, 16</value>
@@ -82,7 +82,7 @@
     <value>55, 16</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
@@ -103,7 +103,7 @@
     <value>64, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="tbName.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 15</value>

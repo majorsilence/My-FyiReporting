@@ -70,13 +70,13 @@
     <value>108, 20</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактирование</value>
+    <value>Edición</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>Ayuda</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -100,7 +100,7 @@
     <value>173, 22</value>
   </data>
   <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сохранить как...</value>
+    <value>Guardar como...</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 6</value>
@@ -118,13 +118,13 @@
     <value>173, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выйти</value>
+    <value>Salir</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>342, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>339, 6</value>
@@ -139,7 +139,7 @@
     <value>342, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Скопировать</value>
+    <value>Copiar</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>342, 22</value>
@@ -202,7 +202,7 @@
     <value>158, 22</value>
   </data>
   <data name="helpHelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>Ayuda</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 6</value>
@@ -226,10 +226,10 @@
     <value>59, 25</value>
   </data>
   <data name="toolStripLabel1.Text" xml:space="preserve">
-    <value>Масштаб</value>
+    <value>Escala</value>
   </data>
   <data name="cbZoom.ToolTipText" xml:space="preserve">
-    <value>Масштаб</value>
+    <value>Escala</value>
   </data>
   <data name="toolStripLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 25</value>
@@ -250,7 +250,7 @@
     <value>162, 22</value>
   </data>
   <data name="insertTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Текст</value>
+    <value>Texto</value>
   </data>
   <data name="insertLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
@@ -262,7 +262,7 @@
     <value>162, 22</value>
   </data>
   <data name="selectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выбор</value>
+    <value>Selección</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -291,6 +291,6 @@
     <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Редактор карт</value>
+    <value>Editor de mapas</value>
   </data>
 </root>

@@ -85,7 +85,7 @@
     <value>Origen de datos</value>
   </data>
   <data name="lDataSetName.Text" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="bDeleteField.Location" type="System.Drawing.Point, System.Drawing">
     <value>405, 16</value>
@@ -97,7 +97,7 @@
     <value>Eliminar</value>
   </data>
   <data name="dgtbName.HeaderText" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="dgtbQueryName.HeaderText" xml:space="preserve">
     <value>Столбец запроса</value>

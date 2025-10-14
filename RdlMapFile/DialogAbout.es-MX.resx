@@ -76,7 +76,7 @@
     <value>NoControl</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Веб-сайт:</value>
+    <value>Sitio web:</value>
   </data>
   <data name="lVersion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -89,7 +89,7 @@
     <value>266, 24</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Редактор карт</value>
+    <value>Editor de mapas</value>
   </data>
   <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>

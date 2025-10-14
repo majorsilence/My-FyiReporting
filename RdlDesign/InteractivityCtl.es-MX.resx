@@ -63,13 +63,13 @@
     <value>Переключается элементом</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Скрытый (в начале)</value>
+    <value>Oculto (al inicio)</value>
   </data>
   <data name="grpBoxVisibility.Text" xml:space="preserve">
     <value>Visibilidad</value>
   </data>
   <data name="rbNoAction.Text" xml:space="preserve">
-    <value>Отсутствует</value>
+    <value>Ausente</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bParameters.Location" type="System.Drawing.Point, System.Drawing">

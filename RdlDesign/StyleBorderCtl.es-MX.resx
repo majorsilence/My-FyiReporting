@@ -68,7 +68,7 @@
     <value>38, 13</value>
   </data>
   <data name="lLeft.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="lBottom.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -77,7 +77,7 @@
     <value>37, 13</value>
   </data>
   <data name="lBottom.Text" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="lTop.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -86,7 +86,7 @@
     <value>42, 13</value>
   </data>
   <data name="lTop.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="lRight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -95,7 +95,7 @@
     <value>44, 13</value>
   </data>
   <data name="lRight.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

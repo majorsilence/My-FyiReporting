@@ -376,7 +376,7 @@
     <value>Guardar</value>
   </data>
   <data name="ButtonCancel_Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="FileChooser_SaveFileTo_Title" xml:space="preserve">
     <value>Сохранить файл как</value>

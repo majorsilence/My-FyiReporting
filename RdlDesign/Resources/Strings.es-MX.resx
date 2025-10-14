@@ -138,7 +138,7 @@
     <value>Estilo</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_Subreport" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_Table" xml:space="preserve">
     <value>Tabla</value>
@@ -150,7 +150,7 @@
     <value>Строка таблицы</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_Text" xml:space="preserve">
-    <value>Текст</value>
+    <value>Texto</value>
   </data>
   <data name="PropertyDialog_BuildChartAxisTabs_Axis" xml:space="preserve">
     <value>Ось</value>
@@ -192,7 +192,7 @@
     <value>Тело</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_Code" xml:space="preserve">
-    <value>Код</value>
+    <value>Código</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_Modules_Classes" xml:space="preserve">
     <value>Модули/Классы</value>
@@ -201,7 +201,7 @@
     <value>Parámetros</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_Report" xml:space="preserve">
-    <value>Отчёт</value>
+    <value>Informe</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_ReportProperties" xml:space="preserve">
     <value>Свойства отчёта</value>
@@ -231,7 +231,7 @@
     <value>вырезание</value>
   </data>
   <data name="DesignCtl_Undo_Delete" xml:space="preserve">
-    <value>удаление</value>
+    <value>eliminación</value>
   </data>
   <data name="DesignCtl_Undo_DeleteGrouping" xml:space="preserve">
     <value>удаление группы</value>
@@ -258,7 +258,7 @@
     <value>изменение группы таблицы</value>
   </data>
   <data name="DesignCtl_Undo_Insert" xml:space="preserve">
-    <value>вставку</value>
+    <value>inserción</value>
   </data>
   <data name="DesignCtl_Undo_InsertCategoryGrouping" xml:space="preserve">
     <value>вставку группы категории</value>
@@ -312,7 +312,7 @@
     <value>отступ от границы</value>
   </data>
   <data name="DesignCtl_Undo_Paste" xml:space="preserve">
-    <value>вставку</value>
+    <value>inserción</value>
   </data>
   <data name="DesignCtl_Undo_Size" xml:space="preserve">
     <value>изменение размера</value>
@@ -330,16 +330,16 @@
     <value>изменение текста</value>
   </data>
   <data name="NodeChangedUndo_GetDescription_change" xml:space="preserve">
-    <value>изменение</value>
+    <value>modificación</value>
   </data>
   <data name="NodeInsertedUndo_GetDescription_insert" xml:space="preserve">
-    <value>вставку</value>
+    <value>inserción</value>
   </data>
   <data name="NodeRemovedUndo_GetDescription_remove" xml:space="preserve">
-    <value>удаление</value>
+    <value>eliminación</value>
   </data>
   <data name="PropertyPrintFirstLast_SetProp_change" xml:space="preserve">
-    <value>изменение</value>
+    <value>modificación</value>
   </data>
   <data name="PropertyReportItem_Undo_ColumnSpanchange" xml:space="preserve">
     <value>изменение охвата столбцов</value>
@@ -351,7 +351,7 @@
     <value>в теле отчета</value>
   </data>
   <data name="PropertyReport_Undo_change" xml:space="preserve">
-    <value>изменение</value>
+    <value>modificación</value>
   </data>
   <data name="PropertyTableUIEditor_EditValue_TableDialog" xml:space="preserve">
     <value>изменение таблицы</value>
@@ -360,7 +360,7 @@
     <value>Создать...</value>
   </data>
   <data name="RdlDesigner_menuEdit_Popup_Undo" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="RdlDesigner_Undo_DataSetDialog" xml:space="preserve">
     <value>изменение набора данных</value>
@@ -441,7 +441,7 @@
     <value>Ошибка загрузки</value>
   </data>
   <data name="DataSetsCtl_Show_Name" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="DesignCtl_ShowB_Copy" xml:space="preserve">
     <value>Копирование</value>
@@ -631,7 +631,7 @@
     <value>Некорректное имя: {0}</value>
   </data>
   <data name="GroupingCtl_Show_Name" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="GroupingCtl_Show_NoExpressionsForGroup" xml:space="preserve">
     <value>В группе не должно быть выражений</value>
@@ -646,7 +646,7 @@
     <value>Ошибка экспорта</value>
   </data>
   <data name="MDIChild_ShowH_fyiReportingDesigner" xml:space="preserve">
-    <value>Редактор отчётов</value>
+    <value>Editor de informes</value>
   </data>
   <data name="MDIChild_ShowH_Untitled" xml:space="preserve">
     <value>Безымянный</value>
@@ -661,16 +661,16 @@
     <value>{0} некорректно.  {1}</value>
   </data>
   <data name="PositionCtl_Show_Left" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="PositionCtl_Show_Name" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="PositionCtl_Show_SizeInvalid" xml:space="preserve">
     <value>Размер некорректен</value>
   </data>
   <data name="PositionCtl_Show_Top" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="PositionCtl_Show_Width" xml:space="preserve">
     <value>Ancho</value>
@@ -733,7 +733,7 @@
     <value>Error interno</value>
   </data>
   <data name="RdlEditPreview_Show_Report" xml:space="preserve">
-    <value>Отчёт</value>
+    <value>Informe</value>
   </data>
   <data name="RdlUserControl_Show_PrintError" xml:space="preserve">
     <value>Ошибка печати: </value>
@@ -773,19 +773,19 @@
     <value>Ширина верхней границы</value>
   </data>
   <data name="StyleCtl_Show_Bottom" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="StyleCtl_Show_Left" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="StyleCtl_Show_PaddingInvalid" xml:space="preserve">
     <value>{0} некорректный отступ</value>
   </data>
   <data name="StyleCtl_Show_Right" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="StyleCtl_Show_Top" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="StyleTextCtl_Show_InvalidFontSize" xml:space="preserve">
     <value>Некорректный размер шрифта</value>
@@ -797,7 +797,7 @@
     <value>Ошибка загрузки отчёта</value>
   </data>
   <data name="SubreportCtl_Show_Subreport" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="SubreportCtl_Show_SubreportMustSpecified" xml:space="preserve">
     <value>Файл подотчёта должен быть указан</value>
@@ -870,7 +870,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Границы</value>
   </data>
   <data name="Tabs_Code" xml:space="preserve">
-    <value>Код</value>
+    <value>Código</value>
   </data>
   <data name="Tabs_Filter" xml:space="preserve">
     <value>Filtro</value>
@@ -897,7 +897,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Ordenación</value>
   </data>
   <data name="Tabs_Subreport" xml:space="preserve">
-    <value>Подотчёт</value>
+    <value>Subinforme</value>
   </data>
   <data name="Tabs_Visibility" xml:space="preserve">
     <value>Visibilidad</value>

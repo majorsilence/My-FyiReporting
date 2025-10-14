@@ -63,13 +63,13 @@
     <value>Color</value>
   </data>
   <data name="Appearance_Direction" xml:space="preserve">
-    <value>Направление</value>
+    <value>Dirección</value>
   </data>
   <data name="Appearance_FontFamily" xml:space="preserve">
     <value>Семейство шрифтов</value>
   </data>
   <data name="Appearance_FontSize" xml:space="preserve">
-    <value>Размер шрифта</value>
+    <value>Tamaño de fuente</value>
   </data>
   <data name="Appearance_FontStyle" xml:space="preserve">
     <value>Стиль шрифта</value>
@@ -84,13 +84,13 @@
     <value>Горизонтальное выравнивание</value>
   </data>
   <data name="Appearance_TextDecoration" xml:space="preserve">
-    <value>Оформление</value>
+    <value>Formato</value>
   </data>
   <data name="Appearance_VerticalAlign" xml:space="preserve">
     <value>Вертикальное выравнивание</value>
   </data>
   <data name="Appearance_WritingMode" xml:space="preserve">
-    <value>Режим записи</value>
+    <value>Modo de escritura</value>
   </data>
   <data name="BackgroundImage_MIMEType" xml:space="preserve">
     <value>Тип MIME</value>
@@ -147,7 +147,7 @@
     <value>Nombre</value>
   </data>
   <data name="Base_Padding" xml:space="preserve">
-    <value>Отступ от границы</value>
+    <value>Relleno</value>
   </data>
   <data name="Base_Size" xml:space="preserve">
     <value>Tamaño</value>
@@ -165,7 +165,7 @@
     <value>Z-индекс</value>
   </data>
   <data name="ChartAxis_Appearance" xml:space="preserve">
-    <value>Внешний вид</value>
+    <value>Apariencia</value>
   </data>
   <data name="ChartAxis_Background" xml:space="preserve">
     <value>Fondo</value>
@@ -180,7 +180,7 @@
     <value>Переплетать</value>
   </data>
   <data name="ChartAxis_LogScale" xml:space="preserve">
-    <value>Логарифмическая шкала</value>
+    <value>Escala logarítmica</value>
   </data>
   <data name="ChartAxis_MajorGridLines" xml:space="preserve">
     <value>Основные линии сетки</value>
@@ -192,7 +192,7 @@
     <value>Основные деления</value>
   </data>
   <data name="ChartAxis_Margin" xml:space="preserve">
-    <value>Отступ</value>
+    <value>Margen</value>
   </data>
   <data name="ChartAxis_Max" xml:space="preserve">
     <value>Максимум</value>
@@ -210,7 +210,7 @@
     <value>Дополнительные деления</value>
   </data>
   <data name="ChartAxis_Padding" xml:space="preserve">
-    <value>Отступ от границы</value>
+    <value>Relleno</value>
   </data>
   <data name="ChartAxis_Reverse" xml:space="preserve">
     <value>Обратная</value>
@@ -222,7 +222,7 @@
     <value>Encabezado</value>
   </data>
   <data name="ChartAxis_Visible" xml:space="preserve">
-    <value>Видимая</value>
+    <value>Visible</value>
   </data>
   <data name="ChartData_DataValue" xml:space="preserve">
     <value>Значение данных</value>
@@ -246,13 +246,13 @@
     <value>Стиль линии</value>
   </data>
   <data name="ChartGridLines_ShowGridLines" xml:space="preserve">
-    <value>Показывать</value>
+    <value>Mostrar</value>
   </data>
   <data name="ChartGridLines_Width" xml:space="preserve">
     <value>Ancho</value>
   </data>
   <data name="ChartLegend_Appearance" xml:space="preserve">
-    <value>Внешний вид</value>
+    <value>Apariencia</value>
   </data>
   <data name="ChartLegend_Background" xml:space="preserve">
     <value>Fondo</value>
@@ -267,16 +267,16 @@
     <value>Макет</value>
   </data>
   <data name="ChartLegend_Padding" xml:space="preserve">
-    <value>Отступ от границы</value>
+    <value>Relleno</value>
   </data>
   <data name="ChartLegend_Position" xml:space="preserve">
     <value>Posición</value>
   </data>
   <data name="ChartLegend_Visible" xml:space="preserve">
-    <value>Видимая</value>
+    <value>Visible</value>
   </data>
   <data name="ChartTitle_Appearance" xml:space="preserve">
-    <value>Внешний вид</value>
+    <value>Apariencia</value>
   </data>
   <data name="ChartTitle_Background" xml:space="preserve">
     <value>Fondo</value>
@@ -288,7 +288,7 @@
     <value>Encabezado</value>
   </data>
   <data name="ChartTitle_Padding" xml:space="preserve">
-    <value>Отступ от границы</value>
+    <value>Relleno</value>
   </data>
   <data name="Chart_CategoryAxis" xml:space="preserve">
     <value>Ось категории</value>
@@ -315,7 +315,7 @@
     <value>Ось значения</value>
   </data>
   <data name="DataRegion_Appearance" xml:space="preserve">
-    <value>Внешний вид</value>
+    <value>Apariencia</value>
   </data>
   <data name="DataRegion_DataSetName" xml:space="preserve">
     <value>Conjunto de datos</value>
@@ -363,34 +363,34 @@
     <value>Ordenación</value>
   </data>
   <data name="Location_Left" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="Location_Top" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="Margin_Bottom" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="Margin_Left" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="Margin_Right" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="Margin_Top" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="Padding_Bottom" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="Padding_Left" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="Padding_Right" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="Padding_Top" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="PrintFirstLast_Height" xml:space="preserve">
     <value>Altura</value>
@@ -420,7 +420,7 @@
     <value>Высота тела</value>
   </data>
   <data name="Report_Code" xml:space="preserve">
-    <value>Код</value>
+    <value>Código</value>
   </data>
   <data name="Report_DataElementName" xml:space="preserve">
     <value>Название элемента данных</value>
@@ -480,7 +480,7 @@
     <value>Путь к отчёту</value>
   </data>
   <data name="Textbox_Appearance" xml:space="preserve">
-    <value>Внешний вид</value>
+    <value>Apariencia</value>
   </data>
   <data name="Textbox_CanGrow" xml:space="preserve">
     <value>Может расти</value>

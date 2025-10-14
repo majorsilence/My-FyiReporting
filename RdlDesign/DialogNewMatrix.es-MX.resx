@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
@@ -79,7 +79,7 @@
     <value>120, 23</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Поля набора данных</value>
+    <value>Campos del conjunto de datos</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 23</value>
@@ -97,7 +97,7 @@
     <value>58, 24</value>
   </data>
   <data name="bColumnUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="bColumnDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>382, 112</value>
@@ -106,7 +106,7 @@
     <value>58, 24</value>
   </data>
   <data name="bColumnDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <data name="bColumn.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 88</value>
@@ -146,7 +146,7 @@
     <value>58, 24</value>
   </data>
   <data name="bRowDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <data name="bRowUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>382, 208</value>
@@ -155,7 +155,7 @@
     <value>58, 24</value>
   </data>
   <data name="bRowUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 182</value>

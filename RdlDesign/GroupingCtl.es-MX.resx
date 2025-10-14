@@ -70,19 +70,19 @@
     <value>61, 20</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="bDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
   </data>
   <data name="bDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название</value>
+    <value>Nombre</value>
   </data>
   <data name="tbName.Location" type="System.Drawing.Point, System.Drawing">
     <value>82, 8</value>

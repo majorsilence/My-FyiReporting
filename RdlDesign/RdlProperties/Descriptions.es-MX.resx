@@ -183,7 +183,7 @@
     <value>Отрисовывать полосы на каждой нечётной линии?</value>
   </data>
   <data name="ChartAxis_LogScale" xml:space="preserve">
-    <value>Логарифмическая шкала</value>
+    <value>Escala logarítmica</value>
   </data>
   <data name="ChartAxis_MajorGridLines" xml:space="preserve">
     <value>Свойства основный линий оси.</value>

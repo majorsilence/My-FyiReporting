@@ -80,7 +80,7 @@
     <value>77, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>По вертикали</value>
+    <value>Vertical</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -98,7 +98,7 @@
     <value>75, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Направление</value>
+    <value>Dirección</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -110,7 +110,7 @@
     <value>81, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Режим записи</value>
+    <value>Modo de escritura</value>
   </data>
   <data name="lFont.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -155,7 +155,7 @@
     <value>73, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Оформление</value>
+    <value>Formato</value>
   </data>
   <data name="cbTextDecoration.Location" type="System.Drawing.Point, System.Drawing">
     <value>299, 77</value>

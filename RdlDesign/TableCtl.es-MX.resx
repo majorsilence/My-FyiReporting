@@ -104,7 +104,7 @@
     <value>432, 48</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Разрывы страниц</value>
+    <value>Saltos de página</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -113,7 +113,7 @@
     <value>152, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Сообщение, когда нет строк</value>
+    <value>Mensaje cuando no hay filas</value>
   </data>
   <data name="tbNoRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 40</value>

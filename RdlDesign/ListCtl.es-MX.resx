@@ -94,7 +94,7 @@
     <value>162, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Сообщение, когда нет строк</value>
+    <value>Mensaje cuando no hay filas</value>
   </data>
   <data name="tbNoRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 48</value>

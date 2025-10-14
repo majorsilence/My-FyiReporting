@@ -79,7 +79,7 @@
     <value>58, 23</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="bDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>427, 99</value>
@@ -88,7 +88,7 @@
     <value>58, 23</value>
   </data>
   <data name="bDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <data name="bValueExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>427, 8</value>

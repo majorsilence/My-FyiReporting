@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bCancel.Text" xml:space="preserve">
-    <value>Отменить</value>
+    <value>Cancelar</value>
   </data>
   <data name="tpGeneral.Text" xml:space="preserve">
     <value>Общие</value>
@@ -94,25 +94,25 @@
     <value>55, 17</value>
   </data>
   <data name="rbPBBottom.Text" xml:space="preserve">
-    <value>Снизу</value>
+    <value>Abajo</value>
   </data>
   <data name="rbPBTop.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 17</value>
   </data>
   <data name="rbPBTop.Text" xml:space="preserve">
-    <value>Сверху</value>
+    <value>Arriba</value>
   </data>
   <data name="rbPBLeft.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 17</value>
   </data>
   <data name="rbPBLeft.Text" xml:space="preserve">
-    <value>Слева</value>
+    <value>Izquierda</value>
   </data>
   <data name="rbPBRight.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 17</value>
   </data>
   <data name="rbPBRight.Text" xml:space="preserve">
-    <value>Справа</value>
+    <value>Derecha</value>
   </data>
   <data name="cbTabInterface.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 17</value>
@@ -184,13 +184,13 @@
     <value>73, 23</value>
   </data>
   <data name="bDown.Text" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Abajo</value>
   </data>
   <data name="bUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Arriba</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Панель макета</value>
