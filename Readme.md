@@ -29,7 +29,7 @@ Majorsilence Reporting is a powerful, open-source .NET reporting framework desig
 
 ## Internationalization
 
-Majorsilence Reporting supports multiple languages including English, Russian, French, and Spanish (Mexico). See [INTERNATIONALIZATION.md](INTERNATIONALIZATION.md) for details on supported languages and how to configure or contribute translations.
+Majorsilence Reporting supports multiple languages including English, Russian, French, and Spanish. See [INTERNATIONALIZATION.md](INTERNATIONALIZATION.md) for details on supported languages and how to configure or contribute translations.
 
 # Quick start
 

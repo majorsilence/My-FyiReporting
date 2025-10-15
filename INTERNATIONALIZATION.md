@@ -9,7 +9,7 @@ The following languages are currently supported:
 - **English (en-US)** - Default/Base language
 - **Russian (ru-RU)** - Full translation
 - **French (fr)** - Partial translation
-- **Spanish - Mexico (es-MX)** - NEW! Full translation with 453+ translated strings
+- **Spanish (es)** - NEW! Full translation with 453+ translated strings
 
 ## Language Configuration
 
@@ -28,8 +28,8 @@ The language is determined by the current thread's `CurrentCulture` and `Current
 using System.Globalization;
 using System.Threading;
 
-// Set Spanish (Mexico) as the UI language
-var culture = new CultureInfo("es-MX");
+// Set Spanish as the UI language
+var culture = new CultureInfo("es");
 Thread.CurrentThread.CurrentCulture = culture;
 Thread.CurrentThread.CurrentUICulture = culture;
 ```
@@ -40,7 +40,7 @@ For ASP.NET applications:
 using System.Globalization;
 
 // In your Startup.cs or Program.cs
-var supportedCultures = new[] { "en-US", "ru-RU", "fr", "es-MX" };
+var supportedCultures = new[] { "en-US", "ru-RU", "fr", "es" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture("en-US")
     .AddSupportedCultures(supportedCultures)
@@ -51,9 +51,9 @@ app.UseRequestLocalization(localizationOptions);
 
 ## Translation Coverage
 
-### Spanish (Mexico) - es-MX
+### Spanish (es)
 
-The es-MX translation includes:
+The es translation includes:
 
 - ✅ **Core Engine** (RdlEngine) - Error messages, data processing strings
 - ✅ **Report Viewer** (RdlViewer) - UI elements, viewer controls
