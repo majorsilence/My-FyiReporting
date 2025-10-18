@@ -1934,8 +1934,8 @@ namespace Majorsilence.Reporting.RdlViewer
                     wvalue = _vScroll.Value + _vScroll.SmallChange;
 
                     //Changed from forum, User: robertopisati http://www.fyireporting.com/forum/viewtopic.php?t=863
-                    float value = Math.Min(_vScroll.Maximum - (_DrawPanel.Height / _zoom), wvalue);
-                    _vScroll.Value = (int)Math.Max(_vScroll.Minimum, value);
+                    int maxScroll = (int)Math.Max(_vScroll.Minimum, _vScroll.Maximum - (_DrawPanel.Height / _zoom));
+                    _vScroll.Value = Math.Min(Math.Max(wvalue, _vScroll.Minimum), Math.Min(maxScroll, _vScroll.Maximum));
                     _DrawPanel.Refresh();
                 }
             }
