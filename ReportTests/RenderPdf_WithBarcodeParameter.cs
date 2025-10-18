@@ -25,8 +25,6 @@ namespace ReportTests.Utils
     {
         private Uri _reportFolder = null;
         private Uri _outputFolder = null;
-        private string _extOuput = ".pdf";
-
 
         [SetUp]
         public void Prepare2Tests()
