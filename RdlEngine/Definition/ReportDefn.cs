@@ -23,7 +23,7 @@ namespace Majorsilence.Reporting.Rdl
 	/// definition of a instance of a report.
 	///</summary>
 	[Serializable]
-	public class ReportDefn				
+	public class ReportDefn : IDisposable				
 	{
 		internal int _ObjectCount=0;	// master object counter
 		internal ReportLog rl;	// report log
@@ -824,6 +824,93 @@ namespace Majorsilence.Reporting.Rdl
 				return;
 			rl.Reset();
 			return;
+		}
+
+		private bool _disposed = false;
+
+		/// <summary>
+		/// Dispose of resources held by ReportDefn including data sources and embedded images.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// Protected implementation of Dispose pattern.
+		/// </summary>
+		/// <param name="disposing">True if called from Dispose(), false if called from finalizer</param>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (_disposed)
+				return;
+
+			if (disposing)
+			{
+				// Dispose managed resources
+				if (_DataSourcesDefn != null)
+				{
+					_DataSourcesDefn.CleanUp(null);
+					_DataSourcesDefn = null;
+				}
+
+				// Clear collections that may hold references to resources
+				if (_DataCache != null)
+				{
+					_DataCache.Clear();
+					_DataCache = null;
+				}
+
+				if (_LUReportItems != null)
+				{
+					_LUReportItems.Clear();
+					_LUReportItems = null;
+				}
+
+				if (_LUAggrScope != null)
+				{
+					_LUAggrScope.Clear();
+					_LUAggrScope = null;
+				}
+
+				if (_LUEmbeddedImages != null)
+				{
+					_LUEmbeddedImages.Clear();
+					_LUEmbeddedImages = null;
+				}
+
+				if (_LUDynamicNames != null)
+				{
+					_LUDynamicNames.Clear();
+					_LUDynamicNames = null;
+				}
+
+				if (_LUGlobals != null)
+				{
+					_LUGlobals.Clear();
+					_LUGlobals = null;
+				}
+
+				if (_LUUser != null)
+				{
+					_LUUser.Clear();
+					_LUUser = null;
+				}
+
+				// Clear references to other objects
+				_DataSetsDefn = null;
+				_Body = null;
+				_PageHeader = null;
+				_PageFooter = null;
+				_EmbeddedImages = null;
+				_ReportParameters = null;
+				_Code = null;
+				_CodeModules = null;
+				_Classes = null;
+			}
+
+			_disposed = true;
 		}
 	}
 }
