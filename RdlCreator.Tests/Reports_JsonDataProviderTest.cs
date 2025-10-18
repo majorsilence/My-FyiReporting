@@ -13,7 +13,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
     [TestFixture]
     public class Reports_JsonDataProviderTest
     {
-        string dataProvider = "Json";
+        DataProviders dataProvider = DataProviders.Json;
 
         // Add this inside your Reports_JsonDataProviderTest class
 

@@ -14,7 +14,7 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
     public class Reports_DataProviderTest
     {
         string connectionString = "Data Source=sqlitetestdb2.db;";
-        string dataProvider = "Microsoft.Data.Sqlite";
+        DataProviders dataProvider = DataProviders.SQLite_MicrosoftData;
 
         [SetUp]
         public void Setup()

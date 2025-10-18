@@ -19,7 +19,7 @@ namespace Majorsilence.Reporting.Benchmarks
     [DrawingCompatJob(runStrategy: RunStrategy.Throughput, baseline: true, buildConfiguration: "Release-DrawingCompat")]
     public class JsonDataProviderBenchmark
     {
-        string dataProvider = "Json";
+        DataProviders dataProvider = DataProviders.Json;
         private string connectionString = "file=NestedJsonData.json";
         
         [Benchmark]
