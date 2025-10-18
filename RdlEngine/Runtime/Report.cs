@@ -611,7 +611,11 @@ namespace Majorsilence.Reporting.Rdl
         {
 			_UserParameters = null;
 			_DataSets = null;
-			_Report = null;
+			if (_Report != null)
+			{
+				_Report.Dispose();
+				_Report = null;
+			}
 			_Cache = null;
 			_DataSources = null;
 			_CurrentPage = null;
