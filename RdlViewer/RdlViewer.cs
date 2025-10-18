@@ -1961,8 +1961,8 @@ namespace Majorsilence.Reporting.RdlViewer
                 if (!_vScroll.Enabled)
                     return;
                 int wvalue = _vScroll.Value + _vScroll.SmallChange;
-
-                _vScroll.Value = (int)Math.Min(_vScroll.Maximum - (_DrawPanel.Height / _zoom), wvalue);
+                int maxScroll = (int)Math.Max(_vScroll.Minimum, _vScroll.Maximum - (_DrawPanel.Height / _zoom));
+                _vScroll.Value = Math.Min(Math.Max(wvalue, _vScroll.Minimum), Math.Min(maxScroll, _vScroll.Maximum));
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -1970,7 +1970,7 @@ namespace Majorsilence.Reporting.RdlViewer
             {
                 if (!_vScroll.Enabled)
                     return;
-                _vScroll.Value = Math.Max(_vScroll.Value - _vScroll.SmallChange, 0);
+                _vScroll.Value = Math.Max(_vScroll.Value - _vScroll.SmallChange, _vScroll.Minimum);
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -1978,8 +1978,8 @@ namespace Majorsilence.Reporting.RdlViewer
             {
                 if (!_vScroll.Enabled)
                     return;
-                _vScroll.Value = Math.Min(_vScroll.Value + _vScroll.LargeChange,
-                    _vScroll.Maximum - _DrawPanel.Height);
+                int maxScroll = Math.Max(_vScroll.Minimum, _vScroll.Maximum - _DrawPanel.Height);
+                _vScroll.Value = Math.Min(Math.Max(_vScroll.Value + _vScroll.LargeChange, _vScroll.Minimum), Math.Min(maxScroll, _vScroll.Maximum));
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -1987,7 +1987,7 @@ namespace Majorsilence.Reporting.RdlViewer
             {
                 if (!_vScroll.Enabled)
                     return;
-                _vScroll.Value = Math.Max(_vScroll.Value - _vScroll.LargeChange, 0);
+                _vScroll.Value = Math.Max(_vScroll.Value - _vScroll.LargeChange, _vScroll.Minimum);
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -1995,7 +1995,7 @@ namespace Majorsilence.Reporting.RdlViewer
             {
                 if (!_vScroll.Enabled)
                     return;
-                _vScroll.Value = 0;
+                _vScroll.Value = _vScroll.Minimum;
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -2019,9 +2019,9 @@ namespace Majorsilence.Reporting.RdlViewer
                 if (!_hScroll.Enabled)
                     return;
                 if (e.Control)
-                    _hScroll.Value = 0;
+                    _hScroll.Value = _hScroll.Minimum;
                 else
-                    _hScroll.Value = Math.Max(_hScroll.Value - _hScroll.SmallChange, 0);
+                    _hScroll.Value = Math.Max(_hScroll.Value - _hScroll.SmallChange, _hScroll.Minimum);
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
@@ -2030,10 +2030,15 @@ namespace Majorsilence.Reporting.RdlViewer
                 if (!_hScroll.Enabled)
                     return;
                 if (e.Control)
-                    _hScroll.Value = _hScroll.Maximum - _DrawPanel.Width;
+                {
+                    int maxScroll = Math.Max(_hScroll.Minimum, _hScroll.Maximum - _DrawPanel.Width);
+                    _hScroll.Value = Math.Min(maxScroll, _hScroll.Maximum);
+                }
                 else
-                    _hScroll.Value = Math.Min(_hScroll.Value + _hScroll.SmallChange,
-                        _hScroll.Maximum - _DrawPanel.Width);
+                {
+                    int maxScroll = Math.Max(_hScroll.Minimum, _hScroll.Maximum - _DrawPanel.Width);
+                    _hScroll.Value = Math.Min(Math.Max(_hScroll.Value + _hScroll.SmallChange, _hScroll.Minimum), Math.Min(maxScroll, _hScroll.Maximum));
+                }
                 _DrawPanel.Refresh();
                 e.Handled = true;
             }
