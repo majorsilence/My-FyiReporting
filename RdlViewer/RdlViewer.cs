@@ -425,7 +425,7 @@ namespace Majorsilence.Reporting.RdlViewer
                     //					_vScroll.Value = (int)((double)_vScroll.Maximum / _pgs.PageCount * (value -1)); 
 
                     double scrollValue = ((double)_vScroll.Maximum * (value - 1)) / _pgs.PageCount;
-                    _vScroll.Value = (int)Math.Round(scrollValue);
+                    _vScroll.Value = Math.Min((int)Math.Round(scrollValue), _vScroll.Maximum);
 
                     string tt = string.Format("Page {0} of {1}",
                                     (int)(_pgs.PageCount * (long)_vScroll.Value / (double)_vScroll.Maximum) + 1,
