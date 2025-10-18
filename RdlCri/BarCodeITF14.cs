@@ -56,7 +56,7 @@ namespace Majorsilence.Reporting.Cri
             using (var g = Graphics.FromImage(bm))
             {
                 // Fill background with white
-                g.Clear(Color.White);
+                g.FillRectangle(Brushes.White, 0, 0, bm.Width, bm.Height);
                 
                 // Draw the barcode aligned to the left (top-left corner at 0, 0)
                 g.DrawImage(img, 0, 0);

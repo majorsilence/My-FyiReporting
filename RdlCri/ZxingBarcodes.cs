@@ -85,7 +85,7 @@ namespace Majorsilence.Reporting.Cri
             var barcodeBitmap = writer.Write(qrcode);
             
             // Fill background with white
-            g.Clear(Draw2.Color.White);
+            g.FillRectangle(Draw2.Brushes.White, 0, 0, bm.Width, bm.Height);
             
             // Draw the barcode aligned to the left (top-left corner at 0, 0)
             g.DrawImage(barcodeBitmap, 0, 0);
