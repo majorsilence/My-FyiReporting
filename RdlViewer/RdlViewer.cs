@@ -1078,7 +1078,8 @@ namespace Majorsilence.Reporting.RdlViewer
             // do we need to scroll vertically?
             if (!(_vScroll.Value <= scroll && _vScroll.Value + _DrawPanel.Height / this.Zoom >= scroll + height))
             {   // item isn't on visible part of window; force scroll
-                _vScroll.Value = Math.Min(scroll, Math.Max(0, _vScroll.Maximum - _DrawPanel.Height));
+                int maxScroll = Math.Max(_vScroll.Minimum, _vScroll.Maximum - _DrawPanel.Height);
+                _vScroll.Value = Math.Min(Math.Max(scroll, _vScroll.Minimum), Math.Min(maxScroll, _vScroll.Maximum));
                 SetScrollControlsV();
                 ScrollEventArgs sa = new ScrollEventArgs(ScrollEventType.ThumbPosition, _vScroll.Maximum + 1); // position is intentionally wrong
                 VerticalScroll(_vScroll, sa);
@@ -1090,7 +1091,8 @@ namespace Majorsilence.Reporting.RdlViewer
             // do we need to scroll horizontally?
             if (!(_hScroll.Value <= scroll && _hScroll.Value + _DrawPanel.Width / this.Zoom >= scroll + width))
             {   // item isn't on visible part of window; force scroll
-                _hScroll.Value = Math.Min(scroll, Math.Max(0, _hScroll.Maximum - _DrawPanel.Width));
+                int maxScroll = Math.Max(_hScroll.Minimum, _hScroll.Maximum - _DrawPanel.Width);
+                _hScroll.Value = Math.Min(Math.Max(scroll, _hScroll.Minimum), Math.Min(maxScroll, _hScroll.Maximum));
                 SetScrollControlsH();
                 ScrollEventArgs sa = new ScrollEventArgs(ScrollEventType.ThumbPosition, _hScroll.Maximum + 1); // position is intentionally wrong
                 HorizontalScroll(_hScroll, sa);
