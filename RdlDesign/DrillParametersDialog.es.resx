@@ -67,7 +67,7 @@
     <value>101, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название отчёта</value>
+    <value>Report name</value>
   </data>
   <data name="bRefreshParms.Location" type="System.Drawing.Point, System.Drawing">
     <value>388, 40</value>
@@ -104,6 +104,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Указите детали отчёта и параметры</value>
+    <value>Specify Drillthrough Report and Parameters</value>
   </data>
 </root>

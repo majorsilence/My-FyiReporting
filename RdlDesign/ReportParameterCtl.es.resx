@@ -76,7 +76,7 @@
     <value>135, 24</value>
   </data>
   <data name="ckbParmMultiValue.Text" xml:space="preserve">
-    <value>несколько значений</value>
+    <value>MultiValue</value>
   </data>
   <data name="cbValidDisplayField.Location" type="System.Drawing.Point, System.Drawing">
     <value>311, 83</value>
@@ -97,7 +97,7 @@
     <value>115, 16</value>
   </data>
   <data name="lDisplayField.Text" xml:space="preserve">
-    <value>Отображаемое поле</value>
+    <value>Display Field</value>
   </data>
   <data name="lValidValuesField.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 18</value>
@@ -121,7 +121,7 @@
     <value>281, 20</value>
   </data>
   <data name="gbValidValues.Text" xml:space="preserve">
-    <value>Корректность значений</value>
+    <value>Valid Values</value>
   </data>
   <data name="ckbParmAllowBlank.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 63</value>
@@ -130,13 +130,13 @@
     <value>104, 24</value>
   </data>
   <data name="ckbParmAllowBlank.Text" xml:space="preserve">
-    <value>пустые строки</value>
+    <value>Allow blank (strings only)</value>
   </data>
   <data name="ckbParmAllowNull.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 24</value>
   </data>
   <data name="ckbParmAllowNull.Text" xml:space="preserve">
-    <value>Разрешить без значения</value>
+    <value>Allow null</value>
   </data>
   <data name="tbParmPrompt.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 37</value>
@@ -157,7 +157,7 @@
     <value>73, 21</value>
   </data>
   <data name="lParmType.Text" xml:space="preserve">
-    <value>Тип данных</value>
+    <value>Datatype</value>
   </data>
   <data name="tbParmName.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 12</value>

@@ -64,13 +64,13 @@
     <value>146, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Позиция в диаграмме</value>
+    <value>Position in Chart</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 16</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Расположение в легенде</value>
+    <value>Layout within Legend</value>
   </data>
   <data name="cbPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 15</value>
@@ -85,6 +85,6 @@
     <value>170, 24</value>
   </data>
   <data name="chkInsidePlotArea.Text" xml:space="preserve">
-    <value>Рисовать внутри участка</value>
+    <value>Draw Inside Plot Area</value>
   </data>
 </root>

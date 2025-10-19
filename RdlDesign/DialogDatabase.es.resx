@@ -60,10 +60,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ReportType.Text" xml:space="preserve">
-    <value>Информация</value>
+    <value>Report Info</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Спецификация RDL</value>
+    <value>RDL Schema</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="rbSchema2005.Size" type="System.Drawing.Size, System.Drawing">
@@ -82,7 +82,7 @@
     <value>74, 23</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Ориентация:</value>
+    <value>Orientation:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Autor:</value>
@@ -91,10 +91,10 @@
     <value>Descripción:</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название:</value>
+    <value>Name:</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Тип отчёта</value>
+    <value>Report Type</value>
   </data>
   <data name="rbChart.Text" xml:space="preserve">
     <value>Gráfico</value>
@@ -115,7 +115,7 @@
     <value>202, 20</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Пароль:</value>
+    <value>password:</value>
   </data>
   <data name="textBoxSqlUser.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 63</value>
@@ -127,16 +127,16 @@
     <value>90, 23</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Пользователь:</value>
+    <value>Username:</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Сервер:</value>
+    <value>Server:</value>
   </data>
   <data name="buttonDatabaseSearch.Text" xml:space="preserve">
-    <value>Найти базы данных</value>
+    <value>Search for Databases</value>
   </data>
   <data name="comboServerList.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 21</value>
@@ -151,7 +151,7 @@
     <value>Base de datos:</value>
   </data>
   <data name="buttonSearchSqlServers.Text" xml:space="preserve">
-    <value>Найти сервера</value>
+    <value>Search for Servers</value>
   </data>
   <data name="comboDatabaseList.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 92</value>
@@ -166,7 +166,7 @@
     <value>203, 23</value>
   </data>
   <data name="buttonSqliteSelectDatabase.Text" xml:space="preserve">
-    <value>Выбрать файл базы данных SQLite</value>
+    <value>Select SQLite Database File</value>
   </data>
   <data name="bShared.Location" type="System.Drawing.Point, System.Drawing">
     <value>216, 53</value>
@@ -193,13 +193,13 @@
     <value>16, 53</value>
   </data>
   <data name="lConnection.Text" xml:space="preserve">
-    <value>Строка соединения:</value>
+    <value>Connection:</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 23</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Тип соединения</value>
+    <value>Connection Type:</value>
   </data>
   <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -211,7 +211,7 @@
     <value>Parámetros</value>
   </data>
   <data name="TabularGroup.Text" xml:space="preserve">
-    <value>Итоги</value>
+    <value>Grouping</value>
   </data>
   <data name="clbSubtotal.Location" type="System.Drawing.Point, System.Drawing">
     <value>235, 42</value>
@@ -220,13 +220,13 @@
     <value>Calcular totales generales</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Отметьте столбцы мер</value>
+    <value>Check columns you want to subtotal</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 32</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Выбрать столбец для группировки (создать иерархию)</value>
+    <value>Pick a column to group (create hierarchy)</value>
   </data>
   <data name="cbColumnList.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 51</value>
@@ -241,6 +241,6 @@
     <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Создание отчёта</value>
+    <value>New Report from Database</value>
   </data>
 </root>

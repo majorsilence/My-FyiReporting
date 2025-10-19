@@ -60,54 +60,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DesignXmlDraw_SetMapFile_ErrorOpeningFile" xml:space="preserve">
-    <value>Ошибка открытия файла</value>
+    <value>Error Opening File</value>
   </data>
   <data name="DesignXmlDraw_SetMapFile_Unable_to_open_file" xml:space="preserve">
-    <value>Не удалётся отрыть файл</value>
+    <value>Unable to open file</value>
   </data>
   <data name="MapFile_helpHelpToolStripMenuItem_Click_Help_URL_Invalid" xml:space="preserve">
     <value>Referencia de ayuda no válida</value>
   </data>
   <data name="MapFile_openToolStripMenuItem_Click_ErrorOpening" xml:space="preserve">
-    <value>Ошибка открытия</value>
+    <value>Error opening</value>
   </data>
   <data name="MapFile_reducePolygonPointsToolStripMenuItem_Click_Reduce_Polygon_Count" xml:space="preserve">
-    <value>Уменьшение количества сторон многоугольника</value>
+    <value>Reduce Polygon Count</value>
   </data>
   <data name="MapFile_reducePolygonPointsToolStripMenuItem_ReducePolygon" xml:space="preserve">
-    <value>Количество сторок многоугольника уменьшено на</value>
+    <value>Polygon point count reduced by</value>
   </data>
   <data name="MapFile_ShowB_RdlMapFileDesigner" xml:space="preserve">
-    <value>Дизайнер карт</value>
+    <value>RdlMapFile designer</value>
   </data>
   <data name="MapFile_ShowB_Untitled" xml:space="preserve">
     <value>sin nombre</value>
   </data>
   <data name="MapFile_ShowB_WantSave" xml:space="preserve">
-    <value>Хотите сохранить изменения сделанные в '{0}'?</value>
+    <value>Do you want to save changes you made to '{0}'?</value>
   </data>
   <data name="MapFile_supportToolStripMenuItem_Click_Support_URL_Invalid" xml:space="preserve">
     <value>Referencia de soporte no válida</value>
   </data>
   <data name="DialogAbout_About" xml:space="preserve">
-    <value>Дизайнер карт создает XML файлы, которые можно использовать в диаграммах редактора отчёта.
+    <value>Map File Designer creates XML files that can be used in map Charts within the RDL designer.
 
-Copyright (C) 2004-2008 fyiReporting Software, LLC
-
-Под лицензией Apache, версии 2.0 (the "License");
-Вы не можете использовать этот файл только в соответствии с лицензией.
-Вы можете получить копию лицензии на
+Copyright (C) 2004-2008  fyiReporting Software, LLC
+	
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Если иное не требуется законодательством или согласовано в письменной форме, программное обеспечение
-распространяется под лицензия КАК ЕСТЬ",
-БЕЗ ГАРАНТИЙ ИЛИ УСЛОВИЙ ЛЮБОГО РОДА, явных или подразумеваемых.
-См. Лицензию на других языках, регулирующих разрешения и
-ограничения в рамках лицензии.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-Для получения дополнительной информации, напишите на info@fyireporting.com или посетите
-сайт www.fyiReporting.com.</value>
+For additional information, email info@fyireporting.com or visit
+the website www.fyiReporting.com.</value>
   </data>
   <data name="DialogAbout_Version" xml:space="preserve">
     <value>Versión {0}</value>
@@ -125,22 +125,22 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>eliminación</value>
   </data>
   <data name="DesignXmlDraw_Undo_InsertLinePoint" xml:space="preserve">
-    <value>вставку точки линии</value>
+    <value>Insert Line Point</value>
   </data>
   <data name="DesignXmlDraw_Undo_InsertPolygonPoint" xml:space="preserve">
-    <value>вставку вершины многоугольника</value>
+    <value>Insert Polygon Point</value>
   </data>
   <data name="DesignXmlDraw_Undo_InsertText" xml:space="preserve">
-    <value>вставку текста</value>
+    <value>Insert Text</value>
   </data>
   <data name="DesignXmlDraw_Undo_Move" xml:space="preserve">
     <value>movimiento</value>
   </data>
   <data name="DesignXmlDraw_Undo_Paste" xml:space="preserve">
-    <value>вставку из буфера</value>
+    <value>Paste</value>
   </data>
   <data name="DesignXmlDraw_Undo_ReducePointCount" xml:space="preserve">
-    <value>уменьшение количества вершин</value>
+    <value>Reduce Point Count</value>
   </data>
   <data name="DesignXmlDraw_Undo_Resize" xml:space="preserve">
     <value>cambio de tamaño</value>
@@ -158,31 +158,31 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>modificación</value>
   </data>
   <data name="PropertyText_Undo_FontChange" xml:space="preserve">
-    <value>изменение шрифта</value>
+    <value>Font change</value>
   </data>
   <data name="DesignXmlDraw_Error_XMLNotMapData" xml:space="preserve">
     <value>El XML del mapa no contiene el elemento 'MapData'.</value>
   </data>
   <data name="Undo_Error_EndGroupNotMatchStartGroup" xml:space="preserve">
-    <value>Внутренняя логическая ошибка: конец группы не соответствует началу группы</value>
+    <value>Internal logic error: EndGroup doesn't match StartGroup</value>
   </data>
   <data name="Undo_Error_UnknownAction" xml:space="preserve">
     <value>Acción desconocida</value>
   </data>
   <data name="ShapeFile_ErrorA_InvalidFileCode" xml:space="preserve">
-    <value>Некорректный код файла. Ожидается {0}.</value>
+    <value>Invalid FileCode encountered. Expecting {0}.</value>
   </data>
   <data name="ShapeFile_ErrorA_ShapeTypeNotSupported" xml:space="preserve">
-    <value>Тип фигуры {0} не поддерживается.</value>
+    <value>ShapeType {0} is not supported.</value>
   </data>
   <data name="MapFile_importMenuItem_Click_OpenShape" xml:space="preserve">
-    <value>Файлы фигур (*.shp)|*.shp|Все файлы (*.*)|*.*</value>
+    <value>Shape Files (*.shp)|*.shp|All files (*.*)|*.*</value>
   </data>
   <data name="MapFile_openToolStripMenuItem_Click_OpenMap" xml:space="preserve">
-    <value>Файлы карт (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+    <value>Map files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
   <data name="MapFile_setBackgroundImageToolStripMenuItem_Click_OpenPicture" xml:space="preserve">
-    <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все файлы изображений|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
+    <value>Bitmap Files (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|All Picture Files|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|All files (*.*)|*.*</value>
   </data>
   <data name="MapFile_SaveAs_RDL_MapFilesFilter" xml:space="preserve">
     <value>Mapas (*.xml)|*.xml|Todos los archivos (*.*)|*.*</value>

@@ -68,7 +68,7 @@
     <value>78, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Серия данных</value>
+    <value>Data Series</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -95,7 +95,7 @@
     <value>129, 17</value>
   </data>
   <data name="chkShowLabels.Text" xml:space="preserve">
-    <value>Показывать метки?</value>
+    <value>Show Labels?</value>
   </data>
   <data name="txtSeriesName.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 20</value>
@@ -158,7 +158,7 @@
     <value>68, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Тип участка</value>
+    <value>Series Plot Type</value>
   </data>
   <data name="cbPlotType.Location" type="System.Drawing.Point, System.Drawing">
     <value>142, 217</value>
@@ -197,7 +197,7 @@
     <value>37, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Ось Y</value>
+    <value>Y Axis</value>
   </data>
   <data name="btnUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -215,7 +215,7 @@
     <value>157, 13</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Значение X (только точечная)</value>
+    <value>X Value(Scatter only)</value>
   </data>
   <data name="btnX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -233,7 +233,7 @@
     <value>144, 17</value>
   </data>
   <data name="chkMarker.Text" xml:space="preserve">
-    <value>Показывать маркеры?</value>
+    <value>Show Markers?</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -245,7 +245,7 @@
     <value>79, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Ширина линии</value>
+    <value>Line Width</value>
   </data>
   <data name="cbLine.Location" type="System.Drawing.Point, System.Drawing">
     <value>283, 217</value>

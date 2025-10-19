@@ -66,7 +66,7 @@
     <value>Editor de código</value>
   </data>
   <data name="tpEditor.ToolTipText" xml:space="preserve">
-    <value>Редактировать код отчёта</value>
+    <value>Edit Report Syntax</value>
   </data>
   <data name="tpBrowser.Text" xml:space="preserve">
     <value>Vista</value>

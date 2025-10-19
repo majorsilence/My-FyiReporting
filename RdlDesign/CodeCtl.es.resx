@@ -67,7 +67,7 @@
     <value>161, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Код функции на Visual Basic</value>
+    <value>Visual Basic Function Code</value>
   </data>
   <data name="bCheckSyntax.Location" type="System.Drawing.Point, System.Drawing">
     <value>350, 3</value>
@@ -76,9 +76,9 @@
     <value>97, 23</value>
   </data>
   <data name="bCheckSyntax.Text" xml:space="preserve">
-    <value>Проверить код</value>
+    <value>Check Syntax</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Сообщения</value>
+    <value>Msgs</value>
   </data>
 </root>

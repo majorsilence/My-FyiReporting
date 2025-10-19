@@ -152,7 +152,7 @@
     <value>103, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Выводить элемент</value>
+    <value>DataElementOutput</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -161,6 +161,6 @@
     <value>109, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название элемента</value>
+    <value>DataElementName</value>
   </data>
 </root>

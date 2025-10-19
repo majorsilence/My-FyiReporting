@@ -91,7 +91,7 @@
     <value>Sitio web:</value>
   </data>
   <data name="lVersion.Text" xml:space="preserve">
-    <value>Версия x.x.x</value>
+    <value>Version x.x.x</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Acerca de</value>

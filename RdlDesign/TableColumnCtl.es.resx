@@ -95,7 +95,7 @@
     <value>90, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Ширина столбца</value>
+    <value>Column Width</value>
   </data>
   <data name="tbColumnWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 101</value>
@@ -107,7 +107,7 @@
     <value>167, 17</value>
   </data>
   <data name="chkFixedHeader.Text" xml:space="preserve">
-    <value>Фиксированный заголовок</value>
+    <value>Fixed Header</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 163</value>
@@ -116,6 +116,6 @@
     <value>432, 33</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Примечание: Фиксированные заголовки должны быть смежными и начинаться в левой или правой части таблицы. Текущия версия этот параметр игнорирует.</value>
+    <value>Note: Fixed headers must be contiguous and start at either the left or the right of the table.  Current renderers ignore this parameter.</value>
   </data>
 </root>

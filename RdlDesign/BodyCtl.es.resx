@@ -73,7 +73,7 @@
     <value>119, 61</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Столбцы</value>
+    <value>Columns</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
@@ -89,7 +89,7 @@
     <value>172, 23</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Расстояние между колонками</value>
+    <value>Column Spacing</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>

@@ -64,7 +64,7 @@
     <value>88, 16</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Конечний цвет</value>
+    <value>End Color</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 16</value>
@@ -79,7 +79,7 @@
     <value>Fondo</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Источник фонового изображения</value>
+    <value>Background Image Source</value>
   </data>
   <data name="bRepeatExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>228, 184</value>

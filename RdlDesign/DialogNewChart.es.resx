@@ -91,7 +91,7 @@
     <value>168, 24</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Группировки (ось X)</value>
+    <value>Chart Categories (X) Groupings</value>
   </data>
   <data name="bCategoryUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 25</value>
@@ -130,10 +130,10 @@
     <value>Arriba</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Значения диаграммы</value>
+    <value>Chart Series</value>
   </data>
   <data name="lChartData.Text" xml:space="preserve">
-    <value>Выражение данных</value>
+    <value>Data Expression</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>297, 48</value>
@@ -160,6 +160,6 @@
     <value>Tamaño de burbuja</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Создание диаграммы</value>
+    <value>New Chart</value>
   </data>
 </root>

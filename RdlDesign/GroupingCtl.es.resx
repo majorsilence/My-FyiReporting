@@ -94,13 +94,13 @@
     <value>49, 23</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Метка</value>
+    <value>Label</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 16</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Группировать по</value>
+    <value>Group By</value>
   </data>
   <data name="cbLabelExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 144</value>
@@ -118,42 +118,42 @@
     <value>49, 23</value>
   </data>
   <data name="lParent.Text" xml:space="preserve">
-    <value>Предок</value>
+    <value>Parent</value>
   </data>
   <data name="chkPBS.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 24</value>
   </data>
   <data name="chkPBS.Text" xml:space="preserve">
-    <value>Разрывать страницу в начале</value>
+    <value>Page Break at Start</value>
   </data>
   <data name="chkPBE.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 24</value>
   </data>
   <data name="chkPBE.Text" xml:space="preserve">
-    <value>Разрывать страницу в конце</value>
+    <value>Page Break at End</value>
   </data>
   <data name="chkRepeatHeader.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 24</value>
   </data>
   <data name="chkRepeatHeader.Text" xml:space="preserve">
-    <value>Повторять заголовок группы</value>
+    <value>Repeat group header</value>
   </data>
   <data name="chkGrpHeader.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 24</value>
   </data>
   <data name="chkGrpHeader.Text" xml:space="preserve">
-    <value>Включать заголовок группы</value>
+    <value>Include group header</value>
   </data>
   <data name="chkRepeatFooter.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 24</value>
   </data>
   <data name="chkRepeatFooter.Text" xml:space="preserve">
-    <value>Повторять заголовок окончания</value>
+    <value>Repeat group footer</value>
   </data>
   <data name="chkGrpFooter.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 24</value>
   </data>
   <data name="chkGrpFooter.Text" xml:space="preserve">
-    <value>Включать заголовок окончания</value>
+    <value>Include group footer</value>
   </data>
 </root>

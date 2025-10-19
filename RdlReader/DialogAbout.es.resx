@@ -73,7 +73,7 @@
     <value>NoControl</value>
   </data>
   <data name="lVersion.Text" xml:space="preserve">
-    <value>Версия 1.9.6</value>
+    <value>Version 1.9.6</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

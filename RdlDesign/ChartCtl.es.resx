@@ -91,7 +91,7 @@
     <value>100, 31</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Выводить XML-элемент</value>
+    <value>Render XML Element</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -151,13 +151,13 @@
     <value>176, 24</value>
   </data>
   <data name="chkPageBreakStart.Text" xml:space="preserve">
-    <value>Разрывать страницу вначале</value>
+    <value>Page Break at Start</value>
   </data>
   <data name="chkPageBreakEnd.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 24</value>
   </data>
   <data name="chkPageBreakEnd.Text" xml:space="preserve">
-    <value>Разрывать страницу вконце</value>
+    <value>Page Break at End</value>
   </data>
   <data name="cbChartData.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 154</value>
@@ -169,7 +169,7 @@
     <value>98, 17</value>
   </data>
   <data name="chkDataLabel.Text" xml:space="preserve">
-    <value>Матка данных</value>
+    <value>DataLabel</value>
   </data>
   <data name="bDataLabelExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>439, 228</value>
@@ -181,7 +181,7 @@
     <value>157, 29</value>
   </data>
   <data name="lData1.Text" xml:space="preserve">
-    <value>Данные диаграммы (X-координата)</value>
+    <value>Chart Data (X Coordinate)</value>
   </data>
   <data name="cbChartData2.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 179</value>
@@ -223,7 +223,7 @@
     <value>72, 27</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Выводить как вектор</value>
+    <value>Render As Vector</value>
   </data>
   <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

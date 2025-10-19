@@ -64,7 +64,7 @@
     <value>168, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Преобразование данных XSL</value>
+    <value>XSL Data Transform</value>
   </data>
   <data name="tbDataTransform.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 32</value>
@@ -94,13 +94,13 @@
     <value>168, 23</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Название корневого элемента</value>
+    <value>Top Element Name</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 23</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Стиль элемента</value>
+    <value>Element Style</value>
   </data>
   <data name="cbElementStyle.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 149</value>

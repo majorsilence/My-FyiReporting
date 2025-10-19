@@ -60,10 +60,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>Переключать элементом</value>
+    <value>Toggle Item (Textbox name)</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Скрыт (в начале)</value>
+    <value>Hidden (initial visibility)</value>
   </data>
   <data name="grpBoxVisibility.Text" xml:space="preserve">
     <value>Visibilidad</value>

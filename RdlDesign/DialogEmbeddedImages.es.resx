@@ -104,7 +104,7 @@
     <value>202, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название встроенного изображения</value>
+    <value>Embedded Image Name</value>
   </data>
   <data name="tbEIName.Location" type="System.Drawing.Point, System.Drawing">
     <value>230, 24</value>
@@ -134,6 +134,6 @@
     <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Встроенные изображения</value>
+    <value>Embedded Images</value>
   </data>
 </root>

@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>Время ожидания</value>
+    <value>Timeout</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bRefresh.Location" type="System.Drawing.Point, System.Drawing">
@@ -70,7 +70,7 @@
     <value>70, 34</value>
   </data>
   <data name="bRefresh.Text" xml:space="preserve">
-    <value>Обновить поля</value>
+    <value>Refresh Fields</value>
   </data>
   <data name="bEditSQL.Location" type="System.Drawing.Point, System.Drawing">
     <value>405, 46</value>
@@ -100,7 +100,7 @@
     <value>Nombre</value>
   </data>
   <data name="dgtbQueryName.HeaderText" xml:space="preserve">
-    <value>Столбец запроса</value>
+    <value>Query Column Name</value>
   </data>
   <data name="dgtbValue.HeaderText" xml:space="preserve">
     <value>Valor</value>

@@ -63,6 +63,6 @@
     <value>Cancelar</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Введите значения в раздельных строках ниже</value>
+    <value>Enter separate values on multiple lines below</value>
   </data>
 </root>

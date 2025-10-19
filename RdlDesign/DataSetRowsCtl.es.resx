@@ -73,7 +73,7 @@
     <value>228, 20</value>
   </data>
   <data name="chkRowsFile.Text" xml:space="preserve">
-    <value>Использовать XML файл для данных</value>
+    <value>Use XML file for data</value>
   </data>
   <data name="tbRowsFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 10</value>
@@ -85,10 +85,10 @@
     <value>478, 8</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Предупреждение: эта панель поддерживает расширение к спецификации RDL. Эта информация будет игнорироваться в других RDL процессорах.</value>
+    <value>Warning: this panel supports an extension to the RDL specification.  This information will be ignored in RDL processors other than in fyiReporting.</value>
   </data>
   <data name="bLoad.Text" xml:space="preserve">
-    <value>Загрузить из SQL</value>
+    <value>Load From SQL</value>
   </data>
   <data name="bClear.Text" xml:space="preserve">
     <value>Limpiar</value>

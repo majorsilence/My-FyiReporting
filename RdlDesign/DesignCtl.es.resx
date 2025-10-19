@@ -178,13 +178,13 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartLegend.Text" xml:space="preserve">
-    <value>Легенда...</value>
+    <value>Legend...</value>
   </data>
   <data name="MenuChartTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartTitle.Text" xml:space="preserve">
-    <value>Заголовок...</value>
+    <value>Title...</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -193,19 +193,19 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartInsertCategoryGrouping.Text" xml:space="preserve">
-    <value>Добавить группу категории...</value>
+    <value>Insert Category Grouping...</value>
   </data>
   <data name="MenuChartEditCategoryGrouping.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartEditCategoryGrouping.Text" xml:space="preserve">
-    <value>Редактировать группу категории</value>
+    <value>Edit Category Grouping</value>
   </data>
   <data name="MenuChartDeleteCategoryGrouping.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartDeleteCategoryGrouping.Text" xml:space="preserve">
-    <value>Удалить группу категории</value>
+    <value>Delete Category Grouping</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -214,13 +214,13 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartCategoryAxis.Text" xml:space="preserve">
-    <value>Категория (ось X)...</value>
+    <value>Category (X) Axis...</value>
   </data>
   <data name="MenuChartCategoryAxisTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartCategoryAxisTitle.Text" xml:space="preserve">
-    <value>Заголовок категории (ось X)...</value>
+    <value>Category (X) Axis Title...</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -229,19 +229,19 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartInsertSeriesGrouping.Text" xml:space="preserve">
-    <value>Добавить группу серии...</value>
+    <value>Insert Series Grouping...</value>
   </data>
   <data name="MenuChartEditSeriesGrouping.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartEditSeriesGrouping.Text" xml:space="preserve">
-    <value>Редактировать группу серии</value>
+    <value>Edit Series Grouping</value>
   </data>
   <data name="MenuChartDeleteSeriesGrouping.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartDeleteSeriesGrouping.Text" xml:space="preserve">
-    <value>Удалить группу серии</value>
+    <value>Delete Series Grouping</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -250,19 +250,19 @@
     <value>276, 22</value>
   </data>
   <data name="MenuChartValueAxis.Text" xml:space="preserve">
-    <value>Значение (ось Y)...</value>
+    <value>Value (Y) Axis...</value>
   </data>
   <data name="MenuChartValueAxisTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartValueAxisTitle.Text" xml:space="preserve">
-    <value>Заголовок значения (ось Y)...</value>
+    <value>Value (Y) Axis Title...</value>
   </data>
   <data name="MenuChartValueAxisRightTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
   <data name="MenuChartValueAxisRightTitle.Text" xml:space="preserve">
-    <value>Заголовок значения справа (ось Y)...</value>
+    <value>Value (Y) Axis (Right) Title...</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
     <value>273, 6</value>
@@ -307,7 +307,7 @@
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixMatrixProperties.Text" xml:space="preserve">
-    <value>Свойства матрицы...</value>
+    <value>Matrix Properties...</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
@@ -316,19 +316,19 @@
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixInsertColumnGroup.Text" xml:space="preserve">
-    <value>Добавить группу по столбцу...</value>
+    <value>Insert Column Group...</value>
   </data>
   <data name="MenuMatrixEditColumnGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixEditColumnGroup.Text" xml:space="preserve">
-    <value>Редактировать группу по столбцу</value>
+    <value>Edit Column Group</value>
   </data>
   <data name="MenuMatrixDeleteColumnGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixDeleteColumnGroup.Text" xml:space="preserve">
-    <value>Удалить группу по столбцу</value>
+    <value>Delete Column Group</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
@@ -337,19 +337,19 @@
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixInsertRowGroup.Text" xml:space="preserve">
-    <value>Добавить группу по строке...</value>
+    <value>Insert Row Group...</value>
   </data>
   <data name="MenuMatrixEditRowGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixEditRowGroup.Text" xml:space="preserve">
-    <value>Редактировать группу по строке</value>
+    <value>Edit Row Group</value>
   </data>
   <data name="MenuMatrixDeleteRowGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixDeleteRowGroup.Text" xml:space="preserve">
-    <value>Удалить группу по строке</value>
+    <value>Delete Row Group</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
@@ -358,7 +358,7 @@
     <value>260, 22</value>
   </data>
   <data name="MenuMatrixDeleteMatrix.Text" xml:space="preserve">
-    <value>Удалить матрицу</value>
+    <value>Delete Matrix</value>
   </data>
   <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
@@ -403,7 +403,7 @@
     <value>174, 22</value>
   </data>
   <data name="MenuSubreportOpen.Text" xml:space="preserve">
-    <value>Открыть подотчёт</value>
+    <value>Open Subreport</value>
   </data>
   <data name="toolStripMenuItem15.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 6</value>
@@ -448,7 +448,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridGridProperties.Text" xml:space="preserve">
-    <value>Свойства сетки...</value>
+    <value>Grid Properties...</value>
   </data>
   <data name="MenuGridReplaceCellChart.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -490,7 +490,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuGridReplaceCellTable.Text" xml:space="preserve">
-    <value>Талбицу...</value>
+    <value>Ta&amp;ble...</value>
   </data>
   <data name="MenuGridReplaceCellTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -541,19 +541,19 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridDeleteColumn.Text" xml:space="preserve">
-    <value>Удалить столбец сетки</value>
+    <value>Delete Grid Column</value>
   </data>
   <data name="MenuGridDeleteRow.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuGridDeleteRow.Text" xml:space="preserve">
-    <value>Удалить строку сетки</value>
+    <value>Delete Grid Row</value>
   </data>
   <data name="MenuGridDeleteGrid.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuGridDeleteGrid.Text" xml:space="preserve">
-    <value>Удалить сетку</value>
+    <value>Delete Grid</value>
   </data>
   <data name="toolStripMenuItem20.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -598,7 +598,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableTableProperties.Text" xml:space="preserve">
-    <value>Свойства таблицы...</value>
+    <value>Table Properties...</value>
   </data>
   <data name="MenuTableReplaceCellChart.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -691,19 +691,19 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableInsertGroup.Text" xml:space="preserve">
-    <value>Добавить группу...</value>
+    <value>Insert Table Group...</value>
   </data>
   <data name="MenuTableEditGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableEditGroup.Text" xml:space="preserve">
-    <value>Редактировать группу</value>
+    <value>Edit Group</value>
   </data>
   <data name="MenuTableDeleteGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableDeleteGroup.Text" xml:space="preserve">
-    <value>Удалить группу</value>
+    <value>Delete Group</value>
   </data>
   <data name="toolStripMenuItem25.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -712,19 +712,19 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableDeleteColumn.Text" xml:space="preserve">
-    <value>Удалить столбец</value>
+    <value>Delete Table Column</value>
   </data>
   <data name="MenuTableDeleteRow.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableDeleteRow.Text" xml:space="preserve">
-    <value>Удалить строку</value>
+    <value>Delete Table Row</value>
   </data>
   <data name="MenuTableDeleteTable.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableDeleteTable.Text" xml:space="preserve">
-    <value>Удалить таблицу</value>
+    <value>Delete Table</value>
   </data>
   <data name="toolStripMenuItem26.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>

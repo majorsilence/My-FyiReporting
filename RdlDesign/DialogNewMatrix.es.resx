@@ -85,7 +85,7 @@
     <value>123, 23</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Столбцы матрицы</value>
+    <value>Matrix Columns (check to subtotal)</value>
   </data>
   <data name="lbMatrixColumns.Location" type="System.Drawing.Point, System.Drawing">
     <value>222, 80</value>
@@ -164,15 +164,15 @@
     <value>139, 23</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Строки матрицы</value>
+    <value>Matrix Rows (check to subtotal)</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 23</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Выражение ячейки матрицы</value>
+    <value>Matrix Cell Expression</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Создание матрицы</value>
+    <value>New Matrix</value>
   </data>
 </root>

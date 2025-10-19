@@ -67,12 +67,12 @@
     <value>485, 43</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Нажмите кнопку Проверить, чтобы сделать проверку схемы. Дважды щёлкните на линии, чтобы перейти к строке ошибки. Примечание: проверка схемы не гарантирует, что отчёт будет работать в этом или других продуктах, которые поддерживают RDL.</value>
+    <value>Press Validate button to do schema validation.  Double Click on a line to scroll to the line of the error.   Note: schema validation does not reliably indicate whether or not report will run in this or other products that support RDL.</value>
   </data>
   <data name="bValidate.Text" xml:space="preserve">
     <value>Verificar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Проверка RDL-кода</value>
+    <value>Validate RDL Syntax</value>
   </data>
 </root>

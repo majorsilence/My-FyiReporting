@@ -70,7 +70,7 @@
     <value>121, 20</value>
   </data>
   <data name="lOp.Text" xml:space="preserve">
-    <value>Выберите и нажмите</value>
+    <value>Select and hit '&gt;&gt;'</value>
   </data>
   <data name="lExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 3</value>
@@ -79,9 +79,9 @@
     <value>165, 20</value>
   </data>
   <data name="lExpr.Text" xml:space="preserve">
-    <value>Выражения начинаются с '='</value>
+    <value>Expressions start with '='</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Редактировать выражение</value>
+    <value>Edit Expression</value>
   </data>
 </root>

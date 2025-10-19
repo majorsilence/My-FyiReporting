@@ -63,6 +63,6 @@
     <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Помощник SQL</value>
+    <value>SQL Syntax Helper</value>
   </data>
 </root>

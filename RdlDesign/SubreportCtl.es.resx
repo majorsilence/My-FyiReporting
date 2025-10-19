@@ -74,7 +74,7 @@
     <value>111, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Название подотчёта</value>
+    <value>Subreport name</value>
   </data>
   <data name="tbReportFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>163, 8</value>
@@ -104,7 +104,7 @@
     <value>408, 34</value>
   </data>
   <data name="chkMergeTrans.Text" xml:space="preserve">
-    <value>Использовать те же соединения с источниками данных, как в родительском отчёте, когда это возможно</value>
+    <value>Use same Data Source connections as parent report when possible</value>
   </data>
   <data name="bRefreshParms.Location" type="System.Drawing.Point, System.Drawing">
     <value>379, 112</value>

@@ -115,7 +115,7 @@
     <value>219, 22</value>
   </data>
   <data name="printToolStripMenuItem.Text" xml:space="preserve">
-    <value>Печатать...</value>
+    <value>Print...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 6</value>
@@ -124,7 +124,7 @@
     <value>219, 22</value>
   </data>
   <data name="recentFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Недавно открытые файлы</value>
+    <value>Recent &amp;Files</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 6</value>
@@ -163,25 +163,25 @@
     <value>190, 22</value>
   </data>
   <data name="zoomToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Масштабировать...</value>
+    <value>&amp;Zoom To...</value>
   </data>
   <data name="actualSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 22</value>
   </data>
   <data name="actualSizeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Реальный размер</value>
+    <value>Act&amp;ual Size</value>
   </data>
   <data name="fitPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 22</value>
   </data>
   <data name="fitPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Уместить страницу</value>
+    <value>Fit &amp;Page</value>
   </data>
   <data name="fitWidthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 22</value>
   </data>
   <data name="fitWidthToolStripMenuItem.Text" xml:space="preserve">
-    <value>Уместить по ширине</value>
+    <value>Fit &amp;Width</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 6</value>
@@ -190,31 +190,31 @@
     <value>190, 22</value>
   </data>
   <data name="pageLayoutToolStripMenuItem.Text" xml:space="preserve">
-    <value>Макет страницы</value>
+    <value>Page La&amp;yout</value>
   </data>
   <data name="singlePageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
   <data name="singlePageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Одна страница</value>
+    <value>Single Page</value>
   </data>
   <data name="continuousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
   <data name="continuousToolStripMenuItem.Text" xml:space="preserve">
-    <value>Непрерывная</value>
+    <value>Continuous</value>
   </data>
   <data name="facingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
   <data name="facingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Внешняя</value>
+    <value>Facing</value>
   </data>
   <data name="continuousFacingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
   </data>
   <data name="continuousFacingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Непрерывная внешняя</value>
+    <value>Continuous Facing</value>
   </data>
   <data name="cascadeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>

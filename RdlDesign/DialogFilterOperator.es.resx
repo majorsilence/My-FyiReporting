@@ -63,9 +63,9 @@
     <value>Cancelar</value>
   </data>
   <data name="lOp.Text" xml:space="preserve">
-    <value>Выберите оператор</value>
+    <value>Select Filter Operator</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Выбор оператора фильтра</value>
+    <value>Pick Filter Operator</value>
   </data>
 </root>

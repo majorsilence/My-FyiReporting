@@ -60,26 +60,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DialogAbout_About" xml:space="preserve">
-    <value>Просмотрщик отчётов отображает отчеты, определенные с помощью языка определения отчётов (RDL).
-Copyright (C) 2004-2008 fyiReporting Software, LLC
-Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
+    <value>RDL Reader displays reports defined using the Report Definition Language Specification.
+Copyright (C) 2004-2008  fyiReporting Software, LLC
+Copyright (C) 2012 Peter Gill &lt;peter@majorsilence.com&gt;
 
-Этот файл является частью проекта My-FyiReporting RDL.
+This file is part of the My-FyiReporting RDL project.
+	
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-Под лицензией Apache, версии 2.0 (the "License");
-Вы не можете использовать этот файл только в соответствии с лицензией.
-Вы можете получить копию лицензии на
+    http://www.apache.org/licenses/LICENSE-2.0
 
-     http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-Если иное не требуется законодательством или согласовано в письменной форме, программное обеспечение
-распространяется под Лицензия "КАК ЕСТЬ",
-БЕЗ ГАРАНТИЙ ИЛИ УСЛОВИЙ ЛЮБОГО РОДА, явных или подразумеваемых.
-См. Лицензию на других языках, регулирующая разрешения и
-ограничения в рамках лицензии.
-
-Для получения дополнительной информации, напишите peter@majorsilence.com или посетите
-сайт https://github.com/majorsilence/My-FyiReporting.</value>
+For additional information, email peter@majorsilence.com or visit
+the website https://github.com/majorsilence/My-FyiReporting.</value>
   </data>
   <data name="DialogAbout_ShowD_Exception" xml:space="preserve">
     <value>Error</value>
@@ -88,36 +88,36 @@ Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
     <value>Versión {0}</value>
   </data>
   <data name="RdlReader_menuFileOpen_Click_Filter" xml:space="preserve">
-    <value>Файлы отчётов (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+    <value>RDL files (*.rdl)|*.rdl|Encrypted RDL files (*.encrypted)|*.encrypted|All files (*.*)|*.*</value>
   </data>
   <data name="RdlReader_SaveG_NotValidFileType" xml:space="preserve">
-    <value>{0} - некорректный тип файла. Допустимые расширения файлов: PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.</value>
+    <value>{0} is not a valid file type.  File extension must be PDF, XML, HTML, CSV, MHT, RTF, TIF, XLSX.</value>
   </data>
   <data name="RdlReader_SaveG_SaveAsError" xml:space="preserve">
-    <value>Ошибка при сохранении</value>
+    <value>Save As Error</value>
   </data>
   <data name="RdlReader_ShowC_PrintError" xml:space="preserve">
-    <value>Ошибка печати: </value>
+    <value>Print error: </value>
   </data>
   <data name="RdlReader_ShowC_PrintOneFile" xml:space="preserve">
     <value>Solo se puede imprimir un archivo a la vez.</value>
   </data>
   <data name="RdlReader_ShowD_ReportNotLoaded" xml:space="preserve">
-    <value>Указанный отчёт [ {0} ] не может быть загружен.</value>
+    <value>The specified report [ {0} ] could not be loaded.</value>
   </data>
   <data name="RdlReader_ShowF_Export" xml:space="preserve">
     <value>Exportar</value>
   </data>
   <data name="RdlReader_ShowF_WantSaveColorsInTIF" xml:space="preserve">
-    <value>Хотите сохранить изображение в TIF-файл?</value>
+    <value>Do you want to save colors in TIF file?</value>
   </data>
   <data name="RdlReader_Show_MyFyiReporting" xml:space="preserve">
     <value>Editor de informes</value>
   </data>
   <data name="ZoomTo_ShowI_MagnificationLevelInvalid" xml:space="preserve">
-    <value>Уровень увеличения является недопустимым числом.</value>
+    <value>Magnification level is an invalid number.</value>
   </data>
   <data name="RdlReader_menuFileSaveAs_Click_FilesFilter" xml:space="preserve">
-    <value>PDF (*.pdf)|*.pdf|XML (*.xml)|*.xml|HTML (*.html)|*.html|CSV files (*.csv)|*.csv|RTF (*.rtf)|*.rtf|TIF (*.tif)|*.tif|Excel 2007 только таблица (*.xlsx)|*.xlsx|Excel 2007 (*.xlsx)|*.xlsx|MHT (*.mht)|*.mht</value>
+    <value>PDF files (*.pdf)|*.pdf|XML files (*.xml)|*.xml|HTML files (*.html)|*.html|CSV files (*.csv)|*.csv|RTF files (*.rtf)|*.rtf|TIF files (*.tif)|*.tif|Excel 2007 Table Only (*.xlsx)|*.xlsx|Excel 2007 (*.xlsx)|*.xlsx|MHT files (*.mht)|*.mht</value>
   </data>
 </root>

@@ -109,7 +109,7 @@
     <value>58, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Мастаб</value>
+    <value>Sizing</value>
   </data>
   <data name="cbSizing.Location" type="System.Drawing.Point, System.Drawing">
     <value>123, 181</value>

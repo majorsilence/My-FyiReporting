@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="dgtbName.HeaderText" xml:space="preserve">
-    <value>Название параметра</value>
+    <value>Parameter Name</value>
   </data>
   <data name="dgtbValue.HeaderText" xml:space="preserve">
     <value>Valor</value>

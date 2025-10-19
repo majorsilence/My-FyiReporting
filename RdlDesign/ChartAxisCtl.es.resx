@@ -82,7 +82,7 @@
     <value>384, 8</value>
   </data>
   <data name="chkVisible.Text" xml:space="preserve">
-    <value>Видимые</value>
+    <value>Visible</value>
   </data>
   <data name="chkMargin.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 224</value>
@@ -97,7 +97,7 @@
     <value>152, 24</value>
   </data>
   <data name="chkReverse.Text" xml:space="preserve">
-    <value>Обратное направление</value>
+    <value>Reverse Direction</value>
   </data>
   <data name="chkInterlaced.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 248</value>
@@ -112,7 +112,7 @@
     <value>88, 24</value>
   </data>
   <data name="chkScalar.Text" xml:space="preserve">
-    <value>Скалярные</value>
+    <value>Scalar</value>
   </data>
   <data name="chkLogScale.Location" type="System.Drawing.Point, System.Drawing">
     <value>108, 220</value>
@@ -259,7 +259,7 @@
     <value>122, 30</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Максимальное значение</value>
+    <value>Maximum Value</value>
   </data>
   <data name="label11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -274,7 +274,7 @@
     <value>115, 30</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Минимальное значение</value>
+    <value>Minimum Value</value>
   </data>
   <data name="label12.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -298,13 +298,13 @@
     <value>93, 72</value>
   </data>
   <data name="chkCanOmit.Text" xml:space="preserve">
-    <value>Можно пропускать значения на усечении</value>
+    <value>Can Omit Values on Truncation</value>
   </data>
   <data name="chkMonth.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 24</value>
   </data>
   <data name="chkMonth.Text" xml:space="preserve">
-    <value>Шкала категории месяца</value>
+    <value>Month Category Scale</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 303</value>

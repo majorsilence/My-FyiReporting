@@ -60,30 +60,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Line_P1" xml:space="preserve">
-    <value>Первый конец линии.</value>
+    <value>One end of the line</value>
   </data>
   <data name="Line_P2" xml:space="preserve">
-    <value>Второй конец линии.</value>
+    <value>Other end of the line</value>
   </data>
   <data name="Polygon_FillColor" xml:space="preserve">
-    <value>Цвет заливки для многоугольника</value>
+    <value>The fill color for the polygon</value>
   </data>
   <data name="Polygon_Keys" xml:space="preserve">
-    <value>Ключи ассоциированные с многоугольником</value>
+    <value>The keys associated with this polygon</value>
   </data>
   <data name="Polygon_Points" xml:space="preserve">
-    <value>Вершины многоугольника</value>
+    <value>The Points of the polygon</value>
   </data>
   <data name="Text_Color" xml:space="preserve">
-    <value>Цвет текстового поля</value>
+    <value>The Color of the text</value>
   </data>
   <data name="Text_Font" xml:space="preserve">
-    <value>Шрифт текста. Только семейство, размер, жирный, курсив, подчеркивание и перечеркивание.</value>
+    <value>The font of the text.  Only the family, size, bold, italic, underline, and strikethrough options are honored.</value>
   </data>
   <data name="Text_Location" xml:space="preserve">
-    <value>Положение текстового поля</value>
+    <value>The Location of the text</value>
   </data>
   <data name="Text_Value" xml:space="preserve">
-    <value>Значение текстового поля</value>
+    <value>The value of the text</value>
   </data>
 </root>

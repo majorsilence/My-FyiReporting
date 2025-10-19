@@ -121,7 +121,7 @@
     <value>432, 112</value>
   </data>
   <data name="gbText.Text" xml:space="preserve">
-    <value>Обработка текста</value>
+    <value>Text Processing</value>
   </data>
   <data name="cbToggleImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 80</value>
@@ -137,7 +137,7 @@
     <value>146, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Переключать изображение</value>
+    <value>Toggle Image</value>
   </data>
   <data name="cbDataElementStyle.Location" type="System.Drawing.Point, System.Drawing">
     <value>314, 48</value>
@@ -155,7 +155,7 @@
     <value>120, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Стиль XML-элементов</value>
+    <value>XML Element Style</value>
   </data>
   <data name="cbHideDuplicates.Location" type="System.Drawing.Point, System.Drawing">
     <value>314, 16</value>

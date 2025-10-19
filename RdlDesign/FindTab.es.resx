@@ -63,7 +63,7 @@
     <value>Buscar</value>
   </data>
   <data name="tabReplace.Text" xml:space="preserve">
-    <value>Замена</value>
+    <value>Replace</value>
   </data>
   <data name="tabGoTo.Text" xml:space="preserve">
     <value>Ir a</value>
@@ -82,7 +82,7 @@
     <value>Coincidir mayúsculas/minúsculas</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Направление поиска</value>
+    <value>Search Direction</value>
   </data>
   <data name="radioUp.Text" xml:space="preserve">
     <value>Arriba</value>
@@ -124,7 +124,7 @@
     <value>93, 23</value>
   </data>
   <data name="btnReplaceAll.Text" xml:space="preserve">
-    <value>Заменить все</value>
+    <value>ReplaceAll</value>
   </data>
   <data name="btnReplace.Location" type="System.Drawing.Point, System.Drawing">
     <value>326, 48</value>
@@ -139,13 +139,13 @@
     <value>Buscar</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Заменить на</value>
+    <value>Replace With</value>
   </data>
   <data name="bCloseGoto.Text" xml:space="preserve">
     <value>Cerrar</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Номер линии</value>
+    <value>Line Number</value>
   </data>
   <data name="btnGoto.Text" xml:space="preserve">
     <value>Ir a</value>

@@ -98,7 +98,7 @@
     <value>83, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Высота строки</value>
+    <value>Row Height</value>
   </data>
   <data name="tbRowHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 104</value>

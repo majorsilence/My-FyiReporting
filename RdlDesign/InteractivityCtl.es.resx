@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>Переключается элементом</value>
+    <value>Toggle Item (Textbox name)</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Oculto (al inicio)</value>
@@ -79,7 +79,7 @@
     <value>88, 23</value>
   </data>
   <data name="bParameters.Text" xml:space="preserve">
-    <value>Параметры...</value>
+    <value>Parameters...</value>
   </data>
   <data name="bDrillthrough.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 103</value>
@@ -88,13 +88,13 @@
     <value>172, 20</value>
   </data>
   <data name="rbDrillthrough.Text" xml:space="preserve">
-    <value>Детализация</value>
+    <value>Drill Through</value>
   </data>
   <data name="rbBookmarkLink.Text" xml:space="preserve">
     <value>Marcador</value>
   </data>
   <data name="rbHyperlink.Text" xml:space="preserve">
-    <value>Гиперссылка</value>
+    <value>Hyperlink</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Acción</value>

@@ -64,12 +64,12 @@
     <value>204, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Выберите ключи для многоугольников</value>
+    <value>Select keys for the polygons you wish to select</value>
   </data>
   <data name="bCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Поиск многоугольников по ключу</value>
+    <value>Find Polygons By Key</value>
   </data>
 </root>

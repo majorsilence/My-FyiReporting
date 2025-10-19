@@ -76,6 +76,6 @@
     <value>Eliminar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Корректные значения</value>
+    <value>Valid Values</value>
   </data>
 </root>

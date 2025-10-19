@@ -200,7 +200,7 @@
     <value>80, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>По умолчанию</value>
+    <value>Default</value>
   </data>
   <data name="bSD.Location" type="System.Drawing.Point, System.Drawing">
     <value>187, 40</value>

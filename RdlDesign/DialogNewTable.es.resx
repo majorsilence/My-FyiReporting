@@ -88,7 +88,7 @@
     <value>212, 28</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Столбцы таблицы (отметьте итоги, если направление полей не вниз)</value>
+    <value>Table Columns (check totals when not Down)</value>
   </data>
   <data name="bUp.Text" xml:space="preserve">
     <value>Arriba</value>
@@ -103,7 +103,7 @@
     <value>216, 33</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Отметьте столбцы для группировки (создания иерархии)</value>
+    <value>Pick a column to group (create hierarchy)</value>
   </data>
   <data name="chkGrandTotals.Text" xml:space="preserve">
     <value>Calcular totales generales</value>
@@ -115,7 +115,7 @@
     <value>97, 16</value>
   </data>
   <data name="rbVertComp.Text" xml:space="preserve">
-    <value>Вниз (сжато)</value>
+    <value>Down (compress)</value>
   </data>
   <data name="rbVert.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 16</value>
@@ -124,7 +124,7 @@
     <value>139, 16</value>
   </data>
   <data name="rbVert.Text" xml:space="preserve">
-    <value>Вниз (строка на поле)</value>
+    <value>Down (row per field)</value>
   </data>
   <data name="rbHorz.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 16</value>
@@ -133,9 +133,9 @@
     <value>A lo ancho (columnas normales)</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Направление полей</value>
+    <value>Arrange Fields</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Создание таблицы</value>
+    <value>New Table</value>
   </data>
 </root>

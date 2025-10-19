@@ -67,7 +67,7 @@
     <value>440, 55</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Введите (дважды) секретную фразу, используемую для шифрования файла общего источника данных. Вы должны использовать тот же пароль, который использовался для создания предыдущих файлов, и только один может использоваться.</value>
+    <value>Enter (twice) a pass phrase used to encrypt the data source reference file.   You should use the same password you've used to create previous files, as only one can be used.</value>
   </data>
   <data name="tbPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 62</value>
@@ -76,7 +76,7 @@
     <value>408, 31</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Введите имя файла, который будет содержать информацию зашифрованного источника данных</value>
+    <value>Enter the file name that will hold the encrypted data source information</value>
   </data>
   <data name="tbFilename.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 122</value>
@@ -100,7 +100,7 @@
     <value>123, 16</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Строка соединения</value>
+    <value>Connection string</value>
   </data>
   <data name="ckbIntSecurity.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 184</value>
@@ -127,7 +127,7 @@
     <value>256, 62</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Повтор</value>
+    <value>Repeat</value>
   </data>
   <data name="bTestConnection.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 23</value>
@@ -151,6 +151,6 @@
     <value>Origen ODBC</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Создать общий источник данных</value>
+    <value>Create Data Source Reference File</value>
   </data>
 </root>

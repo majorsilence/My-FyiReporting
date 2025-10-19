@@ -60,19 +60,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Line_P1" xml:space="preserve">
-    <value>Первый конец</value>
+    <value>P1</value>
   </data>
   <data name="Line_P2" xml:space="preserve">
-    <value>Второй конец</value>
+    <value>P2</value>
   </data>
   <data name="Polygon_FillColor" xml:space="preserve">
-    <value>Цвет заливки</value>
+    <value>FillColor</value>
   </data>
   <data name="Polygon_Keys" xml:space="preserve">
-    <value>Ключи</value>
+    <value>Keys</value>
   </data>
   <data name="Polygon_Points" xml:space="preserve">
-    <value>Вершины</value>
+    <value>Points</value>
   </data>
   <data name="Text_Color" xml:space="preserve">
     <value>Color</value>

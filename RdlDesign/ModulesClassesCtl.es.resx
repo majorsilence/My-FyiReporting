@@ -64,7 +64,7 @@
     <value>461, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Введите имена модулей для использования в выражениях (например MyRoutines.dll)</value>
+    <value>Enter the names of the code module for use in expressions (e.g. MyRoutines.dll)</value>
   </data>
   <data name="bDeleteCM.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -82,6 +82,6 @@
     <value>461, 23</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Введите названия классов, которые будут созданы для использования в выражениях</value>
+    <value>Enter the classes with names that will be instantiated for use in expressions</value>
   </data>
 </root>

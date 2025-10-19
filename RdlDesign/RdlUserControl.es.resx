@@ -311,7 +311,7 @@
     <value>129, 22</value>
   </data>
   <data name="ButtonShowProperties.Text" xml:space="preserve">
-    <value>Показать свойства</value>
+    <value>Show Properties</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 13</value>
