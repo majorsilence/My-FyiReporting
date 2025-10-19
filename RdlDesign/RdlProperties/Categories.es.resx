@@ -60,22 +60,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Body" xml:space="preserve">
-    <value>Тело</value>
+    <value>Cuerpo</value>
   </data>
   <data name="Chart" xml:space="preserve">
     <value>Gráfico</value>
   </data>
   <data name="ChartData" xml:space="preserve">
-    <value>Данные диаграммы</value>
+    <value>Datos del gráfico</value>
   </data>
   <data name="ChartLegend" xml:space="preserve">
-    <value>Легенда диаграммы</value>
+    <value>Leyenda del gráfico</value>
   </data>
   <data name="ChartTitle" xml:space="preserve">
-    <value>Заголовок диаграммы</value>
+    <value>Título del gráfico</value>
   </data>
   <data name="DataRegion" xml:space="preserve">
-    <value>Область данных</value>
+    <value>Región de datos</value>
   </data>
   <data name="Image" xml:space="preserve">
     <value>Imagen</value>

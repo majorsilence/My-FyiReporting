@@ -106,7 +106,7 @@
     <value>47, 20</value>
   </data>
   <data name="windowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Окна</value>
+    <value>Ventanas</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -124,7 +124,7 @@
     <value>202, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Открыть...</value>
+    <value>Abrir...</value>
   </data>
   <data name="closeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
@@ -283,7 +283,7 @@
     <value>188, 22</value>
   </data>
   <data name="replaceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Заменить</value>
+    <value>Reemplazar</value>
   </data>
   <data name="goToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
@@ -304,13 +304,13 @@
     <value>238, 22</value>
   </data>
   <data name="designerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Дизайнер</value>
+    <value>Diseñador</value>
   </data>
   <data name="rDLTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="rDLTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактор кода</value>
+    <value>Editor de código</value>
   </data>
   <data name="previewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -340,7 +340,7 @@
     <value>195, 22</value>
   </data>
   <data name="gridToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сетку</value>
+    <value>Cuadrícula</value>
   </data>
   <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
@@ -352,7 +352,7 @@
     <value>195, 22</value>
   </data>
   <data name="lineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Линию</value>
+    <value>Línea</value>
   </data>
   <data name="listToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
@@ -412,7 +412,7 @@
     <value>266, 22</value>
   </data>
   <data name="dataSourcesToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Источники данных</value>
+    <value>Orígenes de datos</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>263, 6</value>
@@ -511,7 +511,7 @@
     <value>165, 22</value>
   </data>
   <data name="makeEqualToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сделать равным</value>
+    <value>Hacer igual</value>
   </data>
   <data name="increaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
@@ -541,7 +541,7 @@
     <value>165, 22</value>
   </data>
   <data name="makeEqualToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Сделать равным</value>
+    <value>Hacer igual</value>
   </data>
   <data name="increaseToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
@@ -673,7 +673,7 @@
     <value>182, 22</value>
   </data>
   <data name="startDesktopServerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Запустить сервер</value>
+    <value>Iniciar servidor</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 6</value>
@@ -688,13 +688,13 @@
     <value>218, 22</value>
   </data>
   <data name="cascadeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Каскад</value>
+    <value>Cascada</value>
   </data>
   <data name="tileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
   <data name="tileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Плитка</value>
+    <value>Mosaico</value>
   </data>
   <data name="horizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
@@ -712,7 +712,7 @@
     <value>218, 22</value>
   </data>
   <data name="closeAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Закрыть все</value>
+    <value>Cerrar todo</value>
   </data>
   <data name="helpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>
@@ -724,7 +724,7 @@
     <value>149, 22</value>
   </data>
   <data name="supportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Поддержка</value>
+    <value>Soporte</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>
@@ -771,7 +771,7 @@
     <value>68, 22</value>
   </data>
   <data name="chartToolStripButton1.Text" xml:space="preserve">
-    <value>График</value>
+    <value>Gráfico</value>
   </data>
   <data name="tableToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -868,7 +868,7 @@
     <value>Cursiva</value>
   </data>
   <data name="underlineToolStripButton2.ToolTipText" xml:space="preserve">
-    <value>Подчёркнутый</value>
+    <value>Subrayado</value>
   </data>
   <data name="leftAlignToolStripButton2.Text" xml:space="preserve">
     <value>Izquierda</value>
@@ -972,7 +972,7 @@
     <value>72, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Цвет текста:</value>
+    <value>Color de texto:</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -984,7 +984,7 @@
     <value>64, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Цвет фона:</value>
+    <value>Color de fondo:</value>
   </data>
   <data name="foreColorPicker1.Items9940" xml:space="preserve">
     <value>Aliceblue</value>

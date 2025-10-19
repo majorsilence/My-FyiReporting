@@ -139,7 +139,7 @@
     <value>297, 48</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Подтип</value>
+    <value>Subtipo</value>
   </data>
   <data name="cbSubType.Location" type="System.Drawing.Point, System.Drawing">
     <value>377, 48</value>
@@ -151,13 +151,13 @@
     <value>90, 16</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Тип диаграммы</value>
+    <value>Tipo de gráfico</value>
   </data>
   <data name="lChartData2.Text" xml:space="preserve">
-    <value>Y-координата</value>
+    <value>Coordenada Y</value>
   </data>
   <data name="lChartData3.Text" xml:space="preserve">
-    <value>Размер пузырька</value>
+    <value>Tamaño de burbuja</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Создание диаграммы</value>

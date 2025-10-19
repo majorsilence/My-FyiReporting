@@ -60,19 +60,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="tabFind.Text" xml:space="preserve">
-    <value>Поиск</value>
+    <value>Buscar</value>
   </data>
   <data name="tabReplace.Text" xml:space="preserve">
     <value>Замена</value>
   </data>
   <data name="tabGoTo.Text" xml:space="preserve">
-    <value>Перейти</value>
+    <value>Ir a</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cerrar</value>
   </data>
   <data name="btnNext.Text" xml:space="preserve">
-    <value>Далее</value>
+    <value>Siguiente</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkCase.Size" type="System.Drawing.Size, System.Drawing">
@@ -109,7 +109,7 @@
     <value>93, 23</value>
   </data>
   <data name="btnFindNext.Text" xml:space="preserve">
-    <value>Далее</value>
+    <value>Siguiente</value>
   </data>
   <data name="chkMatchCase.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 24</value>
@@ -133,7 +133,7 @@
     <value>93, 23</value>
   </data>
   <data name="btnReplace.Text" xml:space="preserve">
-    <value>Заменить</value>
+    <value>Reemplazar</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Buscar</value>
@@ -148,9 +148,9 @@
     <value>Номер линии</value>
   </data>
   <data name="btnGoto.Text" xml:space="preserve">
-    <value>Перейти</value>
+    <value>Ir a</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Поиск</value>
+    <value>Buscar</value>
   </data>
 </root>

@@ -109,7 +109,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuInsertGrid.Text" xml:space="preserve">
-    <value>Сетку</value>
+    <value>Cuadrícula</value>
   </data>
   <data name="MenuInsertImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -121,7 +121,7 @@
     <value>163, 22</value>
   </data>
   <data name="MenuInsertLine.Text" xml:space="preserve">
-    <value>Линию</value>
+    <value>Línea</value>
   </data>
   <data name="MenuInsertList.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
@@ -502,7 +502,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridReplaceCell.Text" xml:space="preserve">
-    <value>Заменить ячейку на</value>
+    <value>Reemplazar celda con</value>
   </data>
   <data name="toolStripMenuItem17.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -511,13 +511,13 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridInsertColumnBefore.Text" xml:space="preserve">
-    <value>Вставить столбец перед</value>
+    <value>Insertar columna antes</value>
   </data>
   <data name="MenuGridInsertColumnAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuGridInsertColumnAfter.Text" xml:space="preserve">
-    <value>Вставить столбец после</value>
+    <value>Insertar columna después</value>
   </data>
   <data name="toolStripMenuItem18.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -526,13 +526,13 @@
     <value>206, 22</value>
   </data>
   <data name="MenuGridInsertRowBefore.Text" xml:space="preserve">
-    <value>Вставить строку перед</value>
+    <value>Insertar fila antes</value>
   </data>
   <data name="MenuGridInsertRowAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuGridInsertRowAfter.Text" xml:space="preserve">
-    <value>Вставить строку после</value>
+    <value>Insertar fila después</value>
   </data>
   <data name="toolStripMenuItem19.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -652,7 +652,7 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableReplaceCell.Text" xml:space="preserve">
-    <value>Заменить ячейку на</value>
+    <value>Reemplazar celda con</value>
   </data>
   <data name="toolStripMenuItem22.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -661,13 +661,13 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableInsertColumnBefore.Text" xml:space="preserve">
-    <value>Вставить столбец перед</value>
+    <value>Insertar columna antes</value>
   </data>
   <data name="MenuTableInsertColumnAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableInsertColumnAfter.Text" xml:space="preserve">
-    <value>Вставить столбец после</value>
+    <value>Insertar columna después</value>
   </data>
   <data name="toolStripMenuItem23.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -676,13 +676,13 @@
     <value>206, 22</value>
   </data>
   <data name="MenuTableInsertRowBefore.Text" xml:space="preserve">
-    <value>Вставить строку перед</value>
+    <value>Insertar fila antes</value>
   </data>
   <data name="MenuTableInsertRowAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
   <data name="MenuTableInsertRowAfter.Text" xml:space="preserve">
-    <value>Вставить строку после</value>
+    <value>Insertar fila después</value>
   </data>
   <data name="toolStripMenuItem24.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>

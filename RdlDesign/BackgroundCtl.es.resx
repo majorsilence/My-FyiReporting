@@ -70,7 +70,7 @@
     <value>74, 16</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Градиент</value>
+    <value>Degradado</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Color</value>
@@ -97,7 +97,7 @@
     <value>74, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Повторение</value>
+    <value>Repetición</value>
   </data>
   <data name="bMimeExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>198, 121</value>
@@ -133,9 +133,9 @@
     <value>90, 24</value>
   </data>
   <data name="rbEmbedded.Text" xml:space="preserve">
-    <value>Встроенный</value>
+    <value>Incrustado</value>
   </data>
   <data name="rbExternal.Text" xml:space="preserve">
-    <value>Внешний</value>
+    <value>Externo</value>
   </data>
 </root>

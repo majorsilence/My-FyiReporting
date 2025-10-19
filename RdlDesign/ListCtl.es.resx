@@ -118,7 +118,7 @@
     <value>170, 16</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Название экземпляра данных</value>
+    <value>Nombre de instancia de datos</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>420, 72</value>

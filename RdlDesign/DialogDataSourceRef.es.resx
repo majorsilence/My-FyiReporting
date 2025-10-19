@@ -91,7 +91,7 @@
     <value>123, 23</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Поставщик данных</value>
+    <value>Proveedor de datos</value>
   </data>
   <data name="cbDataProvider.Location" type="System.Drawing.Point, System.Drawing">
     <value>118, 155</value>
@@ -109,7 +109,7 @@
     <value>239, 24</value>
   </data>
   <data name="ckbIntSecurity.Text" xml:space="preserve">
-    <value>Использовать встроенную безопасность</value>
+    <value>Usar seguridad integrada</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 29</value>
@@ -148,7 +148,7 @@
     <value>92, 23</value>
   </data>
   <data name="lODBC.Text" xml:space="preserve">
-    <value>Источник ODBC</value>
+    <value>Origen ODBC</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Создать общий источник данных</value>

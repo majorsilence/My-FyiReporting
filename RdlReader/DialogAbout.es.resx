@@ -67,7 +67,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Просмотр отчётов</value>
+    <value>Vista de informes</value>
   </data>
   <data name="lVersion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

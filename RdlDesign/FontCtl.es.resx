@@ -106,7 +106,7 @@
     <value>70, 16</value>
   </data>
   <data name="lFont.Text" xml:space="preserve">
-    <value>Семейство</value>
+    <value>Familia</value>
   </data>
   <data name="bFont.Location" type="System.Drawing.Point, System.Drawing">
     <value>428, 20</value>
@@ -163,7 +163,7 @@
     <value>297, 48</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Вес</value>
+    <value>Peso</value>
   </data>
   <data name="cbFontSize.Location" type="System.Drawing.Point, System.Drawing">
     <value>297, 16</value>

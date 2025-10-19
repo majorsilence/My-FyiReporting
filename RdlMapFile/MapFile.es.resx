@@ -88,7 +88,7 @@
     <value>173, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Открыть...</value>
+    <value>Abrir...</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -109,7 +109,7 @@
     <value>173, 22</value>
   </data>
   <data name="importMenuItem.Text" xml:space="preserve">
-    <value>Импорт...</value>
+    <value>Importar...</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 6</value>
@@ -211,7 +211,7 @@
     <value>158, 22</value>
   </data>
   <data name="supportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Поддержка</value>
+    <value>Soporte</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 6</value>
@@ -244,7 +244,7 @@
     <value>162, 22</value>
   </data>
   <data name="insertPolygonToolStripMenuItem.Text" xml:space="preserve">
-    <value>Многоугольник</value>
+    <value>Polígono</value>
   </data>
   <data name="insertTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>

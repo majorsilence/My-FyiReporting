@@ -67,10 +67,10 @@
     <value>368, 20</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Автор:</value>
+    <value>Autor:</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Описание:</value>
+    <value>Descripción:</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>448, 67</value>
@@ -124,7 +124,7 @@
     <value>96, 46</value>
   </data>
   <data name="chkPHLast.Text" xml:space="preserve">
-    <value>Печатать на последней странице</value>
+    <value>Imprimir en la última página</value>
   </data>
   <data name="chkPHFirst.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 16</value>
@@ -133,7 +133,7 @@
     <value>96, 46</value>
   </data>
   <data name="chkPHFirst.Text" xml:space="preserve">
-    <value>Печатать на первой странице</value>
+    <value>Imprimir en la primera página</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 235</value>
@@ -151,13 +151,13 @@
     <value>96, 46</value>
   </data>
   <data name="chkPFLast.Text" xml:space="preserve">
-    <value>Печатать на последней странице</value>
+    <value>Imprimir en la última página</value>
   </data>
   <data name="chkPFFirst.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 46</value>
   </data>
   <data name="chkPFFirst.Text" xml:space="preserve">
-    <value>Печатать на первой странице</value>
+    <value>Imprimir en la primera página</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 320</value>

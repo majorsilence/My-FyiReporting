@@ -64,7 +64,7 @@
     <value>115, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Основные деления</value>
+    <value>Divisiones principales</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>230, 8</value>
@@ -73,7 +73,7 @@
     <value>148, 21</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Дополнительные деления</value>
+    <value>Divisiones secundarias</value>
   </data>
   <data name="cbMajorTickMarks.Location" type="System.Drawing.Point, System.Drawing">
     <value>137, 8</value>
@@ -106,7 +106,7 @@
     <value>92, 24</value>
   </data>
   <data name="chkInterlaced.Text" xml:space="preserve">
-    <value>Переплетать</value>
+    <value>Entrelazar</value>
   </data>
   <data name="chkScalar.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 24</value>
@@ -127,7 +127,7 @@
     <value>448, 48</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Основные линии сетки</value>
+    <value>Líneas de cuadrícula principales</value>
   </data>
   <data name="chkMajorGLShow.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 17</value>
@@ -178,7 +178,7 @@
     <value>448, 48</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Дополнительные линии сетки</value>
+    <value>Líneas de cuadrícula secundarias</value>
   </data>
   <data name="chkMinorGLShow.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 16</value>
@@ -229,7 +229,7 @@
     <value>115, 16</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Основной интервал</value>
+    <value>Intervalo principal</value>
   </data>
   <data name="tbMajorInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>137, 152</value>
@@ -244,7 +244,7 @@
     <value>122, 30</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Дополнительный интервал</value>
+    <value>Intervalo secundario</value>
   </data>
   <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

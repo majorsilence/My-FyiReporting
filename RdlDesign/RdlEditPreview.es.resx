@@ -60,10 +60,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="tpDesign.Text" xml:space="preserve">
-    <value>Дизайнер</value>
+    <value>Diseñador</value>
   </data>
   <data name="tpEditor.Text" xml:space="preserve">
-    <value>Редактор кода</value>
+    <value>Editor de código</value>
   </data>
   <data name="tpEditor.ToolTipText" xml:space="preserve">
     <value>Редактировать код отчёта</value>

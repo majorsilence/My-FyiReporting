@@ -85,10 +85,10 @@
     <value>Ориентация:</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Автор:</value>
+    <value>Autor:</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Описание:</value>
+    <value>Descripción:</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Название:</value>
@@ -97,7 +97,7 @@
     <value>Тип отчёта</value>
   </data>
   <data name="rbChart.Text" xml:space="preserve">
-    <value>График</value>
+    <value>Gráfico</value>
   </data>
   <data name="rbMatrix.Text" xml:space="preserve">
     <value>Matriz</value>
@@ -184,7 +184,7 @@
     <value>246, 16</value>
   </data>
   <data name="lODBC.Text" xml:space="preserve">
-    <value>Источник ODBC</value>
+    <value>Origen ODBC</value>
   </data>
   <data name="lODBC.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -217,7 +217,7 @@
     <value>235, 42</value>
   </data>
   <data name="ckbGrandTotal.Text" xml:space="preserve">
-    <value>Подсчитать общие итоги</value>
+    <value>Calcular totales generales</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Отметьте столбцы мер</value>

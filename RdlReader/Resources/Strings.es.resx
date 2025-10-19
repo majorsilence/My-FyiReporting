@@ -85,7 +85,7 @@ Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
     <value>Error</value>
   </data>
   <data name="DialogAbout_Version" xml:space="preserve">
-    <value>Версия {0}</value>
+    <value>Versión {0}</value>
   </data>
   <data name="RdlReader_menuFileOpen_Click_Filter" xml:space="preserve">
     <value>Файлы отчётов (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
@@ -100,7 +100,7 @@ Copyright (C) 2012 Петр Гилл &lt;peter@majorsilence.com&gt;
     <value>Ошибка печати: </value>
   </data>
   <data name="RdlReader_ShowC_PrintOneFile" xml:space="preserve">
-    <value>Печатать можно только один файл за раз.</value>
+    <value>Solo se puede imprimir un archivo a la vez.</value>
   </data>
   <data name="RdlReader_ShowD_ReportNotLoaded" xml:space="preserve">
     <value>Указанный отчёт [ {0} ] не может быть загружен.</value>

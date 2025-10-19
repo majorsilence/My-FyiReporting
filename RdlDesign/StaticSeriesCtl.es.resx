@@ -86,7 +86,7 @@
     <value>95, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Значение данных</value>
+    <value>Valor de datos</value>
   </data>
   <data name="chkShowLabels.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

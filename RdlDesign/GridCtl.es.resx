@@ -88,7 +88,7 @@
     <value>142, 30</value>
   </data>
   <data name="chkFooterRepeat.Text" xml:space="preserve">
-    <value>Повторять окончание на новой странице</value>
+    <value>Repetir pie en nueva página</value>
   </data>
   <data name="chkHeaderRepeat.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 34</value>
@@ -97,13 +97,13 @@
     <value>140, 30</value>
   </data>
   <data name="chkHeaderRepeat.Text" xml:space="preserve">
-    <value>Повторять заголовок на новой странице</value>
+    <value>Repetir encabezado en nueva página</value>
   </data>
   <data name="chkFooterRows.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 24</value>
   </data>
   <data name="chkFooterRows.Text" xml:space="preserve">
-    <value>Строки окончания</value>
+    <value>Filas de pie</value>
   </data>
   <data name="chkHeaderRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 13</value>
@@ -112,9 +112,9 @@
     <value>140, 24</value>
   </data>
   <data name="chkHeaderRows.Text" xml:space="preserve">
-    <value>Строки заголовка</value>
+    <value>Filas de encabezado</value>
   </data>
   <data name="chkDetails.Text" xml:space="preserve">
-    <value>Строки тела</value>
+    <value>Filas de cuerpo</value>
   </data>
 </root>

@@ -67,7 +67,7 @@
     <value>100, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Тип диаграммы</value>
+    <value>Tipo de gráfico</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -79,7 +79,7 @@
     <value>100, 16</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Палитра</value>
+    <value>Paleta</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -121,7 +121,7 @@
     <value>66, 19</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Подтип</value>
+    <value>Subtipo</value>
   </data>
   <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -190,7 +190,7 @@
     <value>157, 23</value>
   </data>
   <data name="lData2.Text" xml:space="preserve">
-    <value>Y-координата</value>
+    <value>Coordenada Y</value>
   </data>
   <data name="cbChartData3.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 204</value>
@@ -199,7 +199,7 @@
     <value>157, 23</value>
   </data>
   <data name="lData3.Text" xml:space="preserve">
-    <value>Размер пузырька</value>
+    <value>Tamaño de burbuja</value>
   </data>
   <data name="bDataExpr.Location" type="System.Drawing.Point, System.Drawing">
     <value>439, 153</value>

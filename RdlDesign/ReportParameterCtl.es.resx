@@ -103,13 +103,13 @@
     <value>93, 18</value>
   </data>
   <data name="lValidValuesField.Text" xml:space="preserve">
-    <value>Поле значения</value>
+    <value>Campo de valor</value>
   </data>
   <data name="rbValues.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 20</value>
   </data>
   <data name="rbValues.Text" xml:space="preserve">
-    <value>Значения</value>
+    <value>Valores</value>
   </data>
   <data name="rbDataSet.Text" xml:space="preserve">
     <value>Conjunto de datos</value>
@@ -148,7 +148,7 @@
     <value>64, 19</value>
   </data>
   <data name="lParmPrompt.Text" xml:space="preserve">
-    <value>Подсказка</value>
+    <value>Sugerencia</value>
   </data>
   <data name="cbParmType.Location" type="System.Drawing.Point, System.Drawing">
     <value>236, 10</value>
@@ -187,18 +187,18 @@
     <value>93, 21</value>
   </data>
   <data name="lDefaultValueFields.Text" xml:space="preserve">
-    <value>Поле значения</value>
+    <value>Campo de valor</value>
   </data>
   <data name="rbDefaultValues.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 20</value>
   </data>
   <data name="rbDefaultValues.Text" xml:space="preserve">
-    <value>Значения</value>
+    <value>Valores</value>
   </data>
   <data name="rbDefaultDataSetName.Text" xml:space="preserve">
     <value>Conjunto de datos</value>
   </data>
   <data name="gbDefaultValues.Text" xml:space="preserve">
-    <value>Значения по умолчанию</value>
+    <value>Valores predeterminados</value>
   </data>
 </root>

@@ -161,7 +161,7 @@
     <value>141, 30</value>
   </data>
   <data name="chkFooterRepeat.Text" xml:space="preserve">
-    <value>Повторять окончание на новой странице</value>
+    <value>Repetir pie en nueva página</value>
   </data>
   <data name="chkHeaderRepeat.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 34</value>
@@ -170,7 +170,7 @@
     <value>145, 30</value>
   </data>
   <data name="chkHeaderRepeat.Text" xml:space="preserve">
-    <value>Повторять заголовок на новой странице</value>
+    <value>Repetir encabezado en nueva página</value>
   </data>
   <data name="chkFooterRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>285, 13</value>
@@ -179,7 +179,7 @@
     <value>122, 24</value>
   </data>
   <data name="chkFooterRows.Text" xml:space="preserve">
-    <value>Строки окончания</value>
+    <value>Filas de pie</value>
   </data>
   <data name="chkHeaderRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 13</value>
@@ -188,10 +188,10 @@
     <value>122, 24</value>
   </data>
   <data name="chkHeaderRows.Text" xml:space="preserve">
-    <value>Строки заголовка</value>
+    <value>Filas de encabezado</value>
   </data>
   <data name="chkDetails.Text" xml:space="preserve">
-    <value>Строки тела</value>
+    <value>Filas de cuerpo</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 66</value>

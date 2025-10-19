@@ -81,13 +81,13 @@
     <value>Formato</value>
   </data>
   <data name="Appearance_TextAlign" xml:space="preserve">
-    <value>Горизонтальное выравнивание</value>
+    <value>Alineación horizontal</value>
   </data>
   <data name="Appearance_TextDecoration" xml:space="preserve">
     <value>Formato</value>
   </data>
   <data name="Appearance_VerticalAlign" xml:space="preserve">
-    <value>Вертикальное выравнивание</value>
+    <value>Alineación vertical</value>
   </data>
   <data name="Appearance_WritingMode" xml:space="preserve">
     <value>Modo de escritura</value>
@@ -96,10 +96,10 @@
     <value>Тип MIME</value>
   </data>
   <data name="BackgroundImage_Repeat" xml:space="preserve">
-    <value>Повторение</value>
+    <value>Repetición</value>
   </data>
   <data name="BackgroundImage_Source" xml:space="preserve">
-    <value>Источник</value>
+    <value>Origen</value>
   </data>
   <data name="BackgroundImage_Value" xml:space="preserve">
     <value>Valor</value>
@@ -108,7 +108,7 @@
     <value>Color</value>
   </data>
   <data name="Background_EndColor" xml:space="preserve">
-    <value>Конечный цвет</value>
+    <value>Color final</value>
   </data>
   <data name="Background_GradientType" xml:space="preserve">
     <value>Тип градиента</value>
@@ -123,13 +123,13 @@
     <value>Fondo</value>
   </data>
   <data name="Base_Bookmark" xml:space="preserve">
-    <value>Закладка</value>
+    <value>Marcador</value>
   </data>
   <data name="Base_Border" xml:space="preserve">
     <value>Borde</value>
   </data>
   <data name="Base_ColumnSpan" xml:space="preserve">
-    <value>Охват столбцов</value>
+    <value>Expansión de columnas</value>
   </data>
   <data name="Base_DataElementName" xml:space="preserve">
     <value>Название элемента данных</value>
@@ -138,7 +138,7 @@
     <value>Вывод элеменда данных</value>
   </data>
   <data name="Base_Location" xml:space="preserve">
-    <value>Положение</value>
+    <value>Posición</value>
   </data>
   <data name="Base_Matrix" xml:space="preserve">
     <value>Matriz</value>
@@ -156,13 +156,13 @@
     <value>Tabla</value>
   </data>
   <data name="Base_ToolTip" xml:space="preserve">
-    <value>Подсказка</value>
+    <value>Sugerencia</value>
   </data>
   <data name="Base_Visibility" xml:space="preserve">
     <value>Visibilidad</value>
   </data>
   <data name="Base_ZIndex" xml:space="preserve">
-    <value>Z-индекс</value>
+    <value>Índice Z</value>
   </data>
   <data name="ChartAxis_Appearance" xml:space="preserve">
     <value>Apariencia</value>
@@ -177,37 +177,37 @@
     <value>Пересекать в</value>
   </data>
   <data name="ChartAxis_Interlaced" xml:space="preserve">
-    <value>Переплетать</value>
+    <value>Entrelazar</value>
   </data>
   <data name="ChartAxis_LogScale" xml:space="preserve">
     <value>Escala logarítmica</value>
   </data>
   <data name="ChartAxis_MajorGridLines" xml:space="preserve">
-    <value>Основные линии сетки</value>
+    <value>Líneas de cuadrícula principales</value>
   </data>
   <data name="ChartAxis_MajorInterval" xml:space="preserve">
-    <value>Основной интервал</value>
+    <value>Intervalo principal</value>
   </data>
   <data name="ChartAxis_MajorTickMarks" xml:space="preserve">
-    <value>Основные деления</value>
+    <value>Divisiones principales</value>
   </data>
   <data name="ChartAxis_Margin" xml:space="preserve">
     <value>Margen</value>
   </data>
   <data name="ChartAxis_Max" xml:space="preserve">
-    <value>Максимум</value>
+    <value>Máximo</value>
   </data>
   <data name="ChartAxis_Min" xml:space="preserve">
-    <value>Минимум</value>
+    <value>Mínimo</value>
   </data>
   <data name="ChartAxis_MinorGridLines" xml:space="preserve">
-    <value>Дополнительные линии сетки</value>
+    <value>Líneas de cuadrícula secundarias</value>
   </data>
   <data name="ChartAxis_MinorInterval" xml:space="preserve">
-    <value>Дополнительный интервал</value>
+    <value>Intervalo secundario</value>
   </data>
   <data name="ChartAxis_MinorTickMarks" xml:space="preserve">
-    <value>Дополнительные деления</value>
+    <value>Divisiones secundarias</value>
   </data>
   <data name="ChartAxis_Padding" xml:space="preserve">
     <value>Relleno</value>
@@ -216,7 +216,7 @@
     <value>Обратная</value>
   </data>
   <data name="ChartAxis_Scalar" xml:space="preserve">
-    <value>Скалярная</value>
+    <value>Escalar</value>
   </data>
   <data name="ChartAxis_Title" xml:space="preserve">
     <value>Encabezado</value>
@@ -225,7 +225,7 @@
     <value>Visible</value>
   </data>
   <data name="ChartData_DataValue" xml:space="preserve">
-    <value>Значение данных</value>
+    <value>Valor de datos</value>
   </data>
   <data name="ChartData_DataValue2" xml:space="preserve">
     <value>Значение данных2</value>
@@ -294,13 +294,13 @@
     <value>Ось категории</value>
   </data>
   <data name="Chart_ChartData" xml:space="preserve">
-    <value>Данные диаграммы</value>
+    <value>Datos del gráfico</value>
   </data>
   <data name="Chart_Legend" xml:space="preserve">
-    <value>Легенда</value>
+    <value>Leyenda</value>
   </data>
   <data name="Chart_Palette" xml:space="preserve">
-    <value>Палитра</value>
+    <value>Paleta</value>
   </data>
   <data name="Chart_PointWidth" xml:space="preserve">
     <value>Ширина точки</value>
@@ -339,10 +339,10 @@
     <value>Тип MIME</value>
   </data>
   <data name="ImageI_Sizing" xml:space="preserve">
-    <value>Масштабирование</value>
+    <value>Escala</value>
   </data>
   <data name="ImageI_Source" xml:space="preserve">
-    <value>Источник</value>
+    <value>Origen</value>
   </data>
   <data name="ImageI_Value" xml:space="preserve">
     <value>Valor</value>
@@ -354,7 +354,7 @@
     <value>Элемент экземпляра данных</value>
   </data>
   <data name="List_DataInstanceName" xml:space="preserve">
-    <value>Название экземпляра данных</value>
+    <value>Nombre de instancia de datos</value>
   </data>
   <data name="List_Grouping" xml:space="preserve">
     <value>Agrupación</value>
@@ -396,10 +396,10 @@
     <value>Altura</value>
   </data>
   <data name="PrintFirstLast_PrintOnFirstPage" xml:space="preserve">
-    <value>Печатать на первой странице</value>
+    <value>Imprimir en la primera página</value>
   </data>
   <data name="PrintFirstLast_PrintOnLastPage" xml:space="preserve">
-    <value>Печатать на последней странице</value>
+    <value>Imprimir en la última página</value>
   </data>
   <data name="Rectangle_PageBreakAtEnd" xml:space="preserve">
     <value>Разрывать в конце</value>
@@ -429,13 +429,13 @@
     <value>Стиль элемента данных</value>
   </data>
   <data name="Report_DataSchema" xml:space="preserve">
-    <value>Схема данных</value>
+    <value>Esquema de datos</value>
   </data>
   <data name="Report_DataTransform" xml:space="preserve">
     <value>Преобразование данных</value>
   </data>
   <data name="Report_Description" xml:space="preserve">
-    <value>Описание</value>
+    <value>Descripción</value>
   </data>
   <data name="Report_Margins" xml:space="preserve">
     <value>Отступы страницы</value>
@@ -483,16 +483,16 @@
     <value>Apariencia</value>
   </data>
   <data name="Textbox_CanGrow" xml:space="preserve">
-    <value>Может расти</value>
+    <value>Puede crecer</value>
   </data>
   <data name="Textbox_CanShrink" xml:space="preserve">
-    <value>Может сжиматься</value>
+    <value>Puede reducirse</value>
   </data>
   <data name="Textbox_DataElementStyle" xml:space="preserve">
     <value>Стиль элемента данных</value>
   </data>
   <data name="Textbox_HideDuplicates" xml:space="preserve">
-    <value>Скрывать дубликаты</value>
+    <value>Ocultar duplicados</value>
   </data>
   <data name="Textbox_Value" xml:space="preserve">
     <value>Valor</value>

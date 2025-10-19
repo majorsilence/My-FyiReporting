@@ -196,7 +196,7 @@
     <value>Cursiva</value>
   </data>
   <data name="underlineToolStripButton2.ToolTipText" xml:space="preserve">
-    <value>Подчёркнутый</value>
+    <value>Subrayado</value>
   </data>
   <data name="leftAlignToolStripButton2.Text" xml:space="preserve">
     <value>Izquierda</value>
@@ -317,13 +317,13 @@
     <value>72, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Цвет текста:</value>
+    <value>Color de texto:</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Цвет фона:</value>
+    <value>Color de fondo:</value>
   </data>
   <data name="foreColorPicker1.Items10500" xml:space="preserve">
     <value>Aliceblue</value>

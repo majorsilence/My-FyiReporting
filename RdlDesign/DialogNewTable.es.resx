@@ -106,7 +106,7 @@
     <value>Отметьте столбцы для группировки (создания иерархии)</value>
   </data>
   <data name="chkGrandTotals.Text" xml:space="preserve">
-    <value>Подсчитать общие итоги</value>
+    <value>Calcular totales generales</value>
   </data>
   <data name="rbVertComp.Location" type="System.Drawing.Point, System.Drawing">
     <value>324, 16</value>

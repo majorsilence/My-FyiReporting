@@ -125,7 +125,7 @@
     <value>83, 13</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Конечный цвет</value>
+    <value>Color final</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -134,7 +134,7 @@
     <value>54, 13</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Градиент</value>
+    <value>Degradado</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

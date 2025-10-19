@@ -71,7 +71,7 @@
     <value>139, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Переключающий элемент</value>
+    <value>Elemento de alternar</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

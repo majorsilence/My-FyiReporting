@@ -82,7 +82,7 @@
     <value>47, 20</value>
   </data>
   <data name="windowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Окна</value>
+    <value>Ventanas</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -220,13 +220,13 @@
     <value>218, 22</value>
   </data>
   <data name="cascadeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Каскад</value>
+    <value>Cascada</value>
   </data>
   <data name="tileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
   <data name="tileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Плитка</value>
+    <value>Mosaico</value>
   </data>
   <data name="horizontallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
@@ -244,7 +244,7 @@
     <value>218, 22</value>
   </data>
   <data name="closeAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Закрыть все</value>
+    <value>Cerrar todo</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 22</value>
@@ -288,6 +288,6 @@
     <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Просмотр отчётов</value>
+    <value>Vista de informes</value>
   </data>
 </root>

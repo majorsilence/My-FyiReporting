@@ -92,7 +92,7 @@
     <value>71, 23</value>
   </data>
   <data name="bImport.Text" xml:space="preserve">
-    <value>Импорт...</value>
+    <value>Importar...</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

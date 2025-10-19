@@ -63,7 +63,7 @@
     <value>Línea</value>
   </data>
   <data name="Polygon" xml:space="preserve">
-    <value>Многоугольник</value>
+    <value>Polígono</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Texto</value>

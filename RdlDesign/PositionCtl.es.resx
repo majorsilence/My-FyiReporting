@@ -88,7 +88,7 @@
     <value>55, 23</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Z-индекс</value>
+    <value>Índice Z</value>
   </data>
   <data name="tbZIndex.Location" type="System.Drawing.Point, System.Drawing">
     <value>77, 80</value>
@@ -115,7 +115,7 @@
     <value>88, 23</value>
   </data>
   <data name="lblColSpan.Text" xml:space="preserve">
-    <value>Охват столбцов</value>
+    <value>Expansión de columnas</value>
   </data>
   <data name="gbText.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 112</value>
@@ -170,7 +170,7 @@
     <value>114, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Скрывать дубликаты</value>
+    <value>Ocultar duplicados</value>
   </data>
   <data name="chkCanShrink.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -182,7 +182,7 @@
     <value>120, 17</value>
   </data>
   <data name="chkCanShrink.Text" xml:space="preserve">
-    <value>Может сжиматься</value>
+    <value>Puede reducirse</value>
   </data>
   <data name="chkCanGrow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -194,7 +194,7 @@
     <value>92, 17</value>
   </data>
   <data name="chkCanGrow.Text" xml:space="preserve">
-    <value>Может расти</value>
+    <value>Puede crecer</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 288</value>

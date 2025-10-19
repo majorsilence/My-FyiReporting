@@ -75,7 +75,7 @@
     <value>высота</value>
   </data>
   <data name="DesignCtl_SelectionName_Group" xml:space="preserve">
-    <value>Группа</value>
+    <value>Grupo</value>
   </data>
   <data name="DesignCtl_SelectionName_GroupSelection" xml:space="preserve">
     <value>Групповое выделение</value>
@@ -87,10 +87,10 @@
     <value>*Безымянный*</value>
   </data>
   <data name="RdlDesigner_Status_Ch" xml:space="preserve">
-    <value>Столбец</value>
+    <value>Columna</value>
   </data>
   <data name="RdlDesigner_Status_Ln" xml:space="preserve">
-    <value>Строка</value>
+    <value>Fila</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_Border" xml:space="preserve">
     <value>Borde</value>
@@ -105,7 +105,7 @@
     <value>Сетка</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_Grouping" xml:space="preserve">
-    <value>Группа</value>
+    <value>Grupo</value>
   </data>
   <data name="PropertyDialog_BuildReportItemTabs_GroupSelectionProperties" xml:space="preserve">
     <value>Свойства группового выделения</value>
@@ -153,7 +153,7 @@
     <value>Texto</value>
   </data>
   <data name="PropertyDialog_BuildChartAxisTabs_Axis" xml:space="preserve">
-    <value>Ось</value>
+    <value>Eje</value>
   </data>
   <data name="PropertyDialog_BuildChartAxisTabs_ChartCategoryAxis" xml:space="preserve">
     <value>Категория (ось X)</value>
@@ -165,7 +165,7 @@
     <value>Свойства легенды диаграммы</value>
   </data>
   <data name="PropertyDialog_BuildChartLegendTabs_Legend" xml:space="preserve">
-    <value>Легенда</value>
+    <value>Leyenda</value>
   </data>
   <data name="PropertyDialog_BuildDataSetsTabs_Data" xml:space="preserve">
     <value>Datos</value>
@@ -189,7 +189,7 @@
     <value>Группа серии</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_Body" xml:space="preserve">
-    <value>Тело</value>
+    <value>Cuerpo</value>
   </data>
   <data name="PropertyDialog_BuildReportTabs_Code" xml:space="preserve">
     <value>Código</value>
@@ -213,7 +213,7 @@
     <value>Заголовок категории (ось X)</value>
   </data>
   <data name="PropertyDialog_BuildTitle_ChartTitle" xml:space="preserve">
-    <value>Заголовок диаграммы</value>
+    <value>Título del gráfico</value>
   </data>
   <data name="PropertyDialog_BuildTitle_ValueAxisRightTitle" xml:space="preserve">
     <value>Заголовок значения (ось Y) справа</value>
@@ -303,7 +303,7 @@
     <value>вставку группы строки матрицы</value>
   </data>
   <data name="DesignCtl_Undo_Move" xml:space="preserve">
-    <value>перемещение</value>
+    <value>movimiento</value>
   </data>
   <data name="DesignCtl_Undo_Move_Size" xml:space="preserve">
     <value>перемещение/изменение размера</value>
@@ -315,7 +315,7 @@
     <value>inserción</value>
   </data>
   <data name="DesignCtl_Undo_Size" xml:space="preserve">
-    <value>изменение размера</value>
+    <value>cambio de tamaño</value>
   </data>
   <data name="DesignCtl_Undo_Spacing" xml:space="preserve">
     <value>отступ</value>
@@ -408,7 +408,7 @@
     <value>изменение видимости</value>
   </data>
   <data name="RdlDesigner_menuTools_Popup_StartDesktop" xml:space="preserve">
-    <value>Запустить сервер</value>
+    <value>Iniciar servidor</value>
   </data>
   <data name="RdlDesigner_menuTools_Popup_StopDesktop" xml:space="preserve">
     <value>Остановить сервер</value>
@@ -531,7 +531,7 @@
     <value>Каждый источник данных должен иметь уникальное имя. '{0}' уже используется.</value>
   </data>
   <data name="DialogDataSources_ShowE_DataSources" xml:space="preserve">
-    <value>Источники данных</value>
+    <value>Orígenes de datos</value>
   </data>
   <data name="DialogDataSources_ShowE_NameInvalid" xml:space="preserve">
     <value>Название '{0}' содержит некорректные символы.</value>
@@ -616,7 +616,7 @@
     <value>Серии диаграмм должны содержать метки для легенд</value>
   </data>
   <data name="GroupingCtl_Show_Group" xml:space="preserve">
-    <value>Группа</value>
+    <value>Grupo</value>
   </data>
   <data name="GroupingCtl_Show_Grouping" xml:space="preserve">
     <value>Agrupación</value>
@@ -694,13 +694,13 @@
     <value>Ошибка остановки процесса</value>
   </data>
   <data name="RdlDesigner_Show_HelpURLInvalid" xml:space="preserve">
-    <value>Некорректная ссылка на помощь</value>
+    <value>Referencia de ayuda no válida</value>
   </data>
   <data name="RdlDesigner_Show_PrintError" xml:space="preserve">
     <value>Ошибка печати: </value>
   </data>
   <data name="RdlDesigner_Show_PrintOneFile" xml:space="preserve">
-    <value>Печатать можно только один файл за раз.</value>
+    <value>Solo se puede imprimir un archivo a la vez.</value>
   </data>
   <data name="RdlDesigner_Show_RDLDesign" xml:space="preserve">
     <value>Дизайнер отчётов</value>
@@ -712,7 +712,7 @@
     <value>Ссылка на поддержку установлена по умолчанию.</value>
   </data>
   <data name="RdlDesigner_Show_SupportURLInvalid" xml:space="preserve">
-    <value>Некорректная ссылка на поддержку</value>
+    <value>Referencia de soporte no válida</value>
   </data>
   <data name="RdlDesigner_Show_UnableShowReport" xml:space="preserve">
     <value>Не удалось отобразить отчёт</value>
@@ -739,7 +739,7 @@
     <value>Ошибка печати: </value>
   </data>
   <data name="RdlUserControl_Show_PrintOneFile" xml:space="preserve">
-    <value>Печатать можно только один файл за раз.</value>
+    <value>Solo se puede imprimir un archivo a la vez.</value>
   </data>
   <data name="RdlUserControl_Show_RDLDesign" xml:space="preserve">
     <value>Дизайнер отчётов</value>
@@ -852,7 +852,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 сайт https://github.com/majorsilence/My-FyiReporting.</value>
   </data>
   <data name="DialogAbout_DialogAbout_Version" xml:space="preserve">
-    <value>Версия {0}</value>
+    <value>Versión {0}</value>
   </data>
   <data name="PositionCtl_InitValues_GroupSelected" xml:space="preserve">
     <value>Групповое выделение</value>
@@ -861,7 +861,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Безымянный</value>
   </data>
   <data name="ReportParameterCtl_bDefaultValues_Click_Default_Values" xml:space="preserve">
-    <value>Значения по умолчанию</value>
+    <value>Valores predeterminados</value>
   </data>
   <data name="Tabs_Background" xml:space="preserve">
     <value>Fondo</value>
@@ -940,7 +940,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Внутренняя логическая ошибка: конец группы не соответствует началу группу</value>
   </data>
   <data name="Undo_Error_UnknownAction" xml:space="preserve">
-    <value>Неизвестное действие</value>
+    <value>Acción desconocida</value>
   </data>
   <data name="BackgroundCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
     <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
@@ -952,7 +952,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Выберите XML-файл</value>
   </data>
   <data name="DialogDatabase_bShared_Click_DSRFilter" xml:space="preserve">
-    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+    <value>Orígenes de datos compartidos (*.dsr)|*.dsr|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DialogDatabase_bShared_Click_DSRTitle" xml:space="preserve">
     <value>Выберите общий источник данных</value>
@@ -961,7 +961,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Все файлы (*.*)|*.*</value>
   </data>
   <data name="DialogDataSources_bGetFilename_Click_DSRFilter" xml:space="preserve">
-    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+    <value>Orígenes de datos compartidos (*.dsr)|*.dsr|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DialogDataSources_bGetFilename_Click_DSRTitle" xml:space="preserve">
     <value>Выберите общий источник данных</value>
@@ -970,13 +970,13 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
   </data>
   <data name="DialogToolOptions_bAddMap_Click_MapFilesFilter" xml:space="preserve">
-    <value>Карты (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+    <value>Mapas (*.xml)|*.xml|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DrillParametersDialog_bFile_Click_ReportFilesFilter" xml:space="preserve">
-    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+    <value>Informes (*.rdl)|*.rdl|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DrillParametersDialog_bFile_Click_ReportFilesTitle" xml:space="preserve">
-    <value>Выберите отчёт</value>
+    <value>Seleccionar informe</value>
   </data>
   <data name="FileUIEditor_EditValue_XSLFilesFilter" xml:space="preserve">
     <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
@@ -985,10 +985,10 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
   </data>
   <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesFilter" xml:space="preserve">
-    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+    <value>Informes (*.rdl)|*.rdl|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="InteractivityCtl_bDrillthrough_Click_ReportFilesTitle" xml:space="preserve">
-    <value>Выберите отчёт</value>
+    <value>Seleccionar informe</value>
   </data>
   <data name="RdlDesigner_menuFileOpen_Click_ReportFilesFilter" xml:space="preserve">
     <value>Отчёты (*.rdl;*rdlc)|*.rdl;*.rdlc|Все файлы (*.*)|*.*</value>
@@ -1006,10 +1006,10 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Отчёты (*.rdl)|*.rdl| зашифрованный (*.encrypted)|*.encrypted|Все файлы (*.*)|*.*</value>
   </data>
   <data name="SubreportCtl_bFile_Click_ReportFilesTitle" xml:space="preserve">
-    <value>Выберите отчёт</value>
+    <value>Seleccionar informe</value>
   </data>
   <data name="DialogDataSourceRef_bGetFilename_Click_DSRFilter" xml:space="preserve">
-    <value>Общие источники данных (*.dsr)|*.dsr|Все файлы (*.*)|*.*</value>
+    <value>Orígenes de datos compartidos (*.dsr)|*.dsr|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DialogDataSourceRef_bGetFilename_Click_DSRTitle" xml:space="preserve">
     <value>Укажите название общего источника данных</value>
@@ -1045,6 +1045,6 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>XML (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
   </data>
   <data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
-    <value>Отчёты (*.rdl)|*.rdl|Все файлы (*.*)|*.*</value>
+    <value>Informes (*.rdl)|*.rdl|Todos los archivos (*.*)|*.*</value>
   </data>
 </root>

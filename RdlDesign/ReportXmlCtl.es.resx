@@ -82,7 +82,7 @@
     <value>168, 23</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Схема данных</value>
+    <value>Esquema de datos</value>
   </data>
   <data name="tbDataElementName.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 112</value>

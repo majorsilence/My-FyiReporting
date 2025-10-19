@@ -64,7 +64,7 @@
     <value>118, 23</value>
   </data>
   <data name="lDataProvider.Text" xml:space="preserve">
-    <value>Поставщик данных</value>
+    <value>Proveedor de datos</value>
   </data>
   <data name="cbDataProvider.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 149</value>
@@ -82,7 +82,7 @@
     <value>166, 34</value>
   </data>
   <data name="ckbIntSecurity.Text" xml:space="preserve">
-    <value>Использовать встроенную безопасность</value>
+    <value>Usar seguridad integrada</value>
   </data>
   <data name="lPrompt.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 32</value>
@@ -115,7 +115,7 @@
     <value>Agregar</value>
   </data>
   <data name="chkSharedDataSource.Text" xml:space="preserve">
-    <value>Общий источник данных</value>
+    <value>Origen de datos compartido</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>222, 8</value>

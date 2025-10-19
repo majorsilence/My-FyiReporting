@@ -91,7 +91,7 @@
     <value>Детализация</value>
   </data>
   <data name="rbBookmarkLink.Text" xml:space="preserve">
-    <value>Закладка</value>
+    <value>Marcador</value>
   </data>
   <data name="rbHyperlink.Text" xml:space="preserve">
     <value>Гиперссылка</value>
@@ -100,6 +100,6 @@
     <value>Acción</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Закладка</value>
+    <value>Marcador</value>
   </data>
 </root>

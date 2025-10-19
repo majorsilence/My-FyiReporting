@@ -72,10 +72,10 @@
     <value>Не удаётся перейти по ссылке</value>
   </data>
   <data name="RdlViewerFind_ErrorA_PropertyMustSetPriorFindNext" xml:space="preserve">
-    <value>Свойство Viewer должно быть установлено до начала поиска.</value>
+    <value>La propiedad Viewer debe establecerse antes de comenzar la búsqueda.</value>
   </data>
   <data name="RdlViewerFind_ErrorA_PropertyMustSetPriorFindPrevious" xml:space="preserve">
-    <value>Свойство Viewer должно быть установлено до начала поиска.</value>
+    <value>La propiedad Viewer debe establecerse antes de comenzar la búsqueda.</value>
   </data>
   <data name="RdlViewerFind_FindNext_Phrase_not_found" xml:space="preserve">
     <value>Фраза не найдена</value>
