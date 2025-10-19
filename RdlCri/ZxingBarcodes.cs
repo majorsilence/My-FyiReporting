@@ -101,9 +101,6 @@ namespace Majorsilence.Reporting.Cri
         {
             try
             {
-                // fallback to standard "Code" property
-                _code = props["Code"].ToString();
-                
                 if (props.TryGetValue("AztecCode", out object codeValueA))
                 {
                     // Backwards Compatibility: if the property is present, use it
