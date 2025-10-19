@@ -3295,6 +3295,15 @@ namespace Majorsilence.Reporting.RdlDesign
 							r.Height - si.PaddingTop - si.PaddingBottom
 						);
 						break;
+					case WritingModeEnum.rl_bt:
+						// 180 degree rotation
+						drawRectangle = new RectangleF(
+							-r.Left - r.Width + si.PaddingRight,
+							-r.Top - r.Height + si.PaddingBottom,
+							r.Width - si.PaddingLeft - si.PaddingRight,
+							r.Height - si.PaddingTop - si.PaddingBottom
+						);
+						break;
 					case WritingModeEnum.tb_lr:
 						drawRectangle = new RectangleF(
 							-r.Top - r.Height + si.PaddingBottom,
@@ -3307,7 +3316,11 @@ namespace Majorsilence.Reporting.RdlDesign
 						throw new NotSupportedException($"Writing mode {si.WritingMode} is not supported");
 				}
 
-				if(si.WritingMode == WritingModeEnum.tb_lr)
+				if(si.WritingMode == WritingModeEnum.rl_bt)
+				{
+					g.RotateTransform(180);
+				}
+				else if(si.WritingMode == WritingModeEnum.tb_lr)
 				{
 					g.RotateTransform(270);
 				}
