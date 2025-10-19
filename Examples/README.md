@@ -8,6 +8,12 @@ This directory contains various examples demonstrating different features of Maj
 For detailed information on how to bind data sources and loop through data in reports, see:
 **[Data Binding and Looping Documentation](../docs/DataBinding-and-Looping.md)**
 
+**[SimpleDataBindingExample.rdl](SimpleDataBindingExample.rdl)** - A minimal, well-commented example that demonstrates:
+- How to define a DataSource and DataSet
+- How to create a Table that loops through data rows
+- How to bind Textboxes to data fields using `=Fields!FieldName.Value`
+- Basic formatting and styling
+
 ### Example Projects
 
 #### SampleApp2-SetData
