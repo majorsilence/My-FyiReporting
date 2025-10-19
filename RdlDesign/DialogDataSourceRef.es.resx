@@ -115,7 +115,7 @@
     <value>432, 29</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>(Необязательно) Введите подсказку, отображаемую при запросе учётных данных базы данных</value>
+    <value>(Opcional) Introduzca el mensaje que se mostrará al solicitar credenciales de base de datos</value>
   </data>
   <data name="tbPrompt.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 304</value>

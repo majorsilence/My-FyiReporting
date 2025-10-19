@@ -408,7 +408,7 @@
     <value>Разрывать в начале</value>
   </data>
   <data name="Report_Author" xml:space="preserve">
-    <value>Автор</value>
+    <value>Autor</value>
   </data>
   <data name="Report_BodyColumns" xml:space="preserve">
     <value>Количество столбцов</value>

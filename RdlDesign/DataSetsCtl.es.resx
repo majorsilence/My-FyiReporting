@@ -79,7 +79,7 @@
     <value>70, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>SQL-запрос</value>
+    <value>Consulta SQL</value>
   </data>
   <data name="lDataSource.Text" xml:space="preserve">
     <value>Origen de datos</value>

@@ -88,7 +88,7 @@
     <value>156, 17</value>
   </data>
   <data name="chkPBAutoHide.Text" xml:space="preserve">
-    <value>Автоматически скрывать</value>
+    <value>Ocultar automáticamente</value>
   </data>
   <data name="rbPBBottom.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 17</value>
@@ -208,7 +208,7 @@
     <value>Каталог:</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Важно: сервер не предназначен для использования в качестве веб-сервера.</value>
+    <value>Importante: el servidor no está diseñado para usarse como servidor web.</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Изменение настроек конфигурации здесь влияет на сервер. Если сервер запущен как часть дизайнера, изменения, сделанные здесь, остановят процесс сервера. Если сервер запущен как отдельный процесс, сервер должен быть перезагружен вручную.</value>

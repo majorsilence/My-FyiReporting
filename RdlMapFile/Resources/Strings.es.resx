@@ -161,7 +161,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>изменение шрифта</value>
   </data>
   <data name="DesignXmlDraw_Error_XMLNotMapData" xml:space="preserve">
-    <value>XML карты не содержит элемент 'MapData'.</value>
+    <value>El XML del mapa no contiene el elemento 'MapData'.</value>
   </data>
   <data name="Undo_Error_EndGroupNotMatchStartGroup" xml:space="preserve">
     <value>Внутренняя логическая ошибка: конец группы не соответствует началу группы</value>

@@ -166,7 +166,7 @@
     <value>234, 22</value>
   </data>
   <data name="pDFOldStyleToolStripMenuItem.Text" xml:space="preserve">
-    <value>PDF (Старый формат)...</value>
+    <value>PDF (Formato antiguo)...</value>
   </data>
   <data name="tIFFToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>

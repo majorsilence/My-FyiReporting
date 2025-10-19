@@ -148,7 +148,7 @@
     <value>75, 13</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>База данных:</value>
+    <value>Base de datos:</value>
   </data>
   <data name="buttonSearchSqlServers.Text" xml:space="preserve">
     <value>Найти сервера</value>

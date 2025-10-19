@@ -234,7 +234,7 @@
     <value>Выражение, которое должно быть отображено.</value>
   </data>
   <data name="ChartData_DataValue2" xml:space="preserve">
-    <value>Y-координата для точечной и пузырьковой диаграмм.</value>
+    <value>Coordenada Y para gráficos de dispersión y burbujas.</value>
   </data>
   <data name="ChartData_DataValue3" xml:space="preserve">
     <value>Размер пузырька в пузырьковой диаграмме.</value>
@@ -381,7 +381,7 @@
     <value>Разрывать страницу перед верхней частью прямоугольника?</value>
   </data>
   <data name="Report_Author" xml:space="preserve">
-    <value>Автор отчёта.</value>
+    <value>Autor del informe.</value>
   </data>
   <data name="Report_BodyColumns" xml:space="preserve">
     <value>Количество столбцов в области данных.</value>
@@ -393,7 +393,7 @@
     <value>Высота области данных.</value>
   </data>
   <data name="Report_Code" xml:space="preserve">
-    <value>Базовые функции, определённые для использования в отчёте.</value>
+    <value>Funciones básicas definidas para usar en el informe.</value>
   </data>
   <data name="Report_DataElementName" xml:space="preserve">
     <value>Название элемента верхнего уровня для создания XML.</value>
@@ -405,7 +405,7 @@
     <value>Схема или пространство имён для создания XML.</value>
   </data>
   <data name="Report_DataTransform" xml:space="preserve">
-    <value>XSL-файл для преобразования в XML после отрисовки.</value>
+    <value>Archivo XSL para transformar en XML después del renderizado.</value>
   </data>
   <data name="Report_Description" xml:space="preserve">
     <value>Описание отчёта.</value>

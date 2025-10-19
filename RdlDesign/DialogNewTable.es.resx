@@ -130,7 +130,7 @@
     <value>173, 16</value>
   </data>
   <data name="rbHorz.Text" xml:space="preserve">
-    <value>В ширину (обычные столбцы)</value>
+    <value>A lo ancho (columnas normales)</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Направление полей</value>

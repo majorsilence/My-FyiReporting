@@ -88,7 +88,7 @@
     <value>432, 32</value>
   </data>
   <data name="lPrompt.Text" xml:space="preserve">
-    <value>(Необязательно) Введите подсказку, отображаемую при запросе учетных данных базы данных</value>
+    <value>(Opcional) Introduzca el mensaje que se mostrará al solicitar credenciales de base de datos</value>
   </data>
   <data name="tbPrompt.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 307</value>

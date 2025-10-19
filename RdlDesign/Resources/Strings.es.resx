@@ -84,7 +84,7 @@
     <value>в</value>
   </data>
   <data name="DesignCtl_SelectionName_Unnamed" xml:space="preserve">
-    <value>*Безымянный*</value>
+    <value>*Sin nombre*</value>
   </data>
   <data name="RdlDesigner_Status_Ch" xml:space="preserve">
     <value>Columna</value>
@@ -417,7 +417,7 @@
     <value>Проверка кода</value>
   </data>
   <data name="CodeCtl_Show_NoErrors" xml:space="preserve">
-    <value>Без ошибок</value>
+    <value>Sin errores</value>
   </data>
   <data name="DataSetRowsCtl_ShowB_ErrorReadingDataRows" xml:space="preserve">
     <value>Ошибка чтения строк данных</value>
@@ -634,7 +634,7 @@
     <value>Nombre</value>
   </data>
   <data name="GroupingCtl_Show_NoExpressionsForGroup" xml:space="preserve">
-    <value>В группе не должно быть выражений</value>
+    <value>El grupo no debe tener expresiones</value>
   </data>
   <data name="MDIChild_ShowF_Export" xml:space="preserve">
     <value>Exportar</value>
@@ -649,7 +649,7 @@
     <value>Editor de informes</value>
   </data>
   <data name="MDIChild_ShowH_Untitled" xml:space="preserve">
-    <value>Безымянный</value>
+    <value>Sin nombre</value>
   </data>
   <data name="MDIChild_ShowH_WantSaveChanges" xml:space="preserve">
     <value>Хотите сохранить изменения в '{0}'?</value>
@@ -658,7 +658,7 @@
     <value>Altura</value>
   </data>
   <data name="PositionCtl_Show_Invalid" xml:space="preserve">
-    <value>{0} некорректно.  {1}</value>
+    <value>{0} no es válido. {1}</value>
   </data>
   <data name="PositionCtl_Show_Left" xml:space="preserve">
     <value>Izquierda</value>
@@ -779,7 +779,7 @@
     <value>Izquierda</value>
   </data>
   <data name="StyleCtl_Show_PaddingInvalid" xml:space="preserve">
-    <value>{0} некорректный отступ</value>
+    <value>{0} sangría no válida</value>
   </data>
   <data name="StyleCtl_Show_Right" xml:space="preserve">
     <value>Derecha</value>
@@ -803,7 +803,7 @@
     <value>Файл подотчёта должен быть указан</value>
   </data>
   <data name="TableColumnCtl_Show_ExpressionTrueFalse" xml:space="preserve">
-    <value>{0} должен быть 'true' или 'false'</value>
+    <value>{0} debe ser 'true' o 'false'</value>
   </data>
   <data name="TableColumnCtl_Show_HiddenInvalid" xml:space="preserve">
     <value>Поле "Скрытый" некорректно</value>
@@ -815,10 +815,10 @@
     <value>Tabla</value>
   </data>
   <data name="TableCtl_Show_TableMustHaveRegions" xml:space="preserve">
-    <value>В таблицы должно быть как минимум по одной строке для Заголовка, Тела и Окончания.</value>
+    <value>La tabla debe tener al menos una fila para Encabezado, Cuerpo y Pie.</value>
   </data>
   <data name="TableRowCtl_Show_ExpressionTrueFalse" xml:space="preserve">
-    <value>{0} должен быть 'true' или 'false'</value>
+    <value>{0} debe ser 'true' o 'false'</value>
   </data>
   <data name="TableRowCtl_Show_HeightInvalid" xml:space="preserve">
     <value>Высота некорректна</value>
@@ -858,7 +858,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Групповое выделение</value>
   </data>
   <data name="RdlDesigner_CreateMDIChild_Untitled" xml:space="preserve">
-    <value>Безымянный</value>
+    <value>Sin nombre</value>
   </data>
   <data name="ReportParameterCtl_bDefaultValues_Click_Default_Values" xml:space="preserve">
     <value>Valores predeterminados</value>
@@ -918,7 +918,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Нельзя вставлять регион данных в заголовок или окончание страницы.</value>
   </data>
   <data name="DesignXmlDraw_Error_NoReport" xml:space="preserve">
-    <value>RDL не содержит элемента "Report".</value>
+    <value>RDL no contiene el elemento "Report".</value>
   </data>
   <data name="DesignXmlDraw_Error_SubreportIntoHeaderFooter" xml:space="preserve">
     <value>Нельзя вставлять подотчёт в заголовок или окончание страницы.</value>
@@ -946,7 +946,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
   </data>
   <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesFilter" xml:space="preserve">
-    <value>XML (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+    <value>XML (*.xml)|*.xml|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="DataSetRowsCtl_bRowsFile_Click_XMLFilesTitle" xml:space="preserve">
     <value>Выберите XML-файл</value>
@@ -979,7 +979,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Seleccionar informe</value>
   </data>
   <data name="FileUIEditor_EditValue_XSLFilesFilter" xml:space="preserve">
-    <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
+    <value>XSL (*.xsl)|*.xsl|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="ImageCtl_bExternal_Click_ImageFilesFilter" xml:space="preserve">
     <value>BMP (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|GIF (*.gif)|*.gif|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PNG (*.png)|*.png|Все изображения|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.tif;*.tiff;*.png|Все файлы (*.*)|*.*</value>
@@ -1000,7 +1000,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Выберите файл преобразования данных</value>
   </data>
   <data name="ReportXmlCtl_bOpenXsl_Click_XSLFilesFilter" xml:space="preserve">
-    <value>XSL (*.xsl)|*.xsl|Все файлы (*.*)|*.*</value>
+    <value>XSL (*.xsl)|*.xsl|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="SubreportCtl_bFile_Click_ReportFilesFilter" xml:space="preserve">
     <value>Отчёты (*.rdl)|*.rdl| зашифрованный (*.encrypted)|*.encrypted|Все файлы (*.*)|*.*</value>
@@ -1015,34 +1015,34 @@ http://www.apache.org/licenses/LICENSE-2.0
     <value>Укажите название общего источника данных</value>
   </data>
   <data name="MDIChild_Export_CSV" xml:space="preserve">
-    <value>CSV (*.csv)|*.csv|Все файлы (*.*)|*.*</value>
+    <value>CSV (*.csv)|*.csv|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_DOC" xml:space="preserve">
-    <value>DOC (*.doc)|*.doc|Все файлы (*.*)|*.*</value>
+    <value>DOC (*.doc)|*.doc|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_Excel" xml:space="preserve">
-    <value>Excel (*.xlsx)|*.xlsx|Все файлы (*.*)|*.*</value>
+    <value>Excel (*.xlsx)|*.xlsx|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_ExportTitleFormat" xml:space="preserve">
     <value>Экспортировать в {0}</value>
   </data>
   <data name="MDIChild_Export_MHT" xml:space="preserve">
-    <value>MHT (*.mht)|*.mhtml;*.mht|Все файлы (*.*)|*.*</value>
+    <value>MHT (*.mht)|*.mhtml;*.mht|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_PDF" xml:space="preserve">
-    <value>PDF (*.pdf)|*.pdf|Все файлы (*.*)|*.*</value>
+    <value>PDF (*.pdf)|*.pdf|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_RTF" xml:space="preserve">
-    <value>RTF (*.rtf)|*.rtf|Все файлы (*.*)|*.*</value>
+    <value>RTF (*.rtf)|*.rtf|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_TIF" xml:space="preserve">
-    <value>TIF (*.tif, *.tiff)|*.tiff;*.tif|Все файлы (*.*)|*.*</value>
+    <value>TIF (*.tif, *.tiff)|*.tiff;*.tif|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_Web_Page" xml:space="preserve">
     <value>Веб-страница (*.html, *.htm)|*.html;*.htm|Все файлы (*.*)|*.*</value>
   </data>
   <data name="MDIChild_Export_XML" xml:space="preserve">
-    <value>XML (*.xml)|*.xml|Все файлы (*.*)|*.*</value>
+    <value>XML (*.xml)|*.xml|Todos los archivos (*.*)|*.*</value>
   </data>
   <data name="MDIChild_FileSaveAs_RDLFilter" xml:space="preserve">
     <value>Informes (*.rdl)|*.rdl|Todos los archivos (*.*)|*.*</value>

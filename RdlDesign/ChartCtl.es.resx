@@ -100,7 +100,7 @@
     <value>364, 19</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>% ширины бары/столбцы (&gt; 100% вызывает перекрытие столбцов)</value>
+    <value>% de ancho de barras/columnas (&gt; 100% causa superposición de columnas)</value>
   </data>
   <data name="cbChartType.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 9</value>
@@ -241,13 +241,13 @@
     <value>96, 17</value>
   </data>
   <data name="chkToolTip.Text" xml:space="preserve">
-    <value>Y-подсказки?</value>
+    <value>¿Sugerencias Y?</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>X-подсказки?</value>
+    <value>¿Sugerencias X?</value>
   </data>
   <data name="txtYToolFormat.Location" type="System.Drawing.Point, System.Drawing">
     <value>356, 253</value>
