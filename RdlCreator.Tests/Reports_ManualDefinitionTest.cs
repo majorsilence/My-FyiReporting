@@ -121,8 +121,12 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                 Description = "Sample report",
                 Author = "John Doe",
                 PageHeight = "11in",
-                PageWidth = "8.5in",
-                Width = "7.5in",
+                PageWidth = new ReportItemSize()
+                {
+                    Value = 8.5f,
+                    Unit = SizeUnit.Inches
+                },
+                Width = ReportItemSize.FromInches(7.5f),
                 TopMargin = ".25in",
                 LeftMargin = ".25in",
                 RightMargin = ".25in",

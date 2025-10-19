@@ -28,10 +28,10 @@ namespace Majorsilence.Reporting.RdlCreator
         public string Name { get; set; }
 
         [XmlElement(ElementName = "PageHeight")]
-        public string PageHeight { get; set; }
+        public ReportItemSize PageHeight { get; set; }
 
         [XmlElement(ElementName = "PageWidth")]
-        public string PageWidth { get; set; }
+        public ReportItemSize PageWidth { get; set; }
 
         [XmlElement(ElementName = "DataSources")]
         public DataSources DataSources { get; set; }
@@ -40,16 +40,16 @@ namespace Majorsilence.Reporting.RdlCreator
         //public string Width { get; set; }
 
         [XmlElement(ElementName = "TopMargin")]
-        public string TopMargin { get; set; }
+        public ReportItemSize TopMargin { get; set; }
 
         [XmlElement(ElementName = "LeftMargin")]
-        public string LeftMargin { get; set; }
+        public ReportItemSize LeftMargin { get; set; }
 
         [XmlElement(ElementName = "RightMargin")]
-        public string RightMargin { get; set; }
+        public ReportItemSize RightMargin { get; set; }
 
         [XmlElement(ElementName = "BottomMargin")]
-        public string BottomMargin { get; set; }
+        public ReportItemSize BottomMargin { get; set; }
 
 
         public PageFooter PageFooter { get; set; }

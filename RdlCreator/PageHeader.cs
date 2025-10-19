@@ -6,7 +6,7 @@ namespace Majorsilence.Reporting.RdlCreator
     public class PageHeader
     {
         [XmlElement(ElementName = "Height")]
-        public string Height { get; set; }
+        public ReportItemSize Height { get; set; }
 
         [XmlElement(ElementName = "ReportItems")]
         public ReportItemsHeader ReportItems { get; set; }

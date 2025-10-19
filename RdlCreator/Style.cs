@@ -5,7 +5,7 @@ namespace Majorsilence.Reporting.RdlCreator
     public class Style
     {
         [XmlElement(ElementName = "FontSize")]
-        public string FontSize { get; set; }
+        public ReportItemSize FontSize { get; set; }
 
         [XmlElement(ElementName = "FontWeight")]
         public string FontWeight { get; set; }

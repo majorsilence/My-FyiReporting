@@ -179,12 +179,12 @@ namespace Majorsilence.Reporting.RdlCreator.Tests
                             Textbox = new Text
                             {
                                 Name = "Textbox1",
-                                Top = ".1in",
-                                Left = ".1in",
-                                Width = "6in",
-                                Height = ".25in",
+                                Top = ReportItemSize.FromInches(0.1f),
+                                Left = ReportItemSize.FromInches(0.1f),
+                                Width = ReportItemSize.FromInches(6.0f),
+                                Height = ReportItemSize.FromInches(0.25f),
                                 Value = new Value { Text = "Test Data Set Report" },
-                                Style = new Style { FontSize = "15pt", FontWeight = "Bold" }
+                                Style = new Style { FontSize = ReportItemSize.FromPoints(15), FontWeight = "Bold" }
                             }
                         },
                         PrintOnFirstPage = "true",

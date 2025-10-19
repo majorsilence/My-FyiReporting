@@ -18,7 +18,7 @@ namespace Majorsilence.Reporting.RdlCreator
         [XmlElement(ElementName = "PageFooter")]
         public PageFooter PageFooter { get; set; }
 
-        public Page WithHeight(string height)
+        public Page WithHeight(ReportItemSize height)
         {
             if (this.Body == null)
             {
@@ -28,7 +28,7 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Page WithWidth(string width)
+        public Page WithWidth(ReportItemSize width)
         {
             if (this.Body == null)
             {

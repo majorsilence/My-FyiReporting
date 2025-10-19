@@ -12,9 +12,9 @@ namespace Majorsilence.Reporting.RdlCreator
         public ReportItemsBody ReportItems { get; set; }
 
         [XmlElement(ElementName = "Height")]
-        public string Height { get; set; }
+        public ReportItemSize Height { get; set; }
 
         [XmlElement(ElementName = "Width")]
-        public string Width { get; set; }
+        public ReportItemSize Width { get; set; }
     }
 }

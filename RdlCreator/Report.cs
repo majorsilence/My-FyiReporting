@@ -21,28 +21,28 @@ namespace Majorsilence.Reporting.RdlCreator
         public string Name { get; set; }
 
         [XmlElement(ElementName = "PageHeight")]
-        public string PageHeight { get; set; }
+        public ReportItemSize PageHeight { get; set; }
 
         [XmlElement(ElementName = "PageWidth")]
-        public string PageWidth { get; set; }
+        public ReportItemSize PageWidth { get; set; }
 
         [XmlElement(ElementName = "DataSources")]
         public DataSources DataSources { get; set; }
 
         [XmlElement(ElementName = "Width")]
-        public string Width { get; set; }
+        public ReportItemSize Width { get; set; }
 
         [XmlElement(ElementName = "TopMargin")]
-        public string TopMargin { get; set; }
+        public ReportItemSize TopMargin { get; set; }
 
         [XmlElement(ElementName = "LeftMargin")]
-        public string LeftMargin { get; set; }
+        public ReportItemSize LeftMargin { get; set; }
 
         [XmlElement(ElementName = "RightMargin")]
-        public string RightMargin { get; set; }
+        public ReportItemSize RightMargin { get; set; }
 
         [XmlElement(ElementName = "BottomMargin")]
-        public string BottomMargin { get; set; }
+        public ReportItemSize BottomMargin { get; set; }
 
         [XmlElement(ElementName = "DataSets")]
         public DataSets DataSets { get; set; }
@@ -76,13 +76,13 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Report WithPageHeight(string pageHeight)
+        public Report WithPageHeight(ReportItemSize pageHeight)
         {
             PageHeight = pageHeight;
             return this;
         }
 
-        public Report WithPageWidth(string pageWidth)
+        public Report WithPageWidth(ReportItemSize pageWidth)
         {
             PageWidth = pageWidth;
             return this;
@@ -94,31 +94,31 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Report WithWidth(string width)
+        public Report WithWidth(ReportItemSize width)
         {
             Width = width;
             return this;
         }
 
-        public Report WithTopMargin(string topMargin)
+        public Report WithTopMargin(ReportItemSize topMargin)
         {
             TopMargin = topMargin;
             return this;
         }
 
-        public Report WithLeftMargin(string leftMargin)
+        public Report WithLeftMargin(ReportItemSize leftMargin)
         {
             LeftMargin = leftMargin;
             return this;
         }
 
-        public Report WithRightMargin(string rightMargin)
+        public Report WithRightMargin(ReportItemSize rightMargin)
         {
             RightMargin = rightMargin;
             return this;
         }
 
-        public Report WithBottomMargin(string bottomMargin)
+        public Report WithBottomMargin(ReportItemSize bottomMargin)
         {
             BottomMargin = bottomMargin;
             return this;
@@ -136,7 +136,7 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Report WithBody(string height)
+        public Report WithBody(ReportItemSize height)
         {
             Body = new Body()
             {
@@ -151,7 +151,12 @@ namespace Majorsilence.Reporting.RdlCreator
             return this;
         }
 
-        public Report WithPageBreak(string yPos="1pt")
+        public Report WithPageBreak()
+        {
+            return WithPageBreak("1pt");
+        }
+        
+        public Report WithPageBreak(ReportItemSize yPos)
         {
             var pageBreakCard = new Card(this)
             {

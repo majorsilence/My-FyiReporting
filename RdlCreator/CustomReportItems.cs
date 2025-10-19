@@ -5,10 +5,10 @@ namespace Majorsilence.Reporting.RdlCreator
     public class CustomReportItems
     {
         public string Type { get; set; }
-        public string Height { get; set; }
-        public string Width { get; set; }
-        public string Left { get; set; }
-        public string Top { get; set; }
+        public ReportItemSize Height { get; set; }
+        public ReportItemSize Width { get; set; }
+        public ReportItemSize Left { get; set; }
+        public ReportItemSize Top { get; set; }
 
         [XmlAttribute(AttributeName = "Name")]
         public string Name { get; set; }
