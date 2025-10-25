@@ -331,32 +331,51 @@ namespace Majorsilence.Reporting.RdlGtk3
             await _report.RunGetData(Parameters);
             _pages = await _report.BuildPages();
 
-            foreach (Widget w in _vboxPages.AllChildren.Cast<Widget>().ToList())
+            // All GTK widget updates must run on the main thread. Use Application.Invoke to marshal.
+            Application.Invoke(delegate
             {
-                _vboxPages.Remove(w);
-                w.Destroy();
-            }
+                try
+                {
+                    foreach (Widget w in _vboxPages.AllChildren.Cast<Widget>().ToList())
+                    {
+                        _vboxPages.Remove(w);
+                        try
+                        {
+                            w.Destroy();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Warning destroying widget: " + ex.Message);
+                        }
+                    }
 
-            for (int pageCount = 0; pageCount < _pages.Count; pageCount++)
-            {
-                ReportArea area = new();
-                area.SetReport(_report, _pages[pageCount]);
-                //area.Scale
-                _vboxPages.Add(area);
-            }
+                    for (int pageCount = 0; pageCount < _pages.Count; pageCount++)
+                    {
+                        ReportArea area = new();
+                        area.SetReport(_report, _pages[pageCount]);
+                        //area.Scale
+                        _vboxPages.Add(area);
+                    }
 
-            ShowAll();
+                    ShowAll();
 
-            SetErrorMessages(_report.ErrorItems);
+                    SetErrorMessages(_report.ErrorItems);
 
-            if (_report.ErrorMaxSeverity == 0)
-            {
-                _showErrors = false;
-            }
-            
-            //			Title = string.Format ("RDL report viewer - {0}", report.Name);
-            EnableActions();
-            CheckVisibility();
+                    if (_report.ErrorMaxSeverity == 0)
+                    {
+                        _showErrors = false;
+                    }
+
+                    //			Title = string.Format ("RDL report viewer - {0}", report.Name);
+                    EnableActions();
+                    CheckVisibility();
+                }
+                catch (Exception ex)
+                {
+                    // Don't allow UI update failures to crash the app. Log and carry on.
+                    Console.WriteLine("UI update failed during RefreshReport: " + ex);
+                }
+            });
         }
 
         protected void OnZoomOutActionActivated(object sender, EventArgs e)
@@ -971,3 +990,4 @@ namespace Majorsilence.Reporting.RdlGtk3
         }
     }
 }
+

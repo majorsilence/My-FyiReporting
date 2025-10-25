@@ -191,7 +191,11 @@ namespace Majorsilence.Reporting.RdlGtk3
                 if (File.Exists(filename))
                 {
                     string parameters = await GetParameters(new Uri(filename));
-                    await reportviewer1.LoadReport(new Uri(filename), parameters);
+                    // Force UI update on main thread
+                    Application.Invoke(async (s, args) =>
+                    {
+                        await reportviewer1.LoadReport(new Uri(filename), parameters);
+                    });
                 }
             }
             catch (Exception ex)

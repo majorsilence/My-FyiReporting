@@ -26,6 +26,7 @@ using Gdk;
 using Gtk;
 using Majorsilence.Reporting.Rdl;
 using Pango;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace Majorsilence.Reporting.RdlGtk3
     [ToolboxItem(true)]
     public class ReportArea : DrawingArea
     {
+        private readonly object drawLock = new();
         internal float DpiX = 96;
 
         internal float DpiY = 96;
@@ -58,6 +60,8 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         private PageItem selectedItem;
         private readonly int shadow_padding = 16;
+        private ImageSurface cachedSurface = null;
+        private float cachedScale = -1f;
 
         public ReportArea()
         {
@@ -87,24 +91,45 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         public void SetReport(Report report, Page pages)
         {
-            this.pages = pages;
-            this.report = report;
+            lock (drawLock)
+            {
+                this.pages = pages;
+                this.report = report;
+                // Invalidate cached rendering for this page
+                if (cachedSurface != null)
+                {
+                    try { cachedSurface.Dispose(); } catch { }
+                    cachedSurface = null;
+                    cachedScale = -1f;
+                }
+            }
 
-            QueueResize();
+            // Request a resize/draw on the main loop
+            Application.Invoke((s, a) => QueueResize());
             //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
         }
 
         private Rectangle GetSelectedItemRectangle()
         {
-            return new Rectangle(selectedItem.X * scale, selectedItem.Y * scale, selectedItem.W * scale,
-                selectedItem.H * scale);
+            lock (drawLock)
+            {
+                if (selectedItem == null)
+                    return new Rectangle(0, 0, 0, 0);
+
+                return new Rectangle(selectedItem.X * scale, selectedItem.Y * scale, selectedItem.W * scale,
+                    selectedItem.H * scale);
+            }
         }
 
         protected override bool OnButtonPressEvent(EventButton ev)
         {
             if (ev.Button == 3)
             {
-                HitListEntry hitAreaItem = hitList.FirstOrDefault(x => x.Contains(new PointD(ev.X, ev.Y)));
+                HitListEntry hitAreaItem;
+                lock (drawLock)
+                {
+                    hitAreaItem = hitList.FirstOrDefault(x => x.Contains(new PointD(ev.X, ev.Y)));
+                }
                 if (hitAreaItem == null)
                 {
                     return false;
@@ -124,7 +149,10 @@ namespace Majorsilence.Reporting.RdlGtk3
                     return false;
                 }
 
-                selectedItem = hitAreaItem.pi;
+                lock (drawLock)
+                {
+                    selectedItem = hitAreaItem.pi;
+                }
                 QueueDraw();
                 //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 Menu popupMenu = new();
@@ -133,7 +161,10 @@ namespace Majorsilence.Reporting.RdlGtk3
                 {
                     Clipboard clipboard = Clipboard.Get(Atom.Intern("CLIPBOARD", false));
                     clipboard.Text = text;
-                    selectedItem = null;
+                    lock (drawLock)
+                    {
+                        selectedItem = null;
+                    }
                     QueueDraw();
                     //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 };
@@ -142,7 +173,10 @@ namespace Majorsilence.Reporting.RdlGtk3
                 popupMenu.Popup();
                 popupMenu.Hidden += (sender, e) =>
                 {
-                    selectedItem = null;
+                    lock (drawLock)
+                    {
+                        selectedItem = null;
+                    }
                     QueueDraw();
                     //Window.InvalidateRect(new Gdk.Rectangle(0, 0, Allocation.Width, Allocation.Height), true);
                 };
@@ -164,118 +198,164 @@ namespace Majorsilence.Reporting.RdlGtk3
 
         private void SetItemsHitArea()
         {
-            float XAdditional = GetLeftAreaPosition();
-            float YAdditional = rep_padding;
-            hitList.Clear();
-            foreach (PageItem pi in pages)
+            lock (drawLock)
             {
-                if (pi is PageTextHtml)
+                float XAdditional = GetLeftAreaPosition();
+                float YAdditional = rep_padding;
+                hitList.Clear();
+                if (pages == null)
+                    return;
+
+                foreach (PageItem pi in pages)
                 {
-                    // PageTextHtml is actually a composite object (just like a page)
-                    Rectangle hr = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
+                    if (pi is PageTextHtml)
+                    {
+                        // PageTextHtml is actually a composite object (just like a page)
+                        Rectangle hr = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
+                            PixelsX(pi.W * scale), PixelsY(pi.H * scale));
+                        hitList.Add(new HitListEntry(hr, pi));
+                        continue;
+                    }
+
+                    Rectangle rect = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
                         PixelsX(pi.W * scale), PixelsY(pi.H * scale));
-                    hitList.Add(new HitListEntry(hr, pi));
-                    continue;
-                }
 
-                Rectangle rect = new(PixelsX(pi.X * scale) + XAdditional, PixelsY(pi.Y * scale) + YAdditional,
-                    PixelsX(pi.W * scale), PixelsY(pi.H * scale));
-
-                if (pi is PageText || pi is PageImage)
-                {
-                    hitList.Add(new HitListEntry(rect, pi));
-                }
-                // Only care about items with links and tips
-                else if (pi.HyperLink != null || pi.BookmarkLink != null || pi.Tooltip != null)
-                {
-                    HitListEntry hle;
-                    if (pi is PagePolygon)
+                    if (pi is PageText || pi is PageImage)
                     {
-                        hle = new HitListEntry(pi as PagePolygon, XAdditional, YAdditional, this);
+                        hitList.Add(new HitListEntry(rect, pi));
                     }
-                    else
+                    // Only care about items with links and tips
+                    else if (pi.HyperLink != null || pi.BookmarkLink != null || pi.Tooltip != null)
                     {
-                        hle = new HitListEntry(rect, pi);
-                    }
+                        HitListEntry hle;
+                        if (pi is PagePolygon)
+                        {
+                            hle = new HitListEntry(pi as PagePolygon, XAdditional, YAdditional, this);
+                        }
+                        else
+                        {
+                            hle = new HitListEntry(rect, pi);
+                        }
 
-                    hitList.Add(hle);
+                        hitList.Add(hle);
+                    }
                 }
             }
         }
 
         private int GetLeftAreaPosition()
         {
-            int width = (int)(report.PageWidthPoints * Scale);
-            int widgetWidth = Allocation.Width;
-            int widgetHeight = Allocation.Height;
+            lock (drawLock)
+            {
+                if (report == null)
+                    return 0;
 
-            int position = (widgetWidth - width) / 2;
-            return position;
+                int width = (int)(report.PageWidthPoints * Scale);
+                int widgetWidth = Allocation.Width;
+                int widgetHeight = Allocation.Height;
+
+                int position = (widgetWidth - width) / 2;
+                return position;
+            }
         }
 
         protected override bool OnDrawn(Context g)
         {
             base.OnDrawn(g);
 
-            if (pages == null)
+            lock (drawLock)
             {
-                return false;
-            }
-
-            int width = (int)(report.PageWidthPoints * Scale);
-            int height = (int)(report.PageHeightPoints * Scale);
-            Rectangle rep_r = new(1, 1, width - 1, height - 1);
-
-            int widgetWidth = Allocation.Width;
-            int widgetHeight = Allocation.Height;
-
-            g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
-
-            using (SolidPattern shadowGPattern = new(new Color(0.6, 0.6, 0.6)))
-            using (SolidPattern repGPattern = new(new Color(1, 1, 1)))
-            using (ImageSurface repS = new(Format.Argb32, width, height))
-            using (Context repG = new(repS))
-            using (ImageSurface shadowS = repS.Clone())
-            using (Context shadowG = new(shadowS))
-            {
-#pragma warning disable CS0618 // Type or member is obsolete
-                shadowG.Pattern = shadowGPattern;
-#pragma warning restore CS0618 // Type or member is obsolete
-                shadowG.Paint();
-                g.SetSourceSurface(shadowS, shadow_padding, shadow_padding);
-                g.Paint();
-
-#pragma warning disable CS0618 // Type or member is obsolete
-                repG.Pattern = repGPattern;
-#pragma warning restore CS0618 // Type or member is obsolete
-                repG.Paint();
-                repG.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
-
-                SetItemsHitArea();
-
-                Pattern currentRepGPattern = null;
-                if (selectedItem != null)
+                if (pages == null || report == null)
                 {
-                    currentRepGPattern = new SolidPattern(new Color(0.4, 0.4, 1));
-#pragma warning disable CS0618 // Type or member is obsolete
-                    repG.Pattern = currentRepGPattern;
-#pragma warning restore CS0618 // Type or member is obsolete
-                    repG.Rectangle(GetSelectedItemRectangle());
-                    repG.Fill();
+                    return false;
                 }
 
-                using (RenderCairo render = new(repG, Scale))
+                int width = (int)(report.PageWidthPoints * Scale);
+                int height = (int)(report.PageHeightPoints * Scale);
+                // Defensive: avoid creating zero-sized surfaces which can crash Cairo/GDK
+                if (width <= 0 || height <= 0)
                 {
-                    render.RunPage(pages);
+                    return false;
+                }
+                Rectangle rep_r = new(1, 1, width - 1, height - 1);
+
+                int widgetWidth = Allocation.Width;
+                int widgetHeight = Allocation.Height;
+
+                g.Translate(((widgetWidth - width) / 2) - rep_padding, 0);
+
+                // Wrap the drawing in a try/catch to prevent native crashes from bubbling up
+                try
+                {
+                    // If cachedSurface exists at the current scale, paint it directly. Otherwise render and cache it.
+                    if (cachedSurface == null || cachedScale != Scale)
+                    {
+                        // Dispose previous cached surface if any
+                        if (cachedSurface != null)
+                        {
+                            try { cachedSurface.Dispose(); } catch { }
+                            cachedSurface = null;
+                        }
+
+                        using (SolidPattern shadowGPattern = new(new Color(0.6, 0.6, 0.6)))
+                        using (SolidPattern repGPattern = new(new Color(1, 1, 1)))
+                        using (ImageSurface repS = new(Format.Argb32, width, height))
+                        using (Context repG = new(repS))
+                        using (ImageSurface shadowS = new ImageSurface(Format.Argb32, width, height))
+                        using (Context shadowG = new(shadowS))
+                        {
+#pragma warning disable CS0618 // Type or member is obsolete
+                            shadowG.Pattern = shadowGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
+                            shadowG.Paint();
+                            g.SetSourceSurface(shadowS, shadow_padding, shadow_padding);
+                            g.Paint();
+
+#pragma warning disable CS0618 // Type or member is obsolete
+                            repG.Pattern = repGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
+                            repG.Paint();
+                            repG.DrawRectangle(rep_r, new Color(0.1, 0.1, 0.1), 1);
+
+                            SetItemsHitArea();
+
+                            Pattern currentRepGPattern = null;
+                            if (selectedItem != null)
+                            {
+                                currentRepGPattern = new SolidPattern(new Color(0.4, 0.4, 1));
+#pragma warning disable CS0618 // Type or member is obsolete
+                                repG.Pattern = currentRepGPattern;
+#pragma warning restore CS0618 // Type or member is obsolete
+                                repG.Rectangle(GetSelectedItemRectangle());
+                                repG.Fill();
+                            }
+
+                            using (RenderCairo render = new(repG, Scale))
+                            {
+                                render.RunPage(pages);
+                            }
+
+                            // Move the freshly rendered repS into cache by creating a clone surface
+                            cachedSurface = repS.Clone();
+                            cachedScale = Scale;
+
+                            currentRepGPattern?.Dispose();
+                        }
+                    }
+
+                    // Paint cached surface to widget
+                    g.SetSourceSurface(cachedSurface, rep_padding, rep_padding);
+                    g.Paint();
+                }
+                catch (System.Exception ex)
+                {
+                    // Log and bail out; avoid crashing the process for native drawing errors
+                    System.Console.WriteLine("Render error in ReportArea.OnDrawn: " + ex);
+                    return false;
                 }
 
-                g.SetSourceSurface(repS, rep_padding, rep_padding);
-                g.Paint();
-
-                currentRepGPattern?.Dispose();
+                return true;
             }
-
-            return true;
         }
 
 
@@ -370,6 +450,17 @@ namespace Majorsilence.Reporting.RdlGtk3
         {
             base.OnSizeAllocated(allocation);
             // Insert layout code here.
+        }
+
+        public override void Destroy()
+        {
+            lock (drawLock)
+            {
+                try { cachedSurface?.Dispose(); } catch { }
+                cachedSurface = null;
+            }
+
+            base.Destroy();
         }
 
         protected override void OnGetPreferredWidth(out int minimumWidth, out int naturalWidth)
@@ -479,3 +570,4 @@ namespace Majorsilence.Reporting.RdlGtk3
         }
     }
 }
+
