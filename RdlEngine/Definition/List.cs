@@ -94,9 +94,8 @@ namespace Majorsilence.Reporting.Rdl
 
 			foreach (ReportItem ri in this.ReportItems.Items)
 			{
-				if (!(ri is Textbox))
+				if (!(ri is Textbox tb))
 					continue;
-				Textbox tb = ri as Textbox;
 				if (tb.CanGrow)
 				{
 					if (this._GrowList == null)
@@ -363,8 +362,9 @@ namespace Majorsilence.Reporting.Rdl
                             p = RunPageNew(pgs, p);					// yes; if at end this page is empty
 
                         float saveYoffset = p.YOffset;              // this can be affected by other page items
+                        PageRectangle border = null;
                         if (Style != null) {
-	                        var border = new PageRectangle();
+	                        border = new PageRectangle();
                             await SetPagePositionAndStyle(rpt, border, row);
 	                        p.AddObject(border);
                         }
@@ -384,6 +384,9 @@ namespace Majorsilence.Reporting.Rdl
                                 p.YOffset += await this.Style.EvalPaddingBottom(rpt, row);
                             }
                         }
+                        
+                        if(border != null) // fix up the border height
+	                        border.H = p.YOffset - border.Y;
 					}
 				}
 				else
