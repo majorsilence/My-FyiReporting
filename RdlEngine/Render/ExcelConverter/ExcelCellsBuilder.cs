@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using fyiReporting.RDL;
-using System.Drawing.Drawing2D;
 using System.Drawing;
 
 namespace RdlEngine.Render.ExcelConverter
@@ -37,7 +36,7 @@ namespace RdlEngine.Render.ExcelConverter
 			Lines = new List<ExcelLine>();
 		}
 
-		public void AddImage(fyiReporting.RDL.Image image, int pictureIndex)
+		public ExcelImage AddImage(fyiReporting.RDL.Image image, int pictureIndex)
 		{
 			var img = new ExcelImage(image, pictureIndex);
 			float top = image.Top.Points;
@@ -49,7 +48,8 @@ namespace RdlEngine.Render.ExcelConverter
 			img.AbsoluteTop = top;
 			img.AbsoluteLeft = left;
 			Images.Add(img);
-		}
+            return img;
+        }
 
 		public void AddLine(fyiReporting.RDL.Line line, float borderWidth)
 		{

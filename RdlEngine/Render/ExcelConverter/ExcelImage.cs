@@ -1,7 +1,6 @@
-﻿using System;
-using fyiReporting.RDL;
-using NPOI.Util;
-using NPOI.XSSF.UserModel;
+﻿using fyiReporting.RDL;
+using System;
+using System.IO;
 
 namespace RdlEngine.Render.ExcelConverter
 {
@@ -23,12 +22,18 @@ namespace RdlEngine.Render.ExcelConverter
 			get {
 				return Image.Height.Points;
 			}
-		}
+        }
+        internal Stream ImageStream { get; set; }
 
-		public ExcelImage(Image image, int imageIndex)
+        public ExcelImage(Image image, int imageIndex)
 		{
 			Image = image;
 			ImageIndex = imageIndex;
-		}
-	}
+        }
+        public ExcelImage(Image image, Stream imageStream)
+        {
+            Image = image;
+            ImageStream = imageStream;
+        }
+    }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using fyiReporting.RDL;
-using NPOI.SS.UserModel;
+﻿using fyiReporting.RDL;
 
 namespace RdlEngine.Render.ExcelConverter
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using fyiReporting.RDL;
-using NPOI.Util;
 namespace RdlEngine.Render.ExcelConverter
 {
 	internal class ExcelLine
