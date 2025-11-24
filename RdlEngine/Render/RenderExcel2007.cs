@@ -40,10 +40,7 @@ namespace fyiReporting.RDL
         XLWorkbook workbook;
         IXLWorksheet worksheet;
 
-        // Width conversion factor.
-        // In ClosedXML, width 1 is approximately equal to 7.5 pixels.
-        // We adjust the conversion factor to visually match the RDL.
-        double k = 6.0;
+        double k = 4.8;
 
         public RenderExcel2007(Report rep, IStreamGen sg)
         {
@@ -70,7 +67,6 @@ namespace fyiReporting.RDL
             pageSetup.Margins.Bottom = rep.BottomMarginPoints / 72.0;
         }
 
-        // Added to expose data to Excel2003 file generation
         protected IStreamGen StreamGen { get => _sg; set => _sg = value; }
 
         public void Dispose()
@@ -100,7 +96,6 @@ namespace fyiReporting.RDL
             for (int i = 0; i < excelBuilder.Columns.Count - 1; i++)
             {
                 var widthInPoints = excelBuilder.Columns[i + 1].XPosition - excelBuilder.Columns[i].XPosition;
-                // Converting Points to Character Width in Excel
                 var widthInSymbols = widthInPoints / k;
                 if (widthInSymbols > 255) widthInSymbols = 255; // overflow protection
 
@@ -126,35 +121,29 @@ namespace fyiReporting.RDL
                 {
                     var builderCell = builderRow.Cells[j];
                     var columnIndex = excelBuilder.Columns.IndexOf(builderCell.Column);
-                    if (columnIndex <= 0) continue;
-
-                    var cell = worksheet.Cell(rowIndex, columnIndex);
+                    if (columnIndex < 0) continue;
+                    var exelColumnIndex = columnIndex + 1;
+                    var cell = worksheet.Cell(rowIndex, exelColumnIndex);
                     if (builderCell.ReportItem != null)
                     {
                         SetValue(cell, builderCell.Value);
 
-                        // Применение стилей
                         if (builderCell.Style != null)
                         {
                             ExcelCellStyle.ApplyStyle(cell, builderCell.Style);
                         }
 
-                        // Объединение ячеек (Merge)
                         var rightAttach = excelBuilder.GetRightAttachCells(builderCell);
                         var bottomAttach = excelBuilder.GetBottomAttachCells(builderCell);
 
                         if (rightAttach > 0 || bottomAttach > 0)
                         {
-                            // Определяем диапазон для объединения
-                            // rowIdx и colIdx уже 1-based
                             var lastRow = rowIndex + bottomAttach;
-                            var lastCol = columnIndex + rightAttach;
+                            var lastCol = exelColumnIndex + rightAttach;
 
-                            var range = worksheet.Range(rowIndex, columnIndex, lastRow, lastCol);
+                            var range = worksheet.Range(rowIndex, exelColumnIndex, lastRow, lastCol);
                             range.Merge();
 
-                            // В ClosedXML границы применяются к диапазону автоматически, 
-                            // но если нужно гарантировать рамку вокруг мёрджа:
                             if (builderCell.Style != null)
                             {
                                 ExcelCellStyle.ApplyBorderToRange(range, builderCell.Style);
@@ -170,7 +159,6 @@ namespace fyiReporting.RDL
             {
                 if (image.ImageStream == null) continue;
 
-                // approx 1.333 for 96 DPI
                 const double pointsToPixels = 96.0 / 72.0;
 
                 var pic = worksheet.AddPicture(image.ImageStream);
@@ -193,11 +181,13 @@ namespace fyiReporting.RDL
             //Create lines
             foreach (var line in excelBuilder.Lines)
             {
-                // Skip diagonal lines, ClosedXML can't handle them easily via borders
-                bool isHorizontal = Math.Abs(line.Line.Height.Points) < 0.01 || Math.Abs(line.Bottom - line.AbsoluteTop) < 1.0;
-                bool isVertical = Math.Abs(line.Line.Width.Points) < 0.01 || Math.Abs(line.Right - line.AbsoluteLeft) < 1.0;
-
-                if (!isHorizontal && !isVertical) continue;
+                float width = Math.Abs(line.Right - line.AbsoluteLeft);
+                float height = Math.Abs(line.Bottom - line.AbsoluteTop);
+                float pointsHeight = Math.Abs(line.Line.Height.Points);
+                float pointsWidth = Math.Abs(line.Line.Width.Points);
+                // ClosedXML can't handle them, only via borders
+                bool isHorizontal = pointsHeight < 0.01 || width < 1.0 || pointsHeight < pointsWidth;
+                bool isVertical = pointsWidth < 0.01 || height < 1.0 || pointsHeight > pointsWidth;
 
                 var colIndex = excelBuilder.Columns.FindIndex(c => c.XPosition >= line.AbsoluteLeft) + 1;
                 var rowIndex = excelBuilder.Rows.FindIndex(r => r.YPosition >= line.AbsoluteTop) + 1;
@@ -237,7 +227,12 @@ namespace fyiReporting.RDL
         {
             if (string.IsNullOrEmpty(value)) return;
 
-            if (double.TryParse(value, out double dVal))
+            if (value.StartsWith("0") && value.Length > 1 && double.TryParse(value, out _))
+            {
+                cell.Value = value;
+                //cell.DataType = XLDataType.Text; // Принудительно текст
+            }
+            else if (double.TryParse(value, out double dVal))
             {
                 cell.Value = dVal;
             }

@@ -17,6 +17,10 @@ namespace RdlEngine.Render.ExcelConverter
             {
                 xlStyle.Fill.BackgroundColor = XLColor.FromColor(styleInfo.BackgroundColor);
             }
+            else
+            {
+                xlStyle.Fill.BackgroundColor = XLColor.White;
+            }
 
             xlStyle.Font.FontName = string.IsNullOrEmpty(styleInfo.FontFamily) ? "Arial" : styleInfo.FontFamily;
             xlStyle.Font.FontSize = styleInfo.FontSize <= 0 ? 10 : styleInfo.FontSize;
@@ -34,6 +38,8 @@ namespace RdlEngine.Render.ExcelConverter
 
             xlStyle.Alignment.Horizontal = ConvertHorizontalAlign(styleInfo.TextAlign);
             xlStyle.Alignment.Vertical = ConvertVerticalAlign(styleInfo.VerticalAlign);
+
+            xlStyle.Alignment.WrapText = true;
 
             switch (styleInfo.WritingMode)
             {
@@ -135,8 +141,8 @@ namespace RdlEngine.Render.ExcelConverter
                 case BorderStyleEnum.Dotted: return XLBorderStyleValues.Dotted;
                 case BorderStyleEnum.Double: return XLBorderStyleValues.Double;
                 case BorderStyleEnum.Solid:
-                    if (width < 1.5) return XLBorderStyleValues.Thin;
-                    if (width < 2.5) return XLBorderStyleValues.Medium;
+                    if (width <= 1.0f) return XLBorderStyleValues.Thin;
+                    if (width < 2.0f) return XLBorderStyleValues.Medium;
                     return XLBorderStyleValues.Thick;
                 default: return XLBorderStyleValues.None;
             }
