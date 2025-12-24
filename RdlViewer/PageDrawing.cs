@@ -9,6 +9,7 @@ using System.IO;
 using System.Text;
 using Majorsilence.Reporting.RdlViewer.Resources;
 using Majorsilence.Reporting.Rdl;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Majorsilence.Reporting.RdlViewer
@@ -96,6 +97,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// Enabling the SelectTool allows the user to select text and images.  Enabling or disabling
         /// the SelectTool also clears out the current selection.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool SelectTool
         {
             get { return _bSelect; }
@@ -220,17 +222,22 @@ namespace Majorsilence.Reporting.RdlViewer
             }
             return Convert.ToInt32((pi1.X - pi2.X) * 1000);
         }
+        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal Pages Pgs
         {
             get { return _pgs; }
             set { _pgs = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal Color HighlightItemColor
         {
             get { return _HighlightItemColor; }
             set { _HighlightItemColor = value; }
         }
+        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal Color HighlightAllColor
         {
             get { return _HighlightAllColor; }

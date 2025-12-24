@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -29,6 +30,7 @@ namespace Majorsilence.Reporting.RdlDesign
             this.Paint += new PaintEventHandler(DesignEditLinesPaint);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal System.Windows.Forms.RichTextBox Editor
         {
             get { return editor; }

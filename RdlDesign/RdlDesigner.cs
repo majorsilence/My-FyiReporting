@@ -15,6 +15,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Majorsilence.Reporting.RdlDesign
 {
@@ -331,6 +332,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			LockWindowUpdate(IntPtr.Zero);
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal int RecentFilesMax
 		{
 			get { return _RecentFilesMax; }
@@ -347,6 +349,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			get { return _RecentFiles; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal string HelpUrl
 		{
 			get
@@ -373,12 +376,14 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal bool ShowPreviewWaitDialog
 		{
 			get { return _ShowPreviewWaitDialog; }
 			set { _ShowPreviewWaitDialog = value; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal bool ShowEditLines
 		{
 			get
@@ -391,12 +396,14 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal bool PropertiesAutoHide
 		{
 			get { return _PropertiesAutoHide; }
 			set { _PropertiesAutoHide = value; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal DockStyle PropertiesLocation
 		{
 			get
@@ -467,6 +474,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal bool ShowReportItemOutline
 		{
 			get
@@ -479,18 +487,21 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal bool ShowTabbedInterface
 		{
 			get { return _ShowTabbedInterface; }
 			set { _ShowTabbedInterface = value; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal NewLineChar XmlNewLine
 		{
 			get => _XmlNewLine;
 			set => _XmlNewLine = value;
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal string SupportUrl
 		{
 			get
@@ -505,7 +516,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal List<string> Toolbar
 		{
 			get { return _Toolbar; }

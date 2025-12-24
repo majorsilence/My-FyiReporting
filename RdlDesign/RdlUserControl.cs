@@ -98,6 +98,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// The RDL file that should be displayed.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Uri SourceFile
         {
             get { return _SourceFile; }
@@ -131,12 +132,14 @@ namespace Majorsilence.Reporting.RdlDesign
             return prog;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SourceRdl
         {
             get { return this.rdlEditPreview1.GetRdlText(); }
             set { this.rdlEditPreview1.SetRdlText(value); }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string CurrentInsert
         {
             get { return rdlEditPreview1.CurrentInsert; }
@@ -237,6 +240,7 @@ namespace Majorsilence.Reporting.RdlDesign
             return this.rdlEditPreview1.GetRdlText();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Modified
         {
             get { return rdlEditPreview1.Modified; }
@@ -313,6 +317,7 @@ namespace Majorsilence.Reporting.RdlDesign
             rdlEditPreview1.ShowEditLines(bShow);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool ShowReportItemOutline
         {
             get { return rdlEditPreview1.ShowReportItemOutline; }
@@ -328,6 +333,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// Zoom 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Zoom
         {
             get { return rdlEditPreview1.Zoom; }
@@ -337,6 +343,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// ZoomMode 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ZoomEnum ZoomMode
         {
             get { return rdlEditPreview1.ZoomMode; }
@@ -695,6 +702,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// Turns the Selection Tool on in report preview
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool SelectionTool
         {
             get

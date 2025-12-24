@@ -5,6 +5,7 @@ using Majorsilence.Reporting.RdlDesign.Syntax;
 using Majorsilence.Reporting.RdlViewer;
 using ScintillaNET;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Threading.Tasks;
@@ -149,7 +150,8 @@ namespace Majorsilence.Reporting.RdlDesign
 		{
 			get {return dcDesign.ReportDocument;}
 		}
-
+        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal DesignTabs DesignTab
 		{
 			get {return _CurrentTab;}
@@ -185,6 +187,7 @@ namespace Majorsilence.Reporting.RdlDesign
             rdlPreview.ShowWaitDialog = bShow;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool ShowReportItemOutline
         {
             get {return dcDesign.ShowReportItemOutline;}
@@ -258,6 +261,7 @@ namespace Majorsilence.Reporting.RdlDesign
 
 		private bool modified = false;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool Modified
 		{
 			get 
@@ -343,6 +347,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string SelectedText
 		{
 			get 
@@ -495,6 +500,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string CurrentInsert
 		{
 			get {return dcDesign.CurrentInsert; }
@@ -520,6 +526,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool SelectionTool
         {
             get
@@ -542,6 +549,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// <summary>
 		/// Zoom 
 		/// </summary>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public float Zoom
 		{
 			get {return this.rdlPreview.Zoom;}
@@ -551,6 +559,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		/// <summary>
 		/// ZoomMode 
 		/// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ZoomEnum ZoomMode
 		{
 			get {return this.rdlPreview.ZoomMode;}

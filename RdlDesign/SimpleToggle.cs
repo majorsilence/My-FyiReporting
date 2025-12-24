@@ -1,5 +1,6 @@
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -80,18 +81,21 @@ namespace Majorsilence.Reporting.RdlDesign
 			}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Color TranparencyColor
 		{
 			get { return this._Transparency;	}
 			set { this._Transparency = value; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Color UpColor
 		{
 			get { return this._UpColor;	}
 			set { this._UpColor = value; }
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Color DownColor
 		{
 			get { return this._DownColor;	}

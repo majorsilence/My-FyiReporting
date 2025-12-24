@@ -90,6 +90,7 @@ namespace Majorsilence.Reporting.RdlDesign
             tvTablesColumns.EndUpdate();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal string SQL
         {
             get { return tbSQL.Text; }

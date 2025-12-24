@@ -115,6 +115,7 @@ namespace Majorsilence.Reporting.RdlMapFile
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal string File
         {
             get { return _File; }
@@ -161,6 +162,7 @@ namespace Majorsilence.Reporting.RdlMapFile
             this.Invalidate();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal ToolMode Tool
         {
             get { return _Tool; }
@@ -236,6 +238,7 @@ namespace Majorsilence.Reporting.RdlMapFile
         }	
         #endregion
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Modified
         {
             get { return _Modified; }
@@ -488,7 +491,7 @@ namespace Majorsilence.Reporting.RdlMapFile
         }
         
 
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Zoom
         {
             get { return _Zoom; }

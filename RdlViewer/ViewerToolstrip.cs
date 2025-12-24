@@ -7,6 +7,7 @@ using System.Reflection;
 using System.IO;
 using Majorsilence.Reporting.Rdl;
 using Majorsilence.Reporting.RdlViewer.Resources;
+using System.ComponentModel;
 
 namespace Majorsilence.Reporting.RdlViewer
 {
@@ -25,6 +26,7 @@ namespace Majorsilence.Reporting.RdlViewer
 
         private RdlViewer _viewer = null;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RdlViewer Viewer
         { 
             get{ return _viewer; }

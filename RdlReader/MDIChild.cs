@@ -62,6 +62,7 @@ namespace Majorsilence.Reporting.RdlReader
         /// <value>
         /// The parameters.
         /// </value>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Parameters
         {
             get { return this.rdlViewer1.Parameters; }

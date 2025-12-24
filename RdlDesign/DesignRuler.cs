@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -46,6 +47,7 @@ namespace Majorsilence.Reporting.RdlDesign
             this.Paint += new PaintEventHandler(DesignRulerPaint);
         }
 
+         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal DesignCtl Design
         {
             get { return _Design; }
@@ -65,12 +67,14 @@ namespace Majorsilence.Reporting.RdlDesign
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Vertical
         {
             get { return _Vertical; }
             set { _Vertical = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int Offset
         {
             get { return _Offset; }

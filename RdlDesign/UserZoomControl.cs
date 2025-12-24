@@ -43,6 +43,7 @@ namespace Majorsilence.Reporting.RdlDesign
         [Browsable(true)]
         [Category("Added")]
         [Description("Massimo Valore di zoom")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float MinValue
         {
             get  { return _MinValue; }
@@ -54,9 +55,10 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// 
         /// </summary>
-          [Browsable(true)]
+        [Browsable(true)]
         [Category("Added")]
-        [Description("Massimo zoom")]
+        [Description("Massimo zoom")] 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float MaxValue
         {
             get { return _MaxValue; }
@@ -72,6 +74,7 @@ namespace Majorsilence.Reporting.RdlDesign
         [Browsable(true)]
         [Category("Added")]
         [Description("Step zoom")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Step
         {
             get { return _Step; }

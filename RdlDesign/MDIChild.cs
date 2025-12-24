@@ -60,6 +60,7 @@ namespace Majorsilence.Reporting.RdlDesign
             this.ResumeLayout(false);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal TabPage Tab
         {
             get { return _Tab; }
@@ -91,12 +92,15 @@ namespace Majorsilence.Reporting.RdlDesign
         {
             rdlDesigner.ShowPreviewWaitDialog(bShow);
         }
+        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool ShowReportItemOutline
         {
             get { return rdlDesigner.ShowReportItemOutline; }
             set { rdlDesigner.ShowReportItemOutline = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string CurrentInsert
         {
             get { return rdlDesigner.CurrentInsert; }
@@ -116,6 +120,7 @@ namespace Majorsilence.Reporting.RdlDesign
             get { return rdlDesigner.CurrentCh; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal DesignTabs DesignTab
         {
 			get
@@ -342,6 +347,7 @@ namespace Majorsilence.Reporting.RdlDesign
             return this.rdlDesigner.GetRdlText();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Modified
         {
             get { return rdlDesigner.Modified; }
@@ -355,6 +361,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// The RDL file that should be displayed.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Uri SourceFile
         {
             get { return _SourceFile; }
@@ -395,6 +402,7 @@ namespace Majorsilence.Reporting.RdlDesign
             return rdl;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SourceRdl
         {
             get { return this.rdlDesigner.GetRdlText(); }
@@ -467,6 +475,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// Turns the Selection Tool on in report preview
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool SelectionTool
         {
             get
@@ -490,6 +499,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// Zoom 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Zoom
         {
             get { return this.rdlDesigner.Zoom; }
@@ -499,6 +509,7 @@ namespace Majorsilence.Reporting.RdlDesign
         /// <summary>
         /// ZoomMode 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ZoomEnum ZoomMode
         {
             get { return this.rdlDesigner.ZoomMode; }

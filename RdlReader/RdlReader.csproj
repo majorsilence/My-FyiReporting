@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
-		<AssemblyKeyContainerName></AssemblyKeyContainerName>
 		<DelaySign>false</DelaySign>
 		<OutputType>WinExe</OutputType>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -10,7 +9,7 @@
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 		<Configurations>Debug;Release;Debug-DrawingCompat</Configurations>
-		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<TargetFrameworks>net8.0-windows;net10.0-windows</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 		<ApplicationManifest>app.manifest</ApplicationManifest>

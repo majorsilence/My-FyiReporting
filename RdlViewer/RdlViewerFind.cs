@@ -10,6 +10,7 @@ using System.Drawing.Printing;
 using System.Text;
 using Majorsilence.Reporting.RdlViewer.Resources;
 using Majorsilence.Reporting.Rdl;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Majorsilence.Reporting.RdlViewer
@@ -31,6 +32,7 @@ namespace Majorsilence.Reporting.RdlViewer
 
         private RdlViewer _Viewer;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RdlViewer Viewer
         {
             get { return _Viewer; }

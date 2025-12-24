@@ -4,6 +4,7 @@ using Majorsilence.Reporting.RdlDesign.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -121,6 +122,7 @@ namespace Majorsilence.Reporting.RdlDesign
             SelectionMoved(this, new EventArgs());
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string CurrentInsert
 		{
 			get {return _CurrentInsert; }
@@ -165,6 +167,7 @@ namespace Majorsilence.Reporting.RdlDesign
             get { return _DrawPanel.BodyHeight; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public XmlDocument ReportDocument
 		{
 			get {return _ReportDoc;}
@@ -188,6 +191,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			get {return _DrawPanel;}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string ReportSource
 		{
 			get 
@@ -265,6 +269,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			_DrawPanel.Invalidate();   
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowReportItemOutline
         {
             get { return _DrawPanel.ShowReportItemOutline; }

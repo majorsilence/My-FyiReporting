@@ -12,6 +12,7 @@ using EncryptionProvider.String;
 using Majorsilence.Reporting.RdlViewer.Resources;
 using Majorsilence.Reporting.Rdl;
 using Majorsilence.WinformUtils;
+using System.ComponentModel;
 
 namespace Majorsilence.Reporting.RdlViewer
 {
@@ -42,6 +43,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <returns>The content of the sub report (XML content)</returns>
         private CrossDelegate SubReportGetContent = new CrossDelegate();
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public CrossDelegate.GetContent dSubReportGetContent
         {
             get { return SubReportGetContent.SubReportGetContent; }
@@ -254,6 +256,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// When true printing will compensate for non-printable area of paper
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool UseTrueMargins
         {
             get { return _UseTrueMargins; }
@@ -263,6 +266,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// Show the Wait Dialog when retrieving and rendering report when true.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowWaitDialog
         {
             get { return _ShowWaitDialog; }
@@ -272,6 +276,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// True if Parameter panel should be shown. 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowParameterPanel
         {
             get
@@ -290,6 +295,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// True when find panel is visible
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowFindPanel
         {
             get
@@ -314,6 +320,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// The color to use when highlighting the current found item
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color HighlightItemColor
         {
             get { return _DrawPanel.HighlightItemColor; }
@@ -323,6 +330,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// The color to use when highlighting all
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color HighlightAllColor
         {
             get { return _DrawPanel.HighlightAllColor; }
@@ -332,6 +340,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// The text to highlight when either HighLightAll is on or the HighLightItem is on.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string HighlightText
         {
             get { return _HighlightText; }
@@ -346,6 +355,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// When HighlightText has a value; HighlightAll controls whether
         /// all page items with that text will be highlighted
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool HighlightAll
         {
             get { return _HighlightAll; }
@@ -361,6 +371,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// When HighlightText has a value; HighlightCaseSensitive controls whether
         /// the comparison is case sensitive.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool HighlightCaseSensitive
         {
             get { return _HighlightCaseSensitive; }
@@ -375,6 +386,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// When used with HighlightText; HighlightPageItem will only highlight the selected item.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public PageItem HighlightPageItem
         {
             get { return _HighlightItem; }
@@ -404,6 +416,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// Sets/Returns the page currently showing
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int PageCurrent
         {
             get
@@ -485,6 +498,7 @@ namespace Majorsilence.Reporting.RdlViewer
         ///		ContinuousFacing: Shows 1st page on right side of pane, then alternating 
         ///				with continuous scrolling.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ScrollModeEnum ScrollMode
         {
             get { return _ScrollMode; }
@@ -500,6 +514,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// Enables/Disables the selection tool.  The selection tool allows the user
         /// to select text and images on the display and copy it to the clipboard.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool SelectTool
         {
             get { return _DrawPanel.SelectTool; }
@@ -603,6 +618,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// Do not force report loading 
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SourceRdlNoLoad
         {
             get { return _SourceRdl; }
@@ -626,6 +642,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// Holds the folder to data source reference files when SourceFileName not available.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Folder
         {
             get { return _Folder; }
@@ -637,6 +654,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// OrderID=10023&OrderDate=10/14/2002
         /// Note: these parameters will override the user specified ones.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Parameters
         {
             get
@@ -751,6 +769,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// Name of the report.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ReportName
         {
             get
@@ -764,6 +783,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// Zoom factor.  For example, .5 is a 50% reduction, 2 is 200% increase.
         /// Setting this value will force ZoomMode to UseZoom.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float Zoom
         {
             get { return _zoom; }
@@ -779,6 +799,7 @@ namespace Majorsilence.Reporting.RdlViewer
         /// <summary>
         /// ZoomMode.  Optionally, allows zoom to dynamically change depending on pane size.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ZoomEnum ZoomMode
         {
             get { return _zoomMode; }

@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
 		<ApplicationIcon>App.ico</ApplicationIcon>
-		<AssemblyKeyContainerName></AssemblyKeyContainerName>
 		<AssemblyName>Majorsilence.Reporting.RdlDesigner</AssemblyName>
 		<DelaySign>false</DelaySign>
 		<OutputType>Library</OutputType>
@@ -13,11 +12,10 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
 		<AssemblyTitle>RDL Designer</AssemblyTitle>
-		<Description></Description>
 		<DelaySign>false</DelaySign>
 		<PackageId>Majorsilence.Reporting.ReportDesigner</PackageId>
 		<Configurations>Debug;Release;Debug-DrawingCompat;Release-DrawingCompat</Configurations>
-		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+		<TargetFrameworks>net8.0-windows;net10.0-windows</TargetFrameworks>
 		<WarningsAsErrors>4014</WarningsAsErrors>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>

@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.ComponentModel;
 
 namespace Majorsilence.Reporting.RdlDesign
 {
@@ -53,6 +54,7 @@ namespace Majorsilence.Reporting.RdlDesign
 		float DpiX;
 		float DpiY;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string Folder { get; set; }
 
 		// During drawing these are set
@@ -183,6 +185,7 @@ namespace Majorsilence.Reporting.RdlDesign
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool ShowReportItemOutline
         {
             get { return _ShowReportItemOutline; }
@@ -195,6 +198,7 @@ namespace Majorsilence.Reporting.RdlDesign
             }
         }
 
+         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal ReportNames ReportNames
 		{
 			get 
@@ -207,6 +211,7 @@ namespace Majorsilence.Reporting.RdlDesign
 			set {_ReportNames = value;}
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		internal XmlDocument ReportDocument
 		{
 			get {return rDoc;}
