@@ -13,6 +13,9 @@ namespace Majorsilence.Reporting.RdlCreator
     /// Programmatically create PDFs.
     /// </summary>
     /// <remarks>Internally it is a combination of RDL and https://github.com/VahidN/iTextSharp.LGPLv2.Core</remarks>
+#if AOT
+    [DotWrap.DotWrapExpose] 
+#endif
     [XmlRoot(ElementName = "Report", Namespace = "http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition")]
     public class Document
     {

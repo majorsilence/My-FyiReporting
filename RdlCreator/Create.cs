@@ -12,6 +12,9 @@ using System.Xml.Serialization;
 
 namespace Majorsilence.Reporting.RdlCreator
 {
+#if AOT
+    [DotWrap.DotWrapExpose] 
+#endif
     public class Create
     {
         public async Task<Rdl.Report> GenerateRdl(Report report)

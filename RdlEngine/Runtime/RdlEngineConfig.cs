@@ -11,6 +11,7 @@ using System.Data.Odbc;
 using System.IO;
 using Majorsilence.Reporting.RdlEngine.Resources;
 using Majorsilence.Reporting.Rdl;
+using System.Runtime.CompilerServices;
 
 namespace Majorsilence.Reporting.Rdl
 {
@@ -543,8 +544,34 @@ namespace Majorsilence.Reporting.Rdl
                     {         // if never initialized; we should init 
                         RdlEngineConfigInit();
                     }
-
                     SqlConfigEntry sce = SqlEntries[provider] as SqlConfigEntry;
+                    
+#if AOT
+
+                    Type targetType = null;
+                    if (sce.CodeModule != null)
+                    {
+                        // prefer getting the type from the loaded assembly
+                        targetType = sce.CodeModule.GetType(sce.ClassName, false, true);
+                    }
+
+                    // fallback to Type.GetType (works if assembly is referenced)
+                    if (targetType == null)
+                        targetType = Type.GetType(sce.ClassName, false, true);
+
+                    if (targetType == null)
+                        throw new Exception(string.Format(Strings.RdlEngineConfig_Error_UnableCreateInstance, sce.ClassName, provider));
+
+                    // create instance using the preserved constructor
+                    object instance = Activator.CreateInstance(targetType, new object[] { cstring });
+                    if (instance is IDbConnection connection)
+                        cn = connection;
+                    else
+                        throw new InvalidCastException($"Unable to cast instance of {sce.ClassName} to IDbConnection.");
+
+                    break;
+#else
+                   
                     if (sce == null || sce.CodeModule == null)
                     {
                         if (sce != null && sce.ErrorMsg != null)
@@ -562,10 +589,28 @@ namespace Majorsilence.Reporting.Rdl
                         throw new Exception(string.Format(Strings.RdlEngineConfig_Error_UnableCreateInstance, sce.ClassName, provider));
                     cn = o as IDbConnection ?? throw new InvalidCastException($"Unable to cast instance of {sce.ClassName} to IDbConnection.");
                     break;
+#endif
             }
 
             return cn;
         }
+        
+#if AOT
+        internal static class AotPreserve
+        {
+            [ModuleInitializer]
+            internal static void PreserveProviderTypes()
+            {
+                // Touch types to keep them from being trimmed.
+                // Requires you to reference the provider packages at compile time.
+                _ = typeof(Microsoft.Data.Sqlite.SqliteConnection);
+                _ = typeof(Npgsql.NpgsqlConnection);
+                _ = typeof(MySql.Data.MySqlClient.MySqlConnection);
+                _ = typeof(Microsoft.Data.SqlClient.SqlConnection);
+                _ = typeof(System.Data.SqlClient.SqlConnection);
+            }
+        }
+#endif
 
         static public string GetTableSelect(string provider)
         {

@@ -91,6 +91,13 @@
 		<PackageReference Include="System.CodeDom" />
 		<PackageReference Condition="'$(DefineConstants.Contains(DRAWINGCOMPAT))' == False" Include="System.Drawing.Common" />
 	</ItemGroup>
+    <ItemGroup Condition="'$(PublishAot)' == 'true'">
+        <PackageReference Include="Microsoft.Data.Sqlite" />
+        <PackageReference Include="Microsoft.Data.SqlClient" />
+        <PackageReference Include="MySql.Data" />
+        <PackageReference Include="Npgsql" />
+        <PackageReference Include="System.Data.SqlClient" />
+    </ItemGroup>
 	<ItemGroup>
 		<Compile Remove="PageDrawing.cs" />
 		<Compile Remove="RdlPrint.cs" />
