@@ -1,0 +1,79 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+header {
+  position: relative;
+  /*top: 0;
+  left: 0;*/
+  z-index: 999;
+
+  width: 100%;
+  height: 50px;
+
+  background: #eee;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 -20px 20px 20px;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0 15px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  float: left;
+}
+
+.wrapper {
+  /*margin-top: 50px;*/
+  padding: 15px 30px;
+  transition: all 0.3s ease-out;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/* Small devices (tablets)
+==========================*/
+@media (min-width: 768px) {
+
+}
+
+
+/* Medium devices (desktops)
+==========================*/
+@media (min-width: 992px) {
+
+  body {
+    overflow-y: scroll;
+  }
+
+  .logo img {
+    width: 200px;
+    text-align: center;
+    margin-top: 10px;
+    float: none;
+  }
+
+  .wrapper {
+    margin-left: 300px;
+  }
+
+  .wrapper__minify {
+    margin-left: 50px;
+  }
+
+}

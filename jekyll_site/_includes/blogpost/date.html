@@ -1,0 +1,8 @@
+{% capture date %}{{ page.date }}{{ blogpost.date }}{% endcapture %}
+{% capture has_date %}{{ date | size }}{% endcapture %}
+
+{% if has_date != '0' %}
+  {% capture time %}<time datetime="{{ date | datetime | date_to_xmlschema }}" itemprop="datePublished">{{ date | date: "%B %e, %Y" }}</time>{% endcapture %}
+{% endif %}
+
+

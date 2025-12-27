@@ -1,0 +1,178 @@
+/* Base styling */
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #c0c0c0;
+  color: #000;
+  margin: 0;
+  padding: 1em;
+  line-height: 1.5;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+a:hover {
+  color: #ff0000;
+}
+
+/* Paragraphs and layout */
+p {
+  margin: 1em 0;
+  max-width: 66ch;
+}
+
+
+/* Lists */
+ul,
+ol {
+  margin-left: 2em;
+}
+
+/* Buttons and inputs */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.25em;
+  border: 2px inset #ccc;
+  background-color: #fff;
+  color: #000;
+}
+
+button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+/* Tables (classic bordered layout) */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  background-color: #fff;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 0.5em;
+  text-align: left;
+}
+
+/* Modern responsive container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 0 5px #999;
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5em;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accessibility: focus ring */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px dashed #000;
+  outline-offset: 2px;
+}
+
+ul.icons {
+  cursor: default;
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.icons li {
+  display: inline-block;
+  padding: 0 1em 0 0;
+  min-width: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #ccc;
+  }
+
+  .container {
+    background-color: #111;
+    box-shadow: 0 0 5px #666;
+  }
+
+  a {
+    color: #44aaff;
+  }
+
+  a:visited {
+    color: #aa88ff;
+  }
+
+  a:hover {
+    color: #ff6666;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    background-color: #222;
+    color: #eee;
+    border: 2px inset #666;
+  }
+
+  table {
+    background-color: #111;
+  }
+
+  th,
+  td {
+    border: 1px solid #666;
+    color: #ccc;
+  }
+
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px dashed #ccc;
+  }
+}
+

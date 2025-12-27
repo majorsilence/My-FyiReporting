@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>{{ page.title }} | Majorsilence</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+	{% if page.enable_syntax_highlighting %}
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.css?v={{site.siteversion}}" />
+	{% endif %}
+	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/bundle.css?v={{site.siteversion}}" />
+	{% include opengraph.html %}
+</head>
+
+<body>
+	<div class="container">
+		{% include page_header.html %}
+		<header class="main">
+			<h1>{{ page.title }}</h1>
+		</header>
+		{{ content | replace: '<img', '<img loading="lazy"' }}
+		
+		{% include footer.html %}
+	</div>
+	<!-- Scripts -->
+	<script defer="defer" src="{{site.baseurl}}/assets/js/bundle.js?v={{site.siteversion}}"></script>
+</body>
+
+</html>

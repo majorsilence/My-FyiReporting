@@ -1,0 +1,8 @@
+<div class="meta">
+  <span class="author">{% include blogpost/author.html %}</span>
+  <span class="date">{% include blogpost/date.html %}{{ time }}</span>
+{% if page.tags == empty or blogpost.tags == empty %}
+{% else %}
+  <span class="tags">{% include blogpost/tags.html %}</span>
+{% endif %}
+</div>

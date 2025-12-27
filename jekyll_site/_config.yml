@@ -1,0 +1,31 @@
+safe: true
+exclude:
+  - README.md
+  - Gemfile*
+  - docker.sh
+  - .gitattributes
+  - .gitignore
+
+# Blog specific settings
+paginate_path: "posts/page/:num"
+paginate: 5
+
+# General settings
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      categories: [posts] # this is a slight hack so Jekyll generates the blog posts in /posts
+
+highlighter: rouge
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+## The application virtual path
+baseurl: 
+siteversion: 2025.12.27
+title: Majorsilence Reporting
+
+plugins: [jekyll-paginate, jekyll-redirect-from, jekyll-sitemap]
