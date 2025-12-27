@@ -699,7 +699,7 @@ namespace Majorsilence.Reporting.RdlViewer
 
         public void SetReportParametersAsJson(string jsonParameterString)
         {
-            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonParameterString);
+            var dict = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(jsonParameterString);
             SetReportParameters(dict);
         }
         

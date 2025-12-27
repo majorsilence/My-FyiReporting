@@ -20,7 +20,6 @@
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageVersion Include="Microsoft.WindowsAzure.ConfigurationManager" Version="1.8.0" />
     <PackageVersion Include="MySql.Data" Version="9.2.0" />
-    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="Npgsql" Version="8.0.7" />
     <PackageVersion Include="NPOI" Version="2.7.4" />
     <PackageVersion Include="NUnit" Version="4.4.0" />
@@ -31,6 +30,7 @@
     <PackageVersion Include="SkiaSharp.NativeAssets.Linux" Version="3.119.0" />
     <PackageVersion Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageVersion Include="System.Spatial" Version="5.8.5" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.0" />
     <PackageVersion Include="WindowsAzure.Storage" Version="4.3.0" />
     <PackageVersion Include="ZXing.Net" Version="0.16.10" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />

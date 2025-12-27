@@ -62,9 +62,6 @@
 		<ProjectReference Include="..\RdlEngine\Majorsilence.Reporting.RdlEngine.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" />
-	</ItemGroup>
-	<ItemGroup>
 		<Compile Remove="RdlReader\AssemblyInfo.cs" />
 		<Compile Remove="RdlReader\DialogAbout.cs" />
 		<Compile Remove="RdlReader\DialogAbout.Designer.cs" />
@@ -86,6 +83,9 @@
 		<EmbeddedResource Remove="RdlReader\Resources\Strings.ru-RU.resx" />
 		<EmbeddedResource Remove="RdlReader\ZoomTo.resx" />
 		<EmbeddedResource Remove="RdlReader\ZoomTo.ru-RU.resx" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 	<PropertyGroup />
 </Project>

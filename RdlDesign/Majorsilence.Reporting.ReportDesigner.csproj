@@ -197,7 +197,6 @@
 	<ItemGroup>	
 		<PackageReference Include="Microsoft.Data.Edm" />
 		<PackageReference Include="Microsoft.Data.OData" />
-		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="System.Spatial" />
 		<PackageReference Include="Microsoft.Data.SqlClient" />
 		<PackageReference Include="System.Data.SqlClient" />

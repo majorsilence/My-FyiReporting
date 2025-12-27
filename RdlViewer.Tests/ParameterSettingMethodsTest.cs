@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace RdlViewer.Tests
@@ -22,7 +21,7 @@ namespace RdlViewer.Tests
             paramDic.Add("ampersand", "test & value1");
             paramDic.Add("badsigns", "{}[]?*!\\\"");
 
-            var paramString = JsonConvert.SerializeObject(paramDic);
+            var paramString =  System.Text.Json.JsonSerializer.Serialize(paramDic);
 
             sut.SetReportParametersAsJson(paramString);
 
